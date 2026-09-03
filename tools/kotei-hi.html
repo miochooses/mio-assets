@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>固定費 見直しシミュレーター｜通信・光・サブスクで年いくら浮くか即計算｜AIガチ検証室</title>
+<meta name="description" content="スマホ・光回線・サブスクの今の月額を入れるだけ。見直しで年いくら浮くかをAIが即計算。“設定”を直すだけの労力ゼロ節約。登録なし・端末内だけで処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="固定費 見直しシミュレーター">
+<meta property="og:description" content="通信・光・サブスクの今の額を入れるだけ。年いくら浮くか即計算。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  .row{margin-top:16px;} .row:first-child{margin-top:0;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  .inl{display:flex;gap:8px;align-items:center;margin-top:8px;}
+  input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:32px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--g);}
+  .line a{color:var(--b);text-decoration:none;font-size:12px;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:16px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 固定費見直しシミュ</div>
+    <h1>固定費、見直しで年いくら浮く？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／“設定”を直すだけの労力ゼロ節約</div>
+  </header>
+
+  <div class="panel">
+    <div class="row">
+      <label>📱 スマホ（今の月額・円）<span class="sub">格安SIM目安 月2,200円との差を計算</span></label>
+      <div class="inl"><input id="sumaho" type="number" inputmode="numeric" placeholder="例）8000"></div>
+    </div>
+    <div class="row">
+      <label>🌐 光回線（今の月額・円）</label>
+      <div class="inl">
+        <input id="hikari" type="number" inputmode="numeric" placeholder="例）6000">
+        <select id="jutaku" style="width:auto"><option value="5500">戸建て</option><option value="4200">マンション</option></select>
+      </div>
+      <div class="sub" style="margin-top:6px">相場（戸建て5,500円/マンション4,200円）より高い分を計算</div>
+    </div>
+    <div class="row">
+      <label>📺 使っていない/迷っているサブスク（月額合計・円）<span class="sub">解約できる分はまるごと節約に</span></label>
+      <div class="inl"><input id="subsc" type="number" inputmode="numeric" placeholder="例）2000"></div>
+    </div>
+    <button onclick="calc()">年いくら浮くか計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">見直しで浮くお金（目安）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="cta">
+        <div class="h">▶ 実際に見直す（どれから？）</div>
+        <div class="ph">［ASP導線プレースホルダ：格安SIM／光回線／FP相談の提携リンクを開示つきで差し込む］</div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/kakuyasu-sim-vs-carrier.html">格安SIM</a>／<a href="../saiten/hikari-kaisen-norikae.html">光回線</a>／<a href="../saiten/hoken-kakesute-vs-chochiku.html">保険</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var sumaho=parseFloat(document.getElementById('sumaho').value)||0;
+  var hikari=parseFloat(document.getElementById('hikari').value)||0;
+  var soba=parseInt(document.getElementById('jutaku').value,10);
+  var subsc=parseFloat(document.getElementById('subsc').value)||0;
+  if(sumaho<=0 && hikari<=0 && subsc<=0){ alert('いずれかの月額を入れてください'); return; }
+  var sM = sumaho>2200 ? sumaho-2200 : 0;            // スマホ→格安SIM
+  var hM = hikari>soba ? hikari-soba : 0;             // 光→相場
+  var subM = subsc;                                   // 使ってないサブスク=全額
+  var totM = sM+hM+subM;
+  var totY = totM*12;
+  document.getElementById('amt').textContent = totY>0 ? '年 '+yen(totY) : '見直し余地は小さめ';
+  document.getElementById('sub2').textContent = totY>0 ? '（月 '+yen(totM)+' × 12ヶ月・2年で'+yen(totY*2)+'）' : 'すでに固定費は絞れています';
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function add(icon,name,m,link){ if(m<=0) return; var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+icon+' '+name+'</span><span><b>年'+yen(m*12)+'</b> '+(link?'<a href="'+link+'">採点→</a>':'')+'</span>'; L.appendChild(d); }
+  add('📱','スマホ（格安SIMへ）',sM,'../saiten/kakuyasu-sim-vs-carrier.html');
+  add('🌐','光回線（相場並みへ）',hM,'../saiten/hikari-kaisen-norikae.html');
+  add('📺','サブスク解約',subM,'');
+  document.getElementById('note').textContent = '※スマホは格安SIM目安2,200円、光は相場（戸建て5,500/マンション4,200円）を基準にした概算です。実際はプラン・条件で変わります。保険も固定費の大物です（必要保障額はFP無料相談で棚卸しを）。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
