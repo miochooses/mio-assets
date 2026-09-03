@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賃貸 vs 持ち家、結局どっちが得？生涯の住居費をAIが計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「賃貸 vs 持ち家」を計算で採点。生涯コストは前提次第で数百万円ズレて拮抗しやすく、万能の勝者はいません。試算の各社データが賃貸有利にも持ち家有利にも割れる理由を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="賃貸 vs 持ち家 どっちが得？AIが計算で採点">
+<meta property="og:description" content="生涯コストは前提次第で拮抗。万能の勝者なし。あなたの条件で採点する。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 賃貸 vs 持ち家</div>
+    <h1>賃貸 vs 持ち家、結局どっちが得？<br>“生涯の住居費”をAIが計算で採点した</h1>
+    <div class="lead">「持ち家は資産、賃貸は捨て金」――よく聞く話です。でも感情ゼロのAIが生涯コストを計算すると、答えは拍子抜けするほど地味。<b>万能の勝者はいません</b>。総額は前提を少し変えるだけで数百万円ズレて、賃貸有利にも持ち家有利にもひっくり返ります。この記事では「結論を断定しない」ことこそ結論です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">どちらが得かは<b>前提次第で拮抗</b>。試算の各社データも賃貸有利・持ち家有利に割れています。<br>だから「金額で決める」より、<b>身軽さ重視なら賃貸／同じ場所に長く住み資産化したいなら持ち家</b>――価値観で選ぶのが正解。金額差は誤差レンジに収まりやすい、が本当の答えです。</div>
+  </div>
+
+  <h2>まず計算式を出す</h2>
+  <p>生涯の住居費はシンプルに、こう分解できます。感情ではなく足し算引き算です。</p>
+  <div class="calc">賃貸 ＝ 家賃 × 住む年数 ＋ 更新料・引越し・火災保険<br>持ち家 ＝ 物件価格 ＋ 諸費用 ＋ 維持費 ＋ 金利 − 売却/資産価値<small>持ち家は「払う額」だけでなく、最後に手元へ残る資産（売却額）を引き算できるのがポイント。ただし残る額は下落リスクで前提次第</small></div>
+  <p>ここで大事なのは、持ち家の右端「−売却/資産価値」の数字が誰にも確定できないこと。ここが読めないから、総額の勝敗も読めません。</p>
+
+  <h2>実データ：コスト要素の相場（2026年時点）</h2>
+  <table>
+    <tr><th>コスト要素</th><th>賃貸</th><th>持ち家</th></tr>
+    <tr><td>初期費用</td><td>家賃の4〜6ヶ月分（家賃10万円で40〜60万円）</td><td>物件価格の2〜3割前後（4,000万円で720〜1,200万円）</td></tr>
+    <tr><td>毎月の支払い</td><td>家賃＋管理費（更新のたび更新料）</td><td>ローン返済＋管理費・修繕積立（マンションで月2〜3万円）</td></tr>
+    <tr><td>固定資産税・都市計画税</td><td class="win">なし</td><td>年10〜30万円程度（所有し続ける限り毎年）</td></tr>
+    <tr><td>修繕・大規模改修</td><td class="win">原則なし（設備故障は大家負担）</td><td>外壁塗装60〜120万円／屋根40〜200万円 等を自己負担</td></tr>
+    <tr><td>火災・地震保険</td><td>家財のみで少額</td><td>年3〜5万円程度</td></tr>
+    <tr><td>最後に残るもの</td><td>なし（資産は残らない）</td><td class="win">土地・建物（売却で回収の可能性・ただし前提次第）</td></tr>
+  </table>
+
+  <h2>“前提次第で拮抗”を数字で見せる</h2>
+  <p>同じ「50年」で試算しても、各社の結論はバラバラです。ここが今回の核心。</p>
+  <div class="calc">A社試算：持ち家 6,760万円 ／ 賃貸 7,560万円 → 持ち家が約800万円安い<small>4,000万円物件・頭金400万円・35年ローン金利1.5%・家賃月12万円（2年ごと更新）の前提</small></div>
+  <div class="calc">B社試算：持ち家 約8,450万円 ／ 賃貸 約8,199万円 → 賃貸が約250万円安い<small>4,970万円マンション・家賃月13万円から段階上昇の前提。前提を変えると勝敗は逆転する</small></div>
+  <p>同じテーマで、一方は「持ち家が800万円得」、もう一方は「賃貸が250万円得」。<b>物件価格・家賃・金利・住む年数という前提を少し動かすだけで、数百万円の差が生まれて勝敗が入れ替わります</b>。生涯コスト差は50年で概ね500〜1,500万円のレンジとされますが、その符号（＋か−か）が固定されていない、というのがフェアな現実です。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況・価値観</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>転勤・転職が多い／身軽でいたい</td><td class="win">賃貸</td><td>いつでも引越せる自由度が最大の強み。売却の手間もない</td></tr>
+    <tr><td>収入が不安定／大きな借金を負いたくない</td><td class="win">賃貸</td><td>初期負担が軽く、環境変化に柔軟に対応できる</td></tr>
+    <tr><td>同じ場所に長く住む（目安5年以上〜数十年）</td><td class="win">持ち家</td><td>初期費用が年数で薄まり、完済後は住居費が大きく下がる</td></tr>
+    <tr><td>資産として手元に残したい／自由に改装したい</td><td class="win">持ち家</td><td>土地・建物が資産化。リフォームも自由</td></tr>
+    <tr><td>正直どちらでもいい／金額で決めたい</td><td>引き分け</td><td>総額は前提次第で拮抗。価値観で決めた方が後悔しにくい</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：断定はしません。<b>持ち家</b>は流動性が低く（すぐ売れない・売却額は市況次第）、維持費・修繕費・固定資産税が続き、金利上昇や災害のリスクを自分で背負います。売却で回収できる保証もありません。<b>賃貸</b>は一生家賃を払い続け、家賃は上がり得て、老後は契約更新（保証人確保など）が難しくなる可能性があります。2026年は「住宅ローン金利の上昇」と「都市部の家賃上昇」が同時進行中で、どちらにもコスト増リスクがあります。ここに挙げた金額はすべて前提つきの参考値で、あなたの物件・地域・年数で大きく変わります。</div>
+
+  <div class="cta">
+    <div class="h">▶ 住まいのコストを具体的に詰める</div>
+    <div class="ph">［ASP導線プレースホルダ：住宅ローン一括比較／引越し見積もり／火災保険の比較を、提携済み・開示つきで差し込む］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。ローンの金利タイプで迷うなら <a href="jutaku-loan-hendou-vs-kotei.html">住宅ローン 変動 vs 固定</a>もどうぞ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>生涯の住居費は「家賃×年数」と「物件価格＋諸費用＋維持費＋金利−売却額」の勝負。</li>
+    <li>総額は前提次第で数百万円ズレて拮抗。試算データも賃貸有利・持ち家有利に割れる。</li>
+    <li>身軽さ・柔軟性重視なら賃貸／長く住み資産化したいなら持ち家、と価値観で選ぶ。</li>
+    <li>持ち家は流動性・維持費・金利・災害リスク、賃貸は生涯家賃・老後の契約リスク。断定できない。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・生涯コスト差は50年で約500〜1,500万円のレンジ／2026年は金利上昇・家賃上昇が同時進行（トヨタホーム「賃貸と持ち家はどっちが得？生涯コスト比較【2026年版】」）<br>
+    ・初期費用（賃貸=家賃の4〜6ヶ月分・購入=物件価格の2〜3割）／固定資産税 年10〜30万円／修繕費・持ち家メリット・デメリット（阪急阪神すまいのコンシェル「賃貸と購入の比較完全版」）<br>
+    ・A社試算：持ち家6,760万円 vs 賃貸7,560万円で持ち家が約800万円安い（4,000万円物件・金利1.5%・家賃月12万円の前提）／維持費目安（暮らしコストラボ「持ち家 vs 賃貸【2026年】」）<br>
+    ・B社試算：持ち家 約8,450万円 vs 賃貸 約8,199万円で賃貸が約250万円安い（4,970万円マンション・家賃月13万円から上昇の前提）／「どちらが得かは簡単に比較できない」旨（SUUMO「持ち家vs賃貸はどっちが得？」）<br>
+    <span style="display:block;margin-top:8px">※金額はすべて各時点・各社の前提にもとづく参考値です。物件価格・家賃・金利・居住年数・地域で大きく変わり、勝敗も入れ替わります。最新は各社シミュレーションや公式情報でご確認ください。特定の選択を推奨・断定するものではありません。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

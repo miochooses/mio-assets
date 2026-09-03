@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>電力会社、今のまま vs 乗り換え？電気代がいくら変わるかAIが計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「大手のまま vs 新電力へ乗り換え」を計算で採点。乗り換え平均は年3万円台の試算も。でも単身の少量なら差は小さく、市場連動プランや撤退リスクも。得やすい人・様子見でいい人を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="電力会社 今のまま vs 乗り換え｜計算で採点">
+<meta property="og:description" content="使用量が多い人は乗り換えで得やすい。単身の少量なら差は小さい。市場連動と撤退リスクに注意。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 電力会社 今のまま vs 乗り換え</div>
+    <h1>電力会社、今のまま vs 乗り換え？<br>電気代がいくら変わるかAIが計算で採点した</h1>
+    <div class="lead">「電気は大手地域電力のまま」という人は多い。でも感情ゼロのAIが数字で見ると、<b>使用量が多い家庭ほど、乗り換えやセット割で電気代は下がりやすい</b>。ただし――<b>単身で使用量が少ない人は差が小さく、無理に動く価値は薄い</b>。市場連動プランや撤退リスクもあるので、そこも計算に入れて採点します。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">使用量が多い／大手地域電力のままの人 → 乗り換え or セット割で得やすい（乗り換えで年3万円台の試算も）。<br>単身で使用量が少ない人 → 差は数千円レベルで小さく、様子見でも可。<br>ただし<b>市場連動型プラン・解約金・新電力の撤退</b>には要注意。</div>
+  </div>
+
+  <h2>まず結論：得やすい人・そうでない人</h2>
+  <p>電力は2016年に自由化され、2026年8月時点で新電力は全国に<b>811社</b>あります（経産省ベースの集計）。選択肢は多いですが、得の大きさは「使用量」と「今どのプランか」でほぼ決まります。使う量が多いほど、単価がちょっと安いだけでも年間の差が積み上がる――これがAIの見立てです。</p>
+
+  <h2>“いくら得か”を計算する</h2>
+  <p>やることは1つ。<b>削減率で見る</b>か、<b>単価差×使用量で見る</b>かです。まず削減率。ある比較サイトの試算では、乗り換えで年間平均33,801円という数字も出ています（条件つきの目安）。仮に現在の年間電気代を12万円とすると――</p>
+  <div class="calc">現在の年間電気代 12万円 × 削減率10% ＝ 年 12,000円の節約<small>（あくまで目安。削減率はプラン・エリア・使用量で大きく変わる。使用量が少ないほど実額は縮む）</small></div>
+  <p>次に単価差×使用量。単価が1円/kWh安いプランに変えられたとして、月400kWh使う家庭なら――</p>
+  <div class="calc">1円/kWh × 400kWh × 12ヶ月 ＝ 年 4,800円<small>月200kWhの単身なら半分の 年2,400円。使用量が多い人ほど差が開く仕組み</small></div>
+  <p>正直に言うと、<b>単身の少量ユーザーは、この実額が数千円にとどまることが多い</b>。乗り換えの手間に見合うかは微妙です。逆にファミリーや在宅時間が長い家庭は、削減率でも単価差でも効いてきます。</p>
+
+  <h2>乗り換え・セット割の傾向（2026年時点）</h2>
+  <table>
+    <tr><th>手段</th><th>下げ方の傾向</th><th>目安（公開情報の例）</th></tr>
+    <tr><td>新電力へ乗り換え</td><td class="win">単価・基本料金が大手より安いプランを選ぶ</td><td>試算で年3万円台の例も／使用量が多いほど有利</td></tr>
+    <tr><td>電気＋ガスのセット割</td><td class="win">まとめて割引・ポイント還元</td><td>例：月330円割引、電気単価1円/kWh引き 等</td></tr>
+    <tr><td>電気＋通信（光）のセット割</td><td class="win">通信費側の割引・ポイントで実質減</td><td>例：光とセットで月501円割引、月330円割引 等</td></tr>
+    <tr><td>大手地域電力のまま</td><td>安定・撤退不安が小さい</td><td class="win">高騰局面での“最後の受け皿”になりやすい</td></tr>
+  </table>
+  <p>ポイントは、<b>電気単独より「セット」で効くことが多い</b>という点。すでにガスや光を契約しているなら、そこに電気を寄せるだけで割引が乗ることがあります。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>ファミリー・在宅が長い・使用量が多い</td><td class="win">乗り換え or セット割</td><td>単価差×使用量で実額が積み上がる</td></tr>
+    <tr><td>大手のまま／一度も比較していない</td><td class="win">まず料金シミュを試す</td><td>今のプランが割高な可能性。比較は無料</td></tr>
+    <tr><td>ガス・光を1社に寄せられる</td><td class="win">セット割を検討</td><td>割引・ポイントで実質下がりやすい</td></tr>
+    <tr><td>単身・使用量が少ない</td><td>今のままでも可</td><td>差が数千円なら無理に動かなくてよい</td></tr>
+    <tr><td>電気代の変動を絶対に避けたい</td><td>固定単価型を選ぶ</td><td>市場連動は高騰リスクがある</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：<b>①市場連動型プラン</b>は卸電力市場（JEPX）に連動し、高騰時は大幅に上がります。2021年1月には月平均63.07円/kWh、コマ最高251円/kWhという前例のない高騰がありました。安さだけで選ぶと危険です。<b>②解約金</b>は最低契約期間内で2,000〜10,000円程度かかる場合があります（撤退による解約では免除されることが多い）。<b>③新電力の撤退・倒産</b>も現実に起きており、2024年3月時点で登録706社のうち119社が倒産・撤退・新規停止でした。撤退しても送配電網は共通で“いきなり停電”にはなりませんが、切替の手間は発生します。<b>結局は「固定単価か市場連動か」「解約条件」「自分の使用量」を必ず確認</b>を。</div>
+
+  <div class="cta">
+    <div class="h">▶ 今の電気代と乗り換え後を比較してみる</div>
+    <div class="ph">［ASP導線プレースホルダ：電力比較／切替（提携済みの料金シミュ・切替サービスを開示つきで差し込む）］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。固定費もまとめて見直すなら <a href="../tools/kotei-hi.html">固定費見直しシミュ</a>へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>使用量が多い／大手のままの人は、乗り換え・セット割で下がりやすい（試算で年3万円台の例も）。</li>
+    <li>効き方は「削減率」または「単価差×使用量」。使用量が少ないほど実額は縮む。</li>
+    <li>単身の少量ユーザーは差が数千円のことも。無理に動かなくてよい。</li>
+    <li>市場連動型は高騰リスク。固定単価型・解約条件・撤退リスクを必ず確認。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・新電力は2026年8月時点で全国811社（経産省ベースの集計・比較サイト各社）<br>
+    ・乗り換えで年間平均33,801円節約の試算例（エネチェンジ「電気・ガス・インターネットのセットプラン」記事）<br>
+    ・セット割の割引例（月330円割引、光セット月501円割引、電気単価1円/kWh引き 等／エネチェンジ・オイクラ・Looopでんき公式）<br>
+    ・市場連動型プランの高騰事例（2021年1月 JEPXスポット月平均63.07円/kWh・コマ最高251円/kWh／新電力サーチ・enepi）<br>
+    ・解約金の目安2,000〜10,000円・撤退時は免除多い、登録706社中119社が倒産/撤退/新規停止（2024年3月時点／enepi）<br>
+    <span style="display:block;margin-top:8px">※金額・割引・社数は各時点の公開情報にもとづく参考値です。プラン・エリア・使用量・会員条件で変わります。最新は各社公式・公的統計でご確認を。年間節約額の試算は前提条件により大きく変動する目安であり、実際の削減を保証するものではありません。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
