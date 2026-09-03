@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手取り ざっくり計算｜額面年収から手取り月額を即計算（2026目安）｜AIガチ検証室</title>
+<meta name="description" content="額面年収を入れるだけで、手取りの年額・月額をAIがざっくり計算。年収別の手取り率（額面の65〜80%）目安で概算。固定費が手取りの何%かも分かる。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="手取り ざっくり計算（2026目安）">
+<meta property="og:description" content="額面年収から手取り月額を即概算。固定費の割合も分かる。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 手取りざっくり計算</div>
+    <h1>その年収、手取りはいくら？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり概算</div>
+  </header>
+
+  <div class="panel">
+    <label>額面の年収（万円）<span class="sub">賞与込みの総支給。例）500万円なら 500</span>
+      <input id="man" type="number" inputmode="numeric" placeholder="例）500">
+    </label>
+    <label>毎月の固定費（円・任意）<span class="sub">家賃・通信・光・サブスク・保険など。入れると“手取りの何%か”が出ます</span>
+      <input id="kotei" type="number" inputmode="numeric" placeholder="例）120000">
+    </label>
+    <button onclick="calc()">手取りをざっくり計算</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">手取り（年・目安）</div>
+        <div class="amt" id="amtY">—</div>
+        <div class="sub2" id="subY"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="fixed" style="display:none"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="kotei-hi.html">固定費見直しシミュ</a> ｜ <a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 出典アンカー: 年収300万→約80%, 1500万→約67%（額面の65〜80%・年収上昇で低下）
+function tedoriRate(man){
+  var pts=[[150,82],[200,81],[300,80],[400,79],[500,78],[600,77],[700,76],[800,74],[900,73],[1000,72],[1200,70],[1500,67],[2000,63]];
+  if(man<=pts[0][0]) return pts[0][1];
+  if(man>=pts[pts.length-1][0]) return pts[pts.length-1][1];
+  for(var i=1;i<pts.length;i++){ if(man<=pts[i][0]){ var a=pts[i-1],b=pts[i]; return a[1]+(b[1]-a[1])*(man-a[0])/(b[0]-a[0]); } }
+  return 75;
+}
+function calc(){
+  var man=parseFloat(document.getElementById('man').value)||0;
+  if(man<=0){ alert('額面の年収（万円）を入れてください'); return; }
+  var gross=man*10000;
+  var rate=tedoriRate(man);
+  var netY=gross*(rate/100);
+  var netM=netY/12;
+  document.getElementById('amtY').textContent=yen(netY);
+  document.getElementById('subY').textContent='（手取り率 約'+rate.toFixed(0)+'% ／ 手取り月 約'+yen(netM)+'）';
+  var L=document.getElementById('lines'); L.innerHTML='';
+  var hikimono=gross-netY;
+  function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  row('額面（年）',gross);
+  row('税・社会保険料など（概算）',hikimono);
+  row('手取り（年）',netY);
+  var kotei=parseFloat(document.getElementById('kotei').value)||0;
+  var F=document.getElementById('fixed');
+  if(kotei>0){
+    var pct=kotei/netM*100;
+    var msg = pct>=50 ? '固定費が重め。見直し余地が大きいかも。' : pct>=35 ? '平均的。削れる項目がないか点検を。' : 'かなり健全な水準です。';
+    F.style.display='block';
+    F.innerHTML='固定費は手取り月額の <b style="color:'+(pct>=50?'#f0645a':pct>=35?'#f0883e':'#2ea043')+'">約'+pct.toFixed(0)+'%</b>。'+msg+'　→ <a href="kotei-hi.html">固定費見直しシミュで年いくら浮くか計算</a>';
+  } else { F.style.display='none'; }
+  document.getElementById('note').textContent='※これは年収別の手取り率（額面の65〜80%目安）にもとづく“ざっくり概算”です。実際は扶養・各種控除・自治体・賞与割合で変わります（2026年は基礎控除の拡大などで手取りが動く点にも注意）。正確な額は公式の手取り計算シミュレーターでご確認を。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
