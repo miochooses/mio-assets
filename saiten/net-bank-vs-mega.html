@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ネット銀行、まだ作ってない vs 作る？貯金・振込用に1つ持つと何が変わるか計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「メガバンク1本 vs ネット銀行を作る」を計算で採点。金利は最大350倍、手数料は無料回数が段違い。全部乗り換えず“併用”が正解になる理由を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="ネット銀行 まだ作ってない vs 作る｜計算で採点">
+<meta property="og:description" content="金利350倍・手数料無料回数。でも全部乗り換えなくていい。併用が正解。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ ネット銀行 vs メガバンク</div>
+    <h1>ネット銀行、まだ作ってない vs 作る？<br>“貯金・振込用に1つ”で何が変わるか計算した</h1>
+    <div class="lead">「銀行はメガバンク1本」という人は多い。でも感情ゼロのAIが数字で見ると、貯金・振込用にネット銀行を1つ持つだけで、金利と手数料がまるで別世界です。ただし――<b>全部を乗り換える必要はありません</b>。答えは「併用」。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">メガ1本の人 → 貯金・他行振込用にネット銀行を1つ作るのが得（金利最大350倍・手数料の無料回数が段違い）。<br>ただし給与振込・現金入金・対面が多いなら、メガも残して<b>併用</b>がベスト。</div>
+  </div>
+
+  <h2>数字で見る差（2026年時点）</h2>
+  <table>
+    <tr><th>項目</th><th>メガバンク</th><th>ネット銀行</th></tr>
+    <tr><td>普通預金金利</td><td>0.001%</td><td class="win">0.10〜0.35%（最大350倍）</td></tr>
+    <tr><td>ATM手数料</td><td>時間外・他行で有料が多い</td><td class="win">1回110〜220円だが、月数回〜十数回無料</td></tr>
+    <tr><td>他行宛振込手数料</td><td>都度かかりがち</td><td class="win">150〜330円だが、月数回〜十数回無料</td></tr>
+    <tr><td>店舗・対面</td><td class="win">あり（現金・相談に強い）</td><td>基本なし（オンライン完結）</td></tr>
+  </table>
+
+  <h2>“いくら得か”を計算する</h2>
+  <p>2つの得があります。①金利、②手数料。まず金利。100万円を1年預けた利息は――</p>
+  <div class="calc">メガ 0.001% → 約10円 ／ ネット 0.2% → 約2,000円<small>（税引前）。預金額が大きいほど差は開く。ただし少額だと金利差の実額は小さい</small></div>
+  <p>正直に言うと、<b>金利の差は“預金額が小さいうちは数百〜数千円”で、劇的ではありません</b>。日常でジワジワ効くのはむしろ②手数料です。他行振込を月4回する人がメガで毎回200円払うと ―― </p>
+  <div class="calc">200円 × 4回 × 12ヶ月 ＝ 年 9,600円<small>ネット銀行の“無料回数”内に収めれば、これがほぼ0円に</small></div>
+  <p>金利より、この「毎月の手数料を無料回数で消す」効果の方が、多くの人には大きく効きます。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>他行振込・ATM出金が多い</td><td class="win">ネット銀行を作る</td><td>無料回数で手数料がほぼ0に</td></tr>
+    <tr><td>まとまった貯金を置いている</td><td class="win">ネット銀行を作る</td><td>金利差が実額で効いてくる</td></tr>
+    <tr><td>給与振込・現金入金・対面が多い</td><td class="win">メガも残す（併用）</td><td>店舗・現金対応はメガが強い</td></tr>
+    <tr><td>口座管理が面倒／少額しか動かさない</td><td>今のままでも可</td><td>効果が小さいなら無理に増やさない</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：金利や無料回数は変動し、会員ステージ（残高や取引で条件が上がる仕組み）で変わります。「最大」金利は条件つきのことが多いので、常時の金利・無料回数で見ましょう。口座を増やすと管理の手間も増えます。“貯金・振込用に1つ”くらいが現実的です。</div>
+
+  <div class="cta">
+    <div class="h">▶ 貯金・振込用のネット銀行を作る</div>
+    <div class="ph">［ASP導線プレースホルダ：提携済みのネット銀行口座開設を開示つきで差し込む］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。固定費もまとめて見直すなら <a href="../tools/kotei-hi.html">固定費見直しシミュ</a>へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>メガ1本なら、貯金・振込用にネット銀行を1つ作ると金利・手数料で得。</li>
+    <li>効くのは金利より“手数料の無料回数”（他行振込が多い人ほど大きい）。</li>
+    <li>全部乗り換えない。給与・現金・対面はメガ、貯金・振込はネットの<b>併用</b>が現実解。</li>
+    <li>金利は変動・条件つき。常時の数字で選ぶ。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・普通預金金利の比較（メガ0.001% vs ネット銀行0.10〜0.35%・最大350倍／2026年）<br>
+    ・ATM手数料・他行宛振込手数料と無料回数の比較（2026年）<br>
+    <span style="display:block;margin-top:8px">※金利・手数料は各時点の公開情報にもとづく参考値です。会員ステージ・条件で変わります。最新は各行公式でご確認を。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
