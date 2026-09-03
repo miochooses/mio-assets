@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支払いは キャッシュレス vs 現金？年間の“得”と“使いすぎ”を計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「キャッシュレス vs 現金」を計算で採点。年間支出×還元率で得は決まるが、勝負を分けるのは“使いすぎない自信”。管理できる人はキャッシュレス、使いすぎる人はチャージ式や現金が正解になる理由を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="キャッシュレス vs 現金｜計算で採点">
+<meta property="og:description" content="年間支出×還元率で得は決まる。でも“使いすぎない自信”で勝者が割れる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ キャッシュレス vs 現金</div>
+    <h1>支払いは キャッシュレス vs 現金？<br>年間の“得”と“使いすぎ”を計算で採点した</h1>
+    <div class="lead">「還元があるからキャッシュレス」「使いすぎるから現金」――どちらも正しい。感情ゼロのAIが数字で見ると、得か損かは<b>年間支出 × 還元率</b>でほぼ決まります。でも本当の勝負を分けるのは、還元率ではありません。<b>「自分は使いすぎないか」という一点</b>で、勝者は割れます。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">支出を管理できる人・還元を取りたい人 → キャッシュレスが得（黙っていても年1〜2%戻る）。<br>つい使いすぎる人・災害時の停電が不安な人 → <b>現金 or チャージ式（プリペイド）</b>で上限を先に決めるのが正解。両者の差は「性格」で決まる。</div>
+  </div>
+
+  <h2>数字で見る差（2026年時点）</h2>
+  <table>
+    <tr><th>項目</th><th>現金</th><th>キャッシュレス</th></tr>
+    <tr><td>ポイント還元</td><td>0%（戻りなし）</td><td class="win">おおむね0.5〜1.0%、併用で1.5〜2.0%も</td></tr>
+    <tr><td>使いすぎ抑止</td><td class="win">財布の残高が上限＝ブレーキが効く</td><td>後払いだと上限が見えにくい</td></tr>
+    <tr><td>支出の記録</td><td>手動（家計簿が必要）</td><td class="win">アプリに自動で履歴が残る</td></tr>
+    <tr><td>停電・災害・通信障害</td><td class="win">そのまま使える</td><td>店・端末・回線に依存する</td></tr>
+    <tr><td>普及状況（決済比率）</td><td>約42%（残りが現金等）</td><td class="win">2025年で58.0%まで拡大</td></tr>
+  </table>
+  <p>キャッシュレスの内訳はクレジットカードが圧倒的で、決済額の8割超（134.6兆円）を占めます。次いでコード決済（QR）が10.2%、電子マネー3.7%、デビット3.4%です（2025年・経産省）。</p>
+
+  <h2>“いくら得か”を計算する</h2>
+  <p>キャッシュレスの得は、実はとてもシンプルな式で出ます。年間の支出のうち、キャッシュレスで払える分に還元率を掛けるだけ。二人以上世帯の消費支出は月およそ30万円（2024年・総務省）なので、まず年間支出をざっくり見ると――</p>
+  <div class="calc">月30万円 × 12ヶ月 ＝ 年 約360万円<small>（消費支出。ここから家賃・税など還元対象外を除いた分が“戻る対象”になる）</small></div>
+  <p>このうち、たとえば年200万円をキャッシュレスに乗せられたとします。還元率別の“年の得”はこうです。</p>
+  <div class="calc">200万円 × 0.5% ＝ 年 10,000円<br>200万円 × 1.0% ＝ 年 20,000円<br>200万円 × 1.5% ＝ 年 30,000円<small>還元率が2倍・3倍になると、得も素直に2倍・3倍になる</small></div>
+  <p>現金はこの欄がすべて0円です。つまり<b>「同じ支出をどう払うか」だけで、年1〜3万円の差が黙って生まれます</b>。ただし――ここに落とし穴があります。</p>
+  <div class="calc">還元 20,000円 の裏で、使いすぎ +30,000円 なら… 差引 −10,000円<small>1%の還元は、10%の浪費であっさり吹き飛ぶ</small></div>
+  <p>還元は「予定通り払ったとき」だけの得です。キャッシュレスにして支出そのものが増えるなら、その時点で採点は逆転します。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>予算を守れる・支出を管理できる</td><td class="win">キャッシュレス</td><td>還元がまるまるプラスになる</td></tr>
+    <tr><td>還元・ポイントを取りにいきたい</td><td class="win">キャッシュレス（併用）</td><td>カード×QRで実質1.5〜2%も狙える</td></tr>
+    <tr><td>家計簿が続かない・記録したい</td><td class="win">キャッシュレス</td><td>履歴がアプリに自動で残る</td></tr>
+    <tr><td>つい使いすぎる自覚がある</td><td class="win">現金 or チャージ式</td><td>先に上限を決めればブレーキが効く</td></tr>
+    <tr><td>停電・災害・通信障害が不安</td><td class="win">現金も一定額は持つ</td><td>端末・回線が止まっても使える</td></tr>
+  </table>
+  <p>「全部キャッシュレス」か「全部現金」の二択にしなくて構いません。<b>還元を取りたいけど使いすぎが怖い人は、チャージ式（プリペイド・上限を先に入金する方式）</b>が中間解になります。上限を自分で決めつつ、還元も一部受け取れます。</p>
+
+  <div class="warn">⚠ 正直な注意：一番危ないのは「ポイント目当ての浪費」です。1%戻すために不要なものを買えば、還元より支出増のほうが大きく、確実に損。還元率は改定・条件つきが多く、「最大◯%」は特定店・タッチ決済などの条件付きが普通です。また後払い方式は残高が見えにくく、使いすぎを誘発しがち。停電・通信障害・決済トラブルに備え、現金もいくらかは手元に残すのが現実的です。</div>
+
+  <div class="cta">
+    <div class="h">▶ 還元率の高いカード／QR決済を選ぶ</div>
+    <div class="ph">［ASP導線プレースホルダ：高還元カード・QR決済の申込を開示つきで差し込む］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。まず銀行から見直すなら <a href="net-bank-vs-mega.html">ネット銀行 vs メガバンク</a>、固定費もまとめて削るなら <a href="../tools/kotei-hi.html">固定費見直しシミュ</a>へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>得か損かは「年間支出 × 還元率」でほぼ決まる。現金は還元0円、キャッシュレスは年1〜3万円の得が黙って出る。</li>
+    <li>ただし1%の還元は10%の浪費であっさり消える。勝者を分けるのは還元率より<b>「使いすぎない自信」</b>。</li>
+    <li>管理できる・還元を取りたい人はキャッシュレス、使いすぎる・災害が不安な人は現金 or チャージ式。</li>
+    <li>全部どちらかにしなくていい。上限を先に決めるチャージ式が“中間解”になる。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・経済産業省「2025年のキャッシュレス決済比率を算出しました」（国内指標で58.0%・162.7兆円／内訳：クレジットカード82.7%＝134.6兆円、コード決済10.2%＝16.6兆円、電子マネー3.7%＝6.0兆円、デビット3.4%＝5.5兆円）<br>
+    ・総務省統計局「家計調査報告（家計収支編）2024年平均」（二人以上世帯の消費支出は1か月平均300,243円）<br>
+    ・還元率の目安（カード単体おおむね0.5〜1.0%、カード×QR併用で実質1.5〜2.0%）は各種比較情報にもとづく参考値<br>
+    <span style="display:block;margin-top:8px">※還元率・普及率は各時点の公開情報にもとづく参考値です。「最大」還元は条件つきのことが多く、常時の還元率で判断してください。最新は各サービス公式でご確認を。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

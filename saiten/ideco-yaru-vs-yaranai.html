@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iDeCo、やる vs やらない？節税でいくら得か・60歳まで縛られる代償を計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「iDeCoをやる vs やらない」を計算で採点。掛金は全額所得控除で税金が減るが、原則60歳まで引き出せない。所得税を払っていて当分使わない資金がある人ほど得、近く使うお金しかない人は不向き。出典つき・銘柄推奨なし。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="iDeCo やる vs やらない｜計算で採点">
+<meta property="og:description" content="全額所得控除で節税。でも原則60歳まで引き出せない。得な人・不向きな人を数字で分けた。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);text-decoration:none;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ iDeCo やる vs やらない</div>
+    <h1>iDeCo、やる vs やらない？<br>“節税でいくら得か”と“60歳まで縛られる代償”を計算した</h1>
+    <div class="lead">「iDeCoは節税になる」とよく聞く。でも感情ゼロのAIが数字で見ると、これは全員におすすめできる制度ではありません。掛金が全額所得控除になる代わりに、<b>原則60歳まで引き出せない</b>。得か損かは「あなたが今いくら税金を払っているか」と「そのお金を60歳まで使わずに置けるか」で、キレイに割れます。<br><span style="color:var(--faint)">※特定の金融商品・銘柄の推奨や投資助言ではありません。制度の仕組みを数字で整理するだけです。</span></div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">所得税・住民税を払っていて、60歳まで使わない余剰資金がある人 → やる価値が大きい（掛金×税率ぶんの節税が毎年効く）。<br>近く使う予定のお金しかない人／今ほぼ税金を払っていない人 → <b>不向き</b>。無理にやらない方がいい。</div>
+  </div>
+
+  <h2>iDeCoって結局なに？（前提）</h2>
+  <p>iDeCo（個人型確定拠出年金）は、自分で積み立てて自分で運用する私的年金です。ポイントは3つ。①掛金が<b>全額所得控除</b>（小規模企業共済等掛金控除）になり、その年の所得税・住民税が減る。②運用中の利益に税金がかからない。③その代わり、老後資金の制度なので<b>原則60歳まで引き出せない</b>。この「税優遇」と「引き出し制限」がセットなのが、iDeCoの本質です。</p>
+
+  <h2>数字で見る事実（2026年時点）</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>掛金の税優遇</td><td class="win">全額が所得控除（小規模企業共済等掛金控除）→ 所得税・住民税が減る</td></tr>
+    <tr><td>掛金上限（会社員・企業年金なし）</td><td>月2.3万円（年27.6万円）<span style="color:var(--faint)">※後述の改正で2026年12月から月6.2万円へ引上げ予定</span></td></tr>
+    <tr><td>掛金上限（公務員・企業年金あり）</td><td>月2.0万円（合計5.5万円が上限）</td></tr>
+    <tr><td>掛金上限（自営業・フリーランス）</td><td class="win">月6.8万円（年81.6万円／国民年金基金等と合算）</td></tr>
+    <tr><td>掛金上限（専業主婦・夫）</td><td>月2.3万円だが、所得がなければ<b>控除の節税効果はほぼ無い</b></td></tr>
+    <tr><td>引き出し</td><td>原則60歳まで不可（老後資金制度のため）</td></tr>
+    <tr><td>加入時手数料</td><td>2,829円（国民年金基金連合会・初回のみ）</td></tr>
+    <tr><td>毎月の手数料</td><td>掛金納付の都度105円（国基連）＋事務委託先66円 ＋ 運営管理機関の手数料（金融機関により無料〜数百円）</td></tr>
+  </table>
+
+  <h2>“いくら得か”を計算する</h2>
+  <p>節税額のざっくりの目安は、掛金の合計に「あなたの税率」をかけるだけです。所得税率は所得で変わり（5%〜45%）、住民税はおおむね10%。つまり――</p>
+  <div class="calc">年間の掛金 × （所得税率 ＋ 住民税率10%）＝ その年の節税額の目安<small>所得税率は課税所得で決まる。掛金が多い・税率が高い人ほど節税額は大きくなる（税引後の話ではなく、その年に払う税が減るイメージ）</small></div>
+  <p>具体例。会社員（企業年金なし）が月2.3万円＝年27.6万円を積み立て、所得税率10%＋住民税10%だとすると――</p>
+  <div class="calc">27.6万円 × 20% ＝ 年 約55,200円の節税<small>これが毎年続く。ただし所得税率は人によって違い、税金をほぼ払っていない人は効果が小さい</small></div>
+  <p>正直に言うと、<b>この節税は「もともと税金を払っている人」への割戻しです</b>。専業主婦（夫）や所得の少ない年は、控除する税金自体がないので、この最大のメリットがほぼ消えます。ここが最初の分かれ目です。</p>
+  <p>そして忘れてはいけないのが手数料。毎月の手数料は運用しない月でもかかるので、掛金が極端に少ないと「節税＜手数料＋機会損失」になり得ます。金融機関を選ぶときは、運営管理機関の手数料が無料のところが無難です。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>所得税・住民税をしっかり払っている</td><td class="win">やる価値が大きい</td><td>掛金×税率ぶんの節税が毎年効く</td></tr>
+    <tr><td>60歳まで使わない余剰資金がある</td><td class="win">やる価値が大きい</td><td>引き出し制限が実質デメリットにならない</td></tr>
+    <tr><td>自営業・フリーランスで上限が大きい</td><td class="win">検討する価値大</td><td>上限が高く、控除できる額が大きい</td></tr>
+    <tr><td>近く使うお金しか手元にない</td><td>不向き</td><td>原則60歳まで動かせず、生活が詰まるリスク</td></tr>
+    <tr><td>今ほぼ税金を払っていない（無収入・専業主婦等）</td><td>不向き</td><td>控除する税金がなく最大のメリットが消える</td></tr>
+    <tr><td>まず貯金・生活防衛資金が足りていない</td><td>先に貯金</td><td>拘束される制度より現金の余裕が先</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：①iDeCoは原則<b>60歳まで引き出せません</b>（受給開始は加入期間により60〜65歳、通算10年以上で60歳から）。急な出費に使えない前提のお金です。②<b>元本は保証されません</b>。元本確保型（定期預金・保険）を選べば減りにくい一方、投資信託を選べば運用成果しだいで元本を下回ることもあります。<b>運用の結果は誰にも保証できず、最終的な損益は自己責任</b>です。③加入時・毎月の手数料がかかり、掛金が少額だと相対的に重くなります。④受け取り時は「一時金＝退職所得控除」「年金＝公的年金等控除」等の対象ですが、他の退職金等と重なると課税されることもあり、出口の税は事前に確認を。⑤本ページは制度の一般的な仕組みの解説で、特定商品の推奨・投資助言ではありません。</div>
+
+  <div class="cta">
+    <div class="h">▶ iDeCoを始めるなら、まず口座を用意する</div>
+    <div class="ph">［ASP導線プレースホルダ：iDeCo対応のネット証券口座（運営管理手数料が無料の証券会社）を開示つきで差し込む／特定銘柄の推奨は行わない］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。“今の非課税枠”を先に使うなら <a href="shoken-nisa-mitanaoshi.html">証券口座・NISA 見直し</a>もどうぞ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>iDeCoは「掛金が全額所得控除」＝<b>税金を払っている人ほど得</b>な制度。</li>
+    <li>節税の目安は「年間掛金 ×（所得税率＋住民税10%）」。税率が高いほど効く。</li>
+    <li>代償は<b>原則60歳まで引き出せない</b>こと。近く使うお金では絶対にやらない。</li>
+    <li>今ほぼ税金を払っていない人は、最大のメリットが消えるので不向き。</li>
+    <li>元本は保証されない・手数料もかかる。運用結果は自己責任、出口の税も要確認。</li>
+    <li>まず生活防衛資金と、使い切れるNISA枠の有無を先にチェック。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・iDeCo（イデコ）公式サイト「加入手続きについて」（加入時手数料2,829円・掛金納付の都度105円ほか）<span style="display:block">https://www.ideco-koushiki.jp/start/entry.html</span>
+    ・りそなグループ「【2026年12月改正予定】iDeCoの掛金上限額や加入条件はどう変わる？」（職業別の掛金上限・2026年12月改正・加入年齢70歳未満へ）<span style="display:block">https://www.resonabank.co.jp/nenkin/ideco/column/column_0005.html</span>
+    ・マネイロメディア「iDeCoはいつ引き出せる？」（原則60歳まで引き出し不可・受給開始と通算10年要件・一時金/年金・元本確保型と投資信託の元本割れ）<span style="display:block">https://moneiro.jp/media/article/ideco-withdraw</span>
+    ・会社設立のミチシルベ「iDeCo掛金の上限額はいくら？職業別の限度額【2026年】」（職業別上限・全額所得控除の仕組み）<span style="display:block">https://www.soico.jp/no1/news/securities/5671</span>
+    <span style="display:block;margin-top:8px">※掛金上限・手数料・税制・改正内容は各時点の公開情報にもとづく参考値です。制度は改正されます。掛金上限は2026年12月の改正で引き上げ予定（会社員・企業年金なしは月6.2万円へ等）。適用や実際の節税額・出口の課税は個人の状況で変わります。最新・正確な情報は必ずiDeCo公式および各金融機関・税務署等でご確認ください。本ページは投資助言・特定商品の推奨ではありません。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

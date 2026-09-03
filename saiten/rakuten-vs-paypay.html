@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>楽天経済圏 vs PayPay経済圏、どっちが得？年間支出で「年の得」を計算して採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「楽天経済圏 vs PayPay経済圏」を計算で採点。勝負は生活動線で割れる。ネット通販が多いなら楽天寄り、実店舗・ソフトバンク系ならPayPay寄り。年間支出×実効還元率で“年の得の目安”を出典つきで解説（2026年時点）。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="楽天経済圏 vs PayPay経済圏｜計算で採点">
+<meta property="og:description" content="生活動線で割れる。ネット通販なら楽天、実店舗・ソフトバンクならPayPay。年の得を計算した。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 楽天経済圏 vs PayPay経済圏</div>
+    <h1>楽天経済圏 vs PayPay経済圏、どっちが得？<br>“年間支出 × 実効還元率”で年の得を計算した</h1>
+    <div class="lead">「経済圏はどっちがいい？」――感情ゼロのAIが数字で見ると、この2択は<b>あなたの生活動線で答えが割れます</b>。普段使う店・使っているキャリア・持っているカードで、最適な経済圏は変わる。そして両方に共通する構造は「サービスを“全部乗せ”するほど還元が伸びる」こと。先に結論から出します。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">ネット通販（楽天市場）中心・楽天モバイルユーザー → <b>楽天寄り</b>が得。<br>実店舗の支払いが多い・ソフトバンク／ワイモバイル系 → <b>PayPay寄り</b>が得。<br>どちらも「決済＋モバイル＋銀行＋証券」を寄せるほど実効還元率が上がる“全部乗せ”構造。ただし還元率は改定が多く、固めすぎは分散が効かない。</div>
+  </div>
+
+  <h2>そもそも何が違うのか（2026年時点）</h2>
+  <p>ざっくり言うと、<b>楽天はネット通販（EC）で伸びるSPU型</b>、<b>PayPayは実店舗のキャッシュレス決済で貯まる型</b>です。どちらもカード・モバイル・銀行・証券まで揃っており、寄せるほど得になる設計は共通しています。</p>
+  <table>
+    <tr><th>項目</th><th>楽天経済圏</th><th>PayPay経済圏</th></tr>
+    <tr><td>得意な場面</td><td class="win">ネット通販（楽天市場）</td><td class="win">実店舗のキャッシュレス決済</td></tr>
+    <tr><td>カード基本還元</td><td>楽天カード 1%</td><td>PayPayカード 1%</td></tr>
+    <tr><td>決済の基本付与</td><td>楽天ペイ／カード経由</td><td>PayPay残高払い 0.5%／クレジット 1%（時点の目安）</td></tr>
+    <tr><td>還元が伸びる仕組み</td><td>SPU（条件達成で楽天市場が高倍率／現実的に7〜10倍前後）</td><td>PayPayステップ（条件達成で上乗せ）</td></tr>
+    <tr><td>相性のいいキャリア</td><td>楽天モバイル</td><td>ソフトバンク／ワイモバイル／LINEMO</td></tr>
+    <tr><td>主要サービス</td><td>市場・カード・銀行・証券・モバイル 等</td><td>PayPay・カード・銀行・証券・Yahoo!ショッピング 等</td></tr>
+  </table>
+  <p><small style="color:var(--faint)">※還元率は改定されやすいため、いずれも「その時点の目安」です。SPUやPayPayステップの倍率は条件達成状況で変わります。</small></p>
+
+  <h2>“いくら得か”を計算する</h2>
+  <p>経済圏の得は、突き詰めると1本の式です。</p>
+  <div class="calc">年間の対象支出 × 実効還元率 ＝ 年の得（目安）<small>「実効還元率」＝キャンペーンや特定日を平均でならした、あなたが実際に受け取れる還元率</small></div>
+  <p>たとえば経済圏で使う支出が<b>年36万円（月3万円）</b>だとします。基本1%なら年3,600円。ここに経済圏の上乗せが乗ると――</p>
+  <div class="calc">実効2% → 年7,200円 ／ 実効3% → 年10,800円 ／ 実効5% → 年18,000円<small>楽天はネット通販の比率が高い人ほど、SPUで実効還元率が上がりやすい</small></div>
+  <p>正直に言うと、<b>「最大◯倍」「◯%還元」の見出しは条件をフルに満たした理論値</b>のことが多い。現実の実効還元率は、あなたが“どこで・いくら”使うかで決まります。だから同じ経済圏でも、人によって年の得は数千円〜数万円まで開きます。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>ネット通販（楽天市場）をよく使う</td><td class="win">楽天寄り</td><td>SPUでECの実効還元率が伸びる</td></tr>
+    <tr><td>楽天モバイルを使っている／使いたい</td><td class="win">楽天寄り</td><td>キャリアと経済圏が一致すると特典が濃くなる</td></tr>
+    <tr><td>コンビニ・スーパー等の実店舗払いが多い</td><td class="win">PayPay寄り</td><td>街の店でのキャッシュレス決済に強い</td></tr>
+    <tr><td>ソフトバンク／ワイモバイル系のキャリア</td><td class="win">PayPay寄り</td><td>キャリア一致で還元・特典が乗りやすい</td></tr>
+    <tr><td>特にこだわりがない／少額しか動かさない</td><td>どちらか片方に寄せる</td><td>分散させるより1つに集約した方が実効還元率が上がる</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：ポイント還元率は<b>頻繁に改定され、改悪リスクが常にあります</b>。実例として、2026年7月2日のPayPayステップ改定では本人確認（eKYC）未完了で還元対象外・公共料金/税金の還元が0.5%へ半減・PayPayカードゴールドの常時上乗せ廃止などが実施され、2025年10月にはふるさと納税のポイント付与が原則規制されました。楽天のSPUも段階的な見直しがあります。「最大◯倍」は条件つきなので、<b>常時の実効還元率</b>で選ぶこと。そして経済圏を1つに固めるほど、その改悪をまともに受けます（分散が効かない）。生活動線で選び、改定は定期的に見直しましょう。</div>
+
+  <div class="cta">
+    <div class="h">▶ 経済圏を固めるなら、まず“核”のサービスから</div>
+    <div class="ph">［ASP導線プレースホルダ：各経済圏のクレカ／証券／モバイルの申込を開示つきで差し込む（楽天カード・楽天証券・楽天モバイル ／ PayPayカード・PayPay証券・ソフトバンク系）］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。ほかの“お金の2択”は <a href="./">AI採点アーカイブ</a> へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>この2択は生活動線で割れる。ネット通販＋楽天モバイルなら<b>楽天寄り</b>、実店舗＋ソフトバンク系なら<b>PayPay寄り</b>。</li>
+    <li>得の式は「年間の対象支出 × 実効還元率」。見出しの“最大◯倍”は条件フル達成の理論値。</li>
+    <li>決済・モバイル・銀行・証券を寄せる“全部乗せ”ほど実効還元率が上がる（両経済圏に共通）。</li>
+    <li>還元率は改定が多く改悪リスクあり。固めすぎは分散が効かないので、常時の数字で選び定期的に見直す。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・経済圏比較｜楽天・PayPayならどっちがお得？（keizaiken.net／2026年）― 楽天カード1%・SPU・PayPay残高0.5%/クレジット1%・サービス構成・適性ユーザー<br>
+    ・経済圏比較2026｜楽天・PayPay・au・ドコモ どれがお得?（poikatsu-yuki.com／2026年）― 年間支出36万円時のEC還元例・キャリア相性・実店舗 vs ネット通販・改悪情報<br>
+    ・PayPayステップ改定（2026年7月2日）・ふるさと納税ポイント規制（2025年10月）― 各種比較記事の記載にもとづく<br>
+    <span style="display:block;margin-top:8px">※還元率・サービス構成・改定内容は各時点の公開情報にもとづく参考値です。SPU・PayPayステップの倍率は条件で変わり、頻繁に改定されます。最新は各社公式でご確認を。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

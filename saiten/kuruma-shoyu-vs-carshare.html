@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>車、所有し続ける vs カーシェアに切り替える？年間コストをAIが計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「車を所有 vs カーシェア/サブスク」を年間コストで採点。所有の維持費は年30〜46万円、カーシェアは15分220円〜。毎日乗るなら所有、週末たまになら断然カーシェア。分岐点を出典つきで計算した。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="車 所有 vs カーシェア｜年間コストで採点">
+<meta property="og:description" content="維持費 年30〜46万 vs 使った分だけ。毎日乗るか、週末だけか。乗る頻度で答えが割れる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 車 所有 vs カーシェア</div>
+    <h1>車、所有し続ける vs カーシェアに切り替える？<br>年間コストを計算で採点した</h1>
+    <div class="lead">「車は持っていて当たり前」という人は多い。でも感情ゼロのAIが数字で見ると、所有の維持費は<b>年30〜46万円</b>、カーシェアは<b>15分220円〜</b>で使った分だけ。答えは1つに決まりません。<b>乗る頻度で割れます</b>――毎日・長距離・地方なら所有、週末たまに・都市部ならカーシェアが得です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">毎日乗る／長距離／地方で駐車場が安いor不要 → <b>所有</b>が得。<br>週末たまに／近距離／都市部で駐車場が高い → <b>カーシェア（またはサブスク）</b>が得。<br>境目のざっくり目安は「月に何回・何時間乗るか」。年間の利用額が維持費（年30〜46万円）を下回るうちは、カーシェアの勝ちです。</div>
+  </div>
+
+  <h2>まず“所有の年間維持費”を数字で見る（2026年時点）</h2>
+  <p>所有は乗っても乗らなくても固定でお金が出ていきます。年間走行1万km・駐車場 月1万円で試算した目安がこちら。</p>
+  <table>
+    <tr><th>項目</th><th>軽自動車</th><th>普通車（1.5Lクラス）</th></tr>
+    <tr><td>自動車税（種別割）</td><td>約 10,800円/年</td><td>約 25,000〜36,000円/年</td></tr>
+    <tr><td>任意保険</td><td colspan="2">年 5〜7万円程度（等級・条件で変動）</td></tr>
+    <tr><td>駐車場代</td><td colspan="2">月1万円想定 → 年 12万円（都市部はさらに高い／地方や持ち家は0円も）</td></tr>
+    <tr><td>車検・メンテ（年換算）</td><td>軽 車検6〜12万円（2年）</td><td>普通車 車検7〜20万円（2年）</td></tr>
+    <tr><td>ガソリン（1万km）</td><td>約 6.4万円</td><td>約 16万円</td></tr>
+    <tr><td class="win">年間合計の目安</td><td class="win">約 29〜42万円</td><td class="win">約 33〜46万円</td></tr>
+  </table>
+  <p>幅が広いのは、いちばん効くのが<b>駐車場代</b>だからです。地方や持ち家で駐車場0円なら年30万円前後、都市部で月2〜3万円の駐車場なら普通車で年50万円超もあり得ます。</p>
+
+  <h2>次に“カーシェア”を数字で見る</h2>
+  <p>カーシェアは月額基本料が安く、あとは使った分だけ。ガソリン代・保険料は料金に込みなので、追加の維持費がかかりません（タイムズカーの例）。</p>
+  <table>
+    <tr><th>項目</th><th>金額（税込）</th></tr>
+    <tr><td>月額基本料金（個人）</td><td class="win">880円（利用料に充当。乗った月は実質0円）</td></tr>
+    <tr><td>時間料金（ベーシック）</td><td>15分 220円〜</td></tr>
+    <tr><td>距離料金</td><td>20円/km（通常は20km超過分から。ガソリン代込み）</td></tr>
+    <tr><td>6時間パック（ベーシック）</td><td class="win">4,290円</td></tr>
+    <tr><td>12時間パック（ベーシック）</td><td>5,500円</td></tr>
+    <tr><td>ナイトパック（18時〜翌9時）</td><td>2,640円</td></tr>
+  </table>
+
+  <h2>“どこで逆転するか”を計算する</h2>
+  <p>ざっくり比較しましょう。所有の維持費を年35万円（普通車・駐車場1万円）とします。カーシェアで週末に半日（6時間パック 4,290円＋距離40km分800円 ≒ 5,000円）使うとして――</p>
+  <div class="calc">所有 年 35万円 ÷ カーシェア1回 約5,000円 ＝ 年 70回ぶん<small>つまり週末レジャーで月5〜6回（年60〜70回）くらいまでなら、カーシェアの方が安い計算</small></div>
+  <p>逆に、毎日通勤や送迎で使うと、カーシェアは時間料金が積み上がって割高になります。1日3時間×週5日を時間料金で借りると――</p>
+  <div class="calc">220円×12（3時間）×5日×4週 ＝ 月 約52,800円<small>これは所有の月額（3〜4万円）を軽く超える。“毎日乗る”は所有が有利</small></div>
+  <p>結論の分かれ目はシンプルで、<b>「所有の維持費 ＞ カーシェアの年利用額」ならカーシェア、逆なら所有</b>。乗る頻度と時間が全てです。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめ</th><th>理由</th></tr>
+    <tr><td>毎日通勤・送迎で乗る</td><td class="win">所有</td><td>時間料金が積み上がりカーシェアが割高に</td></tr>
+    <tr><td>地方・持ち家で駐車場が安いor0円</td><td class="win">所有</td><td>維持費の最大費目が消え、所有が一気に有利</td></tr>
+    <tr><td>長距離・遠出が多い</td><td class="win">所有</td><td>距離料金と長時間拘束でカーシェアは不利</td></tr>
+    <tr><td>週末たまに・近距離のみ</td><td class="win">カーシェア</td><td>使った分だけ。維持費ゼロが効く</td></tr>
+    <tr><td>都市部で駐車場が高い</td><td class="win">カーシェア／サブスク</td><td>駐車場代が消えるだけで年20〜40万円浮く</td></tr>
+    <tr><td>使う頻度が読めない・少額しか動かない</td><td>まずカーシェアで様子見</td><td>固定費を持たずに実利用を測れる</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：所有は「乗りたい時にすぐ乗れる・荷物を積みっぱなしにできる・チャイルドシート常設」など、数字に出ない利便性が大きいです。カーシェアは逆に、繁忙期や近所のステーションが埋まる<b>予約競合</b>、長時間になると割高（時間料金の積み上がり）、返却時間の縛りがあります。サブスク（車のサブスク）は「税金・車検・保険コミコミで月定額」ですが、契約期間の縛りや途中解約金があるので総額と条件を必ず確認を。金額はいずれも2026年時点の目安で、車種・地域・等級・キャンペーンで変わります。最新は各社公式でご確認ください。</div>
+
+  <div class="cta">
+    <div class="h">▶ カーシェア登録／車のサブスク／自動車保険の見直し</div>
+    <div class="ph">［ASP導線プレースホルダ：提携済みのカーシェア入会・車サブスク・自動車保険一括見積もりを開示つきで差し込む］</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>。ほかの2択も <a href="./">AI採点アーカイブ</a> で。固定費もまとめて見直すなら <a href="../tools/kotei-hi.html">固定費見直しシミュ</a> へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>所有の維持費は年30〜46万円。乗らなくても固定で出ていく。</li>
+    <li>カーシェアは15分220円〜＋距離20円/kmで、ガソリン・保険込み。使った分だけ。</li>
+    <li>分岐点は「所有の維持費 ＞ カーシェアの年利用額」かどうか。頻度と時間で決まる。</li>
+    <li>毎日・長距離・地方（駐車場が安い）は所有、週末たまに・都市部（駐車場が高い）はカーシェア。</li>
+    <li>数字だけで決めない。所有の利便性、カーシェアの予約競合も天秤に。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・イオン銀行「自動車の維持費は月々・年間いくら？」（自動車税・任意保険・車検・年間維持費の目安。軽 約42.5万円／普通車1.5L 約45.9万円）<br>
+    <span style="display:block">https://www.aeonbank.co.jp/column/money/jidosha/ijihi/</span>
+    ・ガリバー（221616.com）「車の維持費は年間・月々いくら？」（車種別 年間維持費シミュレーション。軽 約29.2万円／コンパクト 約33.5万円・内訳）<br>
+    <span style="display:block">https://221616.com/guide/knowledge/maintenance-cost/</span>
+    ・タイムズカー 利用料金（月額基本料880円・時間料金15分220円〜・距離料金20円/km・6時間パック4,290円ほか／2026年）<br>
+    <span style="display:block">https://share.timescar.jp/fare/use.html</span>
+    <span style="display:block;margin-top:8px">※維持費・料金は各時点の公開情報にもとづく参考値です。車種・地域・保険等級・キャンペーン・駐車場相場で大きく変わります。最新は各社公式でご確認ください。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
