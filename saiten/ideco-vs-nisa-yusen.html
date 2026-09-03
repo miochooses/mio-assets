@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iDeCo と NISA、どっちを先に使う？節税と流動性で「順番」を採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「iDeCo vs NISA、どっちを先に」を計算だけで採点。節税効果＝掛金×(所得税率+住民税10%)、流動性の価値と天秤にかけて、あなたの条件でどちらを優先すべきか出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/ideco-vs-nisa-yusen.html">
+<meta property="og:title" content="iDeCo と NISA、どっちを先に使う？｜順番をAIが計算で採点">
+<meta property="og:description" content="お金の2択に計算で終止符。節税が効く人はiDeCo先、流動性が要る人はNISA先。あなたの条件で割れます。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ iDeCo vs NISA どっちが先</div>
+    <h1>iDeCo と NISA、どっちを先に使う？<br>「順番」を節税と流動性で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。前提から言うと ―― これは「どちらか一方」ではありません。両方使える人が大半で、割れるのは<b>使う順番</b>です。そして順番は、あなたの条件で変わります。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">今の税負担が重い × 60歳まで手をつけない資金 → <span style="color:#58a6ff">iDeCoを先に</span>（節税が確定リターン）。<br>途中で使う可能性 or まず投資に慣れたい → <span style="color:#2ea043">NISAを先に</span>（いつでも引き出せる）。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>iDeCo：節税は強力だが60歳まで出せない</span><span>拠出時に全額所得控除</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#58a6ff,#3d7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>NISA：節税は運用益のみ・でもいつでも引き出せる</span><span>非課税＋自由</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※どちらが「上」ではありません。棒はそれぞれの強みの向きが違うことを示しています。詳細は下の条件表で。</div>
+  </div>
+
+  <h2>まず制度を正確に（ここを間違えると採点が狂う）</h2>
+  <p>比較の前提がズレると結論もズレます。2026年時点の公式ベースで、両制度の“性格”を並べます。</p>
+  <table>
+    <tr><th>観点</th><th>NISA（新NISA）</th><th>iDeCo</th></tr>
+    <tr><td>掛金時の節税</td><td>なし（拠出は控除対象外）</td><td class="win">全額が所得控除</td></tr>
+    <tr><td>運用益</td><td class="win">非課税</td><td class="win">非課税</td></tr>
+    <tr><td>引き出し</td><td class="win">いつでも可</td><td>原則60歳まで不可</td></tr>
+    <tr><td>年間上限</td><td>つみたて120万＋成長240万＝最大360万</td><td>職業区分で異なる（下表）</td></tr>
+    <tr><td>生涯上限</td><td>1,800万（うち成長投資枠1,200万）</td><td>年数×拠出上限（上限額の“総枠”は無し）</td></tr>
+    <tr><td>受取時</td><td class="win">課税なし</td><td>課税あり（退職所得控除／公的年金等控除で軽減）</td></tr>
+  </table>
+  <p><b>要点はこの一行です。</b>iDeCoは「入れた瞬間に税金が戻る」代わりに<b>60歳まで人質</b>。NISAは「入口の節税は無い」代わりに<b>自由</b>。この非対称性が、順番を分けます。</p>
+
+  <h3>iDeCoの掛金上限（職業区分別・2026年時点）</h3>
+  <table>
+    <tr><th>区分</th><th>月額上限</th></tr>
+    <tr><td>自営業・フリーランス（第1号）</td><td>68,000円</td></tr>
+    <tr><td>会社員（企業年金なし）</td><td>23,000円</td></tr>
+    <tr><td>会社員（DB等の企業年金あり）</td><td>20,000円</td></tr>
+    <tr><td>公務員</td><td>20,000円（2024年12月改正後）</td></tr>
+    <tr><td>専業主婦・主夫（第3号）</td><td>23,000円</td></tr>
+  </table>
+  <p class="note">※加入は原則65歳未満まで。2026年12月以降、加入可能年齢や拠出限度額の引き上げが予定されています（詳細は末尾の出典）。確定していない将来値はこの採点には入れていません。</p>
+
+  <h2>採点の“計算”：節税額は円で出る</h2>
+  <p>iDeCo優先の根拠は感覚ではありません。掛金は全額所得控除なので、戻ってくる税金は次の式でその場で出ます。</p>
+  <div class="calc">iDeCoの年間節税額 ＝ 年間掛金 ×（所得税率 ＋ 住民税10%）<small>住民税はおおむね一律10%。所得税率は課税所得で5〜45%（累進）</small></div>
+  <p>これが効きます。たとえば<b>所得税率20%の会社員</b>が、企業年金なしで上限いっぱい（月23,000円＝年276,000円）を拠出すると――</p>
+  <div class="calc">276,000 ×（20% ＋ 10%）＝ <span style="color:#58a6ff">年 82,800円</span> の節税<small>※運用益とは別。掛金を出しているだけで毎年これだけ税金が戻る</small></div>
+  <p>NISAにはこの入口の戻りがありません。<b>「今の税率が高く、そのお金を60歳まで触らない」なら、iDeCoの節税はほぼ確定リターン</b>で、市場が上がろうが下がろうが先に手に入ります。ここがNISAより強い唯一かつ最大のポイントです。</p>
+  <p>逆に、この式で戻る額が小さい人――<b>課税所得が低く所得税率5%の人、そもそも収入が少なく所得税がほぼかからない人（専業主婦など）</b>――はiDeCoの入口メリットが薄い。その場合、自由に引き出せるNISAを先に使う方が合理的です。</p>
+
+  <h2>順番を分ける“もう一つの軸”：流動性の価値</h2>
+  <p>節税だけ見ればiDeCo一択に見えます。が、AIは反対側も計算します。iDeCoの60歳ロックは<b>コスト</b>です。途中で資金が必要になっても引き出せない――これに値段をつけるなら「使えないリスク」の分だけ価値が下がる、と考えます。</p>
+  <div class="calc">判断 ＝ iDeCoの節税メリット　vs　60歳まで動かせないデメリット<small>節税が流動性の不安を上回る人はiDeCo先、不安が勝つ人はNISA先</small></div>
+  <p>結婚・住宅・教育・独立・転職など、<b>60歳より前に大きな出費が来る可能性が高い人</b>ほど、NISAの「いつでも引き出せる」自由の価値が上がります。まだ生活防衛資金（現金）が薄い人も同じ。ここを無視して「節税だから全員iDeCo先」と煽るのは、この検証室のやり方ではありません。</p>
+
+  <h2>条件別の採点：あなたはどっち“先”？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>先に使うべき</th><th>理由</th></tr>
+    <tr><td>所得税率が高い（20%以上）×資金を60歳まで触らない</td><td class="win">iDeCo</td><td>節税額が大きく、それが確定リターンになる</td></tr>
+    <tr><td>60歳前に大きな出費の予定がある</td><td class="win">NISA</td><td>いつでも引き出せる自由が効く</td></tr>
+    <tr><td>まだ生活防衛資金（現金）が薄い</td><td class="win">NISA</td><td>先にロックすると詰む。流動性を確保</td></tr>
+    <tr><td>まず投資に慣れたい・少額から始めたい</td><td class="win">NISA</td><td>売買が自由で心理的ハードルが低い</td></tr>
+    <tr><td>収入が少なく所得税がほぼかからない</td><td class="win">NISA</td><td>iDeCoの所得控除メリットが薄い</td></tr>
+    <tr><td>自営業で今の税負担が重い</td><td class="win">iDeCo</td><td>上限が月68,000円と大きく節税効果が特に大きい</td></tr>
+    <tr><td>枠に余裕がある・両方フルで使える</td><td>両方</td><td>iDeCoで節税を取りつつNISAで流動性も確保</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>iDeCoは受取時に課税されます（退職所得控除・公的年金等控除で軽くはなる）。「入口で戻った税金を、出口で一部払い戻す」構造です。それでも多くのケースで入口メリットが上回りますが、退職金が多い人は出口の控除枠が競合するので、額によっては差が縮みます。ここも含めて“順番”を決めるのが正しい採点です。</p>
+
+  <div class="cta">
+    <div class="h">▶ どちらを先に、どの口座で始めるか</div>
+    <div class="ph"><a href="../tools/" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 無料ツールで自分の節税額と積立シミュレーションを出す</a><br>
+    <!-- ASP: 証券口座（A8等）リンク挿入予定 -->
+    ［ASP導線プレースホルダ：NISA／iDeCoに対応した証券口座の比較・申込リンクを、提携開示つきでここに差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>これは「どちらか一方」ではなく<b>順番</b>の問題。両方使える人が多い。</li>
+    <li>節税額＝年間掛金×（所得税率＋住民税10%）。ここが大きい人はiDeCoを先に。</li>
+    <li>60歳前に使う可能性・現金の薄さ・まず慣れたい ―― これらが勝つ人はNISAを先に。</li>
+    <li>iDeCoは入口で節税、出口で課税（控除で軽減）。NISAは入口ゼロ、出口も非課税＋自由。</li>
+    <li>迷ったら、まず自分の所得税率と“60歳まで触らない金額”を確認するのが最初の一歩。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏦 個別の2択もAIが採点：<a href="ideco-yaru-vs-yaranai.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCo やる vs やらない →</a>　／　<a href="shoken-nisa-mitanaoshi.html" style="color:#58a6ff;text-decoration:none;font-weight:700">NISA 証券口座 見直し →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・金融庁「NISA特設ウェブサイト（NISAを知る）」―― つみたて投資枠120万円／年・成長投資枠240万円／年・年間合計360万円・生涯非課税保有限度額1,800万円（うち成長投資枠1,200万円）・非課税恒久化・売却枠の翌年再利用・引き出し自由<br>
+    ・厚生労働省「iDeCo（個人型確定拠出年金）」制度概要 ―― 加入資格・拠出限度額・原則60歳まで引き出し不可<br>
+    ・iDeCo公式サイト（国民年金基金連合会）―― 職業区分別の掛金上限、加入可能年齢、原則60歳まで引き出せない旨<br>
+    ・2024年12月改正（公務員・DB等加入者の上限が月20,000円へ引き上げ）<br>
+    ・国税庁「小規模企業共済等掛金控除」―― iDeCo掛金は全額所得控除。受取時は退職所得控除／公的年金等控除の対象<br>
+    <span class="note">※本記事は投資助言ではありません。制度・上限・税率は改正され得ます（2026年12月以降の加入年齢・拠出限度額の引き上げ等）。数値は各時点の公開情報にもとづく参考値であり、最新・正確な条件は金融庁・厚生労働省・iDeCo公式・国税庁の各公式ページでご確認ください。最終判断はご自身で。<a href="houhouron.html" style="color:#58a6ff">▶ この採点の方法論（どう計算しているか）</a></span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="houhouron.html">方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
