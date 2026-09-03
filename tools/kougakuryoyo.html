@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高額療養費 自己負担 上限シミュレーター｜医療費が高額でも“月いくらまで”か即計算｜AIガチ検証室</title>
+<meta name="description" content="所得区分と今月の総医療費を入れるだけ。高額療養費制度で1か月の自己負担が“いくらまで”に抑えられるかをAIが即計算。医療保険が必要か判断する土台に。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="高額療養費 自己負担 上限シミュレーター">
+<meta property="og:description" content="所得区分と医療費で、1か月の自己負担上限を即計算。医療保険の要否判断に。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input,select{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  .chk{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--mut);font-weight:700;}
+  .chk input{width:auto;margin-top:0;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--b);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .verdict{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;}
+  .verdict.win{background:#0e2417;border:1px solid #1f5a35;}
+  .verdict.warn{background:#2a2416;border:1px solid #5a4f25;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .cta a{color:#7fc7ff;text-decoration:none;font-weight:800;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 高額療養費 上限シミュ</div>
+    <h1>医療費が高額でも、月いくらまで？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>所得区分（70歳未満）<span class="sub">年収は目安。会社員は標準報酬月額で決まります</span>
+      <select id="kubun">
+        <option value="a">区分ア：年収 約1,160万円〜</option>
+        <option value="i">区分イ：年収 約770〜1,160万円</option>
+        <option value="u" selected>区分ウ：年収 約370〜770万円</option>
+        <option value="e">区分エ：年収 〜約370万円</option>
+        <option value="o">区分オ：住民税非課税</option>
+      </select>
+    </label>
+    <label>今月かかった総医療費（10割・円）<span class="sub">窓口3割負担の前の“総額”。例）入院で総額100万円</span>
+      <input id="total" type="number" inputmode="numeric" placeholder="例）1000000">
+    </label>
+    <div class="chk"><input id="multi" type="checkbox"><label for="multi" style="margin-top:0">直近12か月で既に3回、高額療養費に該当（4回目＝多数回該当）</label></div>
+    <button onclick="calc()">自己負担の上限を計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">今月の自己負担の上限（高額療養費適用後）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ この上限、貯蓄で払える？＝医療保険の要否</div>
+        <div class="ph">高額療養費で“月の上限”は決まっても、差額ベッド代・先進医療・食費などは対象外。要否の考え方は <a href="../saiten/iryohoken-hitsuyo-ka.html">医療保険 必要？不要？</a> で採点。<!-- ASP: 保険FP無料相談（A8等）リンク挿入予定 --></div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/hoken-kakesute-vs-chochiku.html">保険 掛け捨てvs貯蓄型</a> ｜ <a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+var TBL={
+  a:{base:252600,thr:842000,multi:140100,fixed:null},
+  i:{base:167400,thr:558000,multi:93000,fixed:null},
+  u:{base:80100, thr:267000,multi:44400,fixed:null},
+  e:{fixed:57600, multi:44400},
+  o:{fixed:35400, multi:24600}
+};
+var NAME={a:'区分ア',i:'区分イ',u:'区分ウ',e:'区分エ',o:'区分オ'};
+function calc(){
+  var k=document.getElementById('kubun').value;
+  var total=parseFloat(document.getElementById('total').value)||0;
+  var multi=document.getElementById('multi').checked;
+  if(total<=0){ alert('今月の総医療費（10割）を入れてください'); return; }
+  var t=TBL[k];
+  var cap;
+  if(multi){ cap=t.multi; }
+  else if(t.fixed!==null && t.fixed!==undefined){ cap=t.fixed; }
+  else { cap=t.base + Math.max(0,(total-t.thr))*0.01; }
+  var sanwari=total*0.3;
+  var selfpay=Math.min(sanwari,cap);
+  var modoru=Math.max(0,sanwari-selfpay);
+  document.getElementById('amt').textContent=yen(selfpay);
+  document.getElementById('sub2').textContent='（'+NAME[k]+(multi?'・多数回該当':'')+' ／ 窓口3割なら本来 '+yen(sanwari)+'）';
+  var v=document.getElementById('verdict');
+  if(modoru>0){
+    v.className='verdict win';
+    v.textContent='✅ 高額療養費が効きます。本来の3割 '+yen(sanwari)+' が、今月は '+yen(selfpay)+' に軽減（約 '+yen(modoru)+' が戻る/軽減）。つまり“1か月にこれだけ貯蓄で払えるか”が医療保険の要否の判断軸です。';
+  } else {
+    v.className='verdict warn';
+    v.textContent='今月は上限（'+yen(cap)+'）未満なので、窓口3割 '+yen(sanwari)+' の負担のまま（高額療養費の対象外）。医療費が大きい月ほど、この制度の効果が出ます。';
+  }
+  document.getElementById('note').textContent='※70歳未満・公的医療保険の医療費が対象の概算です。暦月（1日〜末日）ごと・原則同一医療機関ごとの計算で、差額ベッド代・先進医療・入院時の食費/日用品などは対象外。世帯合算や多数回該当の判定など細部は加入先の保険者でご確認を。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
