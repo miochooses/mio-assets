@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>保険は掛け捨て vs 貯蓄型、どっちが得？“保障”と“貯蓄”を分けて計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「掛け捨て型 vs 貯蓄型」の保険を計算で採点。同じ保障なら保険料はいくら違う？差額を分けて考える方法と、あなたに合うのはどっちかを条件別に判定します。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="保険 掛け捨て vs 貯蓄型｜損得を計算で採点">
+<meta property="og:description" content="“保障”と“貯蓄”を分けて考えると答えが見える。条件別に判定。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .warn{margin-top:16px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#e8c9a8;}
+  .rel{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .rel a{color:var(--b);text-decoration:none;font-weight:700;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 保険 掛け捨て vs 貯蓄型</div>
+    <h1>保険は掛け捨て vs 貯蓄型、どっちが得？<br>“保障”と“貯蓄”を分けて考えると答えが出る</h1>
+    <div class="lead">「掛け捨てはもったいない」とよく言われます。でも感情ゼロのAIが計算すると、話は逆のことが多い。ポイントは<b>保険を「保障」と「貯蓄」に分けて考える</b>こと。分ければ、あなたに合うのはどっちか見えてきます。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">大きな保障が必要な時期（子育て中など）＆自分で貯蓄・運用ができる人 → 掛け捨てが合理的。<br>自分では貯蓄が続かない／保障を一生持ちたい／相続対策 → 貯蓄型も選択肢。<br><span style="font-weight:600;color:#9fb3c8;font-size:14px">＝“どっちが正解”はなく、目的で割れる。</span></div>
+  </div>
+
+  <h2>まず押さえる：同じ保障なら、保険料はこれだけ違う</h2>
+  <p>掛け捨て（定期）と貯蓄型（終身）は保障期間が違うので単純比較はできませんが、同じ死亡保障で比べると――たとえば<b>30歳男性・死亡保障1,000万円で、貯蓄型は掛け捨ての約5倍の保険料</b>という差が出ます。貯蓄型は「保険料の一部が解約時・満期に戻る」ぶん、毎月の負担が重いのです。</p>
+  <div class="calc">貯蓄型を選ぶ＝「割高な保険料」で強制的に積み立てている<small>その“上乗せ分”を、自分で貯蓄・運用した場合と比べるのが正しい採点</small></div>
+  <p>だから判断の軸はこうです。<b>「掛け捨てで保障を安く買い、浮いた差額を自分で貯蓄・運用」</b> と <b>「貯蓄型で保障と貯蓄をまとめて持つ」</b>、どちらが自分に向くか。前者は効率が良い一方で“自分で続ける意志”が要る。後者は割高でも“ほったらかしで貯まる”。</p>
+
+  <h2>実データ：タイプ別の特徴</h2>
+  <table>
+    <tr><th>項目</th><th>掛け捨て型（定期）</th><th>貯蓄型（終身）</th></tr>
+    <tr><td>保険料</td><td class="win">安い</td><td>割高（同保障で約5倍の例も）</td></tr>
+    <tr><td>解約返戻金</td><td>基本なし</td><td class="win">あり（満期・解約で戻る）</td></tr>
+    <tr><td>見直しやすさ</td><td class="win">しやすい（乗り換え容易）</td><td>途中解約は元本割れリスク</td></tr>
+    <tr><td>向いている目的</td><td>一定期間、大きな保障を安く</td><td>一生の保障＋強制貯蓄・相続対策</td></tr>
+  </table>
+  <p>保険料の使いすぎも要注意。目安は<b>手取り月収の5〜10%以内</b>（手取り30万円なら月1.5万〜3万円）。子育て世帯は、期間限定で大きな保障を安く持てる<b>収入保障保険</b>のコスパが良いとされます。</p>
+
+  <h2>条件別の採点</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>向いている</th><th>理由</th></tr>
+    <tr><td>子どもが小さく大きな保障が要る</td><td class="win">掛け捨て（収入保障）</td><td>必要な時期に安く大きな保障。差額を貯蓄/運用に回せる</td></tr>
+    <tr><td>自分で貯蓄・投資を続けられる</td><td class="win">掛け捨て＋自分で運用</td><td>保険で貯めるより効率的なことが多い</td></tr>
+    <tr><td>貯蓄が苦手・強制力が欲しい</td><td class="win">貯蓄型</td><td>ほったらかしで積み立てられる</td></tr>
+    <tr><td>一生の保障・相続対策が目的</td><td class="win">貯蓄型（終身）</td><td>終身保障・まとまった資金を残せる</td></tr>
+    <tr><td>独身・扶養する人がいない</td><td>保障は最小限でOK</td><td>大きな死亡保障は不要なことが多い</td></tr>
+  </table>
+
+  <div class="warn">⚠ 正直な注意：保険は本来「保障を買うもの」で、貯蓄や運用の主役ではありません。貯蓄型の途中解約は元本割れの可能性があり、“なんとなく手厚く”は払いすぎのもと。必要な保障額は家族構成・貯蓄・公的保障（遺族年金など）で変わるので、<b>「いくらの保障が要るか」から逆算</b>するのが正解です。</div>
+
+  <div class="cta">
+    <div class="h">▶ 自分に必要な保障額を棚卸しする</div>
+    <div class="ph">［ASP導線プレースホルダ：FP無料相談・保険見直し相談を開示つきで差し込む。※読者は無料で必要保障額を整理でき、過不足を正せる＝Give〕</div>
+  </div>
+
+  <div class="rel">
+    🧮 採点の基準は <a href="houhouron.html">方法論ページ</a>で公開。<br>他の“お金の2択”は <a href="./">AI採点アーカイブ</a>へ。
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>「掛け捨て＝損」は誤解。同じ保障なら保険料は安く、差額を自分で活かせる。</li>
+    <li>貯蓄型は割高だが“ほったらかしで貯まる”“一生の保障”が要る人には合う。</li>
+    <li>保険料は手取りの5〜10%が目安。子育て世帯は収入保障がコスパ良。</li>
+    <li>正解は「保障がいくら必要か」から逆算。迷ったらFPに無料で棚卸しを。</li>
+  </ul>
+  <p style="font-size:13px;color:#9fb3c8">※本記事は一般的な損得の考え方の解説で、特定商品の推奨や投資助言ではありません。最終判断はご自身で。</p>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・掛け捨て型（定期）と貯蓄型（終身）の違い・保険料差（30歳男性・死亡保障1,000万で貯蓄型が約5倍の例）に関する各解説（2026年）<br>
+    ・保険料の目安（手取り月収の5〜10%）／子育て世帯の収入保障のコスパに関する解説<br>
+    <span style="display:block;margin-top:8px">※金額・比率は各時点の公開情報にもとづく参考値です。実際の保険料は年齢・条件で変わります。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
