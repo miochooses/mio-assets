@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>つみたて投資 将来シミュ｜毎月いくら積み立てたら将来いくら？複利で即試算｜AIガチ検証室</title>
+<meta name="description" content="毎月の積立額・想定利回り・年数を入れるだけで、将来の資産額を複利でAIが即試算。元本と運用益の内訳、楽観/中立/保守の3パターンも。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="つみたて投資 将来シミュ（複利）">
+<meta property="og:description" content="毎月の積立額から将来の資産額を複利で即試算。元本と運用益の内訳も分かる。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ つみたて投資 将来シミュ</div>
+    <h1>毎月コツコツ、将来いくらになる？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／前提利回りでの試算</div>
+  </header>
+
+  <div class="panel">
+    <label>毎月の積立額（円）<span class="sub">毎月コツコツ積み立てる金額。例）30000円なら 30000</span>
+      <input id="month" type="number" inputmode="numeric" placeholder="例）30000">
+    </label>
+    <label>想定利回り（年％）<span class="sub">1年あたり何％で運用できると仮定するか。例）3 や 5。あくまで前提値です</span>
+      <input id="rate" type="number" inputmode="decimal" step="0.1" placeholder="例）5">
+    </label>
+    <label>積立年数（年）<span class="sub">何年つづけるか。例）20年なら 20</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="例）20">
+    </label>
+    <button onclick="calc()">将来の資産額をシミュレーション</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">将来の資産額（想定利回りで運用できた場合の目安）</div>
+        <div class="amt" id="amtFV">—</div>
+        <div class="sub2" id="subFV"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="patterns" style="display:none"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/shoken-nisa-mitanaoshi.html">証券・NISA見直し採点</a> ｜ <a href="../saiten/ideco-yaru-vs-yaranai.html">iDeCoやる vs やらない</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 毎月積立の将来価値（複利）: FV = m * ((1+i)^N - 1)/i （i=月利, N=月数）。i=0は m*N。
+function futureValue(m, annualPct, years){
+  var N = Math.round(years*12);
+  var i = annualPct/12/100;
+  if(i===0) return m*N;
+  return m * (Math.pow(1+i, N) - 1) / i;
+}
+function calc(){
+  var m = parseFloat(document.getElementById('month').value)||0;
+  var rate = parseFloat(document.getElementById('rate').value);
+  var years = parseFloat(document.getElementById('years').value)||0;
+  if(m<=0){ alert('毎月の積立額（円）を入れてください'); return; }
+  if(isNaN(rate) || rate<0){ alert('想定利回り（年％）を入れてください（例：3 や 5）'); return; }
+  if(years<=0){ alert('積立年数（年）を入れてください'); return; }
+
+  var N = Math.round(years*12);
+  var principal = m*N;                 // 元本合計
+  var fv = futureValue(m, rate, years); // 将来価値
+  var gain = fv - principal;            // 運用益
+
+  document.getElementById('amtFV').textContent = yen(fv);
+  document.getElementById('subFV').textContent =
+    '（毎月 '+yen(m)+' × '+years+'年 ＝ '+N+'回積立 ／ 想定利回り 年'+rate+'%）';
+
+  var L = document.getElementById('lines'); L.innerHTML='';
+  function row(n,v,color){ var d=document.createElement('div'); d.className='line';
+    d.innerHTML='<span>'+n+'</span><span><b'+(color?' style="color:'+color+'"':'')+'>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  row('元本合計（自分で出したお金）', principal);
+  row('運用益（前提利回りで増えた分）', gain, '#2ea043');
+  row('将来の資産額（元本＋運用益）', fv);
+
+  // 楽観 / 中立 / 保守 の3パターン（中立=入力値、楽観=+2pt目安、保守=1%目安）
+  var neutral = rate;
+  var optimistic = rate + 2;
+  var conservative = 1;
+  var P = document.getElementById('patterns');
+  function pRow(labelTxt, r, col){
+    var v = futureValue(m, r, years);
+    return '<div class="line" style="border-bottom:1px solid var(--line)"><span>'+labelTxt+'（年'+r+'%）</span><span><b style="color:'+col+'">'+yen(v)+'</b></span></div>';
+  }
+  P.style.display='block';
+  P.innerHTML =
+    '<div style="font-weight:700;color:var(--mut);margin-bottom:6px;">利回り3パターンで比べると</div>' +
+    pRow('楽観', optimistic, '#58a6ff') +
+    pRow('中立', neutral, '#2ea043') +
+    pRow('保守', conservative, '#f0883e') +
+    '<div style="font-size:12px;color:var(--faint);margin-top:8px;">※利回りはあくまで仮定。実際にどれになるかは誰にも約束できません。</div>' +
+    '<div style="font-size:13px;color:var(--tx);margin-top:10px;">【ASP導線プレースホルダ：NISA/積立対応のネット証券口座】</div>';
+
+  document.getElementById('note').innerHTML =
+    '※これは「前提の利回りで一定に運用できた場合」の試算です。実際の相場は上下に変動し、<b>元本割れ（出したお金より減る）</b>こともあります。'+
+    '手数料・税金は未考慮です（NISAの非課税枠などは別途）。'+
+    '<b>特定の商品や売買を推奨するものではなく</b>、過去の実績は将来の成果を保証しません。投資は自己責任でご判断ください。'+
+    '正確なことは金融機関の公式シミュレーターや目論見書でご確認を。';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>

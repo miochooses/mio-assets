@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>副業・ポイ活の実質時給ツール｜報酬と時間から時給をAIが計算・忖度ゼロ判定｜AIガチ検証室</title>
+<meta name="description" content="もらえた報酬・ポイントと、かかった時間・経費を入れるだけで“実質時給”を即計算。最低賃金と比べて割に合うかをAIが忖度ゼロで判定。時間の価値を可視化。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="副業・ポイ活の実質時給ツール（忖度ゼロ判定）">
+<meta property="og:description" content="報酬と時間から実質時給を即計算。最低賃金と比べて“割に合うか”をAIが判定。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 副業・ポイ活の実質時給</div>
+    <h1>その副業・ポイ活、実質時給いくら？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／忖度ゼロ判定</div>
+  </header>
+
+  <div class="panel">
+    <label>もらえた報酬・ポイント（円）<span class="sub">受け取った金額。ポイントは 1pt=1円 で換算して入力。例）3,000円分なら 3000</span>
+      <input id="reward" type="number" inputmode="numeric" placeholder="例）3000">
+    </label>
+    <label>かかった時間（分）<span class="sub">案件探し・登録・作業・待ち時間も含めた合計。例）90分なら 90</span>
+      <input id="min" type="number" inputmode="numeric" placeholder="例）90">
+    </label>
+    <label>経費・自己負担（円・任意）<span class="sub">商品購入・交通費・手数料など、自腹で出した分。入れると“純利益”で計算します</span>
+      <input id="cost" type="number" inputmode="numeric" placeholder="例）0">
+    </label>
+    <button onclick="calc()">実質時給を計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">実質時給</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="fixed" style="display:none"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="point-nijudori.html">ポイント二重取り</a> ｜ <a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 最低賃金の目安（全国加重平均の概算・時給）。厳密な地域別最賃は自治体で異なる。
+var MINWAGE = 1000;
+function calc(){
+  var reward=parseFloat(document.getElementById('reward').value)||0;
+  var min=parseFloat(document.getElementById('min').value)||0;
+  var cost=parseFloat(document.getElementById('cost').value)||0;
+  if(reward<=0){ alert('もらえた報酬・ポイント（円）を入れてください'); return; }
+  if(min<=0){ alert('かかった時間（分）を入れてください'); return; }
+
+  var net = reward - cost;              // 純利益（円）
+  var hours = min/60;                    // 時間
+  var wage = net / hours;                // 実質時給（円/時）
+
+  var amt=document.getElementById('amt');
+  var sub2=document.getElementById('sub2');
+  amt.textContent = yen(wage);
+
+  // 判定：色分け＋忖度ゼロコメント
+  var color, verdict, comment;
+  if(net < 0){
+    color='#f0645a';
+    verdict='赤字';
+    comment='時給以前にマイナス。これはやるほど損。案件を選び直しましょう。';
+    amt.style.color=color;
+  } else if(wage >= MINWAGE*1.5){
+    color='#2ea043';
+    verdict='割に合う';
+    comment='最低賃金をしっかり上回っています。時間対効果は良好。この手の案件を増やす価値あり。';
+    amt.style.color=color;
+  } else if(wage >= MINWAGE){
+    color='#f0883e';
+    verdict='ぎりぎり合格';
+    comment='最低賃金は超えたレベル。悪くはないけど、もっと単価の高い案件も探したいところ。';
+    amt.style.color=color;
+  } else if(wage >= MINWAGE*0.5){
+    color='#f0883e';
+    verdict='低い';
+    comment='最低賃金割れ。正直、これならバイトの方が早いです。効率を上げるか、別案件へ。';
+    amt.style.color=color;
+  } else {
+    color='#f0645a';
+    verdict='割に合わない';
+    comment='時間の切り売りとしては厳しい水準。趣味や実験ならOKですが、稼ぐ目的なら見直しを。';
+    amt.style.color=color;
+  }
+  sub2.innerHTML='判定：<b style="color:'+color+'">'+verdict+'</b> ／ 最低賃金 約'+yen(MINWAGE)+'/時 と比較';
+
+  // 内訳
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  function rowT(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+v+'</b></span>'; L.appendChild(d); }
+  row('報酬・ポイント',reward);
+  if(cost>0) row('経費・自己負担',-cost);
+  row('純利益',net);
+  rowT('かかった時間', (min>=60 ? (Math.floor(min/60)+'時間'+(min%60? (min%60)+'分':'')) : min+'分'));
+  row('実質時給',wage);
+
+  // 対比パネル（最低賃金との差）
+  var F=document.getElementById('fixed');
+  var diff = wage - MINWAGE;
+  if(net>=0){
+    var word = diff>=0 ? '<b style="color:#2ea043">+'+yen(diff)+'</b> 上回っています' : '<b style="color:#f0645a">'+yen(diff)+'</b> 下回っています';
+    F.style.display='block';
+    F.innerHTML='最低賃金（約'+yen(MINWAGE)+'/時）と比べると、1時間あたり '+word+'。'
+      +'　→ <a href="point-nijudori.html">ポイント二重取りで単価を底上げする</a>';
+  } else {
+    F.style.display='block';
+    F.innerHTML='純利益がマイナスのため、時給の比較以前の状態です。まず経費を回収できる案件を。'
+      +'　→ <a href="point-nijudori.html">ポイント二重取りで取りこぼしを減らす</a>';
+  }
+
+  // 正直な注意
+  document.getElementById('note').innerHTML=
+    '※ この結果は入力値からの単純計算です。' +
+    'ポイントは<b>用途・有効期限・交換レート</b>で実際の価値が変わり、ここでは <b>1pt=1円</b> と仮定しています（現金化しにくい／期限切れなら価値はこれより下がります）。' +
+    'また、税金（副業の所得は課税対象になり得る）や継続性・スキルの蓄積はこの時給に含みません。' +
+    '<b>「時給が低い＝悪」ではありません</b>。趣味・情報収集・実験としての価値は別。目的は“自分の時間の価値”を数字で見える化して、納得して選ぶことです。' +
+    '<br><br>' +
+    '【ASP導線プレースホルダ：高単価な案件/ポイントサイト（開示つき）】';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>

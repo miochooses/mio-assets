@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>家賃 適正額シミュ｜手取りから“適正家賃”の目安を即計算（25〜30%）｜AIガチ検証室</title>
+<meta name="description" content="手取り月収を入れるだけで、無理のない家賃の目安（手取りの25〜30%）をAIがざっくり計算。今の家賃が手取りの何%かも判定。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="家賃 適正額シミュ（手取りの25〜30%目安）">
+<meta property="og:description" content="手取りから無理のない家賃の目安を即概算。今の家賃が重いかも判定。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 家賃 適正額シミュ</div>
+    <h1>その家賃、手取りに対して重くない？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり目安</div>
+  </header>
+
+  <div class="panel">
+    <label>手取りの月収（円）<span class="sub">給与振込などで実際に手元に入る額。例）250,000円なら 250000</span>
+      <input id="net" type="number" inputmode="numeric" placeholder="例）250000">
+    </label>
+    <label>今の家賃（円・任意）<span class="sub">管理費・共益費込みの月額。入れると“手取りの何%か”を判定します</span>
+      <input id="rent" type="number" inputmode="numeric" placeholder="例）70000">
+    </label>
+    <button onclick="calc()">適正家賃をざっくり計算</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">無理のない家賃の目安（月）</div>
+        <div class="amt" id="amtRange">—</div>
+        <div class="sub2" id="subRange"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="fixed" style="display:none"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="./tedori.html">手取り計算</a> ｜ <a href="./kotei-hi.html">固定費見直し</a> ｜ <a href="../saiten/">AI採点アーカイブ</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var net=parseFloat(document.getElementById('net').value)||0;
+  if(net<=0){ alert('手取りの月収（円）を入れてください'); return; }
+  var low=net*0.25;   // 推奨ライン
+  var high=net*0.30;  // 上限ライン
+  document.getElementById('amtRange').textContent=yen(low)+' 〜 '+yen(high);
+  document.getElementById('subRange').textContent='（手取りの25%＝推奨 〜 30%＝上限）';
+
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  row('手取り（月）',net);
+  row('推奨ライン（手取り25%）',low);
+  row('上限ライン（手取り30%）',high);
+
+  var rent=parseFloat(document.getElementById('rent').value)||0;
+  var F=document.getElementById('fixed');
+  if(rent>0){
+    var pct=rent/net*100;
+    var col,msg;
+    if(pct<=25){ col='#2ea043'; msg='◎ 余裕のある水準。貯蓄・投資にまわしやすいバランスです。'; }
+    else if(pct<=30){ col='#f0883e'; msg='○ 許容範囲。ただし他の固定費が多いと窮屈になりがち。'; }
+    else{ col='#f0645a'; msg='△ 手取りに対してやや重め。更新時に見直す価値あり。'; }
+    var zan=net-rent;
+    F.style.display='block';
+    F.innerHTML='今の家賃は手取り月額の <b style="color:'+col+'">約'+pct.toFixed(0)+'%</b>。'+msg
+      +'<br><span style="color:var(--mut)">家賃を払った後の残り：<b style="color:var(--tx)">'+yen(zan)+'</b>／月</span>';
+  } else { F.style.display='none'; }
+
+  document.getElementById('note').innerHTML='※これは一般的な目安（家賃は手取りの25〜30%以内が安心とされます）で、地域・世帯人数・他の固定費（通信・光熱・保険・車など）で最適は変わります。管理費・共益費や、契約時の敷金・礼金・更新料も忘れず考慮を。正確な家計判断は公式のシミュレーターや専門家にご相談を。<br><br>【ASP導線プレースホルダ：賃貸検索／引越し見積もり／火災保険】';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>

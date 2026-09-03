@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>住宅ローン返済シミュ｜借入額・金利・年数から月返済額を即計算（元利均等・目安）｜AIガチ検証室</title>
+<meta name="description" content="借入額・金利・返済年数を入れるだけで、毎月の返済額・総返済額・総利息をAIがざっくり計算。金利が1%上がると月いくら増えるか（変動金利リスク）も分かる。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="住宅ローン返済シミュ（元利均等・目安）">
+<meta property="og:description" content="借入額・金利・年数から月返済額を即概算。金利1%上昇の影響も分かる。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .cta{margin-top:14px;background:#0b121a;border:1px dashed var(--o);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--mut);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 住宅ローン返済シミュ</div>
+    <h1>その借入、月いくら返す？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり概算</div>
+  </header>
+
+  <div class="panel">
+    <label>借入額（万円）<span class="sub">借りる金額。例）3000万円なら 3000</span>
+      <input id="man" type="number" inputmode="numeric" placeholder="例）3000">
+    </label>
+    <label>金利（年％）<span class="sub">実行金利。例）1.0％なら 1.0</span>
+      <input id="rate" type="number" inputmode="decimal" step="0.01" placeholder="例）1.0">
+    </label>
+    <label>返済年数（年）<span class="sub">借入期間。例）35年なら 35</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="例）35">
+    </label>
+    <button onclick="calc()">月々の返済額をざっくり計算</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">毎月の返済額（目安）</div>
+        <div class="amt" id="amtM">—</div>
+        <div class="sub2" id="subM"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="risk" style="display:none"></div>
+      <div class="cta" id="cta">【ASP導線プレースホルダ：住宅ローン借換・比較相談】</div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/jutaku-loan-hendou-vs-kotei.html">住宅ローン 変動vs固定の採点</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 元利均等: 月返済額 = P*r/(1-(1+r)^-n)  r=月利=年利/12/100, n=返済月数=年数*12
+function monthlyPayment(P, annualRatePct, months){
+  if(months<=0) return 0;
+  var r = annualRatePct/12/100;
+  if(r===0) return P/months;               // 金利0のときは元本を月数で割るだけ
+  return P*r/(1-Math.pow(1+r,-months));
+}
+function calc(){
+  var man=parseFloat(document.getElementById('man').value)||0;
+  var annual=parseFloat(document.getElementById('rate').value);
+  var years=parseFloat(document.getElementById('years').value)||0;
+  if(man<=0){ alert('借入額（万円）を入れてください'); return; }
+  if(isNaN(annual)||annual<0){ alert('金利（年％）を入れてください（例：1.0）'); return; }
+  if(years<=0){ alert('返済年数（年）を入れてください'); return; }
+
+  var P=man*10000;
+  var n=Math.round(years*12);
+  var pm=monthlyPayment(P,annual,n);
+  var total=pm*n;
+  var interest=total-P;
+
+  document.getElementById('amtM').textContent=yen(pm);
+  document.getElementById('subM').textContent='（金利 年'+annual+'％ ／ '+years+'年・'+n+'回払い）';
+
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function row(name,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+name+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  row('借入額',P);
+  row('総返済額',total);
+  row('総利息（利息の合計）',interest);
+
+  // 金利が1%上がると月返済がいくら増えるか（変動金利リスクの体感）
+  var pmUp=monthlyPayment(P,annual+1,n);
+  var diff=pmUp-pm;
+  var R=document.getElementById('risk');
+  R.style.display='block';
+  R.innerHTML='金利が <b style="color:#f0883e">1％上がる</b>と、月返済は <b style="color:#f0645a">約'+yen(diff)+'増</b>（月 '+yen(pm)+' → '+yen(pmUp)+'）。'
+    +'これが変動金利のリスクの正体です。';
+
+  document.getElementById('note').textContent='※これは「元利均等返済」前提の“ざっくり概算”です。ボーナス払い・保証料・団信（団体信用生命保険）・事務手数料は含みません。変動金利は将来上がる可能性があり、上の「1％上昇」は最悪ではなく起こりうる一例。繰上返済や借換で総額は変わります。正確な返済額は金融機関の正式なシミュレーションでご確認を。【ASP導線プレースホルダ：住宅ローン借換・比較相談】';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
