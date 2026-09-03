@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ふるさと納税 上限額 ざっくり計算｜年収・家族構成で自己負担2000円の目安｜AIガチ検証室</title>
-<meta name="description" content="年収と家族構成を選ぶだけ。自己負担2,000円で寄付できるふるさと納税の上限額の目安をAIが即計算（総務省の目安ベース）。やらないと損する理由も。登録なし・端末内処理。">
+<title>ふるさと納税 上限額 ざっくり計算｜育休・住宅ローン控除など“例外の年”にも対応｜AIガチ検証室</title>
+<meta name="description" content="年収と家族構成で自己負担2,000円の上限目安を即計算。さらに他サイトが軽視しがちな“例外の年”＝産休・育休・住宅ローン控除初年度・医療費控除に警告。やり過ぎて全額自己負担、を防ぎます。端末内処理。">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="ふるさと納税 上限額 ざっくり計算">
-<meta property="og:description" content="年収と家族構成で、自己負担2,000円の上限目安を即計算。">
+<meta property="og:title" content="ふるさと納税 上限目安（育休など例外の年に対応）">
+<meta property="og:description" content="育休・住宅ローン控除の年は上限が激減。やり過ぎ自己負担を防ぐ計算ツール。">
 <style>
-  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
   .wrap{max-width:640px;margin:0 auto;}
@@ -18,7 +18,7 @@
   .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
   .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
   .crumbs a{color:var(--b);text-decoration:none;}
-  h1{margin-top:10px;font-size:23px;font-weight:800;line-height:1.4;}
+  h1{margin-top:10px;font-size:22px;font-weight:800;line-height:1.45;}
   .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
   label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
@@ -27,6 +27,8 @@
   input,select{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
   button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
   .out{display:none;margin-top:20px;}
+  .alert{border-radius:12px;padding:14px 16px;font-size:14px;font-weight:600;margin-bottom:14px;background:#2a1416;border:1px solid #7a2a34;color:#ffd9dc;}
+  .alert b{color:#ff9aa2;}
   .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
   .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
   .big .amt{margin-top:6px;font-size:32px;font-weight:800;color:var(--g);}
@@ -36,6 +38,9 @@
   .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
   .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
   .warn{margin-top:14px;background:#2a1a0f;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:12px;color:#e8c9a8;}
+  .exbox{margin-top:16px;background:#141d28;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;color:#c9d4de;}
+  .exbox .h{font-weight:800;color:#e9eef3;font-size:14px}
+  .exbox ul{margin-top:8px;padding-left:18px} .exbox li{margin-top:6px}
   .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
   .foot a{color:var(--b);text-decoration:none;}
 </style>
@@ -45,12 +50,13 @@
   <header>
     <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
     <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ ふるさと納税 上限目安</div>
-    <h1>ふるさと納税、自己負担2,000円でいくらまで？</h1>
-    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり目安</div>
+    <h1>ふるさと納税、いくらまで？<br><span style="font-size:15px;color:#9fb3c8">― “例外の年”（育休・住宅ローン控除など）にも対応 ―</span></h1>
+    <div class="priv">🔒 端末内だけで計算（送信しません）／ざっくり目安。ここは他サイトが軽視する“例外”まで警告します</div>
   </header>
 
   <div class="panel">
-    <label>額面の年収（万円）<span class="sub">例）500万円なら 500</span>
+    <label>今年の課税対象の給与収入（万円）
+      <span class="sub">育児休業給付金・出産手当金・失業手当などの<b>非課税分は含めない</b>。今年“実際に働いて課税される”給与だけ</span>
       <input id="man" type="number" inputmode="numeric" placeholder="例）500">
     </label>
     <label>家族構成
@@ -60,9 +66,19 @@
         <option value="child">夫婦＋高校生の子1人</option>
       </select>
     </label>
+    <label>今年、こんな事情はある？（上限が大きく変わります）
+      <select id="ex">
+        <option value="none" selected>特にない</option>
+        <option value="ikukyu">産休・育休で今年の給与が減った／ほぼ無かった</option>
+        <option value="taishoku">年の途中で退職・休職して給与が減った</option>
+        <option value="loan">住宅ローン控除の初年度（今年入居）</option>
+        <option value="deduction">医療費控除・iDeCoなどが大きい</option>
+      </select>
+    </label>
     <button onclick="calc()">上限の目安を計算</button>
 
     <div class="out" id="out">
+      <div class="alert" id="alert" style="display:none"></div>
       <div class="big">
         <div class="lb">自己負担2,000円で寄付できる上限（目安）</div>
         <div class="amt" id="amt">—</div>
@@ -75,6 +91,16 @@
       </div>
       <div class="warn" id="warn"></div>
     </div>
+
+    <div class="exbox">
+      <div class="h">⚠ こんな年は「例年通り」が一番危ない</div>
+      <ul>
+        <li><b>産休・育休の年</b>：上限は“今年の課税所得”で決まる。育休給付金・出産手当金は<b>非課税＝年収に入らない</b>。1年ほぼ育休なら上限はほぼ0のことも。例年通りやると全額自己負担に。</li>
+        <li><b>住宅ローン控除の初年度</b>：税金が先に控除され、ふるさと納税の枠が食われて上限が下がることがある（特にワンストップ特例）。</li>
+        <li><b>退職・転職・休職</b>：前年でなく“今年の実際の給与”で決まる。減った年は上限も減る。</li>
+        <li><b>医療費控除・iDeCo</b>：課税所得が下がり、上限も下がる。</li>
+      </ul>
+    </div>
   </div>
 
   <div class="foot">
@@ -82,30 +108,36 @@
   </div>
 </div>
 <script>
-function yen(n){ return '¥'+Math.round(n/1000)*1000; }
 function fmt(n){ return '¥'+(Math.round(n/1000)*1000).toLocaleString('ja-JP'); }
-// 総務省の目安ベース（自己負担2,000円で寄付できる上限の目安・年収=給与収入）
 var TBL={
   single:[[300,28000],[400,42000],[500,61000],[600,77000],[700,108000],[800,129000],[900,152000],[1000,180000]],
   couple:[[300,19000],[400,33000],[500,49000],[600,69000],[700,86000],[800,120000],[900,143000],[1000,171000]],
   child: [[300,11000],[400,25000],[500,40000],[600,60000],[700,78000],[800,110000],[900,132000],[1000,163000]]
 };
 function lookup(tbl,man){
-  if(man<=tbl[0][0]) return tbl[0][1]*(man/tbl[0][0]); // 300万未満は概算で按分
-  if(man>=tbl[tbl.length-1][0]) return tbl[tbl.length-1][1]*(man/tbl[tbl.length-1][0]); // 1000万超は概算延長
+  if(man<=tbl[0][0]) return tbl[0][1]*(man/tbl[0][0]);
+  if(man>=tbl[tbl.length-1][0]) return tbl[tbl.length-1][1]*(man/tbl[tbl.length-1][0]);
   for(var i=1;i<tbl.length;i++){ if(man<=tbl[i][0]){ var a=tbl[i-1],b=tbl[i]; return a[1]+(b[1]-a[1])*(man-a[0])/(b[0]-a[0]); } }
   return tbl[tbl.length-1][1];
 }
+var EXMSG={
+  ikukyu:'<b>⚠ 育休・産休の年は要注意。</b>ふるさと納税の上限は“今年の課税所得”で決まります。育児休業給付金・出産手当金は<b>非課税＝年収に含みません</b>。上の欄には“実際に課税された給与”だけを入れてください。1年ほぼ育休なら上限はほぼ0のことも。例年通りやると全額自己負担になります。',
+  taishoku:'<b>⚠ 退職・休職で給与が減った年。</b>上限は前年でなく“今年の実際の給与”で決まります。減った分だけ上限も下がるので、下の目安より低いと考えて、公式シミュで確認を。',
+  loan:'<b>⚠ 住宅ローン控除の初年度。</b>税金が先に控除され、ふるさと納税の枠が食われて上限が下がることがあります（特にワンストップ特例）。確定申告する年は影響が変わるので、必ず公式シミュで確認を。',
+  deduction:'<b>⚠ 医療費控除・iDeCoなどが大きい年。</b>課税所得が下がり、上限も下がります。下の目安は“それらがない前提”なので、実際はもう少し低くなります。'
+};
 function calc(){
   var man=parseFloat(document.getElementById('man').value)||0;
   var fam=document.getElementById('fam').value;
-  if(man<=0){ alert('年収（万円）を入れてください'); return; }
+  var ex=document.getElementById('ex').value;
+  if(man<=0){ alert('今年の課税対象の給与（万円）を入れてください'); return; }
   var lim=lookup(TBL[fam],man);
+  var al=document.getElementById('alert');
+  if(ex!=='none'){ al.style.display='block'; al.innerHTML=EXMSG[ex]; } else { al.style.display='none'; }
   document.getElementById('amt').textContent=fmt(lim);
-  document.getElementById('sub2').textContent='（実質の負担は 2,000円。差額 '+fmt(lim-2000)+' 相当が税金から控除される目安）';
-  document.getElementById('why').innerHTML='<b>なぜやると得？</b> 上限内なら、寄付額から2,000円を引いた分が翌年の税金から控除され、実質2,000円で各地の返礼品がもらえます。'+
-    '<b style="color:#2ea043">＝実質2,000円で '+fmt(lim)+' 分の買い物</b>ができるイメージ。上限を超えた分は自己負担になるので、超えないのが鉄則です。';
-  document.getElementById('warn').innerHTML='※これは年収と家族構成による<b>ざっくり目安</b>です（総務省の目安ベース）。住宅ローン控除・医療費控除・iDeCo等があると上限は下がります。ワンストップ特例は寄付先5自治体まで。正確な額は各ふるさと納税サイトの公式シミュレーターや源泉徴収票でご確認を。最終判断はご自身で。';
+  document.getElementById('sub2').textContent='（実質の負担は 2,000円。差額 '+fmt(lim-2000)+' 相当が税金から控除される目安）'+(ex!=='none'?' ／ ※上の事情で実際はこれより低い可能性大':'');
+  document.getElementById('why').innerHTML='<b>なぜやると得？</b> 上限内なら、寄付額から2,000円を引いた分が翌年の税金から控除され、実質2,000円で各地の返礼品がもらえます。<b style="color:#2ea043">＝実質2,000円で '+fmt(lim)+' 分の買い物</b>ができるイメージ。上限を超えた分は自己負担なので、超えないのが鉄則です。';
+  document.getElementById('warn').innerHTML='※これは年収と家族構成による<b>ざっくり目安</b>です（総務省の目安ベース）。上の「例外の年」に当たる場合や、住宅ローン控除・医療費控除・iDeCo等があると上限は下がります。ワンストップ特例は寄付先5自治体まで。正確な額は各ふるさと納税サイトの公式シミュレーターや源泉徴収票でご確認を。最終判断はご自身で。';
   document.getElementById('out').style.display='block';
 }
 </script>
