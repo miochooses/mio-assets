@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お金の“設定”見直しBook（完成版・全8章）｜AIガチ検証室</title>
+<meta name="description" content="通信・サブスク・固定費・クレカ・口座・ポイントの“設定”を一度直すだけで、労力ゼロで毎年浮くお金。感情ゼロのAIが計算でまとめた完成版Book（全8章＋1枚チェックリスト）。全文無料。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="お金の“設定”見直しBook（完成版・全8章）">
+<meta property="og:description" content="“設定”を一度直すだけ。労力ゼロで毎年浮くお金を、計算でまとめました。全文無料。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.85;padding:0 16px 70px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  .nav{position:sticky;top:0;background:#0f1720f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:6px;padding:11px 0;margin:0 -16px 0;padding-left:16px;padding-right:16px;overflow-x:auto;z-index:10;}
+  .nav a{white-space:nowrap;font-size:13px;font-weight:700;color:var(--mut);text-decoration:none;padding:6px 11px;border-radius:8px;background:#161f2b;border:1px solid var(--line);}
+  .nav a.home{color:var(--b);}
+  header{padding:38px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:12px;font-size:27px;font-weight:800;line-height:1.4;}
+  .sub{margin-top:8px;font-size:16px;color:var(--mut);font-weight:700;}
+  .lead{margin-top:16px;font-size:15px;color:var(--mut);}
+  h2{margin-top:44px;font-size:21px;font-weight:800;border-left:4px solid var(--b);padding-left:11px;scroll-margin-top:60px;}
+  h3{margin-top:24px;font-size:16px;font-weight:800;color:#cdd9e4;}
+  p{margin-top:13px;}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:24px;}
+  .toc .h{font-size:13px;font-weight:800;color:var(--o);}
+  .toc ol{margin-top:10px;padding-left:22px;} .toc li{margin-top:7px;font-weight:700;}
+  .toc a{color:#dbe6f0;text-decoration:none;} .toc li span{display:block;font-weight:500;font-size:13px;color:var(--mut);}
+  .calc{font-size:15px;font-weight:800;text-align:center;background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:15px;margin-top:15px;line-height:1.7;}
+  .calc .ex{display:block;font-size:12px;color:#9fb3c8;font-weight:600;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:15px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:#12212e;font-weight:800;color:#cdd9e4;}
+  td b{color:var(--g);}
+  ul{margin-top:11px;padding-left:20px;} li{margin-top:6px;}
+  .verdict{margin-top:15px;background:linear-gradient(90deg,#12251a,#141d28);border:1px solid #2ea04355;border-radius:12px;padding:14px 16px;font-size:14px;}
+  .verdict b{color:#7ee787;}
+  .more{margin-top:13px;font-size:13px;}
+  .more a{display:inline-block;margin:5px 8px 0 0;color:#08110a;background:#39c5cf;border-radius:8px;padding:6px 12px;text-decoration:none;font-weight:800;font-size:13px;}
+  .more a.art{background:#22303c;color:#9fd4ff;border:1px solid #2b4a5f;}
+  .check{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px;}
+  .check ol{padding-left:22px;} .check li{margin-top:11px;font-weight:700;}
+  .check li span{display:block;font-weight:500;font-size:13px;color:var(--mut);margin-top:2px;}
+  .cta{margin-top:40px;background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:16px;padding:22px;text-align:center;}
+  .cta .t{font-size:17px;font-weight:800;color:#cfe8f5;}
+  .cta .d{margin-top:8px;font-size:14px;color:var(--mut);}
+  .cta a{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:12px 22px;border-radius:11px;font-size:15px;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:36px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:22px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="home" href="../../">🏠 トップ</a>
+    <a href="#c1">1 設定と我慢</a><a href="#c2">2 通信</a><a href="#c3">3 サブスク</a>
+    <a href="#c4">4 固定費</a><a href="#c5">5 クレカ</a><a href="#c6">6 口座</a>
+    <a href="#c7">7 ポイント</a><a href="#c8">8 チェックリスト</a>
+  </nav>
+
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../../">トップ</a> ／ <a href="../">無料Book</a> ／ 完成版（全8章）</div>
+    <h1>お金の“設定”見直しBook<br>― 完成版・全8章 ―</h1>
+    <div class="sub">我慢する節約の前に。直すだけで毎年浮くお金。</div>
+    <div class="lead">節約は続きません。でも“設定”は一度直せば、あとは労力ゼロで毎年効きます。この本は、感情ゼロのAIが「お金の2択」を計算で採点する方法でまとめました。印象で「これがおすすめ」とは言いません。<b>あなたの条件で勝者が変わる</b>ので、式と条件表であなた自身が判定できるようにしてあります。全文無料です。</div>
+  </header>
+
+  <div class="toc">
+    <div class="h">目次（全8章＋1枚チェックリスト）</div>
+    <ol>
+      <li><a href="#c1">“設定”のお金と“我慢”のお金は別物</a><span>なぜ設定直しが最強に効率的なのか</span></li>
+      <li><a href="#c2">通信費：格安SIM vs 大手キャリア</a><span>月20GB以下なら年数万円。判定式つき</span></li>
+      <li><a href="#c3">サブスク：年払い vs 月払い／棚卸し</a><span>“使ってない”を年額で可視化</span></li>
+      <li><a href="#c4">固定費：保険・光回線の見直し</a><span>掛け捨てvs貯蓄型、乗り換えの年差額</span></li>
+      <li><a href="#c5">クレカ：年会費あり vs 無料</a><span>損益分岐＝年会費÷還元率</span></li>
+      <li><a href="#c6">口座：ネット銀行 vs メガバンク</a><span>金利・手数料の“設定差”</span></li>
+      <li><a href="#c7">ポイント：経由 vs 直接</a><span>二重取りが得な条件・損な条件</span></li>
+      <li><a href="#c8">1枚チェックリスト：今日直す順番</a><span>効果の大きい順の実行リスト</span></li>
+    </ol>
+  </div>
+
+  <h2 id="c1">第1章：“設定”のお金と“我慢”のお金は別物</h2>
+  <p>お金を浮かせる方法は、大きく2種類あります。</p>
+  <ul>
+    <li><b>我慢のお金</b>：ランチを我慢する、電気をこまめに消す。効果は小さく、しかも<b>毎日の意志力</b>を使う＝続きません。</li>
+    <li><b>設定のお金</b>：スマホのプラン、サブスクの契約、口座や還元の設定。<b>一度直せば、あとは何もしなくても毎月ずっと効く</b>。</li>
+  </ul>
+  <p>この本が扱うのは後者だけです。理由は単純で、費用対効果（かけた手間あたりの節約）が桁違いだから。たとえば通信費。1回30分の乗り換え作業で、こうなります。</p>
+  <div class="calc">（今の月額 − 乗換後の月額）× 12 ＝ 毎年ずっと浮くお金<span class="ex">例：8,000円 → 2,000円 なら 年 72,000円</span></div>
+  <p>ランチを72,000円分我慢するのは1年がかりの苦行ですが、設定は30分で終わって、来年も再来年も効きます。<b>だから“設定”から手をつけるのが、いちばん賢い順番</b>です。次章から、効果の大きい順（通信→サブスク→固定費→…）に棚卸ししていきます。採点の基準は<a href="../../saiten/houhouron.html" style="color:#58a6ff">方法論ページ</a>で公開しています。</p>
+
+  <h2 id="c2">第2章：通信費 ― 格安SIM vs 大手キャリア</h2>
+  <p>固定費の中で、いちばん大きく・すぐ効くのが通信費です。まず今の「月額」と「毎月のデータ使用量（GB）」をスマホの設定画面で確認してください。判定はこの式だけ。</p>
+  <div class="calc">（今の月額 − 乗換後の月額）× 12 ＝ 年間の差額<span class="ex">格安SIMの目安：3GBで約1,000円／20GBで約2,000〜2,500円</span></div>
+  <h3>あなたの条件で、どっちが勝つか</h3>
+  <table>
+    <tr><th>あなたの状況</th><th>判定</th></tr>
+    <tr><td>月20GB以下・家族割やセット割に縛られていない</td><td><b>格安SIMが得</b>（年3〜6万円の差も）</td></tr>
+    <tr><td>データ大容量／家族全員が大手で割引中／店頭サポート必須</td><td>大手継続も正解</td></tr>
+  </table>
+  <div class="verdict"><b>結論：</b>「なんとなく大手」で月20GB以下なら、まず見直し対象。乗り換えは1回で終わり、差額は毎年効きます。回線品質が不安なら、大手のサブブランド（同回線）から始めるのが手堅い。</div>
+  <div class="more">
+    <a class="art" href="../../saiten/kakuyasu-sim-vs-carrier.html">📄 詳しい採点を読む</a>
+    <a href="../../tools/sim-sim.html">🧮 格安SIM料金シミュ</a>
+    <a href="../../tools/kotei-hi.html">🧮 固定費見直しシミュ</a>
+  </div>
+
+  <h2 id="c3">第3章：サブスク ― 年払い vs 月払い ＆ 棚卸し</h2>
+  <p>サブスクは「気づかず払い続ける」設定の代表格。まず<b>棚卸し</b>（全部書き出して年額に直す）→ 使っていないものを止める → 残すものは年払い判定、の順です。</p>
+  <h3>使ってないサブスクの“年額”を見える化</h3>
+  <div class="calc">月額 × 12 ＝ 年間コスト<span class="ex">例：見てない動画980円/月 → 年 11,760円。3つ眠っていれば年3万円超</span></div>
+  <h3>残すサブスクは、年払いにすべきか</h3>
+  <table>
+    <tr><th>状況</th><th>判定</th></tr>
+    <tr><td>1年以上使い続ける確信がある</td><td><b>年払いが得</b>（多くは約2ヶ月分＝1〜2割引）</td></tr>
+    <tr><td>使うか微妙・数ヶ月で解約の可能性</td><td>月払いのまま（途中解約で年払いは損）</td></tr>
+  </table>
+  <div class="verdict"><b>結論：</b>年払いの割引は「使い続ける確信」への報酬。確信があるものだけ年払い、迷うものは月払いで様子見。まずは“眠っているサブスク”を1つ止めるのが即効。</div>
+  <div class="more"><a class="art" href="../../saiten/subsc-nenbarai-vs-tsukibarai.html">📄 詳しい採点を読む</a></div>
+
+  <h2 id="c4">第4章：固定費 ― 保険と光回線</h2>
+  <h3>保険：掛け捨て vs 貯蓄型</h3>
+  <p>同じ保障額なら、貯蓄型は掛け捨ての<b>数倍の保険料</b>になります（貯蓄部分を保険会社経由で積み立てているため）。</p>
+  <div class="verdict"><b>結論：</b>「保障」と「貯蓄」は分けて考えるのが基本。必要な保障は掛け捨てで安く確保し、貯蓄・運用は別で行う方が、同じお金で保障も貯蓄も厚くできるケースが多い。※必要保障額は家族構成で変わります。</div>
+  <div class="more"><a class="art" href="../../saiten/hoken-kakesute-vs-chochiku.html">📄 詳しい採点を読む</a></div>
+  <h3 style="margin-top:26px;">光回線：乗り換えで年いくら</h3>
+  <p>光回線は「実質料金（キャッシュバックや割引を月割りにした後の額）」で比較します。相場より高ければ乗り換え有利。</p>
+  <div class="calc">（今の実質月額 − 乗換後の実質月額）× 12 ＝ 年間の差額<span class="ex">相場の目安：戸建 約5,500円／マンション 約4,200円</span></div>
+  <div class="verdict"><b>結論：</b>スマホとのセット割が効く組み合わせなら通信費全体で最適化できる。ただし工事の手間・違約金・キャッシュバック条件（受け取り忘れ）まで含めた“実質”で判断を。</div>
+  <div class="more"><a class="art" href="../../saiten/hikari-kaisen-norikae.html">📄 詳しい採点を読む</a><a href="../../tools/kotei-hi.html">🧮 固定費見直しシミュ</a></div>
+
+  <h2 id="c5">第5章：クレジットカード ― 年会費あり vs 無料</h2>
+  <p>「年会費ありのカードは損」とは限りません。特典（ポイント還元・保険・ラウンジ等）が年会費を上回るかは、1本の式で出ます。</p>
+  <div class="calc">損益分岐の年間利用額 ＝ 年会費 ÷ (有料カード還元率 − 無料カード還元率)<span class="ex">例：年会費11,000円／還元差1%（1.5%−0.5%）→ 年110万円使えば元が取れる</span></div>
+  <div class="verdict"><b>結論：</b>「その年会費を、還元率の差だけで回収できる利用額か？」で判定。回収できないなら無料カードが正解。付帯保険やラウンジに明確な価値を感じる人だけ、有料が生きる。</div>
+  <div class="more"><a href="../../tools/creca-bunki.html">🧮 クレカ損益分岐</a></div>
+
+  <h2 id="c6">第6章：口座 ― ネット銀行 vs メガバンク</h2>
+  <p>普通預金の金利は、メガバンク約0.001%に対しネット銀行は0.2〜0.35%＝<b>最大350倍差</b>。ただ、金利以上に効くのは<b>手数料の無料回数</b>（振込・ATM）です。</p>
+  <table>
+    <tr><th>用途</th><th>おすすめ設定</th></tr>
+    <tr><td>貯金・振込・普段使い</td><td><b>ネット銀行を1つ作る</b>（金利＋手数料無料回数）</td></tr>
+    <tr><td>給与振込・住宅ローン・店頭相談</td><td>メガ／地銀を併用でOK</td></tr>
+  </table>
+  <div class="verdict"><b>結論：</b>全部を乗り換える必要はありません。<b>貯金・振込用にネット銀行を1つ足す</b>だけで、金利と手数料の“設定差”を取りにいけます。併用が正解。</div>
+  <div class="more"><a class="art" href="../../saiten/net-bank-vs-mega.html">📄 詳しい採点を読む</a></div>
+
+  <h2 id="c7">第7章：ポイント ― 経由 vs 直接</h2>
+  <p>ネットの申込・買い物は、ポイントサイトを「経由」すると、通常ポイントに加えてサイト分の還元が乗る＝<b>二重取り</b>になることがあります。ただし常に得とは限りません。</p>
+  <table>
+    <tr><th>状況</th><th>判定</th></tr>
+    <tr><td>もともと申し込む予定・条件（保有期間等）を満たせる</td><td><b>経由が得</b>（二重取り）</td></tr>
+    <tr><td>ポイント目当てで不要な契約をしそう／条件が複雑で達成が不安</td><td>直接（見送り）が正解</td></tr>
+  </table>
+  <div class="verdict"><b>結論：</b>「どうせやる支払い」を経由に回すのは合理的。逆に、還元のために不要な契約をするのは本末転倒。“取りこぼさない”けど“釣られない”のが基本姿勢です。</div>
+  <div class="more"><a href="../../tools/point-nijudori.html">🧮 ポイント二重取り比較</a></div>
+
+  <h2 id="c8">第8章：1枚チェックリスト ― 今日直す順番</h2>
+  <p>効果が大きく・一度で終わる順に並べました。上から順に、できるものだけでOK。1つ直すごとに、その効果は毎年ずっと続きます。</p>
+  <div class="check">
+    <ol>
+      <li>スマホの「月額」と「月のGB」を確認する<span>20GB以下で大手なら、格安SIM/サブブランドを比較（年3〜6万円）</span></li>
+      <li>サブスクを全部書き出す<span>使ってない1つを止める（それだけで年1万円前後）</span></li>
+      <li>貯金・振込用にネット銀行を1つ作る<span>金利＋手数料無料回数。メガは併用でOK</span></li>
+      <li>光回線の“実質料金”を相場と比べる<span>高ければ乗り換え候補。スマホとのセット割も確認</span></li>
+      <li>メインのクレカを損益分岐でチェック<span>年会費を還元差で回収できないなら無料カードへ</span></li>
+      <li>保険の「保障」と「貯蓄」を切り分ける<span>必要保障は掛け捨てで安く。貯蓄は別で</span></li>
+      <li>「どうせやる」ネット申込はポイント経由に<span>ただし還元目当ての不要契約はしない</span></li>
+    </ol>
+  </div>
+
+  <div class="cta">
+    <div class="t">📬 続きと更新を、メールでも受け取る（任意）</div>
+    <div class="d">このBookはいつでもここで全文読めます。新しい採点や制度改正（年収の壁・NISA等）の更新を受け取りたい方だけ、メールでどうぞ。登録は無料・いつでも解除できます。</div>
+    <a href="../">メール登録ページへ →</a>
+    <div class="note">※本Bookの数値は各時点の公開情報にもとづく参考値です。特定商品の勧誘・投資助言ではありません。最終判断はご自身で。</div>
+  </div>
+
+  <div class="foot">
+    <a href="../../saiten/">📚 AI採点アーカイブ（各章の元ネタ）</a> ／ <a href="../../tools/">🧮 無料ツール一覧</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
