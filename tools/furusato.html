@@ -80,7 +80,7 @@
     <div class="out" id="out">
       <div class="alert" id="alert" style="display:none"></div>
       <div class="big">
-        <div class="lb">自己負担2,000円で寄付できる上限（目安）</div>
+        <div class="lb">今年、あなたがやるべき ふるさと納税（目安）</div>
         <div class="amt" id="amt">—</div>
         <div class="sub2" id="sub2"></div>
       </div>
@@ -134,9 +134,10 @@ function calc(){
   var lim=lookup(TBL[fam],man);
   var al=document.getElementById('alert');
   if(ex!=='none'){ al.style.display='block'; al.innerHTML=EXMSG[ex]; } else { al.style.display='none'; }
-  document.getElementById('amt').textContent=fmt(lim);
-  document.getElementById('sub2').textContent='（実質の負担は 2,000円。差額 '+fmt(lim-2000)+' 相当が税金から控除される目安）'+(ex!=='none'?' ／ ※上の事情で実際はこれより低い可能性大':'');
-  document.getElementById('why').innerHTML='<b>なぜやると得？</b> 上限内なら、寄付額から2,000円を引いた分が翌年の税金から控除され、実質2,000円で各地の返礼品がもらえます。<b style="color:#2ea043">＝実質2,000円で '+fmt(lim)+' 分の買い物</b>ができるイメージ。上限を超えた分は自己負担なので、超えないのが鉄則です。';
+  var safe = Math.floor((lim*0.9)/1000)*1000;
+  document.getElementById('amt').textContent=fmt(safe);
+  document.getElementById('sub2').innerHTML='上限の目安は '+fmt(lim)+'。ギリギリは危ないので<b style="color:#58a6ff">上限の9割＝'+fmt(safe)+' を“やるべき額”の目安に</b>（超えた分は自己負担）。実質の負担は2,000円だけ。'+(ex!=='none'?'<br><b style="color:#ff9aa2">今年はこの「今年の給与」ベースの額でやってください。例年の額でやると危険です。</b>':'');
+  document.getElementById('why').innerHTML='<b>結論：今年は '+fmt(safe)+' を目安に寄付を。</b> 上限内なら寄付額から2,000円を引いた分が翌年の税金から控除され、<b style="color:#2ea043">実質2,000円で '+fmt(safe)+' 分の返礼品</b>がもらえます。やらない＝この分まるごと損。ただし上限超過分は自己負担なので、9割ラインで安全に。';
   document.getElementById('warn').innerHTML='※これは年収と家族構成による<b>ざっくり目安</b>です（総務省の目安ベース）。上の「例外の年」に当たる場合や、住宅ローン控除・医療費控除・iDeCo等があると上限は下がります。ワンストップ特例は寄付先5自治体まで。正確な額は各ふるさと納税サイトの公式シミュレーターや源泉徴収票でご確認を。最終判断はご自身で。';
   document.getElementById('out').style.display='block';
 }
