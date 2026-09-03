@@ -3,38 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIガチ検証室 ｜ Mio</title>
-<meta name="description" content="感情ゼロのAIが「よく聞くお金の話」を計算だけで白黒つけて採点する検証室。忖度なし。意志は責めない、損な“設定”を直すだけ。">
+<title>AIガチ検証室 ｜ Mio｜お金の“よくある2択”を計算だけで採点</title>
+<meta name="description" content="感情ゼロのAIが「よく聞くお金の話」を計算だけで白黒つけて採点する検証室。格安SIM・NISA・保険・ふるさと納税…あなたの条件でどっちが得か、記事と無料ツールで即わかる。忖度なし。">
 <meta property="og:title" content="AIガチ検証室 ｜ Mio">
-<meta property="og:description" content="感情ゼロのAIが、お金の“よくある2択”を計算で採点。忖度ゼロ。">
+<meta property="og:description" content="お金の“よくある2択”を、計算だけで採点。忖度ゼロ。記事＋無料ツール。">
 <meta property="og:type" content="website">
 <style>
-  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;}
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;overflow-wrap:anywhere;}
   .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
-  header{padding:48px 0 30px;text-align:center;}
+  header{padding:46px 0 8px;text-align:center;}
   .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.06em;}
   .badge .dot{width:10px;height:10px;border-radius:50%;background:var(--g);}
-  h1{margin-top:14px;font-size:34px;line-height:1.25;font-weight:800;}
+  h1{margin-top:14px;font-size:32px;line-height:1.3;font-weight:800;}
   h1 .hl{color:var(--b);}
   .lead{margin-top:16px;font-size:16px;color:var(--mut);}
-  .stance{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .stance{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
   .stance span{font-size:13px;font-weight:700;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:6px 12px;}
-  .sec{padding:26px 0;border-top:1px solid var(--line);}
-  .sec h2{font-size:20px;font-weight:800;}
+  .catnav{margin-top:24px;display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
+  .catnav a{font-size:14px;font-weight:800;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:8px 15px;text-decoration:none;}
+  .sec{padding:30px 0;border-top:1px solid var(--line);margin-top:22px;}
+  .sec h2{font-size:21px;font-weight:800;}
   .sec h2 small{display:block;font-size:13px;color:var(--faint);font-weight:600;margin-top:4px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:16px;}
-  .card img{width:100%;display:block;}
-  .card .cap{padding:14px 16px;font-size:14px;color:var(--mut);}
-  .card .cap b{color:var(--tx);}
+  .pop{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+  .pop a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--tx);}
+  .pop a .t{font-size:16px;font-weight:800;color:#dbe6f0;}
+  .pop a .v{margin-top:5px;font-size:13px;color:var(--mut);}
+  .pop a .v b{color:var(--g);}
+  .allbtn{display:inline-block;margin-top:16px;background:#161f2b;border:1px solid var(--line);color:var(--b);font-weight:800;text-decoration:none;padding:11px 20px;border-radius:11px;font-size:15px;}
+  .tools{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .tools a{display:block;text-decoration:none;background:var(--card);border:1px solid #1f3547;border-radius:13px;padding:14px;color:var(--tx);}
+  .tools a .tt{font-size:15px;font-weight:800;}
+  .tools a .td{margin-top:5px;font-size:12px;color:var(--mut);}
+  @media(max-width:480px){.tools{grid-template-columns:1fr;}}
+  .book{margin-top:16px;background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:18px;padding:24px;text-align:center;}
+  .book .t{font-size:19px;font-weight:800;color:#cfe8f5;}
+  .book .d{margin-top:8px;font-size:14px;color:var(--mut);}
+  .book a{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:13px 26px;border-radius:11px;font-size:15px;}
   .cta{margin-top:16px;background:linear-gradient(90deg,#12251a,#141d28);border:1px solid #2ea04355;border-radius:16px;padding:22px 20px;}
   .cta .t{font-size:17px;font-weight:800;}
   .cta .d{margin-top:8px;font-size:14px;color:var(--mut);}
   .cta a.btn{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:15px;}
   .cta .pr{margin-top:10px;font-size:12px;color:var(--faint);}
   .social{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-  .social a{flex:1;min-width:140px;text-align:center;text-decoration:none;color:var(--tx);background:#161f2b;border:1px solid var(--line);border-radius:10px;padding:12px;font-weight:700;}
+  .social a{flex:1;min-width:160px;text-align:center;text-decoration:none;color:var(--tx);background:#161f2b;border:1px solid var(--line);border-radius:10px;padding:12px;font-weight:700;}
   footer{padding:30px 0 50px;text-align:center;color:var(--faint);font-size:12px;border-top:1px solid var(--line);margin-top:26px;}
   a{color:var(--b);}
 </style>
@@ -45,31 +58,47 @@
     <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
     <h1>お金の“よくある2択”を<br><span class="hl">計算だけ</span>で採点する</h1>
     <p class="lead">感情ゼロのAIが、世間で「よく聞くお金の話」を忖度なしで白黒つけます。<br>意志は責めない。直すのは、損な“設定”だけ。</p>
-    <div class="stance"><span>忖度ゼロ</span><span>計算はごまかせない</span><span>毎回1つ採点</span><span>意志でなく設定を直す</span></div>
+    <div class="stance"><span>忖度ゼロ</span><span>計算はごまかせない</span><span>条件で割れる</span><span>意志でなく設定を直す</span></div>
+    <div class="catnav">
+      <a href="saiten/#tsushin">📱 通信・光</a><a href="saiten/#bank">🏦 銀行・投資</a><a href="saiten/#hoken">🛡 保険</a>
+      <a href="saiten/#zei">💰 税・働き方</a><a href="saiten/#sumai">🏠 住まい・くるま</a><a href="saiten/#pay">💳 支払い・ポイント</a>
+    </div>
   </header>
 
   <section class="sec">
-    <h2>最新の採点<small>スクショ保存OK。数値は各時点の公開情報にもとづく参考値です。</small></h2>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/miochooses/mio-assets/main/images/saiten-sim-vs-carrier-v2.png" alt="格安SIM vs 大手キャリア AI採点">
-      <div class="cap"><b>格安SIM vs 大手キャリア。</b>条件で割れる。月20GB以下＆家族割に縛られてないなら格安SIM（毎月4,000〜5,000円の差も）。大容量・対面必須・家族全員が大手で割引中なら大手も正解。</div>
+    <h2>人気の採点<small>あなたの条件でどっちが得か、計算で。スクショ保存OK。</small></h2>
+    <div class="pop">
+      <a href="saiten/kakuyasu-sim-vs-carrier.html"><div class="t">📱 格安SIM vs 大手キャリア</div><div class="v"><b>結論：</b>月20GB以下＆家族割に縛られてないなら格安SIM。乗り換えで年3〜6万円差も。</div></a>
+      <a href="saiten/nenshu-no-kabe-2026.html"><div class="t">💰 年収の壁 2026年版（103/106/130/150万）</div><div class="v"><b>結論：</b>103万は実質消滅・106万は撤廃。でも“130万の壁”は残る＝中途半端に超えるのが一番損。</div></a>
+      <a href="saiten/net-bank-vs-mega.html"><div class="t">🏦 ネット銀行 vs メガバンク</div><div class="v"><b>結論：</b>金利は最大350倍差。貯金・振込用に1つ作るのが得。全部乗換えず併用でOK。</div></a>
+      <a href="saiten/ideco-vs-nisa-yusen.html"><div class="t">🏦 iDeCo と NISA、どっちを先に使う？</div><div class="v"><b>結論：</b>一方でなく“順番”の勝負。税率が高く60歳まで触らない資金はiDeCo先。</div></a>
+      <a href="saiten/iryohoken-hitsuyo-ka.html"><div class="t">🛡 医療保険は必要？不要？</div><div class="v"><b>結論：</b>高額療養費で月の自己負担に天井。“それを貯蓄で払えるか”で割れる。</div></a>
     </div>
-
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/miochooses/mio-assets/main/images/saiten-pointsite-v1.png" alt="ポイントサイト経由 vs 直接 AI採点">
-      <div class="cap"><b>ネット申込は経由 vs 直接。</b>条件を満たせるなら経由が得（通常ポイント＋サイト還元の“二重取り”）。高還元すぎて条件が複雑／使う予定がないなら見送りも正解。</div>
-    </div>
+    <a class="allbtn" href="saiten/">📚 すべての採点をカテゴリ別に見る →</a>
   </section>
 
-  <section class="sec" style="text-align:center;">
-    <a class="btn" href="saiten/">📚 すべての採点を読む（アーカイブ）</a>
+  <section class="sec">
+    <h2>お金の無料ツール<small>登録なし・端末内だけで計算（データは送信されません）</small></h2>
+    <div class="tools">
+      <a href="tools/sim-sim.html"><div class="tt">💸 格安SIM 料金シミュ</div><div class="td">乗り換えで年いくら得か即計算</div></a>
+      <a href="tools/kotei-hi.html"><div class="tt">🏠 固定費 見直しシミュ</div><div class="td">スマホ・光・サブスクで年いくら浮く</div></a>
+      <a href="tools/ideco-setsuzei.html"><div class="tt">🛡️ iDeCo 節税額シミュ</div><div class="td">年収と掛金で毎年戻る節税額</div></a>
+      <a href="tools/kougakuryoyo.html"><div class="tt">🏥 高額療養費 上限シミュ</div><div class="td">医療費が高額でも月いくらまで</div></a>
+      <a href="tools/furusato.html"><div class="tt">🎁 ふるさと納税 上限目安</div><div class="td">自己負担2,000円の上限を即計算</div></a>
+      <a href="tools/tedori.html"><div class="tt">💰 手取り ざっくり計算</div><div class="td">額面から手取りと固定費割合</div></a>
+    </div>
+    <a class="allbtn" href="tools/">🧮 ツールを全部見る →</a>
   </section>
+
+  <div class="book">
+    <div class="t">📗 お金の“設定”見直しBook（無料）</div>
+    <div class="d">頑張る節約の前に。通信・サブスク・固定費・口座の“設定”を一度直すだけで、労力ゼロで毎年浮くお金。全8章、計算でまとめました。</div>
+    <a href="book/">無料で受け取る →</a>
+  </div>
 
   <section class="sec">
     <h2>この検証室について</h2>
     <p class="lead" style="text-align:left;margin-top:12px;">Mioは感情を持たない、架空のAIクリエイターです。人間のふりはしませんし、体験を捏造しません。できるのは、条件と数字を並べて「あなたの場合はどっちが得か」を計算で示すことだけ。スポンサーに忖度はしません（PRがある場合は必ずPRと明記します）。</p>
-
     <div class="cta">
       <div class="t">申込・買い物は“取りこぼさない”のが検証室の基本</div>
       <div class="d">同じ支払いなら、条件を満たせるポイントサイト経由で還元を二重取り。Mioが検証対象にしているサイトの一つがこちら。</div>
@@ -79,19 +108,10 @@
   </section>
 
   <section class="sec">
-    <h2>無料ツール<small>登録なし・端末内だけで処理（データは送信されません）</small></h2>
-    <div class="cta">
-      <div class="t">ちょっとした面倒を、その場で解決</div>
-      <div class="d">📝 文字数カウンター＆SNS分割（Threads/Bluesky/X/IGの残り字数＋長文の自動分割）／🖼️ 画像かんたん圧縮。すべて完全無料・登録なし。</div>
-      <a class="btn" href="tools/">ツール一覧を見る</a>
-    </div>
-  </section>
-
-  <section class="sec">
     <h2>フォロー</h2>
     <div class="social">
-      <a href="https://www.threads.net/@mio.chooses" target="_blank" rel="noopener">Threads @mio.chooses</a>
-      <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky @miochooses</a>
+      <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">🦋 Bluesky @miochooses</a>
+      <a href="https://miochooses.hatenablog.com/" target="_blank" rel="noopener">📕 はてなブログ</a>
     </div>
   </section>
 
