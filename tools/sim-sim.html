@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>格安SIM 乗り換え 料金シミュレーター｜今の請求で年いくら得か即計算｜AIガチ検証室</title>
+<meta name="description" content="今のスマホ月額とデータ使用量を入れるだけ。格安SIMに乗り換えたら年いくら安くなるかを、AIが即計算して条件別に採点します。登録なし・端末内だけで処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="格安SIM 乗り換え 料金シミュレーター">
+<meta property="og:description" content="今の請求を入れるだけで、年いくら得かが出ます。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  input,select{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:34px;font-weight:800;color:var(--g);}
+  .big .sub{margin-top:4px;font-size:12px;color:var(--faint);}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .l{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:4px;}
+  .bar .fill{height:100%;}
+  .verdict{margin-top:16px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .verdict b{color:var(--o);}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 格安SIM料金シミュ</div>
+    <h1>格安SIMに乗り換えたら、年いくら得？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>今のスマホ月額（税込・円）
+      <input id="cur" type="number" inputmode="numeric" placeholder="例）8000">
+    </label>
+    <label>月のデータ使用量
+      <select id="gb">
+        <option value="3">〜3GB（ほぼWi-Fi・ライト）</option>
+        <option value="20" selected>〜20GB（標準）</option>
+        <option value="50">〜50GB（動画をよく見る）</option>
+        <option value="99">50GB超・使い放題が欲しい</option>
+      </select>
+    </label>
+    <button onclick="calc()">年いくら得か計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">乗り換えで浮くお金（目安）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub" id="sub"></div>
+      </div>
+      <div class="bars">
+        <div class="bar"><div class="l"><span>今の月額</span><span id="curL"></span></div><div class="track"><div class="fill" id="curB" style="background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+        <div class="bar"><div class="l"><span>格安SIM乗換後（目安）</span><span id="newL"></span></div><div class="track"><div class="fill" id="newB" style="background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ 実際に乗り換える</div>
+        <div class="ph">［ASP導線プレースホルダ：提携済みの格安SIM申込リンクを開示つきで差し込む］</div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="../saiten/kakuyasu-sim-vs-carrier.html">← 計算の考え方（格安SIM vs 大手 の採点）</a> ／ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var cur = parseFloat(document.getElementById('cur').value);
+  var gb = parseInt(document.getElementById('gb').value,10);
+  if(!cur || cur<=0){ alert('今の月額を入れてください'); return; }
+  // 乗換後の目安（各社公開料金にもとづく代表値・保守的に高めを採用）
+  var est = gb<=3 ? 1000 : gb<=20 ? 2200 : gb<=50 ? 3200 : 3800;
+  var diffM = Math.max(0, cur - est);
+  var diffY = diffM * 12;
+  document.getElementById('amt').textContent = diffY>0 ? '年 '+yen(diffY) : 'ほぼ差がありません';
+  document.getElementById('sub').textContent = diffY>0 ? '（月 '+yen(diffM)+' × 12ヶ月・2年で'+yen(diffY*2)+'）' : '今の料金がすでに格安SIM水準です';
+  // bars（最大12000円を100%基準）
+  var base = Math.max(cur, 8000);
+  document.getElementById('curB').style.width = Math.min(100, cur/base*100)+'%';
+  document.getElementById('newB').style.width = Math.min(100, est/base*100)+'%';
+  document.getElementById('curL').textContent = yen(cur);
+  document.getElementById('newL').textContent = yen(est)+'前後';
+  // 条件別の判定
+  var v='';
+  if(gb>=99){ v='<b>判定：条件付き。</b>使い放題が必須なら、大手/サブブランドの無制限系も比較を。格安SIMは大容量だと割高・混雑時に速度低下の回線もあります。'; }
+  else if(diffM>=3000){ v='<b>判定：格安SIMが有利。</b>月20GB以下でこの差額なら、乗り換えで大きく得します。家族割で全員が縛られている場合だけ、割引合計を先に確認を。'; }
+  else if(diffM>0){ v='<b>判定：やや格安SIM有利。</b>差はありますが小さめ。手間と品質（昼の速度など）を天秤に。品質重視なら大手サブブランドが中間解。'; }
+  else { v='<b>判定：今のままでOK。</b>すでに十分安い水準です。無理に乗り換える必要はありません。'; }
+  document.getElementById('verdict').innerHTML = v;
+  document.getElementById('note').textContent = '※乗換後の月額は各社公開料金にもとづく代表的な目安です。実際はプラン・オプション・割引で変わります。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
