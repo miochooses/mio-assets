@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>住宅ローンの繰上返済 vs 投資（新NISA）、どっちが得？ローン金利と期待リターンで採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「繰上返済 vs 新NISA投資」を計算だけで採点。判断の本質はローン金利（実質）vs 期待リターン。控除期間中はメリットが下がる点、繰上が勝つ条件・投資が勝つ条件を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://opboard-site/saiten/kuriage-vs-toshi.html">
+<meta property="og:title" content="繰上返済 vs 新NISA投資｜ローン金利と期待リターンで、AIが計算で採点">
+<meta property="og:description" content="お金の2択に計算で終止符。繰上＝確定リターン、投資＝期待値。あなたの金利で割れる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 繰上返済 vs 新NISA投資</div>
+    <h1>住宅ローンの繰上返済 vs 投資（新NISA）、どっちが得？<br>「金利」と「期待リターン」で計算した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― 判断の本質は<b>「ローン金利（実質）」対「投資の期待リターン」</b>の1本勝負。ここで条件が割れます。どちらかを一律に勧める記事ではありません。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">ローン金利が高い or 変動で上昇が不安 or リスクを取りたくない → 繰上返済（＝確定リターン）。<br>低金利の固定 × 長期でリスクを取れる → 新NISA投資に回す方が「期待値」は高いことが多い（ただし元本割れの可能性あり）。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>繰上返済のリターン（＝ローン金利で確定・無リスク）</span><span>年 約0.5〜3.3%（確定）</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>投資の期待リターン（不確実・変動あり）</span><span>年 例3〜5%程度と“仮定”</span></div><div class="track"><div class="fill" style="width:62%;background:linear-gradient(90deg,#58a6ff,#3d7fd6)"></div></div></div>
+    </div>
+    <div class="note">※これは投資助言ではありません。投資の利回りは将来を保証せず、上下に振れます。繰上返済のリターンだけが「確定」である点が最大の違いです（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「借金は早く返したい」「今は投資でしょ」といった<b>気分</b>で決めると損得はわかりません。この2択は、じつは1つの比較に集約できます。</p>
+  <div class="calc">繰上返済＝「ローン金利ぶんの利息」を確定で消す<br>投資＝「期待リターン」だが上下に振れる<small>だから比べるべきは “ローン金利（実質）” と “投資の期待リターン” の2つの数字だけ</small></div>
+  <p>繰上返済で浮くのは、これから払うはずだった<b>利息</b>。つまり繰上返済は「ローン金利と同じ利回りを、確実に・無リスクで得る運用」と同じ意味になります。金利1.5%のローンを繰り上げれば、税引き後で年1.5%の“元本割れしない運用”をしたのと同じ。この確実性は、変動する投資にはない強みです。</p>
+
+  <h2>見落としがち：住宅ローン控除が“繰上メリット”を下げる</h2>
+  <p>ここがこの2択の最重要ポイントです。<b>住宅ローン控除（減税）</b>を受けている期間中は、年末残高の<b>0.7%</b>が所得税・住民税から戻ります（原則最長13年）。ローンを繰り上げると残高が減り、<b>この戻り（0.7%）も減ってしまう</b>のです。</p>
+  <div class="calc">控除期間中の“実質”繰上メリット ＝ ローン金利 − 0.7%<small>例：金利0.7%以下なら、控除期間中はむしろ繰り上げない方が得なケースも</small></div>
+  <p>全国銀行協会も、<b>控除期間中は「ローン金利が0.7%以上か」を目安に判断</b>すると整理しています。金利0.7%以上なら繰上の利息軽減が控除の減少を上回りやすく、0.7%を下回り控除を満額使えているなら<b>控除が終わってからまとめて繰り上げる</b>方が得になりやすい、という考え方です。（※かつて控除率は1%でしたが、2022年以降の入居は原則0.7%。古い「金利−1%」の目安のままだと判断を誤ります。）</p>
+
+  <h2>もう片方の器：新NISAの非課税を使い切れているか</h2>
+  <p>投資に回すなら、まず非課税枠の<b>新NISA</b>から。金融庁の制度では、年間で<b>つみたて投資枠120万円＋成長投資枠240万円＝最大360万円</b>、生涯の非課税保有限度額は<b>1,800万円</b>（うち成長投資枠は1,200万円まで）。この枠を使い切っていないのに繰上返済だけに全振りするのは、<b>非課税の“椅子”を空けたまま</b>という見方もできます。</p>
+  <p>ただし逆も真です。NISAは非課税でも<b>元本は保証されません</b>。暴落局面で取り崩す必要が出れば、確定利益どころか損失になり得ます。だから「枠があるから全部投資」も、この検証室のやり方ではありません。</p>
+
+  <h2>感度分析：利回りを“仮に”置いてみる（保証ではない）</h2>
+  <p>将来の利回りは誰にもわかりません。そこで<b>断定せず</b>、あくまで「例としてこう置くと」という感度分析で見ます。ローン金利（実質）を上回る想定利回りなら、期待値としては投資が有利、下回るなら繰上が有利、という関係です。</p>
+  <table>
+    <tr><th>実質ローン金利</th><th>投資を年3%と“仮定”</th><th>投資を年5%と“仮定”</th></tr>
+    <tr><td>0.5%（低金利固定・控除中）</td><td class="win">投資寄り</td><td class="win">投資寄り</td></tr>
+    <tr><td>1.5%</td><td class="win">投資寄り</td><td class="win">投資寄り</td></tr>
+    <tr><td>3.0%</td><td>引き分け〜繰上寄り</td><td class="win">投資寄り</td></tr>
+    <tr><td>3.5%以上（高金利・変動上昇）</td><td class="win">繰上寄り</td><td>引き分け</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>上の「投資寄り」は<b>期待値の話</b>で、実際の結果ではありません。同じ想定でも、投資は年によって大きくマイナスになります。繰上返済の側は数字が小さくても<b>100%確定・無リスク</b>。この「確実性のプレミアム」をどう評価するかは、あなたのリスク許容度しだいです。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>寄せ先</th><th>理由</th></tr>
+    <tr><td>変動金利で、金利上昇が不安</td><td class="win">繰上返済</td><td>返済額増のリスクを確定で減らせる（確定リターン）</td></tr>
+    <tr><td>ローン金利が高い（3%台〜）</td><td class="win">繰上返済</td><td>実質金利が想定利回りに近く／上回り、確実性で有利</td></tr>
+    <tr><td>値動きで眠れない／近く取り崩す予定</td><td class="win">繰上返済</td><td>元本割れの精神的・実損リスクを回避</td></tr>
+    <tr><td>低金利の固定（〜1%台）で控除も活用中</td><td class="win">投資寄り</td><td>実質金利が低く、長期の期待値では投資が上回りやすい</td></tr>
+    <tr><td>NISA枠が大きく余っている・投資期間が長い</td><td class="win">投資寄り</td><td>非課税×時間分散でリスクを均しやすい</td></tr>
+    <tr><td>生活防衛資金（数か月分）がまだ無い</td><td>どちらも保留</td><td>まず現金の確保が先。繰上も投資もその後</td></tr>
+  </table>
+  <p><b>流動性の視点：</b>繰上返済したお金は基本<b>戻せません</b>（手元から消える）。一方、NISAの資産はいつでも売って現金化できます。急な出費に備える意味では、投資（＝流動性を残す）にも合理性があります。ここも一律には決められません。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分の“繰上メリット”と“投資の想定”を数字で出す</div>
+    <div class="ph"><a href="../tools/loan-return.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 繰上返済シミュレーターで軽減利息を計算する</a><br><a href="../tools/tsumitate-sim.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ つみたてシミュレーターで“仮の利回り”別に試算する</a><br><!-- ASP: 証券口座（A8等）リンク挿入予定 --><br>［ASP導線プレースホルダ：提携済みの証券口座（新NISA対応）比較リンクをここに開示つきで差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>比べるのは「実質ローン金利」対「投資の期待リターン」の2つの数字だけ。</li>
+    <li>繰上返済＝ローン金利ぶんを<b>確定・無リスク</b>で得る運用。ここが最大の強み。</li>
+    <li>控除期間中は実質メリットが<b>金利−0.7%</b>に低下。金利0.7%が繰上判断の目安。</li>
+    <li>低金利固定×長期でリスクを取れるなら、期待値では新NISA投資が上回りやすい（ただし変動リスク）。</li>
+    <li>変動で上昇不安・高金利・リスク回避なら繰上返済。<b>正解は一つではなく、条件で割れる</b>。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏠 その前に金利タイプで迷うなら：<a href="jutaku-loan-hendou-vs-kotei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">住宅ローン 変動 vs 固定、どっちが得か（金利で採点）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏦 非課税の器を先に決めるなら：<a href="ideco-vs-nisa-yusen.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCo vs NISA、どっちを優先？（税制で採点）→</a>／<a href="shoken-nisa-mitanaoshi.html" style="color:#58a6ff;text-decoration:none;font-weight:700">証券口座・NISA 見直しで得する？→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・金融庁「NISA特設ウェブサイト」（つみたて投資枠120万円＋成長投資枠240万円＝年360万円、生涯非課税保有限度額1,800万円〈成長投資枠1,200万円まで〉）<br>
+    ・国税庁／各行解説（住宅ローン控除：年末残高×控除率0.7%、原則最長13年。2022年以降入居は0.7%）<br>
+    ・全国銀行協会「住宅ローン減税と繰上返済、どちらを優先させた方がいいですか?」（控除期間中は金利0.7%を目安に判断）<br>
+    ・各解説記事（繰上返済＝ローン金利ぶんの無リスク運用に相当／控除中は繰上メリットが金利−0.7%へ低下）<br>
+    <span class="note">※金額・制度は各時点の公開情報にもとづく参考値です。税制は改正され得ます。投資利回りの例は将来を保証するものではありません。本記事は投資助言ではありません。最新の制度・条件は各公式でご確認のうえ、最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
