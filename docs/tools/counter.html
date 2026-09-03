@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文字数カウンター＆SNS分割｜AIガチ検証室</title>
+<meta name="description" content="文字数をリアルタイムで数え、長文をThreads/Bluesky/X/Instagramの上限で自動分割。登録なし・完全無料・端末内だけで処理。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--warn:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{max-width:100%;overflow-x:hidden;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;padding:0 16px 60px;}
+  .wrap{max-width:680px;margin:0 auto;}
+  header{padding:34px 0 16px;text-align:center;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  h1{margin-top:12px;font-size:26px;font-weight:800;}
+  .sub{margin-top:10px;font-size:14px;color:var(--mut);}
+  textarea{margin-top:18px;width:100%;min-height:180px;background:var(--card);border:1px solid var(--line);border-radius:14px;color:var(--tx);font-size:16px;padding:14px;font-family:inherit;resize:vertical;}
+  .counts{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;}
+  .cc{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .cc .p{font-size:13px;color:var(--mut);font-weight:700;}
+  .cc .n{margin-top:4px;font-size:20px;font-weight:800;}
+  .cc.over .n{color:var(--warn);}
+  .cc .n small{font-size:13px;color:var(--faint);font-weight:600;}
+  .bar{margin-top:8px;height:6px;border-radius:3px;background:#0b121a;overflow:hidden;}
+  .bar i{display:block;height:100%;background:var(--g);}
+  .cc.over .bar i{background:var(--warn);}
+  .split{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .split .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .split label{font-size:13px;color:var(--mut);font-weight:700;}
+  select,button{font-family:inherit;}
+  select{background:#0b121a;border:1px solid var(--line);color:var(--tx);border-radius:9px;padding:9px 12px;font-size:14px;}
+  .go{background:var(--g);color:#08110a;font-weight:800;border:none;border-radius:9px;padding:10px 18px;font-size:14px;}
+  .chunks{margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+  .chunk{background:#0b121a;border:1px solid var(--line);border-radius:11px;padding:12px;}
+  .chunk .h{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--faint);}
+  .chunk .t{margin-top:6px;font-size:14px;white-space:pre-wrap;word-break:break-word;}
+  .cp{background:#26313f;color:var(--tx);border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;}
+  .foot{margin-top:26px;text-align:center;font-size:12px;color:var(--faint);}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ 無料ツール</div>
+    <h1>文字数カウンター＆SNS分割</h1>
+    <div class="sub">リアルタイムで文字数を計測。長文はThreads/Bluesky/X/IGの上限で自動分割。登録なし・端末内処理。</div>
+  </header>
+
+  <textarea id="txt" placeholder="ここに文章を入力…"></textarea>
+
+  <div class="counts" id="counts"></div>
+
+  <div class="split">
+    <div class="row">
+      <label>分割先：</label>
+      <select id="plat">
+        <option value="500">Threads（500）</option>
+        <option value="300">Bluesky（300）</option>
+        <option value="280">X（280）</option>
+        <option value="2200">Instagram（2200）</option>
+      </select>
+      <button class="go" id="go">この上限で分割</button>
+    </div>
+    <div class="chunks" id="chunks"></div>
+  </div>
+
+  <div class="foot">
+    もっと“お金の2択”を計算で採点 → <a href="../">AIガチ検証室</a> ／ <a href="compress.html">画像圧縮ツール</a>
+  </div>
+</div>
+
+<script>
+const PLATS=[['Threads',500],['Bluesky',300],['X',280],['Instagram',2200]];
+const txt=document.getElementById('txt'), countsEl=document.getElementById('counts'), chunksEl=document.getElementById('chunks');
+function len(s){ return [...s].length; } // コードポイント数（絵文字も1でカウント・目安）
+function render(){
+  const n=len(txt.value);
+  countsEl.innerHTML='';
+  PLATS.forEach(([name,lim])=>{
+    const over=n>lim, pct=Math.min(100,Math.round(n/lim*100));
+    const d=document.createElement('div'); d.className='cc'+(over?' over':'');
+    d.innerHTML=`<div class="p">${name}</div><div class="n">${n} <small>/ ${lim}${over?'（-'+(n-lim)+'）':''}</small></div><div class="bar"><i style="width:${pct}%"></i></div>`;
+    countsEl.appendChild(d);
+  });
+}
+txt.oninput=render; render();
+
+document.getElementById('go').onclick=()=>{
+  const lim=parseInt(document.getElementById('plat').value,10);
+  const parts=splitText(txt.value.trim(), lim);
+  chunksEl.innerHTML='';
+  if(!parts.length){ return; }
+  parts.forEach((p,i)=>{
+    const label=parts.length>1?` (${i+1}/${parts.length})`:'';
+    const body=p+label;
+    const c=document.createElement('div'); c.className='chunk';
+    const head=document.createElement('div'); head.className='h';
+    head.innerHTML=`<span>${i+1}/${parts.length}・${len(body)}字</span>`;
+    const btn=document.createElement('button'); btn.className='cp'; btn.textContent='コピー';
+    btn.onclick=()=>{ navigator.clipboard.writeText(body).then(()=>{btn.textContent='コピー済';setTimeout(()=>btn.textContent='コピー',1200);}); };
+    head.appendChild(btn); c.appendChild(head);
+    const t=document.createElement('div'); t.className='t'; t.textContent=body; c.appendChild(t);
+    chunksEl.appendChild(c);
+  });
+};
+
+function splitText(text, lim){
+  if(!text) return [];
+  const reserve=8; // " (10/10)" 分の余白
+  const max=Math.max(20, lim-reserve);
+  // まず段落→文で区切り、貪欲に詰める
+  const units=[];
+  text.split(/\n{2,}/).forEach(para=>{
+    if(len(para)<=max){ units.push(para); }
+    else {
+      // 長い段落は文（。！？改行）で分割
+      let buf=''; const sents=para.split(/(?<=[。！？!?\n])/);
+      sents.forEach(s=>{
+        if(len(buf+s)>max){ if(buf)units.push(buf.trim()); buf=s; if(len(buf)>max){ // それでも長い→強制切り
+            let arr=[...buf]; while(arr.length>max){ units.push(arr.slice(0,max).join('')); arr=arr.slice(max);} buf=arr.join(''); } }
+        else buf+=s;
+      });
+      if(buf.trim())units.push(buf.trim());
+    }
+  });
+  // unitsを chunk に貪欲結合
+  const chunks=[]; let cur='';
+  units.forEach(u=>{
+    if(!cur) cur=u;
+    else if(len(cur+'\n\n'+u)<=max) cur=cur+'\n\n'+u;
+    else { chunks.push(cur); cur=u; }
+  });
+  if(cur) chunks.push(cur);
+  return chunks;
+}
+</script>
+</body>
+</html>
