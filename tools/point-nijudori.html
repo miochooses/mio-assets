@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポイント二重取り 比較ツール｜経由 vs 直接、いくら差がつく？即計算｜AIガチ検証室</title>
+<meta name="description" content="ネット申込・買い物で「ポイントサイト経由」と「直接」でいくら差がつくかをAIが即計算。経由の上乗せ（二重取り）を可視化し、条件を満たせるかで得か損かを正直に判定。端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="ポイント二重取り 比較ツール（経由 vs 直接）">
+<meta property="og:description" content="経由の上乗せがいくらか即計算。条件を満たせるかで正直に判定。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .cmp{display:flex;gap:10px;margin-top:4px;}
+  .col{flex:1;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;}
+  .col.win{border-color:#1f5a35;}
+  .col .cl{font-size:12px;color:var(--mut);font-weight:700;}
+  .col .cv{margin-top:6px;font-size:22px;font-weight:800;}
+  .col.win .cv{color:var(--g);}
+  .big{margin-top:14px;background:#0e2417;border:1px solid #1f5a35;border-radius:12px;padding:16px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:4px;font-size:26px;font-weight:800;color:var(--g);}
+  .verdict{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:16px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ ポイント二重取り比較</div>
+    <h1>「経由」と「直接」、いくら差がつく？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>申込・購入の金額（円）<span class="sub">サービス申込は“もらえるポイント”がある場合は金額欄に0でもOK</span>
+      <input id="amount" type="number" inputmode="numeric" placeholder="例）30000">
+    </label>
+    <label>いつもの還元（直接でも付く分・円 または ％）<span class="sub">カード還元やお店のポイント。％なら数字だけ（例 1）、固定額なら円で</span>
+      <input id="base" type="number" inputmode="decimal" placeholder="例）1（％）または 300（円）">
+    </label>
+    <label>ポイントサイト経由の上乗せ（円 または ％）<span class="sub">案件ページに出ている“獲得ポイント”。％でも円でも</span>
+      <input id="site" type="number" inputmode="decimal" placeholder="例）500（円）または 2（％）">
+    </label>
+    <button onclick="calc()">二重取りの差を計算する</button>
+
+    <div class="out" id="out">
+      <div class="cmp">
+        <div class="col" id="colD"><div class="cl">直接</div><div class="cv" id="dv">—</div></div>
+        <div class="col win" id="colV"><div class="cl">経由（二重取り）</div><div class="cv" id="vv">—</div></div>
+      </div>
+      <div class="big"><div class="lb">経由でプラスになる上乗せ</div><div class="amt" id="plus">—</div></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ 使うなら（正直な順番）</div>
+        <div class="ph">経由の“上乗せ”は、通常還元に足されるだけ＝満たせるなら経由が得。［ASP導線プレースホルダ：ポイントサイト（開示つき）／各サービス公式を差し込む］</div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 入力が「％っぽい小さな数」か「円」かを判定：金額があり値が100未満なら％扱い、それ以外は円
+function toYen(val, amount){
+  if(val<=0) return 0;
+  if(amount>0 && val<100) return amount*(val/100); // ％解釈
+  return val; // 円
+}
+function calc(){
+  var amount=parseFloat(document.getElementById('amount').value)||0;
+  var baseIn=parseFloat(document.getElementById('base').value)||0;
+  var siteIn=parseFloat(document.getElementById('site').value)||0;
+  if(baseIn<=0 && siteIn<=0){ alert('還元の情報を入れてください'); return; }
+  var base=toYen(baseIn, amount);
+  var site=toYen(siteIn, amount);
+  var direct=base;
+  var via=base+site; // 経由でも通常還元は付く＝二重取り
+  document.getElementById('dv').textContent=yen(direct);
+  document.getElementById('vv').textContent=yen(via);
+  document.getElementById('plus').textContent='＋'+yen(site);
+  var v=document.getElementById('verdict');
+  if(site>0){ v.innerHTML='<b style="color:#2ea043">経由が得。</b>通常還元 '+yen(base)+' はどちらでも付き、経由だとサイト分 '+yen(site)+' が“上乗せ”されます（二重取り）。ただし――下の注意を満たせる場合に限ります。'; }
+  else { v.innerHTML='サイト経由の上乗せが0なら、差はありません。直接でOK。'; }
+  document.getElementById('note').textContent='※正直な注意：経由の上乗せは「①そのサイトを普段使う予定がある/②獲得条件（判定期間・対象外条件・別タブやアプリを挟まない等）を満たせる」場合の得です。条件が複雑で使う予定がないなら、無理に経由しなくてOK。ポイントの有効期限・最低交換額もご確認を。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
