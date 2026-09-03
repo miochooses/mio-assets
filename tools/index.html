@@ -3,117 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI採点アーカイブ｜お金の“よくある2択”をカテゴリ別に｜AIガチ検証室</title>
-<meta name="description" content="感情ゼロのAIが計算で採点した「お金の2択」を、通信・銀行・投資・保険・税金・住まい・支払いのカテゴリ別に整理。あなたのテーマからすぐ探せます。">
-<meta property="og:title" content="AI採点アーカイブ｜AIガチ検証室">
-<meta property="og:description" content="お金の2択に計算で終止符。カテゴリ別に全採点。">
+<title>無料ツール｜AIガチ検証室</title>
+<meta name="description" content="AIガチ検証室の無料ツール。登録なし・端末内だけで処理（プライバシー安全）。画像圧縮・文字数カウンター＆SNS分割など。">
 <style>
-  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
-  .wrap{max-width:780px;margin:0 auto;}
-  .nav{position:sticky;top:0;background:#0f1720f2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:6px;padding:12px 0;margin:0 -16px;padding-left:16px;padding-right:16px;overflow-x:auto;z-index:10;}
-  .nav a{white-space:nowrap;font-size:14px;font-weight:700;color:var(--mut);text-decoration:none;padding:7px 13px;border-radius:9px;background:#161f2b;border:1px solid var(--line);}
-  .nav a.home{color:var(--b);}
-  header{padding:34px 0 8px;text-align:center;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:680px;margin:0 auto;}
+  header{padding:40px 0 20px;text-align:center;}
   .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
   .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
   h1{margin-top:12px;font-size:28px;font-weight:800;}
-  .lead{margin-top:12px;font-size:15px;color:var(--mut);}
-  .catnav{margin-top:22px;display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
-  .catnav a{font-size:14px;font-weight:800;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:8px 15px;text-decoration:none;}
-  .cat{margin-top:34px;scroll-margin-top:66px;}
-  .cat h2{font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:11px;}
-  .item{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 17px;margin-top:11px;color:var(--tx);}
-  .item .t{font-size:17px;font-weight:800;color:#dbe6f0;}
-  .item .v{margin-top:6px;font-size:14px;color:var(--mut);}
-  .item .v b{color:var(--g);}
-  .tools{margin-top:12px;font-size:14px;}
-  .tools a{display:inline-block;margin:5px 8px 0 0;color:#08110a;background:#39c5cf;border-radius:8px;padding:6px 12px;text-decoration:none;font-weight:800;font-size:13px;}
-  .bookcta{margin-top:40px;background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:18px;padding:24px;text-align:center;}
-  .bookcta .t{font-size:18px;font-weight:800;color:#cfe8f5;}
-  .bookcta .d{margin-top:8px;font-size:14px;color:var(--mut);}
-  .bookcta a{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:13px 24px;border-radius:11px;font-size:15px;}
-  .foot{margin-top:36px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:22px;}
+  .sub{margin-top:10px;font-size:14px;color:var(--mut);}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .grid{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+  a.tool{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;color:var(--tx);}
+  a.tool:active{border-color:var(--g);}
+  .tool .t{font-size:18px;font-weight:800;}
+  .tool .d{margin-top:8px;font-size:14px;color:var(--mut);}
+  .tool .go{margin-top:12px;display:inline-block;font-size:13px;font-weight:800;color:#08110a;background:var(--g);border-radius:9px;padding:8px 16px;}
+  .foot{margin-top:28px;text-align:center;font-size:12px;color:var(--faint);}
   .foot a{color:var(--b);text-decoration:none;}
-  .note{margin-top:14px;font-size:12px;color:var(--faint);text-align:center;}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <nav class="nav">
-    <a class="home" href="../">🏠 トップ</a>
-    <a href="#tsushin">通信・光</a>
-    <a href="#bank">銀行・投資</a>
-    <a href="#hoken">保険</a>
-    <a href="#zei">税・働き方</a>
-    <a href="#sumai">住まい・くるま</a>
-    <a href="#pay">支払い・ポイント</a>
-    <a href="../tools/">🧮 ツール</a>
-  </nav>
   <header>
-    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
-    <h1>AI採点アーカイブ</h1>
-    <div class="lead">お金の“よくある2択”に、計算で終止符。<br>気になるテーマから選べます。</div>
-    <div class="catnav">
-      <a href="#tsushin">📱 通信・光</a><a href="#bank">🏦 銀行・投資</a><a href="#hoken">🛡 保険</a>
-      <a href="#zei">💰 税・働き方</a><a href="#sumai">🏠 住まい・くるま</a><a href="#pay">💳 支払い・ポイント</a>
-    </div>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ 無料ツール</div>
+    <h1>無料ツール</h1>
+    <div class="sub">ちょっとした面倒を、その場で解決。登録なし・完全無料。</div>
+    <div class="priv">🔒 すべて端末内だけで処理（データは送信されません）</div>
   </header>
-
-  <section class="cat" id="tsushin">
-    <h2>📱 通信・光回線</h2>
-    <a class="item" href="kakuyasu-sim-vs-carrier.html"><div class="t">格安SIM vs 大手キャリア</div><div class="v"><b>結論：</b>月20GB以下＆家族割に縛られてないなら格安SIM。乗り換えで年72,000円差も。</div></a>
-    <a class="item" href="hikari-kaisen-norikae.html"><div class="t">光回線 乗り換えで年いくら得か</div><div class="v"><b>結論：</b>“実質料金”で見る。相場（戸建5,500/マンション4,200円）より高いなら乗り換え有利。</div></a>
-    <div class="tools">🧮 計算する：<a href="../tools/sim-sim.html">格安SIM料金シミュ</a><a href="../tools/kotei-hi.html">固定費見直しシミュ</a></div>
-  </section>
-
-  <section class="cat" id="bank">
-    <h2>🏦 銀行・証券・投資</h2>
-    <a class="item" href="net-bank-vs-mega.html"><div class="t">ネット銀行 vs メガバンク</div><div class="v"><b>結論：</b>金利は最大350倍差。貯金・振込用に1つ作るのが得。全部乗換えず併用でOK。</div></a>
-    <a class="item" href="shoken-nisa-mitanaoshi.html"><div class="t">証券口座 今のまま vs 新NISA向けに見直し</div><div class="v"><b>結論：</b>手数料・取扱商品でネット証券が有利。※投資助言ではありません。</div></a>
-    <a class="item" href="ideco-yaru-vs-yaranai.html"><div class="t">iDeCo やる vs やらない</div><div class="v"><b>結論：</b>全額所得控除で節税。ただし原則60歳まで引き出せない。税金を払っていて当分使わない資金がある人向き。</div></a>
-    <a class="item" href="ideco-vs-nisa-yusen.html"><div class="t">iDeCo と NISA、どっちを先に使う？</div><div class="v"><b>結論：</b>一方でなく“順番”の勝負。税率が高く60歳まで触らない資金はiDeCo先、途中で使うかも・まず慣れたいならNISA先。</div></a>
-    <div class="tools">🧮 計算する：<a href="../tools/tsumitate-sim.html">つみたて投資 将来シミュ</a><a href="../tools/ideco-setsuzei.html">iDeCo節税額シミュ</a></div>
-  </section>
-
-  <section class="cat" id="hoken">
-    <h2>🛡 保険</h2>
-    <a class="item" href="hoken-kakesute-vs-chochiku.html"><div class="t">保険 掛け捨て vs 貯蓄型</div><div class="v"><b>結論：</b>同じ保障なら貯蓄型は約5倍高い。保障と貯蓄を分けて考えるのが正解。</div></a>
-  </section>
-
-  <section class="cat" id="zei">
-    <h2>💰 税金・働き方</h2>
-    <a class="item" href="nenshu-no-kabe-2026.html"><div class="t">年収の壁 2026年版（103/106/130/150万）</div><div class="v"><b>結論：</b>103万は実質消滅・106万は撤廃。でも“130万の壁”は残る＝中途半端に超えるのが一番損。</div></a>
-    <a class="item" href="ikukyu-getsumatsu.html"><div class="t">育休は「月初」から？「月末」から？</div><div class="v"><b>結論：</b>取り方の“日付”で社会保険料の免除が変わる。数万〜十数万円の差。</div></a>
-    <div class="tools">🧮 計算する：<a href="../tools/tedori.html">手取りざっくり計算</a><a href="../tools/furusato.html">ふるさと納税 上限目安</a><a href="../tools/jitsu-jikyu.html">副業・ポイ活 実質時給</a></div>
-  </section>
-
-  <section class="cat" id="sumai">
-    <h2>🏠 住まい・くるま</h2>
-    <a class="item" href="jutaku-loan-hendou-vs-kotei.html"><div class="t">住宅ローン 変動 vs 固定</div><div class="v"><b>結論：</b>“金利が上がっても払えるか”で割れる。金利差×残高で利息差を試算。</div></a>
-    <a class="item" href="chintai-vs-mochiie.html"><div class="t">賃貸 vs 持ち家</div><div class="v"><b>結論：</b>生涯コストは前提次第で拮抗。万能の勝者はいない、価値観で決まる。</div></a>
-    <a class="item" href="kuruma-shoyu-vs-carshare.html"><div class="t">車 所有 vs カーシェア</div><div class="v"><b>結論：</b>乗る頻度で割れる。毎日なら所有、週末だけなら断然カーシェア。</div></a>
-    <div class="tools">🧮 計算する：<a href="../tools/loan-return.html">住宅ローン返済シミュ</a><a href="../tools/yachin-tekisei.html">家賃 適正額シミュ</a></div>
-  </section>
-
-  <section class="cat" id="pay">
-    <h2>💳 支払い・ポイント・くらし</h2>
-    <a class="item" href="cashless-vs-genkin.html"><div class="t">キャッシュレス vs 現金</div><div class="v"><b>結論：</b>得は年間支出×還元率。勝者は“使いすぎない自信”で割れる。</div></a>
-    <a class="item" href="rakuten-vs-paypay.html"><div class="t">楽天経済圏 vs PayPay経済圏</div><div class="v"><b>結論：</b>生活動線で割れる。ネット通販派→楽天、実店舗・ソフトバンク派→PayPay。</div></a>
-    <a class="item" href="subsc-nenbarai-vs-tsukibarai.html"><div class="t">サブスク 年払い vs 月払い</div><div class="v"><b>結論：</b>年払いは約2ヶ月分お得。ただし途中解約で損。使い続ける確信で割れる。</div></a>
-    <div class="tools">🧮 計算する：<a href="../tools/creca-bunki.html">クレカ損益分岐</a><a href="../tools/point-nijudori.html">ポイント二重取り比較</a></div>
-  </section>
-
-  <div class="bookcta">
-    <div class="t">📗 お金の“設定”見直しBook（無料）</div>
-    <div class="d">頑張る節約の前に。通信・サブスク・固定費の“設定”を一度直すだけで、労力ゼロで毎年浮くお金。全8章、計算でまとめました。</div>
-    <a href="../book/">無料で受け取る →</a>
+  <div class="grid">
+    <a class="tool" href="sim-sim.html" style="border-color:#1f4a63">
+      <div class="t">💸 格安SIM 料金シミュ</div>
+      <div class="d">今のスマホ月額とデータ量を入れるだけ。格安SIMに乗り換えたら“年いくら”得か、AIが即計算して条件別に採点します。お金の決定ツール。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="kotei-hi.html" style="border-color:#1f4a63">
+      <div class="t">🏠 固定費 見直しシミュ</div>
+      <div class="d">スマホ・光回線・サブスクの今の月額を入れるだけ。見直しで“年いくら”浮くかを即計算。各項目の採点記事にも飛べます。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="creca-bunki.html" style="border-color:#1f4a63">
+      <div class="t">💳 クレカ損益分岐シミュ</div>
+      <div class="d">年会費と還元率を入れるだけ。年会費の“元が取れる利用額”と、あなたが得か損かをAIが即判定。年会費あり vs 無料の答え。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="point-nijudori.html" style="border-color:#1f4a63">
+      <div class="t">🎯 ポイント二重取り比較</div>
+      <div class="d">ネット申込・買い物で「経由」と「直接」がいくら差がつくか即計算。経由の上乗せ（二重取り）を可視化。条件を満たせるかで正直に判定します。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="tedori.html" style="border-color:#1f4a63">
+      <div class="t">💰 手取り ざっくり計算</div>
+      <div class="d">額面年収を入れるだけで手取りの年額・月額を即概算。毎月の固定費を入れれば“手取りの何%か”も判定。まずは自分の可処分を知る。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="furusato.html" style="border-color:#1f4a63">
+      <div class="t">🎁 ふるさと納税 上限目安</div>
+      <div class="d">年収と家族構成を選ぶだけ。自己負担2,000円で寄付できる上限額の目安を即計算。やらないと損する理由もわかる。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="loan-return.html" style="border-color:#1f4a63">
+      <div class="t">🏠 住宅ローン返済シミュ</div>
+      <div class="d">借入額・金利・年数から月返済額・総利息を即計算。「金利が1%上がると月いくら増えるか」まで分かる。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="tsumitate-sim.html" style="border-color:#1f4a63">
+      <div class="t">📈 つみたて投資 将来シミュ</div>
+      <div class="d">毎月の積立額・利回り・年数から将来の資産額を複利で試算。元本と運用益の内訳も。※試算・投資助言ではありません。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="ideco-setsuzei.html" style="border-color:#1f4a63">
+      <div class="t">🛡️ iDeCo 節税額シミュ</div>
+      <div class="d">年収と毎月の掛金を入れるだけ。iDeCoの所得控除で“毎年いくら戻るか”を所得税＋住民税10%で即計算。20年続けた累計も。※投資助言ではありません。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="yachin-tekisei.html" style="border-color:#1f4a63">
+      <div class="t">🔑 家賃 適正額シミュ</div>
+      <div class="d">手取りから無理のない家賃の目安（25〜30%）を即計算。今の家賃が重いかも色分け判定。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="jitsu-jikyu.html" style="border-color:#1f4a63">
+      <div class="t">⏱️ 副業・ポイ活 実質時給</div>
+      <div class="d">報酬・時間・経費から実質時給を即計算。最低賃金と比べて割に合うかをAIが忖度ゼロで判定。</div>
+      <span class="go">計算する</span>
+    </a>
+    <a class="tool" href="warikan.html">
+      <div class="t">🧮 割り勘計算機</div>
+      <div class="d">合計と人数を入れるだけで1人あたりを計算。端数の切り上げ、幹事の傾斜配分にも対応。飲み会・旅行の会計に。</div>
+      <span class="go">使ってみる</span>
+    </a>
+    <a class="tool" href="counter.html">
+      <div class="t">📝 文字数カウンター＆SNS分割</div>
+      <div class="d">文字数をリアルタイム計測（Threads/Bluesky/X/Instagramの残り字数を同時表示）。長文は各SNSの上限で自動分割してコピーできます。</div>
+      <span class="go">使ってみる</span>
+    </a>
+    <a class="tool" href="compress.html">
+      <div class="t">🖼️ 画像かんたん圧縮</div>
+      <div class="d">写真をブラウザ内だけで軽くする。画質と横幅を調整して、共有・保存・アップロードをラクに。複数まとめてOK。</div>
+      <span class="go">使ってみる</span>
+    </a>
   </div>
-
   <div class="foot">
-    <a href="houhouron.html">📐 採点の方法論（どう計算しているか）</a> ／ <a href="../tools/">🧮 無料ツール一覧</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
-    <div class="note">※数値は各時点の公開情報にもとづく参考値です。最終判断はご自身で。</div>
+    もっと“お金の2択”を計算で採点 → <a href="../">AIガチ検証室</a>
   </div>
 </div>
 </body>
