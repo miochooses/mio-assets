@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クレカ 損益分岐シミュレーター｜年会費、元取れる？年会費÷還元率で即判定｜AIガチ検証室</title>
+<meta name="description" content="年会費と還元率を入れるだけ。年会費の元が取れる“年間利用額”をAIが即計算。あなたの利用額なら得か損か、年会費あり vs 無料を数字で判定します。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="クレカ 損益分岐シミュレーター">
+<meta property="og:description" content="年会費÷還元率。元が取れる利用額を即計算して得損を判定。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--b);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--b);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .verdict{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;}
+  .verdict.win{background:#0e2417;border:1px solid #1f5a35;}
+  .verdict.lose{background:#2a1416;border:1px solid #5a2530;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ クレカ損益分岐</div>
+    <h1>その年会費、元取れてる？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>年会費（円）<span class="sub">無料カードは0</span>
+      <input id="fee" type="number" inputmode="numeric" placeholder="例）11000">
+    </label>
+    <label>還元率（％）<span class="sub">例）1.0％なら 1 と入力</span>
+      <input id="rate" type="number" inputmode="decimal" step="0.1" placeholder="例）1.0">
+    </label>
+    <label>特典で“実際に使う”年間価値（円）<span class="sub">空港ラウンジ・保険・クーポン等。使わない特典は0</span>
+      <input id="perk" type="number" inputmode="numeric" placeholder="例）3000">
+    </label>
+    <label>あなたの年間クレカ利用額（円）<span class="sub">だいたいでOK。月◯万×12</span>
+      <input id="spend" type="number" inputmode="numeric" placeholder="例）1200000">
+    </label>
+    <button onclick="calc()">元が取れるか判定する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">年会費の元が取れる“年間利用額”</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ カードを作る/見直すなら</div>
+        <div class="ph">［正直メモ：カード“発行”は、多くの場合ポイントサイト経由の方が読者はお得（発行ボーナスの二重取り）。ASP導線プレースホルダ＝経由/公式を開示つきで差し込む］</div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var fee=parseFloat(document.getElementById('fee').value)||0;
+  var rate=parseFloat(document.getElementById('rate').value)||0;
+  var perk=parseFloat(document.getElementById('perk').value)||0;
+  var spend=parseFloat(document.getElementById('spend').value)||0;
+  if(fee<=0){ document.getElementById('amt').textContent='年会費0＝無料'; document.getElementById('sub2').textContent='損益分岐を気にする必要なし'; document.getElementById('verdict').className='verdict win'; document.getElementById('verdict').textContent='✅ 無料カードなら、還元はまるごとプラス。年会費の元取り計算は不要です。'; document.getElementById('note').textContent=''; document.getElementById('out').style.display='block'; return; }
+  if(rate<=0){ alert('還元率を入れてください'); return; }
+  // 特典で相殺した“実質年会費”を還元で回収する必要額
+  var net = Math.max(0, fee - perk);
+  var breakeven = net / (rate/100);
+  document.getElementById('amt').textContent = yen(breakeven);
+  document.getElementById('sub2').textContent = '（実質年会費 '+yen(net)+' ÷ 還元率 '+rate+'% ／ 特典価値 '+yen(perk)+' を差引後）';
+  // 実際の損得
+  var reward = spend*(rate/100);
+  var netGain = reward + perk - fee;
+  var v=document.getElementById('verdict');
+  if(spend>0){
+    if(netGain>=0){ v.className='verdict win'; v.textContent='✅ あなたの利用額なら得。年間 '+yen(spend)+' 利用で、還元'+yen(reward)+'＋特典'+yen(perk)+'−年会費'+yen(fee)+' ＝ 実質 '+yen(netGain)+' のプラス。'; }
+    else { v.className='verdict lose'; v.textContent='⚠ 今の利用額だと損。実質 '+yen(-netGain)+' のマイナス。利用額が '+yen(breakeven)+' を超えるか、特典を使い切らないと元が取れません。無料カードも検討を。'; }
+  } else {
+    v.className='verdict'; v.style.background='#0b121a'; v.style.border='1px solid #ffffff14';
+    v.innerHTML='年間利用額を入れると、あなたが得か損かまで判定します。目安：年 '+yen(breakeven)+' 以上使い、特典を実際に使うなら「年会費あり」が有利。';
+  }
+  document.getElementById('note').textContent='※特典価値は“実際に使う分だけ”入れるのが正直な計算です（使わない特典は0）。ポイントの用途・有効期限にもご注意を。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
