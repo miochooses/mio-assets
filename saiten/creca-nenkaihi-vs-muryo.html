@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クレジットカード 年会費あり vs 無料、どっちが得？損益分岐を計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「年会費ありカード vs 無料カード」を計算だけで採点。損益分岐＝年会費÷還元差の1式で、あなたの利用額なら元が取れるかを出典つきで判定。年会費ありが勝つ条件・無料が勝つ条件を解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/creca-nenkaihi-vs-muryo.html">
+<meta property="og:title" content="クレカ 年会費あり vs 無料｜損益分岐をAIが計算で採点">
+<meta property="og:description" content="お金の2択に計算で終止符。年会費÷還元差の1式で、あなたの利用額なら元が取れるかがわかる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 年会費あり vs 無料</div>
+    <h1>クレジットカード「年会費あり vs 無料」、どっちが得？<br>損益分岐を計算で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― 迷ったら無料が無難。ただし「使う額」と「使う特典」次第で、年会費ありが逆転する境目がハッキリあります。そこを円で出します。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">還元差だけで年会費の元が取れる利用額に届く人／付帯特典を実際に使う人 → 年会費ありの勝ち。<br>年会費を還元差で回収できる利用額に届かず、特典も使わない人 → 無料の勝ち。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>年会費ありの回収に必要な利用額（例：年5,500円／還元差0.5%）</span><span>年 約110万円</span></div><div class="track"><div class="fill" style="width:88%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>無料カードなら回収ライン</span><span>0円（元が要らない）</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※年会費・還元率は公開情報にもとづく一般的な目安（出典は末尾）。実際はカード・特典の使い方で変わります。特定カードの発行を推奨するものではありません。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「ゴールドは見栄えがいい」「無料が一番おトク」といった<b>印象</b>で決めると損得はわかりません。判断すべきは、その年会費を<b>還元差だけで回収できる利用額</b>という1つの境目です。式はこれだけ。</p>
+  <div class="calc">損益分岐（年の利用額）＝ 年会費 ÷（有料カードの還元率 − 無料カードの還元率）<small>この1本で、「その年会費を還元差だけで取り返せる利用額」が円で出ます</small></div>
+  <p>たとえば年会費5,500円のカードで、無料カード比の還元率アップが+0.5%（0.5%→1.0%相当）なら、<b>5,500 ÷ 0.005 ＝ 年110万円</b>。この額まで使えば還元差だけでトントン。超えれば年会費ありがプラス、届かなければ無料が勝ちです。まず自分のカード明細で、年間いくら決済しているかを確認しましょう。</p>
+
+  <h2>ワークド例：年間いくら使う人が分岐か</h2>
+  <p>ある比較記事の試算でも、「還元率が0.5%上がるカードで年会費3,300円を回収するには、年間66万円以上の利用が必要」とされています。式に当てはめると 3,300 ÷ 0.005 ＝ 66万円で一致します。年会費が上がれば分岐点も上がります。</p>
+  <div class="calc">年5,500円 ÷ 還元差0.5% ＝ <span style="color:#2ea043">年110万円</span> がトントンの境目<small>※還元差が+1.0%なら 5,500 ÷ 0.01 ＝ 年55万円まで下がる。「還元差」が大きいほど分岐は低い</small></div>
+  <p>ポイントは<b>「年会費」ではなく「還元差」で割る</b>こと。無料カードでも1.0%還元は珍しくないので、有料カードが0.5%しか上乗せしないなら差は+0.5%。逆に無料カードが0.5%、有料が1.0%なら差は+0.5%と、比べる相手で分岐が変わります。ここを「年会費が安い＝おトク」と混同すると判断を誤ります。</p>
+  <p>なお、年会費ありには<b>還元差以外の価値</b>もあります。実在の例では、年会費5,500円のゴールドカードで「年間100万円利用すると翌年以降の年会費が永年無料＋毎年ボーナス1万ポイント＋空港ラウンジ無料」という設計のものがあります。この場合、100万円到達後は年会費が実質0円になり、ボーナス分だけ還元率が跳ね上がります。<b>“年会費あり”が常に高コストとは限らない</b>――条件を満たせるかで景色が変わります。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>勝者</th><th>理由</th></tr>
+    <tr><td>年間利用が分岐点（例110万円）を超える</td><td class="win">年会費あり</td><td>還元差だけで年会費を回収し、以降はプラス</td></tr>
+    <tr><td>「利用額で年会費無料」の条件を満たせる</td><td class="win">年会費あり</td><td>条件達成で実質0円＋ボーナスが乗ることがある</td></tr>
+    <tr><td>ラウンジ・付帯保険を実際に年数回使う</td><td class="win">年会費あり</td><td>“実際に使う分だけ”なら年会費以上の価値が出る場合も</td></tr>
+    <tr><td>年間利用が分岐点に届かない</td><td class="win">無料</td><td>還元差で年会費を取り返せず、払うだけ損</td></tr>
+    <tr><td>特典（ラウンジ等）をほぼ使わない</td><td class="win">無料</td><td>使わない特典に年会費は払わなくてよい</td></tr>
+    <tr><td>還元率が同じ・むしろ無料の方が高い</td><td class="win">無料</td><td>還元差がゼロ以下なら分岐が成立しない</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>付帯保険やラウンジは「あるだけ」では価値ゼロです。旅行に年1回行くかどうか、その保険を本当に使う場面があるかを、<b>使う分だけ</b>見積もって足すのが正しい採点です。「特典が豪華だから」と使わない機能に年会費を払うのは、この検証室のやり方ではありません。逆に、条件付き年会費無料を確実に満たせる人が「無料が一番」と決めつけるのも取りこぼしです。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分の“分岐点”をすぐ出す</div>
+    <div class="ph"><a href="../tools/creca-bunki.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 損益分岐ツールで「元が取れる利用額」を今すぐ計算する</a><br><!-- ASP: カード発行(A8/ポイントサイト経由)リンク挿入予定 --><br>［ASP導線プレースホルダ：提携済みカードの申込リンクを開示つきで差し込む予定］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は印象でなく「損益分岐＝年会費 ÷ 還元差」の1式で。</li>
+    <li>割るのは「年会費」ではなく「還元差」。比べる無料カードの還元率しだいで分岐が動く。</li>
+    <li>分岐点を超える利用額＋実際に使う特典があるなら、年会費ありが得。</li>
+    <li>分岐に届かず特典も使わないなら、無料が得。まず自分の年間利用額を確認するのが最初の一歩。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💳 採点の考え方をもっと知るなら：<a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">Mioが「損か得か」をどう計算しているか（方法論）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・価格.com「一般カード比較／ゴールドカード比較」（年会費の目安。ゴールドは1万円前後、アメックス系は3万円台）<br>
+    ・各種クレジットカード比較記事（一般カードの基本還元率0.5%が相場、高還元は1.0%以上。楽天カード1.0%・リクルートカード1.2%等の例）<br>
+    ・比較記事の試算「還元率が0.5%上がるカードで年会費3,300円を回収するには年間66万円以上の利用が必要」<br>
+    ・三井住友カード公式「ゴールド（NL）」（年会費5,500円・年間100万円利用で翌年以降永年無料＋ボーナス1万ポイント＋空港ラウンジ無料）<br>
+    <span class="note">※金額・還元率・条件は各時点の公開情報にもとづく参考値です。特定カードの発行を推奨するものではありません。最新の年会費・還元率・特典は各社公式でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/creca-bunki.html">損益分岐ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

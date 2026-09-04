@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生命保険、いくら必要？"必要保障額"を計算する（入りすぎ vs 不足）｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「生命保険はいくら必要か」を計算だけで採点。必要保障額＝遺族の総支出−遺族の総収入。遺族年金・団信・共働きを式に入れて、入りすぎ／不足を出典つきで見極める。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/seimeihoken-hitsuyo-hosho.html">
+<meta property="og:title" content="生命保険、いくら必要？必要保障額をAIが計算で採点（入りすぎ vs 不足）">
+<meta property="og:description" content="なんとなくで入りすぎ・逆に不足。遺族の総支出−総収入の1式で、自分の必要額を円で出す。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 生命保険 いくら必要？</div>
+    <h1>生命保険、いくら必要？<br>"必要保障額"を計算する（入りすぎ vs 不足）</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― 多くの人は「なんとなく」で入りすぎ、または逆に不足しています。正解は1つの式で出ます。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">正しい保障額 ＝ 遺族に必要な総支出 − 遺族が受け取れる総収入。<br>子ども・住宅ローンあり → 保障は大きめ。単身・共働き・子なし・団信あり → ゼロに近いこともある。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>"なんとなく"で入りすぎ（大きな保険）</span><span>払いすぎリスク</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>式で出した"必要な額"だけを確保</span><span>過不足なし</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※金額は世帯構成・年金・貯蓄で大きく変わります。上のバーは「入りすぎ／不足」を防ぐ考え方のイメージです（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の"計算"）</h2>
+  <p>「大きい方が安心」「みんな入っているから」という<b>印象</b>で決めると、必要額はわかりません。判断すべきは、あなたが亡くなった後に<b>遺族が実際に足りなくなる金額</b>という1つの数字です。これを必要保障額と呼びます。式はこれだけ。</p>
+  <div class="calc">必要保障額 ＝ 遺族に必要な総支出 − 遺族が受け取れる総収入<small>この差額（＝不足分）だけを保険で用意すればいい。多くても少なくてもダメ</small></div>
+  <p>これは生命保険文化センターなど公的な生活設計情報でも用いられる「必要保障額 積み上げ方式」の基本形です。プラス（不足）なら、そこが保険で埋めるべき額。ゼロや<b>マイナスなら、保険はほとんど要らない</b>という判定になります。</p>
+
+  <h3>① 遺族に必要な総支出</h3>
+  <p>のこされた家族の<b>生活費・子どもの教育費・住居費</b>、加えて葬儀費用などです。生活費は「今と同額」で見積もらないのがポイント。世帯人数が減るため、末子が独立するまでは<b>現在の消費支出の約70％</b>、独立後は約50％を目安にします（生命保険文化センターの試算例）。</p>
+
+  <h3>② 遺族が受け取れる総収入</h3>
+  <p>ここを見落として"入りすぎ"る人が非常に多いところ。遺族には次の収入が入ります。</p>
+  <ul>
+    <li><b>遺族年金</b>（遺族基礎年金・遺族厚生年金）</li>
+    <li><b>配偶者の就労収入</b>（共働きなら大きい）</li>
+    <li><b>死亡退職金・自己資産（貯蓄）</b></li>
+  </ul>
+  <p>公的年金は意外と手厚く、子のある配偶者が受け取る遺族基礎年金は<b>年額847,300円（月約7万円）＋子の加算</b>（第1子・第2子は各243,800円）。会社員なら遺族厚生年金（亡くなった方の老齢厚生年金の報酬比例部分の3/4）も上乗せされます（いずれも2024年度・日本年金機構）。この「もらえるお金」を差し引かずに必要額を語ると、必ず過大になります。</p>
+
+  <h2>ワークド例：住宅ローンは"二重に数えない"</h2>
+  <p>最大の勘違いが住居費です。<b>住宅ローンを組むとき、多くは団体信用生命保険（団信）に加入</b>しています。契約者が亡くなると団信の保険金でローン残高がそのまま完済され、遺族に返済義務は残りません（金融機関・年金機構の公開情報）。</p>
+  <div class="calc">団信ありでローン完済 → 住居費（ローン返済分）は総支出に入れない<small>ここを二重計上すると、必要額が数千万円単位で過大になる</small></div>
+  <p>つまり団信ありの持ち家の人が、住居費をまるごと保険で用意しようとするのは<b>典型的な"入りすぎ"</b>。逆に、団信のない賃貸で子どもが小さい家庭は家賃分の支出が丸ごと残るため、必要額は大きくなります。<b>同じ「持ち家か賃貸か」でも結論が反転する</b>ので、式に入れて確かめる価値があります。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>必要保障</th><th>理由</th></tr>
+    <tr><td>子どもが小さい・専業/パートの配偶者</td><td class="win">大きめ</td><td>教育費と生活費を長期間、遺族収入だけでは賄いにくい</td></tr>
+    <tr><td>賃貸で子育て中（団信なし）</td><td class="win">大きめ</td><td>家賃分の住居費が丸ごと総支出に残る</td></tr>
+    <tr><td>持ち家・住宅ローンに団信あり</td><td>中〜小</td><td>死亡時にローンは完済。住居費を二重計上しない</td></tr>
+    <tr><td>共働き（配偶者に安定収入）</td><td>小さめ</td><td>遺族の総収入が大きく、不足が生じにくい</td></tr>
+    <tr><td>子なし夫婦・共働き</td><td>小さめ</td><td>遺族年金＋配偶者収入で足りるケースが多い</td></tr>
+    <tr><td>単身（扶養する家族がいない）</td><td class="win">ほぼ不要</td><td>遺す相手がいない。必要なのは葬儀費用程度</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「必要額が小さい＝保険が無意味」ではありません。子どもの成長・住宅購入・離職などで必要額は<b>数年で変わります</b>。今ゼロでも、将来は必要になることがある。逆に、子どもが独立した後も昔の大きな保険を払い続けているなら、それは減らせる可能性が高い。ここを「不安だから大きく」と煽るのはこの検証室のやり方ではありません。<b>今の式で、今の必要額に合わせる</b>のが正解です。</p>
+
+  <h2>用意の仕方：必要額は"掛け捨て"で安く確保</h2>
+  <p>必要額が出たら、それを<b>できるだけ安く</b>用意します。基本は<b>掛け捨て（定期保険）</b>。解約返戻金がない分、同じ保障額を割安な保険料で確保できます。子どもが小さい間だけ大きく備え、独立後は下げる、といった調整も定期保険なら柔軟です。</p>
+  <p>「貯蓄も兼ねたい」と貯蓄型（終身など）を大きく持つと、保険料が跳ね上がり"入りすぎ"の温床になります。<b>保障は掛け捨てで安く、貯蓄は貯蓄で分けて考える</b>――これが過不足を防ぐ王道です（詳しくは <a href="hoken-kakesute-vs-chochiku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">掛け捨て vs 貯蓄型の採点記事</a> へ）。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分の"必要保障額"をプロと一緒に出す</div>
+    <div class="ph">
+      <!-- ASP: 保険FP無料相談(A8等)リンク挿入予定 -->
+      <a href="../tools/hitsuyo-hosho.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 必要保障額シミュレーターで自分の額を今すぐ計算する</a><br>
+      ［ASP導線プレースホルダ：保険FP無料相談（A8等）の申込リンクを、提携開示つきでここに差し込む］
+    </div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は「必要保障額＝遺族の総支出 − 遺族の総収入」の1式で。差額（不足分）だけを保険で埋める。</li>
+    <li>遺族年金・配偶者収入・貯蓄という"もらえるお金"を引かないと、必ず入りすぎになる。</li>
+    <li>団信ありの持ち家は、死亡でローン完済＝住居費を二重に数えない。ここが最大の落とし穴。</li>
+    <li>単身・共働き・子なしは必要額が小さい傾向。子育て中・賃貸は大きめ。ライフステージで変わる。</li>
+    <li>必要額は掛け捨て（定期）で安く確保し、貯蓄は別に分ける。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🛡 医療保険もあわせて見直すなら：<a href="iryohoken-hitsuyo-ka.html" style="color:#58a6ff;text-decoration:none;font-weight:700">医療保険は本当に必要か？貯蓄と高額療養費で採点する →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・公益財団法人 生命保険文化センター「万一の際に必要な保障額の算出方法と具体例」（必要保障額＝支出見込額−収入見込額／生活費は末子独立まで約70％・独立後約50％）<a href="https://www.jili.or.jp/lifeplan/lifesecurity/1218.html" target="_blank" rel="noopener">jili.or.jp</a><br>
+    ・日本年金機構「遺族基礎年金（受給要件・対象者・年金額）」（2024年度 年額847,300円＋子の加算）<a href="https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150401-04.html" target="_blank" rel="noopener">nenkin.go.jp</a><br>
+    ・日本年金機構「遺族厚生年金（受給要件・対象者・年金額）」（報酬比例部分の3/4）<a href="https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150424.html" target="_blank" rel="noopener">nenkin.go.jp</a><br>
+    ・SBI新生銀行「団体信用生命保険（団信）について解説」（死亡時に保険金でローン残高を完済）<a href="https://www.sbishinseibank.co.jp/retail/housing/column/vol89.html" target="_blank" rel="noopener">sbishinseibank.co.jp</a><br>
+    <span class="note">※金額・制度は各時点の公開情報にもとづく参考値です。最新の要件・金額は各公式（日本年金機構・生命保険文化センター等）でご確認ください。本記事は特定の保険加入を勧誘・断定するものではありません。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新NISA 一括投資 vs 積立投資（つみたて）、どっちが得？計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「新NISA 一括 vs 積立」を計算だけで採点。期待値・元本割れ・生涯枠1800万円の使い方から、一括が向く条件・積立が向く条件を出典つきで解説。将来リターンは断定しません。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/nisa-ikkatsu-vs-tsumitate.html">
+<meta property="og:title" content="新NISA 一括 vs 積立｜どっちが得か、AIが計算で採点">
+<meta property="og:description" content="お金の2択に計算で終止符。期待値と元本割れリスク、生涯枠の使い方まで感度分析つき。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 新NISA 一括 vs 積立</div>
+    <h1>新NISA 一括投資 vs 積立投資（つみたて）、<br>どっちが得か計算で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算の構造</b>で採点します。結論から言うと ―― <b>期待値だけなら一括が有利になりやすい</b>。ただし「全員が一括すべき」ではありません。手元資金・入金力・値動きへの耐性であなたの答えは割れます。将来のリターンは誰にも断定できないので、ここでは<b>「年◯%と仮に置いたら」の感度分析</b>だけで話します。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">まとまった資金があり、長期で値動きに耐えられる → 一括寄り（期待値）。<br>毎月の給料から積む・高値掴みが怖い・とにかく続ける自信を重視 → 積立。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>一括投資（早く全額を市場に置く）</span><span>期待値：高くなりやすい／振れも大きい</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>積立投資（時間を分散して買う）</span><span>期待値：やや控えめ／心理的に続けやすい</span></div><div class="track"><div class="fill" style="width:58%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※バーは「期待値の傾向」と「続けやすさ」の相対イメージであり、将来の利益を約束するものではありません。相場が下落局面から始まれば一括は積立に負けます。</div>
+  </div>
+
+  <h2>そもそも枠は同じ。まず制度を正しく置く</h2>
+  <p>一括か積立かは<b>「1800万円という同じ非課税の器を、どのペースで埋めるか」</b>の問題です。新NISAの枠は金融庁の公式情報で次のとおり。ここを勘違いすると採点が狂います。</p>
+  <table>
+    <tr><th>項目</th><th>金額</th><th>補足</th></tr>
+    <tr><td>つみたて投資枠（年間）</td><td>120万円</td><td>毎月10万円ペース</td></tr>
+    <tr><td>成長投資枠（年間）</td><td>240万円</td><td>一括買付もしやすい枠</td></tr>
+    <tr><td>年間の合計（併用時）</td><td class="win">360万円</td><td>両枠は併用可</td></tr>
+    <tr><td>生涯の非課税保有限度額</td><td class="win">1,800万円</td><td>うち成長投資枠は1,200万円まで</td></tr>
+  </table>
+  <p>ここで大事なのは、<b>年間の上限が360万円あるので「1800万円を最短でも約5年」</b>かけて埋める設計になっている点。つまり制度上、<b>本当の意味の“全額一括”はできません</b>。現実の論点は「手元にある余裕資金を、年間枠の中でどれだけ早く入れるか（=一括寄り）」対「毎月コツコツ入れるか（=積立）」です。</p>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>比較の芯は1つ。<b>「投資したお金が、市場に置かれていた期間の長さ」</b>です。株式などの期待リターンがプラスだと仮定するなら、早く市場に置くほど期待値は上がる ―― これが一括が理屈上有利になりやすい理由です。逆に積立は、資金の一部を後から入れるぶん、平均すると市場に置かれている期間が短くなります。</p>
+  <div class="calc">ざっくりの期待値 ＝ 投資額 ×（1 ＋ 年リターンr）^ 市場に置いた年数<small>rも年数も「仮に置く数字」。将来値は断定できないため、下の感度分析で幅を見ます</small></div>
+  <p>ただしこの式には<b>もう1つの軸＝リスク（振れ幅）</b>があります。一括は早く全額を置くぶん、<b>スタート直後に下落するとダメージが最大化</b>します。積立は買う時期をずらすので、<b>高値掴みを1点に集中させない</b>＝価格が平準化され、下落局面から始まったときの傷が浅くなります。期待値とリスクはトレードオフです。</p>
+
+  <h2>感度分析：仮に置いた数字で幅を見る</h2>
+  <p>断定はしません。<b>「年リターンrをいくつと仮に置くか」で結論が動く</b>ことを見てください。同じ元手を、①最初にまとめて入れる（一括寄り）②時間をかけて入れる（積立）で、置かれる期間が違います。</p>
+  <div class="calc">同じ100万円・10年運用と“仮に置く”と<br><span style="color:#58a6ff">r=0%なら一括も積立も差はほぼゼロ</span><br><span style="color:#2ea043">rがプラスで右肩上がりが続く前提なら一括が上振れ</span><br><span style="color:#f0883e">序盤に大きく下げる前提なら積立が上振れ</span><small>※どの前提が当たるかは事前にわからない。だから“正解の断定”ではなく“条件で割れる”が正しい答えです</small></div>
+  <p>過去のデータ分析でも「一括のほうが有利だった期間が多数派」という検証はあります（例：長期の株価指数で、一括が有利な期間が過半という報告）。ただしこれは<b>過去がそうだった</b>という話で、<b>あなたの投資開始日が“下落局面の入口”でない保証はどこにもありません</b>。ここを「だから一括一択」と煽るのは、この検証室のやり方ではありません。</p>
+
+  <h2>元本割れと“時間分散”の意味</h2>
+  <p>どちらを選んでも<b>元本割れ（買った時より値下がりして評価額が元手を下回ること）は起こり得ます</b>。NISAは利益が非課税になる制度であって、損をしない制度ではありません。ここを混同すると判断を誤ります。</p>
+  <ul>
+    <li><b>一括の弱点：</b>置いた直後に相場が下がると、最初から大きな含み損を抱える。狼狽して売ると損が確定する。</li>
+    <li><b>積立の弱点：</b>相場がずっと右肩上がりだった場合、後から入れたお金は「置かれた期間が短い」ぶん期待値で一括に負けやすい。</li>
+    <li><b>時間分散＝“正解を当てにいかない”保険：</b>いつが底かは事前にわからない。積立は「タイミングを当てる勝負」から降りる代わりに、期待値を少し譲る戦略です。</li>
+  </ul>
+  <p>つまり選択は「期待値」対「心の平穏と継続しやすさ」のどちらを買うか、という話に整理できます。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>寄せる側</th><th>理由</th></tr>
+    <tr><td>まとまった余裕資金が今ある</td><td class="win">一括寄り</td><td>早く市場に置くほど期待値が上がりやすい（年間枠の範囲で）</td></tr>
+    <tr><td>下落しても長期で売らずに耐えられる</td><td class="win">一括寄り</td><td>序盤の含み損に動揺しない前提なら期待値を取りにいける</td></tr>
+    <tr><td>毎月の給料から少しずつ入れる</td><td class="win">積立</td><td>そもそも一括にする余裕資金がない。強制貯蓄として機能</td></tr>
+    <tr><td>高値掴み・急落が怖くて始められない</td><td class="win">積立</td><td>買う時期を分けて平準化＝心理的ハードルが下がり“続く”</td></tr>
+    <tr><td>相場を見ると売り買いしたくなる性格</td><td class="win">積立</td><td>自動積立で「タイミングを当てる勝負」から降りられる</td></tr>
+    <tr><td>手元資金はあるが下落が本気で不安</td><td>引き分け</td><td>数回に分けて入れる“折衷”も合理的。要は続けられる形で</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「期待値が高い＝あなたにとって正解」ではありません。序盤の急落で狼狽売りして退場するくらいなら、期待値を少し譲ってでも続けられる積立のほうが“結果的に得”になることは普通にあります。<b>一番損なのは、迷って現金のまま何もしないこと</b>――枠を使わない年は、その年の非課税の器がまるごと消えます（未使用枠は翌年に繰り越せません）。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分の“毎月いくら・何年で1800万円か”をすぐ出す</div>
+    <div class="ph"><a href="../tools/tsumitate-sim.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 積立シミュレーターで積立ペースと将来イメージを計算する</a><br>
+    <!-- ASP: 証券口座(A8等)リンク挿入予定 -->
+    ［ASP導線プレースホルダ：提携済みの証券口座の申込リンクをここに開示つきで差し込む予定］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>制度は同じ器（生涯1,800万円・年360万円）。論点は「余裕資金を早く入れるか／毎月入れるか」。</li>
+    <li>期待値だけなら早く置く一括が有利になりやすい。ただし将来リターンは断定できず、下落局面から始まれば負ける。</li>
+    <li>積立は期待値を少し譲る代わりに、高値掴みを平準化し“続けやすさ”を買う戦略。元本割れはどちらでも起こる。</li>
+    <li>まとまった資金＋値動きに耐えられる→一括寄り／入金力で積む・急落が怖い→積立。迷うなら折衷でもよい。</li>
+    <li>最悪手は「迷って現金のまま枠を使わない」こと。まず自分の積立ペースを数字で置くのが最初の一歩。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏦 制度そのもので迷うなら：<a href="ideco-vs-nisa-yusen.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCo vs 新NISA どっちを優先すべきか採点→</a><br><span style="display:inline-block;margin-top:8px">🔍 商品選びで迷うなら：<a href="shoken-nisa-mitanaoshi.html" style="color:#58a6ff;text-decoration:none;font-weight:700">新NISA 銘柄・見直しの考え方→</a></span></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・金融庁「NISAを知る」NISA特設ウェブサイト（つみたて投資枠 年120万円／成長投資枠 年240万円／年間合計360万円／生涯非課税保有限度額1,800万円・うち成長投資枠1,200万円）<a href="https://www.fsa.go.jp/policy/nisa2/know/index.html" target="_blank" rel="noopener">fsa.go.jp/policy/nisa2/know/</a><br>
+    ・一括投資 vs 積立投資（ドルコスト平均法）の期間比較・検証（過去の株価指数データにもとづく一般的な分析。将来を保証するものではない）<br>
+    ・ドルコスト平均法（時間分散による購入価格の平準化・高値掴みの回避）に関する一般解説<br>
+    <span class="note">※本記事は投資助言ではありません。将来のリターン・元本は保証されず、元本割れの可能性があります。数値・制度は各時点の公開情報にもとづく参考値で、税制・制度は改正されることがあります。最新の条件は金融庁および各金融機関の公式情報でご確認ください。最終判断はご自身の責任で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
