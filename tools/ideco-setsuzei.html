@@ -102,6 +102,15 @@ function kyuyoKoujo(inc){
   if(inc<=8500000) return inc*0.1+1100000;
   return 1950000;
 }
+// 基礎控除（所得税・国税庁No.1199／令和7年度税制改正反映）
+// 合計所得金額に応じて逓減し、高所得で0まで減る。一律48万円は使わない。
+// ※2025年改正で基礎控除の基準額は58万円に引き上げ（合計所得2,400万円以下）。
+function kisoKoujo(goukeiShotoku){
+  if(goukeiShotoku<=24000000) return 580000;
+  if(goukeiShotoku<=24500000) return 480000;
+  if(goukeiShotoku<=25000000) return 320000;
+  return 0;
+}
 // 所得税の限界税率（課税所得ベース・速算表2026）
 function marginalRate(taxable){
   if(taxable<=1950000) return 0.05;
@@ -118,9 +127,13 @@ function calc(){
   if(income<=0){ alert('年収を入れてください'); return; }
   if(monthly<=0){ alert('毎月の掛金を入れてください'); return; }
   var annual=monthly*12;
-  // 概算の課税所得＝年収−給与所得控除−社会保険料(約14.5%)−基礎控除48万
+  // 概算の課税所得＝年収−給与所得控除−社会保険料(約14.5%)−基礎控除
+  // 基礎控除は合計所得金額に応じて逓減（国税庁No.1199／令和7年改正反映）。
+  // ここでは「合計所得金額≒給与収入−給与所得控除」を近似として区分を判定する。
   var shakai=income*0.145;
-  var taxableBefore=Math.max(0, income - kyuyoKoujo(income) - shakai - 480000);
+  var goukeiShotoku=Math.max(0, income - kyuyoKoujo(income));
+  var kiso=kisoKoujo(goukeiShotoku);
+  var taxableBefore=Math.max(0, income - kyuyoKoujo(income) - shakai - kiso);
   var rate=marginalRate(taxableBefore);
   var totalRate=rate+0.10; // ＋住民税10%
   var save=annual*totalRate;
@@ -136,7 +149,7 @@ function calc(){
     v.className='verdict win';
     v.textContent='✅ 掛金 '+yen(annual)+'/年 に対して、実質 '+ratio+'% が税金で戻る計算。仮に同条件で20年続ければ、節税だけで累計 約'+yen(y20)+'（運用益は別）。ただし原則60歳まで引き出せない点は要確認。';
   }
-  document.getElementById('note').textContent='※概算です。課税所得は年収から給与所得控除・社会保険料（約14.5%と仮定）・基礎控除48万円を引いた目安で、扶養・生命保険料控除・住宅ローン控除等は未反映。復興特別所得税(2.1%)も未加算。実際の節税額は個々の条件で変わります。掛金上限は職業区分で異なります。投資助言ではありません。最終判断・正確な試算は公式・専門家でご確認を。';
+  document.getElementById('note').textContent='※あくまで概算です。実際の税率は正確な課税所得で決まります。課税所得は年収から給与所得控除・社会保険料（約14.5%と仮定）・基礎控除（合計所得金額に応じて逓減。国税庁No.1199／令和7年度税制改正反映＝一律48万円ではありません）を引いた目安で、税率帯を決めるための概算にすぎません。扶養・生命保険料控除・住宅ローン控除等は未反映。復興特別所得税(2.1%)も未加算。実際の節税額は個々の条件で変わります。掛金上限は職業区分で異なります（会社員23,000／公務員20,000／自営68,000など）。投資助言ではありません。最終判断・正確な試算は公式（国税庁）・税理士など専門家でご確認ください。';
   document.getElementById('out').style.display='block';
 }
 </script>
