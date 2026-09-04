@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>贈与税 ざっくり計算（暦年課税）｜もらった額から贈与税の目安を概算｜AIガチ検証室</title>
+<meta name="description" content="1年間にもらった財産額を入れるだけで、基礎控除110万を引いて贈与税額の目安をAIがざっくり計算。一般税率／特例税率（直系尊属→18歳以上）に対応。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="贈与税 ざっくり計算（暦年課税）">
+<meta property="og:description" content="もらった額から基礎控除110万を引いて贈与税の目安を即概算。一般／特例税率に対応。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  .seg{display:flex;gap:8px;margin-top:8px;}
+  .seg button{flex:1;margin-top:0;padding:12px;border:1px solid #33475b;border-radius:10px;background:#0b121a;color:var(--mut);font-size:14px;font-weight:700;cursor:pointer;}
+  .seg button.on{background:var(--g);color:#08110a;border-color:var(--g);}
+  .chk{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:14px;color:var(--tx);font-weight:600;}
+  .chk input{width:auto;margin-top:0;transform:scale(1.2);}
+  button.calc{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .warn{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--mut);}
+  .warn a{color:var(--b);text-decoration:none;font-weight:700;}
+  .warn ul{margin:8px 0 0 18px;}
+  .warn li{margin-top:6px;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 贈与税ざっくり計算</div>
+    <h1>その贈与、税金はいくら？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり概算・要確認</div>
+  </header>
+
+  <div class="panel">
+    <label>1年間にもらった財産の合計（万円）<span class="sub">1/1〜12/31にもらった額。例）300万円なら 300。複数の人からもらった分はすべて合算</span>
+      <input id="man" type="number" inputmode="numeric" placeholder="例）300">
+    </label>
+
+    <label>贈与の種類<span class="sub">「特例」＝親・祖父母など直系尊属から18歳以上の子・孫への贈与。それ以外はすべて「一般」</span></label>
+    <div class="seg" id="seg">
+      <button type="button" id="btnG" class="on" onclick="setType('general')">一般贈与</button>
+      <button type="button" id="btnS" onclick="setType('special')">特例贈与</button>
+    </div>
+
+    <label class="chk"><input type="checkbox" id="adult"> 受贈者は贈与を受けた年の1/1時点で18歳以上</label>
+
+    <button class="calc" onclick="calc()">贈与税をざっくり計算</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">贈与税額（目安）</div>
+        <div class="amt" id="amtY">—</div>
+        <div class="sub2" id="subY"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="warn" id="warn"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/seizen-zoyo-vs-souzoku.html">生前贈与 vs 相続の採点</a> ｜ <a href="../saiten/kyoiku-shikin-zoyo.html">教育資金の贈与を採点</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<!-- ASP -->
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+
+// 国税庁 No.4408 贈与税の速算表（基礎控除110万を引いた後の課税価格に適用）
+// 各段: [上限(円/この額以下), 税率(%), 控除額(円)]。最後の段は上限Infinity。
+var TBL_GENERAL = [
+  [2000000, 10, 0],
+  [3000000, 15, 100000],
+  [4000000, 20, 250000],
+  [6000000, 30, 650000],
+  [10000000, 40, 1250000],
+  [15000000, 45, 1750000],
+  [30000000, 50, 2500000],
+  [Infinity, 55, 4000000]
+];
+var TBL_SPECIAL = [
+  [2000000, 10, 0],
+  [4000000, 15, 100000],
+  [6000000, 20, 300000],
+  [10000000, 30, 900000],
+  [15000000, 40, 1900000],
+  [30000000, 45, 2650000],
+  [45000000, 50, 4150000],
+  [Infinity, 55, 6400000]
+];
+
+var gtype = 'general';
+function setType(t){
+  gtype = t;
+  document.getElementById('btnG').classList.toggle('on', t==='general');
+  document.getElementById('btnS').classList.toggle('on', t==='special');
+  // 特例を選んだら「18歳以上」を促す
+  if(t==='special'){ document.getElementById('adult').checked = true; }
+}
+
+function bandLabel(rate){ return '税率 '+rate+'% の帯'; }
+
+function calc(){
+  var man = parseFloat(document.getElementById('man').value)||0;
+  if(man<=0){ alert('もらった財産の合計（万円）を入れてください'); return; }
+  var total = man*10000;
+  var kiso = 1100000; // 基礎控除110万円
+  var kazei = total - kiso; // 基礎控除後の課税価格
+
+  // 特例税率は直系尊属→18歳以上が要件。未チェックなら一般税率で計算（保守的）
+  var useSpecial = (gtype==='special');
+  var adult = document.getElementById('adult').checked;
+  var forcedGeneral = false;
+  if(useSpecial && !adult){ useSpecial = false; forcedGeneral = true; }
+  var tbl = useSpecial ? TBL_SPECIAL : TBL_GENERAL;
+  var tblName = useSpecial ? '特例税率（直系尊属→18歳以上）' : '一般税率';
+
+  var tax=0, rate=0, ctrl=0;
+  if(kazei<=0){
+    kazei=0;
+  } else {
+    for(var i=0;i<tbl.length;i++){
+      if(kazei<=tbl[i][0]){ rate=tbl[i][1]; ctrl=tbl[i][2]; break; }
+    }
+    tax = kazei*(rate/100) - ctrl;
+    if(tax<0) tax=0;
+  }
+  var effRate = total>0 ? (tax/total*100) : 0;
+
+  document.getElementById('amtY').textContent = yen(tax);
+  document.getElementById('subY').textContent = (kazei<=0)
+    ? '（基礎控除110万円の範囲内。贈与税はかからない見込み）'
+    : '（'+tblName+' ／ 適用 '+bandLabel(rate)+'）';
+
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+(typeof v==='string'?v:yen(v))+'</b></span>'; L.appendChild(d); }
+  row('もらった財産の合計（年）', total);
+  row('基礎控除', '−'+yen(kiso));
+  row('基礎控除後の課税価格', kazei);
+  row('適用税率帯', kazei<=0 ? '課税なし' : (rate+'%（控除額 '+yen(ctrl)+'）'));
+  row('贈与税額の目安', tax);
+  row('実効負担率（もらった額に対し）', effRate.toFixed(1)+'%');
+
+  var W=document.getElementById('warn');
+  var forced = forcedGeneral ? '<li style="color:#f0883e">「特例贈与」を選びましたが「18歳以上」にチェックが無いため、<b>一般税率</b>で計算しました。特例税率は受贈者が贈与年1/1時点で18歳以上の場合のみ使えます。</li>' : '';
+  W.innerHTML = '<b>計算前に必ず確認：</b><ul>'
+    + forced
+    + '<li><b>相続時精算課税</b>を選んでいる場合は、この暦年課税とは計算がまったく変わります（年110万の基礎控除の扱いも別）。どちらを使うかで結論が逆転します。</li>'
+    + '<li><b>複数の人からの贈与は合算</b>。同じ年に父からと祖父からもらった場合などは、合計してから110万を引きます（人ごとに110万ではありません）。</li>'
+    + '<li><b>暦年の持ち戻し（相続前7年）</b>：亡くなる前の一定期間（改正で3年→7年へ順次拡大）に受けた贈与は、相続財産に加算される場合があります。</li>'
+    + '<li>特例税率か一般税率か、税率区分・控除額は<b>必ず国税庁または税理士で最新を確認</b>してください。→ <a href="../saiten/seizen-zoyo-vs-souzoku.html">生前贈与 vs 相続の採点</a></li>'
+    + '</ul>';
+
+  document.getElementById('note').textContent = '※これは国税庁 No.4408「贈与税の計算と税率（暦年課税）」の速算表にもとづく“ざっくり概算”です。実際は他の非課税枠（教育資金・住宅取得等資金など）、申告要否、各種特例で税額が変わります。断定はできません。正確な額は必ず国税庁の最新情報または税理士でご確認ください。';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>

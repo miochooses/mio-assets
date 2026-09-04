@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退職金の手取りシミュ（一時金）｜勤続年数と退職金額から手取り目安を概算｜AIガチ検証室</title>
+<meta name="description" content="勤続年数と退職金額を入れるだけ。退職所得控除・1/2課税・所得税/住民税をざっくり計算して、一時金でもらう退職金の手取り目安をAIが概算。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="退職金の手取りシミュ（一時金）">
+<meta property="og:description" content="勤続年数と退職金額から、退職所得控除・1/2課税で手取り目安を概算。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  .radio{margin-top:8px;display:flex;gap:8px;}
+  .radio label{flex:1;margin-top:0;text-align:center;padding:10px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--mut);cursor:pointer;font-size:14px;}
+  .radio input{display:none;}
+  .radio input:checked+span{color:var(--g);font-weight:800;}
+  .check{margin-top:16px;display:flex;align-items:flex-start;gap:10px;background:#0b121a;border:1px solid #33475b;border-radius:10px;padding:12px 14px;cursor:pointer;}
+  .check input{width:auto;margin-top:2px;}
+  .check .ctx{font-size:14px;color:var(--tx);font-weight:700;}
+  .check .cnote{font-size:12px;color:var(--faint);font-weight:500;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .warn{margin-top:14px;background:#2a1a10;border:1px solid #5a3a1f;border-radius:12px;padding:14px 16px;font-size:13px;color:#f0b070;}
+  .warn b{color:var(--o);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 退職金の手取りシミュ（一時金）</div>
+    <h1>その退職金、手取りはいくら？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり概算</div>
+  </header>
+
+  <div class="panel">
+    <label>退職金の額（金額）<span class="sub">一時金でもらう総額。下の単位を選んでください</span>
+      <input id="amt" type="number" inputmode="numeric" placeholder="例）1500">
+    </label>
+    <div class="radio">
+      <label><input type="radio" name="unit" value="10000" checked><span>万円</span></label>
+      <label><input type="radio" name="unit" value="1"><span>円</span></label>
+    </div>
+
+    <label>勤続年数（年）<span class="sub">1年未満は切上げ。例）24年5か月なら 25</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="例）25">
+    </label>
+
+    <label class="check">
+      <input id="shinkoku" type="checkbox" checked>
+      <span><span class="ctx">「退職所得の受給に関する申告書」を提出する</span><br><span class="cnote">通常は勤務先へ提出。未提出だと退職金の全額に一律20.42%が源泉徴収されます</span></span>
+    </label>
+
+    <button onclick="calc()">手取りをざっくり計算</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">手取り目安</div>
+        <div class="amt" id="amtNet">—</div>
+        <div class="sub2" id="subNet"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="warn" id="warn" style="display:none"></div>
+      <div class="fixed" id="fixed">
+        あわせて読む → <a href="../saiten/taishokukin-uketorikata.html">退職金の受け取り方（一時金 vs 年金）</a> ／ <a href="../saiten/ideco-deguchi-senryaku.html">iDeCoの出口戦略</a>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/taishokukin-uketorikata.html">退職金の受け取り方</a> ｜ <a href="../saiten/ideco-deguchi-senryaku.html">iDeCo出口戦略</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<!-- ASP -->
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 所得税 速算表（課税所得, 税率, 控除額）
+function incomeTax(t){
+  var b=[[0,0.05,0],[1950000,0.10,97500],[3300000,0.20,427500],[6950000,0.23,636000],[9000000,0.33,1536000],[18000000,0.40,2796000],[40000000,0.45,4796000]];
+  var r=b[0];
+  for(var i=0;i<b.length;i++){ if(t>=b[i][0]) r=b[i]; }
+  return Math.max(0, t*r[1]-r[2]);
+}
+function calc(){
+  var raw=parseFloat(document.getElementById('amt').value)||0;
+  var unit=parseFloat(document.querySelector('input[name="unit"]:checked').value);
+  var taishoku=raw*unit;
+  var years=Math.ceil(parseFloat(document.getElementById('years').value)||0);
+  if(taishoku<=0){ alert('退職金の額を入れてください'); return; }
+  if(years<=0){ alert('勤続年数（年）を入れてください'); return; }
+  var shinkoku=document.getElementById('shinkoku').checked;
+
+  // 退職所得控除
+  var kojo;
+  if(years<=20){ kojo=Math.max(400000*years, 800000); }
+  else { kojo=8000000+700000*(years-20); }
+
+  // 課税退職所得（1/2課税）
+  var kazei=Math.max(0,(taishoku-kojo)/2);
+
+  var shotokuzei, fukko, juminzei, tegata, W=document.getElementById('warn');
+  if(shinkoku){
+    shotokuzei=incomeTax(kazei);
+    fukko=shotokuzei*0.021;
+    juminzei=kazei*0.10;
+    W.style.display='none';
+  } else {
+    // 申告書未提出: 退職金全額に一律20.42%源泉（所得税+復興税分）。住民税は別途概算。
+    var gensen=taishoku*0.2042;
+    shotokuzei=taishoku*0.20;
+    fukko=taishoku*0.0042;
+    juminzei=kazei*0.10;
+    W.style.display='block';
+    W.innerHTML='<b>⚠ 申告書 未提出</b>：退職金 <b>'+yen(taishoku)+'</b> の全額に一律 <b>20.42%＝'+yen(gensen)+'</b> が源泉徴収されます（控除・1/2課税が反映されず割高に）。提出すれば控除が効いて手取りが増えるのが一般的です。多く引かれた分は確定申告で取り戻せる場合があります。';
+  }
+
+  var zeikin=shotokuzei+fukko+juminzei;
+  var tegatori=taishoku-zeikin;
+
+  document.getElementById('amtNet').textContent=yen(tegatori);
+  document.getElementById('subNet').textContent='（退職金 '+yen(taishoku)+' − 税 '+yen(zeikin)+' ／ 手取り率 約'+(tegatori/taishoku*100).toFixed(0)+'%）';
+
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  row('退職金（総額）',taishoku);
+  row('退職所得控除（勤続'+years+'年）',kojo);
+  row('課税退職所得（1/2課税後）',kazei);
+  row('所得税＋復興特別所得税',shotokuzei+fukko);
+  row('住民税（概算10%）',juminzei);
+  row('税・合計（概算）',zeikin);
+  row('手取り目安',tegatori);
+
+  document.getElementById('note').innerHTML='※これは一般的な税制にもとづく“ざっくり概算”です。退職所得控除は障害退職・同一年内の複数退職金・過去の退職金との調整などで変わり、課税退職所得の1000円未満切捨て、勤続5年以下の役員等・短期退職手当等の1/2課税不適用、住民税10%の内訳（市区町村・都道府県）や自治体差、その他の控除は簡略化しています。実際の額とは異なる場合があります。<b style="color:#f0b070">正確な額は勤務先・国税庁の公式資料や税理士で必ずご確認ください。</b>';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
