@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全世界株(オルカン) vs 米国株(S&amp;P500)、つみたてNISAで買うならどっち？AIが計算で採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「オルカン vs S&amp;P500」をつみたてNISA目線で採点。オルカンの米国比率は約6割・S&amp;P500は米国集中、二重持ちの重複リスクまで一次情報つきで整理。投資助言ではありません。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/orukan-vs-sp500.html">
+<meta property="og:title" content="オルカン vs S&amp;P500｜つみたてNISAで買うならどっち、AIが計算で採点">
+<meta property="og:description" content="“正解”は1つじゃない。オルカンの中身は約6割が米国、二重持ちは重複に注意。忖度ゼロで整理。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ オルカン vs S&amp;P500</div>
+    <h1>全世界株(オルカン) vs 米国株(S&amp;P500)、<br>つみたてNISAで買うならどっち？</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>中身と条件</b>で採点します。結論から言うと ―― この2択に「唯一の正解」はありません。分散を重視するならオルカン、米国の成長に賭けるならS&amp;P500。あなたの価値観とリスク許容度で割れます。<b>これは投資助言ではありません。</b></div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">分散を効かせて「世界丸ごと」に任せたい → オルカン。<br>米国の成長に集中して賭けたい・過去の高リターンを取りに行く → S&amp;P500。<br>“正解”は1つではありません。両方を同時に持つと中身が大きく重複します。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>オルカン（全世界株）に占める米国の比率</span><span>約6割</span></div><div class="track"><div class="fill" style="width:60%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>S&amp;P500（米国大型株）に占める米国の比率</span><span>ほぼ100%</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※比率は時価総額加重の一般的な目安（指数の構成は日々変動します。出典は末尾）。過去の実績は将来を保証しません。</div>
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <b>Mioのひとこと</b><br>「オルカンは分散、S&amp;P500は集中。よく言われる対比ですが、<b>オルカンの中身も約6割は米国</b>です。つまり両者は“別物”ではなく、米国への依存度の違い。<b>忖度はしません。計算はごまかせない。</b>『どっちが儲かる』ではなく『どこまで米国に賭けるか』で選ぶのが正確です。」
+    </div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“中身読み”）</h2>
+  <p>「オルカンは分散だから安心」「S&amp;P500は伸びるから正解」といった<b>印象</b>では判断できません。見るべきは、その1本の<b>中身（どこの国に何%投じているか）</b>です。ここを読めば、2つが実は近い性質を持つこともわかります。</p>
+  <div class="calc">オルカン ≒ 世界の株式を時価総額比で丸ごと<small>時価総額が大きい国ほど比率が上がる → 現状は米国が最大（およそ6割前後）</small></div>
+  <p>オルカン（全世界株）は「世界中に分散」と言われますが、その配分は<b>各国の株式市場の時価総額に応じて自動的に決まります</b>。いまは米国市場が世界で最も大きいため、オルカンの中でも<b>米国が最大の比率（およそ6割前後）</b>を占めます。「全世界＝米国とは無関係」ではなく、<b>実は米国依存が高い</b>のが実態です。</p>
+  <p>一方のS&amp;P500は、米国の代表的な大型株に集中する指数です。過去のリターンは高い時期が続いてきましたが、それは<b>米国という1国に集中している</b>ぶんのリスクと表裏一体です。どちらも、円で外国株を買う以上は<b>為替リスク</b>（円高になると円換算の評価額が下がりやすい）を負います。</p>
+
+  <h2>構成イメージ：中身はどう違う？</h2>
+  <p>ざっくりした<b>イメージ図</b>で中身を比べます（正確な比率は指数・時点で変わるため、下は理解のための概念です。断定的な数値予測ではありません）。</p>
+  <div class="calc" style="text-align:left;font-weight:600">
+    <b style="color:#58a6ff">オルカン（全世界株）</b><br>
+    米国 …… 約6割 ／ 日本・欧州・新興国など …… 約4割<br><br>
+    <b style="color:#f0883e">S&amp;P500（米国大型株）</b><br>
+    米国大型株 …… ほぼ100%
+    <small>※米国以外の“4割”を分散として取りにいくのがオルカン、その4割を持たず米国に一点集中するのがS&amp;P500、という位置づけ。時価総額比なので配分は将来変わり得ます。</small>
+  </div>
+  <p>つまりオルカンとS&amp;P500は「まったく別の投資対象」ではなく、<b>米国に賭ける度合いが違うだけ</b>とも言えます。ここを理解すると、次の「二重持ち」の注意点が見えてきます。</p>
+
+  <h2>やりがちな落とし穴：オルカン＋S&amp;P500の“二重持ち”</h2>
+  <p>「分散したいから両方買う」―― これは一見よさそうですが、<b>中身が大きく重複します</b>。オルカンの約6割はすでに米国であり、そこにS&amp;P500を足すと、ポートフォリオ全体の米国比率がさらに跳ね上がります。</p>
+  <div class="box">
+    <b>何が起きるか：</b>「分散したつもり」で、実際は<b>米国への集中度が上がっている</b>状態になりやすい。銘柄（アップルやマイクロソフト等の米国大型株）も両方に重複して含まれるため、思ったより分散が効かず、管理も複雑になります。「分散のつもりが逆に集中」――これが二重持ちの典型的な非効率です。
+  </div>
+  <p>もちろん「意図的に米国比率を上げたい」なら二重持ちも1つの選択です。<b>問題は“分散のつもり”で無自覚にやってしまうこと</b>。どちらを軸にするかを決め、重複を理解したうえで持つのが正確です。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの考え方</th><th>向いている</th><th>理由</th></tr>
+    <tr><td>分散を最重視・世界丸ごとに任せたい</td><td class="win">オルカン</td><td>米国以外の約4割も自動で持てる。国の栄枯盛衰を1本で吸収しやすい</td></tr>
+    <tr><td>米国の成長に集中して賭けたい</td><td class="win">S&amp;P500</td><td>米国大型株にほぼ100%。米国が伸びる局面を取りにいく設計</td></tr>
+    <tr><td>投資が初めて・とにかく1本で完結させたい</td><td class="win">オルカン</td><td>どちらも王道だが、1本で世界分散が完結するオルカンは判断がシンプル</td></tr>
+    <tr><td>重複を避けてシンプルに管理したい</td><td>どちらか1本</td><td>二重持ちは重複で非効率になりやすい。軸を1本に絞るのが無難</td></tr>
+    <tr><td>米国集中の変動（下落）に耐えられるか不安</td><td class="win">オルカン</td><td>米国以外も含むぶん、値動きの偏りをやや和らげやすい</td></tr>
+    <tr><td>過去の高リターンを重視する</td><td>要注意</td><td>S&amp;P500は過去実績が高い時期が続いたが、<b>過去は将来を保証しない</b></td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「S&amp;P500の方が過去は儲かった」は事実の一側面ですが、<b>それは将来も同じという意味ではありません</b>。米国が今後も最強とは限らず、逆に世界全体が米国以上に伸びる保証もありません。どちらも<b>元本割れがあり得る</b>投資です。過去実績だけで「正解」を決めつけるのは、この検証室のやり方ではありません。</p>
+
+  <div class="cta">
+    <div class="h">▶ つみたての“伸び方”を数字でシミュレーション</div>
+    <div class="ph"><a href="../tools/tsumitate-sim.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ つみたてシミュレーターで、毎月いくら×何年でどう育つかを試算する</a><!-- ASP --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>この2択に「唯一の正解」はない。<b>分散重視ならオルカン、米国の成長に賭けるならS&amp;P500</b>。価値観とリスク許容度で割れる。</li>
+    <li>オルカンは「全世界分散」だが、中身は<b>約6割が米国</b>。実は米国依存が高いと理解しておく。</li>
+    <li>S&amp;P500は米国大型株に集中。過去リターンは高い時期が続いたが、<b>集中リスクと為替リスク</b>があり、過去は将来を保証しない。</li>
+    <li>オルカン＋S&amp;P500の<b>二重持ちは中身が大きく重複</b>し、「分散のつもりで実は米国集中」になりやすい。軸を1本に決めるのが無難。</li>
+    <li>これは投資助言ではありません。<b>元本割れの可能性</b>を理解し、最終判断はご自身で。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧭 NISAの使い方をもっと詰めるなら：<a href="nisa-ikkatsu-vs-tsumitate.html" style="color:#58a6ff;text-decoration:none;font-weight:700">一括投資 vs つみたて、NISAで買うならどっち（AIが採点）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💰 生涯1,800万円の枠を無駄なく使うなら：<a href="nisa-1800-tsukaikiri.html" style="color:#58a6ff;text-decoration:none;font-weight:700">NISA 1,800万円を使い切る設計（AIが採点）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🔍 コストの差も見落とさないで：<a href="shintaku-hoshu.html" style="color:#58a6ff;text-decoration:none;font-weight:700">信託報酬、何%までなら許容？（AIが採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.fsa.go.jp/policy/nisa2/" target="_blank" rel="noopener">金融庁「NISA特設ウェブサイト」</a>（NISA制度の概要・非課税枠・つみたて投資枠の仕組み）<br>
+    ・<a href="https://www.fsa.go.jp/policy/nisa2/wanisa/index.html" target="_blank" rel="noopener">金融庁「つみたてワニーサ」</a>（つみたて投資・長期分散投資の基礎解説）<br>
+    ・<a href="https://www.fsa.go.jp/policy/nisa2/knowledge/basic/index.html" target="_blank" rel="noopener">金融庁「投資の基本」</a>（分散投資・長期投資・リスクとリターンの考え方）<br>
+    ・各指数（全世界株式指数／S&amp;P500）の国別・時価総額構成にもとづく比率の一般的な目安<br>
+    <span class="note">※本文の「米国 約6割」等は時価総額加重の一般的な目安であり、指数・時点により変動します。過去の運用実績は将来の成果を保証するものではありません。株式投資には元本割れ・為替変動のリスクがあります。本ページは一般的な情報提供であり、特定商品の推奨や投資助言ではありません（金融商品取引法上の断定的判断の提供はいたしません）。最終判断はご自身の責任でお願いします。最新の制度・条件は金融庁・各運用会社の公式でご確認ください。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言・投資勧誘ではありません。制度・数値・指数構成は変わることがあるため、必ず公式・専門家で最新をご確認ください。投資は元本割れの可能性があります。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
