@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>リボ払い、年率15%の罠｜元金が減らない仕組みを計算で暴く（総支払額はいくら増える？）｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「リボ払い」を計算だけで採点。年率15%で元金が減りにくい仕組み、20万円を毎月1万円返すと総支払がいくら増えるかを、出典つき・数式つきで暴きます。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/ribo-wana.html">
+<meta property="og:title" content="リボ払い、年率15%の罠｜元金が減らない仕組みをAIが計算で暴く">
+<meta property="og:description" content="便利に見えて総支払が膨らむ。20万円を毎月1万円で返すと手数料はいくら？計算式つきで採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e0653a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ リボ払いの罠</div>
+    <h1>リボ払い、年率15%の罠<br>元金が減らない仕組みを計算で暴く</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― リボ払いは「毎月の支払いが軽く見える」だけで、<b>総支払額はしっかり膨らむ</b>。仕組みを知らない人が、静かに損をしています。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">一括で払える買い物をリボにする → 損。<br>年率15%前後の手数料が「元金より先」に引かれ、残高がなかなか減りません。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>一括払い（20万円の買い物）</span><span>総支払 200,000円</span></div><div class="track"><div class="fill" style="width:86%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>リボ払い（年率15%・毎月1万円）</span><span>総支払 約231,500円</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※元金定額方式・実質年率15.0%での概算例（出典は末尾のJCB返済例）。手数料合計は約31,500円。実際の率・方式はカードで異なります。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>リボ払いが危ういのは、金額の大小ではなく<b>「毎月いくら手数料に消えるか」</b>が見えないからです。判断に必要なのは、たった1つの式。</p>
+  <div class="calc">今月の手数料 ＝ 残高 × 年率15% ÷ 12<small>残高が減るまで、毎月この手数料が“上乗せ”され続けます</small></div>
+  <p>たとえば残高20万円なら、初月の手数料は <b>200,000 × 0.15 ÷ 12 ＝ 2,500円</b>。毎月1万円払っても、手数料を差し引いた <b>約7,500円しか元金が減らない</b>ということです。「月1万円だけ」と思っていても、その一部は買い物ではなく<b>手数料に消えている</b>――これがリボの正体です。</p>
+
+  <h2>ワークド例：20万円をリボで買うと</h2>
+  <p>20万円の買い物を、実質年率15%・毎月1万円のリボ（元金定額方式）で返すと――</p>
+  <div class="calc">総支払 <span style="color:#e0653a">約231,500円</span>（うち手数料 約31,500円）<small>※完済まで20回。JCBの返済例にもとづく概算。一括なら200,000円ちょうど</small></div>
+  <p>差額は約<b>3.1万円</b>。同じ商品なのに、リボにしただけでこれだけ多く払います。しかもこれは「新たな買い物をしない」前提の話。リボ利用中にまた買い物をすると、その分が残高に加算され、<b>完済の“終わり”がさらに後ろへずれます</b>（日本クレジット協会も注意点として明記）。残高が大きいほど手数料の絶対額は膨らみ、返済が長期化するほど総額は静かに増えていきます。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>一括で払える買い物をリボにしている</td><td class="bad">損</td><td>払えるのに年率15%前後を上乗せしている</td></tr>
+    <tr><td>気づいたら「リボ専用カード」で常時リボ</td><td class="bad">損</td><td>全利用が手数料対象。残高が常に回り続ける</td></tr>
+    <tr><td>毎月の支払いを最低額に設定している</td><td class="bad">損</td><td>元金が減りにくく、完済が最も遠のく設定</td></tr>
+    <tr><td>回数と総額が確定する「分割払い」を選べる</td><td class="win">分割が有利</td><td>支払回数・総額が事前に見える。リボは自分で終期を決められない</td></tr>
+    <tr><td>急な出費で今月だけ支払いを平準化したい</td><td>一時利用は可</td><td>短期・少額で早期一括返済できるなら手数料は限定的</td></tr>
+    <tr><td>残高と手数料を毎月明細で管理できる</td><td>計画次第</td><td>計画的に使い、繰上返済できる人なら道具として成立</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>リボ払いそのものが「悪」ではありません。急な資金繰りを一時的にならす、繰上返済で早期に完済する――こうした使い方ができる人には道具になります。危険なのは<b>「仕組みを知らないまま、払えるものまでリボにする」</b>こと。ここを煽らず、事実で示すのがこの検証室のやり方です。</p>
+
+  <div class="cta">
+    <div class="h">▶ リボ残高を「手数料の出ない形」に整理する</div>
+    <div class="ph"><!-- ASP: カード見直し/おまとめ・借換(A8等)リンク挿入予定 --><br>［ASP導線プレースホルダ：カード見直し・おまとめ／借換サービスの申込リンクを開示つきでここに差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は印象でなく「今月の手数料＝残高×15%÷12」の1式で。</li>
+    <li>年率15%前後の手数料が先に引かれ、元金が減りにくい。20万円・毎月1万円で総支払は約23.1万円（手数料約3.1万円）。</li>
+    <li>利用中に新たな買い物をすると残高に加算され、完済がさらに延びる。最低額返済が最も損。</li>
+    <li>回数と総額が見える分割払いが有利な場面は多い。リボは急な資金繰りの一時利用＋早期一括に限る道具。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧭 支払いの選び方を体系的に整理するなら：<a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">Mioの採点方法論（何を計算で見るか）→</a></div>
+
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💳 関連の採点：<a href="creca-nenkaihi-vs-muryo.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年会費ありカード vs 無料カード →</a> ／ <a href="cashless-vs-genkin.html" style="color:#58a6ff;text-decoration:none;font-weight:700">キャッシュレス vs 現金 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・一般社団法人 日本クレジット協会「リボ払いの特徴と利用上の注意」（残高スライド方式・支払期間が延びる仕組み）<a href="https://www.j-credit.or.jp/customer/basis/revolving.html" target="_blank" rel="noopener">j-credit.or.jp</a><br>
+    ・JCB「リボ払いの金利・手数料は高い？」（手数料＝利用残高×金利×日数÷365、20万円を毎月1万円で総支払231,500円・手数料31,500円・20回の返済例）<a href="https://www.jcb.co.jp/loancard/special/commission.html" target="_blank" rel="noopener">jcb.co.jp</a><br>
+    ・三井住友カード「リボ払い」（実質年率・手数料の考え方）<a href="https://www.smbc-card.com/mem/revo/revo21.jsp" target="_blank" rel="noopener">smbc-card.com</a><br>
+    ・多くのカード会社のショッピングリボ実質年率は15.0〜18.0%が一般的（各社公開情報）<br>
+    <span class="note">※金額・手数料率・返済方式（元金定額／元利定額・残高スライド）はカード会社により異なり、上記は概算の一例です。最新の実質年率・手数料・返済回数は必ずご自身のカード規約・会員サイトでご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../">トップ</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
