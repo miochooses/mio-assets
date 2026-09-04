@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>割り勘計算機｜AIガチ検証室</title>
+<meta name="description" content="合計金額と人数を入れるだけ。端数の調整、幹事の傾斜配分にも対応。登録なし・完全無料・端末内だけで処理。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{max-width:100%;overflow-x:hidden;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;padding:0 16px 60px;}
+  .wrap{max-width:600px;margin:0 auto;}
+  header{padding:34px 0 16px;text-align:center;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  h1{margin-top:12px;font-size:26px;font-weight:800;}
+  .sub{margin-top:10px;font-size:14px;color:var(--mut);}
+  .field{margin-top:16px;}
+  .field label{font-size:14px;color:var(--mut);font-weight:700;display:block;margin-bottom:8px;}
+  input,select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:11px;color:var(--tx);font-size:18px;padding:13px 14px;font-family:inherit;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:140px;}
+  .res{margin-top:22px;background:linear-gradient(90deg,#12251a,#141d28);border:1px solid #2ea04355;border-radius:16px;padding:22px;text-align:center;}
+  .res .cap{font-size:14px;color:var(--mut);font-weight:700;}
+  .res .big{margin-top:6px;font-size:44px;font-weight:900;color:var(--g);}
+  .res .sub2{margin-top:10px;font-size:14px;color:#c9d4de;line-height:1.6;}
+  .foot{margin-top:26px;text-align:center;font-size:12px;color:var(--faint);}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ 無料ツール</div>
+    <h1>割り勘計算機</h1>
+    <div class="sub">合計と人数を入れるだけ。端数の調整も、幹事の傾斜配分もOK。登録なし・完全無料。</div>
+  </header>
+  <div class="row">
+    <div class="field"><label>合計金額（円）</label><input id="total" type="number" inputmode="numeric" placeholder="例）24000" oninput="calc()"></div>
+    <div class="field"><label>人数</label><input id="people" type="number" inputmode="numeric" placeholder="例）5" oninput="calc()"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>端数の丸め</label><select id="round" onchange="calc()">
+      <option value="100">100円単位に切り上げ</option>
+      <option value="500">500円単位に切り上げ</option>
+      <option value="1000">1000円単位に切り上げ</option>
+      <option value="1">1円単位（割り切り）</option>
+    </select></div>
+    <div class="field"><label>幹事の傾斜（多く/少なく払う）</label><select id="kanji" onchange="calc()">
+      <option value="0">なし（均等）</option>
+      <option value="-500">幹事は 500円 少なく</option>
+      <option value="-1000">幹事は 1000円 少なく</option>
+      <option value="500">幹事は 500円 多く</option>
+      <option value="1000">幹事は 1000円 多く</option>
+    </select></div>
+  </div>
+  <div class="res" id="res"><div class="cap">1人あたり</div><div class="big">—</div><div class="sub2">金額と人数を入れてください</div></div>
+  <div class="foot">
+    もっと“お金の2択”を計算で採点 → <a href="../">AIガチ検証室</a> ／ <a href="./">無料ツール一覧</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  const total=parseFloat(document.getElementById('total').value);
+  const people=parseInt(document.getElementById('people').value,10);
+  const unit=parseInt(document.getElementById('round').value,10);
+  const kanji=parseInt(document.getElementById('kanji').value,10);
+  const res=document.getElementById('res');
+  if(!total||!people||people<1){ res.querySelector('.big').textContent='—'; res.querySelector('.sub2').textContent='金額と人数を入れてください'; return; }
+  // 基本1人あたりを丸め
+  const base=total/people;
+  const per=Math.ceil(base/unit)*unit;
+  let text='';
+  if(kanji===0){
+    const collected=per*people;
+    const over=collected-total;
+    res.querySelector('.big').textContent=yen(per);
+    text='全員 '+yen(per)+' × '+people+'人 = '+yen(collected)+'（お釣り/余り '+yen(over)+'）';
+  } else {
+    // 幹事以外で残りを均等に丸め
+    const kanjiPay=Math.max(0, per + kanji);
+    const rest=total - kanjiPay;
+    const others=people-1;
+    const perOther=others>0?Math.ceil((rest/others)/unit)*unit:0;
+    const collected=kanjiPay+perOther*others;
+    res.querySelector('.big').textContent=yen(perOther);
+    text='幹事 '+yen(kanjiPay)+' ／ その他 '+others+'人 各 '+yen(perOther)+'　合計 '+yen(collected)+'（余り '+yen(collected-total)+'）';
+  }
+  res.querySelector('.cap').textContent = kanji===0?'1人あたり':'その他の人 1人あたり';
+  res.querySelector('.sub2').textContent=text;
+}
+</script>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
