@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>マイルを貯める vs 現金・ポイント還元、どっちが得？｜1マイルの価値を計算で採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「マイル貯蓄 vs 現金・ポイント還元」を計算だけで採点。1マイルの価値＝マイル単価で決まる仕組み、マイルが勝つ条件・現金還元が堅い条件を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/mile-vs-genkin-kangen.html">
+<meta property="og:title" content="マイル vs 現金・ポイント還元｜1マイルの価値を計算で採点">
+<meta property="og:description" content="お金の2択に計算で終止符。マイル単価×貯まるマイル vs 確定の現金還元、どっちが得か式でわかる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px;}
+  .mio .h{font-size:13px;font-weight:800;color:var(--g);letter-spacing:.04em;}
+  .mio p{margin-top:6px;font-size:14px;color:var(--tx);}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ マイル vs 現金・ポイント還元</div>
+    <h1>マイルを貯める vs 現金・ポイント還元、どっちが得？<br>「1マイルの価値」を計算で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― 「マイルは夢がある」で決めると損得は見えません。決め手は<b>1マイルを何円で使えるか（＝マイル単価）</b>という1つの数字です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">長距離の特典航空券（特にビジネス/ファースト）を<b>実際に取れる</b>人 → マイルの勝ち。<br>予定が読めない・国内メインで少額利用が中心 → 現金・ポイント還元が堅い。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>マイル（使い方で単価が動く・不確定）</span><span>1マイル 約0.5〜2円超（＋長距離上位クラスはさらに上振れ）</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>現金・ポイント還元（確定リターン）</span><span>おおむね 1ポイント＝1円で一定</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※単価は公開情報にもとづく一般的な目安（出典は末尾）。実際の単価は使い方・時期・交換ルートで大きく変わります。</div>
+    <div class="mio">
+      <div class="h">Mioのひとこと</div>
+      <p>「マイルは夢がある」は数字を隠す言葉。1マイルを<b>何円で使えるか</b>で全部決まる。使えないマイルは0円。責めてるんじゃない、期限内に長距離を取れないなら、確定で減る現金還元のほうが味方だよ。</p>
+    </div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>マイルと現金還元は、そもそも性質が違います。現金・ポイント還元は「<b>1ポイント＝1円</b>」のように単価がほぼ固定された<b>確定リターン</b>。一方マイルは、同じ1マイルでも使い道で価値が変わる<b>不確定リターン</b>です。だから比べるときは、期待できる単価まで含めて円に直します。式はこれだけ。</p>
+  <div class="calc">マイルの価値 ＝ マイル単価（円/マイル）× 貯まるマイル数<small>これを「現金還元でもらえる額」と並べれば、あなたのケースの勝ち負けが円で出る</small></div>
+  <p>特典航空券の1マイルの価値は「<b>運賃 ÷ 必要マイル数</b>」で求められます。公開情報では、この単価は使い方でおおむね1円を下回る場合から数円以上まで幅があり、国際線の上級クラスに使うと二桁円台に届くこともあると解説されています。逆にポイントや電子マネーへの交換は1円前後に落ち着きやすい。<b>同じマイルでも、どう使うかで倍以上ぶれる</b>ということです。</p>
+
+  <h2>ワークド例：同じ1万円分をどう受け取るか</h2>
+  <p>年間で「1万円相当のリターン」を、①マイルで受け取る ②現金・ポイント還元で受け取る、で比べてみます。現金還元なら受け取りは<b>1万円で確定</b>。マイルは、貯めたマイルを<b>どの単価で使えたか</b>で結果が動きます。</p>
+  <div class="calc">同じ1万マイルでも…<br>ポイント交換（単価1円）＝ <span style="color:#9fb3c8">約1万円</span> ／ 長距離特典（単価2円）＝ <span style="color:#2ea043">約2万円</span><small>※単価は交換先・路線・空席で変わる一例。実際はご自身の使い道で計算してください</small></div>
+  <p>ここがマイルの怖さでもあり面白さでもあります。<b>うまく使えば現金還元を上回る</b>一方、単価1円を切る使い方をすれば現金還元と大差ない、あるいは負ける。そして最悪なのは<b>使わずに失効</b>――このとき単価は0円、リターンはゼロです。ANA・JALのマイルは<b>有効期限が原則3年（36か月）</b>で、特典航空券は空席状況しだいで希望日に取れないこともある、と各社が案内しています。「取れる前提」で計算すると採点を誤ります。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>勝者</th><th>理由</th></tr>
+    <tr><td>海外長距離をビジネス/ファーストで乗る予定がある</td><td class="win">マイル</td><td>特典航空券は単価が跳ね上がりやすく、現金換算の効率が高い</td></tr>
+    <tr><td>休みを取りやすく、空席のある日程で予約できる</td><td class="win">マイル</td><td>座席の空きを取れる人ほど高単価で使い切れる</td></tr>
+    <tr><td>予定が読めない・繁忙期しか動けない</td><td class="win">現金・ポイント還元</td><td>取れない・失効リスクが高く、確定リターンが堅い</td></tr>
+    <tr><td>国内近距離や少額の利用が中心</td><td class="win">現金・ポイント還元</td><td>単価が伸びにくく、マイルの優位が出づらい</td></tr>
+    <tr><td>ポイント→マイルの交換ルートを使いこなせる</td><td class="win">マイル</td><td>ポイントサイト等の経由で貯める効率が上がる場合がある</td></tr>
+    <tr><td>失効管理や交換手続きが面倒</td><td>引き分け</td><td>マイルは期限・空席・手数料の管理が前提。放置なら還元が無難</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>マイルの「高単価」は、あくまで<b>その使い方を実現できたとき</b>の話です。有効期限・座席の空き・交換ルートの手数料といった条件をクリアできなければ、皮算用の単価は実現しません。ここを無視して「マイルは超お得」と煽るのはこの検証室のやり方ではありません。逆に、確実に高単価で使い切れる人にとっては、現金還元より大きく勝てるのも事実です。</p>
+
+  <div class="cta">
+    <div class="h">▶ まずは“確定リターン”から固める</div>
+    <div class="ph">
+      <!-- ASP: 高還元クレカ/ポイントサイト(A8/Moppy等)リンク挿入予定 -->
+      ［ASP導線プレースホルダ：提携済みの高還元クレカ／ポイントサイト（A8・Moppy等）の申込リンクを、開示つきでここに差し込む］
+    </div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は「夢」でなく「マイル単価 × 貯まるマイル vs 現金還元額」で。</li>
+    <li>長距離の特典航空券（特に上位クラス）を実際に取れる人は、マイルが得になりやすい。</li>
+    <li>予定が読めない・国内少額中心・管理が面倒なら、1円で確定する現金・ポイント還元が堅い。</li>
+    <li>マイルの最大の敵は失効。期限（原則3年）・空席・手数料を管理できるかで採点が変わる。</li>
+    <li>迷ったら「確定リターン」を土台に、余力でマイルへ、が現実的。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧭 貯め方の全体像から知りたいなら：<a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">マイルの貯め方 方法論（何から始めるか）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💳 関連の採点：<a href="creca-nenkaihi-vs-muryo.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年会費ありクレカ vs 無料 →</a> ／ <a href="point-nijudori.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ポイント二重取り →</a> ／ <a href="rakuten-vs-paypay.html" style="color:#58a6ff;text-decoration:none;font-weight:700">楽天 vs PayPay →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・楽天カード みんなのマネ活「1マイルの価値はいくらになる？」（使い道で価値が変わる／特典航空券は運賃÷必要マイルで算出）<a href="https://www.rakuten-card.co.jp/minna-money/topic/article_2312_80227/" target="_blank" rel="noopener">rakuten-card.co.jp</a><br>
+    ・ANAの住まい「ANA1マイルはいくらになる？」（獲得・利用方法別のマイル価値の考え方）<a href="https://anasumai.jp/useful-information/other/ana-howmuch-mile.html" target="_blank" rel="noopener">anasumai.jp</a><br>
+    ・JAL公式「マイルの有効期限は36カ月間」<a href="https://www.jal.co.jp/jp/ja/jmb/validity/" target="_blank" rel="noopener">jal.co.jp</a><br>
+    ・セゾンカード「ANA、JALのマイルの有効期限は？」（原則3年・失効対策）<a href="https://www.saisoncard.co.jp/credictionary/travel/article053.html" target="_blank" rel="noopener">saisoncard.co.jp</a><br>
+    ・クレジットカード比較ガイド「マイルとポイント、貯めるならどっち？」（長距離・上位クラスはマイル有利／興味がなければポイント）<a href="https://www.goginsec.co.jp/ccguide/mile-point/mile-point-which.html" target="_blank" rel="noopener">goginsec.co.jp</a><br>
+    <span class="note">※単価・レート・必要マイル数は各時点の公開情報にもとづく参考値で、時期・路線・空席・交換ルートにより変動します。最新の条件は各社公式でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
