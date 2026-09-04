@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Mio — 忖度なく選ぶ知的AIアシスタント</title>
+  <desc id="desc">ダークな円形フレームの中に、冷静で中性的な表情の人物を描いたセミフラットなバストアップアバター。</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="32%" r="76%">
+      <stop offset="0" stop-color="#182534"/>
+      <stop offset="0.62" stop-color="#111a24"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="92" y1="70" x2="424" y2="444" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2ea043"/>
+      <stop offset="0.34" stop-color="#2ea043" stop-opacity="0.16"/>
+      <stop offset="0.72" stop-color="#58a6ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#2ea043" stop-opacity="0.78"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="164" y1="118" x2="350" y2="368" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#23374a"/>
+      <stop offset="0.48" stop-color="#182736"/>
+      <stop offset="1" stop-color="#101a24"/>
+    </linearGradient>
+    <linearGradient id="hairLight" x1="186" y1="112" x2="312" y2="251" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#334b60"/>
+      <stop offset="0.55" stop-color="#24394b"/>
+      <stop offset="1" stop-color="#182736"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="201" y1="147" x2="311" y2="342" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef3f6"/>
+      <stop offset="0.5" stop-color="#dce5eb"/>
+      <stop offset="1" stop-color="#b9c8d4"/>
+    </linearGradient>
+    <linearGradient id="neck" x1="256" y1="325" x2="256" y2="406" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b5c5d1"/>
+      <stop offset="1" stop-color="#d8e2e8"/>
+    </linearGradient>
+    <linearGradient id="jacket" x1="142" y1="391" x2="370" y2="506" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1b2a39"/>
+      <stop offset="0.5" stop-color="#243747"/>
+      <stop offset="1" stop-color="#14212d"/>
+    </linearGradient>
+    <linearGradient id="collar" x1="222" y1="390" x2="290" y2="466" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e9eef3"/>
+      <stop offset="1" stop-color="#9fb3c8"/>
+    </linearGradient>
+    <radialGradient id="greenGlow">
+      <stop stop-color="#2ea043" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#2ea043" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#02060a" flood-opacity="0.42"/>
+    </filter>
+    <filter id="softGlow" x="-180%" y="-180%" width="460%" height="460%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <clipPath id="portraitClip">
+      <circle cx="256" cy="256" r="232"/>
+    </clipPath>
+  </defs>
+
+  <circle cx="256" cy="256" r="244" fill="#090d12"/>
+  <circle cx="256" cy="256" r="240" fill="url(#bg)" stroke="url(#rim)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="232" fill="none" stroke="#ffffff" stroke-opacity="0.06"/>
+
+  <g clip-path="url(#portraitClip)">
+    <path d="M82 261C105 176 164 116 256 116c92 0 151 60 174 145" fill="none" stroke="#9fb3c8" stroke-opacity="0.08" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M101 290C110 227 137 180 178 150" fill="none" stroke="#58a6ff" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
+    <path d="M411 290c-9-63-36-110-77-140" fill="none" stroke="#f0883e" stroke-opacity="0.18" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="103" cy="300" r="3" fill="#58a6ff" fill-opacity="0.62"/>
+    <circle cx="409" cy="300" r="3" fill="#f0883e" fill-opacity="0.58"/>
+    <ellipse cx="256" cy="251" rx="175" ry="172" fill="url(#greenGlow)" opacity="0.24"/>
+
+    <!-- Hair silhouette: a light, tapered bob rather than a helmet shape. -->
+    <path d="M151 258c-5-77 18-134 64-157 26-13 58-15 86-5 49 18 73 76 64 159-5 47-21 91-44 124l-58-20-7-13-8 13-58 20c-23-34-36-76-39-121Z" fill="url(#hair)" filter="url(#shadow)"/>
+    <path d="M166 262c-4-74 15-124 56-148 22-13 51-17 77-10" fill="none" stroke="#4d6980" stroke-opacity="0.34" stroke-width="3" stroke-linecap="round"/>
+    <path d="M346 256c2-61-12-106-46-137" fill="none" stroke="#0b1219" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Bust and clothing. The center seam is the impartial decision axis. -->
+    <path d="M93 523c4-71 34-116 91-135l45-15h54l45 15c57 19 87 64 91 135Z" fill="url(#jacket)"/>
+    <path d="M93 523c4-71 34-116 91-135l37-12c-21 37-34 86-35 147Z" fill="#203345" fill-opacity="0.78"/>
+    <path d="M419 523c-4-71-34-116-91-135l-37-12c21 37 34 86 35 147Z" fill="#111d28" fill-opacity="0.72"/>
+    <path d="M117 469c16-42 42-64 83-77" fill="none" stroke="#58a6ff" stroke-opacity="0.42" stroke-width="2" stroke-linecap="round"/>
+    <path d="M395 469c-16-42-42-64-83-77" fill="none" stroke="#f0883e" stroke-opacity="0.34" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Neck sits behind the crisp collar. -->
+    <path d="M222 317c2 30 1 45-6 64 7 23 23 38 40 38s33-15 40-38c-7-19-8-34-6-64Z" fill="url(#neck)"/>
+    <path d="M221 349c10 14 22 21 35 21s25-7 35-21c0 10 2 21 5 32-8 15-23 25-40 25s-32-10-40-25c3-11 5-22 5-32Z" fill="#93a8b8" fill-opacity="0.32"/>
+
+    <!-- Face -->
+    <path d="M256 123c54 0 85 38 84 101-1 66-36 119-84 119s-83-53-84-119c-1-63 30-101 84-101Z" fill="url(#skin)"/>
+    <path d="M179 226c3 60 34 109 77 112 42-3 74-52 77-112" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5"/>
+    <path d="M172 217c-14 2-20 14-16 32 4 17 12 26 24 25" fill="#c0ced8"/>
+    <path d="M340 217c14 2 20 14 16 32-4 17-12 26-24 25" fill="#aebfca"/>
+
+    <!-- Sleek center-parted fringe. -->
+    <path d="M256 122c-35-14-75 7-86 63-3 16-2 32 1 46 22-20 43-47 59-82 8-18 17-27 26-27Z" fill="url(#hairLight)"/>
+    <path d="M256 122c31-11 69 7 82 60 4 17 4 32 2 46-25-21-45-47-58-80-8-18-17-27-26-26Z" fill="url(#hair)"/>
+    <path d="M256 123c-2 17-1 30 3 43" fill="none" stroke="#6e879b" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M170 230c1 50 9 90 31 124-26-16-39-50-43-89-2-16 1-28 12-35Z" fill="#14222f"/>
+    <path d="M340 228c0 51-9 91-30 126 26-16 39-50 44-89 2-17-2-30-14-37Z" fill="#111e29"/>
+
+    <!-- Focused brows and high-contrast eyes remain legible at icon size. -->
+    <path d="M195 225c13-8 29-8 42-1" fill="none" stroke="#344b5d" stroke-width="4" stroke-linecap="round"/>
+    <path d="M275 224c13-7 29-7 42 1" fill="none" stroke="#344b5d" stroke-width="4" stroke-linecap="round"/>
+    <path d="M194 245c11-12 32-13 44 0-12 13-33 13-44 0Z" fill="#f7fafc"/>
+    <path d="M274 245c11-13 32-12 44 0-11 13-32 13-44 0Z" fill="#f7fafc"/>
+    <ellipse cx="218" cy="245" rx="8" ry="9" fill="#172431"/>
+    <ellipse cx="294" cy="245" rx="8" ry="9" fill="#172431"/>
+    <circle cx="218" cy="245" r="3.5" fill="#2ea043"/>
+    <circle cx="294" cy="245" r="3.5" fill="#2ea043"/>
+    <circle cx="216" cy="242.5" r="1.25" fill="#e9eef3"/>
+    <circle cx="292" cy="242.5" r="1.25" fill="#e9eef3"/>
+
+    <!-- Restrained facial geometry: straight nose, almost-neutral mouth. -->
+    <path d="M256 248c-1 15-3 27-7 35 4 3 9 4 14 1" fill="none" stroke="#8298a9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M234 303c14 5 30 5 44 0" fill="none" stroke="#6f8291" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M243 311c8 3 18 3 26 0" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="1.2" stroke-linecap="round"/>
+
+    <!-- A single decision-status node replaces overt robot hardware. -->
+    <circle cx="343" cy="275" r="16" fill="#2ea043" fill-opacity="0.08" filter="url(#softGlow)"/>
+    <path d="M341 267l8 8-8 8-8-8Z" fill="#111a24" stroke="#2ea043" stroke-width="2"/>
+    <circle cx="341" cy="275" r="2.2" fill="#2ea043"/>
+
+    <!-- Collar and verdict marker -->
+    <path d="M216 378c10 22 23 35 40 41l-38 41-24-67Z" fill="url(#collar)"/>
+    <path d="M296 378c-10 22-23 35-40 41l38 41 24-67Z" fill="url(#collar)"/>
+    <path d="M256 419v104" fill="none" stroke="#2ea043" stroke-opacity="0.78" stroke-width="2"/>
+    <path d="M256 414l7 7-7 7-7-7Z" fill="#2ea043"/>
+    <path d="M183 487c22-8 43-12 64-13M329 487c-22-8-43-12-64-13" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Quiet tick marks evoke measurement without turning the portrait into a gauge. -->
+  <g fill="#9fb3c8" fill-opacity="0.38">
+    <circle cx="256" cy="27" r="2" fill="#2ea043"/>
+    <circle cx="256" cy="485" r="1.5"/>
+    <circle cx="27" cy="256" r="1.5"/>
+    <circle cx="485" cy="256" r="1.5"/>
+  </g>
+</svg>

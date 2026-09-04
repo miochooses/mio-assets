@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">お金の二択を応援するAI、Mioのアバター</title>
+  <desc id="desc">ミント色の髪、大きな緑の瞳、ピンクのほっぺが印象的な、親しみやすいマスコット風AI。黄色い円マークのコインを添えた明るい丸型アイコン。</desc>
+
+  <defs>
+    <linearGradient id="background" x1="92" y1="60" x2="424" y2="452" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9f4df"/>
+      <stop offset="0.52" stop-color="#e8f8df"/>
+      <stop offset="1" stop-color="#fff1c9"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="158" y1="107" x2="354" y2="395" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8de4d3"/>
+      <stop offset="0.5" stop-color="#5ccbbb"/>
+      <stop offset="1" stop-color="#36a8a0"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="215" y1="170" x2="286" y2="373" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff4d9"/>
+      <stop offset="0.62" stop-color="#ffdfbd"/>
+      <stop offset="1" stop-color="#ffcda8"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="174" y1="407" x2="331" y2="508" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9f8f"/>
+      <stop offset="1" stop-color="#f47c73"/>
+    </linearGradient>
+    <radialGradient id="coin" cx="35%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#fff8a8"/>
+      <stop offset="1" stop-color="#ffc94f"/>
+    </radialGradient>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="9" stdDeviation="10" flood-color="#35796c" flood-opacity="0.18"/>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#276d6b" flood-opacity="0.18"/>
+    </filter>
+    <clipPath id="badgeClip">
+      <circle cx="256" cy="256" r="236"/>
+    </clipPath>
+  </defs>
+
+  <!-- 明るいパステルの丸バッジ -->
+  <circle cx="256" cy="256" r="246" fill="#fffdf5" filter="url(#badgeShadow)"/>
+  <circle cx="256" cy="256" r="236" fill="url(#background)" stroke="#ffffff" stroke-width="6"/>
+
+  <g clip-path="url(#badgeClip)">
+    <!-- 背景の大きな丸だけで、賑やかすぎない可愛さを追加 -->
+    <circle cx="99" cy="161" r="47" fill="#ffffff" opacity="0.34"/>
+    <circle cx="418" cy="232" r="62" fill="#fff8df" opacity="0.52"/>
+    <circle cx="88" cy="389" r="70" fill="#a8ead4" opacity="0.34"/>
+
+    <!-- 2.5〜3頭身風の小さなバスト -->
+    <path d="M123 522C127 450 167 404 220 394L292 394C345 404 385 450 389 522Z"
+      fill="url(#shirt)" stroke="#276d6b" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M207 401Q256 442 305 401L315 426Q256 474 197 426Z"
+      fill="#fff8df" stroke="#276d6b" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M243 426Q256 438 269 426L275 512H237Z" fill="#ffd65c" opacity="0.95"/>
+
+    <!-- 髪の後ろ側：明るいミントの丸いボブ -->
+    <path d="M127 270C122 174 166 91 250 78C341 64 393 144 387 267C384 329 363 377 326 409L186 409C148 376 130 329 127 270Z"
+      fill="url(#hair)" stroke="#276d6b" stroke-width="11" stroke-linejoin="round"/>
+
+    <!-- 耳 -->
+    <ellipse cx="157" cy="271" rx="25" ry="31" fill="url(#skin)" stroke="#276d6b" stroke-width="9"/>
+    <ellipse cx="355" cy="271" rx="25" ry="31" fill="url(#skin)" stroke="#276d6b" stroke-width="9"/>
+    <path d="M151 273Q158 263 166 274" fill="none" stroke="#eaa580" stroke-width="5" stroke-linecap="round"/>
+    <path d="M346 274Q354 263 361 273" fill="none" stroke="#eaa580" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- 大きな丸顔 -->
+    <path d="M157 223C157 148 200 111 256 111C312 111 355 148 355 223V278C355 344 315 382 256 382C197 382 157 344 157 278Z"
+      fill="url(#skin)" stroke="#276d6b" stroke-width="10" stroke-linejoin="round"/>
+
+    <!-- ふんわりした前髪 -->
+    <path d="M155 222C150 160 185 108 241 94C292 81 341 111 357 166C330 154 310 146 289 142C286 165 273 184 253 196C254 174 248 154 239 142C220 170 191 191 155 202Z"
+      fill="url(#hair)" stroke="#276d6b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- ブランド緑の自然なヘアメッシュ -->
+    <path d="M279 112C299 119 315 130 327 145C317 145 307 144 296 142C294 156 290 168 284 178"
+      fill="none" stroke="#2ea043" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M151 205C137 251 142 321 171 354C180 330 185 306 184 279"
+      fill="url(#hair)" stroke="#276d6b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M361 204C375 251 370 321 341 354C332 330 327 306 328 279"
+      fill="url(#hair)" stroke="#276d6b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- 優しく少し持ち上がった眉 -->
+    <path d="M185 218Q211 201 235 216" fill="none" stroke="#287c77" stroke-width="7" stroke-linecap="round"/>
+    <path d="M277 216Q301 201 327 218" fill="none" stroke="#287c77" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- 大きな丸い瞳。#2ea043 のリングでブランド感を維持 -->
+    <ellipse cx="213" cy="259" rx="34" ry="40" fill="#fffef8" stroke="#276d6b" stroke-width="7"/>
+    <ellipse cx="299" cy="259" rx="34" ry="40" fill="#fffef8" stroke="#276d6b" stroke-width="7"/>
+    <circle cx="216" cy="263" r="23" fill="#2ea043"/>
+    <circle cx="296" cy="263" r="23" fill="#2ea043"/>
+    <circle cx="216" cy="266" r="15" fill="#185c5c"/>
+    <circle cx="296" cy="266" r="15" fill="#185c5c"/>
+    <!-- 片目につき大小2つのキラッとハイライト -->
+    <circle cx="207" cy="251" r="8" fill="#ffffff"/>
+    <circle cx="224" cy="272" r="4.5" fill="#ffffff"/>
+    <circle cx="287" cy="251" r="8" fill="#ffffff"/>
+    <circle cx="304" cy="272" r="4.5" fill="#ffffff"/>
+
+    <!-- まるいピンクのチーク -->
+    <ellipse cx="190" cy="307" rx="22" ry="12" fill="#ff91a6" opacity="0.72"/>
+    <ellipse cx="322" cy="307" rx="22" ry="12" fill="#ff91a6" opacity="0.72"/>
+    <circle cx="256" cy="298" r="4" fill="#e79b7c"/>
+
+    <!-- 応援してくれるような、やさしい上向きの笑顔 -->
+    <path d="M229 317Q256 344 283 317" fill="none" stroke="#9f5360" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- 小物は1つだけ：お金の二択を表す小さな円マークコイン -->
+    <g filter="url(#softShadow)">
+      <circle cx="390" cy="380" r="35" fill="url(#coin)" stroke="#b9792f" stroke-width="8"/>
+      <path d="M374 362L390 380L406 362M390 380V402M376 383H404M377 391H403"
+        fill="none" stroke="#9d652c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M375 355Q382 348 390 348" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- 小さいSNS表示でも輪郭が締まる外周 -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.9"/>
+</svg>
