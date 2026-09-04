@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>がん保険は本当に必要？公的保障を踏まえて損得を採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「がん保険は必要か」を計算だけで採点。高額療養費・傷病手当金など公的保障でどこまで足りるか、貯蓄が十分な人・薄い人・自営業で必要度がどう変わるかを出典つきで整理。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/gan-hoken-hitsuyo.html">
+<meta property="og:title" content="がん保険は本当に必要？｜公的保障を踏まえて損得を採点">
+<meta property="og:description" content="“不安”で入るのではなく、公的保障＋貯蓄で足りない差額だけを埋める。AIが計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ がん保険は必要か</div>
+    <h1>がん保険は本当に必要？<br>公的保障を踏まえて「損得」を採点した</h1>
+    <div class="lead">感情ゼロのAIが、不安を煽らず<b>計算だけ</b>で採点します。結論から言うと ―― 「全員に必要」でも「全員に不要」でもありません。<b>公的保障＋あなたの貯蓄で足りない差額</b>があるかどうかで割れます。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">貯蓄が十分 × 会社員（傷病手当金あり）→ がん保険は必ずしも要らない。<br>貯蓄が薄い or 自営業（傷病手当なし）or 先進医療・自由診療まで備えたい → 価値がある。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>公的保障（高額療養費＋傷病手当金）でカバーされる範囲</span><span>入院・治療費の多く</span></div><div class="track"><div class="fill" style="width:72%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>公的対象外で自腹になり得る範囲（先進医療・差額ベッド・収入減 等）</span><span>ここを埋めるか判断</span></div><div class="track"><div class="fill" style="width:28%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※イメージ図であり金額の正確な比率ではありません。カバー範囲は加入する健康保険・所得区分・治療内容で変わります（出典は末尾）。</div>
+  </div>
+
+  <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+    <b>Mioのひとこと</b><br>
+    「がんは怖いから入る」は判断ではなく感情です。忖度はしません。計算はごまかせない。まず公的保障で<b>いくらまで自分で耐えられるか</b>を出し、足りない差額だけを保険で埋める。入りすぎも、入らなさすぎも損です。
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「がんは高額」という<b>印象</b>だけで決めると損得はわかりません。日本の会社員には、まず2つの公的保障があります。判断すべきは、それらを差し引いても<b>自分の貯蓄で耐えられない差額が残るか</b>という1点です。式はこれだけ。</p>
+  <div class="calc">埋めるべき差額 ＝ 想定コスト −（公的保障でカバーされる分 ＋ 使える貯蓄）<small>この差額がプラスなら「保険で埋める価値」、ゼロ以下なら「必ずしも要らない」の目安です</small></div>
+  <p>ポイントは、想定コストを丸ごと保険で用意しないこと。日本では<b>高額療養費制度</b>で1か月あたりの医療費の自己負担に上限があり、会社員には<b>傷病手当金</b>で働けない間の収入補填もあります。ここを無視して「まるごと備えろ」と煽るのは、この検証室のやり方ではありません。</p>
+
+  <h2>まず知る：公的保障でどこまで足りるか</h2>
+  <p>下は「制度の型」を掴むための簡単な整理です。<b>実際の金額は所得区分・年齢・加入先で変わります</b>ので、必ず公式でご確認ください。</p>
+  <table>
+    <tr><th>公的保障</th><th>ざっくり何が起きるか</th><th>ポイント</th></tr>
+    <tr><td>健康保険（窓口3割）</td><td>治療費の自己負担が原則3割になる</td><td>公的医療の対象なら、そもそも全額は払わない</td></tr>
+    <tr><td>高額療養費制度</td><td>1か月の自己負担が<b>所得区分ごとの上限</b>で頭打ちになる</td><td>一般的な所得区分では、1か月の上限は数万円台に収まる目安（上限額は所得で異なる）</td></tr>
+    <tr><td>傷病手当金（会社員）</td><td>働けない間、給与の<b>約2/3</b>が<b>最長1年6か月</b>支給される</td><td>治療中の収入減をかなり補える。<b>自営業（国保）には原則なし</b></td></tr>
+  </table>
+  <div class="calc">会社員のイメージ：1か月の医療費自己負担は高額療養費で上限まで／さらに休業中は給与の約2/3<small>※あくまで制度の型。実額は所得区分・治療月数・加入先で変わります。自分の上限額は下のツールで概算できます</small></div>
+  <p>つまり、<b>公的医療の範囲内の治療</b>なら、会社員は「際限なく払い続ける」構造ではありません。まず<a href="../tools/kougakuryoyo.html" style="color:#58a6ff;text-decoration:none;font-weight:700">高額療養費の自己負担シミュレーター</a>で、自分の1か月の上限額の目安を出してみてください。ここが埋めるべき差額の出発点になります。</p>
+
+  <h2>ただし：公的保障で足りない“差額”もある</h2>
+  <p>一方で、これらは<b>公的医療の対象外</b>になりやすく、自腹になり得ます。ここを埋めるかどうかが判断の核です。</p>
+  <ul>
+    <li><b>先進医療・自由診療</b>：公的保険が効かず、技術料が高額になることがある（内容により大きく異なる）。</li>
+    <li><b>差額ベッド代</b>：個室などを希望した場合の室料差額。高額療養費の対象外。</li>
+    <li><b>長期の収入減</b>：傷病手当金は最長1年6か月・約2/3。それを超える期間や自営業では収入の穴が残る。</li>
+    <li><b>治療に伴う雑費</b>：通院交通費・ウィッグ・家事や育児の外注など、公的保障が想定しない出費。</li>
+  </ul>
+  <p><b>正直な注意点：</b>差額ベッドは「病院都合」なら請求されないケースもあり、先進医療を受ける人は全員ではありません。<b>起こるとは限らない出費に満額で備える</b>と、今度は保険料の払いすぎになります。だから「不安」ではなく、公的保障を引いた<b>差額</b>から必要額を逆算するのが正確です。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>必要度</th><th>理由</th></tr>
+    <tr><td>貯蓄が十分（当面の治療費＋収入減を自前で耐えられる）× 会社員</td><td class="win">低い</td><td>高額療養費＋傷病手当金＋貯蓄で差額をほぼ埋められる</td></tr>
+    <tr><td>貯蓄が薄い（大きな出費で家計が回らなくなる）</td><td class="win">高い</td><td>公的保障を引いても手元の差額が埋まらない。少額でも備える価値</td></tr>
+    <tr><td>自営業・フリーランス（国保で傷病手当金なし）</td><td class="win">高い</td><td>収入減を補う公的仕組みが薄い。収入補填の観点で価値が出やすい</td></tr>
+    <tr><td>先進医療・自由診療・差額ベッドまで備えたい</td><td class="win">中〜高</td><td>公的対象外を狙う特約は費用対効果を要確認（起こる確率と保険料で判断）</td></tr>
+    <tr><td>家族に金銭負担をかけたくない・扶養する家族が多い</td><td>中</td><td>「安心の予算」として一定の合理性。ただし過剰な上乗せは不要</td></tr>
+    <tr><td>すでに医療保険や貯蓄で厚く備えている</td><td>低い</td><td>重複しやすい。がん特約か医療保険か、まず<b>棚卸し</b>を</td></tr>
+  </table>
+  <p>「掛け捨てか貯蓄型か」で迷う場合は<a href="hoken-kakesute-vs-chochiku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">掛け捨て vs 貯蓄型の採点</a>、「そもそも医療保険は要るか」は<a href="iryohoken-hitsuyo-ka.html" style="color:#58a6ff;text-decoration:none;font-weight:700">医療保険は必要か</a>、加入後の点検は<a href="hoken-minaoshi-timing.html" style="color:#58a6ff;text-decoration:none;font-weight:700">保険を見直すタイミング</a>もあわせてどうぞ。</p>
+
+  <div class="cta">
+    <div class="h">▶ まず自分の“公的保障の上限額”を出す</div>
+    <div class="ph"><a href="../tools/kougakuryoyo.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 高額療養費シミュレーターで1か月の自己負担上限を今すぐ計算する</a><!-- ASP: 提携リンク未結線（広告表示のうえ差し込む） --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は「不安」でなく「埋めるべき差額＝想定コスト −（公的保障 ＋ 貯蓄）」で。</li>
+    <li>会社員は高額療養費で1か月の自己負担に上限があり、傷病手当金で最長1年6か月・給与の約2/3が出る。貯蓄が十分ならがん保険は必ずしも要らない。</li>
+    <li>先進医療・自由診療・差額ベッド・長期の収入減は公的対象外で自腹になり得る。ここに差額が残る人には価値。</li>
+    <li>貯蓄が薄い人・自営業（傷病手当なし）・家族に負担をかけたくない人は必要度が上がる。ただし過剰な上乗せは損。</li>
+    <li>制度・数値・上限額は所得区分や時期で変わる。最新は必ず公式で確認し、最終判断はご自身で。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🩺 医療保険そのものが要るか迷うなら：<a href="iryohoken-hitsuyo-ka.html" style="color:#58a6ff;text-decoration:none;font-weight:700">医療保険は必要か（公的保障で足りる範囲を採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/g3/cat310/sb3030/r139/" target="_blank" rel="noopener">全国健康保険協会「高額療養費」</a>（1か月の自己負担限度額は所得区分ごとに設定）<br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/g3/cat310/sb3040/r150/" target="_blank" rel="noopener">全国健康保険協会「傷病手当金」</a>（働けない間、標準報酬日額の約2/3を最長1年6か月）<br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html" target="_blank" rel="noopener">厚生労働省「高額療養費制度を利用される皆さまへ」</a><br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/sensiniryo/index.html" target="_blank" rel="noopener">厚生労働省「先進医療の概要について」</a>（公的医療保険の対象外・自己負担）<br>
+    <span class="note">※高額療養費の限度額・傷病手当金の支給条件は、加入先の健康保険・所得区分・年齢・時期により異なります。自営業（国民健康保険）には傷病手当金が原則ありません。差額ベッド代や先進医療の要否は個々の治療で変わります。本ページは一般的な情報提供であり、個別の保険加入の助言ではありません。最新の制度・数値は各公式でご確認のうえ、最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
