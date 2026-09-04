@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://miochooses.github.io/mio-assets/sitemap.xml
