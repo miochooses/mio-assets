@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生命保険 必要保障額シミュレーター｜いくらの死亡保障が必要？入りすぎ/不足を即判定｜AIガチ検証室</title>
+<meta name="description" content="毎月の生活費・年数・教育費・遺族の見込み収入・貯蓄を入れるだけ。あなたに本当に必要な死亡保障額をAIが概算。保険に入りすぎ/不足かを中立に数字で判定します。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="生命保険 必要保障額シミュレーター">
+<meta property="og:description" content="必要な死亡保障額を概算。入りすぎ/不足を中立に判定。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--b);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--b);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .verdict{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;}
+  .verdict.win{background:#0e2417;border:1px solid #1f5a35;}
+  .verdict.lose{background:#2a1416;border:1px solid #5a2530;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 必要保障額シミュ</div>
+    <h1>あなたの死亡保障、いくら必要？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>残された家族の毎月の生活費（円）<span class="sub">住居費は団信で完済される前提なら除く（下の注記参照）</span>
+      <input id="cost" type="number" inputmode="numeric" placeholder="例）250000">
+    </label>
+    <label>あと何年その生活費が必要か（年）<span class="sub">末子が独立するまで等。だいたいでOK</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="例）20">
+    </label>
+    <label>子の教育費の総額（円・任意）<span class="sub">大学まで見込む額。不要なら0</span>
+      <input id="edu" type="number" inputmode="numeric" placeholder="例）10000000">
+    </label>
+    <label>遺族の見込み収入の月額（円）<span class="sub">遺族年金＋配偶者の収入など</span>
+      <input id="income" type="number" inputmode="numeric" placeholder="例）120000">
+    </label>
+    <label>現在の貯蓄・既加入の死亡保険（円）<span class="sub">すでに備えている分</span>
+      <input id="assets" type="number" inputmode="numeric" placeholder="例）3000000">
+    </label>
+    <button onclick="calc()">必要保障額を計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">あなたに必要な死亡保障額（概算）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ 保障額の見直し・保険選びを相談するなら</div>
+        <div class="ph"><!-- ASP: 保険FP無料相談(A8等)リンク挿入予定 ／ 特定商品を推さない中立を維持 --></div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/seimeihoken-hitsuyo-hosho.html">生命保険の必要保障額を採点</a> ｜ <a href="../saiten/hoken-kakesute-vs-chochiku.html">掛け捨て vs 貯蓄型を採点</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var cost=parseFloat(document.getElementById('cost').value)||0;
+  var years=parseFloat(document.getElementById('years').value)||0;
+  var edu=parseFloat(document.getElementById('edu').value)||0;
+  var income=parseFloat(document.getElementById('income').value)||0;
+  var assets=parseFloat(document.getElementById('assets').value)||0;
+  if(cost<=0||years<=0){ alert('毎月の生活費と必要年数を入れてください'); return; }
+  // 必要総支出 ＝ (毎月生活費×12×年数) ＋ 教育費総額
+  var needTotal = cost*12*years + edu;
+  // 見込み収入合計 ＝ 遺族の月収入×12×年数
+  var incomeTotal = income*12*years;
+  // 必要保障額 ≒ 必要総支出 − 見込み収入 − 貯蓄等
+  var need = needTotal - incomeTotal - assets;
+  var v=document.getElementById('verdict');
+  var amtEl=document.getElementById('amt');
+  var subEl=document.getElementById('sub2');
+  subEl.textContent='（支出 '+yen(needTotal)+' − 遺族の見込み収入 '+yen(incomeTotal)+' − 貯蓄等 '+yen(assets)+'）';
+  if(need<=0){
+    amtEl.textContent='0円（追加保障は不要の可能性）';
+    v.className='verdict win';
+    v.textContent='✅ 見込み収入と貯蓄で必要額をまかなえる計算です。追加の死亡保障は不要の可能性。すでに大きな保険に入っているなら「入りすぎ」かもしれません。保険料を見直す余地があります。';
+  } else {
+    amtEl.textContent=yen(need);
+    v.className='verdict lose';
+    v.textContent='⚠ この概算では約 '+yen(need)+' の死亡保障が不足しています。掛け捨ての定期保険なら少ない保険料で大きな保障を確保しやすい範囲です。逆にこれを大きく超える保障に入っているなら「入りすぎ」の目安になります。';
+  }
+  document.getElementById('note').textContent='※これは概算です。住宅ローンは団信で完済される前提のため、住居費は生活費に二重計上しないでください（団信対象外のローンがある場合は別途上乗せを）。遺族年金は世帯構成・加入状況・子の人数や年齢で大きく変わります。正確な金額は公的年金の試算や専門家にご確認を。最終判断はご自身で。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>

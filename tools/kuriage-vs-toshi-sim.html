@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>繰上返済 vs 投資（新NISA）シミュレーター｜ローン金利と利回りを数字で比較｜AIガチ検証室</title>
+<meta name="description" content="住宅ローンの繰上返済と新NISA投資、どっちが得？ローン金利ぶんの“確定リターン”と投資の期待値を並べてAIが即比較。登録なし・端末内処理。投資助言ではありません。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="繰上返済 vs 投資（新NISA）シミュレーター">
+<meta property="og:description" content="ローン金利ぶんの確定リターンと投資の期待値を数字で比較。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .big{background:#0b121a;border:1px dashed var(--b);border-radius:14px;padding:18px 14px;text-align:center;}
+  .big.fix{border-color:#1f5a35;border-style:solid;}
+  .big .lb{font-size:12px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:24px;font-weight:800;color:var(--b);}
+  .big.fix .amt{color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:11px;color:var(--faint);}
+  .verdict{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;}
+  .verdict.win{background:#0e2417;border:1px solid #1f5a35;}
+  .verdict.lose{background:#2a1416;border:1px solid #5a2530;}
+  .verdict.even{background:#0b121a;border:1px solid var(--line);}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .cta a{color:var(--b);text-decoration:none;font-weight:700;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 繰上返済 vs 投資</div>
+    <h1>繰上返済 vs 投資、どっちが得？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>住宅ローン残高（円）<span class="sub">今の残債。だいたいでOK</span>
+      <input id="bal" type="number" inputmode="numeric" placeholder="例）20000000">
+    </label>
+    <label>ローン金利（％）<span class="sub">例）0.7％なら 0.7 と入力</span>
+      <input id="loan" type="number" inputmode="decimal" step="0.01" placeholder="例）0.7">
+    </label>
+    <label>繰上に回せる資金（円）<span class="sub">手元から繰上返済 or 投資に回せる額</span>
+      <input id="fund" type="number" inputmode="numeric" placeholder="例）1000000">
+    </label>
+    <label>想定投資利回り（％・任意）<span class="sub">空欄なら 3％で計算。あくまで“想定”です</span>
+      <input id="yield" type="number" inputmode="decimal" step="0.1" placeholder="既定 3.0">
+    </label>
+    <button onclick="calc()">確定リターン vs 期待値を比較する</button>
+
+    <div class="out" id="out">
+      <div class="cmp">
+        <div class="big fix">
+          <div class="lb">繰上返済（確定・無リスク）</div>
+          <div class="amt" id="amtFix">—</div>
+          <div class="sub2" id="subFix"></div>
+        </div>
+        <div class="big">
+          <div class="lb">投資（期待値・不確実）</div>
+          <div class="amt" id="amtInv">—</div>
+          <div class="sub2" id="subInv"></div>
+        </div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ 新NISAで投資を検討するなら</div>
+        <!-- ASP: 証券口座(A8等)リンク挿入予定 -->
+        <div class="ph">［ASP導線プレースホルダ＝証券口座の開設リンクを開示つきで差し込む予定］</div>
+        <div class="ph" style="margin-top:8px;">くわしい採点：<a href="../saiten/kuriage-vs-toshi.html">繰上返済 vs 投資 のガチ検証記事</a></div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/kuriage-vs-toshi.html">繰上返済 vs 投資 の検証</a> ｜ <a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function calc(){
+  var bal=parseFloat(document.getElementById('bal').value)||0;
+  var loan=parseFloat(document.getElementById('loan').value)||0;
+  var fund=parseFloat(document.getElementById('fund').value)||0;
+  var yv=document.getElementById('yield').value;
+  var yield=(yv===''||isNaN(parseFloat(yv)))?3:parseFloat(yv);
+
+  if(fund<=0){ alert('繰上に回せる資金を入れてください'); return; }
+  if(loan<=0){ alert('ローン金利を入れてください'); return; }
+
+  // 繰上返済＝ローン金利ぶんの“確定・無リスク”リターン（概算）
+  var fixReturn = fund*(loan/100);
+  // 投資に回した場合の期待値（不確実・元本割れあり）
+  var invReturn = fund*(yield/100);
+
+  // 住宅ローン控除期間中は、控除ぶん（概算0.7%相当）だけ繰上メリットが下がる
+  var effLoan = Math.max(0, loan-0.7);
+  var fixReturnDuringDeduction = fund*(effLoan/100);
+
+  document.getElementById('amtFix').textContent = yen(fixReturn)+'/年';
+  document.getElementById('subFix').textContent = '＝ 繰上資金'+yen(fund)+' × 金利'+loan+'%';
+  document.getElementById('amtInv').textContent = yen(invReturn)+'/年';
+  document.getElementById('subInv').textContent = '＝ 繰上資金'+yen(fund)+' × 想定利回り'+yield+'%（不確実）';
+
+  var diff = yield - loan;
+  var v=document.getElementById('verdict');
+  var msg='';
+  if(diff>0.5){
+    v.className='verdict win';
+    msg='📈 数字だけ見れば投資が有利：想定利回り'+yield+'% − ローン金利'+loan+'% ＝ +'+diff.toFixed(2)+'ポイント。'
+      +'期待値は年 '+yen(invReturn-fixReturn)+' ほど投資が上回ります。'
+      +'ただしこれは“期待値”で、元本割れもあり得ます（確定ではありません）。';
+  } else if(diff < -0.001){
+    v.className='verdict lose';
+    msg='🛡 繰上返済（確定）が堅い：ローン金利'+loan+'% ＞ 想定利回り'+yield+'%。'
+      +'繰上なら年 '+yen(fixReturn)+' を“確実に”得（無リスクで金利ぶんを節約）。'
+      +'投資でこれを上回るには利回り'+loan+'%超が前提です。';
+  } else {
+    v.className='verdict even';
+    msg='⚖ ほぼ互角：想定利回り'+yield+'% と ローン金利'+loan+'% の差は '+diff.toFixed(2)+'ポイントのみ。'
+      +'差が僅差なら、確定・無リスクの繰上返済のほうが堅い選択です。';
+  }
+  // 必ず併記する注意（金利予想しない／元本割れ／控除期間）
+  msg+='<div style="margin-top:10px;font-weight:500;font-size:13px;color:#9fb3c8;">'
+    +'※このツールは将来の金利・相場を予想しません（想定利回りはあなたの入力です）。'
+    +'投資は元本割れの可能性があります。'
+    +'住宅ローン控除の期間中は、控除ぶん（概算0.7%相当）だけ繰上メリットが下がります'
+    +'（この例では実質メリット 年 約'+yen(fixReturnDuringDeduction)+' ＝ 金利'+loan+'%−0.7%相当）。'
+    +'これは投資助言ではなく、最終判断はご自身で。</div>';
+  v.innerHTML=msg;
+
+  document.getElementById('note').textContent='※いずれも1年あたりの概算（税・手数料・複利・返済期間短縮効果などは単純化）。繰上返済は「期間短縮型／返済額軽減型」で効果が異なります。実際の金利・利回りは変動します。';
+  document.getElementById('out').style.display='block';
+}
+</script>
+</body>
+</html>
