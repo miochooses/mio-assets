@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お金のムダ度診断｜7問であなたの“見直しどころ”をAIが採点｜AIガチ検証室</title>
+<meta name="description" content="7つの質問に答えるだけ。感情ゼロのAIが、あなたのお金の“ムダ度”を採点し、いま見直すべきポイント（最適な記事）を提示します。登録なし・端末内で計算。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="お金のムダ度診断｜AIガチ検証室">
+<meta property="og:description" content="7問であなたの“見直しどころ”をAIが採点。最適な記事に誘導します。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:660px;margin:0 auto;}
+  header{padding:34px 0 6px;text-align:center;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  h1{margin-top:12px;font-size:26px;font-weight:800;}
+  .lead{margin-top:10px;font-size:14px;color:var(--mut);}
+  .priv{margin-top:8px;font-size:12px;color:var(--g);font-weight:700;}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px;margin-top:14px;}
+  .q .qt{font-size:16px;font-weight:800;}
+  .opts{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+  .opt{padding:11px 13px;border-radius:10px;border:1px solid #33475b;font-size:15px;color:#cdd9e4;cursor:pointer;}
+  .opt.sel{border-color:var(--g);background:#16261a;color:#fff;font-weight:700;}
+  button{width:100%;margin-top:18px;padding:15px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:17px;font-weight:800;cursor:pointer;}
+  button:disabled{background:#20301f;color:#5c6b5c;}
+  .out{display:none;margin-top:22px;}
+  .score{background:#0b121a;border:1px dashed var(--b);border-radius:16px;padding:22px;text-align:center;}
+  .score .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .score .amt{margin-top:6px;font-size:52px;font-weight:900;line-height:1;}
+  .score .cm{margin-top:8px;font-size:14px;color:#cdd9e4;font-weight:700;}
+  .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:16px;}
+  .mio .h{font-size:12px;font-weight:800;color:var(--g);}
+  .mio p{margin-top:5px;font-size:14px;color:#d6dee6;}
+  .recs{margin-top:16px;}
+  .recs .rh{font-size:15px;font-weight:800;color:#cdd9e4;}
+  .rec{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-top:9px;color:var(--tx);}
+  .rec .rt{font-size:15px;font-weight:800;color:#7fc7ff;}
+  .rec .rd{margin-top:3px;font-size:12px;color:var(--mut);}
+  .cap{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:18px;text-align:center;}
+  .cap .h{font-size:15px;font-weight:800;color:#cfe8f5;}
+  .cap form{margin-top:10px;display:flex;gap:8px;max-width:420px;margin-left:auto;margin-right:auto;flex-wrap:wrap;justify-content:center;}
+  .cap input{flex:1;min-width:180px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#010409;color:#e6edf3;font-size:16px;font-family:inherit;}
+  .cap button{width:auto;margin-top:0;padding:12px 18px;font-size:15px;}
+  .note{margin-top:12px;font-size:11px;color:var(--faint);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <h1>お金のムダ度診断</h1>
+    <div class="lead">7問に答えるだけ。感情ゼロのAIが、あなたの“見直しどころ”を採点し、最適な記事へ案内します。</div>
+    <div class="priv">🔒 回答は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div id="quiz"></div>
+  <button id="go" onclick="calc()" disabled>結果を見る（あと<span id="left">7</span>問）</button>
+
+  <div class="out" id="out">
+    <div class="score">
+      <div class="lb">あなたのお金のムダ度</div>
+      <div class="amt" id="amt">—</div>
+      <div class="cm" id="cm"></div>
+    </div>
+    <div class="mio"><div class="h">Mioのひとこと</div><p id="mio"></p></div>
+    <div class="recs">
+      <div class="rh">🎯 あなたが今いちばん得する“見直し”</div>
+      <div id="reclist"></div>
+    </div>
+    <div class="cap">
+      <div class="h">📩 あなた向けの見直しプランと最新の採点をメールで（無料）</div>
+      <div id="capf">
+        <form action="https://app.kit.com/forms/9879672/subscriptions" method="post" target="capframe" onsubmit="document.getElementById('capf').style.display='none';document.getElementById('capdone').style.display='block';">
+          <input type="email" name="email_address" required placeholder="メールアドレス">
+          <button type="submit">受け取る</button>
+        </form>
+      </div>
+      <iframe name="capframe" style="display:none;width:0;height:0;border:0;"></iframe>
+      <div id="capdone" style="display:none;margin-top:10px;font-size:14px;color:#7ee787;font-weight:800;">ありがとうございます！お送りします 📩</div>
+      <div class="note">登録は無料・いつでも解除できます。個人情報は配信目的のみに使用します。</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <a href="../saiten/">📚 全部の採点を見る</a> ／ <a href="./">🧮 無料ツール一覧</a> ／ <a href="../">トップ</a>
+  </div>
+</div>
+<script>
+var A={
+ sim:{t:'格安SIM vs 大手キャリア',u:'../saiten/kakuyasu-sim-vs-carrier.html',d:'月20GB以下なら年3〜6万円差も'},
+ simtool:{t:'格安SIM 料金シミュ',u:'sim-sim.html',d:'乗り換えで年いくら得か即計算'},
+ hikari:{t:'光回線 乗り換えで年いくら',u:'../saiten/hikari-kaisen-norikae.html',d:'“実質料金”で見る'},
+ ribo:{t:'リボ払い 年率15%の罠',u:'../saiten/ribo-wana.html',d:'元金が減らない仕組みを計算'},
+ nisa:{t:'新NISA 一括 vs 積立',u:'../saiten/nisa-ikkatsu-vs-tsumitate.html',d:'始め方で割れる'},
+ nisa18:{t:'新NISA 1800万枠 使い切り',u:'../saiten/nisa-1800-tsukaikiri.html',d:'枠は余らせると損'},
+ ideco:{t:'iDeCo と NISA どっち先',u:'../saiten/ideco-vs-nisa-yusen.html',d:'順番で差が出る'},
+ shintaku:{t:'信託報酬0.5%差で数百万消える',u:'../saiten/shintaku-hoshu.html',d:'見えないコスト'},
+ hoken:{t:'保険 掛け捨て vs 貯蓄型',u:'../saiten/hoken-kakesute-vs-chochiku.html',d:'同じ保障で約5倍差'},
+ iryo:{t:'医療保険は必要？不要？',u:'../saiten/iryohoken-hitsuyo-ka.html',d:'高額療養費で天井'},
+ seimei:{t:'生命保険 いくら必要？',u:'../saiten/seimeihoken-hitsuyo-hosho.html',d:'必要保障額を式で'},
+ jidosha:{t:'自動車保険 見直し vs 継続',u:'../saiten/jidoshahoken-mitsumori.html',d:'同補償で年3.7万円減も'},
+ creca:{t:'クレカ 年会費あり vs 無料',u:'../saiten/creca-nenkaihi-vs-muryo.html',d:'年会費÷還元差で判定'},
+ mile:{t:'マイル vs 現金・ポイント還元',u:'../saiten/mile-vs-genkin-kangen.html',d:'1マイルの単価で割れる'},
+ kabe:{t:'年収の壁 2026',u:'../saiten/nenshu-no-kabe-2026.html',d:'130万をちょい超えが最悪'},
+ shobyo:{t:'傷病手当金 月給2/3を最長1年半',u:'../saiten/shobyo-teate.html',d:'知らず無給で耐える人が損'},
+ kunren:{t:'教育訓練給付 最大80%戻る',u:'../saiten/kyoiku-kunren-kyufu.html',d:'学び直し費用が戻る'},
+ jido:{t:'児童手当2024拡充 申請しないと損',u:'../saiten/jido-teate-2024.html',d:'高校生まで・第3子3万'},
+ gakushi:{t:'学資保険 vs つみたてNISA',u:'../saiten/gakushi-vs-tsumitate-nisa.html',d:'教育資金の作り方'},
+ aoiro:{t:'青色申告 65万控除',u:'../saiten/aoiro-65man.html',d:'白色より税を減らす'},
+ houjin:{t:'法人化 vs 個人事業主',u:'../saiten/houjinka-vs-kojin.html',d:'利益いくらから法人が得'},
+ furusato:{t:'ふるさと納税 ワンストップ vs 確定申告',u:'../saiten/furusato-onestop-vs-kakutei.html',d:'手間で選ぶ'},
+ kotei:{t:'固定費 見直しシミュ',u:'kotei-hi.html',d:'年いくら浮くか即計算'}
+};
+var Q=[
+ {q:'毎月のスマホ代は？',o:[['月8,000円前後（大手のまま）',25,['sim','simtool']],['月4,000〜7,000円',15,['sim']],['月3,000円以下（格安SIM等）',0,[]]]},
+ {q:'投資（新NISA・iDeCo）は？',o:[['やっていない',22,['nisa','ideco','nisa18']],['つみたて等を少し',8,['nisa18','shintaku']],['積極的にやっている',3,['shintaku','ideco']]]},
+ {q:'保険に毎月いくら？',o:[['2万円以上',22,['hoken','iryo','seimei']],['1〜2万円',12,['hoken','jidosha']],['1万円以下 / 入っていない',4,['iryo','seimei']]]},
+ {q:'支払い方法は？',o:[['リボ払いを使っている',30,['ribo','creca']],['クレカ一括中心',6,['creca','mile']],['現金中心',8,['creca']]]},
+ {q:'家族構成は？',o:[['子どもがいる',10,['jido','gakushi','kabe']],['夫婦・パートナー',6,['seimei']],['単身',4,[]]]},
+ {q:'働き方は？',o:[['会社員・公務員',6,['shobyo','kunren']],['自営業・フリー・副業あり',14,['aoiro','houjin']],['パート・扶養内',10,['kabe']]]},
+ {q:'ふるさと納税は？',o:[['やっていない',12,['furusato']],['やっている',3,[]],['よく知らない',10,['furusato']]]}
+];
+var ans=new Array(Q.length).fill(-1);
+function render(){
+ var qz=document.getElementById('quiz'); qz.innerHTML='';
+ Q.forEach(function(item,qi){
+  var d=document.createElement('div'); d.className='q';
+  var t=document.createElement('div'); t.className='qt'; t.textContent=(qi+1)+'. '+item.q; d.appendChild(t);
+  var op=document.createElement('div'); op.className='opts';
+  item.o.forEach(function(o,oi){
+   var b=document.createElement('div'); b.className='opt'+(ans[qi]===oi?' sel':''); b.textContent=o[0];
+   b.onclick=function(){ans[qi]=oi;render();upd();}; op.appendChild(b);
+  });
+  d.appendChild(op); qz.appendChild(d);
+ });
+}
+function upd(){
+ var left=ans.filter(function(a){return a<0;}).length;
+ document.getElementById('left').textContent=left;
+ document.getElementById('go').disabled=left>0;
+ document.getElementById('go').firstChild;
+ document.getElementById('go').innerHTML= left>0 ? ('結果を見る（あと<span id="left">'+left+'</span>問）') : '結果を見る →';
+}
+function calc(){
+ var score=0, recs=[];
+ Q.forEach(function(item,qi){ var o=item.o[ans[qi]]; if(!o)return; score+=o[1]; o[2].forEach(function(k){ if(recs.indexOf(k)<0)recs.push(k); }); });
+ if(score>100)score=100;
+ var amt=document.getElementById('amt'); amt.textContent=score+'点';
+ amt.style.color = score>=60?'#f0645a': score>=35?'#f0883e':'#2ea043';
+ var cm=document.getElementById('cm'), mio=document.getElementById('mio');
+ if(score>=60){cm.textContent='見直し余地：大。まだ取り返せます。'; mio.textContent='点が高いのはあなたの意志が弱いからじゃない。“設定”が損なだけ。下の見直しを上から1つ直せば、労力ゼロで毎年効きます。';}
+ else if(score>=35){cm.textContent='見直し余地：中。あと一歩で軽くなります。'; mio.textContent='悪くない。でも“なんとなく”で払っている設定が残っています。下の1〜2件だけ直しましょう。';}
+ else {cm.textContent='見直し余地：小。よく最適化できています。'; mio.textContent='お見事。ほぼ設定は整っています。あとは制度（給付・控除）の取りこぼしだけ確認を。';}
+ var rl=document.getElementById('reclist'); rl.innerHTML='';
+ (recs.length?recs:['furusato','nisa','sim']).slice(0,6).forEach(function(k){
+  var a=A[k]; if(!a)return;
+  var e=document.createElement('a'); e.className='rec'; e.href=a.u;
+  e.innerHTML='<div class="rt">'+a.t+' ↗</div><div class="rd">'+a.d+'</div>';
+  rl.appendChild(e);
+ });
+ document.getElementById('out').style.display='block';
+ document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+render(); upd();
+</script>
+</body>
+</html>
