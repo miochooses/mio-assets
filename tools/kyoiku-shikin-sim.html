@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教育資金 積立シミュレーター｜毎月いくら貯める？目標額と年数から即計算｜AIガチ検証室</title>
+<meta name="description" content="大学費用などの目標額と準備できる年数を入れるだけ。毎月いくら積み立てればいいかをAIが即計算。預金（利回り0%）と投資（利回りあり）の毎月額を並べて比較します。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="教育資金 積立シミュレーター">
+<meta property="og:description" content="目標額÷年数を利回りで割り戻し。毎月いくら積み立てるかを即計算。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--b);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--b);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .rows{margin-top:14px;display:grid;gap:10px;}
+  .row{display:flex;justify-content:space-between;align-items:baseline;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .row .k{font-size:13px;font-weight:700;color:var(--mut);}
+  .row .k small{display:block;font-size:11px;color:var(--faint);font-weight:500;}
+  .row .val{font-size:20px;font-weight:800;}
+  .row.dep .val{color:var(--tx);}
+  .row.inv .val{color:var(--g);}
+  .verdict{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;}
+  .verdict.win{background:#0e2417;border:1px solid #1f5a35;}
+  .verdict.lose{background:#2a1416;border:1px solid #5a2530;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:16px;margin-top:18px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:6px;font-size:12px;color:var(--faint);}
+  .cta .rel{margin-top:10px;font-size:13px;}
+  .cta .rel a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 教育資金 積立シミュ</div>
+    <h1>教育資金、毎月いくら貯めればいい？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）</div>
+  </header>
+
+  <div class="panel">
+    <label>目標額（円）<span class="sub">例）大学費用は300万〜500万が目安</span>
+      <input id="goal" type="number" inputmode="numeric" placeholder="例）3000000">
+    </label>
+    <label>準備できる年数（年）<span class="sub">今から目標時期まで。例）15</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="例）15">
+    </label>
+    <label>想定利回り（％・任意）<span class="sub">空欄なら「預金0%」と「投資3%」の2通りで表示</span>
+      <input id="rate" type="number" inputmode="decimal" step="0.1" placeholder="例）3.0">
+    </label>
+    <button onclick="calc()">毎月いくらか計算する</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb">毎月の積立額</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="rows" id="rows"></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="cta">
+        <div class="h">▶ 投資で積み立てるなら（証券口座）</div>
+        <!-- ASP: 証券口座(A8等)リンク挿入予定 -->
+        <div class="ph">［ASP導線プレースホルダ＝証券口座。つみたてNISA対応口座など、開示つきで差し込む予定］</div>
+        <div class="rel">
+          関連の採点：<a href="../saiten/gakushi-vs-tsumitate-nisa.html">学資保険 vs つみたてNISA</a> ｜ <a href="../saiten/nisa-ikkatsu-vs-tsumitate.html">NISA 一括 vs 積立</a>
+        </div>
+      </div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連の採点：<a href="../saiten/">AI採点アーカイブ</a> ｜ <a href="./">他の無料ツール</a>
+  </div>
+</div>
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+// 毎月積立額 m: FV = m × ((1+i)^N − 1)/i を目標額について解く（i=月利, N=月数）
+function monthly(goal, months, ratePct){
+  var i = (ratePct/100)/12;
+  if(i<=0){ return goal/months; }               // 利回り0%＝単純割り
+  var factor = (Math.pow(1+i, months) - 1) / i;  // 将来価値係数
+  return goal/factor;
+}
+function calc(){
+  var goal=parseFloat(document.getElementById('goal').value)||0;
+  var years=parseFloat(document.getElementById('years').value)||0;
+  var rateRaw=document.getElementById('rate').value.trim();
+  var rate=parseFloat(rateRaw);
+  if(goal<=0){ alert('目標額を入れてください'); return; }
+  if(years<=0){ alert('準備できる年数を入れてください'); return; }
+  var months = years*12;
+
+  var out=document.getElementById('out');
+  var amt=document.getElementById('amt');
+  var sub2=document.getElementById('sub2');
+  var rows=document.getElementById('rows');
+  var v=document.getElementById('verdict');
+  var note=document.getElementById('note');
+
+  if(rateRaw!=='' && rate>0){
+    // 利回りを指定 → 預金0% と 指定利回り を並べる
+    var mDep = monthly(goal, months, 0);
+    var mInv = monthly(goal, months, rate);
+    var diff = mDep - mInv;
+    amt.textContent = yen(mInv);
+    sub2.textContent = '（利回り '+rate+'% で積み立てた場合。目標 '+yen(goal)+' ／ '+years+'年＝'+months+'ヶ月）';
+    rows.innerHTML =
+      '<div class="row dep"><div class="k">利回り0%（預金）<small>ただ貯めるだけ</small></div><div class="val">'+yen(mDep)+'</div></div>'+
+      '<div class="row inv"><div class="k">利回り'+rate+'%（投資）<small>運用で増える想定</small></div><div class="val">'+yen(mInv)+'</div></div>';
+    v.className='verdict win';
+    v.textContent='✅ 利回り'+rate+'%を想定すると、預金より毎月 '+yen(diff)+' 軽くなる計算です（運用益で目標に届く分）。';
+    note.textContent='※あくまで概算です。想定利回りは保証されません。投資は元本割れ・価格変動のリスクがあり、目標の時期にちょうど暴落が重なると目標額に届かないこともあります。利回りは複利・毎月末積立の前提。学費の実額・時期はご自身でご確認ください。これは投資助言ではありません。';
+  } else {
+    // 利回り未指定 → 預金0% と 投資3% の2通り
+    var r0=0, r3=3;
+    var m0 = monthly(goal, months, r0);
+    var m3 = monthly(goal, months, r3);
+    var d = m0 - m3;
+    amt.textContent = yen(m0);
+    sub2.textContent = '（利回り0%＝預金の場合。目標 '+yen(goal)+' ／ '+years+'年＝'+months+'ヶ月）';
+    rows.innerHTML =
+      '<div class="row dep"><div class="k">利回り0%（預金）<small>ただ貯めるだけ</small></div><div class="val">'+yen(m0)+'</div></div>'+
+      '<div class="row inv"><div class="k">利回り3%（投資・想定）<small>運用で増える想定</small></div><div class="val">'+yen(m3)+'</div></div>';
+    v.className='verdict win';
+    v.textContent='✅ 仮に年3%で運用できれば、預金より毎月 '+yen(d)+' 軽くなる計算です。利回りを入れると、その数字でも計算できます。';
+    note.textContent='※3%はあくまで一例の想定で、保証された利回りではありません。投資は元本割れ・価格変動のリスクがあり、目標の時期にちょうど暴落が重なると目標額に届かないこともあります。利回りは複利・毎月末積立の前提。学費の実額・時期はご自身でご確認ください。これは投資助言ではありません。';
+  }
+  out.style.display='block';
+}
+</script>
+</body>
+</html>
