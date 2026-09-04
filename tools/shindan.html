@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>お金のムダ度診断｜7問であなたの“見直しどころ”をAIが採点｜AIガチ検証室</title>
-<meta name="description" content="7つの質問に答えるだけ。感情ゼロのAIが、あなたのお金の“ムダ度”を採点し、いま見直すべきポイント（最適な記事）を提示します。登録なし・端末内で計算。">
+<title>お金のムダ度かんたん自己診断｜7問で“見直しどころ”の目安｜AIガチ検証室</title>
+<meta name="description" content="7つの質問に答えるだけ。お金の“見直しどころ”の目安がわかる、かんたん自己診断です。Mioの重みづけによる簡易診断で、いま見直すべきポイント（最適な記事）へ案内します。登録なし・端末内で完結。">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="お金のムダ度診断｜AIガチ検証室">
-<meta property="og:description" content="7問であなたの“見直しどころ”をAIが採点。最適な記事に誘導します。">
+<meta property="og:title" content="お金のムダ度かんたん自己診断｜AIガチ検証室">
+<meta property="og:description" content="7問で“見直しどころ”の目安がわかる簡易診断。最適な記事に案内します。">
 <style>
   :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -31,6 +31,7 @@
   .score .lb{font-size:13px;color:var(--mut);font-weight:700;}
   .score .amt{margin-top:6px;font-size:52px;font-weight:900;line-height:1;}
   .score .cm{margin-top:8px;font-size:14px;color:#cdd9e4;font-weight:700;}
+  .transp{margin-top:12px;font-size:12px;color:var(--mut);background:#0d151e;border:1px solid var(--line);border-radius:10px;padding:11px 14px;}
   .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:16px;}
   .mio .h{font-size:12px;font-weight:800;color:var(--g);}
   .mio p{margin-top:5px;font-size:14px;color:#d6dee6;}
@@ -53,9 +54,9 @@
 <div class="wrap">
   <header>
     <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
-    <h1>お金のムダ度診断</h1>
-    <div class="lead">7問に答えるだけ。感情ゼロのAIが、あなたの“見直しどころ”を採点し、最適な記事へ案内します。</div>
-    <div class="priv">🔒 回答は端末内だけで計算（送信しません）</div>
+    <h1>お金のムダ度かんたん自己診断</h1>
+    <div class="lead">7問で、お金の“見直しどころ”の目安を出します。Mioの重みづけによる簡易診断で、あなたに合う記事へ案内します。</div>
+    <div class="priv">🔒 回答は端末内だけで処理（送信しません）</div>
   </header>
 
   <div id="quiz"></div>
@@ -67,13 +68,14 @@
       <div class="amt" id="amt">—</div>
       <div class="cm" id="cm"></div>
     </div>
+    <div class="transp">この診断は、各項目に重みをつけて合計した“目安”です。実際の金額ではありません。正確な金額は、下の見直し記事や計算ツールで確認してください。</div>
     <div class="mio"><div class="h">Mioのひとこと</div><p id="mio"></p></div>
     <div class="recs">
       <div class="rh">🎯 あなたが今いちばん得する“見直し”</div>
       <div id="reclist"></div>
     </div>
     <div class="cap">
-      <div class="h">📩 あなた向けの見直しプランと最新の採点をメールで（無料）</div>
+      <div class="h">📩 あなた向けの見直しプランと最新の見直し情報をメールで（無料）</div>
       <div id="capf">
         <form action="https://app.kit.com/forms/9879672/subscriptions" method="post" target="capframe" onsubmit="document.getElementById('capf').style.display='none';document.getElementById('capdone').style.display='block';">
           <input type="email" name="email_address" required placeholder="メールアドレス">
