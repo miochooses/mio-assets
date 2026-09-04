@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学資保険 vs つみたてNISA、教育資金はどっちが得？保障と増やす期待値で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「学資保険 vs つみたてNISA（新NISA）」を計算だけで採点。返戻率の考え方・親の万一で払込免除される保障・元本割れと流動性を出典つきで比較。どっちが得かはあなたの条件で割れます。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/gakushi-vs-tsumitate-nisa.html">
+<meta property="og:title" content="学資保険 vs つみたてNISA｜教育資金、保障と期待値でAIが計算採点">
+<meta property="og:description" content="お金の2択に計算で終止符。保障（親の万一で払込免除）を取るか、増やす期待値と流動性を取るか。条件表で自分の側がわかる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 学資保険 vs つみたてNISA</div>
+    <h1>学資保険 vs つみたてNISA、教育資金は<br>どっちが得？「保障」と「増やす期待値」で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算と条件</b>で採点します。結論から言うと ―― これは「どっちが儲かるか」だけの勝負ではありません。<b>保障を取るか、増やす期待値と流動性を取るか</b>で、正解が割れます。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">親の万一で「以後の払込が免除される保障」と確実性が最優先 → 学資保険。<br>増やす期待値と、いつでも引き出せる流動性が最優先 → つみたてNISA（＋親の保障は掛け捨てで別途）。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>学資保険（安全・確実だが利回りは低め）</span><span>保障◎ / 増やす力△</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>つみたてNISA（増やす期待値・流動性は高いが値動きあり）</span><span>増やす力◎ / 保障×</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※バーは「役割の向き」を示す模式図であり、将来のリターンや金額を保証するものではありません。投資は元本割れの可能性があります。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>この2つは、そもそも<b>役割が違う道具</b>です。だから「どっちが得か」を1つの金額で決めつけるのは危険。判断は、あなたにとって次のどちらが重いかで決まります。</p>
+  <div class="calc">教育資金の設計 ＝ ①「増やす期待値」 ＋ ②「親の万一への保障」 ＋ ③「使う時までの流動性」<small>この3つの優先順位で、学資保険とNISAの“正解の側”が決まります</small></div>
+  <p><b>学資保険</b>は、決まった額を積み立てると満期に決まった額が受け取れる商品。増える割合を示すのが「返戻率＝受取総額 ÷ 払込総額」です。<b>返戻率100%未満なら元本割れ</b>、100%超なら払込より多く戻る、という単純な指標です。</p>
+  <p><b>つみたてNISA（新NISA）</b>は、投資信託などを非課税で積み立てる制度。利益に約20%かかる税金がかからないぶん、増やす期待値は高くなりやすい一方、<b>値動きで元本割れするリスク</b>があります。</p>
+
+  <h2>数字の考え方：返戻率と、非課税の効き方</h2>
+  <h3>学資保険 ―― 返戻率の読み方</h3>
+  <p>返戻率は商品と加入条件で変わります。近年は低金利で返戻率が下がり、特約を付けると100%を下回る（元本割れする）ケースも出ていました。ただし2024〜2025年の金利上昇を受け、主要各社で返戻率が改善したプランも出ています（<a href="#src">出典1・2</a>）。</p>
+  <div class="calc">受取総額 ÷ 払込総額 ＝ 返戻率<small>例）払込300万円で満期315万円 → 返戻率105%（＝15万円ぶん増）。数字は商品ごとに要確認</small></div>
+  <p>ここで見落としがちなのが、返戻率には<b>「親に万一があったら以後の払込が免除され、それでも満期金は満額受け取れる」保障</b>のコストが含まれる点です。この保障を重視するなら、返戻率は「おまけ」と割り切る考え方もあります（<a href="#src">出典1</a>）。</p>
+
+  <h3>つみたてNISA ―― 感度分析（将来は断定しない）</h3>
+  <p>将来リターンは<b>誰にも断定できません</b>。そこでAI検証室は「もし年◯%で増えたら」という<b>感度分析</b>で幅を示します。以下は毎月2万円を15年積み立てた場合の、あくまで機械的な計算例です。</p>
+  <table>
+    <tr><th>前提リターン（年）</th><th>元本（15年）</th><th>試算の到達額（概算・機械計算）</th></tr>
+    <tr><td>0%（増えない）</td><td>360万円</td><td>約360万円</td></tr>
+    <tr><td>年3%で推移した場合</td><td>360万円</td><td>約453万円</td></tr>
+    <tr><td>年5%で推移した場合</td><td>360万円</td><td>約534万円</td></tr>
+    <tr><td>下落局面に当たった場合</td><td>360万円</td><td class="win" style="color:var(--o)">360万円を下回ることもある</td></tr>
+  </table>
+  <div class="note">※上表は複利の積立を機械的に計算した数値例で、特定商品の実績・将来利回りを示すものではありません。運用期間が短いほど元本割れの確率は高まり、長期・積立・分散が推奨されています（<a href="#src">出典3・4</a>）。</div>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>勝者</th><th>理由</th></tr>
+    <tr><td>親の万一で「払込免除」の保障が欲しい</td><td class="win">学資保険</td><td>契約者に万一があると以後の払込が免除され、満期金は受け取れる保障が本体（出典1）</td></tr>
+    <tr><td>値動きは絶対に避けたい・確実性が最優先</td><td class="win">学資保険</td><td>満期の受取額が契約時に決まる（ただし途中解約は元本割れに注意）</td></tr>
+    <tr><td>期待リターンを重視し、値動きは許容できる</td><td class="win">NISA</td><td>非課税で増やす期待値が高くなりやすい（＋親の保障は掛け捨てで別途）</td></tr>
+    <tr><td>教育以外にも使うかも・流動性が欲しい</td><td class="win">NISA</td><td>いつでも引き出せる。学資保険は途中解約で元本割れしやすい</td></tr>
+    <tr><td>使う時期がまだ先（10年以上ある）</td><td class="win">NISA</td><td>運用期間が長いほど元本割れの確率は下がる傾向（出典3・4）</td></tr>
+    <tr><td>使う時期が数年後に迫っている</td><td class="win">学資保険</td><td>短期は値動きリスクが相対的に大きい。確実性が効く</td></tr>
+    <tr><td>自分で積立を続ける自信がない</td><td>引き分け</td><td>保険は強制力◎ / NISAは自動積立設定で近づけられる</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「NISAの方が増えそうだから全部NISA」は早計です。学資保険が持つ<b>払込免除という保障</b>は、投資では代替できません。逆に「安心だから全部学資保険」も、増やす力と流動性を捨てています。<b>NISAで増やしつつ、親の万一は掛け捨ての死亡保障（別記事）で別に確保する</b>――この組み合わせが有力な第3の解になります。ここを飛ばして「どっちか一方が正解」と煽るのはこの検証室のやり方ではありません。</p>
+
+  <div class="cta">
+    <div class="h">▶ まずは自分の“積立の伸びしろ”を数字で見る</div>
+    <div class="ph"><a href="../tools/tsumitate-sim.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ つみたてシミュレーターで到達額の幅を今すぐ試算する</a><br>
+    <!-- ASP: 証券口座(A8等)リンク挿入予定 --><br>
+    <!-- ASP: 保険FP無料相談(A8等) --><br>
+    ［ASP導線プレースホルダ：提携済みの証券口座／保険FP相談リンクを開示つきで差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>これは「儲け」だけの勝負ではない。<b>保障・増やす期待値・流動性</b>の優先順位で正解が割れる。</li>
+    <li>親の万一で払込が免除される<b>保障</b>と確実性が最優先なら → 学資保険。</li>
+    <li>増やす期待値と、いつでも引き出せる<b>流動性</b>が最優先なら → つみたてNISA。</li>
+    <li>有力な第3の解：<b>NISAで増やし、親の保障は掛け捨てで別途</b>確保する組み合わせ。</li>
+    <li>将来リターンは断定不能。感度分析で幅を見て、使う時期・リスク許容度で自分の側を決める。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏦 NISAの積み方も迷うなら：<a href="nisa-ikkatsu-vs-tsumitate.html" style="color:#58a6ff;text-decoration:none;font-weight:700">新NISA 一括 vs つみたて、どっちが得か採点 →</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🛡️ 保険そのものを見直すなら：<a href="hoken-kakesute-vs-chochiku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">掛け捨て vs 貯蓄型 保険、どっちが得か採点 →</a> ／ <a href="seimeihoken-hitsuyo-hosho.html" style="color:#58a6ff;text-decoration:none;font-weight:700">生命保険の必要保障額の出し方 →</a></div>
+
+  <div class="src" id="src">
+    <b>出典</b><br>
+    ・出典1：学資保険は元本割れの可能性・途中解約リスク・「払込免除」保障の位置づけ（保険関連解説）<a href="https://www.invest-concierge.com/qa/gakushi-hoken-risk-of-loss" target="_blank" rel="noopener">invest-concierge.com</a><br>
+    ・出典2：学資保険の返戻率の考え方と近年の動向（低下→2024〜2025年に改善プランも）<a href="https://www.nanairolife.co.jp/hoken/educational-insurance-return-rate/" target="_blank" rel="noopener">nanairolife.co.jp</a><br>
+    ・出典3：つみたてNISA（つみたて投資枠）の元本割れリスクと期間の関係（金融機関解説）<a href="https://www.bk.mufg.jp/column/shisan_unyo/b0094.html" target="_blank" rel="noopener">bk.mufg.jp</a><br>
+    ・出典4：金融庁「NISAを利用する皆さまへ」長期・積立・分散、元本割れの可能性<a href="https://www.fsa.go.jp/policy/nisa2/about/nisa2024/slide_202406.pdf" target="_blank" rel="noopener">fsa.go.jp</a><br>
+    ・参考：新NISA制度（年間投資枠合計360万円／非課税保有限度額1,800万円・恒久化）<a href="https://www.rakuten-sec.co.jp/web/nisa/limit/" target="_blank" rel="noopener">rakuten-sec.co.jp</a><br>
+    <span class="note">※金額・返戻率・非課税枠は各時点の公開情報にもとづく参考値です。最新の条件は各社公式・金融庁でご確認ください。本記事は特定商品の勧誘・投資助言ではなく、最終判断はご自身で。投資には元本割れのリスクがあります。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
