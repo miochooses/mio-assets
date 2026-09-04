@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>法人化 vs 個人事業主のまま、利益いくらから法人が得？損益分岐を計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「法人化 vs 個人事業主のまま」を計算だけで採点。税率だけなら法人有利に見えるが、社会保険＋維持コストを入れると分岐は上がる。利益いくらから法人が得か、式と条件表を国税庁など一次情報つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/houjinka-vs-kojin.html">
+<meta property="og:title" content="法人化 vs 個人事業主のまま｜利益いくらから法人が得か、AIが計算で採点">
+<meta property="og:description" content="税率だけ見ると法人有利。でも社会保険と維持コストを入れると分岐は上がる。利益規模と継続性で採点する式つき。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px;}
+  .mio .h{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.04em;}
+  .mio .t{margin-top:6px;font-size:14px;color:var(--tx);font-weight:600;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 法人化 vs 個人事業主</div>
+    <h1>法人化 vs 個人事業主のまま、<br>利益いくらから法人が得？損益分岐を計算した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― 「法人にすれば節税」は<b>半分だけ本当</b>。税率だけ見れば法人が有利に傾く水準はありますが、社会保険と維持コストを式に入れると、得になる分岐は世間で言われるより<b>上がる</b>ことが多いです。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">利益（課税所得）が継続的に800〜900万円を超えていく × 社会保険の負担増を吸収できる → 法人化が得になりやすい。<br>利益がまだ数百万円台 or 単年で不安定 or 家族に給与を分散できない → 個人のままが無難。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>個人（課税所得800万円超の限界税率）</span><span>所得税＋住民税で 約43%〜最大55%</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>法人（中小の実効税率・目安）</span><span>おおむね 約23〜35%</span></div><div class="track"><div class="fill" style="width:50%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※税率はいずれも公開情報にもとづく一般的な目安（出典は末尾）。個人の限界税率は課税所得の区分で、法人の実効税率は所得規模・自治体で変わります。</div>
+  </div>
+
+  <div class="mio">
+    <div class="h">Mioのひとこと</div>
+    <div class="t">「法人にすれば節税」は釣り文句。維持コストと社会保険を数字に入れて初めて、損か得かが出る。税率の差だけで飛びつくと、赤字でも出ていく年約7万円と社保の会社負担でむしろ手取りが減る年がある。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「法人のほうが税率が低い」――これは<b>一部だけ正しい</b>。個人の所得税は超過累進で、課税所得が上がるほど限界税率が上がります。国税庁の速算表では、課税所得695万円超〜900万円以下で<b>23%</b>、900万円超〜1,800万円以下で<b>33%</b>、最高は4,000万円超で<b>45%</b>（＋住民税おおむね10%）。一方、中小法人の実効税率は所得規模により<b>おおむね20%台〜35%程度</b>。ここだけ見ると、確かに一定水準からは法人が有利に見えます。</p>
+  <p>でも比べるべきは税率そのものではなく、<b>年間で手元に残る現金</b>です。式はこう分解します。</p>
+  <div class="calc">個人の負担 ＝ 所得税＋住民税＋国民健康保険＋国民年金<br>法人の負担 ＝ 法人税等 ＋ 役員報酬の社会保険（本人＋会社負担）＋ 維持費<small>この2つを同じ利益水準で並べて、残る現金が多いほうが「勝ち」</small></div>
+  <p>法人側には税率の低さという追い風がある一方で、<b>後ろから引っぱるコスト</b>があります。ここを無視して「税率が低いから法人が得」とだけ言うのは、この検証室のやり方ではありません。</p>
+
+  <h2>法人化の「メリット」と「見えないコスト」を両方置く</h2>
+  <h3>法人が有利に働く点</h3>
+  <ul>
+    <li><b>所得の分散：</b>利益をそのまま個人所得にせず、役員報酬として自分や家族に分けることで、累進の高い税率帯を避けやすい。</li>
+    <li><b>経費の範囲：</b>役員社宅・出張日当・退職金の準備など、個人事業より経費化の選択肢が広がる場面がある。</li>
+    <li><b>欠損金の繰越：</b>法人の青色欠損金は最大10年繰り越せる（個人は3年）。赤字を将来の黒字と相殺しやすい。</li>
+    <li><b>信用・取引：</b>取引先が法人格を求めるケース、社会的信用が要る場面では利益水準に関係なく法人が必要なことも。</li>
+  </ul>
+  <h3>法人化で増える固定コスト（ここが分岐を押し上げる）</h3>
+  <ul>
+    <li><b>設立費用：</b>株式会社は登録免許税15万円＋定款認証など、実費でおおむね<b>20万円前後</b>（合同会社はより安い）。</li>
+    <li><b>赤字でも出ていく税金：</b>法人住民税の均等割は<b>赤字でも最低 年約7万円</b>（資本金1,000万円以下・従業員50人以下の一般的なケース）。</li>
+    <li><b>社会保険の加入義務：</b>法人は原則として厚生年金・健康保険への加入が義務。<b>会社負担分（およそ本人と同額）</b>が新たに乗るため、ここが手取りを最も左右する。</li>
+    <li><b>税理士費用・事務負担：</b>法人の申告は複雑になりやすく、税理士費用や記帳・決算の手間が増えるのが一般的。</li>
+  </ul>
+
+  <h2>ワークド例：利益が伸びてきた人の分岐イメージ</h2>
+  <p>よく「課税所得800万円が目安」と言われます。これは、所得800万円あたりで個人の限界税率（所得税＋住民税）が<b>約43%</b>に達し、中小法人の実効税率（高くても<b>約35%程度</b>）を上回る、という税率の逆転を大まかに示したものです。</p>
+  <div class="calc">課税所得が継続して 約800〜900万円超 → 税率差では法人有利<br>ただし「社会保険の会社負担＋維持費 年数十万円」を差し引くと分岐は上へ<small>※税率だけの目安。実際は社保・役員報酬設計で分岐点は動きます</small></div>
+  <p>だからこそ、単年でたまたま800万円を超えた程度では踏み切りにくい。<b>継続して超えていく見込み</b>があり、増える社会保険と維持費を吸収してなお現金が残る――ここまで揃って初めて「法人が得」と言えます。金額の断定は避けます。社会保険の負担で分岐は大きく動くため、<b>実際の数字は税理士のシミュレーションで要確認</b>です。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>勝者</th><th>理由</th></tr>
+    <tr><td>課税所得が継続して800〜900万円超</td><td class="win">法人</td><td>個人の限界税率が中小法人の実効税率を上回りやすい</td></tr>
+    <tr><td>利益はまだ数百万円台</td><td class="win">個人</td><td>維持費・社保増で法人のコストを回収しにくい</td></tr>
+    <tr><td>単年だけ利益が跳ねた（不安定）</td><td class="win">個人</td><td>継続性がないと維持コストが重荷になりやすい</td></tr>
+    <tr><td>家族に給与を分散できる</td><td class="win">法人</td><td>役員報酬の分散で累進の高い税率帯を避けやすい</td></tr>
+    <tr><td>取引先が法人格を要求している</td><td class="win">法人</td><td>利益水準に関係なく法人が必要なケース</td></tr>
+    <tr><td>社会保険の会社負担を吸収できない</td><td>要確認</td><td>社保増で手取りが減る年もある。試算必須</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「税率が低いから法人が得」という説明は、社会保険の会社負担と赤字でも出る均等割を計算に入れていないことが多いです。分岐は税率だけでは決まりません。ここを飛ばして煽るのは、この検証室のやり方ではありません。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分の“分岐点”を数字で確かめる</div>
+    <div class="ph"><!-- ASP: 会計ソフト/税理士紹介(A8等)リンク挿入予定 --><br>［ASP導線プレースホルダ：会計ソフト・税理士紹介の申込リンクを開示つきでここに差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は「税率」ではなく「年間で残る現金」で。個人の税・社保 vs 法人の税＋社保（会社負担）＋維持費を並べる。</li>
+    <li>税率の逆転は課税所得800〜900万円あたりから起きやすいが、それは<b>目安</b>にすぎない。</li>
+    <li>設立費用・赤字でも年約7万円の均等割・社会保険の会社負担・税理士費用で、実際の分岐は上へ動く。</li>
+    <li>継続して利益が出て、増えるコストを吸収してなお現金が残るなら法人。ここは断定せず、税理士の試算で要確認。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💰 個人のままでも税を軽くする一手：<a href="aoiro-65man.html" style="color:#58a6ff;text-decoration:none;font-weight:700">青色申告65万円控除は本当に得か（要件と実額で採点）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🕒 働き方そのものを見直すなら：<a href="jitsu-jikyu.html" style="color:#58a6ff;text-decoration:none;font-weight:700">その仕事、実質時給はいくら？（手取り÷総拘束時間で採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・国税庁「No.2260 所得税の税率」（速算表：695万超〜900万以下23%／900万超〜1,800万以下33%／4,000万超45%）<br>
+    ・国税庁「No.5759 法人税の税率」・中小企業庁「法人税率の軽減」（年800万円以下の所得は軽減税率15%）<br>
+    ・中小法人の法人実効税率の一般的な目安（各会計ソフト・税理士法人の公開解説）<br>
+    ・法人住民税「均等割」（資本金1,000万円以下・従業員50人以下で最低 年7万円・赤字でも課税）<br>
+    ・株式会社の設立費用の目安（登録免許税15万円＋定款認証等でおおむね20万円前後）<br>
+    ・法人の社会保険（厚生年金・健康保険）加入義務および会社負担に関する一般解説<br>
+    <span class="note">※金額・税率は各時点の公開情報にもとづく参考値です。税制は改正されます。個別の損益分岐は所得規模・役員報酬設計・社会保険・自治体で変わるため、最終判断は税理士にご確認ください。本記事は特定の選択を勧誘するものではありません。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
