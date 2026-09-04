@@ -78,6 +78,11 @@
       <span><span class="ctx">「退職所得の受給に関する申告書」を提出する</span><br><span class="cnote">通常は勤務先へ提出。未提出だと退職金の全額に一律20.42%が源泉徴収されます</span></span>
     </label>
 
+    <label class="check">
+      <input id="yakuin" type="checkbox">
+      <span><span class="ctx">役員等である（特定役員退職手当等）</span><br><span class="cnote">役員・国会議員・公務員など。勤続5年以下の役員等は「1/2課税」が使えません（国税庁No.2737）</span></span>
+    </label>
+
     <button onclick="calc()">手取りをざっくり計算</button>
 
     <div class="out" id="out">
@@ -117,14 +122,37 @@ function calc(){
   if(taishoku<=0){ alert('退職金の額を入れてください'); return; }
   if(years<=0){ alert('勤続年数（年）を入れてください'); return; }
   var shinkoku=document.getElementById('shinkoku').checked;
+  var yakuin=document.getElementById('yakuin').checked;
+  var tanki=(years<=5); // 勤続5年以下＝短期退職手当等（役員等なら特定役員退職手当等）
 
   // 退職所得控除
   var kojo;
   if(years<=20){ kojo=Math.max(400000*years, 800000); }
   else { kojo=8000000+700000*(years-20); }
 
-  // 課税退職所得（1/2課税）
-  var kazei=Math.max(0,(taishoku-kojo)/2);
+  // 控除後の金額（＝A。ここまでは全ケース共通）
+  var afterKojo=Math.max(0, taishoku-kojo);
+
+  // 課税退職所得（勤続年数・役員等区分で1/2課税の扱いが分岐）
+  //   国税庁 No.1420 / No.2740（短期退職手当等）/ No.2737（特定役員退職手当等）
+  var kazei, kazeiHoshiki;
+  if(!tanki){
+    // 勤続6年以上：通常どおり控除後の1/2
+    kazei=afterKojo/2;
+    kazeiHoshiki='通常（控除後の1/2）';
+  } else if(yakuin){
+    // 勤続5年以下・役員等（特定役員退職手当等）：1/2課税なし＝控除後の全額
+    kazei=afterKojo;
+    kazeiHoshiki='特定役員（1/2課税なし・控除後の全額）';
+  } else {
+    // 勤続5年以下・一般（短期退職手当等）：300万円までは1/2、300万円超の部分は全額
+    if(afterKojo<=3000000){
+      kazei=afterKojo/2;
+    } else {
+      kazei=1500000+(afterKojo-3000000);
+    }
+    kazeiHoshiki=(afterKojo<=3000000)?'短期（300万円以下・控除後の1/2）':'短期（300万円超の部分は全額）';
+  }
 
   var shotokuzei, fukko, juminzei, tegata, W=document.getElementById('warn');
   if(shinkoku){
@@ -150,15 +178,17 @@ function calc(){
 
   var L=document.getElementById('lines'); L.innerHTML='';
   function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+  function rowText(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+v+'</b></span>'; L.appendChild(d); }
   row('退職金（総額）',taishoku);
   row('退職所得控除（勤続'+years+'年）',kojo);
-  row('課税退職所得（1/2課税後）',kazei);
+  rowText('課税方式',kazeiHoshiki);
+  row('課税退職所得',kazei);
   row('所得税＋復興特別所得税',shotokuzei+fukko);
   row('住民税（概算10%）',juminzei);
   row('税・合計（概算）',zeikin);
   row('手取り目安',tegatori);
 
-  document.getElementById('note').innerHTML='※これは一般的な税制にもとづく“ざっくり概算”です。退職所得控除は障害退職・同一年内の複数退職金・過去の退職金との調整などで変わり、課税退職所得の1000円未満切捨て、勤続5年以下の役員等・短期退職手当等の1/2課税不適用、住民税10%の内訳（市区町村・都道府県）や自治体差、その他の控除は簡略化しています。実際の額とは異なる場合があります。<b style="color:#f0b070">正確な額は勤務先・国税庁の公式資料や税理士で必ずご確認ください。</b>';
+  document.getElementById('note').innerHTML='※これは一般的な税制にもとづく“ざっくり概算”です。勤続5年以下は1/2課税が制限され、一般の短期退職手当等は控除後300万円超の部分を全額課税、役員等の特定役員退職手当等は控除後の全額を課税として計算しています（国税庁 <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2740.htm" target="_blank" rel="noopener">No.2740</a>／<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2737.htm" target="_blank" rel="noopener">No.2737</a>／<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm" target="_blank" rel="noopener">No.1420</a>）。退職所得控除は障害退職・同一年内の複数退職金・過去の退職金との調整などで変わり、課税退職所得の1000円未満切捨て、住民税10%の内訳（市区町村・都道府県）や自治体差、その他の控除は簡略化しています。実際の額とは異なる場合があります。<b style="color:#f0b070">正確な額は勤務先・国税庁の公式資料や税理士で必ずご確認ください。</b>';
 
   document.getElementById('out').style.display='block';
 }

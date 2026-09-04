@@ -58,17 +58,15 @@
   </header>
 
   <div class="panel">
-    <label>1年間にもらった財産の合計（万円）<span class="sub">1/1〜12/31にもらった額。例）300万円なら 300。複数の人からもらった分はすべて合算</span>
-      <input id="man" type="number" inputmode="numeric" placeholder="例）300">
+    <label>一般贈与財産の額（万円）<span class="sub">「特例」以外の贈与。例）配偶者・兄弟姉妹・叔父叔母から、直系尊属でも18歳未満の受贈者など。例）100万円なら 100。なければ空欄（0）でOK</span>
+      <input id="manG" type="number" inputmode="numeric" placeholder="例）100">
     </label>
 
-    <label>贈与の種類<span class="sub">「特例」＝親・祖父母など直系尊属から18歳以上の子・孫への贈与。それ以外はすべて「一般」</span></label>
-    <div class="seg" id="seg">
-      <button type="button" id="btnG" class="on" onclick="setType('general')">一般贈与</button>
-      <button type="button" id="btnS" onclick="setType('special')">特例贈与</button>
-    </div>
+    <label>特例贈与財産の額（万円）<span class="sub">親・祖父母など直系尊属から、受贈年1/1時点で18歳以上の子・孫への贈与。例）400万円なら 400。なければ空欄（0）でOK</span>
+      <input id="manS" type="number" inputmode="numeric" placeholder="例）400">
+    </label>
 
-    <label class="chk"><input type="checkbox" id="adult"> 受贈者は贈与を受けた年の1/1時点で18歳以上</label>
+    <div class="note" style="margin-top:8px">※一般・特例の両方に金額を入れると、国税庁 No.4408 の按分方式（課税価格を按分して合算）で計算します。複数の人からもらった分はすべて合算してから入力してください。</div>
 
     <button class="calc" onclick="calc()">贈与税をざっくり計算</button>
 
@@ -115,62 +113,80 @@ var TBL_SPECIAL = [
   [Infinity, 55, 6400000]
 ];
 
-var gtype = 'general';
-function setType(t){
-  gtype = t;
-  document.getElementById('btnG').classList.toggle('on', t==='general');
-  document.getElementById('btnS').classList.toggle('on', t==='special');
-  // 特例を選んだら「18歳以上」を促す
-  if(t==='special'){ document.getElementById('adult').checked = true; }
+// 課税価格kazei（基礎控除後・円）に対し、指定の速算表で税額を算出。
+// 戻り値: {tax, rate, ctrl}
+function taxByTable(kazei, tbl){
+  if(kazei<=0) return {tax:0, rate:0, ctrl:0};
+  var rate=0, ctrl=0;
+  for(var i=0;i<tbl.length;i++){
+    if(kazei<=tbl[i][0]){ rate=tbl[i][1]; ctrl=tbl[i][2]; break; }
+  }
+  var tax = kazei*(rate/100) - ctrl;
+  if(tax<0) tax=0;
+  return {tax:tax, rate:rate, ctrl:ctrl};
 }
 
-function bandLabel(rate){ return '税率 '+rate+'% の帯'; }
-
 function calc(){
-  var man = parseFloat(document.getElementById('man').value)||0;
-  if(man<=0){ alert('もらった財産の合計（万円）を入れてください'); return; }
-  var total = man*10000;
+  var manG = parseFloat(document.getElementById('manG').value)||0; // 一般贈与財産（万円）
+  var manS = parseFloat(document.getElementById('manS').value)||0; // 特例贈与財産（万円）
+  if(manG<0||manS<0){ alert('金額はマイナスにできません'); return; }
+  var amtG = manG*10000; // 一般贈与財産額（円）
+  var amtS = manS*10000; // 特例贈与財産額（円）
+  var total = amtG + amtS; // その年の贈与合計
+  if(total<=0){ alert('一般または特例の贈与額（万円）を入れてください'); return; }
+
   var kiso = 1100000; // 基礎控除110万円
-  var kazei = total - kiso; // 基礎控除後の課税価格
+  var kazei = total - kiso; // 基礎控除後の課税価格C
+  if(kazei<0) kazei=0;
 
-  // 特例税率は直系尊属→18歳以上が要件。未チェックなら一般税率で計算（保守的）
-  var useSpecial = (gtype==='special');
-  var adult = document.getElementById('adult').checked;
-  var forcedGeneral = false;
-  if(useSpecial && !adult){ useSpecial = false; forcedGeneral = true; }
-  var tbl = useSpecial ? TBL_SPECIAL : TBL_GENERAL;
-  var tblName = useSpecial ? '特例税率（直系尊属→18歳以上）' : '一般税率';
+  // 国税庁 No.4408 按分方式：
+  //   一般分の税額 = C全額を一般税率で計算した税額 ×（一般贈与額 ÷ 合計贈与額）
+  //   特例分の税額 = C全額を特例税率で計算した税額 ×（特例贈与額 ÷ 合計贈与額）
+  //   贈与税額 = 一般分 ＋ 特例分
+  var rG = taxByTable(kazei, TBL_GENERAL);
+  var rS = taxByTable(kazei, TBL_SPECIAL);
+  var taxG = (total>0) ? rG.tax * (amtG/total) : 0; // 一般分の税額
+  var taxS = (total>0) ? rS.tax * (amtS/total) : 0; // 特例分の税額
+  var tax = taxG + taxS;
 
-  var tax=0, rate=0, ctrl=0;
-  if(kazei<=0){
-    kazei=0;
-  } else {
-    for(var i=0;i<tbl.length;i++){
-      if(kazei<=tbl[i][0]){ rate=tbl[i][1]; ctrl=tbl[i][2]; break; }
-    }
-    tax = kazei*(rate/100) - ctrl;
-    if(tax<0) tax=0;
-  }
   var effRate = total>0 ? (tax/total*100) : 0;
 
+  var hasG = amtG>0, hasS = amtS>0;
   document.getElementById('amtY').textContent = yen(tax);
-  document.getElementById('subY').textContent = (kazei<=0)
-    ? '（基礎控除110万円の範囲内。贈与税はかからない見込み）'
-    : '（'+tblName+' ／ 適用 '+bandLabel(rate)+'）';
+  var subY;
+  if(kazei<=0){
+    subY = '（基礎控除110万円の範囲内。贈与税はかからない見込み）';
+  } else if(hasG && hasS){
+    subY = '（一般・特例の両方あり ／ 国税庁 No.4408 の按分方式で計算）';
+  } else if(hasS){
+    subY = '（特例税率（直系尊属→18歳以上）で計算）';
+  } else {
+    subY = '（一般税率で計算）';
+  }
+  document.getElementById('subY').textContent = subY;
 
   var L=document.getElementById('lines'); L.innerHTML='';
   function row(n,v){ var d=document.createElement('div'); d.className='line'; d.innerHTML='<span>'+n+'</span><span><b>'+(typeof v==='string'?v:yen(v))+'</b></span>'; L.appendChild(d); }
+  if(hasG) row('一般贈与財産の額', amtG);
+  if(hasS) row('特例贈与財産の額', amtS);
   row('もらった財産の合計（年）', total);
   row('基礎控除', '−'+yen(kiso));
   row('基礎控除後の課税価格', kazei);
-  row('適用税率帯', kazei<=0 ? '課税なし' : (rate+'%（控除額 '+yen(ctrl)+'）'));
-  row('贈与税額の目安', tax);
+  if(kazei>0 && hasG){
+    row('　└ 一般分の税額', taxG);
+    row('　　（一般税率帯）', rG.rate+'%（控除額 '+yen(rG.ctrl)+'）／ 按分 '+(amtG/total*100).toFixed(1)+'%');
+  }
+  if(kazei>0 && hasS){
+    row('　└ 特例分の税額', taxS);
+    row('　　（特例税率帯）', rS.rate+'%（控除額 '+yen(rS.ctrl)+'）／ 按分 '+(amtS/total*100).toFixed(1)+'%');
+  }
+  row('贈与税額の目安（合計）', tax);
   row('実効負担率（もらった額に対し）', effRate.toFixed(1)+'%');
 
   var W=document.getElementById('warn');
-  var forced = forcedGeneral ? '<li style="color:#f0883e">「特例贈与」を選びましたが「18歳以上」にチェックが無いため、<b>一般税率</b>で計算しました。特例税率は受贈者が贈与年1/1時点で18歳以上の場合のみ使えます。</li>' : '';
+  var mixed = (hasG && hasS) ? '<li style="color:#f0883e">同じ年に<b>一般贈与財産と特例贈与財産の両方</b>を受けたため、国税庁 No.4408 の<b>按分方式</b>（課税価格を全額一般／全額特例で計算し、それぞれの贈与額割合で按分して合算）で算出しています。</li>' : '';
   W.innerHTML = '<b>計算前に必ず確認：</b><ul>'
-    + forced
+    + mixed
     + '<li><b>相続時精算課税</b>を選んでいる場合は、この暦年課税とは計算がまったく変わります（年110万の基礎控除の扱いも別）。どちらを使うかで結論が逆転します。</li>'
     + '<li><b>複数の人からの贈与は合算</b>。同じ年に父からと祖父からもらった場合などは、合計してから110万を引きます（人ごとに110万ではありません）。</li>'
     + '<li><b>暦年の持ち戻し（相続前7年）</b>：亡くなる前の一定期間（改正で3年→7年へ順次拡大）に受けた贈与は、相続財産に加算される場合があります。</li>'
