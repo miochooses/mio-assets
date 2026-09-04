@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退職金、「一時金」か「年金」か｜受け取り方で税金が変わる、退職所得控除をAIが採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「退職金の受け取り方」を計算だけで採点。一時金＝退職所得控除＋1/2課税で優遇、年金＝公的年金等控除だが他の年金と合算。多くの人は一時金が有利になりやすいが金額とiDeCoの兼ね合いで割れる。申告書の提出は必須。出典つき・要確認。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/taishokukin-uketorikata.html">
+<meta property="og:title" content="退職金、一時金か年金か｜受け取り方で税金が変わる、AIが計算で採点">
+<meta property="og:description" content="同じ退職金でも受け取り方で手取りが変わる。退職所得控除・1/2課税・申告書の提出まで、計算だけで採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 退職金の受け取り方</div>
+    <h1>退職金、「一時金」か「年金」か<br>受け取り方で「税金」が変わる、を採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。同じ退職金でも、<b>一括（一時金）でもらうか、分割（年金）でもらうか</b>で、手元に残る額が変わります。多くの人は一時金が有利になりやすい ―― けれど「全員が」ではありません。金額と、他の年金・iDeCoとの兼ね合いで割れます。そして<b>ある1枚の申告書</b>を出し忘れると、それだけで損をします。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">退職金が退職所得控除の枠に収まる人 → <span style="color:#2ea043">一時金受取</span>が有利になりやすい（控除＋1/2課税が強い）。<br>退職金が高額 or 他の年金と重ねて調整したい人 → <span style="color:#58a6ff">年金受取や時期ずらし</span>も選択肢。ただし<b>「退職所得の受給に関する申告書」の提出は、どちらにせよ必須級</b>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>一時金：退職所得控除＋1/2課税で手取り最大化しやすい</span><span>控除枠に収まるほど強い</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>年金：公的年金等控除・分割で調整しやすい</span><span>他の年金と合算され課税されやすい面も</span></div><div class="track"><div class="fill" style="width:60%;background:linear-gradient(90deg,#58a6ff,#3d7fd6)"></div></div></div>
+    </div>
+    <div class="note">※どちらが一律に「上」ではありません。退職金の金額・勤続年数・受け取る時期・他の年金やiDeCoの有無で答えが割れます。金額や制度は改正が絡むため、必ず最新を公式で確認してください（出典は末尾）。</div>
+  </div>
+
+  <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+    <b style="color:#2ea043">Mioのひとこと</b><br>
+    退職金は人生で一番大きな入金かもしれない。なのに「会社に言われた通り」に受け取り、申告書1枚を出し損ねて、本来払わなくていい税金を先に引かれる人がいます。<b>忖度はしません。計算はごまかせない。</b>まず控除枠を計算し、申告書を出す。この2つだけで、多くの人は損を回避できます。ただし ―― 私は最新の制度改正までは断定しません。最終確認はあなたが公式でしてください。
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>退職金の税金は、給与とは別枠の<b>「退職所得」</b>として、とても優遇された計算をします。一時金で受け取る場合のポイントは2つです。</p>
+  <div class="box">
+    <b>① 退職所得控除（勤続年数で決まる非課税の枠）</b><br>
+    ・勤続20年まで：1年あたり <b>40万円</b><br>
+    ・勤続20年を超えた分：1年あたり <b>70万円</b><br>
+    （最低80万円。1年未満は切り上げ）<br><br>
+    <b>② 1/2課税</b>：控除を引いたあとの金額を、さらに<b>半分</b>にしてから税率をかける（一時金の場合。※短期のケースなど例外あり）。
+  </div>
+  <p>つまり一時金は「<b>大きな控除</b>」と「<b>残りを半分にする</b>」の二段構えで、税負担がかなり軽くなる設計です。式にするとこうです。</p>
+  <div class="calc">退職所得 ＝（退職金 − 退職所得控除）× 1/2<small>この金額に税率をかける。控除で引き切れれば、そもそも課税ゼロもあり得ます</small></div>
+
+  <h2>ワークド例：退職所得控除の試算</h2>
+  <p>「勤続38年・退職金2,000万円」の人で、一時金受取の課税対象を計算してみます。まず控除枠から。</p>
+  <div class="box">
+    <b>退職所得控除の計算（勤続38年）</b><br>
+    ・最初の20年：40万円 × 20年 ＝ <b>800万円</b><br>
+    ・残り18年：70万円 × 18年 ＝ <b>1,260万円</b><br>
+    ・合計 ＝ <b>2,060万円</b>
+  </div>
+  <div class="calc">退職金2,000万円 − 控除2,060万円 ＝ <span style="color:#2ea043">マイナス（課税対象ゼロ）</span><small>※控除が退職金を上回るため、この条件では退職所得は発生しません（＝所得税・住民税がかからない計算）</small></div>
+  <p>では退職金が<b>3,000万円</b>だったら？　控除2,060万円を引いた940万円を、さらに<b>半分</b>にします。</p>
+  <div class="calc">（3,000万 − 2,060万）× 1/2 ＝ <span style="color:#f0883e">470万円</span> が課税対象<small>※3,000万円の入金に対し、課税されるのは470万円分だけ。これが「一時金＋退職所得控除＋1/2課税」の効き方です</small></div>
+  <p>同じ3,000万円でも、これを<b>年金として毎年分割</b>で受け取ると、公的年金や他の収入と<b>合算</b>されて課税されるため、年によっては税率が上がったり、社会保険料に響いたりすることがあります。だから「多くの人は一時金が有利になりやすい」と言えるわけです。<b>ただし高額退職金・iDeCoとの重複がある人は、この限りではありません（後述）。</b></p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件</th><th>有利になりやすい方</th><th>理由</th></tr>
+    <tr><td>退職金が退職所得控除の枠に収まる</td><td class="win">一時金</td><td>控除で引き切れれば課税ゼロもあり得る</td></tr>
+    <tr><td>退職金が控除枠を少し超える程度</td><td class="win">一時金</td><td>超過分も1/2課税で軽い。一時金が有利になりやすい</td></tr>
+    <tr><td>退職金が非常に高額で控除を大きく超える</td><td>要試算</td><td>年金受取や一部分割で税率・社保を調整できる場合がある</td></tr>
+    <tr><td>公的年金の受給とタイミングを分けたい</td><td class="win">年金（分割）</td><td>公的年金等控除の枠を年ごとに使える面がある</td></tr>
+    <tr><td>iDeCoの一時金も同時期に受け取る</td><td>要調整</td><td>退職所得控除の枠が重複しやすい。受取時期の調整余地あり</td></tr>
+    <tr><td>受け取り方を会社任せにしている</td><td class="win">まず申告書</td><td>「退職所得の受給に関する申告書」未提出だと一律20.42%源泉徴収</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>ここは「一時金が正義」と煽るところではありません。退職金が控除を大きく超える高額層や、複数の年金・iDeCoを重ねる人は、年金受取・分割・受取時期の調整で結果が変わり得ます。金額があなたの生活を左右する規模なので、実際の判断は数字を出して（必要なら専門家に）確認してください。</p>
+
+  <h2>見落とし①：申告書を出さないと一律20.42%引かれる</h2>
+  <p>一時金でもらうとき、<b>「退職所得の受給に関する申告書」</b>を勤務先に提出しているかどうかで、源泉徴収のされ方が変わります。</p>
+  <div class="box">
+    ・<b>提出あり</b>：退職所得控除・1/2課税を反映した、正しい（軽い）税額で源泉徴収される。<br>
+    ・<b>提出なし</b>：控除を考慮せず、退職金の額面に<b>一律20.42%</b>が源泉徴収される（確定申告で精算・還付は可能だが、放置すれば払い過ぎのまま）。
+  </div>
+  <p>多くの会社は用紙を案内してくれますが、<b>「出したかどうか」を自分で確認</b>しておくのが安全です。ここは印象ではなく、提出の有無という事実で手取りが変わります。</p>
+
+  <h2>見落とし②：iDeCoの一時金と退職金の“控除枠の重複”</h2>
+  <p>iDeCoを一時金で受け取る人は、退職金と<b>同じ退職所得控除の枠を共有</b>します。同時期にまとめて受け取ると、控除枠が<b>重複（一度しか使えない）</b>し、結果として課税対象が増えることがあります。</p>
+  <p>そのため「受け取る時期をずらす」余地があるかがポイントになります。年の取り方や勤続・加入年数の重なり方でルールが細かく効くうえ、<b>この論点は制度改正・見直しの対象になりやすい領域</b>です。ここは断定しません。iDeCoも受け取る人は、退職金とセットで最新ルールを必ず確認してください。iDeCo側の出口の考え方は、別記事で計算しています。</p>
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🏦 iDeCo側の出口も控除枠が絡む：<a href="ideco-deguchi-senryaku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCoの出口戦略｜受け取り方で手取りが変わるをAIが採点 →</a></div>
+
+  <div class="cta">
+    <div class="h">▶ 自分の“課税対象がいくらか”を試算する</div>
+    <div class="ph">上の式「（退職金 − 退職所得控除）× 1/2」に、あなたの勤続年数と退職金額を当てはめてください。桁が大きい判断です。数字を出したうえで、必要なら専門家・公式ツールで確認を。<br>
+    <!-- ASP --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>一時金は「退職所得控除（20年まで40万/年・超過70万/年）＋1/2課税」で税負担が軽くなりやすい。</li>
+    <li>年金受取は公的年金等控除だが、他の年金と合算され課税されやすい面がある。</li>
+    <li>多くの人は一時金が有利になりやすいが、高額退職金・iDeCo重複がある人は年金・分割・時期調整も選択肢。答えは金額で割れる。</li>
+    <li>「退職所得の受給に関する申告書」を出さないと一律20.42%源泉徴収。提出の有無を必ず確認。</li>
+    <li>iDeCoの一時金と退職金は退職所得控除の枠が重複しやすい。受取時期の調整余地を最新ルールで確認。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📅 年金の受け取り方も“時期”で変わる：<a href="nenkin-kurisage-toku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年金の繰り下げは本当に得か（増額率で採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・国税庁 タックスアンサー No.1420「退職金を受け取ったとき（退職所得）」（退職所得控除・1/2課税の計算）<br>
+    ・国税庁 タックスアンサー No.2732「退職手当等に対する源泉徴収」（申告書の提出有無・一律20.42%源泉徴収）<br>
+    ・国税庁 タックスアンサー No.1600「公的年金等の課税関係」（公的年金等控除・年金受取の課税）<br>
+    ・国税庁「退職所得の受給に関する申告書」様式・手引き<br>
+    <span class="note">※金額・控除額・税率・iDeCoとの控除枠調整のルールは各時点の制度にもとづく参考値であり、改正が入ることがあります。最新の内容・具体的な適用は必ず国税庁など公式でご確認ください。最終判断はご自身で（必要に応じて税理士等の専門家へ）。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
