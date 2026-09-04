@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>副業の「経費」どこまで？会社員が知らずに払いすぎる税金を計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「副業の経費と税金」を計算だけで採点。所得＝収入−必要経費の考え方、年20万円ルールと住民税の関係、雑所得か事業所得かの分かれ目を、国税庁の一次情報つきで整理。盛るのではなく取りこぼさない。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://opboard-site/saiten/fukugyo-keihi-setsuzei.html">
+<meta property="og:title" content="副業の経費どこまで？会社員が払いすぎる税金｜AIが計算で採点">
+<meta property="og:description" content="経費は“盛る”ものではなく“取りこぼさない”もの。20万円ルールと住民税、雑所得と事業所得の分かれ目を出典つきで整理。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .ng{color:var(--o);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 副業の経費どこまで</div>
+    <h1>副業の「経費」どこまで？<br>会社員が知らずに払いすぎる税金を計算した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算と一次情報だけ</b>で採点します。結論 ―― 経費は“盛る”ものではなく“取りこぼさない”もの。線を越えれば追徴で逆に損。知らずに損しているのは、たいてい「知識」です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">副業所得＝収入−<b>事業に直接必要な</b>必要経費。取りこぼさなければ税は正しく下がる。<br>ただし「事業と関係ない支出」を経費に混ぜた瞬間、それは節税ではなく<b>否認・追徴のリスク</b>に変わる。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>経費を取りこぼす人（払いすぎ）</span><span>本来より税が高いまま</span></div><div class="track"><div class="fill" style="width:80%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>正しく必要経費を計上する人</span><span>所得が下がり税も適正化</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>“盛る”人（線を越える）</span><span>否認・加算税で逆に損</span></div><div class="track"><div class="fill" style="width:95%;background:linear-gradient(90deg,#e0653a,#c0392b)"></div></div></div>
+    </div>
+    <div class="note">※イメージ図です。金額は条件で変わります。最終的な区分・可否は税務署／国税庁でご確認ください。</div>
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <b style="color:#2ea043">Mioのひとこと</b><br>
+      「経費で落とす」を“ズルの技術”だと思っている時点で、たいてい損しています。事業に必要な支出を正しく引けば税は下がる ―― これは権利。逆に、関係ない支出を混ぜて所得を圧縮すれば、それは節税ではなく否認・追徴のタネです。<b>忖度はしません。計算はごまかせない。</b>
+    </div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「副業は経費でいくらでも落とせる」という話も、「副業なんてバレたら大変」という話も、どちらも<b>印象</b>です。判断すべきは、税額を決めるたった1本の式です。</p>
+  <div class="calc">副業の所得 ＝ 収入 − 必要経費<small>この「所得」に対して税がかかる。経費が正しいほど所得は適正に下がる</small></div>
+  <p>ポイントは<b>必要経費の定義</b>です。国税庁の考え方では、必要経費になるのは「その収入を得るために<b>直接</b>要した費用」など、事業と結びつく支出に限られます（No.2210）。プライベートと共用のもの（自宅の家賃・電気代・スマホ代など）は、<b>事業に使った割合だけ</b>を経費にする ―― これが「家事按分」です。全額を落とすのではなく、合理的な割合で分ける、という発想が基本になります。</p>
+
+  <h2>経費になる／ならない：AIの採点表</h2>
+  <p>下は一般的な考え方の目安です。同じ品目でも「事業に使ったか」「按分できるか」で結論は変わります。線引きの最終判断は税務署／国税庁でご確認ください。</p>
+  <table>
+    <tr><th>支出の例</th><th>採点</th><th>理由・条件</th></tr>
+    <tr><td>副業専用に買ったPC・機材</td><td class="win">なりやすい</td><td>事業に直接必要。高額なら減価償却の対象になることも</td></tr>
+    <tr><td>仕事で使う通信費・電気代（自宅兼用）</td><td class="win">按分で一部</td><td>事業使用の割合だけ。全額は不可（家事按分）</td></tr>
+    <tr><td>取材・打ち合わせの交通費</td><td class="win">なりやすい</td><td>事業目的が明確なら。記録・領収書を残す</td></tr>
+    <tr><td>仕事に直接必要な書籍・有料ツール</td><td class="win">なりやすい</td><td>事業との関連を説明できる範囲で</td></tr>
+    <tr><td>プライベートも兼ねる私服・日用品</td><td class="ng">なりにくい</td><td>事業専用と言い切れないものは対象外が原則</td></tr>
+    <tr><td>家族との食事・私的な旅行</td><td class="ng">ならない</td><td>事業と無関係な支出。混ぜれば否認リスク</td></tr>
+    <tr><td>“売上より多い”不自然な経費</td><td class="ng">危険</td><td>実態と合わない計上は否認・加算税の対象になり得る</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「グレーだけど落としちゃえ」は、この検証室のやり方ではありません。事業との関連を自分で説明できない支出は、最初から経費に入れない。迷う品目は税務署・税理士に確認する ―― これが結局いちばん安く済みます。</p>
+
+  <h2>年20万円ルールと住民税：ここを誤解している人が多い</h2>
+  <p>会社員の副業でよく聞く「20万円以下は申告しなくていい」。これは<b>正確には“所得税の確定申告”の話</b>で、しかも例外規定です。「税金がまるごと免除される」わけではありません。整理すると次のとおりです。</p>
+  <table>
+    <tr><th>あなたの状況</th><th>所得税の確定申告</th><th>住民税</th></tr>
+    <tr><td>副業の<b>所得</b>が年20万円以下（給与1か所・他要件あり）</td><td class="win">不要にできる場合あり</td><td class="ng">別途申告が必要</td></tr>
+    <tr><td>副業の所得が年20万円超</td><td>確定申告が必要</td><td>確定申告で一緒に精算</td></tr>
+    <tr><td>医療費控除・ふるさと納税などで確定申告する</td><td>する以上、20万以下でも合算</td><td>確定申告で一緒に精算</td></tr>
+  </table>
+  <p>大事な点は2つ。①ここでの20万円は「収入」ではなく<b>収入−必要経費の“所得”</b>です。②所得税で申告不要にできても、<b>住民税は別</b>。多くの自治体では住民税の申告が必要になります（ここを飛ばすと申告漏れになりかねない）。さらに、医療費控除やふるさと納税（ワンストップを使わない場合）などで<b>どのみち確定申告をするなら、20万円以下の副業所得も合算して申告する</b>のが原則です。「20万以下だから何もしなくていい」と丸暗記すると、住民税側で足をすくわれます。</p>
+
+  <h2>雑所得か事業所得か：ここで“使える特典”が変わる</h2>
+  <p>同じ副業でも、税務上の区分が<b>雑所得</b>か<b>事業所得</b>かで、使える制度が大きく変わります。事業所得と認められると、青色申告特別控除（最大65万円）や、赤字を他の所得と相殺する<b>損益通算</b>が使えます。雑所得だと、これらは基本的に使えません。</p>
+  <div class="calc">事業所得と認められる → 青色65万円控除・損益通算が視野に<small>雑所得のままだと、この2つの“強い特典”は原則使えない</small></div>
+  <p>では何で分かれるのか。近年の国税庁の見解では、<b>帳簿書類の記帳・保存があるか</b>が重要な判断材料とされています（所得税基本通達の改正・関連の取扱い）。おおむね、記帳・帳簿保存があれば事業所得として扱われやすく、それが無い・収入が僅少で継続性も乏しい、といった場合は雑所得と判断されやすい、という整理です。ただし、<b>帳簿さえ付ければ何でも事業所得になる</b>わけではありません。事業としての実態（継続性・営利性など）が前提になります。「副業を事業所得にすれば得」という煽りだけを鵜呑みにせず、実態と記帳をそろえるのが筋です。詳しい線引きは必ず国税庁・税務署でご確認ください。</p>
+
+  <div class="cta">
+    <div class="h">▶ もっと踏み込んで“税を適正化”したい人へ</div>
+    <div class="ph">
+      副業が育ってきたら、次の一手は「区分」と「制度」の使い方。<br>
+      ・<a href="aoiro-65man.html" style="color:#9fd0e6;font-weight:700;text-decoration:none">青色申告65万円控除を計算で採点する →</a><br>
+      ・<a href="houjinka-vs-kojin.html" style="color:#9fd0e6;font-weight:700;text-decoration:none">法人化 vs 個人事業主、利益いくらから法人が得か →</a>
+      <!-- ASP -->
+    </div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>副業の税は「所得＝収入−必要経費」の1式で決まる。経費は事業に直接必要なものだけ、兼用は家事按分で一部。</li>
+    <li>経費は“盛る”のではなく“取りこぼさない”もの。関係ない支出を混ぜれば否認・追徴で逆に損。</li>
+    <li>「20万円以下は申告不要」は所得税の例外。<b>住民税は別途申告が必要</b>で、確定申告するなら20万以下も合算が原則。</li>
+    <li>雑所得か事業所得かで青色65万円控除・損益通算の可否が変わる。近年は帳簿の記帳・保存が判断材料。ただし実態が前提。</li>
+    <li>脱税や過度な経費計上は明確にNG。迷う線引きは税務署・国税庁で確認するのが、結局いちばん安い。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📗 副業が事業として育ってきたら：<a href="aoiro-65man.html" style="color:#58a6ff;text-decoration:none;font-weight:700">青色申告65万円控除で税をいくら減らせるか（計算で採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・国税庁 タックスアンサー No.1350「事業所得の課税のしくみ（事業所得）」<br>
+    ・国税庁 タックスアンサー No.1900「給与所得者で確定申告が必要な人」（副業所得20万円超などの要件）<br>
+    ・国税庁 タックスアンサー No.2210「必要経費の知識」（必要経費の範囲・家事関連費の按分）<br>
+    ・国税庁「事業所得と業務に係る雑所得の区分について（所得税基本通達の解説）」（帳簿書類の保存に関する取扱い）<br>
+    ・各自治体「住民税（市・県民税）の申告」案内（所得税の確定申告が不要でも住民税申告が必要な場合）<br>
+    <span class="note">※本記事は一般的な情報であり、個別の税務判断・アドバイスではありません。金額・要件は各時点の制度にもとづく参考値です。区分や経費の可否は事情により異なります。最新の取扱いと最終判断は、必ず国税庁・お住まいの税務署・税理士等にご確認ください。脱税や過度な経費計上を勧めるものではありません。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

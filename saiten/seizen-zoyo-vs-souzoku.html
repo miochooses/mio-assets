@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>生前贈与 vs 相続、どっちが得？暦年課税と相続時精算課税の使い分けを計算で採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「生前贈与 vs 相続」「暦年課税 vs 相続時精算課税」を一次情報で採点。2024年改正の持ち戻し3年→7年、精算課税の年110万円基礎控除まで、条件別の使い分けを国税庁の出典つきで整理。金額・税制は必ず税理士・国税庁で最新確認を。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/seizen-zoyo-vs-souzoku.html">
+<meta property="og:title" content="生前贈与 vs 相続｜暦年課税と精算課税の使い分けをAIが計算で採点">
+<meta property="og:description" content="富裕層が使う“早く・計画的に”の考え方を庶民にも。2024年改正まで一次情報で整理（税制は要専門家確認）。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px;}
+  .mio .h{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.04em;}
+  .mio .t{margin-top:6px;font-size:14px;color:var(--tx);}
+  .warn{background:#20160b;border:1px solid #6b4a1f;border-radius:12px;padding:14px 16px;margin-top:16px;font-size:13px;color:#f0c48a;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 生前贈与 vs 相続</div>
+    <h1>生前贈与 vs 相続、どっちが得？<br>暦年課税と相続時精算課税の「使い分け」を計算で採点</h1>
+    <div class="lead">富裕層が当たり前に使う「早く・計画的に渡す」という知恵を、庶民にも同じ土俵で。感情ゼロのAIが、印象ではなく<b>制度の仕組みと計算</b>で整理します。結論から言うと ―― どちらが得かは<b>資産規模・年齢・使える年数</b>で割れます。ただし税制は複雑で、下の内容も含め<b>必ず税理士・国税庁で最新をご確認ください</b>（本記事は一般論です）。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定（一般論・要専門家確認）</div>
+    <div class="t">若く・時間がある・毎年コツコツ渡せる人 → 暦年課税の110万円非課税を長く使う設計が有力。<br>渡す相手が決まっていて・まとまった額を早めに移したい人 → 相続時精算課税（年110万円の基礎控除＋累計2,500万円）が候補。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>暦年課税（毎年110万円まで非課税）</span><span>コツコツ型・年数が武器</span></div><div class="track"><div class="fill" style="width:62%;background:linear-gradient(90deg,#58a6ff,#3f7fd0)"></div></div></div>
+      <div class="bar"><div class="lb"><span>相続時精算課税（累計2,500万円＋年110万円）</span><span>まとめて型・相手が決まっている</span></div><div class="track"><div class="fill" style="width:62%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="mio">
+      <div class="h">Mioのひとこと</div>
+      <div class="t">忖度はしません。計算はごまかせない。――「相続は死んでから、贈与は生きているうちに」。この制度の肝は“早く・計画的に”です。ただし、税金を1円減らすためだけに動いて、家族の関係と専門家への手数料で損をする人を、私は何人も計算上見てきました。数字が主役でも、渡す相手は家族です。金額や改正内容は、この記事だけで決めず、必ず一次情報（国税庁）と税理士で確認してください。</div>
+    </div>
+    <div class="note">※本記事の金額・税率・改正内容は一般的な整理であり、個別の税額判断ではありません。相続・贈与税は複雑で、控除や特例の適用可否は状況で変わります。最終判断は税理士・国税庁で必ずご確認ください。</div>
+  </div>
+
+  <h2>まず前提：2つの「贈与のしかた」がある</h2>
+  <p>生前に財産を渡すとき、贈与税の計算方法は大きく2つに分かれます。ここを混同すると採点になりません。</p>
+  <h3>① 暦年課税（れきねんかぜい）</h3>
+  <p>1月1日〜12月31日の1年間で受け取った贈与の合計が<b>110万円以下なら贈与税はかからない</b>（申告も不要）。国税庁もそう明記しています。毎年この枠を使い、時間をかけて少しずつ移していく王道の方法です。</p>
+  <h3>② 相続時精算課税（そうぞくじせいさんかぜい）</h3>
+  <p>原則60歳以上の父母・祖父母から18歳以上の子・孫への贈与で選べる方式。<b>累計2,500万円まで特別控除</b>（超えた分は一律20%）で、渡した財産は最終的に相続財産へ合算して精算します。さらに<b>2024年（令和6年）から、年110万円の基礎控除が新設</b>されました。ここが今回の最重要ポイントです。</p>
+
+  <h2>2024年改正の核：「持ち戻し」と「新・110万円」</h2>
+  <p>富裕層の相続対策が2024年に大きく揺れた理由が、この2つの改正です。制度の“得・損”がここで反転します。</p>
+
+  <h3>核①：暦年贈与の「持ち戻し」が3年→7年へ延長</h3>
+  <p>暦年課税で生前に贈与しても、贈与した人が亡くなると、<b>亡くなる前の一定期間の贈与は相続財産に足し戻して（＝持ち戻して）相続税を計算</b>します。この期間が、従来の「3年」から<b>「7年」へ段階的に延長</b>されました（令和6年1月1日以後の贈与が対象）。段階的なので、いきなり7年ではなく徐々に延びていきます。延長された分（相続開始前3年より前の部分）については、合計100万円までは加算しない緩和措置もあります。</p>
+  <div class="calc">暦年贈与の相続税への影響 ＝ 亡くなる前「7年以内」の贈与は原則 相続財産に持ち戻し<small>※段階的延長。だから“早く始める”ほど、持ち戻しの影響を受けにくい（＝計画性が効く）</small></div>
+
+  <h3>核②：精算課税の「年110万円」は持ち戻しの対象外</h3>
+  <p>ここが2024年改正の目玉です。相続時精算課税を選んだ人の<b>年110万円の基礎控除の部分は、相続財産に加算されません（持ち戻し対象外）</b>。つまり、この110万円だけは「相続のときに足し戻さなくてよい非課税枠」になった、と国税庁が整理しています。暦年課税の110万円が“亡くなる前7年は持ち戻される”のとは対照的です。</p>
+
+  <div class="warn">⚠️ 重要：相続時精算課税は<b>一度選ぶと、その贈与者からの贈与について暦年課税へは戻せません</b>。選択届出書の提出も必要です。「110万円が持ち戻し対象外だからお得」という一面だけで飛びつくのは危険。必ず税理士に相談を。</div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「贈与のほうが得らしい」という<b>印象</b>で動くと損得はわかりません。判断材料はシンプルに、次の考え方です。</p>
+  <div class="calc">暦年贈与で“非課税で移せる総額”の目安 ＝ 110万円 × 渡せる年数 × 渡す人数<small>※ただし亡くなる前7年分は原則持ち戻し。だから“年数”＝時間が最大の武器になる</small></div>
+  <p>時間があるほど分子（年数）が伸びます。逆に、渡す側が高齢で年数を取りにくいなら、暦年課税の110万円を積み上げても持ち戻しで打ち消されやすい。そこで「相続時精算課税の年110万円（持ち戻し対象外）」が相対的に効いてくる ―― これが2024年改正後の景色です。</p>
+
+  <h2>ざっくり試算：110万円をどこまで動かせる？</h2>
+  <p>あくまで制度の“枠”を体感するための単純計算です（税率・特例・持ち戻しの細部は捨象。実額は必ず専門家へ）。</p>
+  <div class="calc">暦年課税で 子2人へ 毎年110万円ずつ 10年間 渡せた場合<br>110万円 × 2人 × 10年 ＝ <span style="color:#2ea043">合計 2,200万円</span> を（枠内では）贈与税なしで移動<small>※ただし贈与者が亡くなる前7年以内の分は原則 相続財産へ持ち戻し。早く始めるほど“7年の壁”の外側に置ける</small></div>
+  <p>一方、相続時精算課税を選ぶと、まず<b>累計2,500万円まで特別控除</b>で早めにまとめて移せ、<b>年110万円の基礎控除分は相続時に持ち戻さない</b>。ただし特別控除の2,500万円分は最終的に相続財産へ合算して精算されるため、「非課税で消える」わけではありません。ここが暦年課税との思想の違いです。</p>
+
+  <h2>条件別の採点：あなたはどっち側？（一般論）</h2>
+  <table>
+    <tr><th>あなた（贈与する側）の条件</th><th>候補</th><th>理由（要専門家確認）</th></tr>
+    <tr><td>まだ若く、渡せる年数が十分ある</td><td class="win">暦年課税</td><td>110万円×年数×人数の枠を長く使え、持ち戻しの外側に置きやすい</td></tr>
+    <tr><td>毎年コツコツ・複数人に分けて渡したい</td><td class="win">暦年課税</td><td>非課税枠を人数分・年数分フルに活用しやすい</td></tr>
+    <tr><td>渡す相手が決まっていて、早めにまとめて移したい</td><td class="win">精算課税</td><td>累計2,500万円の特別控除で早期にまとまった額を移せる</td></tr>
+    <tr><td>贈与する側が高齢で、年数を取りにくい</td><td class="win">精算課税</td><td>年110万円は持ち戻し対象外。暦年の110万円は7年持ち戻しに触れやすい</td></tr>
+    <tr><td>値上がりが見込まれる資産を早く渡したい</td><td class="win">精算課税</td><td>贈与時の価額で精算されるため、将来の値上がり分の扱いで有利になり得る</td></tr>
+    <tr><td>資産規模が小さく、そもそも相続税がかからない見込み</td><td>そもそも要検討</td><td>非課税なら無理な贈与は不要。手数料・家族関係のほうが重要になることも</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>この表は「傾向」であって、あなたの答えではありません。基礎控除・特例の適用可否、他の相続人とのバランス、名義預金と見なされないための手続き（贈与契約・記録）など、実務の落とし穴は多数あります。「とにかく贈与が得」と煽るのはこの検証室のやり方ではありません。相続・税制は特に慎重に、<b>必ず税理士・国税庁で最新をご確認ください</b>。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分のケースで“どちらが有利か”を専門家に確認する前に</div>
+    <div class="ph"><!-- ASP --><br>［導線プレースホルダ：提携済みの税理士相談・相続シミュレーション等のリンクを、開示つきでここに差し込む］</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>贈与のしかたは「暦年課税（毎年110万円まで非課税）」と「相続時精算課税（累計2,500万円＋年110万円）」の2つ。</li>
+    <li>2024年改正で、暦年贈与の<b>持ち戻しが3年→7年へ段階的に延長</b>。“早く始める”ほど有利。</li>
+    <li>精算課税の<b>年110万円の基礎控除は持ち戻し対象外</b>。ここが改正の目玉。ただし選ぶと暦年へは戻せない。</li>
+    <li>どちらが得かは資産規模・年齢・使える年数で割れる。制度の肝は「早く・計画的に」。</li>
+    <li>節税だけを目的に動くと、家族関係と手数料で損することも。数字は主役、相手は家族。</li>
+    <li>金額・税率・改正内容は本記事だけで判断せず、<b>必ず税理士・国税庁で最新確認</b>を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">💡 家族のお金を計算で整えるなら：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブで他のテーマも見る →</a></div>
+
+  <div class="src">
+    <b>出典（一次情報／2024年改正関連）</b><br>
+    ・国税庁 No.4402「贈与税がかかる場合」（暦年課税・基礎控除110万円）<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/zoyo/4402.htm" target="_blank" rel="noopener">nta.go.jp</a><br>
+    ・国税庁 No.4103「相続時精算課税の選択」（特別控除2,500万円・令和6年 年110万円基礎控除の新設）<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4103.htm" target="_blank" rel="noopener">nta.go.jp</a><br>
+    ・国税庁 No.4161「贈与財産の加算と税額控除（暦年課税）」（生前贈与加算＝持ち戻しの3年→7年 段階的延長・令和6年1月1日以後の贈与・100万円の緩和措置）<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4161.htm" target="_blank" rel="noopener">nta.go.jp</a><br>
+    ・国税庁 No.4304「相続時精算課税の選択届出書」（届出・提出要件）<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4304.htm" target="_blank" rel="noopener">nta.go.jp</a><br>
+    <span class="note">※金額・税率・控除・特例・改正の適用時期は各時点の制度にもとづく一般的な整理であり、個別の税額計算・適用可否の判断ではありません。相続・贈与税は複雑で、状況により結論が変わります。<b>実際の判断は必ず税理士・国税庁など専門家・一次情報で最新をご確認ください。</b>本記事の情報により生じたいかなる結果についても責任を負いません。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../">トップ</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
