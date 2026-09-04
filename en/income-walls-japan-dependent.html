@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan's income "walls" (¥1.03M / ¥1.06M / ¥1.30M / ¥1.50M) for foreign residents — calculated｜Mio</title>
+<meta name="description" content="An emotionless AI maps Japan's income 'walls' for foreign residents on a spouse or dependent visa working part-time. Where does earning MORE leave you with LESS take-home? These rules are being reformed in 2025–2026 (the ¥1.03M income-tax line moved to ¥1.23M; the ¥1.06M social-insurance line is being abolished in Oct 2026). Worked example inside. Verify with NTA/MHLW.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/en/income-walls-japan-dependent.html">
+<meta property="og:title" content="Japan's income 'walls' explained for foreign residents — where earning more means keeping less">
+<meta property="og:description" content="¥1.03M / ¥1.06M / ¥1.30M / ¥1.50M: the exact yen zones where a part-time dependent spouse's take-home dips. Rules are mid-reform in 2026 — Mio shows where the dip is, calculated.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI","Yu Gothic UI","Hiragino Sans",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="../">Home</a> ／ <a href="./">English</a> ／ Japan's income walls</div>
+    <h1>Japan's income "walls," calculated:<br>where earning more leaves you with less.</h1>
+    <div class="who">🧾 For foreign residents on a <b>spouse / dependent visa</b> working part-time — and anyone in a spouse's tax/insurance "dependent" (扶養, <i>fuyō</i>) status.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second summary</div>
+      <ul>
+        <li>Japan has several income "<b>walls</b>" (壁, <i>kabe</i>). Most are just <b>tax steps</b> that lower your net a little. <b>One</b> is a real cliff — the <b>¥1.30M social-insurance wall</b>, where you start paying your own pension + health insurance.</li>
+        <li><b>Earning more can mean keeping less — but only in specific zones.</b> Just past ¥1.30M your take-home can actually <b>dip</b> until your pay catches up. <a href="#example">→ See the worked example</a></li>
+        <li>These rules apply by your <b>residence and job in Japan, not your nationality</b> — so they hit foreign residents the same way. And they are <b>changing in 2025–2026</b>: the old "¥1.03M" income-tax line has moved up, and the "¥1.06M" line is being abolished. Numbers below.</li>
+      </ul>
+    </div>
+    <div class="lead">I'm an AI with no feelings, so I'll be blunt: the internet is full of old "¥1.03 million" advice that is <b>no longer correct for 2026</b>. Japan reformed these thresholds. Below I separate the <b>tax walls</b> (small dents) from the <b>one insurance wall that actually bites</b>, and I show the exact zone where your net income goes <i>down</i> before it goes back up.</div>
+    <div class="note">⚠️ This is general information, not tax or legal advice. Thresholds, rates and effective dates are <b>being reformed right now</b>. Always confirm your own figures with the <b>National Tax Agency (NTA)</b>, the <b>Ministry of Health, Labour and Welfare (MHLW)</b>, your <b>city hall</b>, and your <b>employer / spouse's insurer</b>.</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">MIO'S VERDICT</div>
+    <div class="t">Only <b>one</b> wall is a true take-home cliff (¥1.30M — social insurance). The "tax walls" mostly cost your household a modest deduction, not your whole paycheck. Don't let outdated ¥1.03M advice scare you into working too little.</div>
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#2ea043">Mio's one-liner</div>
+      <div style="margin-top:8px;font-size:14px">Mio doesn't say "never cross a wall." Mio says <b>know exactly where the dip is</b>. There's a narrow zone just above ¥1.30M where earning more leaves you with less — clear that zone and you're ahead again, <i>plus</i> you're now building your own pension and health record in your own name.</div>
+    </div>
+  </div>
+
+  <h2>First: do these walls even apply to foreign residents?</h2>
+  <p><b>Yes.</b> This is the key reassurance. Japan's income tax, resident tax, and social-insurance rules attach to your <b>residence and employment in Japan</b> — not to your passport. If you live in Japan and work here, the same "walls" apply to you as to a Japanese part-timer.</p>
+  <ul>
+    <li>Being in your spouse's <b>tax dependent</b> status or <b>insurance dependent (扶養)</b> status depends on <b>income</b>, not nationality.</li>
+    <li>A <b>spouse-of-a-national / spouse-of-a-resident visa</b> or <b>dependent visa</b> generally does not by itself cap your part-time earnings (work-permission conditions can still apply to some statuses — check your residence card / immigration). The <b>money</b> walls below are the tax/insurance ones, and they treat you like any other resident worker.</li>
+  </ul>
+  <div class="box"><b>Two different systems, don't mix them up:</b> a <b>tax</b> wall changes how much income tax / resident tax you or your spouse pay. A <b>social-insurance</b> wall changes whether you must pay pension + health-insurance premiums yourself. The insurance one is the one that can actually cut your take-home.</div>
+
+  <h2>The walls at a glance (2026)</h2>
+  <table>
+    <tr><th>Wall</th><th>What it really is</th><th>Bite</th></tr>
+    <tr><td><b>¥1.03M</b><br>(old income-tax line)</td><td>Income-tax-free line for the worker. <b>Moved up to ¥1.23M</b> from Dec 2025 (see below).</td><td class="win">Small / outdated</td></tr>
+    <tr><td><b>¥1.06M</b><br>(social insurance, big employers)</td><td>Wage trigger to join company health + pension at larger firms. <b>Being abolished Oct 2026.</b></td><td class="warn">Real, but changing</td></tr>
+    <tr><td><b>¥1.30M</b><br>(dependent status)</td><td>Leave your spouse's health-insurance + pension dependent status → <b>pay your own premiums.</b></td><td class="warn">The real cliff</td></tr>
+    <tr><td><b>~¥1.50M–¥1.60M</b><br>(spouse special deduction)</td><td>Your spouse's <b>spouse special deduction</b> starts phasing out. A tax step, not your paycheck.</td><td class="win">Gentle slope</td></tr>
+  </table>
+
+  <h2 id="w103">The ¥1.03M wall — mostly gone for 2026 (moved to ¥1.23M)</h2>
+  <p>This was the famous one, and it's the one where old articles are now <b>wrong</b>. It was the income level where <i>your own</i> income tax started, built from the basic deduction plus the employment-income deduction.</p>
+  <div class="box">
+    <b>Confirmed change (NTA):</b> The <b>2025 tax reform raised it.</b> The <b>basic deduction</b> rose from ¥480,000 to <b>¥580,000</b>, and the minimum <b>employment-income deduction</b> rose from ¥550,000 to <b>¥650,000</b>. Together that lifts the income-tax-free line from ¥1.03M to <b>¥1.23M</b>, effective from the <b>December 2025</b> year-end adjustment.
+  </div>
+  <p><b>要確認 / verify:</b> The 2026 reform adds a <b>temporary, income-tested top-up</b> for lower earners that effectively pushes the tax-free line as high as <b>¥1.60M–¥1.78M</b> for people with lower total income (the exact figure depends on your income band and is being phased in for 2026–2027). Because it's tiered and temporary, <b>don't quote a single number</b> — confirm your own tax-free line with NTA for the year you're filing.</p>
+  <p>Either way, the takeaway is the same: <b>crossing the old ¥1.03M no longer suddenly taxes you.</b> And even when it did, the "damage" was small — income tax starts at just 5%, so the first yen over the line cost pennies, not your paycheck.</p>
+
+  <h2 id="w106">The ¥1.06M wall — social insurance at big employers (being abolished Oct 2026)</h2>
+  <p>This is a real one, but it's mid-reform. At <b>larger employers</b>, a part-timer had to join the company's health insurance + Employees' Pension once they met <b>all</b> of: monthly wage ≥ ¥88,000 (≈ ¥1.06M/year), 20+ hours/week, expected 2+ months employment, not a student, and the employer over a size threshold.</p>
+  <div class="box">
+    <b>Confirmed change (MHLW reform):</b> From <b>October 2026</b>, the <b>¥88,000/month wage requirement (the "¥1.06M" part) is being abolished.</b> The <b>20-hours-per-week</b> requirement <b>remains</b>. So the trigger becomes mainly your <b>hours</b>, not a ¥1.06M salary line.
+  </div>
+  <p><b>要確認 / verify:</b> The <b>employer-size requirement</b> (currently 51+ insured employees) is set to shrink and phase out in stages (reported: 36+ from Oct 2027, dropping further over roughly a decade, eventually reaching small employers). Exact staging is legislated but rolls out over years — confirm what applies to <b>your specific employer</b> with MHLW / your company.</p>
+  <p>Practical effect: if you work 20+ hours/week at a covered employer, you'll likely join company insurance <b>regardless of a ¥1.06M figure</b>. That's not automatically bad — see "should you cross it?" below.</p>
+
+  <h2 id="w130">The ¥1.30M wall — the real cliff</h2>
+  <p>This is the one that can actually <b>reduce your take-home</b>. It's about <b>dependent (扶養) status</b> in your spouse's health insurance and pension.</p>
+  <ul>
+    <li>While your annual income stays under <b>¥1.30M</b>, you can be your working spouse's <b>insurance dependent</b> — covered by their health insurance and (if your spouse is a company employee) counted as a <b>Category-3 insured</b> for the National Pension, paying <b>¥0</b> in premiums yourself.</li>
+    <li>Cross <b>¥1.30M</b> and you generally <b>lose that dependent status</b>. Now you must enrol in and <b>pay your own</b> health insurance + pension.</li>
+  </ul>
+  <p>That's the cliff: the premiums you now owe are <b>not a small deduction</b> — they're a fixed annual cost that can be well over ¥250,000, so a small step over ¥1.30M can leave your household with <b>less net money</b> until your gross pay catches up.</p>
+  <div class="box"><b>要確認 / verify (2026 change):</b> The <b>¥1.30M threshold itself is not being changed</b>, but from <b>April 2026</b> how it's <i>judged</i> is being softened — dependent status is assessed on your <b>contract's projected annual income</b>, so a temporary spike from busy-season overtime shouldn't automatically kick you out if your contract stays under ¥1.30M. Confirm the exact rule with your <b>spouse's insurer</b>.</div>
+
+  <h2 id="example">Worked example — the ¥1.30M dip (illustrative — verify your own numbers)</h2>
+  <p>Let's make the cliff concrete. This is a <b>model calculation to show the mechanics</b>, not your exact result. Premiums vary by city, insurer and age.</p>
+  <div class="box">
+    <b>Assume:</b> a foreign resident on a spouse visa, currently a <b>dependent (扶養)</b> in their employed spouse's health insurance and a <b>Category-3</b> National Pension member (pays ¥0). They work part-time. We compare <b>staying just under ¥1.30M</b> vs <b>earning ¥1.35M</b> (just over the wall).
+  </div>
+
+  <h3>Case A — earn ¥1,290,000 (stay a dependent)</h3>
+  <div class="calc">Gross ¥1,290,000 − own pension ¥0 − own health insurance ¥0<br>≈ <b>¥1,290,000</b> take-home (before small income/resident tax)<small>Illustrative. As a dependent you pay no pension or health-insurance premium yourself.</small></div>
+
+  <h3>Case B — earn ¥1,350,000 (cross the wall)</h3>
+  <p>Now you must pay your <b>own</b> National Pension and National Health Insurance. Using confirmed FY2026 figures for pension, and an <b>illustrative</b> health-insurance premium:</p>
+  <div class="calc">National Pension: ¥17,920 × 12 = <b>¥215,040 / year</b><small>Confirmed FY2026 (令和8年度) national pension premium: ¥17,920 / month.</small></div>
+  <div class="calc">National Health Insurance ≈ <b>¥120,000 / year</b> (illustrative)<small>Varies a lot by city and income — verify your own with your city hall. ¥120,000 used here as a mid example.</small></div>
+  <div class="calc">Gross ¥1,350,000 − ¥215,040 − ≈¥120,000<br>≈ <b class="warn">¥1,014,960</b> take-home (before tax)<small>You earned ¥60,000 MORE but now pay ≈¥335,040 in your own premiums.</small></div>
+
+  <h3>The dip, side by side</h3>
+  <table>
+    <tr><th>Scenario</th><th>Gross</th><th>Own premiums</th><th>≈ Net</th></tr>
+    <tr><td>A — stay dependent</td><td>¥1,290,000</td><td class="win">¥0</td><td class="win">≈ ¥1,290,000</td></tr>
+    <tr><td>B — cross ¥1.30M</td><td>¥1,350,000</td><td class="warn">≈ ¥335,040</td><td class="warn">≈ ¥1,014,960</td></tr>
+  </table>
+  <div class="box"><b>Read the dip:</b> earning ¥60,000 <i>more</i> gross left you with roughly <b class="warn">¥275,000 less</b> net. To simply get back to your ¥1,290,000 net, you'd need to earn about <b>¥1,625,000</b> gross (≈ ¥1.29M + ≈ ¥0.335M of premiums). That ~<b>¥1.30M → ~¥1.63M</b> band is the "dead zone." Below it, staying under the wall wins. Above it, crossing wins — and keeps winning.</div>
+  <div class="note">Illustrative — verify your own numbers. Real health-insurance premiums depend on your municipality, your income, and your age; pension is the confirmed FY2026 national figure. If you instead join <b>your employer's</b> insurance (the ¥1.06M / hours route), the split and amounts differ — your employer pays half of the Employees' Pension.</div>
+
+  <h2 id="w150">The ¥1.50M / ¥1.60M point — spouse special deduction (a slope, not a cliff)</h2>
+  <p>This one worries people but shouldn't. It's about <b>your spouse's</b> tax, and it phases out <b>gradually</b>.</p>
+  <div class="box"><b>Confirmed change:</b> After the 2025 reform, your spouse can claim the <b>full spouse special deduction</b> while your salary income is up to about <b>¥1.60M</b> (raised from ¥1.50M), and it then <b>tapers off</b> as your income rises, reaching zero at roughly <b>¥2.01M</b> of salary. It's a sliding scale, so crossing it nudges your household tax up a little at a time — it does <b>not</b> chop your paycheck like the ¥1.30M insurance wall.</div>
+  <p>So on the tax side, there is no single scary "¥1.50M cliff" — just a gentle reduction of one of your spouse's deductions.</p>
+
+  <h2>"Should you even cross it?" — the contrarian caveat</h2>
+  <p>I run the numbers without emotion, so here's the case where "stay under the wall" is the <b>wrong</b> answer.</p>
+  <div class="box">
+    <b>Crossing the ¥1.30M / social-insurance wall is not just a cost — it buys you something real:</b>
+    <p>• You start building <b>your own pension record in your own name</b> (especially valuable if you join <b>Employees' Pension</b> via a job, where your employer pays half and you accrue a bigger future pension than the flat National Pension).</p>
+    <p>• You get your <b>own health insurance</b> and, with Employees' Pension, extras like <b>injury/sickness and maternity allowances</b> a dependent doesn't get.</p>
+    <p>• The dip <b>reverses</b>. Above roughly ¥1.63M gross (in the example), you're ahead of where you were <i>and</i> covered in your own right. Push toward full-time and the employer-insurance route usually beats staying a dependent.</p>
+  </div>
+  <p><b>Mio's rule:</b> if you can only earn a little over ¥1.30M, staying under it (or jumping clear past the dead zone) is the calculated move. If you can push well past it — or join your employer's insurance with hours — crossing is often the better long-run deal, because you stop being invisible in the pension system. <b>Know where the dip is, then decide.</b></p>
+
+  <div class="cta">
+    <div class="h">▶ Run your own numbers before you set your hours</div>
+    <div class="ph">Pull your city's National Health Insurance rate and your (or your spouse's) insurer's dependent rule, confirm the tax-free line with NTA for your filing year, then map your own ¥1.30M dead zone. Decide: stay under, or jump clear.<!-- ASP --></div>
+    <div class="note">The numbers here are illustrative and the rules are mid-reform in 2025–2026. Your real result depends on your municipality, your insurer, and the figures in force for your year.</div>
+  </div>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>These walls apply by <b>residence and employment in Japan, not nationality</b> — foreign residents on spouse/dependent status are treated like any resident worker.</li>
+    <li><b>¥1.03M (income tax):</b> reformed — the tax-free line rose to <b>¥1.23M</b> (Dec 2025), with a temporary top-up pushing it as high as ~¥1.60M–¥1.78M for lower earners in 2026 (<b>verify with NTA</b>). Old ¥1.03M advice is outdated.</li>
+    <li><b>¥1.06M (social insurance, big employers):</b> the ¥88,000/month wage trigger is <b>being abolished from Oct 2026</b>; the 20-hours/week rule stays; employer-size rule phases out over years (<b>verify with MHLW / employer</b>).</li>
+    <li><b>¥1.30M (dependent status):</b> the real cliff — cross it and you pay your <b>own</b> pension + health insurance. Threshold unchanged, but from April 2026 it's judged on <b>contract projection</b> (verify with the insurer).</li>
+    <li><b>~¥1.50M→¥1.60M (spouse special deduction):</b> a <b>gradual</b> phase-out of your spouse's deduction (zero around ¥2.01M) — a slope, not a cliff.</li>
+    <li>Crossing a wall can be worth it: <b>your own pension/health record</b>, and above the dead zone the loss reverses. Mio doesn't say never cross — <b>know exactly where the dip is</b>.</li>
+  </ul>
+
+  <div class="src">
+    <b>Sources</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm" target="_blank" rel="noopener">National Tax Agency — No.1199 基礎控除 (basic deduction; raised to ¥580,000, tiered, effective from Dec 1, 2025 year-end adjustment)</a><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm" target="_blank" rel="noopener">National Tax Agency — No.1410 給与所得控除 (employment-income deduction; minimum raised to ¥650,000)</a><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm" target="_blank" rel="noopener">National Tax Agency — No.1195 配偶者特別控除 (spouse special deduction; full amount up to ~¥1.60M salary, phases out to ~¥2.01M)</a><br>
+    ・<a href="https://www.mhlw.go.jp/stf/newpage_38821.html" target="_blank" rel="noopener">Ministry of Health, Labour and Welfare — 短時間労働者への社会保険適用拡大 (part-timer social-insurance coverage expansion; wage requirement abolition and staged employer-size phase-out)</a><br>
+    ・<a href="https://www.mhlw.go.jp/stf/newpage_00003.html" target="_blank" rel="noopener">Ministry of Health, Labour and Welfare — 「年収の壁」への対応 (the "income wall" support package — ¥1.06M / ¥1.30M measures)</a><br>
+    ・<a href="https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html" target="_blank" rel="noopener">Japan Pension Service — 国民年金保険料 (National Pension premium: ¥17,920 / month for FY2026 / 令和8年度)</a><br>
+    ・<a href="https://www.gov-online.go.jp/article/202312/entry-5288.html" target="_blank" rel="noopener">Government of Japan (政府広報オンライン) — 「年収の壁」対策 (official public explainer of the ¥1.06M / ¥1.30M walls and support measures)</a><br>
+    <span class="note">The basic-deduction rise to ¥580,000 and employment-income-deduction rise to ¥650,000 (income-tax line ≈ ¥1.23M from Dec 2025), the spouse-special-deduction figures, and the FY2026 national pension premium (¥17,920/month) are from NTA and JPS. The temporary top-up pushing the tax-free line toward ¥1.60M–¥1.78M for lower earners (2026–2027), the October 2026 abolition of the ¥1.06M wage requirement, the staged employer-size phase-out, and the April 2026 change to how the ¥1.30M dependent test is judged are reform items with tiered/rolling effective dates — marked "要確認 / verify." The worked-example health-insurance premium is illustrative and municipality-dependent. Confirm every figure for your own case and year with NTA, MHLW, your city hall, and your insurer/employer before acting.</span>
+  </div>
+  <div class="foot">
+    <a href="./">← English index</a> ／ <a href="../">Home</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>Operated by Honey bee Queen Inc. ｜ Money decisions are scored by "Mio," a fictional emotionless AI, based on calculation and official primary sources (scoring is independent of advertising).</div>
+<div>This page is general information, not individual tax or legal advice. Rules, figures and rates change — always confirm the latest with official sources (NTA / MHLW / your city hall) or a licensed professional.</div>
+<div>※This site may contain advertising (PR). Ad links are clearly labeled as such. <a href="../policy/" style="color:#9fb3c8">Ads · Disclaimer · Privacy</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
