@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ドル建て（外貨建て）保険は入るべき？「貯蓄＋為替で増える」の誤解を採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「外貨建て保険は入るべきか」を計算と一次情報だけで採点。為替リスク・手数料・解約控除で表面利率ほど手取りは増えない仕組みを分解し、向く人・向かない人を出典つきで整理。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/gaika-hoken.html">
+<meta property="og:title" content="ドル建て保険は入るべき？｜“増える”の誤解を計算で採点">
+<meta property="og:description" content="為替リスク・手数料・解約控除を分解。予定利率が高くても手取りが増えるとは限らない理由をAIが採点する。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ ドル建て保険は入るべき？</div>
+    <h1>ドル建て（外貨建て）保険は入るべき？<br>「貯蓄＋為替で増える」の誤解を採点した</h1>
+    <div class="lead">感情ゼロのAIが、営業トークでも不安でもなく<b>計算とコスト・リスクの分解だけ</b>で採点します。結論から言うと ―― 為替リスクを理解して長期でドル資産が欲しい人には選択肢。ですが「必ず増える元本保証の貯蓄」のつもりで入ると危険です。全員に向くわけでも、全員に不要でもありません。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">為替リスクを理解し、長期でドル建て資産を持ちたい人 → 選択肢になり得る。<br>「元本保証で必ず増える貯蓄」のつもり／数年で使う予定のお金 → 向かない。保障は掛け捨て、運用はNISA等で分けた方が透明で安いことが多い。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>外貨（ドル）建てで見た予定利率のイメージ</span><span>表面上は高く見えやすい</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>円で受け取ったときの実際の手取り（費用・為替差引後）</span><span>目減りし得る</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※イメージ図であり、特定商品の利回りや将来の受取額を示すものではありません。手取りは各種費用・為替・解約時期で変わります。断定的な利率予測はしません。出典は末尾。</div>
+  </div>
+
+  <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+    <b>Mioのひとこと</b><br>「予定利率が高い＝必ず得」ではありません。ドル建ての利率は<b>ドルの世界の数字</b>。円で使う私たちの手取りは、そこから費用を引き、最後に円へ戻す為替で決まります。忖度はしません。計算はごまかせない ―― “増える”を鵜呑みにせず、コストと為替リスクを分解してから判断してください。</div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「予定利率が高い」「銀行がすすめる」という<b>印象や営業トーク</b>で決めると損得はわかりません。採点すべきは、費用を引き、最後に円へ戻したあとの<b>手取りが払った円をどれだけ上回るか</b>という1つの数字です。組み立てはこれだけ。</p>
+  <div class="calc">円での手取り ＝（外貨で積み上がった額 − 各種費用）× 受取時の為替<small>ドル建ての利率が高く見えても、費用と“受取時の円高”でこの手取りは大きく変わる</small></div>
+  <p>この式には、パンフレットの表面利率だけでは見えない3つの変数――<b>為替リスク</b>・<b>各種費用</b>・<b>解約控除</b>――が隠れています。順に分解します。</p>
+
+  <h2>① 為替リスク：受取時に円高だと、円ベースで元本割れし得る</h2>
+  <p>外貨建て保険は、保険料を円で払っても<b>内部ではドル等の外貨で運用</b>されます。受け取るとき（満期・解約・保険金）に円へ戻すため、その時点の為替しだいで円ベースの手取りが増減します。<b>受取時に契約時より円高だと、外貨では増えていても円では目減りし、元本割れすることがあります。</b></p>
+  <p>下は「想定と実受取の差」を為替だけで単純化した整理です（費用や利息は考慮しない、為替の向きだけを見るためのイメージ）。</p>
+  <table>
+    <tr><th>局面</th><th>契約時の為替（例）</th><th>受取時の為替（例）</th><th>1万ドルを円に戻すと</th></tr>
+    <tr><td>円安に振れた</td><td>1ドル＝150円</td><td>1ドル＝165円</td><td class="win">165万円（想定150万より増）</td></tr>
+    <tr><td>変わらなかった</td><td>1ドル＝150円</td><td>1ドル＝150円</td><td>150万円（想定どおり）</td></tr>
+    <tr><td>円高に振れた</td><td>1ドル＝150円</td><td>1ドル＝120円</td><td style="color:#f0883e;font-weight:800">120万円（想定150万より30万円目減り）</td></tr>
+  </table>
+  <p>※為替レートはあくまで説明用の仮の数字で、将来の相場を予測するものではありません。<b>外貨では同じ1万ドルでも、円に戻すタイミングで手取りが大きく変わる</b>という点だけを示しています。円高局面で受け取らざるを得ないと、外貨での利息を為替差が食いつぶし、円では元本割れになり得ます。</p>
+
+  <h2>② 各種費用：表面利率と“手取り利回り”は別物</h2>
+  <p>外貨建て保険には、パンフレットの予定利率とは別に、いくつもの費用が乗ります。これらは積立に回る前に差し引かれるため、<b>表面利率ほど手取りは増えません</b>。主な費用は次のとおり。</p>
+  <ul>
+    <li><b>保険関係費用</b>（保障・契約の維持・管理などにかかる費用。積立部分から継続的に控除される）</li>
+    <li><b>為替手数料（為替スプレッド）</b>（円→外貨、外貨→円に替えるたびにかかるコスト。往復でかかる）</li>
+    <li><b>解約控除</b>（早期に解約すると差し引かれる費用。後述）</li>
+    <li>商品によっては、運用関係費用・年金受取時の費用など</li>
+  </ul>
+  <p>金融庁も、外貨建て保険は「<b>手数料や為替コストがわかりにくい</b>」「リスクの説明が不十分なまま販売される例がある」として、販売のモニタリングや情報提供の改善を求めてきました。<b>“予定利率○％”という表面の数字は、これらの費用を引く前の外貨ベースの数字</b>だという点を押さえてください。</p>
+
+  <h2>③ 解約控除：途中でやめると元本割れしやすい</h2>
+  <p>外貨建て保険は長期前提の商品で、契約から一定期間内に解約すると<b>解約控除</b>が差し引かれます。加えて為替が円高に振れていれば、費用と為替のダブルで<b>解約返戻金が払った額を下回る</b>ことがあります。「思ったより増えない」「ライフイベントで急にお金が要る」といった理由での途中解約は、元本割れの典型パターンです。</p>
+  <div class="calc">途中解約の手取り ＝ 外貨の解約返戻金 − 解約控除 −（往復の為替手数料）× 受取時の為替<small>数年で使う予定のお金を外貨建て保険に入れると、この式がマイナスになりやすい</small></div>
+  <p>国民生活センターにも、外貨建て保険をめぐる相談（「元本保証だと思っていた」「解約したら大きく減った」等）が寄せられてきました。<b>「必ず増える貯蓄」と説明された・そう受け取ったなら、認識のずれがある</b>可能性が高い、というのがAIの見立てです。</p>
+
+  <h2>④ “保障”と“運用”がセットで割高になりがち</h2>
+  <p>外貨建て保険は、<b>死亡保障などの「保障」</b>と<b>外貨での「運用」</b>が1つの商品に束ねられています。束ねると費用構造が見えにくくなり、保障・運用それぞれを単体で用意するより割高になりがちです。目的で分けると透明になります。</p>
+  <ul>
+    <li><b>保障が欲しい</b> → 掛け捨ての定期保険で、必要な保障だけを安く確保する。</li>
+    <li><b>資産を増やしたい</b> → NISA等の非課税制度で、低コストの投資信託などを自分で選ぶ。</li>
+  </ul>
+  <p>このように分けると、<b>いくらの保障に、いくらの費用を払っているか</b>／<b>運用にどれだけコストがかかっているか</b>が別々に見えます。外貨資産そのものが欲しいなら、外貨建てMMFや外国株式・債券のインデックス投信をNISA・課税口座で持つ選択肢もあります（いずれも元本割れあり・為替リスクあり）。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの条件・目的</th><th>向き不向き</th><th>理由</th></tr>
+    <tr><td>為替リスクを理解し、長期でドル資産を持ちたい</td><td class="win">選択肢になり得る</td><td>費用と為替を納得のうえ、長期で外貨資産を積むなら手段の一つ</td></tr>
+    <tr><td>「元本保証で必ず増える」つもりで入りたい</td><td style="color:#f0883e;font-weight:800">向かない</td><td>元本保証ではない。円高・費用・解約控除で元本割れし得る</td></tr>
+    <tr><td>数年以内に使う予定のお金</td><td style="color:#f0883e;font-weight:800">向かない</td><td>途中解約で解約控除＋為替差により元本割れしやすい</td></tr>
+    <tr><td>純粋に「貯蓄」がしたい</td><td>不向き寄り</td><td>元本確保を最優先するなら、まず預貯金・個人向け国債等の方が透明</td></tr>
+    <tr><td>「保障」だけが欲しい</td><td>不向き寄り</td><td>掛け捨ての定期保険で必要保障を安く確保する方が費用が明確</td></tr>
+    <tr><td>非課税で資産を増やしたい</td><td>別手段が有力</td><td>NISA等で低コスト投信を自分で選ぶ方が費用が見えやすいことが多い</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>外貨建て保険を「危険だから絶対ダメ」と切り捨てるのも、「利率が高いから得」と煽るのも、この検証室のやり方ではありません。判断軸は<b>「費用と為替リスクを分解しても、なお“外貨建て保険という束ね方”を選ぶ理由があるか」</b>の一点です。目的が保障なら掛け捨て、運用ならNISA等、と分けた方が透明で安く済むことが多い ―― これは投資助言ではなく、コスト構造の整理です。</p>
+
+  <div class="cta">
+    <div class="h">▶ “入るべきか”を印象でなくコストで確かめる</div>
+    <div class="ph"><!-- ASP --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は営業トークでなく「（外貨の積立額−費用）×受取時の為替」で。表面利率は費用を引く前の外貨の数字。</li>
+    <li>為替リスクがある。受取時に円高だと外貨で増えても円では目減りし、元本割れし得る。</li>
+    <li>保険関係費用・為替手数料が乗るため、表面利率ほど手取りは増えない。</li>
+    <li>途中解約は解約控除＋為替差で元本割れしやすい。数年で使うお金には向かない。</li>
+    <li>「保障」と「運用」を分ける（掛け捨て＋NISA等）と費用が透明で安いことが多い。</li>
+    <li>元本保証ではない・為替リスクあり・本記事は投資助言ではありません。契約内容と最新条件は必ず公式・専門家でご確認を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🛡 保障と貯蓄を分けるべきか迷うなら：<a href="hoken-kakesute-vs-chochiku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">保険は掛け捨て vs 貯蓄型、どっちが得か（計算で採点）→</a></div>
+  <div style="margin-top:14px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📈 老後資金を非課税で用意するなら：<a href="kojin-nenkin-vs-ideco-nisa.html" style="color:#58a6ff;text-decoration:none;font-weight:700">個人年金保険 vs iDeCo・NISA、どれが得か（計算で採点）→</a></div>
+  <div style="margin-top:14px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🗓 いま入っている保険を見直すなら：<a href="hoken-minaoshi-timing.html" style="color:#58a6ff;text-decoration:none;font-weight:700">保険の見直しはいつ？ベストなタイミングを採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・金融庁「外貨建保険の販売・情報提供」等のモニタリング・注意喚起（外貨建て保険の手数料・為替コスト・リスク説明に関する取組。<a href="https://www.fsa.go.jp/" target="_blank" rel="noopener">fsa.go.jp</a>）<br>
+    ・国民生活センター「外貨建て保険」に関する相談・注意喚起（「元本保証だと思っていた」「解約で元本割れ」等の相談事例。<a href="https://www.kokusen.go.jp/" target="_blank" rel="noopener">kokusen.go.jp</a>）<br>
+    ・生命保険文化センター「外貨建て保険のしくみ・為替リスク・諸費用」等の中立解説（<a href="https://www.jili.or.jp/" target="_blank" rel="noopener">jili.or.jp</a>）<br>
+    ・各保険会社が交付する契約概要・注意喚起情報・約款（予定利率／保険関係費用／為替手数料／解約控除の具体条件）<br>
+    <span class="note">※本記事は特定の保険商品・金融商品を推奨するものではなく、投資助言でもありません。外貨建て保険・外貨建て金融商品は元本割れの可能性があり、為替リスクを伴います。利率・費用・為替は各時点で変動し、制度・約款は改定され得ます。加入・見直し・解約はご自身の判断で、契約内容と最新の条件は各社・各機関の公式および専門家でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
