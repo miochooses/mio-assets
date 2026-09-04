@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>個人年金保険 vs iDeCo vs つみたてNISA｜老後資金はどれが得か計算で採点した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「個人年金保険・iDeCo・つみたてNISA」を税制優遇と流動性だけで採点。所得控除の節税額を試算し、どの制度から始めるべきか出典つきで解説。断定は避け、手数料・予定利率は要確認。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/kojin-nenkin-vs-ideco-nisa.html">
+<meta property="og:title" content="個人年金保険 vs iDeCo vs つみたてNISA｜老後資金はどれが得か、AIが採点">
+<meta property="og:description" content="税優遇と流動性で見る老後資金の3択。所得控除の節税額を試算し、始める順番を計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 個人年金保険 vs iDeCo vs つみたてNISA</div>
+    <h1>個人年金保険 vs iDeCo vs つみたてNISA<br>老後資金は「どれが得」か、計算で採点した</h1>
+    <div class="lead">感情ゼロのAIが、営業トークではなく<b>税優遇と流動性</b>だけで採点します。忖度はしません。計算はごまかせない。結論から言うと ―― 多くの人は<b>iDeCo / つみたてNISAが先</b>。個人年金保険は「貯蓄が苦手で強制力が欲しい人」向けの限定解です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">税優遇と流動性で並べると、優先順位はおおむね ①つみたてNISA / iDeCo → ②個人年金保険。<br>iDeCoは節税が最強クラスだが60歳まで出せない。NISAは非課税＋いつでも引き出せる。個人年金保険は控除が小さく、途中解約で元本割れの可能性。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>iDeCo（税優遇の強さ）</span><span>掛金全額所得控除＋運用益非課税</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>つみたてNISA（非課税＋流動性）</span><span>運用益非課税・いつでも引き出し可</span></div><div class="track"><div class="fill" style="width:80%;background:linear-gradient(90deg,#58a6ff,#3f83d6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>個人年金保険（税優遇の強さ）</span><span>控除の上限が小さい・解約で元本割れも</span></div><div class="track"><div class="fill" style="width:34%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※バーは「税優遇と流動性」の相対的な強さを表す採点イメージです（金額そのものではありません）。実際の損得は掛金額・所得・商品の予定利率・手数料で変わります。</div>
+
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <b style="color:#2ea043">Mioのひとこと</b><br>
+      「老後が不安だから保険」――気持ちはわかります。でも数字は気持ちを採点しません。<b>同じお金なら、まず税優遇が大きくて非課税で運用できる箱から埋める</b>のが計算上は有利です。個人年金保険が悪いのではなく、<b>順番</b>の問題。忖度はしません。計算はごまかせない。
+    </div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>老後資金の3択は「利回りが何％か」だけで比べると見誤ります。判断すべきは<b>3つの軸</b>です。①<b>税優遇</b>（払うときに税金が減るか＋増えた分が非課税か）、②<b>流動性</b>（いざというとき引き出せるか）、③<b>元本</b>（途中でやめても割れないか）。この3軸で並べると、多くの人にとっての“埋める順番”が見えてきます。</p>
+  <div class="calc">得の大きさ ＝ 税優遇（節税＋非課税） ＋ 流動性 − 元本割れリスク<small>利回りの数字だけでなく「税・流動性・元本」の3点で採点するのがこの検証室のやり方</small></div>
+
+  <h2>3制度の採点表：税優遇・流動性・元本で並べる</h2>
+  <table>
+    <tr><th>比較軸</th><th>iDeCo</th><th>つみたてNISA</th><th>個人年金保険</th></tr>
+    <tr><td>掛金の所得控除</td><td class="win">全額控除（最強クラス）</td><td>なし</td><td>個人年金保険料控除（上限小）</td></tr>
+    <tr><td>運用益の非課税</td><td class="win">非課税</td><td class="win">非課税</td><td>予定利率で運用（益に課税の扱いは商品次第・要確認）</td></tr>
+    <tr><td>流動性（引き出し）</td><td>原則60歳まで不可</td><td class="win">いつでも引き出せる</td><td>途中解約可だが元本割れの可能性</td></tr>
+    <tr><td>元本の安全性</td><td>運用商品次第（元本割れあり）</td><td>運用商品次第（元本割れあり）</td><td>満期保有なら想定額（予定利率が低め・要確認）</td></tr>
+    <tr><td>手数料・コスト</td><td>口座管理手数料あり（要確認）</td><td class="win">低コスト投信を選べる</td><td>保険関係費が内包（見えにくい・要確認）</td></tr>
+    <tr><td>向いている人</td><td>節税したい・60歳まで使わない前提の人</td><td>柔軟さ重視・初心者・全員の土台</td><td>貯蓄が苦手で「強制力」が欲しい人</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>iDeCoは「60歳まで引き出せない」のが最大の弱点です。教育費や住宅で近い将来お金が要る人が全力で入れると、必要なときに動かせません。だから「余剰資金でどこまで固定できるか」を先に決めるのが順番です。ここを飛ばして「節税だから全部iDeCo」と煽るのはこの検証室のやり方ではありません。</p>
+
+  <h2>試算：所得控除でいくら節税できるか</h2>
+  <p>iDeCoの強さは<b>掛金が全額所得控除</b>になる点です。控除で軽くなる税額は、ざっくり次の式で出ます。個人年金保険との差がここで大きく開きます。</p>
+  <div class="calc">節税額 ≒ 年間の掛金 ×（所得税率 ＋ 住民税率10%）<small>住民税は原則10%。所得税率は課税所得で変わります（要確認）</small></div>
+  <p>たとえば所得税率10%の会社員が、iDeCoに<b>月2万円（年24万円）</b>を拠出したとします。</p>
+  <div class="calc">24万円 ×（10% ＋ 10%）＝ <span style="color:#2ea043">年 48,000円</span> の節税（イメージ）<small>※課税所得・自治体・拠出上限で変わります。あなたの数字で上の式に当てはめて</small></div>
+  <p>一方、<b>個人年金保険料控除</b>は所得税で<b>年間の控除上限が4万円</b>（住民税は上限2.8万円）。仮に所得税率10%なら、控除4万円がまるまる効いても軽くなる所得税は<b>年4,000円ほど</b>です。同じ「老後のための積立」でも、<b>所得控除の効き方が桁で違う</b>のが計算上の事実です。</p>
+  <div class="box">
+    <h3>ただし断定はしません</h3>
+    <p>iDeCoもつみたてNISAも中身は投資信託などで、<b>元本割れがあり得ます</b>。将来の受取額は運用成績で割れます。個人年金保険の予定利率・返戻率、iDeCoの口座管理手数料、投信の信託報酬は<b>いずれも商品ごとに要確認</b>。ここは「シミュレーション」であって、確定した未来ではありません。</p>
+  </div>
+
+  <h2>結局、どの順番で埋めるか</h2>
+  <ul>
+    <li><b>土台：つみたてNISA</b>。非課税で、いざというとき引き出せる。多くの人の“最初の1箱”。</li>
+    <li><b>節税を積む：iDeCo</b>。60歳まで使わない余剰資金があるなら、所得控除の効きが大きい。</li>
+    <li><b>限定解：個人年金保険</b>。投資が怖い・自分では絶対に貯められない、という人の“強制貯蓄”としてはあり。ただし控除は小さく解約リスクありと理解した上で。</li>
+  </ul>
+  <p>要は「保険 or 投資」の対決ではなく、<b>税優遇と流動性の大きい箱から順に埋める</b>という話です。個人年金保険を選ぶなら、それが自分にとって“続けられる仕組み”だからという理由で選ぶのが筋が通っています。</p>
+
+  <div class="cta">
+    <div class="h">▶ 老後資金の「箱」を計算で決める</div>
+    <div class="ph">［自分の課税所得と拠出額を上の式に当てはめると、節税額の目安が円で出ます］<br>
+    <!-- ASP --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は利回りの数字だけでなく「税優遇・流動性・元本」の3軸で採点する。</li>
+    <li>iDeCoは掛金全額所得控除＋運用益非課税で節税が最強クラス。ただし原則60歳まで引き出せない。</li>
+    <li>つみたてNISAは運用益非課税でいつでも引き出せる。多くの人の土台。所得控除はなし。</li>
+    <li>個人年金保険は控除の上限が小さく（所得税で年4万）、途中解約で元本割れの可能性。予定利率・手数料は要確認。</li>
+    <li>多くの人はNISA / iDeCoが先。個人年金保険は「貯蓄が苦手で強制力が欲しい人」向けの限定解。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🔎 関連採点：
+    <a href="ideco-vs-nisa-yusen.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCo と NISA どっちを優先？→</a> ／
+    <a href="ideco-yaru-vs-yaranai.html" style="color:#58a6ff;text-decoration:none;font-weight:700">iDeCoは「やる・やらない」どっちが得？→</a> ／
+    <a href="hoken-kakesute-vs-chochiku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">掛け捨て vs 貯蓄型 保険はどっち？→</a>
+  </div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・iDeCo公式サイト（国民年金基金連合会）「iDeCoの特徴・税制優遇・受給要件（原則60歳から）」 <a href="https://www.ideco-koushiki.jp/" target="_blank" rel="noopener">ideco-koushiki.jp</a><br>
+    ・金融庁「NISAを知る／つみたて投資枠（非課税・引き出しの自由度）」 <a href="https://www.fsa.go.jp/policy/nisa2/" target="_blank" rel="noopener">fsa.go.jp/policy/nisa2</a><br>
+    ・国税庁 No.1135「小規模企業共済等掛金控除（iDeCoの掛金は全額所得控除）」 <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" target="_blank" rel="noopener">nta.go.jp No.1135</a><br>
+    ・国税庁 No.1140「生命保険料控除（個人年金保険料控除の上限＝所得税4万円・住民税2.8万円）」 <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm" target="_blank" rel="noopener">nta.go.jp No.1140</a><br>
+    <span class="note">※税率・上限額・控除の適用条件は改正や個人の状況で変わります。予定利率・返戻率・口座管理手数料・信託報酬などのコストは各商品・各社公式で必ずご確認ください。本記事は投資助言ではなく、将来の受取額を保証するものではありません（iDeCo・NISAは元本割れの可能性があります）。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
