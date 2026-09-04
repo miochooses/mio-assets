@@ -71,7 +71,7 @@
       </div>
       <div class="lines" id="lines"></div>
       <div class="fixed" id="risk" style="display:none"></div>
-      <div class="cta" id="cta">【ASP導線プレースホルダ：住宅ローン借換・比較相談】</div>
+      <div class="cta" id="cta"><!-- ASP --></div>
       <div class="note" id="note"></div>
     </div>
   </div>
@@ -120,7 +120,7 @@ function calc(){
   R.innerHTML='金利が <b style="color:#f0883e">1％上がる</b>と、月返済は <b style="color:#f0645a">約'+yen(diff)+'増</b>（月 '+yen(pm)+' → '+yen(pmUp)+'）。'
     +'これが変動金利のリスクの正体です。';
 
-  document.getElementById('note').textContent='※これは「元利均等返済」前提の“ざっくり概算”です。ボーナス払い・保証料・団信（団体信用生命保険）・事務手数料は含みません。変動金利は将来上がる可能性があり、上の「1％上昇」は最悪ではなく起こりうる一例。繰上返済や借換で総額は変わります。正確な返済額は金融機関の正式なシミュレーションでご確認を。【ASP導線プレースホルダ：住宅ローン借換・比較相談】';
+  document.getElementById('note').textContent='※これは「元利均等返済」前提の“ざっくり概算”です。ボーナス払い・保証料・団信（団体信用生命保険）・事務手数料は含みません。変動金利は将来上がる可能性があり、上の「1％上昇」は最悪ではなく起こりうる一例。繰上返済や借換で総額は変わります。正確な返済額は金融機関の正式なシミュレーションでご確認を。<!-- ASP -->';
 
   document.getElementById('out').style.display='block';
 }
