@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NISA取り崩しシミュ（定額vs定率）｜資産が何年もつか・受取額の変動を即試算｜AIガチ検証室</title>
+<meta name="description" content="初期資産・想定利回り・取り崩し方式（定額／定率）を入れるだけ。資産寿命（何年もつか）や毎年の受取額をAIが即シミュレーション。定額vs定率を同条件で比較。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="NISA取り崩しシミュ（定額vs定率）">
+<meta property="og:description" content="老後の取り崩しで資産が何年もつか・受取額がどう変わるかを定額/定率で比較。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  label:first-child{margin-top:0;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  .toggle{display:flex;gap:8px;margin-top:8px;}
+  .toggle button{flex:1;margin-top:0;padding:12px;border:1px solid #33475b;border-radius:10px;background:#0b121a;color:var(--mut);font-size:15px;font-weight:800;cursor:pointer;}
+  .toggle button.on{background:var(--g);color:#08110a;border-color:var(--g);}
+  button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big .sub2{margin-top:4px;font-size:12px;color:var(--faint);}
+  .lines{margin-top:14px;}
+  .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .fixed{margin-top:14px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:14px;}
+  .fixed a{color:var(--b);text-decoration:none;font-weight:700;}
+  table.cmp{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px;}
+  table.cmp th,table.cmp td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line);}
+  table.cmp th:first-child,table.cmp td:first-child{text-align:left;}
+  table.cmp thead th{color:var(--mut);font-weight:700;font-size:12px;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ NISA取り崩しシミュ（定額vs定率）</div>
+    <h1>その資産、取り崩したら何年もつ？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／前提利回りでの試算</div>
+  </header>
+
+  <div class="panel">
+    <label>初期資産額（万円）<span class="sub">取り崩しをはじめる時点の資産。例）3000万円なら 3000</span>
+      <input id="asset" type="number" inputmode="numeric" placeholder="例）3000">
+    </label>
+    <label>想定年利（%）<span class="sub">取り崩しながら残りを何％で運用できると仮定するか。例）4。あくまで前提値です</span>
+      <input id="rate" type="number" inputmode="decimal" step="0.1" placeholder="例）4">
+    </label>
+    <label>取り崩し方式
+      <div class="toggle">
+        <button type="button" id="btnFixed" class="on" onclick="setMode('fixed')">定額（毎年◯万円）</button>
+        <button type="button" id="btnRate" onclick="setMode('rate')">定率（毎年◯%）</button>
+      </div>
+    </label>
+    <div id="fixedField">
+      <label>年間取り崩し額（万円）<span class="sub">毎年いくら取り崩すか（固定額）。例）150万円なら 150</span>
+        <input id="draw" type="number" inputmode="numeric" placeholder="例）150">
+      </label>
+    </div>
+    <div id="rateField" style="display:none">
+      <label>取り崩し率（%/年）<span class="sub">毎年、期初残高の何％を取り崩すか。例）4</span>
+        <input id="drawpct" type="number" inputmode="decimal" step="0.1" placeholder="例）4">
+      </label>
+    </div>
+    <label>シミュ年数（年）<span class="sub">何年ぶんを試算するか（既定30年）。例）30</span>
+      <input id="years" type="number" inputmode="numeric" placeholder="30">
+    </label>
+    <button onclick="calc()">資産寿命をシミュレーション</button>
+
+    <div class="out" id="out">
+      <div class="big">
+        <div class="lb" id="bigLb">結果（目安）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="sub2"></div>
+      </div>
+      <div class="lines" id="lines"></div>
+      <div class="fixed" id="cmp" style="display:none"></div>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連：<a href="../saiten/nisa-torikuzushi-deguchi.html">新NISAの出口（取り崩し）</a> ｜ <a href="../saiten/nisa-1800-tsukaikiri.html">NISA1800万を使い切る</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+<!-- ASP -->
+<script>
+function yen(n){ return '¥'+Math.round(n).toLocaleString('ja-JP'); }
+function man(n){ // 円→万円表記（読みやすさ優先）
+  return (Math.round(n/100)/100).toLocaleString('ja-JP')+'万円';
+}
+var mode='fixed';
+function setMode(m){
+  mode=m;
+  document.getElementById('btnFixed').classList.toggle('on', m==='fixed');
+  document.getElementById('btnRate').classList.toggle('on', m==='rate');
+  document.getElementById('fixedField').style.display = (m==='fixed')?'block':'none';
+  document.getElementById('rateField').style.display = (m==='rate')?'block':'none';
+}
+
+// 各年ループ: 期初残高 → 取り崩し → 残りに年利 → 期末残高
+// method='fixed': 固定額(円)を引く / 'rate': 期初残高×率(小数)を引く
+// 戻り値: {rows:[{year,start,withdraw,end}...], depletedYear:number|null}
+function simulate(initial, annualPct, method, param, years){
+  var i = annualPct/100;
+  var bal = initial;
+  var rows = [];
+  var depletedYear = null;
+  for(var y=1; y<=years; y++){
+    var start = bal;
+    var w = (method==='fixed') ? param : start*param;
+    if(w > start) w = start;          // 期初残高を超えて引かない
+    var afterDraw = start - w;
+    var end = afterDraw * (1+i);       // 残りを1年運用
+    rows.push({year:y, start:start, withdraw:w, end:end});
+    bal = end;
+    if(depletedYear===null && afterDraw<=0.5){ depletedYear = y; } // 実質枯渇（<0.5円）
+  }
+  return {rows:rows, depletedYear:depletedYear};
+}
+
+function pickRow(rows, y){ for(var k=0;k<rows.length;k++){ if(rows[k].year===y) return rows[k]; } return null; }
+
+function calc(){
+  var assetMan = parseFloat(document.getElementById('asset').value)||0;
+  var rate = parseFloat(document.getElementById('rate').value);
+  var years = parseInt(document.getElementById('years').value,10);
+  if(isNaN(years)||years<=0) years = 30;
+  if(years>100) years = 100;
+
+  if(assetMan<=0){ alert('初期資産額（万円）を入れてください'); return; }
+  if(isNaN(rate)||rate<0){ alert('想定年利（%）を入れてください（例：4）'); return; }
+
+  var initial = assetMan*10000;
+  var drawFixed = (parseFloat(document.getElementById('draw').value)||0)*10000; // 円
+  var drawPct = (parseFloat(document.getElementById('drawpct').value)||0)/100;   // 小数
+
+  if(mode==='fixed' && drawFixed<=0){ alert('年間取り崩し額（万円）を入れてください'); return; }
+  if(mode==='rate' && drawPct<=0){ alert('取り崩し率（%/年）を入れてください（例：4）'); return; }
+
+  // 両方式を同条件でシミュ（比較用）。定率側は「入力があればそれ／なければ定額を初期残高比の率に換算」
+  var fixedParam = (drawFixed>0) ? drawFixed : (drawPct*initial);
+  var rateParam  = (drawPct>0)  ? drawPct   : (drawFixed/initial);
+
+  var simFixed = simulate(initial, rate, 'fixed', fixedParam, years);
+  var simRate  = simulate(initial, rate, 'rate',  rateParam,  years);
+  var sim = (mode==='fixed') ? simFixed : simRate;
+
+  // ---- メイン結果表示 ----
+  var big = document.getElementById('amt');
+  var bigLb = document.getElementById('bigLb');
+  var sub2 = document.getElementById('sub2');
+  var lastRow = sim.rows[sim.rows.length-1];
+
+  if(mode==='fixed'){
+    bigLb.textContent = (sim.depletedYear!==null) ? '資産寿命（目安）' : years+'年後の残高（目安）';
+    if(sim.depletedYear!==null){
+      big.textContent = '約'+sim.depletedYear+'年';
+      sub2.textContent = '（毎年 '+ (drawFixed/10000) +'万円ずつ取り崩し ／ 想定年利 '+rate+'% ／ '+sim.depletedYear+'年目に資産がほぼ尽きる想定）';
+    }else{
+      big.textContent = man(lastRow.end);
+      sub2.textContent = '（毎年 '+ (drawFixed/10000) +'万円ずつ取り崩し ／ 想定年利 '+rate+'% ／ '+years+'年たっても資産が残る想定）';
+    }
+  }else{
+    var firstW = simRate.rows[0].withdraw;
+    bigLb.textContent = '初年度の受取額（目安）';
+    big.textContent = man(firstW);
+    sub2.textContent = '（期初残高の '+ (drawPct*100).toFixed(1) +'% を取り崩し ／ 想定年利 '+rate+'% ／ 受取額は毎年変動 ／ '+years+'年後の残高 約'+man(lastRow.end)+'）';
+  }
+
+  // ---- 主要年サマリ ----
+  var L = document.getElementById('lines'); L.innerHTML='';
+  function row(n,v,color){ var d=document.createElement('div'); d.className='line';
+    d.innerHTML='<span>'+n+'</span><span><b'+(color?' style="color:'+color+'"':'')+'>'+v+'</b></span>'; L.appendChild(d); }
+  row('初期資産', man(initial));
+  if(mode==='fixed'){
+    row('年間取り崩し額', (fixedParam/10000)+'万円', '#f0883e');
+    if(sim.depletedYear!==null){ row('資産がほぼ尽きる年', '約'+sim.depletedYear+'年目', '#f0645a'); }
+    else { row(years+'年後の残高', man(lastRow.end), '#2ea043'); }
+  }else{
+    row('取り崩し率', (rateParam*100).toFixed(1)+'%／年', '#f0883e');
+    row('初年度の受取額', man(simRate.rows[0].withdraw), '#58a6ff');
+    row(years+'年後の残高', man(lastRow.end), '#2ea043');
+    row(years+'年後の受取額', man(lastRow.withdraw), '#58a6ff');
+  }
+
+  // ---- 定額 vs 定率 比較表（同条件・主要年）----
+  var marks = [5,10,20,30].filter(function(y){ return y<=years; });
+  if(marks.indexOf(years)<0) marks.push(years);
+  var C = document.getElementById('cmp');
+  var html = '<div style="font-weight:700;color:var(--mut);margin-bottom:8px;">定額 vs 定率を同条件で比較</div>';
+  html += '<div style="font-size:12px;color:var(--faint);margin-bottom:6px;">定額＝毎年 '+(fixedParam/10000)+'万円 ／ 定率＝毎年 '+(rateParam*100).toFixed(1)+'%（初期残高では同額）</div>';
+  html += '<table class="cmp"><thead><tr><th>経過</th><th>定額・残高</th><th>定率・残高</th><th>定率・受取額</th></tr></thead><tbody>';
+  marks.forEach(function(y){
+    var rf = pickRow(simFixed.rows,y), rr = pickRow(simRate.rows,y);
+    var fBal = (rf) ? (rf.end<=0.5 ? '尽きた' : man(rf.end)) : '—';
+    var rBal = (rr) ? man(rr.end) : '—';
+    var rW   = (rr) ? man(rr.withdraw) : '—';
+    html += '<tr><td>'+y+'年後</td><td>'+fBal+'</td><td>'+rBal+'</td><td>'+rW+'</td></tr>';
+  });
+  html += '</tbody></table>';
+  html += '<div style="font-size:12px;color:var(--faint);margin-top:10px;">定額は残高が尽きると<b style="color:#f0645a">資産寿命</b>が来ますが、定率は残高に比例して取り崩すため<b style="color:#2ea043">原理上ゼロになりにくく</b>（＝資産寿命が延びやすい）、そのぶん<b>毎年の受取額が変動</b>します。相場が下がった年は受取額も減る点に注意。</div>';
+  C.style.display='block';
+  C.innerHTML = html;
+
+  document.getElementById('note').innerHTML =
+    '※これは「想定した年利で一定に運用できた場合」の<b>あくまで概算</b>です。実際の相場は毎年上下に変動し、'+
+    '<b>想定利回りは保証されません。元本割れ（資産が想定より速く減る）</b>こともあります。'+
+    'いわゆる「4%ルール」は<b>米国の過去データが前提</b>で、日本にそのまま当てはまるとは限りません。'+
+    '本ツールは<b>特定の商品・売買を推奨する投資助言ではありません</b>。'+
+    'なお<b>NISA口座内の運用益・売却益は非課税</b>のため、取り崩し（売却）時に税金はかかりません（課税口座なら約20%課税）。'+
+    '正確なことは金融機関の公式シミュレーターや目論見書、専門家にご確認ください。';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
