@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ふるさと納税で「損する人」の共通点｜控除されない・二重手間の落とし穴を採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが、ふるさと納税で損する人の共通点を計算だけで採点。ワンストップの出し忘れ・6自治体超・確定申告での寄付書き忘れなど、控除されない失敗パターンと回避の型を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://opboard-site/saiten/furusato-otoshiana.html">
+<meta property="og:title" content="ふるさと納税で損する人の共通点｜控除されない・二重手間の落とし穴">
+<meta property="og:description" content="制度は使い方をミスると“ただの高い買い物”。手続きの型で取りこぼしゼロにする採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .lose{color:var(--o);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .mio{background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px;}
+  .mio .h{font-size:12px;font-weight:800;color:var(--g);letter-spacing:.04em;}
+  .mio p{margin-top:6px;font-size:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ ふるさと納税の落とし穴</div>
+    <h1>ふるさと納税で「損する人」の共通点<br>控除されない・二重手間の落とし穴を採点した</h1>
+    <div class="lead">感情ゼロのAIが、返礼品の豪華さではなく<b>手続きのミス</b>だけを採点します。結論から言うと ―― ふるさと納税で損する人のほぼ全員が「返礼品選び」ではなく「申請の型」を外しています。制度は使い方をミスると<b>“ただの高い買い物”</b>になります。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">損の正体は返礼品ではなく<b>手続き</b>。<br>「ワンストップの出し忘れ」「6自治体超なのに確定申告しない」「申告する年に寄付を書き忘れ」―― この3つで控除がゼロ〜半減する人が最も多い。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>手続きミス（控除されない・寄付が丸ごと自己負担）</span><span>実質負担：寄付額そのまま</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>手続き正しく完了（自己負担 実質2,000円）</span><span>実質負担：2,000円</span></div><div class="track"><div class="fill" style="width:14%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※控除の要件・期限は制度・年度で変わります。数値は仕組みを説明するための一般的な目安で、必ず総務省・国税庁の公式で最新をご確認ください。</div>
+
+    <div class="mio">
+      <div class="h">Mioのひとこと</div>
+      <p>忖度はしません。計算はごまかせない。返礼品の還元率を1%競っても、申請書を1枚出し忘れたら控除はゼロ。数万円が「ただの寄付」に化けます。差がつくのは<b>センスではなく手順</b>です。</p>
+    </div>
+  </div>
+
+  <h2>採点の考え方（返礼品ではなく“手続き”を採点する）</h2>
+  <p>ふるさと納税の得は「返礼品がいくらか」ではありません。本来の仕組みは<b>払う税金の前払い＋返礼品</b>で、正しく手続きすれば自己負担は原則2,000円。この控除の要件を外した瞬間、寄付額は税金から引かれず、丸ごと自腹になります。採点すべきは1つ。</p>
+  <div class="calc">実質負担 ＝ 寄付額 −（住民税・所得税から控除された額）<small>控除が満額なら実質2,000円。手続きを外すと控除＝0円で寄付額まるごと負担</small></div>
+  <p>つまり「損した人」は返礼品選びを間違えたのではなく、<b>控除の欄が0円のまま確定した</b>人です。ここを外さないための型が本記事の中身です。</p>
+
+  <h2>やりがち失敗パターン別 採点表</h2>
+  <table>
+    <tr><th>やりがちな間違い</th><th>どうなる</th><th>回避の型</th></tr>
+    <tr><td class="lose">①ワンストップ特例の申請書を期限までに出し忘れ</td><td>控除されない。確定申告もしなければ寄付は全額自己負担</td><td>寄付先ごとに申請書を提出。翌年1/10必着（要確認）。出し忘れは確定申告で救済</td></tr>
+    <tr><td class="lose">②6自治体以上に寄付したのにワンストップで済ませようとする</td><td>ワンストップは5自治体まで。6自治体目からは特例が無効で控除漏れ</td><td>6自治体以上は確定申告で全件まとめて申告する</td></tr>
+    <tr><td class="lose">③確定申告する年に、申請書だけ出して申告に寄付を書き忘れ</td><td>確定申告を出すとワンストップは自動失効。書き忘れると控除ゼロ</td><td>確定申告する年は寄付金控除欄に全件記入。申請書は無効になる前提で</td></tr>
+    <tr><td class="lose">④引っ越し・結婚などで住所・氏名が変わったのに未届け</td><td>本人特定できず控除が反映されない・二重手間になる</td><td>変更があれば寄付先自治体へ変更届（変更事項の届出）を提出（要確認）</td></tr>
+    <tr><td class="lose">⑤控除上限額を超えて寄付</td><td>上限超過分は控除されず自己負担。返礼品はもらえても税は減らない</td><td>年収・家族構成から上限を事前試算し、超えない範囲で寄付</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>①〜③は「返礼品の良し悪し」とは無関係に発生します。豪華な返礼品を選んだ人ほど寄付額が大きく、外したときの自腹も大きくなる。ここを煽らず淡々と潰すのがこの検証室のやり方です。期限・自治体数などの数値は制度改正で変わり得るため、必ず公式で最新を確認してください。</p>
+
+  <h2>控除漏れの損失試算：外すといくら自腹か</h2>
+  <p>仕組みをわかりやすくするための一例です。上限内で6万円を寄付した人が、手続きを完了した場合と、申請を外した場合を比べます。</p>
+  <div class="calc">正しく完了：実質負担 6万円 − 控除 5.8万円 ＝ <span style="color:#2ea043">2,000円</span><br>手続きを外す：実質負担 6万円 − 控除 <span style="color:#f0883e">0円</span> ＝ <span style="color:#f0883e">60,000円</span><small>※控除額はあくまで説明用の概算。差額 約58,000円が「出し忘れ」ひとつで自腹に変わる</small></div>
+  <p>差はおよそ<b>5万8千円</b>。返礼品の還元率を数%上げるより、申請書1枚を期限内に出すことのほうが桁違いに効きます。しかも②③のように「一部の自治体分だけ控除漏れ」というケースもあり、その場合は損失が寄付額に比例して増減します。</p>
+
+  <div class="cta">
+    <div class="h">▶ まず自分の“上限額”と手続きルートを確かめる</div>
+    <div class="ph"><a href="../tools/furusato.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ ふるさと納税 上限シミュレーターで自分の枠を計算する</a><br>
+    <!-- ASP -->
+    </div>
+  </div>
+
+  <h2>取りこぼしゼロにする手順（型）</h2>
+  <ul>
+    <li><b>寄付前：</b>年収・家族構成から控除上限を試算し、超えない範囲で寄付先と金額を決める（⑤対策）。</li>
+    <li><b>寄付先が5自治体以内 かつ 確定申告しない人：</b>ワンストップ特例。寄付ごとに申請書を提出し、翌年1/10必着（要確認）を厳守（①対策）。</li>
+    <li><b>寄付先が6自治体以上、または医療費控除など他の理由で確定申告する人：</b>ワンストップは使わず確定申告で全件申告。申請書を出していても自動失効するので、申告書に全寄付を記入（②③対策）。</li>
+    <li><b>住所・氏名が変わったら：</b>寄付先自治体へ変更の届出を出す（④対策・要確認）。</li>
+    <li><b>共通：</b>寄付金受領証明書（またはワンストップ関連書類）は年内から手元に整理しておく。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 上限を1円まで攻めたい人へ：<a href="furusato-henreihin-max.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 上限を最大化して返礼品を取り切る採点 →</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🗂 どちらの手続きが自分向きか迷う人へ：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ワンストップ特例 vs 確定申告 どっちが得か採点 →</a></div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>ふるさと納税の損は「返礼品選び」でなく「手続きの型」を外して起きる。</li>
+    <li>最頻の失敗は ①ワンストップ出し忘れ ②6自治体超で申告しない ③申告年に寄付を書き忘れ。控除が0〜半減する。</li>
+    <li>外すと自己負担は実質2,000円 → 寄付額まるごとに跳ね上がる（試算で約5.8万円差の例）。</li>
+    <li>手続きの型を押さえれば取りこぼしゼロ。期限・要件は必ず公式で最新確認を。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・総務省「ふるさと納税ポータルサイト」（制度概要・ワンストップ特例・控除の仕組み）<br>
+    ・国税庁 タックスアンサー No.1155「ふるさと納税（寄附金控除）」<br>
+    ・国税庁「確定申告特集」（寄附金控除の申告方法）<br>
+    ・各自治体公表のワンストップ特例申請・変更届の案内<br>
+    <span class="note">※期限（例：ワンストップ申請書の翌年1/10必着）・対象自治体数・上限額・控除の要件は制度改正や個々の条件で変わります。金額は仕組み説明のための概算・参考値です。最新の要件・期限は総務省ふるさと納税ポータルおよび国税庁の公式情報で必ずご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
