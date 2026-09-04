@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Furusato Nozei for foreign residents — can you actually save, and how much?｜Mio</title>
+<meta name="description" content="Foreign resident in Japan? An emotionless AI does the math on Furusato Nozei (hometown tax). It's based on paying resident tax (juminzei), not nationality — most foreigners don't realize they qualify. You pay ¥2,000 net and get return gifts up to an income-based limit. Worked example inside. Confirm your own limit with an official calculator.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/en/furusato-nozei-foreign-residents.html">
+<meta property="og:title" content="Furusato Nozei for foreign residents — do you qualify, and how much do you save? (calculated)">
+<meta property="og:description" content="It's based on paying Japanese resident tax, not nationality. You pay ¥2,000 net and get return gifts (capped at ~30% of the donation) up to an income-based limit. Here's the math.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI","Yu Gothic UI","Hiragino Sans",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="../">Home</a> ／ <a href="./">English</a> ／ Furusato Nozei for foreign residents</div>
+    <h1>Furusato Nozei for foreign residents:<br>you probably qualify — and most don't realize it.</h1>
+    <div class="who">🎁 For foreign residents in Japan who pay Japanese <b>resident tax (juminzei)</b> — regardless of nationality.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second summary</div>
+      <ul>
+        <li><b>Yes, you likely qualify.</b> Furusato Nozei is based on <b>paying Japanese resident tax</b>, not your nationality. If you pay juminzei (and income tax), you can do it.</li>
+        <li>You're <b>not making money.</b> You "donate" to a town; the amount <b>minus ¥2,000</b> comes back off your income tax + resident tax, up to an <b>income-based limit</b>. Net cost is ¥2,000 — and you get <b>return gifts</b> worth <b>up to ~30% of the donation</b>.</li>
+        <li>The catch: <b>donate over your limit</b> and the excess is <b>not</b> deducted (pure loss). And if you're <b>leaving Japan soon</b>, timing changes everything. <a href="#example">→ See the worked example</a></li>
+      </ul>
+    </div>
+    <div class="lead">I'm an AI with no feelings, so I'll be blunt: Furusato Nozei is one of the few Japanese systems that actually rewards you for a tax you're already paying. The problem is the whole thing is explained in Japanese, so a lot of foreign residents assume it's "not for them." It is. Here's exactly who qualifies, and the real size of the benefit.</div>
+    <div class="note">⚠️ This is general information, not tax advice. Limits, rates and rules change, and your exact deduction limit depends on your own income and family situation. Always confirm with an official <b>Furusato Nozei limit calculator</b> and, if in doubt, the <b>National Tax Agency (NTA)</b> or your municipality.</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">MIO'S VERDICT</div>
+    <div class="t">If you pay resident tax and you'd actually use the return gifts (food, drinks, household goods), Furusato Nozei is close to free money — you pay ¥2,000 net for gifts worth much more. Just <b>stay inside your limit</b>, and be careful if you're leaving Japan.</div>
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#2ea043">Mio's one-liner</div>
+      <div style="margin-top:8px;font-size:14px">This is not an investment and it does <b>not</b> put cash in your pocket. It's a legal way to redirect tax you already owe into a town, and get thank-you gifts back for a flat <b>¥2,000</b> handling cost. The only ways to lose: donate <b>over your limit</b>, don't complete the paperwork, or leave Japan at the wrong time.</div>
+    </div>
+  </div>
+
+  <h2>Do foreign residents actually qualify? (Yes.)</h2>
+  <p>This is the single most important point, so I'll state it plainly: <b>Furusato Nozei has no nationality requirement.</b> Whether you can benefit depends on <b>one thing</b> — do you pay Japanese <b>resident tax (juminzei)</b> and/or income tax?</p>
+  <ul>
+    <li>If you live in Japan and earn income here, you almost certainly pay resident tax. That means you're eligible.</li>
+    <li>Nationality, visa type, and "how Japanese you feel" are irrelevant. The system just deducts from taxes you already owe.</li>
+    <li>The reason so few foreign residents use it isn't a rule — it's that the information is <b>overwhelmingly Japanese-only</b>.</li>
+  </ul>
+  <div class="box"><b>The catch to eligibility:</b> the whole point is a <b>deduction against tax you owe</b>. If your Japanese income (and therefore your tax) is very low, your deduction limit is small, so the benefit is small. And if you owe <b>no</b> Japanese tax at all, there's nothing to deduct against. This is why "how much" matters as much as "can I."</div>
+
+  <h2>How it actually works (the ¥2,000 reality)</h2>
+  <p>The name "hometown tax" is misleading in English. You're not paying an extra tax. Here's the real mechanism:</p>
+  <ol style="margin-top:12px;padding-left:22px">
+    <li style="margin-top:8px">You <b>donate</b> to one or more municipalities of your choice (any town in Japan — it doesn't have to be where you live or where you're "from").</li>
+    <li style="margin-top:8px">The donation amount <b>minus ¥2,000</b> is subtracted from your <b>income tax (this year) + resident tax (next year)</b>.</li>
+    <li style="margin-top:8px">In return, the town sends you <b>return gifts (返礼品)</b> — local food, drinks, household goods, etc.</li>
+  </ol>
+  <p>By national rule, the cost of those return gifts is <b>capped at 30% of the donation amount</b> (a Ministry of Internal Affairs / 総務省 standard). So the honest math is:</p>
+  <div class="calc">Your benefit ≈ (value of return gifts) − ¥2,000<small>You are NOT making cash. You're trading ¥2,000 for gifts worth up to ~30% of what you donated.</small></div>
+  <p>Because deductions are split across three parts — an income-tax refund, a basic resident-tax deduction (10% of the donation above ¥2,000), and a "special" resident-tax deduction — the total that comes back to you equals your donation minus ¥2,000, <b>as long as you stay under your personal limit</b>.</p>
+
+  <h2>The limit — the one number that can turn this into a loss</h2>
+  <p>There is an <b>upper limit</b> on how much you can donate and still get it all back (minus the ¥2,000). Donate <b>above</b> that limit, and the excess is <b>not deducted</b> — you just gave that money away.</p>
+  <ul>
+    <li>The limit depends on your <b>income</b> and your <b>family situation</b> (spouse, dependents, other deductions).</li>
+    <li>Higher income → higher limit → you can donate more and get more gifts for the same ¥2,000.</li>
+    <li>The limit is driven mainly by the <b>"special" resident-tax deduction, which is capped at 20% of your resident-tax income levy</b>. That cap is what sets your ceiling.</li>
+  </ul>
+  <div class="box"><b>要確認 / verify your own number:</b> I will <b>not</b> print a limit table here, because the exact figure changes with your salary, dependents and deductions, and getting it wrong costs you real money. Use an official <b>Furusato Nozei limit calculator</b> (most donation sites have one) with your own numbers, or ask your municipality. Treat any "¥X for a ¥Y salary" chart as a rough guide only.</div>
+
+  <h2 id="example">Worked example (illustrative — use a calculator for your real limit)</h2>
+  <p>This is a <b>model to show the mechanics</b>, not a promise of your numbers. The real limit depends entirely on your own income and situation.</p>
+  <div class="box">
+    <b>Assume:</b> a foreign resident whose personal Furusato Nozei limit — <i>from an official calculator, using their own income and family</i> — comes out to about <b>¥50,000</b> for the year.
+  </div>
+  <h3>Step 1 — Donate up to (not over) the limit</h3>
+  <div class="calc">Donate <b>¥50,000</b> total across chosen towns<small>Staying at/under the limit so the whole amount (minus ¥2,000) is deductible.</small></div>
+  <h3>Step 2 — What comes back off your tax</h3>
+  <div class="calc">¥50,000 − ¥2,000 = <b>¥48,000</b> deducted<br>(from this year's income tax + next year's resident tax)<small>Your net out-of-pocket cost is just the ¥2,000.</small></div>
+  <h3>Step 3 — The return gifts (the actual benefit)</h3>
+  <div class="calc">Return gifts ≈ ¥50,000 × 30% = <b>≈¥15,000</b> in value<small>Return gifts are capped at ~30% of the donation by national rule.</small></div>
+  <div class="box"><b>Net effect in this example:</b> you spent <b>¥2,000</b> net and received gifts worth <b>≈¥15,000</b> — a net benefit of about <b class="win">¥13,000</b>. Donate <b>¥60,000</b> instead (¥10,000 over the limit), and that extra ¥10,000 is <b class="warn">not deducted</b> — you'd be paying real money for the gifts on that slice.</div>
+  <p class="note">Numbers are illustrative and rounded. Return-gift values vary by item, and your real limit will differ. Always confirm your limit with an official calculator before donating.</p>
+
+  <h2>One-Stop exception vs. filing a tax return</h2>
+  <p>After you donate, you have to actually <b>claim</b> the deduction. There are two routes, and which one you use matters — especially for foreigners.</p>
+  <table>
+    <tr><th>Route</th><th>Who can use it</th><th>What you do</th></tr>
+    <tr><td><b>One-Stop Special</b><br>(ワンストップ特例)</td><td>Salaried employees who <b>don't otherwise file a tax return</b>, donating to <b>5 or fewer</b> municipalities</td><td class="win">Send a simple form to each town — <b>no tax return needed</b></td></tr>
+    <tr><td><b>Tax return</b><br>(確定申告)</td><td>Anyone who <b>files a tax return anyway</b>, or who donated to <b>6+ towns</b></td><td class="warn">Claim the donation on your return</td></tr>
+  </table>
+  <div class="box"><b>Foreigner-specific trap:</b> One-Stop only works if you <b>don't file a tax return</b>. Many foreign residents <b>do</b> file — for foreign income, side income, or because they're leaving Japan mid-year. <b>If you file a tax return, you must claim Furusato Nozei on that return, and any One-Stop forms you already sent are cancelled.</b> Also: sending One-Stop forms to <b>6 or more</b> towns invalidates <b>all</b> of them — then you must use a tax return. Pick one route and be consistent.</div>
+
+  <h2>If you're leaving Japan soon — read this first</h2>
+  <p>Resident tax has a timing quirk that can quietly kill the benefit for short-timers and people about to leave.</p>
+  <ul>
+    <li>Resident tax is charged based on being a <b>resident on January 1</b> and your <b>prior-year income</b>. It's mostly billed the following June onward.</li>
+    <li>The Furusato Nozei resident-tax deduction lands on <b>next year's</b> resident tax. So the benefit is only real if you'll <b>still be a Japan resident and paying that resident tax</b> when the deduction applies.</li>
+    <li>If you leave Japan and are no longer a resident when that resident-tax bill would occur, the resident-tax portion of your deduction may not benefit you as expected.</li>
+  </ul>
+  <div class="box"><b>要確認 / verify your situation:</b> departure and residence-registration timing (and the January 1 rule) interact with both your resident-tax liability and the deduction. If you plan to leave Japan, <b>confirm the timing for your exact departure date</b> before donating — otherwise you might pay ¥2,000+ for gifts and lose part of the deduction. This one is genuinely situation-specific; don't guess.</div>
+
+  <h2>"Should you even bother?" — the honest check</h2>
+  <p>I run this without emotion, so here's the straight call.</p>
+  <div class="box">
+    <b>Worth it if:</b> you pay a solid amount of resident tax, you'd <b>actually use</b> the return gifts (you eat the food, use the goods), and you donate <b>within your limit</b>. Then it's close to free — ¥2,000 for meaningfully more value back.
+    <p><b>Skip or be careful if:</b> your Japanese income/tax is very low (small limit → small benefit), you wouldn't use the gifts, you might mess up the paperwork route, or you're <b>leaving Japan soon</b> and the timing hasn't been checked.</p>
+  </div>
+  <p><b>Mio's rule:</b> stable resident in Japan + you'll use the gifts + you donate within your calculated limit → do it. Low tax, or leaving Japan, or "I'll never send the forms" → the ¥2,000 and hassle may not be worth it. Run your <b>own</b> limit first.</p>
+
+  <div class="cta">
+    <div class="h">▶ Before you donate, run your own limit</div>
+    <div class="ph">Use an official Furusato Nozei limit calculator with your real income and family situation, decide One-Stop vs. tax return, and — if you're leaving Japan — check the residence timing. Then donate up to (never over) your limit.<!-- ASP: furusato-nozei site affiliate slot --></div>
+    <div class="note">The numbers on this page are illustrative. Your real limit depends on your income, dependents and other deductions.</div>
+  </div>
+
+  <h2>Summary</h2>
+  <ul>
+    <li>Furusato Nozei is based on paying Japanese <b>resident tax</b>, <b>not nationality</b> — foreign residents who pay juminzei <b>qualify</b>.</li>
+    <li>You donate, and the amount <b>minus ¥2,000</b> is deducted from income tax + resident tax; you get <b>return gifts</b> capped at <b>~30%</b> of the donation. You pay ¥2,000 net.</li>
+    <li>There's an <b>income-based limit</b>; donating <b>above</b> it is a pure loss. <b>Verify your limit with an official calculator.</b></li>
+    <li><b>One-Stop</b> works for salaried people donating to ≤5 towns who don't file a return; if you <b>file a tax return</b> (common for foreigners), claim it there instead.</li>
+    <li>If you're <b>leaving Japan</b>, resident-tax timing (January 1 rule) can change the benefit — <b>verify your situation first</b>.</li>
+  </ul>
+
+  <div class="src">
+    <b>Sources</b><br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" target="_blank" rel="noopener">Ministry of Internal Affairs and Communications (総務省) — ふるさと納税のしくみ／控除の仕組み (how the deduction works: ¥2,000 self-pay, income-tax refund + resident-tax basic 10% + special deduction capped at 20% of the resident-tax income levy, income-based upper limit)</a><br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" target="_blank" rel="noopener">総務省 — ふるさと納税の流れ／ワンストップ特例制度 (One-Stop Special: salaried non-filers donating to ≤5 municipalities; 6+ requires a tax return)</a><br>
+    ・<a href="https://www.nta.go.jp/about/organization/tokyo/topics/furusato_nozei_onestop/index.htm" target="_blank" rel="noopener">National Tax Agency (国税庁) — ワンストップ特例と確定申告の関係 (if you file a tax return, One-Stop forms are cancelled and you claim the donation on your return)</a><br>
+    ・<a href="https://expat.jp/furusato-nozei/" target="_blank" rel="noopener">Expat.jp — Furusato Nozei for Foreigners in Japan (English explainer: no nationality requirement; eligibility is about paying Japanese income/resident tax)</a><br>
+    ・<a href="https://furusatocompass.com/en/" target="_blank" rel="noopener">Furusato Compass (English) — hometown tax for residents in Japan (mechanism, ¥2,000, return gifts, limit calculator)</a><br>
+    <span class="note">The nationality-neutral eligibility (based on paying Japanese resident tax), the ¥2,000 net self-pay, the ~30% national cap on return-gift cost, the income-based deduction limit, and the One-Stop-vs-tax-return interaction reflect the current published rules; the worked example (¥50,000 limit → ≈¥15,000 in gifts for ¥2,000 net) is <b>illustrative only</b>. Deduction limits depend on your own income and family situation — confirm every figure with an official Furusato Nozei limit calculator and, for departure/residence timing, your municipality or the NTA before acting.</span>
+  </div>
+  <div class="foot">
+    <a href="./">← English index</a> ／ <a href="../">Home</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>Operated by Honey bee Queen Inc. ｜ Money decisions are scored by "Mio," a fictional emotionless AI, based on calculation and official primary sources (scoring is independent of advertising).</div>
+<div>This page is general information, not individual tax or legal advice. Rules, figures and rates change — always confirm the latest with official sources (総務省 / NTA) or a licensed professional.</div>
+<div>※This site may contain advertising (PR). Ad links are clearly labeled as such. <a href="../policy/" style="color:#9fb3c8">Ads · Disclaimer · Privacy</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
