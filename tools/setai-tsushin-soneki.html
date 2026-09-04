@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>世帯（家族）の通信費 乗換 総損益シミュ｜24か月でいくら得か損か｜AIガチ検証室</title>
+<meta name="description" content="家族の通信費を格安SIM等へ乗り換えたら“24か月の総額”でいくら得か損か。家族割・光セット割が外れる分・端末残債・初期費用・違約金まで込みで、忖度なく計算。乗り換えない方が得（マイナス）もそのまま表示。登録なし・端末内処理。">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="世帯（家族）の通信費 乗換 総損益シミュ（24か月）">
+<meta property="og:description" content="家族割・光セット割が外れる分・端末残債込みで、24か月の総損益を忖度なく計算。損なら“今のままが得”とハッキリ言います。">
+<style>
+  :root{--bg:#0f1720;--card:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0645a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:640px;margin:0 auto;}
+  header{padding:36px 0 6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:24px;font-weight:800;line-height:1.4;}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px;}
+  .sect{font-size:13px;font-weight:800;color:var(--b);letter-spacing:.04em;margin-top:22px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .sect:first-of-type{margin-top:0;}
+  label{display:block;font-size:14px;font-weight:700;color:var(--mut);margin-top:16px;}
+  .sub{font-size:12px;color:var(--faint);font-weight:500;}
+  input[type=number]{width:100%;margin-top:8px;padding:12px 14px;border-radius:10px;border:1px solid #33475b;background:#0b121a;color:var(--tx);font-size:16px;font-family:inherit;}
+  .chk{display:flex;align-items:flex-start;gap:10px;margin-top:16px;font-size:14px;font-weight:700;color:var(--mut);cursor:pointer;}
+  .chk input{margin-top:3px;width:18px;height:18px;flex:0 0 auto;accent-color:var(--o);}
+  .chk .sub{display:block;font-weight:500;}
+  .preset{margin-top:10px;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--mut);}
+  .preset b{color:var(--tx);}
+  .preset button{width:auto;display:inline-block;margin:6px 6px 0 0;padding:7px 12px;border-radius:8px;background:#1f2b3a;border:1px solid #33475b;color:var(--tx);font-size:12px;font-weight:700;cursor:pointer;}
+  button.go{width:100%;margin-top:22px;padding:14px;border:0;border-radius:12px;background:var(--g);color:#08110a;font-size:16px;font-weight:800;cursor:pointer;}
+  .out{display:none;margin-top:20px;}
+  .big{background:#0b121a;border:1px dashed var(--g);border-radius:14px;padding:20px;text-align:center;}
+  .big.neg{border-color:var(--r);}
+  .big .lb{font-size:13px;color:var(--mut);font-weight:700;}
+  .big .amt{margin-top:6px;font-size:30px;font-weight:800;color:var(--g);}
+  .big.neg .amt{color:var(--r);}
+  .big .sub2{margin-top:6px;font-size:13px;color:var(--faint);font-weight:700;}
+  .verdict{margin-top:14px;border-radius:12px;padding:14px 16px;font-size:14px;font-weight:700;line-height:1.6;}
+  .verdict.win{background:#12251a;border:1px solid #2ea04355;color:var(--tx);}
+  .verdict.lose{background:#2a1717;border:1px solid #f0645a55;color:var(--tx);}
+  .lines{margin-top:16px;}
+  .lines .hd{font-size:12px;font-weight:800;color:var(--faint);margin-top:14px;letter-spacing:.04em;}
+  .line{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .line b{color:var(--tx);}
+  .line.tot b{color:var(--b);}
+  .warn{margin-top:14px;background:#241a10;border:1px solid #f0883e44;border-radius:12px;padding:14px 16px;font-size:13px;color:#f4c48a;}
+  .note{margin-top:16px;font-size:12px;color:var(--faint);}
+  .src{margin-top:16px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13px;}
+  .src .hd{font-size:12px;font-weight:800;color:var(--mut);margin-bottom:8px;}
+  .src a{color:var(--b);text-decoration:none;word-break:break-all;}
+  .foot{margin-top:24px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+</style>
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/tools/setai-tsushin-soneki.html">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ お金の決定ツール</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">無料ツール</a> ／ 世帯の通信費 乗換 総損益シミュ</div>
+    <h1>家族の通信費、乗り換えて“24か月”でいくら得？損？</h1>
+    <div class="priv">🔒 入力は端末内だけで計算（送信しません）／ざっくり概算・忖度ゼロ</div>
+  </header>
+
+  <div class="panel">
+
+    <div class="sect">■ 現状（今のまま）</div>
+
+    <label>回線数（人数）<span class="sub">家族全員のスマホ回線の数。例）4</span>
+      <input id="lines_now" type="number" inputmode="numeric" placeholder="例）4">
+    </label>
+    <label>いまの“世帯合計”スマホ月額（円）<span class="sub">家族全員の合計。請求書の合計額でOK。例）18000</span>
+      <input id="now_total" type="number" inputmode="numeric" placeholder="例）18000">
+    </label>
+    <label>いま受けている“家族割”の割引額（月・円）<span class="sub">乗り換えで外れ得る分。分からなければ空欄でOK。例）2000</span>
+      <input id="famit" type="number" inputmode="numeric" placeholder="例）2000">
+    </label>
+    <label>いま受けている“光セット割”の割引額（月・円）<span class="sub">キャリア光とのセット割。乗り換えで外れ得る。例）1100</span>
+      <input id="hikari" type="number" inputmode="numeric" placeholder="例）1100">
+    </label>
+    <label>端末の残債の合計（円・任意）<span class="sub">分割払いの残り。乗換時に一括清算し得る。例）0</span>
+      <input id="zansai" type="number" inputmode="numeric" placeholder="例）0">
+    </label>
+    <label class="chk">
+      <input id="henkyaku" type="checkbox">
+      <span>端末返却プログラムを使っている
+        <span class="sub">「◯回目返却で残り免除」など。返却前提の“実質価格”は途中乗換で崩れ、残債清算が必要になり得ます。</span>
+      </span>
+    </label>
+
+    <div class="sect">■ 乗換後（候補プラン）</div>
+
+    <label>乗り換える回線数<span class="sub">全員 or 一部。例）4（全員）</span>
+      <input id="lines_new" type="number" inputmode="numeric" placeholder="例）4">
+    </label>
+    <label>乗換後の“世帯合計”スマホ月額の想定（円）<span class="sub">候補プランの合計。下の目安ボタンで概算補助できます。例）6000</span>
+      <input id="new_total" type="number" inputmode="numeric" placeholder="例）6000">
+    </label>
+    <div class="preset">
+      1人あたりの目安 → <b>20GBで約2,000円</b>／<b>3GBで約1,000円</b>／<b>音声＋最小で約1,000円</b>（各社で異なります）。<br>
+      乗り換える回線数 × を自動で合計します：
+      <div>
+        <button type="button" onclick="preset(2000)">全員 20GB(2,000円)</button>
+        <button type="button" onclick="preset(1000)">全員 3GB(1,000円)</button>
+      </div>
+    </div>
+    <label>乗換の初期費用の合計（円）<span class="sub">事務手数料など。目安=3,300円×乗換回線を自動セット（編集可）。</span>
+      <input id="init" type="number" inputmode="numeric" placeholder="例）13200">
+    </label>
+    <label>解約時の違約金の合計（円・任意）<span class="sub">今のキャリアを解約する際の費用。かからなければ空欄。例）0</span>
+      <input id="ianyaku" type="number" inputmode="numeric" placeholder="例）0">
+    </label>
+
+    <button class="go" onclick="calc()">24か月の総損益を計算</button>
+
+    <div class="out" id="out">
+      <div class="big" id="big">
+        <div class="lb">24か月で（＋なら得／−なら損）</div>
+        <div class="amt" id="amt">—</div>
+        <div class="sub2" id="amtsub"></div>
+      </div>
+
+      <div class="verdict" id="verdict"></div>
+
+      <div class="lines" id="lines"></div>
+
+      <div class="warn" id="warn" style="display:none"></div>
+
+      <div class="note" id="note"></div>
+
+      <!-- ASP: 広告（PR）枠。設計思想として、乗り換えで「節約額がプラス」の人にだけ
+           格安SIM等のCTAを出す。損（マイナス）判定の人には広告を出さない
+           ＝“今のままが得”な人に乗換広告を出さないのが忖度ゼロの信頼設計。
+           実リンクは後で結線する。 -->
+
+      <div class="src">
+        <div class="hd">出典（公式・go.jp）</div>
+        総務省 電気通信事業法／端末値引き規制：<a href="https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_denwa/index.html" target="_blank" rel="noopener nofollow">soumu.go.jp/…/keitai_denwa/index.html</a><br>
+        総務省 スマホの料金・乗換の注意：<a href="https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_denwa/mobile_service.html" target="_blank" rel="noopener nofollow">soumu.go.jp/…/mobile_service.html</a><br>
+        <span class="sub">各社の家族割・光セット割の金額はプランで異なります。金額は必ず各社公式でご確認ください（特定社の断定はしません）。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    関連採点：<a href="../saiten/kakuyasu-sim-vs-carrier.html">格安SIM vs キャリア</a> ｜ <a href="../saiten/smartphone-ikkatsu-vs-bunkatsu.html">端末 一括 vs 分割</a> ｜ <a href="../saiten/hikari-kaisen-norikae.html">光回線 乗換</a><br>
+    関連ツール：<a href="sim-sim.html">格安SIM 料金シミュ</a> ｜ <a href="kotei-hi.html">固定費 見直しシミュ</a> ｜ <a href="./">他のツール</a>
+  </div>
+</div>
+
+<script>
+function yen(n){ var s=(n<0?'−':'')+'¥'+Math.abs(Math.round(n)).toLocaleString('ja-JP'); return s; }
+function num(id){ return parseFloat(document.getElementById(id).value)||0; }
+
+// 乗換回線数から初期費用の目安(3,300円/回線)を自動セット（未入力時のみ触る）
+function autoInit(){
+  var ln=num('lines_new');
+  var f=document.getElementById('init');
+  if(ln>0 && (f.value===''||f.dataset.auto==='1')){
+    f.value=3300*ln; f.dataset.auto='1';
+  }
+}
+document.getElementById('lines_new').addEventListener('input',autoInit);
+document.getElementById('init').addEventListener('input',function(){ this.dataset.auto=''; });
+
+// プリセット：乗り換える回線数 × 1人あたり月額 を乗換後合計へ
+function preset(per){
+  var ln=num('lines_new');
+  if(ln<=0){ alert('先に「乗り換える回線数」を入れてください'); return; }
+  document.getElementById('new_total').value = per*ln;
+  autoInit();
+}
+
+function calc(){
+  var nowTotal = num('now_total');
+  if(nowTotal<=0){ alert('いまの“世帯合計”スマホ月額（円）を入れてください'); return; }
+  autoInit();
+
+  var famit   = num('famit');    // 失う家族割（月）
+  var hikari  = num('hikari');   // 失う光セット割（月）
+  var zansai  = num('zansai');   // 端末残債（清算・一度きり）
+  var newTotal= num('new_total');// 乗換後の世帯合計月額
+  var init    = num('init');     // 初期費用（一度きり）
+  var ianyaku = num('ianyaku');  // 違約金（一度きり）
+  var henkyaku= document.getElementById('henkyaku').checked;
+
+  var M = 24;
+
+  // 乗換後の“実質”月額 = 乗換後合計 ＋ 失う家族割 ＋ 失う光セット割
+  var newEffMonthly = newTotal + famit + hikari;
+
+  // 24か月総額
+  var nowTotal24 = nowTotal * M;
+  var newTotal24 = newEffMonthly * M + init + ianyaku + zansai;
+
+  // 差額（＝現状 − 乗換後）：プラス=乗換で得、マイナス=今のままが得（0で止めない）
+  var diff = nowTotal24 - newTotal24;
+
+  // 毎月浮く額（＝現状月額 − 乗換後“実質”月額）
+  var monthlySave = nowTotal - newEffMonthly;
+  var oneTime = init + ianyaku + zansai; // 回収すべき初期コスト
+
+  // 損益分岐月
+  var breakEven = null; // null=回収不能
+  if(monthlySave > 0){ breakEven = Math.ceil(oneTime / monthlySave); }
+
+  // ---- 大きな金額表示 ----
+  var big=document.getElementById('big');
+  var amt=document.getElementById('amt');
+  amt.textContent = yen(diff);
+  if(diff < 0){
+    big.classList.add('neg');
+    document.getElementById('amtsub').textContent='マイナス＝乗り換えないほうが得';
+  } else {
+    big.classList.remove('neg');
+    document.getElementById('amtsub').textContent='プラス＝乗り換えで得（24か月合計）';
+  }
+
+  // ---- 判定文（Mio人格・忖度ゼロ）----
+  var V=document.getElementById('verdict');
+  if(diff > 0){
+    V.className='verdict win';
+    var beTxt = (breakEven!==null) ? ('乗換コストは約<b>'+breakEven+'か月</b>で回収でき、以降は毎月約'+yen(monthlySave)+'ずつ浮く。') : '';
+    V.innerHTML='✅ <b>乗り換え有利。</b>24か月で約<b>'+yen(diff)+'</b>の得。'+beTxt+' 実際の請求書の数字を入れて最終確認を。';
+  } else if(diff < 0){
+    V.className='verdict lose';
+    V.innerHTML='🚫 <b>今のままが得。乗り換えないのが正解。</b>24か月で約<b>'+yen(-diff)+'の損</b>になる計算です。家族割・光セット割が外れる分と、初期費用・残債が重い。忖度なしで言うと、この条件では動かないのが正解。';
+  } else {
+    V.className='verdict win';
+    V.innerHTML='➖ ほぼ<b>互角</b>（±0）。金額メリットは小さいので、通信品質やサポートなど“お金以外”で決めてOK。';
+  }
+
+  // ---- 内訳 ----
+  var L=document.getElementById('lines'); L.innerHTML='';
+  function hd(t){ var d=document.createElement('div'); d.className='hd'; d.textContent=t; L.appendChild(d); }
+  function row(n,v,cls){ var d=document.createElement('div'); d.className='line'+(cls?(' '+cls):''); d.innerHTML='<span>'+n+'</span><span><b>'+yen(v)+'</b></span>'; L.appendChild(d); }
+
+  hd('現状（今のまま）— 24か月');
+  row('世帯合計 月額 × 24',nowTotal24);
+  row('現状の24か月総額',nowTotal24,'tot');
+
+  hd('乗換後 — 24か月（割引が外れる分も上乗せ）');
+  row('乗換後 世帯合計 月額 × 24',newTotal*M);
+  if(famit>0)  row('＋ 失う家族割（'+yen(famit)+'/月 × 24）',famit*M);
+  if(hikari>0) row('＋ 失う光セット割（'+yen(hikari)+'/月 × 24）',hikari*M);
+  if(init>0)   row('＋ 初期費用（事務手数料など）',init);
+  if(ianyaku>0)row('＋ 解約違約金',ianyaku);
+  if(zansai>0) row('＋ 端末残債の清算',zansai);
+  row('乗換後の24か月総額',newTotal24,'tot');
+
+  hd('回収の目安');
+  row('毎月浮く額（現状−乗換後実質）',monthlySave);
+  var be=document.createElement('div'); be.className='line tot';
+  be.innerHTML='<span>損益分岐（初期コスト回収）</span><span><b>'+(breakEven!==null ? ('約'+breakEven+'か月') : '回収不能＝今のままが得')+'</b></span>';
+  L.appendChild(be);
+
+  // ---- 端末返却プログラム警告 ----
+  var W=document.getElementById('warn');
+  if(henkyaku){
+    W.style.display='block';
+    W.innerHTML='⚠️ <b>端末返却プログラムを利用中：</b>「◯回目返却で残り免除」などの“実質価格”は<b>返却が前提</b>です。途中で他社へ乗り換えると、この前提が崩れて<b>残債の一括清算が必要</b>になったり、免除条件を満たせず割高になることがあります。乗換前に、いまの端末の残債・返却条件・免除タイミングを必ず公式で確認してください。';
+  } else {
+    W.style.display='none';
+  }
+
+  // ---- 透明性注記 ----
+  document.getElementById('note').innerHTML='※これは入力値にもとづく“ざっくり概算”です。<b>あなたの実際の請求書の数字を入れるほど正確</b>になります。料金・家族割・光セット割・端末残債・違約金は各社・プランで異なり、改定もあるため、<b>金額は必ず各社公式で最新をご確認ください</b>。本ツールは概算であり、個別の助言ではありません。';
+
+  document.getElementById('out').style.display='block';
+}
+</script>
+
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
