@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>au家族3人、1人だけUQ mobile（povo）にしたら本当に得？家族割・スマートバリューが外れる落とし穴を計算した｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「au家族3回線＋auひかり、1人だけUQ mobile／povo」を計算だけで採点。家族割プラス・auスマートバリューが外れる分まで含めた世帯全体24か月総額の考え方と、得になる条件・今のままが得な条件を出典つきで解説。金額は必ず公式で確認を。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/case-au-uq-kazoku.html">
+<meta property="og:title" content="au家族3人、1人だけUQ mobileは得？家族割・スマートバリューが外れる落とし穴をAIが計算で採点">
+<meta property="og:description" content="想定モデルケースで検証。UQ／povo本体は安いが家族割・auスマートバリューが外れる分を上乗せして世帯全体で見ないと損得は出ません。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ au家族×UQ mobile</div>
+    <h1>au家族3人＋auひかり。<br>1人だけ UQ mobile（povo）にしたら本当に得？</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― <b>「UQは安い」だけで飛びつくと損することがある</b>。1人が抜けると<b>家族割プラス・auスマートバリュー（auひかり等とのセット割）が外れる</b>ぶんを、世帯全体で足し戻して見ないと本当の損得は出ません。</div>
+    <div class="note">※本ページは実在ユーザーの調査ではなく、あくまで<b>想定モデルケース</b>です。料金・割引額はプランや時期で変わるため、具体的な確定金額は断定しません。正確な金額は<b>必ず各社公式と、あなたの実際の請求書</b>でご確認ください。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">「1人だけUQ／povo」＝<b>その1人が大容量で使う人なら得</b>になりやすい。<br>ただし<b>家族割プラスの回線数条件が崩れて残り2人の割引まで減る</b>と、世帯合計では得が消える／今のままが得、というケースも普通にあります。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>見えている部分：UQ／povo本体（例・想定）</span><span>月 約1,000〜3,000円で「安く見える」</span></div><div class="track"><div class="fill" style="width:28%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>見えにくい部分：残った家族の割引が減る分（例・想定）</span><span>ここを足し戻さないと判断できない</span></div><div class="track"><div class="fill" style="width:62%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※上のバーは「安く見える部分」と「見落としがちな部分」を対比した<b>イメージ（想定）</b>です。実際の割引額・条件は各社で異なり時期でも変わるため、必ず公式でご確認ください。</div>
+    <div style="background:#141d28;border-left:3px solid #2ea043;border-radius:10px;padding:14px 16px;margin-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#2ea043">Mioのひとこと</div>
+      <div style="margin-top:8px;font-size:14px">「UQ、安っ！」で決めるの、ちょっと待って。あなたが抜けると<b>残った家族の割引が道連れで減る</b>ことがあるの。私は感情がないから、その“道連れ分”まで足し戻して世帯合計で計算するよ。答えは「あなた1人の料金」じゃなくて「<b>家全体の24か月合計</b>」の中にある。</div>
+    </div>
+  </div>
+
+  <h2>まず“抜け”を正しく理解する（ここを見落とすと損する）</h2>
+  <p>UQ mobileやpovoは料金が安く見えますが、auの大手プランとは割引の扱いが違います。よく見落とされるのが次の3点です（<b>正確な適用条件は必ずau／UQ／povo公式で確認してください。時期やプランで変わります</b>）。</p>
+  <ul>
+    <li><b>auの家族割（家族割プラス・みんなでイイネ！割 等）の割引は、そのままでは受けられない</b>：au本体の家族割は、その回線をUQ／povoへ移すと<b>その回線ぶんの割引がなくなる</b>のが一般的です（＝あなたの料金は割引前提の安さではありません）。</li>
+    <li><b>auスマートバリュー（auひかり等とのセット割）の対象外になり得る</b>：auひかり等とのセット割は、UQには別枠（自宅セット割）の扱い、povoは対象外の扱いが一般的です。<b>あなた個人の乗換先が何かで扱いが変わる</b>ため、光をまとめて安くする効果がその1回線ぶん消える／変わることがあります。</li>
+    <li><b>回線数条件が崩れると、残った家族の割引も減り得る</b>：家族割プラスは「グループ内の対象回線数」で1回線あたりの割引額が決まる仕組みが一般的。3回線→2回線に減ると、<b>残った2人の1回線あたり割引額が下がる</b>ことがあります。これが“道連れ”です。</li>
+  </ul>
+  <p><b>正直な補足：</b>これらは仕組みの一般的な傾向であり、キャンペーンや契約時期・乗換先（UQかpovoか）で例外も出ます。とくに<b>povoは家族割・セット割の対象外が多い</b>一方、UQには「自宅セット割」など別の割引経路がある点に注意（いずれも公式確認）。「あなたのグループが今いくら割引を受けているか」は、<b>My au（請求明細）</b>を開けば1分で確認できます。まずそこを見るのが最短です。</p>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「UQ単体が安いか」ではなく、判断すべきは<b>世帯全体の24か月総額がどう動くか</b>という1つの数字です。「安くなる分」から「外れる割引の分（＝上乗せして戻す分）」を引いて比べます。式はこれだけ。</p>
+  <div class="calc">乗換後の世帯月額 ＝ (UQ／povo本人の月額) ＋ (残った家族の月額 ＋ 外れた家族割・スマートバリューで増えた分)<small>この“増えた分”を足し戻さないと、見かけだけ安く見えてしまいます</small></div>
+  <div class="calc">世帯24か月の損得 ＝ (今の世帯月額 − 乗換後の世帯月額) × 24<small>プラスなら世帯全体で安くなる／マイナスなら今のままが得。端末代・通話・初期費用は別途</small></div>
+  <p>ポイントは<b>「あなた1人の請求」ではなく「家族3人＋auひかりの合計」で比べる</b>こと。あなた個人だけ見れば安くなっても、残った2人の割引が減れば世帯合計では相殺される――場合によっては<b>合計が上がる</b>こともあります。だから個人の料金ではなく、<b>世帯合計24か月</b>で見るのが正確です。</p>
+
+  <h2>想定モデルケース：家族3回線＋auひかり（例・想定）</h2>
+  <p>以下は実在の請求ではなく、考え方を示すための<b>想定モデルケース</b>です。金額はあくまで説明用の目安で、<b>あなたの実額とは違います</b>。必ず自分の請求書で置き換えてください。</p>
+  <table>
+    <tr><th>登場人物（想定）</th><th>今の状況（例・想定）</th></tr>
+    <tr><td>父（大容量で使う）</td><td>au大容量プラン＋家族割プラス＋auスマートバリューを適用中</td></tr>
+    <tr><td>母（中容量）</td><td>au中容量プラン＋家族割プラス＋auスマートバリューを適用中</td></tr>
+    <tr><td>子（小容量）</td><td>au小容量プラン＋家族割プラス＋auスマートバリューを適用中</td></tr>
+    <tr><td>自宅</td><td>auひかり（3回線それぞれにスマートバリューが乗っている想定）</td></tr>
+  </table>
+  <p>ここで<b>「大容量の父を1人だけUQ／povoへ」</b>移した場合を考えます。父のUQ／povo本体は安く見えますが、同時に――</p>
+  <ul>
+    <li>父のauスマートバリューが外れる／別枠に変わる（父ぶんの光セット割ロス。povoは基本対象外）</li>
+    <li>家族割プラスのグループが3回線→2回線になり、<b>母・子の1回線あたり割引が下がる</b>可能性（道連れ分）</li>
+  </ul>
+  <p>――が発生し得ます。これらを<b>乗換後の世帯月額に上乗せして戻し</b>、24か月で比べて初めて損得が出ます。「父の料金だけ」で見て「安くなった！」と判断するのが、いちばんありがちな失敗です。</p>
+
+  <h2>条件別の採点：あなたの家はどっち側？</h2>
+  <p>同じ「1人だけUQ／povo」でも、<b>誰を・何人・どこへ動かすか</b>で結論は割れます。下は想定ベースの傾向で、<b>確定金額ではありません</b>。</p>
+  <table>
+    <tr><th>あなたの家の条件</th><th>得になりやすいのは</th><th>理由（世帯合計24か月で見た傾向）</th></tr>
+    <tr><td>大容量で使う人を1人だけ UQ／povo へ</td><td class="win">乗換が得なことも</td><td>その人の大容量プランが大きく下がり、外れる割引分を上回りやすい（ただし道連れ分は要確認）</td></tr>
+    <tr><td>小容量の人を1人だけ UQ／povo へ</td><td>今のままが得なことも</td><td>元々割引で安い回線を抜くと、家族割の道連れ減の方が大きくなりがち</td></tr>
+    <tr><td>家族全員をまとめてUQ／格安系へ</td><td class="win">乗換が得なことも</td><td>家族割・スマートバリューを丸ごと手放す代わりに、全員の本体料金が下がり総額で逆転しやすい</td></tr>
+    <tr><td>家族割プラスの割引額が大きい／全員がっつり適用中</td><td>今のままが得なことも</td><td>1人抜けで残り全員の割引が減ると、世帯合計では相殺・悪化することがある</td></tr>
+    <tr><td>auスマートバリューを全回線で効かせている</td><td>要精算（割れる）</td><td>抜ける回線ぶんの光セット割ロスが効く。光側の見直し（<a href="hikari-kaisen-norikae.html" style="color:#58a6ff;text-decoration:none;font-weight:700">光回線の採点</a>）と合わせて判断</td></tr>
+    <tr><td>乗換先が povo（家族割・セット割 基本対象外）</td><td>要精算（割れる）</td><td>povoは本体が非常に安い一方、家族割の回線数カウントやセット割の恩恵を受けにくい。抜けた分の割引ロスと本体の安さを世帯合計で比較</td></tr>
+    <tr><td>誰も家族割・スマートバリューを実は適用していない</td><td class="win">UQ／格安が得なことも</td><td>外れる割引が最初から無いので、本体料金の下げ幅がそのまま効く</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>ここを「とにかくUQが安い」と煽るのはこの検証室のやり方ではありません。<b>“今のままが得”になる家も普通にあります</b>。とくに小容量の人を抜くケースと、家族割プラス・スマートバリューをがっつり効かせている家は、動かすと合計が上がることがあるので要注意です。UQとpovoでも割引の扱いが違うため、乗換先ごとに公式で確認してください。</p>
+
+  <div class="cta">
+    <div class="h">▶ あなたの“実額”で世帯合計の損得を出す</div>
+    <div class="ph"><a href="../tools/setai-tsushin-soneki.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 世帯通信 総損益ツールで、外れる割引まで含めた24か月の損得を計算する</a><!-- ASP: 提携リンク未結線（広告表示のうえ差し込む） --></div>
+    <div class="note">※このページの数字はすべて想定です。あなたの家の本当の損得は、実際の請求額を入れて計算してください。</div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>判断は「UQ／povo本体が安いか」ではなく、<b>世帯合計24か月＝（今の世帯月額 − 乗換後の世帯月額）×24</b>の1式で。</li>
+    <li>UQ／povoへ移すと<b>その回線のauの家族割は外れ・auスマートバリューは対象外／別枠に変わり得る</b>。1人抜けると<b>残った家族の割引まで減り得る</b>（道連れ分）。とくにpovoは家族割・セット割の対象外が多い。正確な適用は必ずau／UQ／povo公式で確認。</li>
+    <li>大容量の1人だけ動かすなら得になりやすい。小容量の人を抜く／家族割をがっつり効かせている家は<b>今のままが得</b>なことも。</li>
+    <li>金額はプラン・時期・乗換先で変わるので、<b>My auの請求明細</b>を見て、あなたの実額で世帯合計を計算するのが最初の一歩。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📶 光回線もまとめて見直すなら：<a href="hikari-kaisen-norikae.html" style="color:#58a6ff;text-decoration:none;font-weight:700">光回線 乗り換えで年いくら得か（実質料金で採点）→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📱 そもそも格安SIMと大手どっち？：<a href="kakuyasu-sim-vs-carrier.html" style="color:#58a6ff;text-decoration:none;font-weight:700">格安SIM vs 大手キャリアを計算で採点→</a></div>
+  <div style="margin-top:12px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">📞 ドコモ家族の同じ悩みは：<a href="case-docomo-ahamo-kazoku.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ドコモ家族3人、1人だけahamoは得？をAIが採点→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.soumu.go.jp/menu_seisaku/ictseisaku/keitai_denwa/index.html" target="_blank" rel="noopener">総務省「電気通信事業法／モバイルの料金その他の提供条件」</a>（携帯電話料金の低廉化・乗り換えに関する取組）<br>
+    ・各社（au／UQ mobile／povo）公開の料金プラン・家族割プラス／みんなでイイネ！割・auスマートバリューの条件 ―― <b>家族割の割引額・回線数条件・UQ／povoの適用可否・auスマートバリューの対象範囲は、必ず<a href="https://www.au.com/" target="_blank" rel="noopener">au公式</a>／<a href="https://www.uqwimax.jp/mobile/" target="_blank" rel="noopener">UQ mobile公式</a>／<a href="https://povo.jp/" target="_blank" rel="noopener">povo公式</a>で最新をご確認ください。</b><br>
+    <span class="note">※本ページは<b>想定モデルケース</b>であり、実在ユーザーの調査ではありません。掲載した金額・割引はすべて説明用の目安（例・想定）であって、確定額を断定するものではありません。プラン・キャンペーン・時期・乗換先により条件は変わります。実際の損得は、あなたの請求明細（My au等）の実額で計算してください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-04 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+</body>
+</html>
