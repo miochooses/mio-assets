@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>傷病手当金→失業給付、"順番"を間違えると数十万〜損する｜受給の設計｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「傷病手当金と失業給付の順番」を計算で採点。同時にはもらえない2つを、療養→回復の順で最大化する設計。受給期間の延長申請を忘れて権利を失う人が損する仕組みを、協会けんぽ・ハローワークの一次情報つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/shobyo-shitsugyo-junban.html">
+<meta property="og:title" content="傷病手当金→失業給付、順番を間違えると数十万損する｜AIが計算で採点">
+<meta property="og:description" content="同時にはもらえない2つの給付。療養→回復の順で受給を設計するだけで、受け損ねを防げます。延長申請の期限つきで解説。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .steps{margin-top:16px;}
+  .step{display:flex;gap:12px;margin-top:12px;align-items:flex-start;}
+  .step .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:#0b121a;border:1px solid var(--line);color:var(--b);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .step .c{font-size:14px;}
+  .step .c b{color:var(--tx);}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 傷病手当金→失業給付の順番</div>
+    <h1>傷病手当金→失業給付、<br>"順番"を間違えると数十万〜損する</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>制度の並び順</b>で採点します。結論から言うと ―― この2つは<b>同時にはもらえません</b>。だからこそ「どちらを先に、いつ切り替えるか」で受け取れる総額が変わります。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">病気で退職 → <b>療養中は傷病手当金</b> → 動けないうちに<b>失業給付の受給期間を延長申請</b> → 回復後に<b>失業給付</b>。この順番が原則。<br>先に失業給付を使おうとする／延長申請を忘れる、で受け損ねる。</div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="c"><b>退職〜療養中：傷病手当金</b>（健康保険）。働けない間、給料の約2/3を通算で最長1年6か月。</div></div>
+      <div class="step"><div class="n">2</div><div class="c"><b>動けないうちに：受給期間の延長申請</b>（ハローワーク）。失業給付の権利を"預けて"消えないようにする。</div></div>
+      <div class="step"><div class="n">3</div><div class="c"><b>回復後：失業給付</b>（雇用保険の基本手当）。働ける状態になってから、延長した権利で受け取る。</div></div>
+    </div>
+    <div class="note">※要件・日数の詳細は改正・個別事情で変わります。最終確認は必ずハローワーク／加入先の健康保険で（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（なぜ"順番"で損得が出るのか）</h2>
+  <p>この2つは、支給される<b>前提条件が正反対</b>です。ここを外すと、片方を受け損ねます。</p>
+  <table>
+    <tr><th>制度</th><th>前提となる状態</th><th>ざっくり内容</th></tr>
+    <tr><td>傷病手当金（健康保険）</td><td class="warn">働けない（労務不能）</td><td>療養で仕事に就けない間の生活保障。給料の約2/3。</td></tr>
+    <tr><td>失業給付（雇用保険の基本手当）</td><td class="win">働ける・求職中</td><td>働ける状態で求職している人の生活保障。</td></tr>
+  </table>
+  <p>「働けない」を要件とする傷病手当金と、「働ける」を要件とする失業給付は<b>相反する</b>ため、原則として同時には受け取れません。だから <b>療養中＝傷病手当金 → 回復後＝失業給付</b> という直列（順番）に並べるのが正解です。</p>
+
+  <h2>いちばん多い"損"のパターン</h2>
+  <p>ここが本題です。<b>損する人のほとんどは、この2つのどちらか</b>です。</p>
+  <ul>
+    <li><b>療養中なのに失業給付を先に取りに行く：</b>「働ける状態」ではないため受給できず、時間だけ過ぎる。</li>
+    <li><b>受給期間の延長申請を忘れる：</b>失業給付は<b>原則、離職日の翌日から1年で受給期間が満了</b>します。療養で1年を過ぎると、回復しても<b>権利ごと消える</b>ことがあります。</li>
+  </ul>
+  <p>これを防ぐのが<b>受給期間の延長申請</b>です。病気・けが等で<b>引き続き30日以上働けない</b>とき、ハローワークに申請すると、本来1年の受給期間を<b>最長でプラス3年（合計最長4年）</b>まで延長できます。回復してから、預けておいた失業給付を受け取れる、という設計です。<b>この一手を知っているかどうかで、失業給付を丸ごと受け損ねるか受け取れるかが分かれます。</b></p>
+
+  <h2>金額イメージ（傷病手当金）</h2>
+  <p>傷病手当金の日額は、ざっくり次の式です（協会けんぽの基本式）。</p>
+  <div class="calc">日額 ＝ 標準報酬月額の平均 ÷ 30 × 2/3<small>「標準報酬月額」は、おおむね月給に対応する保険上の金額。詳細は加入先で確認</small></div>
+  <p>たとえば標準報酬月額の平均が<b>27万円</b>なら、270,000 ÷ 30 ＝ 9,000円、その2/3で ――</p>
+  <div class="calc">9,000 × 2/3 ＝ <span style="color:#2ea043">日額 6,000円</span><small>1か月（30日）で約18万円、通算最長1年6か月まで（※支給には別途の要件あり）</small></div>
+  <p>この日額が<b>働けない間、通算で最長1年6か月</b>支えてくれる。だからこそ、療養中に慌てて失業給付へ飛びつく必要はなく、<b>まず傷病手当金で療養し、その間に延長申請で失業給付の権利を守る</b>のが総額を最大化する順番になります。</p>
+
+  <h2>条件別の採点：あなたはどの順番？</h2>
+  <table>
+    <tr><th>今のあなたの状態</th><th>先に使う給付</th><th>やること</th></tr>
+    <tr><td>まだ働けない／療養が必要</td><td class="warn">傷病手当金</td><td>健康保険で申請。並行して失業給付は延長申請で"預ける"</td></tr>
+    <tr><td>30日以上、働けない見込み</td><td class="warn">傷病手当金</td><td>ハローワークで受給期間の延長申請（期限に注意）</td></tr>
+    <tr><td>回復して働ける・求職できる</td><td class="win">失業給付</td><td>延長を解除し、基本手当の受給手続きへ</td></tr>
+    <tr><td>そもそも退職理由が病気でない</td><td class="win">失業給付</td><td>通常どおり求職手続き（延長は原則不要）</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>延長申請には申請できる期間（タイミング）や必要書類があり、給付日数や個別事情で扱いが変わります。「30日」「最長4年」といった数字も含め、<b>自分のケースでの可否と期限は必ずハローワーク／加入先の健康保険で確認</b>してください。ここを"だいたいで"進めて期限を逃すのが、いちばん多い損です。</p>
+
+  <div class="cta">
+    <div class="h">▶ 退職後のお金、順番の設計を専門家に相談する</div>
+    <div class="ph"><a href="houhouron.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 制度の"使い方"シリーズの考え方（方法論）を見る</a><br>［ASP導線プレースホルダ：提携済みの転職／保険・FP相談の申込リンクをここに開示つきで差し込む］
+    <!-- ASP: 転職/保険FP(A8等)リンク挿入予定 --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>傷病手当金と失業給付は<b>同時には受け取れない</b>（前提が「働けない」vs「働ける」で逆）。</li>
+    <li>正しい順番は <b>傷病手当金 →（受給期間の延長申請）→ 回復後に失業給付</b>。</li>
+    <li>失業給付は<b>原則1年で受給期間が満了</b>。療養で1年を過ぎると権利が消えることがある。</li>
+    <li>病気等で30日以上働けないなら、<b>延長申請で最長4年まで</b>権利を守れる。忘れると丸ごと損。</li>
+    <li>数字・要件・期限は改正あり。<b>可否は必ずハローワーク／加入先で確認</b>してから動く。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🩺 傷病手当金そのものの条件・金額をもっと詳しく：<a href="shobyo-teate.html" style="color:#58a6ff;text-decoration:none;font-weight:700">傷病手当金は誰が・いくら・いつまでもらえるか（AIが採点）→</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・全国健康保険協会（協会けんぽ）「傷病手当金」（支給を開始した日から通算して1年6か月／標準報酬月額の平均÷30×2/3／仕事に就くことができないことが要件）<a href="https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html" target="_blank" rel="noopener">kyoukaikenpo.or.jp</a><br>
+    ・ハローワークインターネットサービス（厚生労働省）「基本手当について」（受給には働ける・求職中の"失業の状態"が必要／受給期間は原則 離職日の翌日から1年）<a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html" target="_blank" rel="noopener">hellowork.mhlw.go.jp</a><br>
+    ・ハローワーク／厚生労働省「受給期間の延長」（病気・けが等で引き続き30日以上働けないとき、最長でプラス3年＝合計最長4年まで延長申請可能）<a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_basicbenefit.html" target="_blank" rel="noopener">hellowork.mhlw.go.jp</a><br>
+    <span class="note">※本記事は制度の一般的な流れを説明したものです。支給の可否・金額・期間・申請期限は改正や個別事情で変わります。実際の手続き・要件は必ず<b>ハローワーク</b>および<b>加入先の健康保険</b>でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>

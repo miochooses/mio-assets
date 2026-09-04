@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>医療費控除 vs セルフメディケーション税制、どっちで申告？自動で採点｜AIガチ検証室</title>
+<meta name="description" content="感情ゼロのAIが「医療費控除 vs セルフメディケーション税制」を計算だけで採点。併用できず“選択制”なので有利な方を式で選ぶ。会社員でも5年遡って還付できる点も国税庁の出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.github.io/mio-assets/saiten/iryohi-koujo-vs-selfmed.html">
+<meta property="og:title" content="医療費控除 vs セルフメディケーション税制｜どっちで申告すべきか、AIが計算で採点">
+<meta property="og:description" content="併用不可の“選択制”。医療費が多い年とOTC中心の年で正解が割れる。あなたの金額を入れる式つき。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 医療費控除 vs セルメ</div>
+    <h1>医療費控除 vs セルフメディケーション税制、<br>どっちで申告すべき？自動で採点した</h1>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算だけ</b>で採点します。結論から言うと ―― <b>両方は使えません（選択制）</b>。だから「有利な方を1回計算して選ぶ」だけ。ここを知らずに片方だけで出すと、毎年損します。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">通院・入院・歯科などで医療費がかさんだ年 → 医療費控除の勝ち。<br>病院代は少なく、市販薬（対象OTC）中心の年 → セルフメディケーション税制の勝ち。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>医療費控除（かさんだ年に強い）</span><span>10万円超の部分（上限200万円）</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#58a6ff,#3d8be0)"></div></div></div>
+      <div class="bar"><div class="lb"><span>セルフメディケーション税制（薬代に強い）</span><span>1.2万円超の部分（上限8.8万円）</span></div><div class="track"><div class="fill" style="width:34%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※どちらも「超えた分だけ」が控除対象。金額の基準は国税庁の規定（出典は末尾）。両方の同時適用はできません。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>この2択は「どっちが偉い」ではなく、<b>あなたのその年の使い方でどちらの控除額が大きいか</b>だけの問題です。両者は<b>選択適用＝併用できず、片方を選んだらもう片方は使えません</b>（国税庁 No.1131）。だから比べるべきは、次の2つの「控除額」という数字です。</p>
+  <div class="calc">医療費控除 ＝ 年間の医療費 − 10万円<small>※総所得金額等が200万円未満の人は「10万円」ではなく「総所得金額等の5%」で計算（少ない方が基準）。控除額の上限は200万円（国税庁 No.1120）</small></div>
+  <div class="calc">セルメ税制 ＝ 対象OTC薬の年間購入額 − 12,000円<small>※上限は88,000円。「一定の健康の取組」（健診・予防接種など）を受けていることが条件（国税庁 No.1129）</small></div>
+  <p>そして、実際に戻る（安くなる）お金の目安はこう出せます。控除額そのものが返ってくるわけではない点に注意してください。</p>
+  <div class="calc">戻る目安 ＝ 控除額 ×（所得税率 ＋ 住民税10%）<small>※所得税率は課税所得で5〜45%。控除額が大きい方＝手取りが増える方が「勝ち」です</small></div>
+
+  <h2>ワークド例：どちらで出すか実際に採点</h2>
+  <p><b>ケースA：医療費がかさんだ年。</b>入院・歯科などで年間の医療費が28万円かかった人（総所得200万円以上）。医療費控除は「28万円 − 10万円 ＝ <span style="color:#58a6ff">18万円</span>」が控除額。一方セルメは上限8.8万円まで。<b>この年は医療費控除の圧勝</b>です。</p>
+  <div class="calc">（280,000 − 100,000）＝ <span style="color:#58a6ff">控除 180,000円</span><small>※所得税率10%＋住民税10%なら、目安で約36,000円の負担減</small></div>
+  <p><b>ケースB：病院はほぼ行かず、市販薬中心の年。</b>対象OTC薬を年間5万円買ったが、医療費の合計は8万円で10万円に届かない人。医療費控除は<b>0円</b>（10万円を超えないため）。一方セルメは「5万円 − 1.2万円 ＝ <span style="color:#2ea043">3.8万円</span>」が控除できる。<b>この年はセルメ税制の勝ち</b>です。</p>
+  <div class="calc">（50,000 − 12,000）＝ <span style="color:#2ea043">控除 38,000円</span><small>※医療費控除では0円だった年でも、セルメなら控除が取れるケース</small></div>
+  <p>つまり「医療費が多い年は医療費控除、市販薬中心の年はセルメ」。<b>毎年、その年の実績で有利な方を選び直す</b>のが正解です。片方に決め打ちして煽るのは、この検証室のやり方ではありません。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたのその年の状況</th><th>勝者</th><th>理由</th></tr>
+    <tr><td>入院・手術・歯科などで医療費が10万円超</td><td class="win">医療費控除</td><td>超えた分が丸ごと対象。上限200万円まで積める</td></tr>
+    <tr><td>医療費が10万円に届かない</td><td class="win">セルメ</td><td>医療費控除は0円。セルメなら1.2万円超で取れる</td></tr>
+    <tr><td>市販の対象OTC薬をよく買う（年1.2万円超）</td><td class="win">セルメ</td><td>薬局レシートが控除に化ける（要・対象品目）</td></tr>
+    <tr><td>総所得が200万円未満で医療費が5%超</td><td class="win">医療費控除</td><td>基準が10万円でなく総所得の5%。ハードルが下がる</td></tr>
+    <tr><td>健診・予防接種を一切受けていない</td><td class="win">医療費控除</td><td>セルメは「一定の取組」が必須。未実施なら使えない</td></tr>
+    <tr><td>医療費も薬代もどちらも中くらい</td><td>両方で試算</td><td>控除額を2通り計算し、大きい方を選ぶだけ</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>セルメ税制は「対象として指定されたOTC医薬品」だけが対象で、すべての市販薬が入るわけではありません（パッケージやレシートに識別マークがあります）。また会社員でも<b>この控除は年末調整では処理されず、確定申告（還付申告）が必要</b>です。逆に言えば、出し忘れても<b>その年の翌年から5年間はさかのぼって還付申告できます</b>（国税庁 No.2030）。「去年の分、忘れてた」でもまだ間に合う可能性があります。</p>
+
+  <div class="cta">
+    <div class="h">▶ 自分は“どっちで出すと得か”を数字で確かめる</div>
+    <div class="ph"><a href="../tools/tedori.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ 手取り計算ツールで、控除でいくら戻るかの目安を出す</a><br><!-- ASP: (該当時) --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>医療費控除とセルメ税制は<b>併用不可の選択制</b>。毎年、有利な方を選び直すのが正解。</li>
+    <li>医療費が10万円（総所得200万円未満は5%）を超えた年は医療費控除。上限200万円。</li>
+    <li>病院代は少なく対象OTC薬が年1.2万円超の年はセルメ税制。上限8.8万円＋「一定の取組」が条件。</li>
+    <li>会社員でも確定申告が必要だが、<b>5年以内なら遡って還付申告できる</b>。忘れていても取り戻せる。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 医療費が高額なら次はこれも：<a href="kougaku-maina-tatekae.html" style="color:#58a6ff;text-decoration:none;font-weight:700">高額療養費、マイナ保険証で“立て替えなし”にできる？ →</a></div>
+
+  <div style="margin-top:14px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧭 損しない申告の全体像は：<a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">AIガチ検証室の“採点”方法論（何を計算で見るか）→</a></div>
+
+  <div class="src">
+    <b>出典（国税庁 一次情報）</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" target="_blank" rel="noopener">No.1120 医療費を支払ったとき（医療費控除）</a>：控除額＝医療費−10万円（総所得金額等200万円未満は総所得の5%）、控除上限200万円<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm" target="_blank" rel="noopener">No.1129 特定一般用医薬品等購入費を支払ったとき（セルフメディケーション税制）</a>：購入額−12,000円（上限88,000円）、「一定の取組」が要件<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1131.htm" target="_blank" rel="noopener">No.1131 セルフメディケーション税制と通常の医療費控除との選択適用</a>：両者は選択適用（併用不可）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm" target="_blank" rel="noopener">No.2030 還付申告</a>：翌年1月1日から5年間提出できる<br>
+    <span class="note">※要件・金額・上限・対象品目・適用期間は税制改正で変わります。最新・正確な条件は必ず国税庁の各ページでご確認ください。個別の判断は税務署・税理士へ。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/">無料ツール</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+</body>
+</html>
