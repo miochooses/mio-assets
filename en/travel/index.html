@@ -3,71 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Japan travel money, calculated — for tourists | Mio</title>
-<meta name="description" content="Fast, calculated answers to the money questions travellers ask in Japan: is the JR Pass worth it, cheapest way from the airport, tax-free shopping, Suica for tourists, eSIM vs pocket WiFi, luggage forwarding. Mio runs the numbers.">
+<title>Japan travel money, calculated — for visitors | Mio</title>
+<meta name="description" content="Fast, calculated answers to travellers' money questions in Japan: is the JR Pass worth it, cheapest airport transfer, tax-free shopping, Suica, eSIM vs pocket WiFi, getting yen, tipping, luggage. Mio runs the numbers.">
 <link rel="canonical" href="https://miochooses.com/en/travel/">
-<meta property="og:title" content="Japan travel money, calculated — for tourists | Mio">
-<meta property="og:description" content="The money decisions travellers face in Japan, answered by calculation — JR Pass, airport transfer, tax-free, Suica, data, luggage.">
+<meta property="og:title" content="Japan travel money, calculated — for visitors | Mio">
+<meta property="og:description" content="The money decisions travellers face in Japan, answered by calculation — JR Pass, airport, tax-free, Suica, data, yen, tipping, luggage.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://miochooses.com/mio-hero-en.jpg">
+<meta property="og:url" content="https://miochooses.com/en/travel/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://miochooses.com/mio-hero-en.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/mio-icon-180.png">
 <style>
-  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;}
+  :root{--bg:#0f1720;--card:#141d28;--card2:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--gl:#39d353;--b:#58a6ff;--o:#f0883e;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 18px 60px;overflow-wrap:anywhere;}
-  .wrap{max-width:760px;margin:0 auto;}
-  header{padding:40px 0 8px;text-align:center;}
-  .hero-mio{width:112px;height:112px;border-radius:26px;display:block;margin:0 auto 12px;box-shadow:0 12px 40px rgba(46,160,67,.26);border:1px solid #ffffff12;}
-  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.06em;}
-  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
-  h1{margin-top:14px;font-size:27px;line-height:1.35;font-weight:800;}
-  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
-  .jp{margin-top:10px;font-size:13px;} .jp a{color:var(--b);text-decoration:none;}
-  h2{margin-top:34px;font-size:18px;font-weight:800;border-left:4px solid var(--b);padding-left:11px;}
-  .item{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin-top:12px;color:var(--tx);}
-  .item .t{font-size:17px;font-weight:800;color:#dbe6f0;}
-  .item .v{margin-top:6px;font-size:14px;color:var(--mut);}
-  .item .v b{color:var(--g);}
-  .foot{margin-top:40px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:22px;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;overflow-wrap:anywhere;}
+  a{color:var(--b);}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px;}
+  .nav{position:sticky;top:0;z-index:20;background:#0f1720ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav .in{max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;}
+  .nav .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--tx);font-weight:800;}
+  .nav .brand img{width:30px;height:30px;border-radius:8px;}
+  .nav .brand b{font-size:15px;letter-spacing:.01em;}
+  .nav .brand b span{color:var(--b);}
+  .nav .links{margin-left:auto;display:flex;gap:4px;align-items:center;}
+  .nav .links a{font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 11px;border-radius:9px;}
+  .nav .links a:hover{background:var(--card2);color:#fff;}
+  .nav .links a.jp{color:var(--gl);}
+  @media(max-width:560px){.nav .links a.hideS{display:none;}}
+  .hero{padding:26px 0 8px;text-align:center;}
+  .hero-banner{width:100%;max-width:760px;height:auto;display:block;margin:0 auto 8px;border-radius:16px;border:1px solid #ffffff12;box-shadow:0 12px 44px rgba(46,160,67,.16);}
+  .hero .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .hero .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--gl);box-shadow:0 0 8px var(--gl);}
+  h1{margin-top:12px;font-size:25px;line-height:1.34;font-weight:800;}
+  h1 .hl{color:var(--b);}
+  .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:600px;margin-left:auto;margin-right:auto;}
+  .cta-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
+  .cta-row a.p{background:var(--g);color:#08110a;}
+  .cta-row a.s{background:var(--card2);color:#dbe6f0;border:1px solid var(--line);}
+  @media(max-width:560px){h1{font-size:21px;}.cta-row a{flex:1;text-align:center;}}
+  .sec{padding:26px 0 6px;}
+  .sec>h2{font-size:19px;font-weight:800;}
+  .sec>h2 small{display:block;font-size:12.5px;color:var(--faint);font-weight:600;margin-top:3px;}
+  .travel{display:block;text-decoration:none;margin-top:12px;border:1px solid #2ea04355;background:#101d16;border-radius:14px;padding:15px 17px;color:var(--tx);}
+  .travel .t{font-size:15px;font-weight:800;color:#cfe8d6;}
+  .travel .v{margin-top:5px;font-size:13px;color:var(--mut);}
+  .tabbar{margin-top:14px;display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .tabbar::-webkit-scrollbar{display:none;}
+  .tabbar button{flex:none;font-family:inherit;cursor:pointer;font-size:13px;font-weight:800;color:#c9d4de;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 15px;}
+  .tabbar button.active{background:var(--g);color:#08110a;border-color:var(--g);}
+  .feed{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .feed a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--tx);transition:border-color .15s;}
+  .feed a:hover{border-color:#2ea04366;}
+  .feed a .t{font-size:15px;font-weight:800;color:#dbe6f0;}
+  .feed a .v{margin-top:5px;font-size:12.5px;color:var(--mut);line-height:1.6;}
+  .feed a .v b{color:var(--gl);}
+  @media(max-width:560px){.feed{grid-template-columns:1fr;}}
+  .foot{margin-top:34px;text-align:center;font-size:12.5px;color:var(--faint);border-top:1px solid var(--line);padding:22px 0 46px;}
   .foot a{color:var(--b);text-decoration:none;}
 </style>
 </head>
 <body>
+<nav class="nav">
+  <div class="in">
+    <a class="brand" href="/en/travel/"><img src="/mio-icon-512.png" alt="Mio"><b>Mio<span>·</span>Japan travel money</b></a>
+    <div class="links">
+      <a href="#guides">Guides</a>
+      <a href="/en/" class="hideS">Residents</a>
+      <a href="/" class="jp">日本語</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
-  <header>
-    <img src="/mio-hero-en.jpg" alt="Mio — Zero bias. Honest scores." style="width:100%;max-width:660px;height:auto;border-radius:16px;border:1px solid #ffffff12;box-shadow:0 12px 40px rgba(46,160,67,.16);display:block;margin:0 auto 12px;">
-    <div class="badge"><span class="dot"></span> Mio — travel money, calculated</div>
-    <h1>Japan travel money, calculated.<br>For people who need the answer now.</h1>
-    <div class="lead">Planning a trip to Japan? The money questions come fast — <b>is the JR Pass worth it, what's the cheapest way in from the airport, how does tax-free work, which Suica, eSIM or pocket WiFi.</b> Mio reads the Japanese-language sources, runs the numbers, and gives you the decisive answer — in plain English. Prices are illustrative; fares and rules change, so check current figures before you rely on them.</div>
-    <div class="jp"><a href="/en/">🏠 Living in Japan? See Mio's guides for residents →</a></div>
+  <header class="hero">
+    <img class="hero-banner" src="/mio-hero-en.jpg" alt="Mio — Zero bias. Honest scores." width="1300" height="731">
+    <div class="badge"><span class="dot"></span> The money questions travellers ask — answered by calculation</div>
+    <h1>Japan travel money, <span class="hl">calculated</span>.<br>For people who need the answer now.</h1>
+    <p class="lead">Planning a trip to Japan? Mio reads the Japanese-language sources and does the math — JR Pass, airport transfer, tax-free, Suica, eSIM, getting yen and more — so you don't overpay. Prices are illustrative; fares and rules change, so check current figures.</p>
+    <div class="cta-row">
+      <a class="p" href="/en/jr-pass-worth-it-calculator.html">🧮 JR Pass calculator</a>
+      <a class="s" href="#guides">All travel guides</a>
+    </div>
   </header>
 
-  <h2>🚄 Getting around</h2>
-  <a class="item" href="/en/jr-pass-worth-it-calculator.html" style="border-color:#58a6ff55;background:#0f1a24;"><div class="t">🧮 Free tool: JR Pass worth-it calculator</div><div class="v"><b>Tick your trips →</b> Mio adds up point-to-point fares vs the pass price and tells you live whether to buy the JR Pass. Runs in your browser.</div></a>
-  <a class="item" href="/en/jr-pass-worth-it-2026.html"><div class="t">Is the Japan Rail Pass worth it in 2026? The break-even, calculated</div><div class="v"><b>The point:</b> since the 2023 hike (~¥50,000), the JR Pass only wins on long routes — add up your actual shinkansen legs at point-to-point fares and buy only if they beat the pass.</div></a>
-  <a class="item" href="/en/airport-to-tokyo-cheapest-narita-haneda.html"><div class="t">Narita &amp; Haneda to central Tokyo — cheapest vs fastest way in</div><div class="v"><b>The point:</b> from Haneda take the train (~¥500). From Narita, Skyliner for speed, N'EX for the round-trip deal, Access Express or bus to save ~¥1,200.</div></a>
-  <a class="item" href="/en/suica-pasmo-for-tourists-japan.html"><div class="t">Suica / PASMO for tourists — Welcome Suica vs mobile Suica vs paper tickets</div><div class="v"><b>The point:</b> iPhone user? Add Suica to Apple Wallet — no card, no deposit, no shortage. No phone? Grab a Welcome Suica at the airport (28-day).</div></a>
-  <a class="item" href="/en/shinkansen-reserved-vs-nonreserved-green-car.html"><div class="t">Shinkansen reserved vs non-reserved vs Green Car — which seat is worth it?</div><div class="v"><b>The point:</b> off-peak solo → non-reserved (cheapest); peak/holiday/luggage/family → reserved; Green Car only for 3h+ where you value calm.</div></a>
-  <a class="item" href="/en/tokyo-subway-pass-worth-it-tourists.html"><div class="t">Is the Tokyo subway pass worth it? The break-even for tourists</div><div class="v"><b>The point:</b> 4+ subway rides/day staying central → the 24h pass (~¥800); mixed JR or light use → just tap an IC card (the pass skips JR).</div></a>
+  <section class="sec" id="guides">
+    <h2>✈️ Travel money guides<small>Switch by topic. Every answer is calculated, in plain English.</small></h2>
+    <div class="tabbar" id="tabbar">
+      <button class="active" data-c="move">🚄 Getting around</button>
+      <button data-c="spend">💴 Money &amp; shopping</button>
+      <button data-c="logi">🗓 Trip logistics</button>
+    </div>
+    <div class="feed" id="feed">
+      <a data-cat="move" href="/en/jr-pass-worth-it-calculator.html"><div class="t">🧮 JR Pass worth-it calculator</div><div class="v"><b>Tick your trips →</b> Mio adds up point-to-point fares vs the pass price and tells you live whether to buy. Runs in your browser.</div></a>
+      <a data-cat="move" href="/en/jr-pass-worth-it-2026.html"><div class="t">Is the Japan Rail Pass worth it in 2026?</div><div class="v"><b>The point:</b> since the 2023 hike (~¥50,000), it only wins on long routes — add up your shinkansen legs first.</div></a>
+      <a data-cat="move" href="/en/airport-to-tokyo-cheapest-narita-haneda.html"><div class="t">Narita &amp; Haneda to central Tokyo — cheapest vs fastest</div><div class="v"><b>The point:</b> from Haneda take the train (~¥500); from Narita, Skyliner for speed, N'EX for the round-trip deal, bus to save.</div></a>
+      <a data-cat="move" href="/en/suica-pasmo-for-tourists-japan.html"><div class="t">Suica / PASMO for tourists — Welcome Suica vs mobile</div><div class="v"><b>The point:</b> iPhone? Add Suica to Apple Wallet — no card, no deposit. No phone? Grab a Welcome Suica at the airport.</div></a>
+      <a data-cat="move" href="/en/shinkansen-reserved-vs-nonreserved-green-car.html"><div class="t">Shinkansen reserved vs non-reserved vs Green Car</div><div class="v"><b>The point:</b> off-peak solo → non-reserved; peak/luggage/family → reserved; Green Car only for 3h+ where you value calm.</div></a>
+      <a data-cat="move" href="/en/tokyo-subway-pass-worth-it-tourists.html"><div class="t">Is the Tokyo subway pass worth it?</div><div class="v"><b>The point:</b> 4+ subway rides/day staying central → the 24h pass; mixed JR or light use → just tap an IC card.</div></a>
 
-  <h2>💴 Spending &amp; connectivity</h2>
-  <a class="item" href="/en/getting-yen-in-japan-cheapest.html"><div class="t">Getting yen in Japan — airport exchange vs 7-Eleven ATM vs travel card</div><div class="v"><b>The point:</b> skip the airport counter (its wide markup is the real cost). Withdraw yen with a fee-light debit/travel card at a 7-Eleven or Japan Post ATM, in larger amounts less often.</div></a>
-  <a class="item" href="/en/cash-vs-card-japan-tourists.html"><div class="t">Cash vs card vs IC vs code-pay — do you still need cash in Japan?</div><div class="v"><b>The point:</b> card for hotels/chains (pay in yen, skip DCC), IC for transport &amp; konbini, and always keep ¥10–20k cash for small, local and rural spots.</div></a>
-  <a class="item" href="/en/tax-free-shopping-japan-tourists.html"><div class="t">Tax-free shopping in Japan for tourists — how the 10% refund works (and the 2026 change)</div><div class="v"><b>The point:</b> skip the 10% tax on ¥5,000+ buys with your passport as a short-stay visitor — but a refund-at-departure reform is planned, so verify before you rely on it.</div></a>
-  <a class="item" href="/en/tourist-esim-vs-pocket-wifi-japan.html"><div class="t">Travel eSIM vs pocket WiFi vs roaming — cheapest data as a tourist</div><div class="v"><b>The point:</b> solo with an eSIM phone → travel eSIM every time; groups/families → one pocket WiFi splits cheaper per person; roaming only for very short trips.</div></a>
-  <a class="item" href="/en/luggage-forwarding-vs-coin-lockers-japan.html"><div class="t">Luggage forwarding vs coin lockers vs hotel hold — what to do with your suitcase</div><div class="v"><b>The point:</b> same-day in one city → coin locker or free hotel hold; moving cities → forward the big bag (~¥2,000) and travel light instead of dragging it on the shinkansen.</div></a>
-  <a class="item" href="/en/tipping-in-japan-tourists.html"><div class="t">Do you tip in Japan? (No — and why trying to can be awkward)</div><div class="v"><b>The point:</b> Japan has no tipping culture — pay the listed price; leaving cash can confuse staff. The rare exception: enveloped cash or a wrapped gift for a private guide or ryokan attendant.</div></a>
-  <a class="item" href="/en/konbini-vs-drugstore-vs-100yen-travellers-japan.html"><div class="t">Konbini vs drugstore vs 100-yen shop — where to buy cheap as a tourist</div><div class="v"><b>The point:</b> konbini only for 24/7 convenience/ATM; buy drinks, snacks &amp; toiletries at drugstores (bulk + tax-free), travel gear at 100-yen shops, meals at supermarkets.</div></a>
-  <a class="item" href="/en/japan-peak-season-hotel-cost-timing.html"><div class="t">Japan peak-season hotel prices — when to book, and how to dodge the spikes</div><div class="v"><b>The point:</b> sakura, Golden Week, Obon, autumn &amp; New Year run 1.5–3× off-peak. Book 3–6 months ahead, or use shoulder dates one stop out to save.</div></a>
+      <a data-cat="spend" href="/en/getting-yen-in-japan-cheapest.html"><div class="t">Getting yen — airport exchange vs 7-Eleven ATM vs travel card</div><div class="v"><b>The point:</b> skip the airport counter (wide markup). Withdraw with a fee-light card at 7-Eleven/Japan Post, larger amounts less often.</div></a>
+      <a data-cat="spend" href="/en/cash-vs-card-japan-tourists.html"><div class="t">Cash vs card vs IC — do you still need cash?</div><div class="v"><b>The point:</b> card for hotels/chains (pay in yen, skip DCC), IC for transport &amp; konbini, keep ¥10–20k cash for small/local/rural.</div></a>
+      <a data-cat="spend" href="/en/tax-free-shopping-japan-tourists.html"><div class="t">Tax-free shopping — how the 10% refund works (and the 2026 change)</div><div class="v"><b>The point:</b> skip the 10% tax on ¥5,000+ with your passport — but a refund-at-departure reform is planned; verify first.</div></a>
+      <a data-cat="spend" href="/en/tipping-in-japan-tourists.html"><div class="t">Do you tip in Japan? (No — and why trying can be awkward)</div><div class="v"><b>The point:</b> no tipping culture — pay the listed price; leaving cash can confuse staff. Rare exception: enveloped cash for a private guide.</div></a>
+      <a data-cat="spend" href="/en/konbini-vs-drugstore-vs-100yen-travellers-japan.html"><div class="t">Konbini vs drugstore vs 100-yen — where to buy cheap</div><div class="v"><b>The point:</b> konbini for convenience only; drinks/snacks/toiletries at drugstores (bulk + tax-free), gear at 100-yen, meals at supermarkets.</div></a>
+
+      <a data-cat="logi" href="/en/tourist-esim-vs-pocket-wifi-japan.html"><div class="t">Travel eSIM vs pocket WiFi vs roaming — cheapest data</div><div class="v"><b>The point:</b> solo eSIM phone → travel eSIM; groups → one pocket WiFi splits cheaper; roaming only for very short trips.</div></a>
+      <a data-cat="logi" href="/en/luggage-forwarding-vs-coin-lockers-japan.html"><div class="t">Luggage forwarding vs coin lockers vs hotel hold</div><div class="v"><b>The point:</b> same-day one city → locker/hotel hold; moving cities → forward the big bag (~¥2,000) and travel light.</div></a>
+      <a data-cat="logi" href="/en/japan-peak-season-hotel-cost-timing.html"><div class="t">Peak-season hotel prices — when to book to dodge the spikes</div><div class="v"><b>The point:</b> sakura, Golden Week, Obon, autumn &amp; New Year run 1.5–3× off-peak. Book 3–6 months ahead or use shoulder dates.</div></a>
+    </div>
+  </section>
+
+  <a class="travel" href="/en/"><div class="t">🏠 Living in Japan (not just visiting)? See Mio's guides for residents →</div><div class="v">Tax, pension, health insurance, SIMs, renting, the income "walls" and more — for foreign residents.</div></a>
 
   <div class="foot">
-    Mio — an emotionless AI that scores money decisions in Japan by calculation. Figures are reference values based on public information at the time of writing; fares, passes and tax rules change often — verify current prices and rules before you rely on them. Not tax or legal advice.<br>
+    Mio — an emotionless AI that scores money decisions in Japan by calculation. Figures are reference values based on public information at the time of writing; fares, passes and tax rules change often — verify current prices before you rely on them. Not tax or legal advice.<br>
     <span style="display:inline-block;margin-top:8px;">Some links may be advertising (PR / affiliate); we may earn a referral fee at no cost to you, and it never changes our calculated verdict. Contact: <a href="mailto:contract@miochooses.com">contract@miochooses.com</a></span><br>
-    <a href="/en/">← Mio guides for residents</a> · <a href="/">miochooses.com</a>
+    <a href="/en/">🏠 Residents</a> · <a href="/">🇯🇵 日本語</a> · <a href="/">miochooses.com</a>
   </div>
 </div>
+
+<script>
+(function(){
+  var bar=document.getElementById('tabbar'), feed=document.getElementById('feed');
+  if(!bar||!feed) return;
+  var cards=[].slice.call(feed.children);
+  function show(cat){ cards.forEach(function(a){ var c=(a.getAttribute('data-cat')||'').split(' '); a.style.display=c.indexOf(cat)>=0?'':'none'; }); [].slice.call(bar.children).forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-c')===cat); }); }
+  bar.addEventListener('click', function(e){ var b=e.target.closest('button'); if(!b) return; show(b.getAttribute('data-c')); });
+  show('move');
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
