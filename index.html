@@ -17,95 +17,180 @@
 <link rel="apple-touch-icon" href="/mio-icon-180.png">
 <link rel="canonical" href="https://miochooses.com/">
 <style>
-  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  :root{--bg:#0f1720;--card:#141d28;--card2:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--gl:#39d353;--b:#58a6ff;--o:#f0883e;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;overflow-wrap:anywhere;}
-  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
-  header{padding:46px 0 8px;text-align:center;}
-  .hero-mio{width:136px;height:136px;border-radius:28px;display:block;margin:0 auto 12px;box-shadow:0 12px 44px rgba(46,160,67,.28);border:1px solid #ffffff12;}
-  .social{margin-top:18px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-  .social a{font-size:13px;font-weight:800;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:7px 15px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
-  .social a:hover{border-color:#2ea04366;color:#fff;}
-  .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.06em;}
-  .badge .dot{width:10px;height:10px;border-radius:50%;background:var(--g);}
-  h1{margin-top:14px;font-size:32px;line-height:1.3;font-weight:800;}
-  h1 .hl{color:var(--b);}
-  .lead{margin-top:16px;font-size:16px;color:var(--mut);}
-  .stance{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .stance span{font-size:13px;font-weight:700;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:6px 12px;}
-  .catnav{margin-top:24px;display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
-  .catnav a{font-size:14px;font-weight:800;color:#c9d4de;background:#161f2b;border:1px solid var(--line);border-radius:999px;padding:8px 15px;text-decoration:none;}
-  .sec{padding:30px 0;border-top:1px solid var(--line);margin-top:22px;}
-  .sec h2{font-size:21px;font-weight:800;}
-  .sec h2 small{display:block;font-size:13px;color:var(--faint);font-weight:600;margin-top:4px;}
-  .pop{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
-  .pop a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--tx);}
-  .pop a .t{font-size:16px;font-weight:800;color:#dbe6f0;}
-  .pop a .v{margin-top:5px;font-size:13px;color:var(--mut);}
-  .pop a .v b{color:var(--g);}
-  .allbtn{display:inline-block;margin-top:16px;background:#161f2b;border:1px solid var(--line);color:var(--b);font-weight:800;text-decoration:none;padding:11px 20px;border-radius:11px;font-size:15px;}
-  .tools{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .tools a{display:block;text-decoration:none;background:var(--card);border:1px solid #1f3547;border-radius:13px;padding:14px;color:var(--tx);}
-  .tools a .tt{font-size:15px;font-weight:800;}
-  .tools a .td{margin-top:5px;font-size:12px;color:var(--mut);}
-  @media(max-width:480px){.tools{grid-template-columns:1fr;}}
-  .book{margin-top:16px;background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:18px;padding:24px;text-align:center;}
-  .book .t{font-size:19px;font-weight:800;color:#cfe8f5;}
-  .book .d{margin-top:8px;font-size:14px;color:var(--mut);}
-  .book a{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:13px 26px;border-radius:11px;font-size:15px;}
-  .cta{margin-top:16px;background:linear-gradient(90deg,#12251a,#141d28);border:1px solid #2ea04355;border-radius:16px;padding:22px 20px;}
-  .cta .t{font-size:17px;font-weight:800;}
-  .cta .d{margin-top:8px;font-size:14px;color:var(--mut);}
-  .cta a.btn{display:inline-block;margin-top:14px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:12px 20px;border-radius:10px;font-size:15px;}
-  .cta .pr{margin-top:10px;font-size:12px;color:var(--faint);}
-  .social{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-  .social a{flex:1;min-width:160px;text-align:center;text-decoration:none;color:var(--tx);background:#161f2b;border:1px solid var(--line);border-radius:10px;padding:12px;font-weight:700;}
-  footer{padding:30px 0 50px;text-align:center;color:var(--faint);font-size:12px;border-top:1px solid var(--line);margin-top:26px;}
   a{color:var(--b);}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px;}
+  /* top nav */
+  .nav{position:sticky;top:0;z-index:20;background:#0f1720ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav .in{max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;}
+  .nav .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--tx);font-weight:800;}
+  .nav .brand img{width:30px;height:30px;border-radius:8px;}
+  .nav .brand b{font-size:15px;letter-spacing:.01em;}
+  .nav .brand b span{color:var(--gl);}
+  .nav .links{margin-left:auto;display:flex;gap:4px;align-items:center;}
+  .nav .links a{font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 11px;border-radius:9px;}
+  .nav .links a:hover{background:var(--card2);color:#fff;}
+  .nav .links a.en{color:var(--gl);}
+  @media(max-width:560px){.nav .links a.hideS{display:none;}}
+  /* hero */
+  .hero{padding:34px 0 8px;display:flex;gap:20px;align-items:center;}
+  .hero .face{flex:none;width:104px;height:104px;border-radius:24px;box-shadow:0 12px 40px rgba(46,160,67,.26);border:1px solid #ffffff14;}
+  .hero .txt{min-width:0;}
+  .hero .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .hero .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);box-shadow:0 0 0 0 rgba(46,160,67,.5);animation:pulse 2.4s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,160,67,.45)}70%{box-shadow:0 0 0 8px rgba(46,160,67,0)}100%{box-shadow:0 0 0 0 rgba(46,160,67,0)}}
+  h1{margin-top:8px;font-size:27px;line-height:1.3;font-weight:800;}
+  h1 .hl{color:var(--b);}
+  .quote{margin-top:10px;font-size:14px;font-weight:800;color:#cfe8f5;}
+  .quote span{color:var(--gl);}
+  .lead{margin-top:8px;font-size:14px;color:var(--mut);}
+  .cta-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;}
+  .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
+  .cta-row a.p{background:var(--g);color:#08110a;}
+  .cta-row a.s{background:var(--card2);color:#dbe6f0;border:1px solid var(--line);}
+  @media(max-width:560px){.hero{gap:14px;}.hero .face{width:76px;height:76px;border-radius:18px;}h1{font-size:22px;}.cta-row a{flex:1;text-align:center;}}
+  /* section */
+  .sec{padding:26px 0 6px;}
+  .sec>h2{font-size:19px;font-weight:800;}
+  .sec>h2 small{display:block;font-size:12.5px;color:var(--faint);font-weight:600;margin-top:3px;}
+  /* category grid */
+  .catgrid{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .catgrid a{text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 12px;color:var(--tx);transition:border-color .15s,transform .15s;}
+  .catgrid a:hover{border-color:#2ea04366;transform:translateY(-2px);}
+  .catgrid a .ci{font-size:22px;}
+  .catgrid a .cn{margin-top:6px;font-size:14px;font-weight:800;color:#dbe6f0;}
+  .catgrid a .cd{margin-top:3px;font-size:11.5px;color:var(--mut);line-height:1.5;}
+  @media(max-width:560px){.catgrid{grid-template-columns:repeat(2,1fr);}}
+  /* tabs + feed */
+  .tabbar{margin-top:14px;display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .tabbar::-webkit-scrollbar{display:none;}
+  .tabbar button{flex:none;font-family:inherit;cursor:pointer;font-size:13px;font-weight:800;color:#c9d4de;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 15px;}
+  .tabbar button.active{background:var(--g);color:#08110a;border-color:var(--g);}
+  .feed{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .feed a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--tx);transition:border-color .15s;}
+  .feed a:hover{border-color:#2ea04366;}
+  .feed a .t{font-size:15px;font-weight:800;color:#dbe6f0;}
+  .feed a .v{margin-top:5px;font-size:12.5px;color:var(--mut);line-height:1.6;}
+  .feed a .v b{color:var(--gl);}
+  @media(max-width:560px){.feed{grid-template-columns:1fr;}}
+  .allbtn{display:inline-block;margin-top:14px;background:var(--card2);border:1px solid var(--line);color:var(--b);font-weight:800;text-decoration:none;padding:11px 18px;border-radius:11px;font-size:14px;}
+  /* tools */
+  .tools{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .tools a{text-decoration:none;background:var(--card);border:1px solid #1f3547;border-radius:13px;padding:13px;color:var(--tx);transition:border-color .15s;}
+  .tools a:hover{border-color:#58a6ff55;}
+  .tools a .tt{font-size:14px;font-weight:800;}
+  .tools a .td{margin-top:4px;font-size:11.5px;color:var(--mut);line-height:1.5;}
+  @media(max-width:560px){.tools{grid-template-columns:1fr 1fr;}}
+  /* diagnostic + book + cta */
+  .diag{display:block;text-decoration:none;margin-top:16px;background:linear-gradient(135deg,#12251a,#0f2230);border:1px solid #2ea04366;border-radius:16px;padding:18px;color:#e9eef3;}
+  .diag .t{font-size:17px;font-weight:800;}.diag .t span{color:var(--gl);}
+  .diag .d{margin-top:5px;font-size:13px;color:var(--mut);}
+  .diag .b{display:inline-block;margin-top:11px;background:var(--g);color:#08110a;font-weight:800;padding:10px 20px;border-radius:10px;font-size:14px;}
+  .band{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:640px){.band{grid-template-columns:1fr;}}
+  .book,.pr{border-radius:16px;padding:18px;}
+  .book{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;}
+  .book .t{font-size:16px;font-weight:800;color:#cfe8f5;}.book .d{margin-top:6px;font-size:13px;color:var(--mut);}
+  .book a{display:inline-block;margin-top:11px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:11px 20px;border-radius:10px;font-size:14px;}
+  .pr{background:linear-gradient(90deg,#12251a,#141d28);border:1px solid #2ea04355;}
+  .pr .t{font-size:15px;font-weight:800;}.pr .d{margin-top:6px;font-size:12.5px;color:var(--mut);}
+  .pr a.btn{display:inline-block;margin-top:11px;background:var(--g);color:#08110a;font-weight:800;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:14px;}
+  .pr .note{margin-top:8px;font-size:11px;color:var(--faint);}
+  /* follow + footer */
+  .follow{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap;}
+  .follow a{text-decoration:none;color:#c9d4de;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:800;}
+  .follow a:hover{border-color:#2ea04366;color:#fff;}
+  .about{margin-top:22px;font-size:13px;color:var(--mut);line-height:1.8;}
+  footer{padding:26px 0 46px;margin-top:22px;text-align:center;color:var(--faint);font-size:12px;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
+<nav class="nav">
+  <div class="in">
+    <a class="brand" href="/"><img src="/mio-icon-512.png" alt="Mio"><b>AIガチ検証室<span>／Mio</span></b></a>
+    <div class="links">
+      <a href="#saiten">採点</a>
+      <a href="tools/" class="hideS">ツール</a>
+      <a href="tools/shindan.html" class="hideS">診断</a>
+      <a href="/en/" class="en">EN</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
-  <header>
-    <img class="hero-mio" src="/mio-icon-512.png" alt="Mio（AIガチ検証室のキャラクター）" width="136" height="136">
-    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
-    <h1>お金の“よくある2択”を<br><span class="hl">計算だけ</span>で採点する</h1>
-    <p class="lead">感情ゼロのAIが、世間で「よく聞くお金の話」を忖度なしで白黒つけます。<br>意志は責めない。直すのは、損な“設定”だけ。</p>
-    <div style="margin-top:16px;font-size:16px;font-weight:800;color:#cfe8f5;letter-spacing:.02em;">「忖度はしません。計算はごまかせない。」<span style="color:#39d353;">— Mio</span></div>
-    <div class="stance"><span>忖度ゼロ</span><span>計算はごまかせない</span><span>条件で割れる</span><span>意志でなく設定を直す</span></div>
-    <div class="catnav">
-      <a href="saiten/#tsushin">📱 通信・光</a><a href="saiten/#bank">🏦 銀行・投資</a><a href="saiten/#hoken">🛡 保険</a>
-      <a href="saiten/#zei">💰 税・働き方</a><a href="saiten/#sumai">🏠 住まい・くるま</a><a href="saiten/#pay">💳 支払い・ポイント</a>
+  <header class="hero">
+    <img class="face" src="/mio-icon-512.png" alt="Mio（AIガチ検証室のキャラクター）" width="104" height="104">
+    <div class="txt">
+      <div class="badge"><span class="dot"></span> 感情ゼロのAIが、お金を計算で採点</div>
+      <h1>お金の“よくある2択”を<br><span class="hl">計算だけ</span>で採点する。</h1>
+      <div class="quote">「忖度はしません。計算はごまかせない。」<span>— Mio</span></div>
+      <p class="lead">格安SIM・NISA・保険・ふるさと納税…あなたの条件でどっちが得か、記事と無料ツールで即わかる。</p>
+      <div class="cta-row">
+        <a class="p" href="tools/shindan.html">🩺 7問でムダ度診断</a>
+        <a class="s" href="#saiten">人気の採点を見る</a>
+      </div>
     </div>
-    <div class="social">
-      <a href="https://note.com/mio_chooses" target="_blank" rel="noopener">📝 note</a>
-      <a href="https://youtube.com/@mio-x8q" target="_blank" rel="noopener">▶️ YouTube</a>
-      <a href="https://www.instagram.com/mio.chooses" target="_blank" rel="noopener">📷 Instagram</a>
-      <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">🦋 Bluesky</a>
-    </div>
-    <div style="margin-top:12px;font-size:13px;"><a href="/en/" style="color:#39d353;font-weight:800;text-decoration:none;">🌐 English guides for foreign residents in Japan →</a></div>
   </header>
 
-  <a href="tools/shindan.html" style="display:block;text-decoration:none;margin-top:20px;background:linear-gradient(135deg,#12251a,#0f2230);border:1px solid #2ea04366;border-radius:16px;padding:20px;text-align:center;color:#e9eef3;">
-    <div style="font-size:18px;font-weight:800;">🩺 何から見直せばいい？ <span style="color:#39d353;">7問で“ムダ度”を診断</span></div>
-    <div style="margin-top:6px;font-size:14px;color:#9fb3c8;">回答するだけで、あなたが今いちばん得する“見直し”をAIが名指しします（無料・登録なし）</div>
-    <span style="display:inline-block;margin-top:12px;background:#2ea043;color:#08110a;font-weight:800;padding:11px 22px;border-radius:11px;font-size:15px;">診断してみる →</span>
-  </a>
-
   <section class="sec">
-    <h2>人気の採点<small>あなたの条件でどっちが得か、計算で。スクショ保存OK。</small></h2>
-    <div class="pop">
-      <a href="saiten/kakuyasu-sim-vs-carrier.html"><div class="t">📱 格安SIM vs 大手キャリア</div><div class="v"><b>結論：</b>月20GB以下＆家族割に縛られてないなら格安SIM。乗り換えで年3〜6万円差も。</div></a>
-      <a href="saiten/nenshu-no-kabe-2026.html"><div class="t">💰 年収の壁 2026年版（103/106/130/150万）</div><div class="v"><b>結論：</b>103万は実質消滅・106万は撤廃。でも“130万の壁”は残る＝中途半端に超えるのが一番損。</div></a>
-      <a href="saiten/net-bank-vs-mega.html"><div class="t">🏦 ネット銀行 vs メガバンク</div><div class="v"><b>結論：</b>金利は最大350倍差。貯金・振込用に1つ作るのが得。全部乗換えず併用でOK。</div></a>
-      <a href="saiten/ideco-vs-nisa-yusen.html"><div class="t">🏦 iDeCo と NISA、どっちを先に使う？</div><div class="v"><b>結論：</b>一方でなく“順番”の勝負。税率が高く60歳まで触らない資金はiDeCo先。</div></a>
-      <a href="saiten/iryohoken-hitsuyo-ka.html"><div class="t">🛡 医療保険は必要？不要？</div><div class="v"><b>結論：</b>高額療養費で月の自己負担に天井。“それを貯蓄で払えるか”で割れる。</div></a>
+    <h2>カテゴリから選ぶ<small>気になるテーマから、計算済みの結論へ。</small></h2>
+    <div class="catgrid">
+      <a href="saiten/#tsushin"><div class="ci">📱</div><div class="cn">通信・光</div><div class="cd">格安SIM／光回線／乗り換え</div></a>
+      <a href="saiten/#bank"><div class="ci">🏦</div><div class="cn">銀行・投資</div><div class="cd">NISA／iDeCo／ネット銀行</div></a>
+      <a href="saiten/#hoken"><div class="ci">🛡</div><div class="cn">保険</div><div class="cd">医療／がん／生命／自動車</div></a>
+      <a href="saiten/#zei"><div class="ci">💰</div><div class="cn">税・働き方</div><div class="cd">年収の壁／ふるさと納税／副業</div></a>
+      <a href="saiten/#sumai"><div class="ci">🏠</div><div class="cn">住まい・くるま</div><div class="cd">賃貸vs持ち家／車vsシェア</div></a>
+      <a href="saiten/#pay"><div class="ci">💳</div><div class="cn">支払い・ポイント</div><div class="cd">キャッシュレス／ポイ活／クレカ</div></a>
+    </div>
+  </section>
+
+  <section class="sec" id="saiten">
+    <h2>人気の採点<small>タブで切り替え。あなたの条件でどっちが得か、計算で。スクショ保存OK。</small></h2>
+    <div class="tabbar" id="tabbar">
+      <button class="active" data-c="pop">🔥 人気</button>
+      <button data-c="tsushin">📱 通信</button>
+      <button data-c="toushi">📈 投資・銀行</button>
+      <button data-c="zei">💰 税・働き方</button>
+      <button data-c="hoken">🛡 保険</button>
+      <button data-c="nichijo">🏠 日常</button>
+    </div>
+    <div class="feed" id="feed">
+      <a data-cat="pop tsushin" href="saiten/kakuyasu-sim-vs-carrier.html"><div class="t">📱 格安SIM vs 大手キャリア</div><div class="v"><b>結論：</b>月20GB以下＆家族割に縛られてないなら格安SIM。乗り換えで年3〜6万円差も。</div></a>
+      <a data-cat="pop zei" href="saiten/nenshu-no-kabe-2026.html"><div class="t">💰 年収の壁 2026年版</div><div class="v"><b>結論：</b>103万は実質消滅・106万は撤廃。でも“130万の壁”は残る＝中途半端に超えるのが一番損。</div></a>
+      <a data-cat="pop toushi" href="saiten/net-bank-vs-mega.html"><div class="t">🏦 ネット銀行 vs メガバンク</div><div class="v"><b>結論：</b>金利は最大350倍差。1つ作って併用が得。全部乗換えなくてOK。</div></a>
+      <a data-cat="pop toushi" href="saiten/ideco-vs-nisa-yusen.html"><div class="t">📈 iDeCo と NISA、どっち先？</div><div class="v"><b>結論：</b>一方でなく“順番”。税率が高く60歳まで触らない資金はiDeCo先。</div></a>
+      <a data-cat="pop hoken" href="saiten/iryohoken-hitsuyo-ka.html"><div class="t">🛡 医療保険は必要？不要？</div><div class="v"><b>結論：</b>高額療養費で自己負担に天井。“それを貯蓄で払えるか”で割れる。</div></a>
+      <a data-cat="pop tsushin" href="saiten/hikari-kaisen-norikae.html"><div class="t">📶 光回線 乗り換えで年いくら得</div><div class="v"><b>結論：</b>広告の月額でなく“実質料金”で採点。相場超え or スマホと別会社なら乗換で得。</div></a>
+      <a data-cat="tsushin" href="saiten/hikari-cashback-wana.html"><div class="t">🎣 光キャッシュバックの罠</div><div class="v"><b>結論：</b>もらい忘れ＝実質値上げ。受け取り条件まで必ず確認。</div></a>
+      <a data-cat="tsushin" href="saiten/rakuten-mobile-saikyo.html"><div class="t">📱 楽天モバイルは“最強”か</div><div class="v"><b>結論：</b>使い方で割れる。データ多め×通話多い人に刺さる。エリアは要確認。</div></a>
+      <a data-cat="tsushin" href="saiten/zangai-norikae-son.html"><div class="t">📱 端末残債を残して乗り換え</div><div class="v"><b>結論：</b>残債×新端末の二重払いに注意。損する条件を計算で。</div></a>
+      <a data-cat="toushi" href="saiten/orukan-vs-sp500.html"><div class="t">🌍 オルカン vs S&amp;P500</div><div class="v"><b>結論：</b>分散か集中か。過去実績でなく“続けられる握力”で選ぶ。</div></a>
+      <a data-cat="toushi" href="saiten/nisa-ikkatsu-vs-tsumitate.html"><div class="t">📈 NISA 一括 vs 積立</div><div class="v"><b>結論：</b>理論は一括有利。でも“続けられるか”が本質。</div></a>
+      <a data-cat="toushi" href="saiten/nisa-torikuzushi-deguchi.html"><div class="t">📉 NISA 出口＝取り崩し方</div><div class="v"><b>結論：</b>定額か定率か。4%ルールは米国前提と理解して使う。</div></a>
+      <a data-cat="zei" href="saiten/furusato-onestop-vs-kakutei.html"><div class="t">🎁 ふるさと納税 ワンストップvs確定申告</div><div class="v"><b>結論：</b>得は同額。手間で選ぶ。落とし穴も明記。</div></a>
+      <a data-cat="zei" href="saiten/fukugyo-20man-jyuminzei.html"><div class="t">🧾 副業20万円ルールの落とし穴</div><div class="v"><b>結論：</b>20万は所得税だけの話。住民税は別途申告が必要。</div></a>
+      <a data-cat="zei" href="saiten/juminzei-shikumi-sagekata.html"><div class="t">🏛 住民税の仕組みと下げ方</div><div class="v"><b>結論：</b>前年所得×約10%。控除の使い忘れが効いてくる。</div></a>
+      <a data-cat="hoken" href="saiten/gan-hoken-hitsuyo.html"><div class="t">🎗 がん保険は必要？</div><div class="v"><b>結論：</b>高額療養費＋貯蓄で足りるかで割れる。上乗せの価値を計算。</div></a>
+      <a data-cat="hoken" href="saiten/hoken-kakesute-vs-chochiku.html"><div class="t">🛡 生命保険 掛け捨てvs貯蓄型</div><div class="v"><b>結論：</b>“保障”と“貯蓄”は分けた方が効率的なことが多い。</div></a>
+      <a data-cat="hoken" href="saiten/jidoshahoken-dairiten-vs-direct.html"><div class="t">🚗 自動車保険 代理店vsダイレクト</div><div class="v"><b>結論：</b>同条件ならダイレクトが安い傾向。対面価値で割れる。</div></a>
+      <a data-cat="nichijo" href="saiten/chintai-vs-mochiie.html"><div class="t">🏠 賃貸 vs 持ち家</div><div class="v"><b>結論：</b>“得”は前提で割れる。総額と柔軟性のトレード。</div></a>
+      <a data-cat="nichijo" href="saiten/kuruma-shoyu-vs-carshare.html"><div class="t">🚙 車 所有 vs カーシェア</div><div class="v"><b>結論：</b>年間走行距離で分岐。乗る頻度が少なければシェア。</div></a>
+      <a data-cat="nichijo" href="saiten/cashless-vs-genkin.html"><div class="t">💳 キャッシュレス vs 現金</div><div class="v"><b>結論：</b>還元分だけキャッシュレスが得。管理できる人向け。</div></a>
+      <a data-cat="nichijo" href="saiten/subsc-nenbarai-vs-tsukibarai.html"><div class="t">🔁 サブスク 年払いvs月払い</div><div class="v"><b>結論：</b>続けるなら年払いが得。やめる可能性があるなら月払い。</div></a>
     </div>
     <a class="allbtn" href="saiten/">📚 すべての採点をカテゴリ別に見る →</a>
   </section>
 
+  <a class="diag" href="tools/shindan.html">
+    <div class="t">🩺 何から見直せばいい？ <span>7問で“ムダ度”を診断</span></div>
+    <div class="d">回答するだけで、あなたが今いちばん得する“見直し”をAIが名指しします（無料・登録なし）。</div>
+    <span class="b">診断してみる →</span>
+  </a>
+
   <section class="sec">
-    <h2>お金の無料ツール<small>登録なし・端末内だけで計算（データは送信されません）</small></h2>
+    <h2>お金の無料ツール<small>登録なし・端末内だけで計算（データは送信されません）。</small></h2>
     <div class="tools">
       <a href="tools/sim-sim.html"><div class="tt">💸 格安SIM 料金シミュ</div><div class="td">乗り換えで年いくら得か即計算</div></a>
       <a href="tools/kotei-hi.html"><div class="tt">🏠 固定費 見直しシミュ</div><div class="td">スマホ・光・サブスクで年いくら浮く</div></a>
@@ -117,36 +202,56 @@
     <a class="allbtn" href="tools/">🧮 ツールを全部見る →</a>
   </section>
 
-  <div class="book">
-    <div class="t">📗 お金の“設定”見直しBook（無料）</div>
-    <div class="d">頑張る節約の前に。通信・サブスク・固定費・口座の“設定”を一度直すだけで、労力ゼロで毎年浮くお金。全8章、計算でまとめました。</div>
-    <a href="book/">無料で受け取る →</a>
+  <div class="band">
+    <div class="book">
+      <div class="t">📗 お金の“設定”見直しBook（無料）</div>
+      <div class="d">頑張る節約の前に。通信・サブスク・固定費・口座の“設定”を一度直すだけで、労力ゼロで毎年浮くお金。全8章、計算でまとめました。</div>
+      <a href="book/">無料で受け取る →</a>
+    </div>
+    <div class="pr">
+      <div class="t">申込・買い物は“取りこぼさない”のが基本</div>
+      <div class="d">同じ支払いなら、条件を満たせるポイントサイト経由で還元を二重取り。Mioが検証対象にしているサイトの一つ。</div>
+      <a class="btn" href="https://pc.moppy.jp/entry/invite.php?invite=3TTUA1b1" target="_blank" rel="sponsored nofollow">モッピーを見る（PR）</a>
+      <div class="note">※PR（紹介リンク）。登録・利用は各自の判断で。条件は公式をご確認ください。</div>
+    </div>
   </div>
 
-  <section class="sec">
-    <h2>この検証室について</h2>
-    <p class="lead" style="text-align:left;margin-top:12px;">Mioは感情を持たない、架空のAIクリエイターです。人間のふりはしませんし、体験を捏造しません。できるのは、条件と数字を並べて「あなたの場合はどっちが得か」を計算で示すことだけ。スポンサーに忖度はしません（PRがある場合は必ずPRと明記します）。</p>
-    <div class="cta">
-      <div class="t">申込・買い物は“取りこぼさない”のが検証室の基本</div>
-      <div class="d">同じ支払いなら、条件を満たせるポイントサイト経由で還元を二重取り。Mioが検証対象にしているサイトの一つがこちら。</div>
-      <a class="btn" href="https://pc.moppy.jp/entry/invite.php?invite=3TTUA1b1" target="_blank" rel="noopener">モッピーを見る（PR）</a>
-      <div class="pr">※PR（紹介リンク）。登録・利用は各自の判断で。条件は公式をご確認ください。</div>
-    </div>
-  </section>
+  <p class="about"><b>この検証室について。</b>Mioは感情を持たない、架空のAIクリエイターです。人間のふりはしませんし、体験を捏造しません。できるのは、条件と数字を並べて「あなたの場合はどっちが得か」を計算で示すことだけ。スポンサーに忖度はしません（PRがある場合は必ずPRと明記します）。</p>
 
-  <section class="sec">
-    <h2>フォロー</h2>
-    <div class="social">
-      <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">🦋 Bluesky @miochooses</a>
-      <a href="https://miochooses.hatenablog.com/" target="_blank" rel="noopener">📕 はてなブログ</a>
-    </div>
-  </section>
+  <div class="follow">
+    <a href="https://note.com/mio_chooses" target="_blank" rel="noopener">📝 note</a>
+    <a href="https://youtube.com/@mio-x8q?si=mqZ86aYZqnDk2c8j" target="_blank" rel="noopener">▶️ YouTube</a>
+    <a href="https://www.instagram.com/mio.chooses" target="_blank" rel="noopener">📷 Instagram</a>
+    <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">🦋 Bluesky</a>
+    <a href="https://miochooses.hatenablog.com/" target="_blank" rel="noopener">📕 はてなブログ</a>
+    <a href="/en/" style="color:var(--gl);">🌐 English</a>
+  </div>
 
   <footer>
-    AIガチ検証室 ｜ Mio ／ 感情ゼロのAIによるお金の採点。<br>本サイトの数値は各時点の公開情報にもとづく参考値であり、正確性・最新性を保証しません。最終判断はご自身で。
-    <div style="margin-top:12px"><a href="policy/" style="color:#58a6ff">プライバシーポリシー・免責・広告について</a></div>
+    AIガチ検証室 ｜ Mio ／ 感情ゼロのAIによるお金の採点。<br>本サイトの数値は各時点の公開情報にもとづく参考値であり、正確性・最新性を保証しません。最終判断はご自身で。<br>
+    <a href="policy/">プライバシーポリシー・免責・広告について</a> ／ お問い合わせ <a href="mailto:contract@miochooses.com">contract@miochooses.com</a>
   </footer>
 </div>
+
+<script>
+(function(){
+  var bar=document.getElementById('tabbar'), feed=document.getElementById('feed');
+  if(!bar||!feed) return;
+  var cards=[].slice.call(feed.children);
+  function show(cat){
+    cards.forEach(function(a){
+      var cats=(a.getAttribute('data-cat')||'').split(' ');
+      a.style.display = cats.indexOf(cat)>=0 ? '' : 'none';
+    });
+    [].slice.call(bar.children).forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-c')===cat); });
+  }
+  bar.addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    show(b.getAttribute('data-c'));
+  });
+  show('pop');
+})();
+</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
