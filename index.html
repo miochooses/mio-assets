@@ -34,22 +34,25 @@
   .nav .links a:hover{background:var(--card2);color:#fff;}
   .nav .links a.en{color:var(--gl);}
   @media(max-width:560px){.nav .links a.hideS{display:none;}}
-  /* hero (centered lockup) */
-  .hero{padding:30px 0 6px;text-align:center;}
-  .hero .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
-  .hero .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);box-shadow:0 0 0 0 rgba(46,160,67,.5);animation:pulse 2.4s infinite;}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,160,67,.45)}70%{box-shadow:0 0 0 8px rgba(46,160,67,0)}100%{box-shadow:0 0 0 0 rgba(46,160,67,0)}}
-  .hero .face{width:90px;height:90px;border-radius:22px;display:block;margin:14px auto 0;box-shadow:0 12px 40px rgba(46,160,67,.26);border:1px solid #ffffff14;}
-  h1{margin-top:12px;font-size:27px;line-height:1.32;font-weight:800;}
+  /* hero — wordmark centerpiece, character as sub */
+  .hero{padding:32px 0 8px;text-align:center;}
+  .wm{display:block;}
+  .wm-face{width:46px;height:46px;border-radius:50%;display:block;margin:0 auto 10px;border:1px solid #ffffff1f;opacity:.95;}
+  .wm-badge{font-size:12px;font-weight:800;color:#c9d4de;letter-spacing:.24em;display:inline-flex;align-items:center;gap:7px;}
+  .wm-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gl);box-shadow:0 0 8px var(--gl);}
+  .wm-name{font-size:86px;font-weight:800;line-height:1;letter-spacing:.005em;color:#eef3f7;margin-top:8px;}
+  .wm-name span{color:var(--b);}
+  .wm-ekg{display:block;width:200px;height:16px;margin:10px auto 0;}
+  .wm-ekg polyline{fill:none;stroke:var(--gl);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;}
+  .wm-sub{margin-top:8px;font-size:13px;font-weight:800;color:var(--gl);letter-spacing:.2em;}
+  h1{margin-top:24px;font-size:22px;line-height:1.42;font-weight:800;}
   h1 .hl{color:var(--b);}
-  .quote{margin-top:12px;font-size:14px;font-weight:800;color:#cfe8f5;}
-  .quote span{color:var(--gl);}
   .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:540px;margin-left:auto;margin-right:auto;}
   .cta-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
   .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
   .cta-row a.p{background:var(--g);color:#08110a;}
   .cta-row a.s{background:var(--card2);color:#dbe6f0;border:1px solid var(--line);}
-  @media(max-width:560px){.hero .face{width:78px;height:78px;border-radius:18px;}h1{font-size:22px;}.cta-row a{flex:1;text-align:center;}}
+  @media(max-width:560px){.wm-name{font-size:66px;}.wm-ekg{width:160px;}h1{font-size:19px;}.cta-row a{flex:1;text-align:center;}}
   /* section */
   .sec{padding:26px 0 6px;}
   .sec>h2{font-size:19px;font-weight:800;}
@@ -120,10 +123,14 @@
 
 <div class="wrap">
   <header class="hero">
-    <div class="badge"><span class="dot"></span> 感情ゼロのAIが、お金を計算で採点</div>
-    <img class="face" src="/mio-icon-512.png" alt="Mio（AIガチ検証室のキャラクター）" width="90" height="90">
-    <h1>お金の“よくある2択”を<br><span class="hl">計算だけ</span>で採点する。</h1>
-    <div class="quote">「忖度はしません。計算はごまかせない。」<span>— Mio</span></div>
+    <div class="wm">
+      <img class="wm-face" src="/mio-icon-512.png" alt="Mio（AIガチ検証室のキャラクター）" width="46" height="46">
+      <div class="wm-badge"><span class="dot"></span> AI 検証室</div>
+      <div class="wm-name">Mi<span>o</span></div>
+      <svg class="wm-ekg" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,10 78,10 90,3 100,17 112,10 200,10"/></svg>
+      <div class="wm-sub">忖度ゼロで採点</div>
+    </div>
+    <h1>お金の“よくある2択”を<span class="hl">計算だけ</span>で採点する。</h1>
     <p class="lead">格安SIM・NISA・保険・ふるさと納税…あなたの条件でどっちが得か、記事と無料ツールで即わかる。</p>
     <div class="cta-row">
       <a class="p" href="tools/shindan.html">🩺 7問でムダ度診断</a>
