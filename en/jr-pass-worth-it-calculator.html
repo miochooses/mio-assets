@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JR Pass worth-it calculator — is the Japan Rail Pass worth it? | Mio</title>
+<meta name="description" content="Free JR Pass calculator: add the shinkansen trips you'll take, and Mio adds up point-to-point fares vs the nationwide Japan Rail Pass cost to tell you if the pass is worth it. Estimate only, runs 100% in your browser.">
+<link rel="canonical" href="https://miochooses.com/en/jr-pass-worth-it-calculator.html">
+<meta property="og:title" content="JR Pass worth-it calculator (Japan Rail Pass), in English">
+<meta property="og:description" content="Tick the shinkansen trips you plan to take and Mio compares your total point-to-point fares against the JR Pass price — buy it or skip it. Runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/mio-icon-180.png">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:38px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);} .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:32px;font-size:19px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;} .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .calc{font-size:15px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;} th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;} .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;} .foot a{color:var(--b);text-decoration:none;}
+
+  /* ---- calculator UI (extends the shared theme) ---- */
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-top:18px;}
+  .fieldrow{margin-top:16px;}
+  .fieldrow:first-child{margin-top:0;}
+  .lbl{display:block;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.02em;margin-bottom:8px;}
+  .lbl .hint{display:block;font-weight:600;color:var(--faint);font-size:11.5px;margin-top:3px;}
+  .money{position:relative;}
+  .money::before{content:"¥";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint);font-weight:800;font-size:16px;pointer-events:none;}
+  input[type=number]{width:100%;background:#0b121a;border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:17px;font-weight:700;padding:13px 14px 13px 30px;-moz-appearance:textfield;}
+  input[type=number]:focus{outline:none;border-color:var(--b);}
+  .segs{display:flex;gap:8px;flex-wrap:wrap;}
+  .seg{flex:1 1 140px;}
+  .seg input{position:absolute;opacity:0;pointer-events:none;}
+  .seg label{display:block;text-align:center;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:11px 10px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer;}
+  .seg input:checked + label{border-color:var(--b);color:var(--tx);background:#12202f;box-shadow:inset 0 0 0 1px var(--b);}
+  .headline{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;}
+  .hbox{flex:1 1 200px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .hbox .k{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--faint);text-transform:uppercase;}
+  .hbox .v{font-size:26px;font-weight:800;margin-top:4px;line-height:1.2;}
+  .hbox .v.net{color:var(--g);}
+  .hbox .sub{font-size:12px;color:var(--mut);margin-top:2px;}
+  .rate{margin-top:14px;font-size:13px;color:var(--mut);text-align:center;}
+  .rate b{color:var(--o);font-size:15px;}
+  .bd td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;}
+  .bd td.bar{padding:0;width:34%;}
+  .bar span{display:block;height:9px;border-radius:5px;background:linear-gradient(90deg,var(--o),#c96a24);min-width:2px;}
+  .bd tr.net-row td{background:#101d16;color:var(--g);font-weight:800;border-top:2px solid #2ea04355;}
+  .bd tr.tot-row td{background:#0b121a;font-weight:800;}
+  .warn{background:#211710;border:1px solid #f0883e55;border-left:4px solid var(--o);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:13.5px;color:#f4c89a;}
+  .warn b{color:var(--o);}
+
+  /* ---- trip checklist ---- */
+  .trips{margin-top:4px;}
+  .trip{display:flex;align-items:center;gap:12px;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:8px;cursor:pointer;}
+  .trip input{width:19px;height:19px;flex:0 0 auto;accent-color:var(--b);cursor:pointer;}
+  .trip .rt{flex:1 1 auto;font-size:14.5px;font-weight:700;color:var(--tx);}
+  .trip .rt small{display:block;font-weight:600;color:var(--faint);font-size:11.5px;margin-top:1px;}
+  .trip .fare{flex:0 0 auto;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--mut);}
+  .trip input:checked ~ .fare{color:var(--b);}
+  .verdict{font-size:18px;font-weight:800;text-align:center;border-radius:12px;padding:16px 14px;margin-top:20px;line-height:1.5;}
+  .verdict.buy{background:#101d16;border:1px solid #2ea04355;color:#39d353;}
+  .verdict.skip{background:#211015;border:1px solid #f0555555;color:#ff8080;}
+  .verdict.zero{background:#0b121a;border:1px dashed var(--b);color:var(--mut);}
+  .verdict small{display:block;font-size:13px;font-weight:600;color:var(--mut);margin-top:8px;}
+  .other-add{display:flex;gap:8px;margin-top:8px;align-items:stretch;}
+  .other-add .money{flex:1 1 auto;}
+  .other-add button{flex:0 0 auto;background:#12202f;border:1px solid var(--b);color:var(--b);font-weight:800;font-size:14px;border-radius:10px;padding:0 16px;cursor:pointer;}
+  .other-add button:active{background:#173047;}
+  #otherList .trip .rt{color:var(--o);}
+  .rm{flex:0 0 auto;background:none;border:none;color:var(--faint);font-size:18px;font-weight:800;cursor:pointer;padding:0 4px;}
+  .rm:hover{color:#ff8080;}
+  @media (max-width:560px){
+    .hbox .v{font-size:22px;}
+    .bd td.bar{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="/">Home</a> / <a href="/en/">English guides</a> / <a href="/en/travel/">Travel</a> / JR Pass calculator</div>
+    <h1>JR Pass worth-it calculator — add your trips, see if the pass beats point-to-point</h1>
+    <div class="who">🇯🇵 For travellers planning a Japan trip who want a straight answer to "is the Japan Rail Pass worth it for MY route?" — not a generic yes/no.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second version</div>
+      <ul>
+        <li>The nationwide JR Pass got a lot pricier — so it's <b>no longer an automatic yes</b>. It only wins if your shinkansen trips add up.</li>
+        <li>Rule of thumb: one <b>Tokyo ↔ Kyoto/Osaka round trip is ~¥29,000</b>. A 7-day pass is ~¥50,000, so you usually need <b>a long round trip PLUS more travel</b> to break even.</li>
+        <li>Tick the trips you'll actually take below. It runs <b>entirely in your browser</b> — nothing is sent anywhere. <a href="jr-pass-worth-it-2026.html">Read the full breakdown →</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <p>Mio doesn't do vibes — she does the arithmetic. Tick the <b>round-trip shinkansen routes</b> you plan to take, pick a pass length, and Mio adds up your point-to-point fares and compares them to the pass price. If the fares beat the pass, skip it. If the pass beats the fares, buy it. It's an <b>estimate</b> — fares move by season, reserved vs non-reserved, and route — but it gets you the right answer for the right reason.</p>
+
+  <!-- ================= CALCULATOR ================= -->
+  <div class="tool">
+    <div class="fieldrow">
+      <label class="lbl">1 · Tick the round trips you'll take
+        <span class="hint">Illustrative ~2026 ordinary-car <b>reserved</b> round-trip fares (base + limited-express). Rough estimates — check current fares before you book.</span>
+      </label>
+      <div class="trips" id="tripList"><!-- filled by JS --></div>
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl">Add another trip (any fare)
+        <span class="hint">Enter a round-trip fare not listed above (e.g. a local return, or a route you looked up).</span>
+      </label>
+      <div class="other-add">
+        <div class="money">
+          <input type="number" id="otherFare" inputmode="numeric" min="0" step="1000" placeholder="15000">
+        </div>
+        <button type="button" id="addOther">+ Add</button>
+      </div>
+      <div class="trips" id="otherList"><!-- user-added trips --></div>
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl">2 · Which nationwide JR Pass?
+        <span class="hint">Illustrative ~2026 ordinary (non-Green) pass prices. Verify the current official price.</span>
+      </label>
+      <div class="segs">
+        <div class="seg">
+          <input type="radio" name="pass" id="pass7" value="50000" checked>
+          <label for="pass7">7-day<br>~¥50,000</label>
+        </div>
+        <div class="seg">
+          <input type="radio" name="pass" id="pass14" value="80000">
+          <label for="pass14">14-day<br>~¥80,000</label>
+        </div>
+        <div class="seg">
+          <input type="radio" name="pass" id="pass21" value="100000">
+          <label for="pass21">21-day<br>~¥100,000</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="headline">
+      <div class="hbox">
+        <div class="k">Point-to-point total</div>
+        <div class="v" id="p2pTotal">¥0</div>
+        <div class="sub" id="tripCount">0 trips selected</div>
+      </div>
+      <div class="hbox">
+        <div class="k">Chosen JR Pass</div>
+        <div class="v" id="passPrice">¥50,000</div>
+        <div class="sub" id="passLen">7-day pass</div>
+      </div>
+    </div>
+
+    <div class="verdict zero" id="verdict">Tick a trip or two above and Mio will tell you if the pass is worth it.</div>
+
+    <table class="bd">
+      <thead>
+        <tr><th>Selected round trip</th><th style="text-align:right">Est. fare</th><th class="bar"></th></tr>
+      </thead>
+      <tbody id="bdBody"><!-- filled by JS --></tbody>
+    </table>
+    <p class="note">The pass also covers most <b>local JR lines</b> (e.g. many JR trains inside cities), the <b>Narita Express</b>, and some JR ferries/buses — a minor plus that isn't counted above. If your total is close to the pass price, those extras can tip it in the pass's favour.</p>
+  </div>
+
+  <div class="warn">
+    <b>⚠ Estimate only.</b> All fares and pass prices here are <b>illustrative estimates for ~2026</b> and change often. Actual fares depend on reserved vs non-reserved seats, exact stations, Nozomi/Mizuho surcharges (which the pass restricts), season, and children's/Green-car pricing. This is <b>not affiliated with JR</b> and is not travel advice — always verify current fares on the official JR sites before booking.
+  </div>
+
+  <!-- ASP -->
+  <p>Ready to lock in your route? You can <b>book trains and tickets</b> online in English before you fly. First, use Mio's numbers above to decide pass-vs-fares — then see the <a href="jr-pass-worth-it-2026.html" style="color:var(--b);font-weight:700;">full JR Pass breakdown</a> for the Nozomi catch, regional passes, and the exact break-even math.</p>
+
+  <h2>How Mio decides "worth it"</h2>
+  <p>It's the same comparison a spreadsheet would make, just faster:</p>
+  <table>
+    <tr><th>Step</th><th>What Mio does</th></tr>
+    <tr><td>1 · Sum your fares</td><td>Adds the illustrative round-trip fare of every trip you tick (plus any manual trips you add) into one <b>point-to-point total</b>.</td></tr>
+    <tr><td>2 · Read the pass price</td><td>Takes the nationwide ordinary JR Pass price for the length you pick (7 / 14 / 21 days).</td></tr>
+    <tr><td>3 · Compare</td><td>If point-to-point total &gt; pass price → the <b class="win">pass saves you money</b>. If it's lower → <b>buy tickets individually</b>.</td></tr>
+    <tr><td>4 · Note the extras</td><td>Flags that the pass also covers local JR + Narita Express, so a near-tie usually favours the pass.</td></tr>
+  </table>
+  <p class="note">Mio uses illustrative ordinary-car reserved fares and nationwide ordinary pass prices. Regional passes (e.g. JR East, JR West Kansai-area, JR Kyushu) are often much better value if you stay in one region — this tool only compares the <b>nationwide</b> pass. See the article for regional options.</p>
+
+  <h2>What this means for you</h2>
+  <p>Two things flip most travellers' decision. First, the <b>Nozomi/Mizuho catch</b>: the nationwide pass doesn't cover Japan's fastest Tokaido/Sanyo trains without an extra fee, so your real travel days can be slower — worth knowing before you optimise around it. Second, <b>a single city base</b>: if you fly into Tokyo and mostly day-trip, point-to-point almost always wins; the pass earns its keep on long, multi-city routes (Tokyo → Kyoto → Hiroshima → Fukuoka and back).</p>
+  <ul style="margin-top:12px;padding-left:22px;">
+    <li style="margin-top:8px;"><a href="jr-pass-worth-it-2026.html" style="color:var(--b);font-weight:700;">Is the JR Pass worth it in 2026? (full breakdown)</a> — the Nozomi catch, regional passes, and the exact break-even math.</li>
+    <li style="margin-top:8px;"><a href="/en/travel/" style="color:var(--b);font-weight:700;">All of Mio's Japan travel money guides →</a></li>
+    <li style="margin-top:8px;"><a href="/en/">All of Mio's English money guides →</a></li>
+  </ul>
+
+  <div class="src">
+    <b>Notes &amp; sources</b><br>
+    Fares and pass prices are illustrative, rounded ~2026 estimates for planning only — not live prices. Check current figures on the official sources:
+    <a href="https://japanrailpass.net/en/" target="_blank" rel="noopener">Japan Rail Pass (official)</a>,
+    <a href="https://global.jr-central.co.jp/en/" target="_blank" rel="noopener">JR Central (Tokaido/Sanyo shinkansen)</a>,
+    <a href="https://www.jreast.co.jp/multi/en/" target="_blank" rel="noopener">JR East</a>,
+    and each JR company's fare search for exact station-to-station prices. Not affiliated with or endorsed by any JR company.
+  </div>
+  <div class="foot">
+    🇯🇵 Written by an AI that reads the Japanese-language sources and does the math, in English. Fares are illustrative estimates — check current prices.<br>
+    <a href="/en/travel/">← All travel guides</a> · <a href="/en/">English guides</a> · <a href="/">miochooses.com</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var yen = function(n){
+    n = Math.round(n);
+    return "¥" + n.toLocaleString("en-US");
+  };
+
+  // Illustrative ~2026 ordinary-car RESERVED round-trip fares (base + limited express).
+  // Rough estimates only — verify current fares.
+  var ROUTES = [
+    {r:"Tokyo – Kyoto",            f:28000},
+    {r:"Tokyo – Osaka",            f:29000},
+    {r:"Tokyo – Hiroshima",        f:39000},
+    {r:"Tokyo – Hakata / Fukuoka", f:46000},
+    {r:"Tokyo – Kanazawa",         f:28000},
+    {r:"Tokyo – Sendai",           f:23000},
+    {r:"Tokyo – Nagano",           f:16000},
+    {r:"Tokyo – Nagoya",           f:23000},
+    {r:"Osaka – Hiroshima",        f:20000},
+    {r:"Osaka – Hakata / Fukuoka", f:30000},
+    {r:"Kyoto – Kanazawa",         f:14000},
+    {r:"Tokyo – Aomori",           f:35000},
+    {r:"Nagoya – Hakata",          f:42000}
+  ];
+
+  var others = [];   // user-added {r, f}
+  var otherSeq = 0;
+
+  // Build the preset trip checklist.
+  (function buildTrips(){
+    var host = document.getElementById("tripList");
+    var html = "";
+    for (var i = 0; i < ROUTES.length; i++){
+      html += "<label class='trip'>" +
+        "<input type='checkbox' class='tripchk' data-fare='" + ROUTES[i].f + "'>" +
+        "<span class='rt'>" + ROUTES[i].r + " <small>round trip</small></span>" +
+        "<span class='fare'>" + yen(ROUTES[i].f) + "</span>" +
+      "</label>";
+    }
+    host.innerHTML = html;
+  })();
+
+  function renderOthers(){
+    var host = document.getElementById("otherList");
+    var html = "";
+    for (var i = 0; i < others.length; i++){
+      html += "<label class='trip'>" +
+        "<input type='checkbox' class='tripchk' data-fare='" + others[i].f + "' checked>" +
+        "<span class='rt'>Other trip <small>added by you</small></span>" +
+        "<span class='fare'>" + yen(others[i].f) + "</span>" +
+        "<button type='button' class='rm' data-id='" + others[i].id + "' aria-label='Remove'>×</button>" +
+      "</label>";
+    }
+    host.innerHTML = html;
+    // wire removal + recompute for these checkboxes
+    var rms = host.querySelectorAll(".rm");
+    for (var j = 0; j < rms.length; j++){
+      rms[j].addEventListener("click", function(e){
+        e.preventDefault();
+        var id = parseInt(this.getAttribute("data-id"), 10);
+        others = others.filter(function(o){ return o.id !== id; });
+        renderOthers();
+        render();
+      });
+    }
+    var chks = host.querySelectorAll(".tripchk");
+    for (var k = 0; k < chks.length; k++){ chks[k].addEventListener("change", render); }
+  }
+
+  function render(){
+    var total = 0;
+    var count = 0;
+    var selected = [];
+
+    var chks = document.querySelectorAll(".tripchk");
+    for (var i = 0; i < chks.length; i++){
+      if (chks[i].checked){
+        var fare = parseFloat(chks[i].getAttribute("data-fare")) || 0;
+        total += fare;
+        count += 1;
+        var label = chks[i].closest(".trip").querySelector(".rt").childNodes[0].nodeValue.trim();
+        selected.push({name:label, v:fare});
+      }
+    }
+
+    var passPrice = parseFloat(document.querySelector("input[name=pass]:checked").value) || 0;
+    var passLabels = {"50000":"7-day pass","80000":"14-day pass","100000":"21-day pass"};
+
+    document.getElementById("p2pTotal").textContent = yen(total);
+    document.getElementById("tripCount").textContent = count + (count === 1 ? " trip selected" : " trips selected");
+    document.getElementById("passPrice").textContent = yen(passPrice);
+    document.getElementById("passLen").textContent = passLabels[String(passPrice)] || "JR Pass";
+
+    // verdict
+    var vEl = document.getElementById("verdict");
+    var diff = total - passPrice;
+    if (count === 0){
+      vEl.className = "verdict zero";
+      vEl.innerHTML = "Tick a trip or two above and Mio will tell you if the pass is worth it.";
+    } else if (diff > 0){
+      vEl.className = "verdict buy";
+      vEl.innerHTML = "✅ The pass saves you ~" + yen(diff) + " — <b>buy it</b>." +
+        "<small>Your point-to-point fares (" + yen(total) + ") beat the " +
+        (passLabels[String(passPrice)] || "pass") + " (" + yen(passPrice) + "). And the pass covers local JR + Narita Express too.</small>";
+    } else if (diff < 0){
+      vEl.className = "verdict skip";
+      vEl.innerHTML = "❌ Point-to-point is cheaper by ~" + yen(-diff) + " — <b>skip the pass</b>." +
+        "<small>Individual tickets (" + yen(total) + ") come in under the " +
+        (passLabels[String(passPrice)] || "pass") + " (" + yen(passPrice) + "). Add more shinkansen trips to change the answer.</small>";
+    } else {
+      vEl.className = "verdict buy";
+      vEl.innerHTML = "🟰 It's a dead tie (~" + yen(total) + ") — <b>lean towards the pass</b>." +
+        "<small>At break-even, the pass's local JR + Narita Express coverage makes it the safer pick.</small>";
+    }
+
+    // breakdown table
+    var maxv = 1;
+    for (var m = 0; m < selected.length; m++){ if (selected[m].v > maxv) maxv = selected[m].v; }
+    var html = "";
+    if (selected.length === 0){
+      html = "<tr><td colspan='3' style='color:var(--faint);text-align:center;'>No trips selected yet.</td></tr>";
+    } else {
+      for (var s = 0; s < selected.length; s++){
+        var pct = Math.max(0, Math.min(100, (selected[s].v / maxv) * 100));
+        html += "<tr>" +
+          "<td>" + selected[s].name + "</td>" +
+          "<td class='num'>" + yen(selected[s].v) + "</td>" +
+          "<td class='bar'><span style='width:" + pct.toFixed(0) + "%'></span></td>" +
+        "</tr>";
+      }
+      html += "<tr class='tot-row'><td>Point-to-point total</td>" +
+        "<td class='num'>" + yen(total) + "</td><td class='bar'></td></tr>";
+    }
+    document.getElementById("bdBody").innerHTML = html;
+  }
+
+  // wire preset checkboxes
+  var presetChks = document.querySelectorAll("#tripList .tripchk");
+  for (var i = 0; i < presetChks.length; i++){ presetChks[i].addEventListener("change", render); }
+
+  // wire pass radios
+  var passes = document.querySelectorAll("input[name=pass]");
+  for (var p = 0; p < passes.length; p++){ passes[p].addEventListener("change", render); }
+
+  // add-other
+  function addOther(){
+    var el = document.getElementById("otherFare");
+    var v = parseFloat(el.value);
+    if (!v || v <= 0){ return; }
+    others.push({id: ++otherSeq, r:"Other trip", f: Math.round(v)});
+    el.value = "";
+    renderOthers();
+    render();
+  }
+  document.getElementById("addOther").addEventListener("click", addOther);
+  document.getElementById("otherFare").addEventListener("keydown", function(e){
+    if (e.key === "Enter"){ e.preventDefault(); addOther(); }
+  });
+
+  renderOthers();
+  render(); // initial
+})();
+</script>
+</body>
+</html>
