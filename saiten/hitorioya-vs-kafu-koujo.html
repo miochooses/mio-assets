@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ひとり親控除（35万）vs 寡婦控除（27万）どっちに該当？条件別にAIが採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/hitorioya-vs-kafu-koujo.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ひとり親控除 vs 寡婦控除｜あなたはどっち？条件別にAIが計算で採点">
+<meta name="twitter:description" content="2020年改正で「ひとり親控除（35万）」に一本化。子がいれば婚姻歴・性別を問わず35万。寡婦控除（27万）との分かれ道を条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「ひとり親控除35万 vs 寡婦控除27万」を条件だけで採点。2020年改正で未婚も対象・婚姻歴と性別の差は撤廃。子の有無・合計所得500万の壁・事実婚不可で該当が分かれる。国税庁No.1171／No.1170を出典に条件別に整理。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/hitorioya-vs-kafu-koujo.html">
+<meta property="og:title" content="ひとり親控除 vs 寡婦控除｜あなたはどっち？条件別にAIが計算で採点">
+<meta property="og:description" content="2020年改正で「ひとり親控除（35万）」に一本化。子がいれば婚姻歴・性別を問わず35万。寡婦控除（27万）との分かれ道を条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* flow diagram */
+  .flow{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+  .flowrow{display:flex;gap:10px;flex-wrap:wrap;}
+  .fcard{flex:1;min-width:150px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 14px 16px;}
+  .fcard.hp{border-color:#2ea04366;background:#101d16;}
+  .fcard.kf{border-color:#f0883e55;background:#1c150c;}
+  .fcard .amt{font-size:30px;font-weight:800;line-height:1.1;}
+  .fcard.hp .amt{color:#39d353;} .fcard.kf .amt{color:var(--o);}
+  .fcard .ttl{font-size:14px;font-weight:800;margin-top:2px;}
+  .fcard .sub{font-size:12px;color:var(--mut);margin-top:6px;line-height:1.6;}
+  .fcond{font-size:13px;color:var(--tx);background:#141d28;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:700;}
+  .fcond span{color:var(--b);}
+  .fx{text-align:center;font-size:13px;color:var(--faint);font-weight:800;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ ひとり親控除 vs 寡婦控除</div>
+    <h1>ひとり親控除（35万）vs 寡婦控除（27万）<br>あなたはどっちに該当する？</h1>
+    <div class="who">👨‍👧 シングルで子を育てている人・配偶者と死別／離婚した人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>生計を一にする子がいる</b>なら、婚姻歴・性別を問わず <b>ひとり親控除（所得税35万・住民税30万）</b>が候補。2020年改正で未婚のひとり親も対象になりました。</li>
+        <li><b>子がいない</b>（子以外の扶養親族がいる／死別で単身）女性は <b>寡婦控除（所得税27万・住民税26万）</b>が候補。両方は併用できません。</li>
+        <li>どちらも<b>本人の合計所得金額500万円以下</b>が壁。<b>事実婚（未届の夫・妻）がいると不可</b>。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>国税庁のルール</b>で採点します。先に結論 ―― 分かれ道は「<b>生計を一にする子がいるか</b>」。子がいれば金額の大きい<b>ひとり親控除</b>、いなければ<b>寡婦控除</b>。ただし所得と事実婚の壁は共通です。</div>
+  </header>
+
+  <div class="verdict">
+    <div class="h">AI判定：あなたはどっち側？（早見フロー）</div>
+    <div class="flow">
+      <div class="fcond">STEP1 現在、<span>婚姻をしていない</span>（配偶者と死別・離婚 or 未婚）／<span>事実婚（未届の夫・妻）がいない</span></div>
+      <div class="fcond">STEP2 本人の<span>合計所得金額が500万円以下</span></div>
+      <div class="fx">↓ 上の2つを満たしたら、STEP3で分岐 ↓</div>
+      <div class="flowrow">
+        <div class="fcard hp">
+          <div class="amt">35万</div>
+          <div class="ttl">ひとり親控除</div>
+          <div class="sub">✅ <b>生計を一にする子</b>がいる<br>（その子の総所得金額等が一定額以下・他の人の扶養親族等でない）<br>→ 婚姻歴・性別は<b>問わない</b>。未婚でもOK<br><small style="color:var(--faint)">住民税は30万円</small></div>
+        </div>
+        <div class="fcard kf">
+          <div class="amt">27万</div>
+          <div class="ttl">寡婦控除</div>
+          <div class="sub">✅ ひとり親に該当<b>しない</b>女性<br>離婚：<b>子以外の扶養親族</b>がいる<br>死別（生死不明含む）：<b>扶養親族なしでも可</b><br><small style="color:var(--faint)">住民税は26万円</small></div>
+        </div>
+      </div>
+      <div class="fx">どちらにも当てはまらない → この2つの控除は対象外</div>
+    </div>
+    <div class="note">※金額は所得税の所得控除額。控除額×税率のぶんだけ税が減ります（例：所得税率10%なら35万→約3.5万円軽くなるイメージ）。住民税の控除額は所得税とは別（ひとり親30万／寡婦26万）。正確な要件は末尾の国税庁ページで。</div>
+  </div>
+
+  <h2>そもそも：2020年改正で何が変わった？</h2>
+  <p>もともとは「寡婦控除」「寡夫控除」という制度があり、<b>婚姻歴の有無や性別で扱いが違う</b>という指摘がありました。未婚のひとり親は対象外、男性（寡夫）の控除額は女性より低い、といった差です。</p>
+  <p>これが令和2年（2020年）の税制改正で見直され、<b>「ひとり親控除」に一本化</b>されました。生計を一にする子がいる単身者であれば、<b>婚姻歴の有無・性別を問わず</b>同じ35万円が適用されます。未婚のひとり親も対象に入りました（所得税は2020年分以後、住民税は2021年度分以後の適用とされています）。</p>
+  <div class="calc">子がいる → ひとり親控除 35万（性別・婚姻歴を問わない）<small>従来は未婚NG・男性は控除額が低かった差が、2020年改正で解消されました</small></div>
+  <p>一方、<b>子以外の扶養親族しかいない／死別で単身の女性</b>については、引き続き<b>寡婦控除（27万）</b>が残りました。「子がいる人は手厚く35万」「それ以外の一定の女性は27万」という二段構えです。</p>
+
+  <h2>ひとり親控除（35万）の該当条件</h2>
+  <p>国税庁No.1171によると、その年の12月31日時点で、現在婚姻をしていない人（または配偶者の生死が明らかでない一定の人）のうち、次の<b>すべて</b>に当てはまる人が対象とされています。</p>
+  <ul>
+    <li><b>事実上婚姻関係と同様の事情にあると認められる一定の人がいない</b>こと（＝いわゆる事実婚・未届の夫や妻がいると<b>不可</b>）。</li>
+    <li><b>生計を一にする子がいる</b>こと。その子は、その年の総所得金額等が一定額以下（国税庁ページに金額の定めがあります）で、他の人の同一生計配偶者や扶養親族になっていない人に限る、とされています。</li>
+    <li>本人の<b>合計所得金額が500万円以下</b>であること。</li>
+  </ul>
+  <p>ポイントは「<b>子</b>」であること。子以外の扶養親族（親など）ではひとり親控除の対象にはならない、という点が寡婦控除との大きな違いです。</p>
+
+  <h2>寡婦控除（27万）の該当条件</h2>
+  <p>同No.1170によると、寡婦控除は「その年12月31日時点で<b>ひとり親に該当せず</b>、次のいずれかに当てはまる人」が対象とされています（いずれも本人の<b>合計所得金額500万円以下</b>・<b>事実婚の相手がいない</b>ことが前提）。</p>
+  <table>
+    <tr><th>区分</th><th>扶養親族の要件</th></tr>
+    <tr><td>夫と<b>離婚</b>した後、婚姻をしていない</td><td><b>扶養親族がいる</b>ことが必要</td></tr>
+    <tr><td>夫と<b>死別</b>（または生死が明らかでない一定の場合）後、婚姻をしていない</td><td>扶養親族の要件は<b>なし</b>（単身でも対象になり得る）</td></tr>
+  </table>
+  <p>つまり寡婦控除では、離婚か死別かで「扶養親族が必要かどうか」が分かれます。ここでいう扶養親族は<b>子でなくてもよい</b>（子がいる場合は、より金額の大きいひとり親控除が優先されるイメージ）点が特徴です。</p>
+
+  <h2>共通の壁：合計所得500万円・事実婚は不可</h2>
+  <p>ひとり親控除・寡婦控除に<b>共通</b>する重要な壁が2つあります。</p>
+  <div class="calc">壁① 本人の合計所得金額 <b>500万円以下</b><small>「合計所得金額」は給与だけの人なら給与所得（額面の年収から給与所得控除を引いた後）などの合計。額面の年収そのものではありません</small></div>
+  <p>「合計所得金額」は、給与収入そのものではなく、給与所得控除などを差し引いた後の所得の合計を指す点に注意が必要です（詳細な計算は国税庁の定義に従ってください）。おおまかには給与だけの会社員であれば、額面年収より低い数字で判定される、とイメージすると分かりやすいです。</p>
+  <div class="calc">壁② 事実婚の相手（未届の夫・妻）が<b>いない</b>こと<small>住民票の続柄に「夫（未届）」「妻（未届）」などの記載がある場合は対象外、と整理されています</small></div>
+  <p>戸籍上は独身でも、実態として事実上の婚姻関係にある相手がいる場合は、どちらの控除も<b>対象外</b>とされています。これは両制度に共通の要件です。</p>
+
+  <h2>条件別の採点：あなたはどっち？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>該当の候補</th><th>理由（要件の当てはめ）</th></tr>
+    <tr><td>離婚・未婚・死別いずれでも、生計を一にする子がいる（所得500万以下・事実婚なし）</td><td class="win">ひとり親控除 35万</td><td>子がいれば婚姻歴・性別を問わず対象。金額も大きい</td></tr>
+    <tr><td>離婚後・単身で、扶養する親（子ではない）がいる女性</td><td class="win">寡婦控除 27万</td><td>子がいないためひとり親は不可。離婚は扶養親族が必要で、親でも可</td></tr>
+    <tr><td>死別後・単身・扶養親族なしの女性（所得500万以下）</td><td class="win">寡婦控除 27万</td><td>死別は扶養親族なしでも対象になり得る</td></tr>
+    <tr><td>離婚後・単身・扶養親族なしの女性</td><td>どちらも対象外の可能性</td><td>離婚は扶養親族が必要。子も扶養もいないと該当しにくい</td></tr>
+    <tr><td>本人の合計所得が500万円超</td><td>どちらも対象外</td><td>共通の所得上限を超える</td></tr>
+    <tr><td>事実婚（未届の夫・妻）の相手がいる</td><td>どちらも対象外</td><td>事実婚の相手がいると両制度とも不可</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「35万と27万、どっちが得？」という比べ方は正確ではありません。<b>金額は自分で選べず、条件で機械的に決まる</b>からです。子がいればひとり親（35万）、いなければ寡婦（27万・要件を満たす場合）。まず「自分がどちらの要件に当てはまるか」を確定させるのが先です。</p>
+
+  <div class="cta">
+    <div class="h">▶ 「自分はどっちに該当？500万の壁は大丈夫？」を確かめたい人へ</div>
+    <div class="ph">合計所得の計算や扶養親族の判定、年末調整・確定申告での書き方は、条件が少し違うだけで結論が変わります。判断に迷うときは、公的な相談窓口や専門家に自分のケースを確認するのが確実です。<br><!-- ASP_SLOT: FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「子」以外は寡婦側：</b>扶養しているのが親など子以外だと、ひとり親控除（35万）ではなく寡婦控除（27万）側の判定になります。金額が変わるので混同しないこと。</li>
+    <li><b>離婚と死別で扶養要件が違う：</b>寡婦控除は、離婚は扶養親族が必要／死別は扶養親族なしでも可、と整理されています。同じ「独身に戻った」でも扱いが異なります。</li>
+    <li><b>事実婚は戸籍が独身でもアウト：</b>住民票で「夫（未届）」「妻（未届）」等の関係にある相手がいると、どちらの控除も対象外とされています。</li>
+    <li><b>年収と合計所得は別物：</b>500万円の壁は「合計所得金額」であって額面年収ではありません。給与所得控除などを引いた後で判定されます。</li>
+    <li><b>年末調整で申告可：</b>会社員は年末調整でも申告できるとされています（記載漏れは要注意）。自営業などは確定申告で。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>分かれ道は「生計を一にする子がいるか」。いれば<b>ひとり親控除35万</b>（婚姻歴・性別を問わない・未婚も対象）、いなければ要件を満たす女性が<b>寡婦控除27万</b>。</li>
+    <li>2020年改正で寡夫控除は廃止され、子がいる人はひとり親控除に一本化。住民税はひとり親30万／寡婦26万。</li>
+    <li>共通の壁は<b>合計所得500万円以下</b>と<b>事実婚の相手がいないこと</b>。両控除の併用は不可。</li>
+    <li>要件は細かく、金額は選べず条件で決まる。最新の正確な条件は国税庁ページと税務署・自治体で確認を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 関連の採点：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a><br><span style="color:var(--faint);font-size:12px">年収の“壁”が気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm" target="_blank" rel="noopener">国税庁 No.1171 ひとり親控除</a>（控除額35万円・生計を一にする子・その子の総所得金額等の要件・本人の合計所得金額500万円以下・事実上婚姻関係と同様の事情にある人がいないこと）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm" target="_blank" rel="noopener">国税庁 No.1170 寡婦控除</a>（控除額27万円・ひとり親に該当しないこと・離婚は扶養親族が必要／死別は扶養親族要件なし・合計所得500万円以下・事実婚の相手がいる場合は対象外）<br>
+    ・<a href="https://www.nta.go.jp/publication/pamph/gensen/aramashi2020/pdf/01.pdf" target="_blank" rel="noopener">国税庁 令和2年 税制改正のあらまし（ひとり親控除の創設・寡婦（寡夫）控除の見直し）</a>（2020年改正でひとり親控除を創設・寡夫控除を廃止・未婚のひとり親も対象・住民税はひとり親30万／寡婦26万）<br>
+    <span class="note">※制度は改正されることがあります（例：生計を一にする子の総所得金額等の基準額など、時期により見直しがあります）。控除額・要件・所得基準は各時点の公式情報にもとづく参考です。最新の条件は国税庁・お住まいの市区町村・税務署でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="furusato-onestop-vs-kakutei.html">ふるさと納税の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

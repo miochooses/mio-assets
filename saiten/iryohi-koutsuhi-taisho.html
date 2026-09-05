@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>医療費控除に入れられる「通院交通費」の線引き 電車・タクシー・自家用車・子の付き添いをAIが条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/iryohi-koutsuhi-taisho.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="医療費控除の通院交通費、どこまで入れられる？｜電車○ タクシー△ 自家用車✕。AIが条件別に採点">
+<meta name="twitter:description" content="見落としやすい通院交通費を計算で仕分け。電車・バスは対象、タクシーはやむを得ない時だけ、ガソリン代は対象外。子の付き添いは対象。条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが医療費控除の「通院交通費」を条件別に採点。電車・バスは対象、タクシーは公共交通が使えない時だけ対象、自家用車のガソリン代・駐車場代は原則対象外、一人で通院が難しい子の付き添い交通費は対象。国税庁の一次情報つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/iryohi-koutsuhi-taisho.html">
+<meta property="og:title" content="医療費控除の通院交通費、どこまで入れられる？｜電車○ タクシー△ 自家用車✕。AIが条件別に採点">
+<meta property="og:description" content="見落としやすい通院交通費を計算で仕分け。電車・バスは対象、タクシーはやむを得ない時だけ、ガソリン代は対象外。子の付き添いは対象。条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .sum{margin-top:18px;background:#0b121a;border:1px solid var(--line);border-radius:14px;padding:16px 14px;}
+  .sum .row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid var(--line);}
+  .sum .row:last-child{border-bottom:none;}
+  .sum .mk{font-size:30px;font-weight:800;line-height:1;flex-shrink:0;width:38px;text-align:center;}
+  .sum .ok{color:var(--g);}
+  .sum .ng{color:#f06e6e;}
+  .sum .mb{color:var(--o);}
+  .sum .it{font-size:16px;font-weight:800;}
+  .sum .de{font-size:12.5px;color:var(--mut);margin-top:2px;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 医療費控除 通院交通費</div>
+    <h1>医療費控除に入れられる「通院交通費」の線引き<br>電車・タクシー・自家用車、どこまで？</h1>
+    <div class="who">🚃 病院の領収書だけ集めて、交通費を入れ忘れている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>電車・バスの通院費は対象</b>。領収書が出なくても、日付・区間・金額を記録しておけば計上できます。</li>
+        <li><b>タクシーは原則対象外</b>。公共交通機関が使えない「やむを得ない場合」だけ対象になります。</li>
+        <li><b>自家用車のガソリン代・駐車場代は対象外</b>。一人で通院が難しい子の<b>付き添い交通費は対象</b>。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。医療費控除は「病院に払ったお金」だけだと思われがちですが、<b>通院のための交通費</b>も対象です。ただし全部ではありません。見落としやすい交通費を、条件別に○✕で仕分けします。</div>
+  </header>
+
+  <h2>まず結論：交通費の○✕早見表</h2>
+  <div class="sum">
+    <div class="row"><div class="mk ok">○</div><div><div class="it">電車・バスの通院費</div><div class="de">公共交通機関の運賃。患者本人の分は対象</div></div></div>
+    <div class="row"><div class="mk mb">△</div><div><div class="it">タクシー代</div><div class="de">公共交通機関が使えない「やむを得ない場合」に限り対象</div></div></div>
+    <div class="row"><div class="mk ng">✕</div><div><div class="it">自家用車のガソリン代</div><div class="de">自分の車で通院した場合の燃料代は対象外</div></div></div>
+    <div class="row"><div class="mk ng">✕</div><div><div class="it">駐車場代・高速道路代</div><div class="de">自家用車に関わる費用は原則対象外</div></div></div>
+    <div class="row"><div class="mk ok">○</div><div><div class="it">子の付き添い（親）の交通費</div><div class="de">一人で通院が難しい場合の付添人の通院費は対象</div></div></div>
+    <div class="row"><div class="mk ng">✕</div><div><div class="it">入院中の子の世話に通う親の交通費</div><div class="de">患者本人が通院していないため対象外</div></div></div>
+  </div>
+  <p class="note">※上記は国税庁の一次情報にもとづく一般的な整理です。個別の事情により判断が変わることがあります（出典は末尾）。</p>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">電車・バスの通院費は<span style="color:var(--g)">迷わず計上</span>。タクシーと付き添いは<span style="color:var(--o)">「必要だったか」が分かれ目</span>。自家用車のガソリン・駐車場は<span style="color:#f06e6e">計上不可</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>電車・バス（患者本人）</span><span>対象</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>タクシー（やむを得ない場合のみ）</span><span>条件つき</span></div><div class="track"><div class="fill" style="width:50%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>自家用車ガソリン・駐車場</span><span>対象外</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#f06e6e,#d64f4f)"></div></div></div>
+    </div>
+    <div class="note">※交通費は「診療等を受けるための通院費で、通常必要なもの」に限られます。見落としやすい一方、入れすぎると否認されうる領域です。</div>
+  </div>
+
+  <h2>条件別の採点：あなたの交通費は入る？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>電車・バスで通院。領収書は出なかった</td><td class="win">○ 対象</td><td>公共交通機関の通院費は対象。日付・区間・金額を自分でメモしておけば計上できます</td></tr>
+    <tr><td>足を骨折して歩けず、タクシーで通院した</td><td class="win">○ 対象になりうる</td><td>公共交通機関が使えない「やむを得ない場合」に該当すれば対象。領収書を保管</td></tr>
+    <tr><td>電車で行けるが、面倒なのでタクシーを使った</td><td style="color:#f06e6e;font-weight:800">✕ 対象外</td><td>公共交通機関が利用できる場合のタクシー代は原則対象外</td></tr>
+    <tr><td>自分の車で通院。ガソリン代・駐車場代を払った</td><td style="color:#f06e6e;font-weight:800">✕ 対象外</td><td>自家用車のガソリン代や駐車場料金は対象に含まれません</td></tr>
+    <tr><td>一人で通院が難しい子に親が付き添った</td><td class="win">○ 対象</td><td>患者の年齢・病状で一人通院が難しい場合、付添人の通院費（通常必要なもの）も対象</td></tr>
+    <tr><td>入院中の子の世話をしに親が病院へ通った</td><td style="color:#f06e6e;font-weight:800">✕ 対象外</td><td>患者本人が通院していないため、親の交通費は対象外</td></tr>
+  </table>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>判断の軸はシンプルで、<b>「診療等を受けるための通院費で、通常必要なものか」</b>の1点です。国税庁は医療費控除の対象に「医師等による診療等を受けるための通院費」を含めています。ポイントは<b>手段</b>と<b>必要性</b>です。</p>
+  <div class="calc">対象になる交通費 ＝ 通院に「通常必要」で、原則「公共交通機関」の運賃<small>電車・バスは○／タクシーは“公共交通機関が使えない時だけ”／自家用車は✕</small></div>
+  <p><b>電車・バスは対象。</b>公共交通機関の運賃は「通常必要な通院費」として計上できます。多くの人が見落とすのはここです。切符は領収書が出ないことが多いので、<b>通院日・利用区間・金額をメモ</b>しておけば十分です（誰の分か、何の通院かも残すと安心）。</p>
+  <p><b>タクシーは原則対象外、例外あり。</b>国税庁は「電車やバスなどの公共交通機関が利用できない場合を除き、タクシー代は控除の対象には含まれない」としています。つまり、<b>公共交通機関が使えない「やむを得ない場合」だけ</b>対象になり得ます。急な体調悪化・けが・深夜や早朝で交通機関がない、といった事情があれば計上できる可能性があります。領収書は必ず保管してください。</p>
+  <p><b>自家用車は対象外。</b>「自家用車で通院する場合のガソリン代や駐車場の料金などは、控除の対象には含まれない」と明記されています。電車で行けるところを車で行った場合はもちろん、車でしか行けない事情があっても、ガソリン代・駐車場代・高速代は原則計上できないと整理されています。</p>
+
+  <h2>見落としがちな「付き添い」の交通費</h2>
+  <p>患者本人だけでなく、<b>付添人の交通費</b>が対象になる場合があります。国税庁は、患者の年齢や病状からみて<b>一人で通院させることが危険な場合</b>には、患者の通院費のほかに付添人の交通費（通院のために通常必要なもの）も医療費控除の対象になる、としています。小さな子どもや、一人での通院が難しい家族に付き添うケースが典型です。</p>
+  <div class="calc">一人で通院が難しい子 × 親が付き添う → 親の交通費も対象になりうる<small>ただし「通常必要なもの」に限る。付き添いが必要な事情が前提です</small></div>
+  <p>一方で、注意したい線引きがあります。<b>入院している子の世話をするために親が病院へ通う場合</b>、患者である子ども本人が通院していないため、<b>親の交通費は対象になりません</b>。また、家族に付き添いを頼んで「付添料」の名目でお金を払っても、それ自体は医療費控除の対象にはなりません。あくまで「患者が通院するのに付添人が必要で、その付添人の通院費」が対象という考え方です。</p>
+
+  <!-- ASP_SLOT: FP相談 -->
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>電車・バスを入れ忘れる：</b>領収書が出ないため計上を諦める人が多いですが、対象です。日付・区間・金額の記録で計上できます。</li>
+    <li><b>タクシーを何でも入れてしまう：</b>「公共交通機関が使えたのに使った」タクシー代は原則対象外。やむを得ない事情があった場合だけです。</li>
+    <li><b>ガソリン代・駐車場代を入れてしまう：</b>自家用車に関わる費用は原則対象外。計上すると否認されうるので入れないのが無難です。</li>
+    <li><b>付き添いの範囲を広げすぎる：</b>対象は「一人で通院が難しい患者の付添人の通院費」。入院中の世話で通う交通費は対象外です。</li>
+    <li><b>記録が残っていない：</b>タクシー・付き添いは特に、後で「必要だった事情」を説明できるよう、領収書やメモを残しておくと安心です。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>電車・バスの通院費は対象。領収書が出なくても記録すれば計上できる。</li>
+    <li>タクシーは原則対象外。公共交通機関が使えない「やむを得ない場合」だけ対象になりうる。</li>
+    <li>自家用車のガソリン代・駐車場代・高速代は原則対象外。</li>
+    <li>一人で通院が難しい子の付き添い交通費は対象。ただし入院中の世話に通う親の交通費は対象外。</li>
+    <li>迷う交通費（タクシー・付き添い）は「必要だった事情」を記録しておく。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm" target="_blank" rel="noopener">国税庁 No.1122 医療費控除の対象となる医療費</a>（診療等を受けるための通院費で通常必要なものは対象／電車・バスなどの公共交通機関が利用できない場合を除きタクシー代は対象外／自家用車のガソリン代・駐車場料金は対象外／付添料の名目の支払いは対象外）<br>
+    ・<a href="https://www.nta.go.jp/law/shitsugi/shotoku/05/20.htm" target="_blank" rel="noopener">国税庁 質疑応答事例 患者の世話のための家族の交通費</a>（患者の年齢・病状からみて一人で通院させることが危険な場合は付添人の交通費も対象／入院中の子の世話に通う親の交通費は患者本人が通院していないため対象外）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" target="_blank" rel="noopener">国税庁 No.1120 医療費を支払ったとき（医療費控除）</a>（医療費控除の概要）<br>
+    <span class="note">※制度は改正されることがあります。要件・対象範囲は各時点の公式情報にもとづく参考です。最新の条件は国税庁・税務署でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="iryohi-koujo-vs-selfmed.html">医療費控除 vs セルフメディケーションの採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小規模企業共済で節税、でも20年未満解約は元本割れ？個人事業主・役員向けにAIが計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/shokibo-kyosai-setsuzei.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="小規模企業共済｜掛金全額が所得控除で節税。でも20年未満の任意解約は元本割れ。AIが条件別に採点">
+<meta name="twitter:description" content="月最大7万円・年84万円が全額所得控除。出口は退職金扱い。ただし加入20年未満の任意解約は元本割れの罠。iDeCoとの使い分けを計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが小規模企業共済を計算だけで採点。掛金は月最大7万円・年84万円が全額所得控除で節税、出口は退職所得控除。ただし加入20年(240か月)未満の任意解約は元本割れ、12か月未満は掛け捨て。iDeCoとの使い分けを条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/shokibo-kyosai-setsuzei.html">
+<meta property="og:title" content="小規模企業共済｜掛金全額が所得控除で節税。でも20年未満の任意解約は元本割れ。AIが条件別に採点">
+<meta property="og:description" content="月最大7万円・年84万円が全額所得控除。出口は退職金扱い。ただし加入20年未満の任意解約は元本割れの罠。iDeCoとの使い分けを計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f85149;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .flow{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 18px;margin-top:20px;text-align:center;}
+  .flow .step{font-size:22px;font-weight:800;line-height:1.35;}
+  .flow .step .in{color:var(--b);}
+  .flow .step .out{color:var(--g);}
+  .flow .arrow{font-size:26px;color:var(--faint);font-weight:800;line-height:1;}
+  .flow .warn{margin-top:6px;font-size:20px;font-weight:800;color:var(--r);line-height:1.35;}
+  .flow .sub{font-size:13px;color:var(--faint);font-weight:600;}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 小規模企業共済 節税</div>
+    <h1>小規模企業共済で節税、でも「20年未満の解約」は元本割れ？<br>個人事業主・役員向けにAIが採点</h1>
+    <div class="who">🧾 個人事業主・小規模法人の役員で、節税と退職金づくりを両立したい人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>掛金は<b>月1,000円〜7万円（年最大84万円）が全額所得控除</b>。所得が高い人ほど節税効果が大きい。</li>
+        <li>出口は原則<b>退職金あつかい（退職所得控除）</b>で受け取れる＝入口・出口の両方で税優遇。</li>
+        <li>ただし<b>加入20年（240か月）未満の任意解約は元本割れ</b>。12か月未満は<b>掛け捨て</b>。長く続ける前提の制度。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に結論 ―― 節税と退職金づくりの両立には強力。ただし<b>「途中でやめると損する」構造</b>を理解せずに始めると危険。長く続けられるかで採点が割れます。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図：掛金全額控除→節税＋出口は退職所得、20年未満解約は元本割れ -->
+  <div class="flow">
+    <div class="step"><span class="in">掛金 全額 所得控除</span></div>
+    <div class="arrow">▼</div>
+    <div class="step"><span class="out">毎年の節税</span> ＋ <span class="out">出口は退職金あつかい</span></div>
+    <div class="sub">月最大7万円／年84万円まで。受取時は退職所得控除・公的年金等控除の対象</div>
+    <div class="arrow" style="margin-top:14px;color:#f8514966;">▼ ただし</div>
+    <div class="warn">加入20年（240か月）未満の<br>任意解約は「元本割れ」</div>
+    <div class="sub">12か月未満で任意解約すると掛け捨て。長く続けるほど有利</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">所得が安定して高く、廃業・引退までコツコツ続けられる個人事業主・役員 → <span style="color:var(--g)">加入価値が高い</span>。<br>数年でやめる可能性が高い／当面の余剰資金が少ない → <span style="color:var(--o)">元本割れリスクに要注意</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>入口の節税効果（掛金全額控除）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>出口の税優遇（退職所得控除）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>短期解約リスク（20年未満は元本割れ）</span><span>要注意</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f85149,#c93c37)"></div></div></div>
+      <div class="bar"><div class="lb"><span>資金の流動性（原則長期拘束）</span><span>低い</span></div><div class="track"><div class="fill" style="width:30%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※支給率は法令（施行令別表）で定められ、平成16年4月以降の掛金は納付月数に応じ段階設定されています（出典は末尾）。数値は制度の一般的な参考です。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>小規模企業共済は、個人事業主や小規模企業の役員などが「自分の退職金」を積み立てるための、中小機構が運営する共済制度です。AI検証室の見立てはシンプルです ―― <b>入口（毎年の節税）と出口（退職金あつかい）の両方で税優遇があるのが最大の強み</b>。一方で<b>「途中解約に強いペナルティがある」</b>のが最大の弱点。この2つを天秤にかけて条件別に採点します。</p>
+  <div class="calc">掛金 月1,000円〜7万円（500円単位）＝ 年間 最大84万円まで全額が所得控除<small>この控除は「小規模企業共済等掛金控除」。その年に支払った掛金の全額が所得から差し引かれます（国税庁 No.1135）</small></div>
+  <p>ポイントは、<b>全額が所得控除</b>になること。生命保険料控除のような上限つきの一部控除ではありません。所得税・住民税の税率が高い人ほど、同じ掛金でも戻ってくる金額（節税額）が大きくなる傾向があります。</p>
+
+  <h2>強み①：入口 ―― 掛金が全額所得控除</h2>
+  <p>掛金は月額1,000円から7万円まで、500円単位で自由に設定できます。年間で最大84万円。そのすべてが「小規模企業共済等掛金控除」として、課税対象の所得から差し引けます。1年以内の前納掛金も控除の対象です。</p>
+  <table>
+    <tr><th>項目</th><th>内容（公式ベース）</th></tr>
+    <tr><td>掛金の範囲</td><td>月1,000円〜7万円（500円単位で設定・変更可）</td></tr>
+    <tr><td>年間の上限</td><td class="win">最大84万円が全額所得控除</td></tr>
+    <tr><td>控除の名称</td><td>小規模企業共済等掛金控除（国税庁 No.1135）</td></tr>
+    <tr><td>控除できる額</td><td class="win">その年に支払った掛金の全額</td></tr>
+  </table>
+  <p>「全額控除」は制度の設計上の特徴として明記されており、これが節税目的で選ばれる大きな理由です。ただし、控除で戻る額は各人の所得・税率で変わるため、実際の節税額は個別に試算が必要です。</p>
+
+  <h2>強み②：出口 ―― 受け取りは原則「退職金あつかい」</h2>
+  <p>積み立てた共済金は、廃業・退職（役員退任）などの事由で受け取れます。受け取り方によって税の扱いが変わりますが、一般に一括受取は<b>退職所得</b>、分割受取は<b>公的年金等の雑所得</b>として扱われます。退職所得は退職所得控除、年金受取は公的年金等控除の対象で、通常の所得よりも税負担が軽くなる仕組みです。</p>
+  <div class="calc">入口で節税 ＋ 出口も退職金あつかい<small>「積むときに控除、受け取るときも優遇」という二段構えが、この制度が退職金代わりに使われる理由です</small></div>
+  <p>つまり、単なる「課税の先送り」ではなく、出口でも軽い税区分で受け取れる設計。ここが銀行預金や課税される運用と大きく違う点です。</p>
+
+  <h2>弱み：最大の落とし穴は「20年未満の任意解約＝元本割れ」</h2>
+  <p>ここがAI検証室が最も強調する採点ポイントです。自己都合での<b>任意解約</b>の場合、受け取れる「解約手当金」には納付月数に応じた支給率が法令（施行令別表）で定められており、<b>掛金納付月数が240か月（20年）未満だと、納付した掛金の合計額を下回ります</b>。さらに<b>12か月未満で任意解約すると掛け捨て</b>となり、解約手当金を受け取れません。</p>
+  <table>
+    <tr><th>任意解約のタイミング</th><th>受け取り</th></tr>
+    <tr><td>掛金納付 12か月未満</td><td style="color:var(--r);font-weight:800">掛け捨て（受け取れない）</td></tr>
+    <tr><td>掛金納付 240か月（20年）未満</td><td style="color:var(--o);font-weight:800">元本割れ（掛金合計を下回る）</td></tr>
+    <tr><td>掛金納付 240か月（20年）以上</td><td class="win">掛金合計額 以上を受け取れる</td></tr>
+  </table>
+  <p>注意点として、途中で掛金を増額・減額した場合、加入期間が20年以上でも「掛金区分ごとの納付月数」が240か月を下回ると、任意解約時に元本割れすることがあります。「20年入っていれば必ず得」と単純化しないほうが安全です。</p>
+  <p><b>正直な注意点：</b>「節税になるから」という理由だけで、続けられるか怪しい掛金額でスタートするのは危険です。生活・事業の余剰資金の範囲で、長く続けられる金額に設定するのが、この制度を損なく使う前提条件です。掛金は後から減額もできますが、無理な設定はまず避けるのが定石です。</p>
+
+  <!-- (5) ASP_SLOT -->
+  <!-- ASP_SLOT: FP相談/税理士 -->
+  <div class="cta">
+    <div class="h">▶ 迷ったら：自分の所得での「実際の節税額」と「続けられる掛金」を専門家に確認</div>
+    <div class="ph">節税額は所得・税率で変わり、出口の税額も受け取り方で変わります。加入・掛金設定の前に、FPや税理士に自分のケースで試算してもらうと判断を誤りにくくなります。<br><!-- ASP: （該当時）FP相談・税理士紹介サービス等 --></div>
+  </div>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>所得が高く安定・廃業/引退まで長く続けられる</td><td class="win">加入価値が高い</td><td>入口の節税が大きく、20年以上続ければ元本割れリスクも回避しやすい</td></tr>
+    <tr><td>所得はあるが数年でやめる可能性がある</td><td style="color:var(--o);font-weight:800">要注意</td><td>20年未満の任意解約は元本割れ。短期前提なら向かない</td></tr>
+    <tr><td>当面の余剰資金が少ない・収入が不安定</td><td style="color:var(--o);font-weight:800">慎重に</td><td>無理な掛金は途中解約リスクを高める。少額から or 見送りも選択肢</td></tr>
+    <tr><td>すでにiDeCoをやっている</td><td class="win">併用検討</td><td>公式に併用可。両方とも掛金全額控除で節税枠を広げられる</td></tr>
+  </table>
+
+  <h2>iDeCoとの使い分け：どう組み合わせる？</h2>
+  <p>よくある疑問が「iDeCoとどっちがいい？」です。公式には<b>両者は併用可能</b>と明記されており、二択ではなく組み合わせも選べます。ただし性格が違うので、条件で使い分けます。</p>
+  <table>
+    <tr><th>比較軸</th><th>小規模企業共済</th><th>iDeCo（個人型確定拠出年金）</th></tr>
+    <tr><td>掛金の所得控除</td><td class="win">全額控除（年最大84万円）</td><td class="win">全額控除（自営業は年最大81.6万円※）</td></tr>
+    <tr><td>受け取れる時期</td><td class="win">60歳前でも廃業・退職で受取可</td><td>原則60歳まで引き出せない</td></tr>
+    <tr><td>運用</td><td>制度が定める共済（自分で運用しない）</td><td>自分で商品を選んで運用（成果は変動）</td></tr>
+    <tr><td>途中解約</td><td style="color:var(--o)">20年未満の任意解約は元本割れ</td><td>原則途中で引き出せない（中断は可）</td></tr>
+  </table>
+  <p style="font-size:12px;color:var(--faint)">※iDeCoの自営業者（第1号被保険者）の上限は月6.8万円・年81.6万円。国民年金基金・付加保険料との合算枠です（中小機構の解説ページより）。</p>
+  <p>ざっくりした使い分けの目安 ―― <b>60歳前に事業の区切り（廃業・引退）で受け取る可能性がある人</b>は、その時点で受け取れる小規模企業共済が使いやすい。<b>老後資金として60歳以降にしっかり運用したい人</b>はiDeCo。両方の枠と余剰資金があるなら、公式が認める併用で控除枠を広げるのが節税上は有利になり得ます。最終的な最適解は所得・年齢・資金計画で変わるため、試算が前提です。</p>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「20年入れば必ず得」ではない：</b>途中で掛金を増減額すると、掛金区分ごとの納付月数が240か月に届かず、20年以上でも任意解約で元本割れすることがあります。</li>
+    <li><b>12か月未満は掛け捨て：</b>加入してすぐ任意解約すると、納めた掛金は戻りません。「とりあえず加入」は要注意。</li>
+    <li><b>節税額は人によって違う：</b>「年84万円控除」でも、実際に軽くなる税額は所得・税率次第。控除額＝戻る額ではありません。</li>
+    <li><b>出口の税金はゼロではない：</b>退職所得控除等で軽くはなりますが、受け取り方や金額によっては課税されます。入口だけで判断しない。</li>
+    <li><b>「解約」と「共済事由の受取」は別物：</b>廃業・退職など制度が定める事由での受け取り（共済金）は、任意解約とは扱いが異なります。混同しない。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>掛金は月1,000円〜7万円・年最大84万円が全額所得控除。入口の節税効果が大きい。</li>
+    <li>出口も退職所得控除・公的年金等控除の対象＝入口・出口の二段構えで税優遇。</li>
+    <li>ただし加入20年（240か月）未満の任意解約は元本割れ、12か月未満は掛け捨て。長期継続が前提。</li>
+    <li>iDeCoとは併用可能。60歳前に受け取る可能性があるなら共済、老後運用重視ならiDeCo。最終判断は自分の所得・資金計画で試算を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 節税をもっと知る：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブで他の“お金の2択”を見る →</a><br><span style="color:var(--faint);font-size:12px">ふるさと納税の申告方法で迷う人は</span> <a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ワンストップ vs 確定申告の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.smrj.go.jp/kyosai/skyosai/" target="_blank" rel="noopener">中小機構 小規模企業共済とは</a>（制度概要・個人事業主や小規模企業の役員等が対象・退職金づくり）<br>
+    ・<a href="https://kyosai-web.smrj.go.jp/customer/skyosai/installment/" target="_blank" rel="noopener">中小機構 小規模企業共済の掛金</a>（掛金 月1,000円〜7万円・500円単位・全額が小規模企業共済等掛金控除・前納も控除対象）<br>
+    ・<a href="https://kyosai-web.smrj.go.jp/customer/skyosai/claim/index_03.html" target="_blank" rel="noopener">中小機構 解約手当金の額の算定方法</a>（12か月未満は掛け捨て・240か月＝20年未満の任意解約は掛金合計額を下回る・支給率は施行令別表第二で規定）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" target="_blank" rel="noopener">国税庁 No.1135 小規模企業共済等掛金控除</a>（控除できる金額はその年に支払った掛金の全額）<br>
+    ・<a href="https://skyosai.smrj.go.jp/skyosai-ideco/" target="_blank" rel="noopener">中小機構 小規模企業共済とiDeCoは併用できる？</a>（併用可能・iDeCo自営業は月6.8万円/年81.6万円・iDeCoは原則60歳まで引き出せない）<br>
+    <span class="note">※制度は改正されることがあります。掛金上限・支給率・解約条件・税の取り扱いは各時点の公式情報にもとづく参考です。実際の節税額・受取時の税額は所得や受け取り方で変わります。最新の条件と個別の判断は、中小機構・国税庁・お住まいの税務署・税理士等の専門家でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="furusato-onestop-vs-kakutei.html">ふるさと納税の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

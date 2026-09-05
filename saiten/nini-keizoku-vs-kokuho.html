@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退職後の健康保険、任意継続 vs 国保 vs 扶養 どれが安い？1年目と2年目で逆転する仕組みを計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/nini-keizoku-vs-kokuho.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="退職後の健康保険 任意継続 vs 国保 vs 扶養｜1年目と2年目で安い方が逆転する。AIが計算で採点">
+<meta name="twitter:description" content="退職したら健康保険はどれが安い？任意継続は在職時の約2倍で2年固定、国保は前年所得で決まる。1年目と2年目で逆転する仕組みを条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「退職後の健康保険＝任意継続 vs 国民健康保険 vs 家族の扶養」を計算で採点。任意継続は在職時の約2倍・原則2年固定、国保は前年所得で決定。退職1年目と2年目で安い方が逆転することも。特定理由離職者の国保軽減で逆転する条件も出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/nini-keizoku-vs-kokuho.html">
+<meta property="og:title" content="退職後の健康保険 任意継続 vs 国保 vs 扶養｜1年目と2年目で安い方が逆転する。AIが計算で採点">
+<meta property="og:description" content="退職したら健康保険はどれが安い？任意継続は在職時の約2倍で2年固定、国保は前年所得で決まる。1年目と2年目で逆転する仕組みを条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図（3択・年で逆転） */
+  .flip{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:18px;}
+  .flip .cap{font-size:12px;font-weight:800;color:var(--o);letter-spacing:.04em;text-align:center;}
+  .flip .grid{display:flex;gap:10px;margin-top:12px;}
+  .flip .yr{flex:1;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;}
+  .flip .yr .lb{font-size:12px;font-weight:800;color:var(--mut);}
+  .flip .yr .win{display:block;margin-top:6px;font-size:22px;font-weight:800;line-height:1.25;}
+  .flip .yr .sub{display:block;margin-top:4px;font-size:11px;color:var(--faint);}
+  .flip .arrow{align-self:center;font-size:24px;font-weight:800;color:var(--o);}
+  .flip .free{margin-top:12px;background:#101d16;border:1px solid #2ea04355;border-radius:12px;padding:10px 12px;text-align:center;font-size:13px;font-weight:800;color:#39d353;}
+  .flip .free b{font-size:18px;color:#39d353;}
+  @media(max-width:520px){.flip .yr .win{font-size:19px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 退職後の健康保険</div>
+    <h1>退職後の健康保険、任意継続 vs 国保 vs 扶養<br>結局どれが一番安い？</h1>
+    <div class="who">🏥 退職・独立・転職の空白期間で、健康保険をどうするか迷っている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>家族の扶養に入れるなら扶養が最安</b>（保険料0円）。要件は原則「退職後の見込み年収130万円未満」など。</li>
+        <li>扶養に入れないなら<b>任意継続 vs 国保</b>の勝負。任意継続は在職時のほぼ2倍・原則2年固定、国保は前年所得で毎年決まる。</li>
+        <li><b>退職1年目は国保が高く任意継続が有利、2年目は国保が下がって逆転</b>することがある。会社都合や特定理由離職なら国保軽減で1年目から国保が勝つことも。</li>
+        <li>正解は「金額」で選ぶ。<b>両方の見積もりを取ってから決める</b>のが唯一の失敗しない方法。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。この3択は「どれが得か」を一言では言えません。理由は明快 ―― <b>任意継続は退職時点で金額が固定、国保は前年の所得で毎年変わる</b>から。だから同じ人でも<b>退職1年目と2年目で安い方が逆転</b>します。</div>
+  </header>
+
+  <!-- 視覚サマリー図：3択 × 年で逆転 -->
+  <div class="flip">
+    <div class="cap">▼ 同じ人でも「年」で安い方が変わる（イメージ）</div>
+    <div class="grid">
+      <div class="yr">
+        <span class="lb">退職1年目</span>
+        <span class="win" style="color:var(--b)">任意継続</span>
+        <span class="sub">国保は前年（在職）の高い所得で計算され割高</span>
+      </div>
+      <div class="arrow">→</div>
+      <div class="yr">
+        <span class="lb">退職2年目</span>
+        <span class="win" style="color:var(--g)">国保</span>
+        <span class="sub">前年（退職後）の所得が下がり国保が安くなる</span>
+      </div>
+    </div>
+    <div class="free">扶養に入れる人は最初から <b>扶養＝0円</b> が最強（要件を満たす場合）</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      家族の健保に扶養で入れる → <span style="color:var(--g)">扶養が最安（0円）</span>。<br>
+      扶養に入れない × 退職前の給与が高かった → <span style="color:var(--b)">1年目は任意継続</span>が有利になりやすい。<br>
+      会社都合・特定理由離職で国保軽減が使える → <span style="color:var(--o)">1年目から国保が勝つことがある</span>。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>扶養（要件を満たす場合）の保険料</span><span>0円＝最安</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>任意継続の保険料（在職時の約2倍・原則2年固定）</span><span>中〜高で一定</span></div><div class="track"><div class="fill" style="width:60%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>国保・退職1年目（前年＝在職所得ベース）</span><span>高くなりがち</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>国保・退職2年目（前年＝退職後所得ベース）</span><span>下がりやすい</span></div><div class="track"><div class="fill" style="width:34%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※図・バーはあくまで一般的な傾向のイメージです。実際の国保料は自治体ごとに料率・上限・軽減が異なり、任意継続は退職時の標準報酬月額と各支部の料率で決まります。<b>金額は必ず両方見積もってください</b>（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>退職後の公的医療保険は、原則この3つのどれかに入ります。<b>採点の軸は「保険料がいくらか」と「そもそも入れるか」</b>の2つです。</p>
+  <table>
+    <tr><th>選択肢</th><th>保険料の決まり方</th><th>入れる条件・期間</th></tr>
+    <tr><td>① 家族の扶養（被扶養者）</td><td class="win">保険料0円（本人負担なし）</td><td>被保険者の家族で、原則「退職後の見込み年収130万円未満（60歳以上・障害者は180万円未満）」等の要件を満たすこと</td></tr>
+    <tr><td>② 任意継続</td><td>退職時の標準報酬月額 × 料率。会社負担がなくなり<b>在職時の約2倍</b>。上限あり</td><td>退職までに継続2か月以上の被保険者期間。<b>退職翌日から20日以内</b>に申請。原則<b>2年間</b></td></tr>
+    <tr><td>③ 国民健康保険（国保）</td><td><b>前年の所得</b>をもとに市区町村が計算。料率・上限・軽減は<b>自治体ごとに違う</b></td><td>他の保険に入らない人。手続きは市区町村の窓口</td></tr>
+  </table>
+  <p>ポイントは②と③の「時間差」です。<b>任意継続は退職した瞬間の金額でほぼ2年間固定</b>。一方<b>国保は毎年“前年の所得”で計算し直す</b>ので、退職して収入が下がると翌年度は安くなります。この性質の違いが「1年目と2年目で逆転」を生みます。</p>
+
+  <h2>なぜ任意継続は「在職時の約2倍」なのか</h2>
+  <p>在職中の健康保険料は、会社と本人が<b>半分ずつ（労使折半）</b>負担していました。退職して任意継続に切り替えると、この会社負担分がなくなり<b>本人が全額を負担</b>します。だから単純計算で保険料は約2倍になります。</p>
+  <div class="calc">任意継続の保険料 ＝ 退職時の標準報酬月額 × 料率（全額自己負担）<small>会社が払っていた半分がなくなる＝在職時の給与天引き額の約2倍が目安</small></div>
+  <p>ただし<b>上限</b>があります。協会けんぽの場合、退職時の標準報酬月額がその年度の上限額を超えていても、上限額で計算されます。<b>令和7年度（2025年度）以降の上限は標準報酬月額32万円</b>（令和7年3月分までは30万円）。高収入だった人ほど、この上限のおかげで「単純な2倍」より抑えられることがあります。健保組合の場合は「退職時の標準報酬月額」か「組合の平均標準報酬月額」の低い方など、組合ごとにルールが異なります。</p>
+
+  <h2>なぜ国保は「1年目が高く2年目に下がる」のか</h2>
+  <p>国保料は<b>前年（1〜12月）の所得</b>をもとに計算されます。退職した年の翌年度（＝退職1年目のうち）は、まだ<b>在職中の高い給与</b>が「前年所得」なので、国保料は高くなりがちです。翌々年度（＝退職2年目）になると、前年所得が「退職後の少ない収入」に入れ替わるため、国保料はぐっと下がることがあります。</p>
+  <div class="calc">国保料は「前年所得」で毎年リセット<small>1年目＝在職所得で高い → 2年目＝退職後所得で下がる。ここで任意継続と逆転しうる</small></div>
+  <p>つまり同じ人でも、<b>1年目は任意継続が安く、2年目は国保が安い</b>という現象が起きます。任意継続の2年間フルで払い続けるより、<b>1年目だけ任意継続 → 2年目に国保へ切り替える</b>方が総額で得になるケースがあります（ただし切替は下の落とし穴に注意）。</p>
+
+  <h2>会社都合・特定理由離職なら「国保軽減」で逆転</h2>
+  <p>倒産・解雇などの<b>特定受給資格者</b>、または雇止め・正当な理由の自己都合などの<b>特定理由離職者</b>（雇用保険の離職理由コードが該当）は、国保の<b>非自発的失業者軽減</b>が使えます。この軽減では、国保料の計算上<b>前年の給与所得を100分の30（3割）とみなして</b>計算します。</p>
+  <div class="calc">国保軽減：前年の給与所得を「3割」として計算<small>離職日の翌日が属する月から翌年度末まで（最大で2年度弱）軽減</small></div>
+  <p>この軽減が効くと、<b>1年目から国保が任意継続より安くなる</b>ことがよくあります。会社都合や特定理由離職に当てはまる人は、任意継続を選ぶ前に必ず<b>軽減後の国保額</b>を市区町村で確認してください。対象になるかどうかは離職票・雇用保険受給資格者証の「離職理由コード」で決まります（給与所得以外の所得は軽減対象外）。</p>
+
+  <h2>条件別の採点：あなたはどれ？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>選ぶべき</th><th>理由</th></tr>
+    <tr><td>配偶者・親が会社員で、退職後の見込み年収130万円未満（等）</td><td class="win">扶養</td><td>保険料0円で最安。まずここに入れないか最優先で確認</td></tr>
+    <tr><td>扶養は無理・在職給与が高かった・自己都合退職</td><td class="win">1年目は任意継続</td><td>国保1年目は在職所得で高い。上限もあり任意継続が有利になりやすい</td></tr>
+    <tr><td>会社都合・特定理由離職に該当</td><td class="win">国保（軽減）</td><td>前年給与を3割で計算する軽減で、1年目から国保が勝ちやすい</td></tr>
+    <tr><td>扶養家族が多い（配偶者・子を一緒に加入）</td><td class="win">任意継続を要検討</td><td>任意継続は扶養家族分の追加保険料がかからない。国保は加入人数で増える</td></tr>
+    <tr><td>退職後の収入がほぼゼロ／低い見込み</td><td class="win">2年目は国保</td><td>前年所得が下がる2年目は国保が安くなり、任意継続から逆転しやすい</td></tr>
+    <tr><td>どれが安いか判断がつかない</td><td class="win">両方見積もる</td><td>任意継続額は協会けんぽ／健保組合、国保額は市区町村で試算できる。金額で決める</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「結局どれが一番安い？」に一律の答えはありません。前年の所得・住む自治体・扶養家族の人数・離職理由で結果が変わるからです。ネットの「任意継続が得」「国保が得」はどちらも“ある条件では正しい”だけ。<b>自分の数字で両方を試算して比べる</b>のがこの検証室のやり方です。</p>
+
+  <!-- ASP_SLOT: FP相談 -->
+  <div class="cta">
+    <div class="h">▶ 退職後のお金、健康保険だけで終わりじゃない</div>
+    <div class="ph">健康保険・年金・失業給付・住民税・iDeCoの切替まで、退職まわりのお金は同時に決断が必要です。「自分の場合どの順で何が一番得か」を、無理な勧誘なしで整理したい人は、無料のFP相談で全体像を一度棚卸しするのも手です。<br><!-- ASP: （該当時）FP相談・保険見直し等のアフィリエイトリンクを挿入。PR明示・rel=sponsored必須 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>任意継続は「20日以内」が絶対：</b>申請期限は退職日の翌日から原則<b>20日以内</b>。1日でも過ぎると任意継続は使えません。迷っている間に期限切れになるのが最悪パターンです。</li>
+    <li><b>途中で「国保が安いから」だけでは抜けにくかった経緯：</b>任意継続は原則2年間の制度です。かつては任意でやめにくかったのですが、現在は<b>本人の申し出による資格喪失（任意脱退）が可能</b>になっています。ただし手続きや喪失のタイミングは保険者ごとに扱いが異なるため、切替前に必ず確認を。</li>
+    <li><b>保険料を1日でも滞納すると即失効：</b>任意継続は納付期限までに払わないと、その時点で資格を失います（保険者の定めによる）。うっかり未納に注意。</li>
+    <li><b>扶養は「過去の年収」ではなく「これからの見込み」：</b>退職前に年収130万円を超えていても、退職後の見込み年収が要件未満なら扶養に入れることがあります。健保組合ごとに判断が違うので、加入先の健保に直接確認を。</li>
+    <li><b>国保・軽減・上限は自治体で違う：</b>国保の料率・上限額・軽減の運用は市区町村ごとに異なります。「隣町と同じ」とは限りません。必ず自分の自治体で試算してください。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>入れるなら<b>扶養（0円）が最安</b>。まず扶養に入れないかを最優先で確認する。</li>
+    <li>扶養が無理なら<b>任意継続（約2倍・原則2年固定）vs 国保（前年所得で毎年変動）</b>の勝負。</li>
+    <li>退職<b>1年目は任意継続、2年目は国保</b>が有利になりやすく、途中で逆転しうる。</li>
+    <li>会社都合・特定理由離職なら<b>国保軽減（前年給与を3割）</b>で1年目から国保が勝つことがある。</li>
+    <li>任意継続は<b>退職翌日から20日以内</b>が期限。正解は必ず<b>両方の金額を見積もって</b>決める。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 まず金額から：任意継続額は<b>協会けんぽ／加入していた健保組合</b>、国保額は<b>お住まいの市区町村</b>で試算できます。<br><span style="color:var(--faint);font-size:12px">退職まわりの「壁」も気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/g3/cat310/sb3160/" target="_blank" rel="noopener">全国健康保険協会（協会けんぽ）任意継続被保険者制度</a>（加入要件・退職翌日から20日以内に申請・原則2年間・保険料は全額自己負担）<br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/faq/voluntary_continuation/005/index.html" target="_blank" rel="noopener">協会けんぽ よくあるご質問（任意継続の保険料について）</a>（退職時の標準報酬月額×料率で計算・退職後は本人が全額負担＝約2倍・標準報酬月額の上限32万円〈令和7年3月分までは30万円〉・原則2年間変わらない）<br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/g1/r6-12/61210_01/" target="_blank" rel="noopener">協会けんぽ 令和7年度の任意継続被保険者の標準報酬月額の上限について</a>（上限額の年度改定）<br>
+    ・<a href="https://www.city.shibuya.tokyo.jp/kurashi/kokuho/kenkohokenryo/hokenryo_hijihatsu.html" target="_blank" rel="noopener">渋谷区 非自発的失業者の国民健康保険料の軽減</a>（国保料は前年所得ベース・特定受給資格者/特定理由離職者は前年給与所得を100分の30として計算・離職日翌日から翌年度末まで軽減）<br>
+    ・<a href="https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html" target="_blank" rel="noopener">日本年金機構 被扶養者にするときの手続き</a>（被扶養者の収入要件＝原則年収130万円未満〈60歳以上・障害者は180万円未満〉。退職後は今後1年間の見込み収入で判定）<br>
+    <span class="note">※制度は改正されることがあります。国保の料率・上限・軽減、任意継続の上限額・任意脱退の扱い、扶養の収入判定は、時点や保険者・自治体で異なります。金額・要件は必ず協会けんぽ／加入していた健保組合・お住まいの市区町村・年金事務所など公式でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

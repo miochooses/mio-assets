@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>16歳未満の子は扶養控除ゼロ。でも年末調整で書き忘れると住民税が上がる人がいる｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/16sai-miman-fuyou-hikazei.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="16歳未満の子は扶養控除ゼロ。でも住民税では効く｜AIが条件別に採点">
+<meta name="twitter:description" content="所得税の控除はゼロ。でも年末調整で書くと住民税の非課税判定で効くことがある。書き忘れて住民税が上がる人を条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「16歳未満の子は扶養控除ゼロ問題」を採点。所得税の控除は2011年に廃止されゼロ。だが住民税の非課税限度額の判定では“扶養親族の数”に数えられ効くことがある。年末調整の『住民税に関する事項』を書き忘れると住民税が上がる人を条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/16sai-miman-fuyou-hikazei.html">
+<meta property="og:title" content="16歳未満の子は扶養控除ゼロ。でも住民税では効く｜AIが条件別に採点">
+<meta property="og:description" content="所得税の控除はゼロ。でも年末調整で書くと住民税の非課税判定で効くことがある。書き忘れて住民税が上がる人を条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図 */
+  .split{display:flex;gap:12px;margin-top:16px;}
+  .split .cell{flex:1;border-radius:14px;padding:16px 14px;text-align:center;border:1px solid var(--line);}
+  .split .zero{background:#1c1418;border:1px solid #e0653a55;}
+  .split .eff{background:#101d16;border:1px solid #2ea04355;}
+  .split .tag{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--mut);}
+  .split .big{font-size:30px;font-weight:800;line-height:1.15;margin-top:6px;}
+  .split .zero .big{color:#e0653a;}
+  .split .eff .big{color:#39d353;}
+  .split .sub{font-size:12px;color:var(--faint);margin-top:6px;line-height:1.5;}
+  @media(max-width:520px){.split .big{font-size:24px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 16歳未満の扶養と住民税</div>
+    <h1>16歳未満の子は扶養控除ゼロ。<br>でも書き忘れると住民税が上がる人がいる</h1>
+    <div class="who">👶 中学生以下の子がいて、年末調整・確定申告を書く人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>16歳未満の子は<b>所得税の扶養控除は0円</b>（2011年分から廃止）。ここは誰でも同じ。</li>
+        <li>でも<b>住民税の「非課税限度額」の判定</b>では、16歳未満の子も“扶養親族の数”に数えられて効くことがある。</li>
+        <li>年末調整の書類の<b>「住民税に関する事項」に子を書き忘れる</b>と、非課税ラインが下がり<b>住民税が上がる人がいる</b>。ただし効くのは所得が低めの世帯だけ。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。「16歳未満は扶養控除ゼロだから書いても意味ない」は<b>半分だけ正しい</b>。所得税ではゼロ。住民税では効く場合がある。誰に効くのかを条件別に切り分けます。</div>
+  </header>
+
+  <!-- 視覚サマリー図（TL;DR直下・大きな文字・余白なし） -->
+  <div class="split">
+    <div class="cell zero">
+      <div class="tag">所得税の扶養控除</div>
+      <div class="big">0円</div>
+      <div class="sub">16歳未満は控除対象外<br>（2011年分から）</div>
+    </div>
+    <div class="cell eff">
+      <div class="tag">住民税の非課税判定</div>
+      <div class="big">効く</div>
+      <div class="sub">“扶養親族の数”に<br>16歳未満も数えられる</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      所得が<span style="color:var(--o)">住民税の非課税ラインの近く</span>の人（パート・時短・産休育休で年収が低め等） → 16歳未満の子を書くかどうかで<span style="color:var(--o)">住民税が変わりうる</span>。書かないと損。<br>
+      所得が<span style="color:var(--g)">非課税ラインより十分高い</span>会社員 → 書いても住民税額はふつう変わらない（ただし記入自体は正しい対応）。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>所得税への影響</span><span>ゼロ（誰でも）</span></div><div class="track"><div class="fill" style="width:4%;background:linear-gradient(90deg,#e0653a,#c04a2a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>住民税“非課税ライン付近”の人への影響</span><span>大きい</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>所得が高い人への影響</span><span>ほぼゼロ</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+    </div>
+    <div class="note">※金額は自治体・年度で変わります。ここでは考え方を示します。実際の判定はお住まいの自治体の基準でご確認ください（出典は末尾）。</div>
+  </div>
+
+  <h2>まず事実：16歳未満の「扶養控除」は本当にゼロ</h2>
+  <p>子ども手当（現・児童手当）の導入と入れ替わる形で、<b>16歳未満の扶養控除は2011年分（平成23年分）から廃止</b>されました。国税庁の説明でも、扶養控除の対象になる「控除対象扶養親族」は<b>その年12月31日時点で16歳以上</b>の人に限られます。つまり中学生以下の子は、所得税の扶養控除では控除額0円です。</p>
+  <table>
+    <tr><th>区分（年齢は12/31時点）</th><th>所得税の扶養控除額</th></tr>
+    <tr><td>16歳未満（年少扶養親族）</td><td style="color:#e0653a;font-weight:800">0円（対象外）</td></tr>
+    <tr><td>一般（16歳以上）</td><td>38万円</td></tr>
+    <tr><td>特定扶養親族（19〜22歳）</td><td>63万円</td></tr>
+    <tr><td>老人扶養親族（70歳以上・同居以外）</td><td>48万円</td></tr>
+    <tr><td>同居老親等（70歳以上・同居）</td><td>58万円</td></tr>
+  </table>
+  <p>ここだけ見ると「じゃあ書く意味なくない？」となります。<b>ここが落とし穴</b>です。</p>
+
+  <h2>効いてくるのは「住民税の非課税限度額」</h2>
+  <p>住民税には「所得がこのライン以下なら課税しない」という<b>非課税限度額</b>があります。このラインは<b>扶養している家族の人数で上がる</b>仕組みで、<b>この“人数”には16歳未満の子も含まれます</b>。所得税の扶養控除は対象外でも、住民税の非課税判定では“頭数”として効く、という非対称がポイントです。</p>
+  <div class="calc">住民税の非課税ライン ＝ 35万円 × <b>（本人＋同一生計配偶者＋扶養親族の数）</b> ＋ 一定額<small>この「扶養親族の数」に16歳未満の子も数えられる。だから子が多いほど非課税ラインが上がる</small></div>
+  <p>非課税には2種類あり、それぞれ加算額（＋一定額の部分）が違います。下は<b>東京23区</b>の例です（金額は自治体で異なります）。</p>
+  <table>
+    <tr><th>種類</th><th>扶養親族ありのライン（東京23区・合計所得金額）</th></tr>
+    <tr><td>均等割も所得割もかからない</td><td>35万円 ×（本人＋同一生計配偶者＋扶養親族の数）＋ 31万円 以下</td></tr>
+    <tr><td>所得割がかからない</td><td>35万円 ×（本人＋同一生計配偶者＋扶養親族の数）＋ 42万円 以下</td></tr>
+    <tr><td>扶養親族がいない場合</td><td>合計所得金額 45万円 以下</td></tr>
+  </table>
+  <p>東京23区の基準には「扶養親族は、<b>年齢16歳未満の者</b>及び控除対象扶養親族に限る」と明記されています。つまり<b>16歳未満の子も、住民税の非課税ラインを押し上げる“1人”に数えられる</b>ということです。子が1人増えるとラインが35万円上がる計算になります。</p>
+
+  <h2>だから「住民税に関する事項」に書く意味がある</h2>
+  <p>年末調整の「扶養控除等（異動）申告書」には、16歳未満の子を書く欄が<b>控除対象扶養親族の欄とは別に</b>用意されています。それが下のほうにある<b>「住民税に関する事項（16歳未満の扶養親族）」</b>です。</p>
+  <p>ここに書く情報は<b>所得税の計算には使われません</b>（控除ゼロだから当然）。<b>住民税を計算する市区町村に渡すため</b>にあります。書いておけば、自治体は「この人には16歳未満の扶養が◯人いる」と分かり、非課税限度額の判定に反映できます。</p>
+  <div class="calc">所得税の欄に書く → 効果ゼロ（対象外）<br>「住民税に関する事項」に書く → <b>住民税の非課税判定で人数にカウント</b><small>書き分けが必要。上の控除欄に書くのではなく、下の住民税欄に書く</small></div>
+
+  <h2>条件別の採点：あなたに“効く”か</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>書き忘れると</th><th>採点</th></tr>
+    <tr><td>所得が住民税の非課税ライン付近（パート・時短・産休育休等で年収低め）</td><td>非課税→課税に転ぶことがある</td><td class="win">必ず書く</td></tr>
+    <tr><td>ひとり親・共働きで所得が低いほうの親</td><td>誰の扶養に入れるかで世帯の住民税が変わりうる</td><td class="win">要確認</td></tr>
+    <tr><td>所得がラインより十分高い会社員</td><td>住民税額はふつう変わらない</td><td>書くのが正しいが金額は不変</td></tr>
+    <tr><td>そもそも所得ゼロ・扶養に入っている人</td><td>影響なし</td><td>—</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「16歳未満を書けば誰でも住民税が安くなる」ではありません。効くのは<b>所得が非課税ラインの近くにいる人だけ</b>です。所得が高い世帯は、書いても書かなくても住民税額は基本的に同じ。ただし記入欄がある以上、正しく書くのが本来の対応です。<b>過度な期待も、書き忘れによる取りこぼしも、どちらも避ける</b>のが正解です。</p>
+
+  <!-- ASP_SLOT: FP相談 -->
+  <div class="cta">
+    <div class="h">▶ 「うちは非課税ラインに近いのか」を自分で判断しづらい人へ</div>
+    <div class="ph">世帯の所得・扶養構成で住民税が変わるかは、年収・自治体・年度で複雑に絡みます。判断に迷うなら、家計とお金の専門家（FP）に一度整理してもらうのも手です。<br><!-- ASP: （該当時）FP相談サービス --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>控除欄と住民税欄を間違える：</b>16歳未満を上の「控除対象扶養親族」欄に書いても所得税では効きません。<b>下の「住民税に関する事項」欄</b>に書くのが正解です。</li>
+    <li><b>「控除ゼロだから空欄でいい」と考える：</b>所得が非課税ライン付近だと、書き忘れで住民税が上がることがあります。空欄=常に無害ではありません。</li>
+    <li><b>共働きでどちらに入れるか：</b>子を扶養親族として申告できるのは原則どちらか一方です。所得の低いほうの親に入れたほうが非課税判定で有利になる場合があります（世帯の状況によります）。</li>
+    <li><b>非課税限度額の金額を鵜呑みにする：</b>本記事の数値は東京23区の例です。加算額（31万円・42万円等）は自治体・年度で異なります。必ずお住まいの自治体で確認してください。</li>
+    <li><b>「住民税が0円になる」を保証と受け取る：</b>あくまで所得が低めの場合に非課税に届くことがある、という話です。所得が高ければ課税されます。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>16歳未満の子は所得税の扶養控除は0円（2011年分から廃止）。ここは全員同じ。</li>
+    <li>住民税の非課税限度額は「扶養親族の数」で上がり、その数に16歳未満の子も含まれる。</li>
+    <li>年末調整の「住民税に関する事項」に子を書くのは、住民税の非課税判定に反映させるため。</li>
+    <li>書き忘れて損をするのは、所得が非課税ライン付近の人。所得が高い人は金額は基本変わらない。</li>
+    <li>金額基準は自治体・年度で変わる。最終判断は自治体・税務署で。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a><br><span style="color:var(--faint);font-size:12px">年収の“壁”が気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" target="_blank" rel="noopener">国税庁 No.1180 扶養控除</a>（控除対象扶養親族＝その年12/31時点で16歳以上。16歳未満は扶養控除の対象外。区分別の控除額）<br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/149767_03.html" target="_blank" rel="noopener">総務省 個人住民税</a>（非課税限度額の考え方。所得割非課税＝35万円×（同一生計配偶者＋扶養親族の合計数＋1）＋一定額）<br>
+    ・<a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/kojin_ju" target="_blank" rel="noopener">東京都主税局 個人住民税</a>（東京23区の非課税基準。扶養親族には「年齢16歳未満の者」及び控除対象扶養親族を含む旨の明記）<br>
+    ・<a href="https://www.keisan.nta.go.jp/r5yokuaru/cat1/cat13/cat132/cat1324/cid169.html" target="_blank" rel="noopener">国税庁 確定申告書等作成コーナー よくある質問（16歳未満の扶養親族＝住民税・事業税に関する事項）</a>（16歳未満は「住民税に関する事項」に入力する）<br>
+    <span class="note">※制度・金額（非課税限度額の加算額など）は改正・自治体差があります。本記事の数値は東京23区の例であり、断定ではありません。最新かつご自身の条件は、お住まいの市区町村・税務署の公式情報でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
