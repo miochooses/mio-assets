@@ -3,122 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mio for Japan residents — money decisions in Japan, calculated (English)</title>
-<meta name="description" content="Plain-English, calculated guides to money in Japan for foreign residents: pension refunds, the income 'walls', health insurance, tax. No fluff — Mio runs the numbers.">
+<title>Mio — money in Japan, calculated (English). For residents &amp; visitors.</title>
+<meta name="description" content="Plain-English, calculated money guides for living in or visiting Japan: tax, pension, health insurance, SIMs, the JR Pass, tax-free shopping and more. An emotionless AI reads the Japanese-language sources so you don't overpay.">
 <link rel="canonical" href="https://miochooses.com/en/">
-<meta property="og:title" content="Mio — money decisions in Japan, calculated (English)">
-<meta property="og:description" content="Plain-English, calculated guides to money in Japan for foreign residents. Mio runs the numbers so you don't leave money on the table.">
+<meta property="og:title" content="Mio — money in Japan, calculated (English)">
+<meta property="og:description" content="Plain-English, calculated money guides for living in or visiting Japan. Mio reads the Japanese sources so you don't overpay.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://miochooses.com/mio-hero-en.jpg">
+<meta property="og:url" content="https://miochooses.com/en/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://miochooses.com/mio-hero-en.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/mio-icon-180.png">
 <style>
-  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;}
+  :root{--bg:#0f1720;--card:#141d28;--card2:#161f2b;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--gl:#39d353;--b:#58a6ff;--o:#f0883e;}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;padding:0 18px 60px;overflow-wrap:anywhere;}
-  .wrap{max-width:760px;margin:0 auto;}
-  header{padding:40px 0 8px;text-align:center;}
-  .hero-mio{width:120px;height:120px;border-radius:26px;display:block;margin:0 auto 12px;box-shadow:0 12px 40px rgba(46,160,67,.26);border:1px solid #ffffff12;}
-  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.06em;}
-  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
-  h1{margin-top:14px;font-size:28px;line-height:1.35;font-weight:800;}
-  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
-  .jp{margin-top:10px;font-size:13px;} .jp a{color:var(--b);text-decoration:none;}
-  h2{margin-top:34px;font-size:18px;font-weight:800;border-left:4px solid var(--b);padding-left:11px;}
-  .item{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin-top:12px;color:var(--tx);}
-  .item .t{font-size:17px;font-weight:800;color:#dbe6f0;}
-  .item .v{margin-top:6px;font-size:14px;color:var(--mut);}
-  .item .v b{color:var(--g);}
-  .foot{margin-top:40px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:22px;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;overflow-wrap:anywhere;}
+  a{color:var(--b);}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px;}
+  .nav{position:sticky;top:0;z-index:20;background:#0f1720ee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav .in{max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;}
+  .nav .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--tx);font-weight:800;}
+  .nav .brand img{width:30px;height:30px;border-radius:8px;}
+  .nav .brand b{font-size:15px;letter-spacing:.01em;}
+  .nav .brand b span{color:var(--b);}
+  .nav .links{margin-left:auto;display:flex;gap:4px;align-items:center;}
+  .nav .links a{font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 11px;border-radius:9px;}
+  .nav .links a:hover{background:var(--card2);color:#fff;}
+  .nav .links a.jp{color:var(--gl);}
+  @media(max-width:560px){.nav .links a.hideS{display:none;}}
+  .hero{padding:26px 0 8px;text-align:center;}
+  .hero-banner{width:100%;max-width:760px;height:auto;display:block;margin:0 auto 8px;border-radius:16px;border:1px solid #ffffff12;box-shadow:0 12px 44px rgba(46,160,67,.16);}
+  .hero .badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .hero .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--gl);box-shadow:0 0 8px var(--gl);}
+  h1{margin-top:12px;font-size:25px;line-height:1.34;font-weight:800;}
+  h1 .hl{color:var(--b);}
+  .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:600px;margin-left:auto;margin-right:auto;}
+  .cta-row{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
+  .cta-row a.p{background:var(--g);color:#08110a;}
+  .cta-row a.s{background:var(--card2);color:#dbe6f0;border:1px solid var(--line);}
+  @media(max-width:560px){h1{font-size:21px;}.cta-row a{flex:1;text-align:center;}}
+  .sec{padding:26px 0 6px;}
+  .sec>h2{font-size:19px;font-weight:800;}
+  .sec>h2 small{display:block;font-size:12.5px;color:var(--faint);font-weight:600;margin-top:3px;}
+  .tools{margin-top:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .tools a{text-decoration:none;background:var(--card);border:1px solid #1f3547;border-radius:13px;padding:14px;color:var(--tx);transition:border-color .15s;}
+  .tools a:hover{border-color:#58a6ff55;}
+  .tools a .tt{font-size:14.5px;font-weight:800;}
+  .tools a .td{margin-top:4px;font-size:12px;color:var(--mut);line-height:1.5;}
+  @media(max-width:560px){.tools{grid-template-columns:1fr;}}
+  .travel{display:block;text-decoration:none;margin-top:12px;border:1px solid #f0883e55;background:#1c1410;border-radius:14px;padding:15px 17px;color:var(--tx);}
+  .travel .t{font-size:15px;font-weight:800;color:#ffcf9e;}
+  .travel .v{margin-top:5px;font-size:13px;color:var(--mut);}
+  .tabbar{margin-top:14px;display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .tabbar::-webkit-scrollbar{display:none;}
+  .tabbar button{flex:none;font-family:inherit;cursor:pointer;font-size:13px;font-weight:800;color:#c9d4de;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 15px;}
+  .tabbar button.active{background:var(--g);color:#08110a;border-color:var(--g);}
+  .feed{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .feed a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;color:var(--tx);transition:border-color .15s;}
+  .feed a:hover{border-color:#2ea04366;}
+  .feed a .t{font-size:15px;font-weight:800;color:#dbe6f0;}
+  .feed a .v{margin-top:5px;font-size:12.5px;color:var(--mut);line-height:1.6;}
+  .feed a .v b{color:var(--gl);}
+  @media(max-width:560px){.feed{grid-template-columns:1fr;}}
+  .foot{margin-top:34px;text-align:center;font-size:12.5px;color:var(--faint);border-top:1px solid var(--line);padding:22px 0 46px;}
   .foot a{color:var(--b);text-decoration:none;}
 </style>
 </head>
 <body>
+<nav class="nav">
+  <div class="in">
+    <a class="brand" href="/en/"><img src="/mio-icon-512.png" alt="Mio"><b>Mio<span>·</span>money in Japan</b></a>
+    <div class="links">
+      <a href="#guides">Guides</a>
+      <a href="#tools" class="hideS">Tools</a>
+      <a href="/en/travel/">Travel</a>
+      <a href="/" class="jp">日本語</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
-  <header>
-    <img src="/mio-hero-en.jpg" alt="Mio — Zero bias. Honest scores." style="width:100%;max-width:660px;height:auto;border-radius:16px;border:1px solid #ffffff12;box-shadow:0 12px 40px rgba(46,160,67,.16);display:block;margin:0 auto 12px;">
-    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
-    <h1>Money in Japan, calculated.<br>For foreign residents.</h1>
-    <div class="lead">Japan's money systems — pension, tax, health insurance, the income "walls" — are complex, and the best information is locked in Japanese. So Mio <b>reads the Japanese-language official sources</b> (National Tax Agency, MHLW, Japan Pension Service), picks the choices that <b>actually matter to residents</b>, and gives you the calculated, insider answer — in plain English. Not translated fluff. The Japanese-native read on your money.</div>
-    <div class="jp"><a href="/">🇯🇵 日本語版（AIガチ検証室）はこちら</a></div>
+  <header class="hero">
+    <img class="hero-banner" src="/mio-hero-en.jpg" alt="Mio — Zero bias. Honest scores." width="1300" height="731">
+    <div class="badge"><span class="dot"></span> An emotionless AI that scores money in Japan by calculation</div>
+    <h1>Money in Japan, <span class="hl">calculated</span>.<br>In plain English.</h1>
+    <p class="lead">Living in or visiting Japan? Mio reads the Japanese-language official sources and does the math — tax, pension, health insurance, SIMs, the JR Pass and more — so you don't overpay. Not translated fluff: the insider read on your money.</p>
+    <div class="cta-row">
+      <a class="p" href="japan-take-home-pay-calculator.html">🧮 Take-home pay calculator</a>
+      <a class="s" href="#guides">Popular guides</a>
+    </div>
   </header>
 
-  <a class="item" href="roadmap.html" style="border-color:#2ea04366;background:#101d16;"><div class="t">🗺 Start here: the money &amp; admin roadmap for foreign residents</div><div class="v"><b>Free checklist —</b> every money/admin task in Japan (arriving → living → leaving), what to watch out for, and how not to overpay. Bookmark it.</div></a>
-  <a class="item" href="japan-take-home-pay-calculator.html" style="border-color:#58a6ff55;background:#0f1a24;"><div class="t">🧮 Free tool: Japan take-home pay calculator</div><div class="v"><b>Type your gross salary</b> → Mio estimates your real net pay, with health insurance, pension, income tax and resident tax broken down, in English. Runs 100% in your browser.</div></a>
-  <a class="item" href="japan-pension-refund-estimator.html" style="border-color:#58a6ff55;background:#0f1a24;"><div class="t">🧮 Free tool: Pension refund (dattai ichijikin) + 20.42% tax-reclaim estimator</div><div class="v"><b>Leaving Japan?</b> Estimate your Employees'-Pension lump-sum, the 20.42% tax withheld, and how much you can claim back with a tax representative — the money most people leave behind.</div></a>
-  <a class="item" href="furusato-nozei-limit-calculator.html" style="border-color:#58a6ff55;background:#0f1a24;"><div class="t">🧮 Free tool: Furusato nozei (hometown tax) limit calculator</div><div class="v"><b>How much can you donate?</b> Estimate your furusato-nozei ceiling from salary &amp; family — donate up to it for a net ¥2,000 plus gifts; go over and you lose the excess.</div></a>
-  <a class="item" href="travel/" style="border-color:#f0883e55;background:#1c1410;"><div class="t">✈️ Just visiting Japan? Traveler money, calculated</div><div class="v"><b>Not a resident —</b> here for a trip? Mio's fast answers on the JR Pass, airport transfer, tax-free shopping, Suica, eSIM vs pocket WiFi and luggage forwarding.</div></a>
+  <section class="sec" id="tools">
+    <h2>🧮 Free calculators<small>Runs 100% in your browser — nothing is sent or saved.</small></h2>
+    <div class="tools">
+      <a href="japan-take-home-pay-calculator.html"><div class="tt">💴 Japan take-home pay calculator</div><div class="td">Gross → net, with health insurance, pension, income &amp; resident tax broken down.</div></a>
+      <a href="japan-pension-refund-estimator.html"><div class="tt">🎌 Pension refund + 20.42% tax reclaim</div><div class="td">Leaving Japan? Estimate your lump-sum and the tax you can claim back.</div></a>
+      <a href="furusato-nozei-limit-calculator.html"><div class="tt">🎁 Furusato nozei limit calculator</div><div class="td">How much can you donate for a net ¥2,000 before you lose the excess?</div></a>
+      <a href="jr-pass-worth-it-calculator.html"><div class="tt">🚄 JR Pass worth-it calculator</div><div class="td">Tick your trips → is the Japan Rail Pass worth buying? Live verdict.</div></a>
+    </div>
+    <a class="travel" href="/en/travel/"><div class="t">✈️ Just visiting Japan? Traveler money guides →</div><div class="v">JR Pass, airport transfer, tax-free shopping, Suica, eSIM vs pocket WiFi, getting yen, luggage — all calculated.</div></a>
+  </section>
 
-  <h2>🛬 Arriving &amp; setting up</h2>
-  <a class="item" href="my-number-card-foreigners-japan.html"><div class="t">My Number &amp; the My Number Card for foreign residents — do you need the card?</div><div class="v"><b>The point:</b> your My Number is automatic with a residence record; the physical Card is optional but unlocks e-Tax, ID, konbini certificates, and health-insurance linkage.</div></a>
-  <a class="item" href="japan-bank-account-foreigners.html"><div class="t">Opening a Japanese bank account as a foreigner — which banks accept new arrivals</div><div class="v"><b>The point:</b> the "6-month rule" is per-bank, not law. Japan Post Bank is usually the easiest first account; some online banks skip the hanko. And Wise can't receive your Japanese salary — a costly myth.</div></a>
-  <a class="item" href="sim-japan-no-credit-card.html"><div class="t">A SIM / eSIM in Japan without a Japanese credit card — the cheapest path</div><div class="v"><b>The point:</b> no Japanese card yet? You still have options. Mio compares a data-only travel eSIM vs a real-number SIM you can pay without credit — and the cheapest isn't always right.</div></a>
-  <a class="item" href="credit-card-japan-foreigner.html"><div class="t">Getting a credit card in Japan as a foreigner — why you get rejected, and what actually works</div><div class="v"><b>The point:</b> rejection is normal early (no Japan credit history, short visa). A debit card + code-pay covers ~95% with zero approval check; chase a credit card once time's on your side.</div></a>
-  <a class="item" href="renting-apartment-japan-foreigner-costs.html"><div class="t">The real move-in cost of renting in Japan as a foreigner — key money, deposit, guarantor, all of it</div><div class="v"><b>The point:</b> renting usually costs ~4–6 months' rent upfront. Mio breaks down every line — plus the zero-zero and UR options that cut it hard.</div></a>
-  <a class="item" href="moving-apartments-in-japan-costs-and-admin.html"><div class="t">Moving apartments in Japan — the real cost, and the address-change admin you can't skip</div><div class="v"><b>The point:</b> moving is two bills, not one (the move + new-place initial costs) — and you must update your residence-card address within 14 days at the city office.</div></a>
+  <section class="sec" id="guides">
+    <h2>📘 Guides for residents<small>Switch by topic. Every answer is calculated, in plain English.</small></h2>
+    <div class="tabbar" id="tabbar">
+      <button class="active" data-c="pop">🔥 Popular</button>
+      <button data-c="arrive">🛬 Arriving</button>
+      <button data-c="tax">💴 Tax</button>
+      <button data-c="health">🏥 Health &amp; pension</button>
+      <button data-c="money">📈 Money</button>
+      <button data-c="work">💼 Work &amp; visa</button>
+      <button data-c="leave">✈️ Leaving Japan</button>
+      <button data-c="daily">🧺 Everyday</button>
+    </div>
+    <div class="feed" id="feed">
+      <a data-cat="pop tax" href="resident-tax-japan-foreigners.html"><div class="t">Japan's resident tax shock — the year-2 delayed bill</div><div class="v"><b>The point:</b> billed on last year's income; a surprise bill lands in year 2 and you still owe it when you leave.</div></a>
+      <a data-cat="pop tax" href="income-walls-japan-dependent.html"><div class="t">Japan's income "walls" (¥1.06M / ¥1.30M), explained</div><div class="v"><b>The point:</b> earning more can leave you with less — Mio shows exactly where the take-home dip is.</div></a>
+      <a data-cat="pop leave" href="leaving-japan-pension-refund.html"><div class="t">Leaving Japan? Claim your pension lump-sum + reclaim the 20.42% tax</div><div class="v"><b>The point:</b> most people leave the 20.42% withholding on the table. A tax representative reclaims much of it.</div></a>
+      <a data-cat="pop health" href="health-insurance-japan-foreigners.html"><div class="t">Shakai Hoken vs Kokumin Kenkō Hoken — which are you in?</div><div class="v"><b>The point:</b> employed → employer splits it; not employed → income-based NHI. The real mistake is being in neither.</div></a>
+      <a data-cat="pop money" href="us-citizens-investing-in-japan.html"><div class="t">US citizens investing in Japan — NISA rejection &amp; the PFIC trap</div><div class="v"><b>The point:</b> JP brokers reject US persons; Japanese funds are PFIC landmines — hold US-domiciled instead.</div></a>
+      <a data-cat="pop arrive" href="renting-apartment-japan-foreigner-costs.html"><div class="t">The real move-in cost of renting as a foreigner</div><div class="v"><b>The point:</b> usually ~4–6 months' rent upfront. Every line, plus zero-zero &amp; UR options that cut it.</div></a>
 
-  <h2>💴 Tax in Japan, calculated</h2>
-  <a class="item" href="understand-japanese-payslip.html"><div class="t">How to read your Japanese payslip (kyūyo meisai), line by line — and why year 2 is smaller</div><div class="v"><b>The point:</b> gross vs take-home decoded, every deduction in plain English, and why resident tax makes your year-2 take-home shrink.</div></a>
-  <a class="item" href="resident-tax-japan-foreigners.html"><div class="t">Japan's resident tax (jūminzei) shock — the delayed bill that hits in year 2 and when you leave</div><div class="v"><b>The point:</b> it's billed on last year's income and Jan-1 residency — so a surprise bill lands in year 2, and you still owe it when you quit or leave (you may need a tax representative).</div></a>
-  <a class="item" href="year-end-adjustment-vs-tax-return-japan.html"><div class="t">Year-end adjustment (nenmatsu chōsei) vs filing a tax return — which you need, and the refunds foreigners miss</div><div class="v"><b>The point:</b> your employer's December adjustment settles most single-job employees' tax — but side income, two jobs, mid-year quits, or medical/furusato/mortgage deductions mean filing to reclaim overpaid tax.</div></a>
-  <a class="item" href="furusato-nozei-foreign-residents.html"><div class="t">Furusato Nozei (hometown tax) for foreign residents — do you actually save?</div><div class="v"><b>The point:</b> yes, you likely qualify (it's based on paying resident tax, not nationality). You pay ¥2,000 net and get gift-cap ~30% back — but only up to an income-based limit. Mio does the math.</div></a>
-  <a class="item" href="furusato-nozei-limit-calculation-foreigners.html"><div class="t">Furusato nozei limit, calculated — how much can you donate before you LOSE money?</div><div class="v"><b>The point:</b> it's only "net ¥2,000" up to a personal ceiling set by your income/resident tax — donate over it and the excess isn't deducted, a real loss. Use an official simulator.</div></a>
-  <a class="item" href="income-walls-japan-dependent.html"><div class="t">Japan's income “walls” (¥1.23M / ¥1.06M / ¥1.30M), explained for dependents</div><div class="v"><b>The point:</b> earning more can leave you with less — but only in specific yen zones. Mio shows exactly where the take-home dip is (and when crossing is still worth it).</div></a>
-  <a class="item" href="income-wall-106-130-take-home-dip-japan.html"><div class="t">The ¥1.06M / ¥1.30M social-insurance wall, calculated — the take-home dip and when crossing pays off</div><div class="v"><b>The point:</b> cross it and a dependent spouse pays ~15% for their own pension+health, so gross rises but take-home <i>dips</i> until ~¥1.5–1.7M. A worked example (mid-reform — verify).</div></a>
-  <a class="item" href="double-taxation-remote-income-japan.html"><div class="t">Remote work &amp; foreign income while living in Japan — tax residency &amp; double taxation</div><div class="v"><b>The point:</b> Japan taxes you by residency category, not visa — remote work done from Japan is usually Japan-source, and remittances can pull in foreign income. Treaties + foreign tax credit stop double tax.</div></a>
+      <a data-cat="arrive" href="my-number-card-foreigners-japan.html"><div class="t">My Number &amp; the My Number Card — do you need the card?</div><div class="v"><b>The point:</b> your number is automatic; the card is optional but unlocks e-Tax, ID and konbini certificates.</div></a>
+      <a data-cat="arrive" href="japan-bank-account-foreigners.html"><div class="t">Opening a Japanese bank account — which banks accept newcomers</div><div class="v"><b>The point:</b> the "6-month rule" is per-bank, not law. Japan Post Bank is usually easiest first.</div></a>
+      <a data-cat="arrive" href="sim-japan-no-credit-card.html"><div class="t">A SIM / eSIM without a Japanese credit card</div><div class="v"><b>The point:</b> no card yet? You still have options — and the cheapest isn't always right.</div></a>
+      <a data-cat="arrive" href="credit-card-japan-foreigner.html"><div class="t">Getting a credit card as a foreigner — why you're rejected</div><div class="v"><b>The point:</b> rejection is normal early. A debit card + code-pay covers ~95% with no approval check.</div></a>
+      <a data-cat="arrive" href="moving-apartments-in-japan-costs-and-admin.html"><div class="t">Moving apartments — the real cost + address-change admin</div><div class="v"><b>The point:</b> two bills, not one — and you must update your residence card within 14 days.</div></a>
 
-  <h2>🏥 Health &amp; pension</h2>
-  <a class="item" href="health-insurance-japan-foreigners.html"><div class="t">Shakai Hoken vs Kokumin Kenkō Hoken — which health insurance you're in, and what it costs</div><div class="v"><b>The point:</b> employed → Shakai Hoken (employer splits the cost); not employed → National Health Insurance at city hall (income-based, you pay it all). Both cover ~70% — the real mistake is being in neither.</div></a>
-  <a class="item" href="health-insurance-gap-changing-jobs-japan.html"><div class="t">Changing jobs in Japan? The health-insurance gap that gets backdated</div><div class="v"><b>The point:</b> you can't skip a day of coverage — enrol late and National Health Insurance backdates premiums to the day you lost the old plan. Bridge via NHI, nin'i keizoku, or a family dependent.</div></a>
-  <a class="item" href="pension-japan-foreigners-do-you-pay.html"><div class="t">Do foreigners have to pay into Japan's pension? The "opt-out" myth, agreements &amp; refunds</div><div class="v"><b>The point:</b> you generally can't opt out — but student/low-income exemptions, totalization agreements, and the leaving-Japan lump-sum refund all protect your money.</div></a>
-  <a class="item" href="having-a-baby-in-japan-costs-and-subsidies.html"><div class="t">Having a baby in Japan as a foreign resident — the real cost, the ¥500,000 lump-sum &amp; subsidies</div><div class="v"><b>The point:</b> normal delivery isn't insured, but the ~¥500,000 childbirth lump-sum, free check-up coupons, child allowance and income-based nursery pay most of it back — claim them in order.</div></a>
+      <a data-cat="tax" href="understand-japanese-payslip.html"><div class="t">How to read your Japanese payslip — and why year 2 is smaller</div><div class="v"><b>The point:</b> every deduction in plain English, and why resident tax shrinks your year-2 take-home.</div></a>
+      <a data-cat="tax" href="year-end-adjustment-vs-tax-return-japan.html"><div class="t">Year-end adjustment vs filing a tax return</div><div class="v"><b>The point:</b> most single-job employees don't file — but side income or deductions mean filing to reclaim tax.</div></a>
+      <a data-cat="tax" href="furusato-nozei-foreign-residents.html"><div class="t">Furusato Nozei for foreign residents — do you actually save?</div><div class="v"><b>The point:</b> yes, you likely qualify. Net ¥2,000 for gifts — up to an income-based limit.</div></a>
+      <a data-cat="tax" href="income-wall-106-130-take-home-dip-japan.html"><div class="t">The ¥1.06M / ¥1.30M social-insurance wall, calculated</div><div class="v"><b>The point:</b> cross it and take-home dips until ~¥1.5–1.7M. A worked example (mid-reform).</div></a>
+      <a data-cat="tax" href="double-taxation-remote-income-japan.html"><div class="t">Remote work &amp; foreign income — tax residency &amp; double tax</div><div class="v"><b>The point:</b> Japan taxes by residency category; remote work from Japan is usually Japan-source.</div></a>
 
-  <h2>📈 Investing &amp; sending money home</h2>
-  <a class="item" href="ideco-nisa-foreign-residents-japan.html"><div class="t">Can foreign residents use NISA and iDeCo? Eligibility, the leaving-Japan catch &amp; the US-citizen problem</div><div class="v"><b>The point:</b> it's residency, not nationality — most foreign residents can open NISA/iDeCo. But iDeCo locks money until 60, leaving Japan breaks the tax perks, and US citizens are usually shut out.</div></a>
-  <a class="item" href="us-citizens-investing-in-japan.html"><div class="t">US citizens investing while living in Japan — the NISA rejection, the PFIC trap, and what works</div><div class="v"><b>The point:</b> most JP brokers reject US persons (FATCA), Japanese funds are PFIC US-tax landmines, and you still file FBAR/8938 — hold US-domiciled instead. Not advice; see a cross-border pro.</div></a>
-  <a class="item" href="sending-money-home-from-japan-cheapest.html"><div class="t">Sending money home from Japan the cheapest way — bank wire vs Wise vs remittance services</div><div class="v"><b>The point:</b> the real cost isn't the fee — it's the hidden exchange-rate markup. Specialist services usually beat bank wires, but a Wise JPY account can't receive your salary.</div></a>
+      <a data-cat="health" href="health-insurance-gap-changing-jobs-japan.html"><div class="t">Changing jobs? The health-insurance gap that gets backdated</div><div class="v"><b>The point:</b> enrol late and NHI backdates premiums to the day you lost the old plan.</div></a>
+      <a data-cat="health" href="pension-japan-foreigners-do-you-pay.html"><div class="t">Do foreigners have to pay Japan's pension? The "opt-out" myth</div><div class="v"><b>The point:</b> you can't just opt out — but exemptions, agreements &amp; the leaving-Japan refund protect your money.</div></a>
+      <a data-cat="health" href="having-a-baby-in-japan-costs-and-subsidies.html"><div class="t">Having a baby in Japan — the ¥500,000 lump-sum &amp; subsidies</div><div class="v"><b>The point:</b> delivery isn't insured, but the lump-sum, coupons and allowances pay most of it back.</div></a>
 
-  <h2>💼 Work, visa &amp; jobs</h2>
-  <a class="item" href="dependent-spouse-visa-working-japan.html"><div class="t">Can a dependent-visa spouse work in Japan? The 28-hour rule and the permission you need first</div><div class="v"><b>The point:</b> a Dependent visa doesn't allow work by default — get the free "permission to engage in other activity" (28 hrs/week cap) first; full-time needs a work-visa change.</div></a>
-  <a class="item" href="work-visa-renewal-after-job-loss-japan.html"><div class="t">Lost your job on a work visa — how long can you stay, and will your visa renew?</div><div class="v"><b>The point:</b> your visa stays valid until expiry, but the 14-day notification, a ~3-month non-activity revocation risk, and the "still doing the activity?" renewal check start ticking. Verify with Immigration.</div></a>
-  <a class="item" href="unemployment-insurance-japan-foreigners.html"><div class="t">Lost your job in Japan? Unemployment benefit (koyō hoken) for foreign residents</div><div class="v"><b>The point:</b> you've paid koyō hoken every payslip — if you lose your job you may claim the basic allowance at Hello Work, but your residence status must still let you stay and job-hunt.</div></a>
-  <a class="item" href="convert-foreign-driving-license-japan.html"><div class="t">Converting your foreign driver's licence to a Japanese one (gaimen kirikae) — steps &amp; who skips the test</div><div class="v"><b>The point:</b> an IDP only lasts ~1 year for residents — convert via gaimen kirikae (licence + JAF translation + 3-month proof); whether you skip the written/practical test depends on your country.</div></a>
+      <a data-cat="money" href="ideco-nisa-foreign-residents-japan.html"><div class="t">Can foreign residents use NISA and iDeCo?</div><div class="v"><b>The point:</b> residency, not nationality — but iDeCo locks to 60, leaving breaks the perks, US citizens shut out.</div></a>
+      <a data-cat="money" href="sending-money-home-from-japan-cheapest.html"><div class="t">Sending money home the cheapest way — bank vs Wise</div><div class="v"><b>The point:</b> the real cost is the hidden rate markup, not the fee. But a Wise JPY account can't receive salary.</div></a>
 
-  <h2>✈️ Leaving Japan</h2>
-  <a class="item" href="leaving-a-job-in-japan-money-checklist.html"><div class="t">Quitting or losing your job in Japan as a foreigner — the money &amp; admin checklist</div><div class="v"><b>The point:</b> leaving a job detaches your health insurance, pension and visa — switch each within days, grab your employer documents, and notify Immigration within 14 days.</div></a>
-  <a class="item" href="tax-representative-nozei-kanrinin-japan.html"><div class="t">What is a tax representative (nōzei kanrinin) — and why leaving Japan without one costs you money</div><div class="v"><b>The point:</b> a Japan-resident you appoint before departure to handle your tax — skip it and you may forfeit your 20.42% pension-refund reclaim and unpaid resident tax.</div></a>
-  <a class="item" href="leaving-japan-pension-refund.html"><div class="t">Leaving Japan? Claim your pension lump-sum — and reclaim the 20.42% tax</div><div class="v"><b>The point:</b> most people take the refund but leave the 20.42% withholding tax on the table. A tax representative (nozei kanrinin) can reclaim much of it. Worked example inside.</div></a>
+      <a data-cat="work" href="dependent-spouse-visa-working-japan.html"><div class="t">Can a dependent-visa spouse work? The 28-hour rule</div><div class="v"><b>The point:</b> not by default — get the free permission first, then you're capped at 28 hrs/week.</div></a>
+      <a data-cat="work" href="work-visa-renewal-after-job-loss-japan.html"><div class="t">Lost your job on a work visa — how long can you stay?</div><div class="v"><b>The point:</b> valid until expiry, but a 14-day notice, ~3-month non-activity risk and renewal check start ticking.</div></a>
+      <a data-cat="work" href="unemployment-insurance-japan-foreigners.html"><div class="t">Unemployment benefit (koyō hoken) for foreign residents</div><div class="v"><b>The point:</b> you've paid it every payslip — claim at Hello Work, but your visa must still let you stay &amp; job-hunt.</div></a>
+      <a data-cat="work" href="convert-foreign-driving-license-japan.html"><div class="t">Converting your foreign licence (gaimen kirikae)</div><div class="v"><b>The point:</b> an IDP only lasts ~1 year — convert with licence + JAF translation; some countries skip the test.</div></a>
 
-  <h2>🧺 Everyday money (small decisions, calculated)</h2>
-  <a class="item" href="coin-laundry-vs-washing-machine.html"><div class="t">Coin laundry vs buying a washing machine — which is cheaper for your stay?</div><div class="v"><b>The point:</b> it's a break-even, not a preference. Stay under ~8 months → coin laundry; a year or more → buy (ideally secondhand and resell). Don't forget Japan's appliance disposal fee.</div></a>
-  <a class="item" href="konbini-vs-supermarket.html"><div class="t">Konbini vs supermarket in Japan — what the daily habit really costs</div><div class="v"><b>The point:</b> the convenience-store lunch feels tiny, but the same basket runs ~30–40% more than the supermarket. Mio turns the daily habit into a yearly number — and it's bigger than you think.</div></a>
-  <a class="item" href="umbrella-buy-good-vs-conbini-vinyl.html"><div class="t">One good umbrella, or a ¥500 conbini vinyl every time it rains?</div><div class="v"><b>The point:</b> it's a lose-rate question, not a preference. Buying vinyl 4–6×/year is ¥2,000–3,000 every year; a real umbrella pays for itself in ~1 year — unless you're a chronic umbrella-loser, in which case cheap is rational.</div></a>
-  <a class="item" href="secondhand-vs-new-furniture-japan.html"><div class="t">Furnishing your place: buy new, buy secondhand, or rent?</div><div class="v"><b>The point:</b> for a 1–3 year stay, secondhand + resell before you leave usually wins (~¥21k net vs ~¥90k new). The number people forget is Japan's legal appliance disposal fee.</div></a>
-  <a class="item" href="suica-pasmo-vs-cash-trains-japan.html"><div class="t">Suica/PASMO vs cash on the trains — and when a commuter pass (teiki) pays off</div><div class="v"><b>The point:</b> tap an IC card over cash (a few yen cheaper, faster). But commute the same route ~15+ round trips a month and a teiki wins — buy the 6-month version.</div></a>
-  <a class="item" href="cooking-vs-eating-out-japan.html"><div class="t">Cooking at home vs eating out every day in Japan — what it really costs</div><div class="v"><b>The point:</b> a gyūdon is ~¥600, cooking ~¥250 — one lunch out a day is ~¥90,000/year. Unless you're solo and time-poor, where waste + time can erase the gap.</div></a>
-  <a class="item" href="daiso-100yen-vs-nitori-japan.html"><div class="t">100-yen shops (Daiso/Seria) vs Nitori vs recycle shops — kitting out an empty room</div><div class="v"><b>The point:</b> 100-yen everything looks cheapest, but on daily-use items replacement frequency wins the bill. Mio splits the starter kit by cost-per-use.</div></a>
-  <a class="item" href="pocket-wifi-vs-home-internet-japan.html"><div class="t">Pocket WiFi vs home fibre vs tethering — which internet for your stay</div><div class="v"><b>The point:</b> short stay / light use → pocket WiFi or SIM tethering (no install, no contract trap). Long stay + heavy use → home fibre is cheaper per GB, but watch the 2-year auto-renew and exit fees.</div></a>
-  <a class="item" href="konbini-atm-vs-bank-atm-fees-japan.html"><div class="t">Konbini ATM vs your bank's ATM — how withdrawal fees quietly cost you</div><div class="v"><b>The point:</b> ~¥110–330 per off-hours withdrawal feels trivial — which is why 2–4×/month quietly costs thousands a year. Fix: free-withdrawal counts, fewer larger withdrawals, or an online bank.</div></a>
-  <a class="item" href="vending-machine-vs-supermarket-drinks-japan.html"><div class="t">Vending machine vs supermarket vs your own tumbler — the daily drink habit</div><div class="v"><b>The point:</b> one drink a day is ~¥58,000/yr from a vending machine, ~¥35,000 from a supermarket, ~¥11,000 from a tumbler — nobody notices ¥150, which is the trap.</div></a>
-  <a class="item" href="winter-heating-aircon-vs-kerosene-kotatsu-japan.html"><div class="t">Staying warm cheaply in a Japanese winter — aircon vs kerosene vs kotatsu</div><div class="v"><b>The point:</b> Japanese apartments leak heat, so heating the whole room is the expensive option. Heat the body, not the air: a kotatsu plus layers beats blasting the aircon.</div></a>
-  <a class="item" href="haircut-1000yen-vs-salon-japan.html"><div class="t">¥1,000 quick-cut vs a full salon — cost and the language barrier</div><div class="v"><b>The point:</b> for a standard cut the quick-cut wins on both cost (~¥15k vs ~¥60k/yr) and language friction (no Japanese needed). Save the salon for colour or perm.</div></a>
-  <a class="item" href="amazon-japan-vs-rakuten-yodobashi-online-shopping.html"><div class="t">Amazon Japan vs Rakuten vs Yodobashi — cheapest online once points are counted</div><div class="v"><b>The point:</b> compare the after-points effective price, not the sticker. Amazon wins on honest low prices; Yodobashi's ~10% suits electronics; Rakuten only wins if you're in its economy and actually spend the points.</div></a>
-  <a class="item" href="bicycle-buy-vs-share-cycle-japan.html"><div class="t">Buying a bicycle vs share-cycle — the break-even, and the bōhan tōroku rule</div><div class="v"><b>The point:</b> ride daily / stay 5+ months → buy a mamachari, but do the ¥500 anti-theft registration in your name or police flag it as stolen. Occasional / short stay → share-cycle.</div></a>
-  <a class="item" href="gym-vs-home-workout-japan.html"><div class="t">Gym vs home workout vs the municipal gym — cost per actual visit</div><div class="v"><b>The point:</b> a ¥9,000/mo gym used 4×/mo is ¥2,250 a visit — the ward gym at ~¥400 a drop-in (no contract) or free bodyweight at home wins unless you go 3×+ a week.</div></a>
-  <a class="item" href="tap-water-vs-bottled-water-japan.html"><div class="t">Tap water vs bottled water in Japan — is tap safe, and what's cheapest per litre</div><div class="v"><b>The point:</b> Japanese tap water is safe per waterworks standards and costs ~¥0.2–0.5/L; bottled is 100–500× that. Drink tap, filter for taste, reserve bottles for convenience.</div></a>
-  <a class="item" href="domestic-travel-japan-seishun18-vs-bus-vs-lcc.html"><div class="t">Cheapest way across Japan — Seishun 18 vs highway bus vs LCC vs Shinkansen</div><div class="v"><b>The point:</b> there's no single cheapest mode — it's whichever wastes fewer hours than you can afford. Fast costs yen, cheap costs time; the 18 Kippu wins per-km, but only in season.</div></a>
-  <a class="item" href="sim-mnp-cashback-trap-japan.html"><div class="t">The ¥20,000 "switch and get cashback" (MNP) phone deal — do the numbers work?</div><div class="v"><b>The point:</b> rarely. Compute plan × months + device − cashback over the lock-in, and a plain ¥1,000–2,000/mo MVNO usually beats the flashy cashback within a year.</div></a>
-  <a class="item" href="last-train-vs-taxi-vs-capsule-japan.html"><div class="t">Missed the last train — taxi, capsule hotel, manga café, or wait for first train?</div><div class="v"><b>The point:</b> under ~3 km the taxi wins; past ~6 km a ¥2,000 net café + first train beats a ¥6,000 late-night fare. The real question is just how far you are.</div></a>
-  <a class="item" href="daily-coffee-konbini-vs-cafe-vs-home-japan.html"><div class="t">Daily coffee — konbini (¥100) vs café (¥500) vs brewing at home</div><div class="v"><b>The point:</b> konbini coffee already killed the daily café on cost (~¥45k vs ~¥150k/yr); home wins (~¥10k) if you'll actually brew. The café is really selling you a seat, not coffee.</div></a>
-  <a class="item" href="suit-buy-cheap-vs-rental-japan.html"><div class="t">Need a suit in Japan? Buy cheap vs rent — the break-even by number of uses</div><div class="v"><b>The point:</b> wear it 2+ times → buy a cheap chain suit (¥15k–30k). A true one-off, especially a funeral → rent (¥5k–15k). Break-even ≈ 3 uses.</div></a>
+      <a data-cat="leave" href="tax-representative-nozei-kanrinin-japan.html"><div class="t">What is a tax representative (nōzei kanrinin)?</div><div class="v"><b>The point:</b> appoint one before departure or you may forfeit your 20.42% pension reclaim and owe resident tax.</div></a>
+      <a data-cat="leave" href="leaving-a-job-in-japan-money-checklist.html"><div class="t">Quitting or losing your job — the money &amp; admin checklist</div><div class="v"><b>The point:</b> it detaches health insurance, pension and visa — switch each within days; notify Immigration in 14.</div></a>
+
+      <a data-cat="daily" href="suica-pasmo-vs-cash-trains-japan.html"><div class="t">Suica/PASMO vs cash — and when a commuter pass pays off</div><div class="v"><b>The point:</b> tap IC over cash; commute the same route ~15+ round trips/month and a teiki wins.</div></a>
+      <a data-cat="daily" href="cooking-vs-eating-out-japan.html"><div class="t">Cooking at home vs eating out — what it really costs</div><div class="v"><b>The point:</b> one lunch out a day is ~¥90,000/year — unless waste + time erase the gap for solo cooks.</div></a>
+      <a data-cat="daily" href="konbini-vs-supermarket.html"><div class="t">Konbini vs supermarket — what the daily habit costs</div><div class="v"><b>The point:</b> the same basket runs ~30–40% more at the konbini. Mio turns the habit into a yearly number.</div></a>
+      <a data-cat="daily" href="konbini-atm-vs-bank-atm-fees-japan.html"><div class="t">Konbini ATM vs your bank's ATM — the quiet fee</div><div class="v"><b>The point:</b> ~¥110–330 per off-hours withdrawal feels trivial — which is why it costs thousands a year.</div></a>
+      <a data-cat="daily" href="sim-mnp-cashback-trap-japan.html"><div class="t">The ¥20,000 MNP cashback deal — do the numbers work?</div><div class="v"><b>The point:</b> rarely. Compute plan × months + device − cashback; a plain MVNO usually wins within a year.</div></a>
+      <a data-cat="daily" href="secondhand-vs-new-furniture-japan.html"><div class="t">Furnishing your place: new vs secondhand vs rental</div><div class="v"><b>The point:</b> for a 1–3 year stay, secondhand + resell usually wins. Don't forget the appliance disposal fee.</div></a>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:var(--faint);">More everyday guides: coin laundry, umbrellas, the gym, vending machines, winter heating, haircuts, Amazon vs Rakuten, bicycles, tap water & more — tap 🧺 Everyday.</div>
+  </section>
 
   <div class="foot">
     Mio — an emotionless AI that scores money decisions in Japan by calculation. Figures are reference values based on public information at the time of writing; rules change and some are mid-reform in 2026. This is not tax or legal advice — verify with the NTA, MHLW, Japan Pension Service, or a professional.<br>
     <span style="display:inline-block;margin-top:8px;">Some links may be advertising (PR / affiliate); we may earn a referral fee at no cost to you, and it never changes our calculated verdict. Contact: <a href="mailto:contract@miochooses.com">contract@miochooses.com</a></span><br>
-    <a href="/">miochooses.com</a>
+    <a href="/en/travel/">✈️ Travel money</a> · <a href="/">🇯🇵 日本語</a> · <a href="/">miochooses.com</a>
   </div>
 </div>
+
+<script>
+(function(){
+  var bar=document.getElementById('tabbar'), feed=document.getElementById('feed');
+  if(!bar||!feed) return;
+  var cards=[].slice.call(feed.children);
+  function show(cat){
+    cards.forEach(function(a){ var c=(a.getAttribute('data-cat')||'').split(' '); a.style.display=c.indexOf(cat)>=0?'':'none'; });
+    [].slice.call(bar.children).forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-c')===cat); });
+  }
+  bar.addEventListener('click', function(e){ var b=e.target.closest('button'); if(!b) return; show(b.getAttribute('data-c')); });
+  show('pop');
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
