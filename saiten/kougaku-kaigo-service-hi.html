@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高額介護サービス費、1か月の自己負担が上限を超えたら戻る？対象と対象外を条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kougaku-kaigo-service-hi.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="高額介護サービス費｜上限を超えた分は戻る。でも自動では戻らない。AIが条件別に採点">
+<meta name="twitter:description" content="1か月の介護自己負担が所得区分別の上限(一般44,400円など)を超えると超過分が戻る。ただし申請主義で、福祉用具購入・住宅改修・食費居住費は対象外。線引きを計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが介護保険の「高額介護サービス費」を採点。1か月の自己負担が所得区分別の上限(一般44,400円など)を超えると超過分が払い戻される。ただし申請主義で自動では戻らず、福祉用具購入費・住宅改修費・施設の食費居住費は対象外。対象と対象外の線引きを条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kougaku-kaigo-service-hi.html">
+<meta property="og:title" content="高額介護サービス費｜上限を超えた分は戻る。でも自動では戻らない。AIが条件別に採点">
+<meta property="og:description" content="1か月の介護自己負担が所得区分別の上限を超えると超過分が戻る。ただし申請主義で、福祉用具購入・住宅改修・食費居住費は対象外。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e0653a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  /* 視覚サマリー図：大きな文字・余白を詰める */
+  .figsum{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .figsum .row{display:flex;align-items:stretch;border-bottom:1px solid var(--line);}
+  .figsum .row:last-child{border-bottom:0;}
+  .figsum .tag{flex:0 0 92px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:.02em;padding:10px 4px;text-align:center;line-height:1.3;}
+  .figsum .tag.g{background:#0f2016;color:#39d353;}
+  .figsum .tag.r{background:#241412;color:#f0a58e;}
+  .figsum .body{flex:1;padding:12px 14px;}
+  .figsum .big{font-size:22px;font-weight:800;line-height:1.35;}
+  .figsum .big .n{color:var(--g);}
+  .figsum .big .x{color:var(--r);}
+  .figsum .sub{font-size:12.5px;color:var(--mut);margin-top:2px;line-height:1.5;}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .ng{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 高額介護サービス費</div>
+    <h1>高額介護サービス費、1か月の自己負担が<br>上限を超えたら戻る？対象と対象外を採点</h1>
+    <div class="who">🧓 親や自分の介護費が「今月ちょっと高いな」と感じた人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>1か月の介護保険サービスの<b>自己負担合計</b>が、所得区分別の上限（一般世帯は月<b>44,400円</b>など）を超えると、<b>超過分が後から払い戻される</b>制度です。</li>
+        <li>ただし<b>申請主義</b>。多くの自治体は該当者へ通知を送りますが、<b>申請しないと戻りません</b>。放置＝自己負担のまま、が起こり得ます。</li>
+        <li><b>福祉用具の購入費・住宅改修費・施設の食費や居住費・日常生活費は対象外</b>。「介護に払ったお金は全部戻る」ではありません。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>制度のルール</b>で採点します。先に結論 ―― <b>戻るのは「サービス利用料の自己負担が上限を超えた分」だけ</b>。何が対象で何が対象外かの線引きが、この制度のすべてです。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図：上限超過分が戻る／対象外・大きな文字・余白なし -->
+  <div class="figsum">
+    <div class="row">
+      <div class="tag g">戻る</div>
+      <div class="body">
+        <div class="big">1か月の自己負担 <span class="n">− 上限額</span> ＝ 戻る</div>
+        <div class="sub">介護サービス利用料の1～3割負担の合計が、所得区分別の上限（一般 44,400円など）を超えた「超過分」。世帯で合算して判定。</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="tag r">対象外</div>
+      <div class="body">
+        <div class="big"><span class="x">福祉用具の購入費／住宅改修費</span></div>
+        <div class="sub">手すり・段差解消などの住宅改修、ポータブルトイレ・入浴用品などの特定福祉用具の購入費は、この制度では戻りません（別制度の対象）。</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="tag r">対象外</div>
+      <div class="body">
+        <div class="big"><span class="x">施設の食費・居住費・日常生活費</span></div>
+        <div class="sub">施設や在宅サービスでの食費・居住（滞在）費・差額ベッド代・日用品などの実費、区分支給限度額を超えた全額自己負担分も対象外。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">1か月の介護サービス自己負担が上限を超えたら → <span style="color:var(--g)">超過分は戻る（要申請）</span>。<br>ただし福祉用具購入・住宅改修・食費・居住費は → <span style="color:var(--r)">この制度では戻らない</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>上限を超えたサービス自己負担の戻りやすさ</span><span>戻る（申請必須）</span></div><div class="track"><div class="fill" style="width:88%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>福祉用具購入・住宅改修の戻りやすさ</span><span>対象外</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#e0653a,#c24a2c)"></div></div></div>
+      <div class="bar"><div class="lb"><span>施設の食費・居住費の戻りやすさ</span><span>対象外</span></div><div class="track"><div class="fill" style="width:8%;background:linear-gradient(90deg,#e0653a,#c24a2c)"></div></div></div>
+    </div>
+    <div class="note">※上限額は所得区分で異なり、制度改正で見直されることがあります。数値は本記事末尾の出典時点の一般的な区分です。最新はお住まいの市区町村でご確認ください。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>この制度は「介護でかかったお金が戻る」ものではありません。対象は<b>介護保険サービスの利用者負担（原則1～3割）の、1か月合計</b>です。その合計が所得区分ごとの上限を超えたとき、<b>超えた分だけ</b>が「高額介護（介護予防）サービス費」として払い戻されます。</p>
+  <div class="calc">払い戻し額 ＝ その月のサービス自己負担合計 − 所得区分別の上限額<small>マイナス（上限以下）なら払い戻しはゼロ。上限を超えた「超過分」だけが戻ります</small></div>
+  <p>もう一つ大事なのが<b>世帯合算</b>です。本人の負担が上限に届かなくても、同じ世帯で介護保険を使う人の負担を合わせて上限を超えれば、超過分が払い戻されます（区分や合算の扱いは自治体の案内に従ってください）。</p>
+
+  <h2>所得区分別の上限額（月額・一般的な区分）</h2>
+  <p>上限額は所得区分で段階的に上がります。以下は出典時点で示されている代表的な区分です。<b>正確な区分・金額は改正され得る</b>ため、必ず最新の公式情報で確認してください。</p>
+  <table>
+    <tr><th>区分（世帯）</th><th>月額の上限（負担限度額）</th></tr>
+    <tr><td>課税所得690万円以上（現役並み）</td><td>140,100円</td></tr>
+    <tr><td>課税所得380万円以上690万円未満（現役並み）</td><td>93,000円</td></tr>
+    <tr><td>課税所得145万円以上380万円未満（現役並み）／一般世帯</td><td class="win">44,400円</td></tr>
+    <tr><td>市区町村民税非課税（年金収入等が一定額超）</td><td>24,600円</td></tr>
+    <tr><td>市区町村民税非課税（年金収入等が一定額以下）</td><td>15,000円</td></tr>
+    <tr><td>生活保護受給者 等</td><td>15,000円</td></tr>
+  </table>
+  <p class="note">※現役並み所得の上限（44,400円／93,000円／140,100円）は所得に応じた区分です。非課税区分の判定基準額は自治体表記により細かく定められています。区分名・基準額・金額は改正や自治体運用で変わることがあります。</p>
+
+  <h2>採点の分岐点：それは「サービス利用料」か、それ以外か</h2>
+  <p>戻るかどうかの判断軸は1つ。<b>そのお金が介護保険サービスの利用者負担（1～3割）か、それ以外か</b>です。それ以外は、この制度では戻りません。</p>
+  <table>
+    <tr><th>払ったお金</th><th>この制度で戻る？</th><th>理由</th></tr>
+    <tr><td>訪問介護・通所介護・施設サービス等の利用者負担（1～3割）</td><td class="win">対象</td><td>上限を超えた分が高額介護サービス費として払い戻される</td></tr>
+    <tr><td>特定福祉用具の購入費（ポータブルトイレ・入浴用品など）</td><td class="ng">対象外</td><td>購入費は別の給付（福祉用具購入費支給）の枠組み</td></tr>
+    <tr><td>住宅改修費（手すり・段差解消など）</td><td class="ng">対象外</td><td>住宅改修費支給という別制度で扱う</td></tr>
+    <tr><td>施設・ショートステイの食費・居住（滞在）費</td><td class="ng">対象外</td><td>実費負担であり利用者負担の合計に含めない（別に負担限度額認定の制度あり）</td></tr>
+    <tr><td>差額ベッド代・日用品などの日常生活費</td><td class="ng">対象外</td><td>介護保険の利用者負担ではないため</td></tr>
+    <tr><td>区分支給限度額を超えて全額自己負担したサービス料</td><td class="ng">対象外</td><td>保険給付の対象外の全額自己負担分は合算しない</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>ネットには「介護費が戻る制度」とだけ紹介する記事があります。この検証室のやり方では、<b>戻るのはあくまでサービス利用料の自己負担の超過分だけ</b>と機械的に線引きします。福祉用具の購入や住宅改修は、それぞれ別の給付制度（福祉用具購入費支給・住宅改修費支給）があるので、そちらで確認するのが正解です。</p>
+
+  <div class="cta">
+    <div class="h">▶ 「うちは戻る対象？いくら戻る？」を整理したい人へ</div>
+    <div class="ph">まずは<b>お住まいの市区町村の介護保険窓口</b>へ。所得区分・上限額・申請の要否は自治体ごとに案内があります。判断に迷う場合は、介護と家計の両面を専門家に相談するのも手です。<br><!-- ASP_SLOT: 介護/FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「自動で戻る」と思い込む：</b>申請主義です。多くの自治体は該当者へ申請書を郵送しますが、通知を見落として申請しないと戻りません。初回に申請すれば、以降は自動振込になる自治体もあります（運用は自治体次第）。</li>
+    <li><b>福祉用具の“購入”を含めて計算する：</b>福祉用具の<b>レンタル</b>の自己負担はサービス利用料として対象になり得ますが、<b>購入費</b>は対象外です。ここを混同しがちです。</li>
+    <li><b>食費・居住費まで戻ると期待する：</b>施設の食費・居住費は対象外。ただし低所得の方には別に「特定入所者介護サービス費（負担限度額認定）」という軽減制度があります（本制度とは別）。</li>
+    <li><b>上限を超えていないのに申請できると思う：</b>上限以下の月は払い戻しゼロです。まず自己負担合計が上限を超えているかを確認しましょう。</li>
+    <li><b>申請の時効に注意：</b>払い戻しの申請には期限（時効）があります。過去分をさかのぼる場合は早めに窓口へ。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>1か月のサービス利用者負担の合計が所得区分別の上限（一般44,400円など）を超えたら、<b>超過分が払い戻される</b>。</li>
+    <li>ただし<b>申請主義</b>。通知が来ても、申請しなければ戻らない。</li>
+    <li>戻るのは<b>サービス利用料の自己負担だけ</b>。福祉用具購入・住宅改修・食費・居住費・日常生活費は対象外。</li>
+    <li>上限額・区分・要件は<b>改正され得る</b>。正確な金額と申請方法は、必ずお住まいの市区町村で確認を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 医療費が高い月がある人は <a href="iryohi-koujo-vs-selfmed.html" style="color:#58a6ff;text-decoration:none;font-weight:700">医療費控除 vs セルフメディケーションの採点 →</a><br><span style="color:var(--faint);font-size:12px">介護と医療の自己負担を合算する制度も別にあります（高額医療・高額介護合算制度）。</span></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.mhlw.go.jp/content/000334526.pdf" target="_blank" rel="noopener">厚生労働省「高額介護サービス費の負担限度額が見直されます」（PDF）</a>（所得区分別の月額上限の見直し。現役並み所得区分の追加等）<br>
+    ・<a href="https://www.city.higashiosaka.lg.jp/0000002291.html" target="_blank" rel="noopener">東大阪市「介護サービス費の自己負担が高額になったとき（高額介護サービス費）」</a>（区分別上限額一覧／対象外＝福祉用具購入費・住宅改修費・施設の食費居住費・日常生活費・区分支給限度額超過分／該当者への通知・申請）<br>
+    ・<a href="https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/koreisha-kaigo/kaigo-hoken/kougakukaigo.html" target="_blank" rel="noopener">横浜市「介護サービスの利用者負担軽減について（高額介護サービス費）」</a>（払い戻しの仕組み・世帯合算・申請方法の一例）<br>
+    <span class="note">※制度・上限額・所得区分は改正されることがあります。本記事の数値は各出典時点の一般的な区分であり、個別の適用や最新の金額・区分・判定基準・申請期限は、厚生労働省およびお住まいの市区町村（介護保険担当）で必ずご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="iryohi-koujo-vs-selfmed.html">医療費控除の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

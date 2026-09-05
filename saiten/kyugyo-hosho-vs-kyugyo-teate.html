@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>休業補償(労災) vs 休業手当(会社都合) vs 傷病手当金(健保)｜誰が払う・何%・課税かをAIが採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kyugyo-hosho-vs-kyugyo-teate.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="休業補償 vs 休業手当 vs 傷病手当金｜3つは全部別物。誰が払う・何%・課税かをAIが採点">
+<meta name="twitter:description" content="名前が似ている3制度を取り違えて損する人が多い。労災80%相当は非課税、会社都合の休業手当60%以上は給与課税、傷病手当金2/3は非課税。条件別に計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「休業補償(労災)」「休業手当(会社都合・労基法26条)」「傷病手当金(健保)」を計算で採点。誰が払うか・給付率(労災80%相当/休業手当は平均賃金60%以上/傷病手当金は2/3)・課税か非課税か(労災と傷病手当金は非課税、休業手当は給与課税)を条件別に整理。出典つき。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kyugyo-hosho-vs-kyugyo-teate.html">
+<meta property="og:title" content="休業補償 vs 休業手当 vs 傷病手当金｜3つは全部別物。誰が払う・何%・課税かをAIが採点">
+<meta property="og:description" content="名前が似ている3制度を取り違えて損する人が多い。労災80%相当は非課税、会社都合の休業手当60%以上は給与課税、傷病手当金2/3は非課税。条件別に計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図 */
+  .summ{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .summ .c{background:#0b121a;border:1px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;}
+  .summ .c .nm{font-size:13px;font-weight:800;color:var(--mut);line-height:1.35;}
+  .summ .c .rt{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1;}
+  .summ .c .rs{font-size:11px;color:var(--faint);margin-top:4px;line-height:1.3;}
+  .summ .c .tax{margin-top:10px;font-size:13px;font-weight:800;padding:4px 0;border-radius:8px;}
+  .summ .c .who2{margin-top:8px;font-size:11px;color:var(--faint);line-height:1.35;}
+  .tax-no{background:#101d16;color:#39d353;border:1px solid #2ea04355;}
+  .tax-yes{background:#241416;color:#ff7b72;border:1px solid #f8514955;}
+  @media(max-width:560px){.summ .c .rt{font-size:27px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 休業補償・休業手当・傷病手当金</div>
+    <h1>休業補償 vs 休業手当 vs 傷病手当金<br>名前は似てるけど、全部“別物”です</h1>
+    <div class="who">🩹 仕事を休むことになり、何がもらえるか調べている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>3つは「原因」でまず分かれる</b>。仕事が原因のケガ・病気＝<b>労災の休業(補償)給付</b>、会社都合で休まされた＝<b>休業手当</b>、仕事以外の病気・ケガ＝<b>傷病手当金</b>。</li>
+        <li><b>払う人が違う</b>。労災＝労災保険（国）、休業手当＝会社、傷病手当金＝健康保険。</li>
+        <li><b>課税が違う</b>。労災と傷病手当金は<b>非課税</b>、会社都合の休業手当は<b>給与として課税</b>。ここを取り違える人が多いです。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。この3つは「休んだときにお金がもらえる」点だけが似ていて、<b>誰が払うか・給付率・課税か</b>が全部違います。自分がどれに当てはまるかを間違えると、申請先も金額も税金も変わってしまいます。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図 -->
+  <div class="summ">
+    <div class="c">
+      <div class="nm">休業(補償)給付<br><span style="color:var(--faint);font-weight:600">労災保険</span></div>
+      <div class="rt" style="color:var(--g)">約80<span style="font-size:18px">%</span></div>
+      <div class="rs">給付60%＋特別支給金20%<br>（給付基礎日額ベース）</div>
+      <div class="tax tax-no">非課税</div>
+      <div class="who2">払う：労災保険（国）<br>仕事が原因</div>
+    </div>
+    <div class="c">
+      <div class="nm">休業手当<br><span style="color:var(--faint);font-weight:600">労基法26条</span></div>
+      <div class="rt" style="color:var(--o)">60<span style="font-size:18px">%〜</span></div>
+      <div class="rs">平均賃金の<br>100分の60“以上”</div>
+      <div class="tax tax-yes">給与課税</div>
+      <div class="who2">払う：会社<br>会社都合の休業</div>
+    </div>
+    <div class="c">
+      <div class="nm">傷病手当金<br><span style="color:var(--faint);font-weight:600">健康保険</span></div>
+      <div class="rt" style="color:var(--b)">2/3</div>
+      <div class="rs">標準報酬日額の<br>3分の2</div>
+      <div class="tax tax-no">非課税</div>
+      <div class="who2">払う：健康保険<br>仕事以外の病気・ケガ</div>
+    </div>
+  </div>
+  <div class="note" style="margin-top:8px">※給付率の計算のもとになる「基準額」も制度ごとに違います（給付基礎日額／平均賃金／標準報酬日額）。単純な%比較ではなく、下の本文で条件を確認してください。</div>
+
+  <!-- (3) AI判定（条件別） -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      仕事中・通勤中のケガや病気で休む → <span style="color:var(--g)">労災の休業(補償)給付</span>（非課税・約80%相当）。<br>
+      会社の都合（経営難・設備故障など）で休まされた → <span style="color:var(--o)">休業手当</span>（会社が平均賃金の60%以上を支払う・給与課税）。<br>
+      仕事とは関係ない病気・ケガで休む → <span style="color:var(--b)">傷病手当金</span>（健保が標準報酬日額の2/3・非課税）。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>労災 休業(補償)給付（給付基礎日額ベース）</span><span>約80%相当</span></div><div class="track"><div class="fill" style="width:80%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>休業手当（平均賃金ベース・最低ライン）</span><span>60%以上</span></div><div class="track"><div class="fill" style="width:60%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>傷病手当金（標準報酬日額ベース）</span><span>約67%（2/3）</span></div><div class="track"><div class="fill" style="width:67%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※バーは「率」のイメージ比較で、基準額が違うため実際の受取額の大小を保証するものではありません。給付率と課税の正確な条件は末尾の公式出典で確認してください。</div>
+  </div>
+
+  <h2>採点の考え方（どこで“別物”になるのか）</h2>
+  <p>3つを混同する最大の原因は、名前が似ていることです。でも制度としては、まず<b>「休む原因」</b>で入口が分かれます。</p>
+  <div class="calc">仕事が原因 → 労災 ／ 会社の都合 → 休業手当 ／ 仕事以外の病気・ケガ → 傷病手当金<small>入口が違うので、申請する窓口も、払う人も、税金の扱いも変わります</small></div>
+  <p>「休業補償（労災）」と「休業手当（会社都合）」は名前がほぼ同じですが、片方は労災保険から出て非課税、もう片方は会社が給料として払うので課税されます。ここが取り違えて損する人が最も多いポイントです。</p>
+
+  <h2>1. 休業(補償)給付（労災保険）</h2>
+  <p>仕事中や通勤中のケガ・病気で働けず、賃金を受けられないときに、<b>労災保険</b>から支給されます。厚生労働省の説明では、休業1日につき<b>給付基礎日額の60%（休業(補償)給付）＋20%（休業特別支給金）＝合計80%相当</b>が支給されます。最初の3日間は待期期間で、業務災害の場合はこの3日分を会社（事業主）が平均賃金の60%で補償します。</p>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>誰が払う</td><td>労災保険（国）</td></tr>
+    <tr><td>給付率</td><td class="win">給付基礎日額の80%相当（60%＋特別支給金20%）</td></tr>
+    <tr><td>課税</td><td class="win">非課税</td></tr>
+    <tr><td>待期</td><td>最初の3日間は労災の対象外（業務災害は会社が補償）</td></tr>
+  </table>
+  <p>受け取る側にとって重要なのは、<b>非課税</b>である点です（所得税法上、労災保険の給付は課税されない扱いとされています）。詳細な要件は末尾の厚労省・労災の出典で確認してください。</p>
+
+  <h2>2. 休業手当（労働基準法26条・会社都合）</h2>
+  <p>会社側の都合（経営難、設備の故障、原材料不足など「使用者の責に帰すべき事由」）で休業させられたとき、<b>会社</b>が支払う手当です。労働基準法26条は「<b>平均賃金の100分の60以上</b>の手当を支払わなければならない」と定めています。「60%以上」なので、就業規則などでそれより高い割合を定めているケースもあります。</p>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>誰が払う</td><td>会社（使用者）</td></tr>
+    <tr><td>給付率</td><td>平均賃金の60%以上（労基法26条の最低ライン）</td></tr>
+    <tr><td>課税</td><td class="win" style="color:var(--o)">給与所得として課税</td></tr>
+    <tr><td>ポイント</td><td>労災の「休業補償」とは別物。会社都合の休業がきっかけ</td></tr>
+  </table>
+  <p>ここが混同されやすい理由は名前です。「休業補償」と「休業手当」。前者は労災（非課税）、後者は会社が払う賃金の一種で<b>給与として課税</b>されます。「休業補償だから非課税だと思っていた」→ 実は会社都合の休業手当で課税、という取り違えが起きがちです。</p>
+
+  <h2>3. 傷病手当金（健康保険）</h2>
+  <p>仕事とは関係のない病気やケガ（＝労災の対象外）で働けず、給与が受けられないときに、<b>健康保険</b>（協会けんぽや健保組合）から支給されます。協会けんぽの説明では、<b>連続する3日間の待期</b>を含めて仕事に就けなかった場合に、4日目以降の労務不能日について支給されます。</p>
+  <div class="calc">1日あたり ＝（支給開始日以前12か月の標準報酬月額の平均 ÷ 30日）× 2/3<small>支給は通算して最長1年6か月まで（協会けんぽの説明による）</small></div>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>誰が払う</td><td>健康保険（協会けんぽ・健保組合など）</td></tr>
+    <tr><td>給付率</td><td>標準報酬日額の3分の2（約67%）</td></tr>
+    <tr><td>課税</td><td class="win">非課税</td></tr>
+    <tr><td>待期</td><td>連続する3日間の待期のあと、4日目以降が対象</td></tr>
+  </table>
+  <p>傷病手当金も<b>非課税</b>です。ただし休職中も社会保険料や住民税（前年所得にかかる分）の支払いは続くため、手取り感覚では給料の2/3より減って見えることがあります。</p>
+
+  <h2>条件別の採点：あなたはどれ？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>使う制度</th><th>払う人／課税</th></tr>
+    <tr><td>仕事中・通勤中のケガや病気で休む</td><td class="win">労災 休業(補償)給付</td><td>労災保険／非課税</td></tr>
+    <tr><td>会社の都合（経営難・設備故障等）で休まされた</td><td class="win" style="color:var(--o)">休業手当（労基法26条）</td><td>会社／給与課税</td></tr>
+    <tr><td>仕事と関係ない病気・ケガで4日以上休む</td><td class="win" style="color:var(--b)">傷病手当金</td><td>健康保険／非課税</td></tr>
+    <tr><td>「休業補償」という言葉だけで非課税と思っている</td><td class="win" style="color:var(--o)">要確認</td><td>会社都合の休業手当なら課税</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「どれが一番得か」を単純な%だけで比べるのは危険です。給付率のもとになる基準額（給付基礎日額／平均賃金／標準報酬日額）が制度ごとに違い、待期や上限、社会保険料の負担も絡むためです。まず<b>「自分の休みの原因はどれか」</b>で入口を正しく選ぶことが、損しない最短ルートです。</p>
+
+  <div class="cta">
+    <div class="h">▶ 制度は選べても、家計の“穴”は埋まっていますか？</div>
+    <div class="ph">給付率は60〜80%程度。残りの2〜4割は自分で備える範囲です。加入中の保険や公的給付で足りるか不安なら、中立の立場で家計を点検してもらうのも手です。<br><!-- ASP_SLOT: FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「休業補償」と「休業手当」を混同する：</b>労災の休業(補償)給付は非課税、会社都合の休業手当は給与として課税。名前が似ているだけで中身は別制度です。</li>
+    <li><b>%だけで比較する：</b>労災80%相当・傷病手当金2/3・休業手当60%以上と数字が並びますが、掛ける基準額が違うため単純比較はできません。</li>
+    <li><b>非課税でも手取りが減って見える：</b>傷病手当金は非課税でも、休職中の社会保険料や住民税の支払いは続くため、実感としては2/3より少なく感じることがあります。</li>
+    <li><b>労災か健保か迷ったまま申請する：</b>仕事が原因なら労災、仕事以外なら傷病手当金。原因の切り分けを誤ると、そもそも使う制度が変わります。判断に迷う場合は勤務先・年金事務所・労働基準監督署・加入している健康保険に確認を。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>3制度はまず「休む原因」で分かれる：仕事が原因＝労災、会社都合＝休業手当、仕事以外の病気ケガ＝傷病手当金。</li>
+    <li>払う人：労災＝労災保険（国）、休業手当＝会社、傷病手当金＝健康保険。</li>
+    <li>給付率：労災は給付基礎日額の80%相当、休業手当は平均賃金の60%以上、傷病手当金は標準報酬日額の2/3。</li>
+    <li>課税：労災と傷病手当金は非課税、会社都合の休業手当は給与として課税。ここの取り違えに注意。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 他の“制度の隅”も採点しています：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブを見る →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000154476.html" target="_blank" rel="noopener">厚生労働省 3-5 休業(補償)等給付の計算方法</a>（給付基礎日額の60%＋休業特別支給金20%＝80%相当・待期3日）<br>
+    ・<a href="https://www.mhlw.go.jp/bunya/roudoukijun/roudousaigai.html" target="_blank" rel="noopener">厚生労働省 労働災害・労災保険（総合案内）</a>（労災保険給付の概要）<br>
+    ・<a href="https://elaws.e-gov.go.jp/document?lawid=322AC0000000049" target="_blank" rel="noopener">労働基準法 第26条（e-Gov法令検索）</a>（使用者の責に帰すべき休業は平均賃金の100分の60以上の休業手当）<br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html" target="_blank" rel="noopener">全国健康保険協会（協会けんぽ） 傷病手当金</a>（業務外の病気・ケガ・連続3日の待期・標準報酬日額の2/3・支給開始日以前12か月の標準報酬月額平均÷30×2/3・通算1年6か月）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1400.htm" target="_blank" rel="noopener">国税庁 No.1400 給与所得</a>（賃金・給与は給与所得＝課税。会社が支払う休業手当は賃金にあたる旨の確認）<br>
+    <span class="note">※制度は改正されることがあります。給付率・課税・要件・期限は各時点の公式情報にもとづく参考です。最新の条件は厚生労働省・労働基準監督署・国税庁・お住まい／加入の健康保険（協会けんぽ・健保組合）でご確認ください。個別の課税判断や適用可否は税務署・専門家へ。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

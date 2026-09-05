@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>障害者控除、手帳がなくても使える？ 要介護の高齢者・扶養家族の分まで条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/shogaisha-koujo-minaoshi.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="障害者控除の見落とし｜手帳なしの要介護高齢者・扶養家族の分も。AIが条件別に採点">
+<meta name="twitter:description" content="27万／40万／75万の障害者控除。手帳だけじゃない、市区町村の認定を受けた高齢者も対象になり得る。扶養家族の分も使える。条件別に感情ゼロで採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「障害者控除」を条件別に採点。控除額は一般27万・特別障害者40万・同居特別障害者75万。障害者手帳だけでなく、満65歳以上で市区町村長の認定（障害者控除対象者認定書）を受けた高齢者も対象になり得る。扶養している配偶者・親族の分も使える。出典つき。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/shogaisha-koujo-minaoshi.html">
+<meta property="og:title" content="障害者控除の見落とし｜手帳なしの要介護高齢者・扶養家族の分も。AIが条件別に採点">
+<meta property="og:description" content="27万／40万／75万の障害者控除。手帳だけじゃない、市区町村の認定を受けた高齢者も対象になり得る。扶養家族の分も使える。条件別に感情ゼロで採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  .summ{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;}
+  .summ .c{background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 8px;text-align:center;}
+  .summ .amt{font-size:30px;font-weight:800;line-height:1.1;color:var(--tx);}
+  .summ .amt span{font-size:14px;font-weight:800;}
+  .summ .nm{margin-top:6px;font-size:12px;font-weight:800;color:var(--mut);}
+  .summ .c.a .amt{color:var(--b);} .summ .c.b .amt{color:var(--o);} .summ .c.c .amt{color:#39d353;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 障害者控除の見落とし</div>
+    <h1>障害者控除、手帳がなくても使える？<br>要介護の親・扶養家族の分まで採点</h1>
+    <div class="who">🧾 親を扶養している人・介護している家族がいる人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>控除額は<b>一般27万円・特別障害者40万円・同居特別障害者75万円</b>（所得税・所得控除）。</li>
+        <li>対象は<b>障害者手帳を持つ人だけではない</b>。満65歳以上で市区町村長の認定（障害者控除対象者認定書）を受けた高齢者も<b>対象になり得る</b>。</li>
+        <li><b>扶養している配偶者・親族の分も使える</b>。同居して介護している親の分を、あなたの申告で引ける可能性がある。</li>
+        <li>※<b>要介護認定＝自動で対象、ではない</b>。別途、市区町村へ認定書の申請が必要な点に注意。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。障害者控除は「手帳を持つ本人のもの」と思われがちですが、条件を満たせば<b>扶養する家族の分</b>や<b>手帳のない要介護高齢者の分</b>まで届き得る、見落とされやすい制度です。ただし“自動で付く”ものではありません。ここを混同しないよう機械的に整理します。</div>
+  </header>
+
+  <div class="summ">
+    <div class="c a"><div class="amt">27<span>万円</span></div><div class="nm">一般の障害者</div></div>
+    <div class="c b"><div class="amt">40<span>万円</span></div><div class="nm">特別障害者</div></div>
+    <div class="c c"><div class="amt">75<span>万円</span></div><div class="nm">同居特別障害者</div></div>
+  </div>
+  <div class="note" style="text-align:center">↑ 所得税の所得控除額（国税庁 No.1160）。税額そのものではなく、課税される所得を減らす額です。住民税は別の控除額になります。</div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">障害者手帳を持つ本人・扶養家族 → <span style="color:var(--b)">対象（区分に応じて27／40／75万）</span>。<br>手帳はないが満65歳以上で市区町村長の認定を受けた高齢者 → <span style="color:var(--o)">認定を受ければ対象になり得る</span>。<br>要介護認定を受けただけ（認定書の申請なし） → <span style="color:var(--o)">それだけでは判定不能／自動では対象にならない</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>手帳あり（本人・扶養家族）の該当しやすさ</span><span>高い</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>手帳なし高齢者（認定書を取得した場合）</span><span>中〜高</span></div><div class="track"><div class="fill" style="width:62%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>要介護認定だけで“自動的に”対象</span><span>誤解</span></div><div class="track"><div class="fill" style="width:18%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※最終的な区分（一般か特別障害者か）は、手帳の等級や市区町村の認定内容によって決まります。個別の該当可否は税務署・お住まいの自治体でご確認ください。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>障害者控除は<b>所得控除</b>です。つまり「税金がこの額だけ戻る」ではなく、「課税される所得がこの額だけ減る」制度です。国税庁 No.1160によると、所得税の控除額は次のとおりとされています。</p>
+  <div class="calc">一般の障害者 27万円 ／ 特別障害者 40万円 ／ 同居特別障害者 75万円<small>いずれも所得税の所得控除額。実際に軽くなる税額は「控除額 × あなたの税率」の目安になります</small></div>
+  <p>ざっくりの目安として、所得税率が10%の人なら、40万円の控除で所得税がおよそ4万円軽くなる方向に働きます（実際は住民税分の控除も別途あり、条件で変わります）。<b>金額の大きさより、「気づかず使っていない人が多い」ことが最大の損</b>――というのがこの制度の採点ポイントです。</p>
+
+  <h2>採点の分岐点①：対象は「手帳を持つ人」だけではない</h2>
+  <p>国税庁 No.1160では、所得税法上の障害者に当てはまる人として、身体障害者手帳・療育（知的障害）判定・精神障害者保健福祉手帳を持つ人などが挙げられています。等級によっては<b>特別障害者</b>に区分されます。</p>
+  <p>ここで見落とされやすいのが、<b>手帳を持っていない高齢者</b>のケースです。No.1160には次の趣旨の対象者が記載されています。</p>
+  <div class="calc">精神または身体に障害のある満65歳以上の人で、その障害の程度が手帳保有者に準ずるものとして<b>市町村長等や福祉事務所長の認定</b>を受けている人<small>このうち特別障害者に準ずると認定された人は「特別障害者」になる、とされています（国税庁 No.1160）</small></div>
+  <p>つまり、<b>手帳がなくても、市区町村の認定を受ければ障害者控除の対象になり得る</b>ということです。この認定は自治体で「<b>障害者控除対象者認定書</b>」として交付されることが多く、寝たきりや認知症などで介護が必要な高齢者が対象になっている自治体があります。</p>
+
+  <h2>採点の分岐点②：扶養している家族の分も使える</h2>
+  <p>障害者控除は、本人だけの制度ではありません。No.1160には「納税者自身、同一生計配偶者または扶養親族が障害者に当てはまる場合」に控除を受けられる旨が記載されています。</p>
+  <div class="calc">対象になり得る人 ＝ あなた本人 ＋ 生計を一にする配偶者 ＋ 扶養親族<small>同居して介護している親などが対象に当てはまる場合、あなたの申告で控除を受けられる可能性があります</small></div>
+  <p>とくに<b>同居特別障害者</b>の75万円は、同居して面倒をみている特別障害者の家族がいる場合の区分です。親を扶養に入れて介護している人が、この区分に気づいていないことは珍しくありません。</p>
+
+  <h2>条件別の採点：あなたのケースはどこ？</h2>
+  <table>
+    <tr><th>ケース</th><th>採点</th><th>理由・注意</th></tr>
+    <tr><td>本人・扶養家族が身体障害者手帳等を持つ</td><td class="win">対象</td><td>等級で一般（27万）か特別障害者（40万）かが決まる</td></tr>
+    <tr><td>同居して介護する特別障害者の親を扶養している</td><td class="win">対象</td><td>同居特別障害者=75万に該当する可能性。見落とし多い</td></tr>
+    <tr><td>手帳はないが満65歳以上で市区町村長の認定を受けた</td><td class="win">対象になり得る</td><td>認定内容で一般／特別に区分。認定書の取得が前提</td></tr>
+    <tr><td>親が要介護認定を受けている（認定書は未申請）</td><td style="color:var(--o);font-weight:800">要確認</td><td>要介護認定＝自動で障害者控除、ではない。別途、市区町村へ認定書を申請する必要がある</td></tr>
+    <tr><td>過去に該当していたが申告し忘れていた</td><td style="color:var(--o);font-weight:800">要確認</td><td>要件を満たしていれば、過去分の還付（更正の請求等）を検討できる場合がある。税務署で確認を</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>この制度でいちばん多い誤解は「介護認定を受けたら自動で障害者控除が付く」というものです。これは<b>そのままでは正しくありません</b>。手帳がない高齢者の場合、多くは<b>市区町村へ「障害者控除対象者認定書」を申請し、交付を受ける</b>手続きが必要です。認定の基準や運用は自治体ごとに異なるため、「自分の親が該当するか」はお住まいの市区町村へ確認するのが確実です。</p>
+
+  <div class="cta">
+    <div class="h">▶ 「うちの親は該当する？」を専門家に整理してもらう</div>
+    <div class="ph">認定書の要否・区分（一般か特別障害者か）・扶養の入れ方・過去分の還付可否は、家庭の状況で変わります。自己判断が不安なら、税やお金の専門家に条件を整理してもらうのも手です。<br><!-- ASP_SLOT: FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>要介護認定＝障害者控除、ではない：</b>要介護の認定と、税の障害者控除の「認定書」は別物です。手帳のない高齢者は、原則として市区町村へ認定書を申請して初めて対象になり得ます。</li>
+    <li><b>「手帳がないから無理」と最初からあきらめる：</b>満65歳以上で市区町村長の認定を受けた人は、手帳がなくても対象になり得ます（No.1160）。あきらめる前に自治体へ確認を。</li>
+    <li><b>扶養家族の分を入れ忘れる：</b>同居して介護する親などが該当する場合、あなたの申告（年末調整・確定申告）で控除できることがあります。とくに同居特別障害者の75万円は見落としが多い区分です。</li>
+    <li><b>控除額＝戻る税額と勘違いする：</b>27／40／75万は所得控除額で、税金そのものの額ではありません。実際に軽くなる税額は税率次第です。</li>
+    <li><b>住民税と混同する：</b>この記事の金額は所得税の控除額です。住民税の障害者控除額は別に定められています。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>控除額は一般27万・特別障害者40万・同居特別障害者75万（所得税の所得控除）。</li>
+    <li>対象は手帳保有者だけでなく、満65歳以上で市区町村長の認定を受けた高齢者も含まれ得る。</li>
+    <li>扶養する配偶者・親族の分も対象。同居で介護する親の75万区分は見落としやすい。</li>
+    <li>要介護認定だけで自動的に対象にはならない。手帳がない高齢者は市区町村へ認定書の申請が必要。</li>
+    <li>該当可否・区分・過去分の還付は、税務署とお住まいの自治体で確認するのが確実。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 見落とし控除つながりで：<a href="shotoku-koujo-checklist.html" style="color:#58a6ff;text-decoration:none;font-weight:700">所得控除チェックリストの採点 →</a><br><span style="color:var(--faint);font-size:12px">離れて暮らす親を扶養に入れられる？</span> <a href="bekkyo-oya-fuyou.html" style="color:#58a6ff;text-decoration:none;font-weight:700">別居の親の扶養 採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160.htm" target="_blank" rel="noopener">国税庁 タックスアンサー No.1160 障害者控除</a>（控除額：一般27万円／特別障害者40万円／同居特別障害者75万円。対象＝納税者本人・同一生計配偶者・扶養親族。満65歳以上で市町村長等・福祉事務所長の認定を受けた人も対象、特別障害者に準ずる認定を受けた人は特別障害者）<br>
+    <span class="note">※制度は改正されることがあります。障害者控除対象者認定書の交付基準・手続きは市区町村ごとに異なります。要介護認定の有無だけで税の障害者控除が自動的に適用されるものではありません。金額は所得税の所得控除額であり、住民税は別に定められています。最新・個別の条件は国税庁・お住まいの市区町村・税務署でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="shotoku-koujo-checklist.html">所得控除チェックリスト</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
