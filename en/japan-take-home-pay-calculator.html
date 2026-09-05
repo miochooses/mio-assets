@@ -104,7 +104,7 @@
         <span class="hint">Your total yearly pay including bonuses, before anything is deducted.</span>
       </label>
       <div class="money">
-        <input type="number" id="gross" inputmode="numeric" min="0" step="100000" value="4000000" placeholder="4000000">
+        <input type="text" id="gross" inputmode="numeric" value="4,000,000" placeholder="4,000,000" autocomplete="off">
       </div>
     </div>
 
@@ -274,7 +274,7 @@
   }
 
   function render(){
-    var gross = parseFloat(document.getElementById("gross").value);
+    var gross = parseFloat((document.getElementById("gross").value||"").replace(/[^0-9.]/g,""))||0;
     var age40 = document.getElementById("age40").checked;
     var r = compute(gross, age40);
 
@@ -319,7 +319,7 @@
   }
 
   // wire up
-  document.getElementById("gross").addEventListener("input", render);
+  (function(){var g=document.getElementById("gross");g.addEventListener("input",function(){var d=(g.value||"").replace(/[^0-9]/g,"");g.value=d?Number(d).toLocaleString("en-US"):"";render();});})();
   var ages = document.querySelectorAll("input[name=age]");
   for (var i = 0; i < ages.length; i++){ ages[i].addEventListener("change", render); }
 
