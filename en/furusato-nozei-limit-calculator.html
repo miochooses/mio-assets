@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Furusato nozei limit calculator (hometown tax) for foreigners | Mio</title>
+<meta name="description" content="Free furusato nozei limit calculator in English: estimate your hometown-tax donation ceiling from your salary and family situation. Donate up to it for a net ¥2,000 cost. Rough estimate for foreign residents — runs 100% in your browser.">
+<link rel="canonical" href="https://miochooses.com/en/furusato-nozei-limit-calculator.html">
+<meta property="og:title" content="Furusato nozei limit calculator (hometown tax), in English">
+<meta property="og:description" content="Type your salary and family info and Mio estimates your furusato nozei donation limit — the amount you can give for a net ¥2,000 cost. Rough estimate, runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/mio-icon-180.png">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:38px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);} .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:32px;font-size:19px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;} .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .calc{font-size:15px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;} th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;} .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;} .foot a{color:var(--b);text-decoration:none;}
+
+  /* ---- calculator UI (extends the shared theme) ---- */
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-top:18px;}
+  .fieldrow{margin-top:16px;}
+  .fieldrow:first-child{margin-top:0;}
+  .lbl{display:block;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.02em;margin-bottom:8px;}
+  .lbl .hint{display:block;font-weight:600;color:var(--faint);font-size:11.5px;margin-top:3px;}
+  .money{position:relative;}
+  .money::before{content:"¥";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint);font-weight:800;font-size:16px;pointer-events:none;}
+  input[type=number]{width:100%;background:#0b121a;border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:17px;font-weight:700;padding:13px 14px 13px 30px;-moz-appearance:textfield;}
+  input[type=number]:focus{outline:none;border-color:var(--b);}
+  .segs{display:flex;gap:8px;flex-wrap:wrap;}
+  .seg{flex:1 1 140px;}
+  .seg input{position:absolute;opacity:0;pointer-events:none;}
+  .seg label{display:block;text-align:center;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:11px 10px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer;}
+  .seg input:checked + label{border-color:var(--b);color:var(--tx);background:#12202f;box-shadow:inset 0 0 0 1px var(--b);}
+  .headline{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;}
+  .hbox{flex:1 1 200px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .hbox .k{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--faint);text-transform:uppercase;}
+  .hbox .v{font-size:26px;font-weight:800;margin-top:4px;line-height:1.2;}
+  .hbox .v.net{color:var(--g);}
+  .hbox .sub{font-size:12px;color:var(--mut);margin-top:2px;}
+  .rate{margin-top:14px;font-size:13px;color:var(--mut);text-align:center;}
+  .rate b{color:var(--o);font-size:15px;}
+  .bd td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;}
+  .bd td.bar{padding:0;width:34%;}
+  .bar span{display:block;height:9px;border-radius:5px;background:linear-gradient(90deg,var(--o),#c96a24);min-width:2px;}
+  .bd tr.net-row td{background:#101d16;color:var(--g);font-weight:800;border-top:2px solid #2ea04355;}
+  .bd tr.tot-row td{background:#0b121a;font-weight:800;}
+  .warn{background:#211710;border:1px solid #f0883e55;border-left:4px solid var(--o);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:13.5px;color:#f4c89a;}
+  .warn b{color:var(--o);}
+  @media (max-width:560px){
+    .hbox .v{font-size:22px;}
+    .bd td.bar{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="/">Home</a> / <a href="/en/">English guides</a> / Furusato nozei limit</div>
+    <h1>Furusato nozei limit calculator — estimate your hometown-tax donation ceiling, in English</h1>
+    <div class="who">🇯🇵 For foreign residents in Japan who pay resident tax and want a rough idea of how much they can donate through furusato nozei (ふるさと納税) before it stops being (almost) free.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second version</div>
+      <ul>
+        <li>Furusato nozei lets you "donate" to any municipality, get a <b>gift (返礼品)</b> worth ~30% of your donation, and have <b>almost all of it come back</b> off your taxes — your real cost is only <b>¥2,000 total</b>, if you stay under your limit.</li>
+        <li>The catch: everyone has a personal <b>full-deduction limit</b> that scales with income and family situation. Donate <b>over</b> it and the excess is <b>not deducted</b> — that part is a real loss.</li>
+        <li>Type your details below for a <b>rough estimate</b> of that limit. It runs <b>entirely in your browser</b> — nothing is sent anywhere. <b>Always confirm with an official simulator before you donate.</b></li>
+      </ul>
+    </div>
+  </header>
+
+  <p>Mio doesn't guess — she does the arithmetic. Enter your <b>annual gross salary</b> and a simple <b>family situation</b>, and Mio estimates your furusato nozei <b>full-deduction limit</b>: the ceiling under which your donations cost you a net <b>¥2,000</b> and everything above ¥2,000 comes back as reduced income tax and resident tax. This is a <b>rough estimate for a single-earner employee</b>, not your exact figure — your real limit depends on <em>all</em> your deductions and other income — but it gets you in the right neighbourhood so you don't over-donate.</p>
+
+  <!-- ================= CALCULATOR ================= -->
+  <div class="tool">
+    <div class="fieldrow">
+      <label class="lbl" for="gross">Annual gross salary (税込 / before deductions)
+        <span class="hint">Your total yearly pay including bonuses, before anything is deducted. Single-earner employee assumed.</span>
+      </label>
+      <div class="money">
+        <input type="number" id="gross" inputmode="numeric" min="0" step="100000" value="5000000" placeholder="5000000">
+      </div>
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl">Family situation
+        <span class="hint">A dependent spouse or dependents lower your taxable income, which lowers your furusato nozei limit. Rough approximation only.</span>
+      </label>
+      <div class="segs">
+        <div class="seg">
+          <input type="radio" name="fam" id="famSingle" value="single" checked>
+          <label for="famSingle">Single</label>
+        </div>
+        <div class="seg">
+          <input type="radio" name="fam" id="famSpouse" value="spouse">
+          <label for="famSpouse">Married, spouse no income</label>
+        </div>
+        <div class="seg">
+          <input type="radio" name="fam" id="famDep" value="dependents">
+          <label for="famDep">With dependents</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="fieldrow" id="depRow" style="display:none;">
+      <label class="lbl" for="deps">Number of dependents (aged 16+)
+        <span class="hint">Children under 16 don't give an income-tax dependent deduction, so leave them out here.</span>
+      </label>
+      <input type="number" id="deps" inputmode="numeric" min="0" max="10" step="1" value="1" style="padding-left:14px;">
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl" for="other">Other deductions (optional, per year)
+        <span class="hint">Anything extra that reduces taxable income you already know about (e.g. iDeCo, large medical, life-insurance deduction). Leave 0 if unsure.</span>
+      </label>
+      <div class="money">
+        <input type="number" id="other" inputmode="numeric" min="0" step="10000" value="0" placeholder="0">
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:14px;">Assumes a <b>company employee on Shakai Hoken (社会保険)</b> with only salary income, using social insurance ≈ 15% of gross and illustrative deduction amounts. If you have other income, run the numbers again with an official simulator.</p>
+
+    <div class="headline">
+      <div class="hbox">
+        <div class="k">Estimated donation limit</div>
+        <div class="v net" id="limitYen">¥—</div>
+        <div class="sub" id="limitSub">for a net cost of ~¥2,000</div>
+      </div>
+      <div class="hbox">
+        <div class="k">Your net cost up to the limit</div>
+        <div class="v" id="netCost">¥2,000</div>
+        <div class="sub">fixed, no matter how many towns</div>
+      </div>
+    </div>
+    <div class="rate">Estimated marginal income-tax rate used: <b id="mrate">—%</b> · rough taxable income ≈ <span id="taxableOut" style="color:var(--tx);font-weight:700;">¥—</span></div>
+
+    <table class="bd">
+      <thead>
+        <tr><th>Rough breakdown (estimate)</th><th style="text-align:right">Amount / year</th><th class="bar"></th></tr>
+      </thead>
+      <tbody id="bdBody"><!-- filled by JS --></tbody>
+    </table>
+    <p class="note">The gift value shown assumes the legal maximum of ~30% of your donation. Actual gifts vary. This is illustrative, not a promise.</p>
+  </div>
+
+  <div class="warn">
+    <b>⚠ Rough estimate — confirm before you donate.</b> This is a simplified figure for a <b>single-earner employee with salary income only</b>. Your real furusato nozei limit depends on <b>all</b> your deductions, any other income, medical / mortgage / iDeCo / insurance deductions, your exact family situation, and the tax year. Donating <b>over</b> your true limit means the excess is <b>not refunded</b> — a real loss. <b>Always confirm with an official furusato nozei simulator</b> (Satofull, Furusato Choice, Rakuten, etc.) before donating. This is <b>not tax advice</b>.
+  </div>
+
+  <!-- ASP -->
+  <p>Once you know your rough limit, you'd <b>choose a furusato site</b> to browse gifts and donate — compare their simulators and point-back before you pick one. First, read Mio's plain-English explainers below so you don't over-donate.</p>
+
+  <h2>How Mio estimates your limit</h2>
+  <p>Mio uses the standard Japanese "full-deduction limit" logic, working backwards from your resident tax:</p>
+  <table>
+    <tr><th>Step</th><th>What it does (illustrative)</th></tr>
+    <tr><td>1. Rough taxable income</td><td>Gross − employment-income deduction − social insurance (~15%) − basic deduction (~¥480k) − spouse / dependent deductions (¥380k each) − your "other deductions".</td></tr>
+    <tr><td>2. Marginal income-tax rate</td><td>Reads which national bracket that taxable income falls in: 5 / 10 / 20 / 23 / 33 / 40 / 45%.</td></tr>
+    <tr><td>3. Resident-tax income levy (所得割)</td><td>≈ 10% of a similar taxable base — this is the pool the ~20% cap is measured against.</td></tr>
+    <tr><td>4. The limit formula</td><td><b>Limit ≈ (resident-tax income levy × 20%) ÷ (100% − 10% − income-tax rate × 1.021) + ¥2,000</b></td></tr>
+  </table>
+  <p class="note">The 1.021 factor is the reconstruction surtax on income tax. Mio uses illustrative deduction amounts and a ~15% social-insurance estimate, and treats the resident-tax base as roughly equal to the income-tax base. Real resident-tax deductions differ slightly from national ones, so treat the output as a ballpark, not to-the-yen.</p>
+
+  <h2>What this means for you</h2>
+  <p>Two things trip people up. First, the limit is a <b>ceiling, not a target</b> — if you're not sure, <b>donate a bit under it</b>. Going over doesn't get "clawed back" from your bank, but the amount above your limit simply isn't deducted, so you paid full price for that part. Second, furusato nozei only helps if you <b>actually pay resident tax</b> in Japan — if your income (or taxable income after deductions) is very low, your limit shrinks toward zero and the ¥2,000 may not be worth it.</p>
+  <ul style="margin-top:12px;padding-left:22px;">
+    <li style="margin-top:8px;"><a href="furusato-nozei-foreign-residents.html" style="color:var(--b);font-weight:700;">Furusato nozei for foreign residents</a> — who's eligible, how the refund actually reaches you, and the One-Stop vs tax-return choice.</li>
+    <li style="margin-top:8px;"><a href="furusato-nozei-limit-calculation-foreigners.html" style="color:var(--b);font-weight:700;">How the furusato nozei limit is calculated</a> — the full formula and worked examples, explained in English.</li>
+    <li style="margin-top:8px;"><a href="/en/">All of Mio's English money guides →</a></li>
+  </ul>
+
+  <div class="src">
+    <b>Notes &amp; sources</b><br>
+    The full-deduction-limit formula and thresholds are illustrative and simplified. Official references (mostly Japanese):
+    <a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" target="_blank" rel="noopener">MIC (総務省) — furusato nozei deduction mechanism</a>,
+    <a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/" target="_blank" rel="noopener">MIC — how furusato nozei works</a>,
+    <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">NTA — income-tax rates</a>,
+    <a href="https://www.nta.go.jp/english/taxes/individual/12012.htm" target="_blank" rel="noopener">NTA — employment income deduction</a>.
+    Resident-tax details: your municipality. Figures do not fully account for all deductions, other income, or year-specific reform changes. Verify with an official simulator before donating.
+  </div>
+  <div class="foot">
+    🇯🇵 Written by an AI that reads the Japanese-language official sources and does the math, in English. Rough estimate — confirm with an official simulator before donating.<br>
+    <a href="/en/">← All English guides</a> · <a href="/">miochooses.com</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var yen = function(n){
+    n = Math.round(n);
+    return "¥" + n.toLocaleString("en-US");
+  };
+
+  // Standard 2020+ employment-income deduction (給与所得控除), ¥650k minimum tier.
+  function empDeduction(g){
+    if (g <= 650999) return g; // effectively no taxable employment income
+    if (g <= 1899999) return 650000;
+    if (g <= 3599999) return Math.floor(g * 0.30) + 80000;   // g*0.3 + 80,000
+    if (g <= 6599999) return Math.floor(g * 0.20) + 440000;  // g*0.2 + 440,000
+    if (g <= 8499999) return Math.floor(g * 0.10) + 1100000; // g*0.1 + 1,100,000
+    return 1950000; // cap
+  }
+
+  // Marginal national income-tax rate for a given taxable income (before surtax).
+  function marginalRate(t){
+    if (t <= 0)        return 0.05;   // floor to lowest bracket for tiny incomes
+    if (t <= 1949000)  return 0.05;
+    if (t <= 3299000)  return 0.10;
+    if (t <= 6949000)  return 0.20;
+    if (t <= 8999000)  return 0.23;
+    if (t <= 17999000) return 0.33;
+    if (t <= 39999000) return 0.40;
+    return 0.45;
+  }
+
+  function compute(gross, fam, deps, other){
+    gross = Math.max(0, gross || 0);
+    other = Math.max(0, other || 0);
+
+    // --- social insurance (employee share, illustrative ~15%) ---
+    var socialInsurance = gross * 0.15;
+
+    // --- deductions ---
+    var empDed = empDeduction(gross);
+    var basicDeduction = 480000; // illustrative baseline (national)
+
+    // spouse / dependent deductions (¥380k each, illustrative national amount)
+    var famDeduction = 0;
+    if (fam === "spouse") {
+      famDeduction = 380000;
+    } else if (fam === "dependents") {
+      var n = Math.max(0, Math.min(10, deps || 0));
+      famDeduction = n * 380000;
+    }
+
+    // --- rough taxable income (income-tax base) ---
+    var taxable = gross - empDed - socialInsurance - basicDeduction - famDeduction - other;
+    taxable = Math.max(0, Math.floor(taxable / 1000) * 1000);
+
+    var mRate = marginalRate(taxable);
+
+    // --- resident-tax income levy (所得割) ≈ 10% of a similar base ---
+    // resident-tax deductions are a touch lower; keep it simple & illustrative.
+    var residentBase = taxable; // treat as roughly equal
+    var residentIncomeLevy = residentBase * 0.10;
+
+    // --- full-deduction limit ---
+    // limit ~= (residentIncomeLevy * 20%) / (1 - 0.10 - mRate*1.021) + 2000
+    var denom = 1 - 0.10 - (mRate * 1.021);
+    var limit = 0;
+    if (residentIncomeLevy > 0 && denom > 0) {
+      limit = (residentIncomeLevy * 0.20) / denom + 2000;
+    }
+    // If taxable income is ~0, there's essentially no benefit.
+    if (taxable <= 0 || residentIncomeLevy <= 0) limit = 0;
+
+    limit = Math.max(0, Math.floor(limit / 1000) * 1000); // round down to ¥1,000 for safety
+
+    var giftValue = limit * 0.30;         // ~30% legal max gift value
+    var netCost = limit > 0 ? 2000 : 0;
+
+    return {
+      gross: gross,
+      taxable: taxable,
+      socialInsurance: socialInsurance,
+      empDed: empDed,
+      famDeduction: famDeduction,
+      residentIncomeLevy: residentIncomeLevy,
+      mRate: mRate,
+      limit: limit,
+      giftValue: giftValue,
+      netCost: netCost
+    };
+  }
+
+  function render(){
+    var gross = parseFloat(document.getElementById("gross").value);
+    var famEl = document.querySelector("input[name=fam]:checked");
+    var fam = famEl ? famEl.value : "single";
+    var deps = parseFloat(document.getElementById("deps").value);
+    var other = parseFloat(document.getElementById("other").value);
+
+    // show/hide dependents count
+    document.getElementById("depRow").style.display = (fam === "dependents") ? "block" : "none";
+
+    var r = compute(gross, fam, deps, other);
+
+    document.getElementById("limitYen").textContent   = r.limit > 0 ? yen(r.limit) : "¥0";
+    document.getElementById("limitSub").textContent   = r.limit > 0 ? "for a net cost of ~¥2,000" : "little or no benefit at this income";
+    document.getElementById("netCost").textContent    = r.limit > 0 ? "¥2,000" : "—";
+    document.getElementById("mrate").textContent      = (r.mRate * 100).toFixed(0) + "%";
+    document.getElementById("taxableOut").textContent = yen(r.taxable);
+
+    var rows = [
+      {name:"Rough taxable income", v:r.taxable},
+      {name:"Social insurance (~15%, illustrative)", v:r.socialInsurance},
+      {name:"Resident-tax income levy (所得割) ~10%", v:r.residentIncomeLevy},
+      {name:"Est. gift value at ~30% of limit", v:r.giftValue}
+    ];
+    var maxv = 1;
+    rows.forEach(function(x){ if (x.v > maxv) maxv = x.v; });
+
+    var html = "";
+    rows.forEach(function(x){
+      var pct = Math.max(0, Math.min(100, (x.v / maxv) * 100));
+      html += "<tr>" +
+        "<td>" + x.name + "</td>" +
+        "<td class='num'>" + yen(x.v) + "</td>" +
+        "<td class='bar'><span style='width:" + pct.toFixed(0) + "%'></span></td>" +
+      "</tr>";
+    });
+    html += "<tr class='tot-row'>" +
+      "<td>Your net cost up to the limit</td>" +
+      "<td class='num'>" + (r.limit > 0 ? "¥2,000" : "—") + "</td>" +
+      "<td class='bar'></td></tr>";
+    html += "<tr class='net-row'>" +
+      "<td>Estimated donation limit</td>" +
+      "<td class='num'>" + (r.limit > 0 ? yen(r.limit) : "¥0") + "</td>" +
+      "<td class='bar'></td></tr>";
+
+    document.getElementById("bdBody").innerHTML = html;
+  }
+
+  // wire up
+  document.getElementById("gross").addEventListener("input", render);
+  document.getElementById("deps").addEventListener("input", render);
+  document.getElementById("other").addEventListener("input", render);
+  var fams = document.querySelectorAll("input[name=fam]");
+  for (var i = 0; i < fams.length; i++){ fams[i].addEventListener("change", render); }
+
+  render(); // initial
+})();
+</script>
+</body>
+</html>
