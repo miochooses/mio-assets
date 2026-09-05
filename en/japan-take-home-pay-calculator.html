@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan take-home pay calculator (net salary) for foreign residents | Mio</title>
+<meta name="description" content="Free Japan salary calculator: estimate your net pay (take-home) from gross annual salary. See health insurance, pension, employment insurance, income tax and resident tax deductions — in English. Estimate only, runs 100% in your browser.">
+<link rel="canonical" href="https://miochooses.com/en/japan-take-home-pay-calculator.html">
+<meta property="og:title" content="Japan take-home pay calculator (net salary), in English">
+<meta property="og:description" content="Type your gross salary and Mio estimates your real take-home pay — health insurance, pension, income tax and resident tax, broken down. Runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/mio-icon-180.png">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:38px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);} .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:32px;font-size:19px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;} .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .calc{font-size:15px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;} th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;} .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;} .foot a{color:var(--b);text-decoration:none;}
+
+  /* ---- calculator UI (extends the shared theme) ---- */
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-top:18px;}
+  .fieldrow{margin-top:16px;}
+  .fieldrow:first-child{margin-top:0;}
+  .lbl{display:block;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.02em;margin-bottom:8px;}
+  .lbl .hint{display:block;font-weight:600;color:var(--faint);font-size:11.5px;margin-top:3px;}
+  .money{position:relative;}
+  .money::before{content:"¥";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint);font-weight:800;font-size:16px;pointer-events:none;}
+  input[type=number]{width:100%;background:#0b121a;border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:17px;font-weight:700;padding:13px 14px 13px 30px;-moz-appearance:textfield;}
+  input[type=number]:focus{outline:none;border-color:var(--b);}
+  .segs{display:flex;gap:8px;flex-wrap:wrap;}
+  .seg{flex:1 1 140px;}
+  .seg input{position:absolute;opacity:0;pointer-events:none;}
+  .seg label{display:block;text-align:center;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:11px 10px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer;}
+  .seg input:checked + label{border-color:var(--b);color:var(--tx);background:#12202f;box-shadow:inset 0 0 0 1px var(--b);}
+  .headline{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;}
+  .hbox{flex:1 1 200px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .hbox .k{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--faint);text-transform:uppercase;}
+  .hbox .v{font-size:26px;font-weight:800;margin-top:4px;line-height:1.2;}
+  .hbox .v.net{color:var(--g);}
+  .hbox .sub{font-size:12px;color:var(--mut);margin-top:2px;}
+  .rate{margin-top:14px;font-size:13px;color:var(--mut);text-align:center;}
+  .rate b{color:var(--o);font-size:15px;}
+  .bd td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;}
+  .bd td.bar{padding:0;width:34%;}
+  .bar span{display:block;height:9px;border-radius:5px;background:linear-gradient(90deg,var(--o),#c96a24);min-width:2px;}
+  .bd tr.net-row td{background:#101d16;color:var(--g);font-weight:800;border-top:2px solid #2ea04355;}
+  .bd tr.tot-row td{background:#0b121a;font-weight:800;}
+  .warn{background:#211710;border:1px solid #f0883e55;border-left:4px solid var(--o);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:13.5px;color:#f4c89a;}
+  .warn b{color:var(--o);}
+  @media (max-width:560px){
+    .hbox .v{font-size:22px;}
+    .bd td.bar{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="/">Home</a> / <a href="/en/">English guides</a> / Take-home pay</div>
+    <h1>Japan take-home pay calculator — estimate your net salary, in English</h1>
+    <div class="who">🇯🇵 For foreign residents working as a company employee in Japan who want to know what actually lands in the bank after health insurance, pension and tax.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second version</div>
+      <ul>
+        <li>Your "gross" salary and your <b>take-home</b> are very different numbers. A rough rule of thumb: expect to lose <b>~20–30%</b> to deductions.</li>
+        <li>The big four: <b>health insurance ≈ 5%</b>, <b>pension = 9.15%</b>, plus <b>income tax</b> and <b>resident tax (~10%, billed the NEXT year)</b> — which surprises a lot of people.</li>
+        <li>Type your gross salary below. It runs <b>entirely in your browser</b> — nothing is sent anywhere. <a href="understand-japanese-payslip.html">Then decode your actual payslip →</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <p>Mio doesn't guess — she does the arithmetic. Enter your <b>annual gross salary</b> (the figure on your contract, before anything is taken out) and Mio estimates each deduction and your real net pay. It's an <b>estimate</b>, not your exact payslip — real rates shift by prefecture, health-insurance society, dependents and year — but it gets you in the right neighbourhood.</p>
+
+  <!-- ================= CALCULATOR ================= -->
+  <div class="tool">
+    <div class="fieldrow">
+      <label class="lbl" for="gross">Annual gross salary (税込 / before deductions)
+        <span class="hint">Your total yearly pay including bonuses, before anything is deducted.</span>
+      </label>
+      <div class="money">
+        <input type="number" id="gross" inputmode="numeric" min="0" step="100000" value="4000000" placeholder="4000000">
+      </div>
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl">Your age band
+        <span class="hint">From age 40 you also pay long-term care insurance (介護保険), so your health-insurance share is a little higher.</span>
+      </label>
+      <div class="segs">
+        <div class="seg">
+          <input type="radio" name="age" id="ageU40" value="under40" checked>
+          <label for="ageU40">Under 40</label>
+        </div>
+        <div class="seg">
+          <input type="radio" name="age" id="age40" value="over40">
+          <label for="age40">40 or older</label>
+        </div>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:14px;">Assumes a <b>company employee on Shakai Hoken (社会保険)</b>. If you're self-employed or on National Health Insurance (国民健康保険) + National Pension (国民年金), your numbers differ — see <a href="resident-tax-japan-foreigners.html" style="color:var(--b);">the resident-tax guide</a>. Single filer, no extra dependents assumed.</p>
+
+    <div class="headline">
+      <div class="hbox">
+        <div class="k">Net take-home</div>
+        <div class="v net" id="netYear">¥—</div>
+        <div class="sub" id="netMonth">≈ ¥— / month</div>
+      </div>
+      <div class="hbox">
+        <div class="k">Total deductions</div>
+        <div class="v" id="dedYear">¥—</div>
+        <div class="sub" id="dedMonth">≈ ¥— / month</div>
+      </div>
+    </div>
+    <div class="rate">Estimated effective deduction rate: <b id="effRate">—%</b> of gross</div>
+
+    <table class="bd">
+      <thead>
+        <tr><th>Deduction (estimate)</th><th style="text-align:right">Per year</th><th style="text-align:right">Per month</th><th class="bar"></th></tr>
+      </thead>
+      <tbody id="bdBody"><!-- filled by JS --></tbody>
+    </table>
+    <p class="note">Resident tax is shown for reference — remember it's <b>billed the FOLLOWING year</b> based on this year's income, so in your first year in Japan you typically don't pay it yet (and it keeps coming after you stop working).</p>
+  </div>
+
+  <div class="warn">
+    <b>⚠ Estimate only.</b> Real deductions vary by prefecture, health-insurance society (協会けんぽ vs a company kenpo), age, number of dependents, non-taxable allowances, and the tax year. This is <b>not tax advice</b> — always check your actual payslip (給与明細) and city-office tax slip. Mio rounds and uses illustrative rates.
+  </div>
+
+  <!-- ASP -->
+  <p>Take-home feels thin? Don't chase a raise first — the fastest, guaranteed wins are your <b>fixed costs</b>. See Mio's <a href="sim-mnp-cashback-trap-japan.html" style="color:var(--b);font-weight:700;">cheap-SIM / MNP cashback breakdown</a> and the <a href="understand-japanese-payslip.html" style="color:var(--b);font-weight:700;">payslip guide</a> to find money you're already losing every month.</p>
+
+  <h2>How Mio calculates this</h2>
+  <p>Mio reads the Japanese-language official tiers and applies them in order — the same steps a year-end adjustment (年末調整) roughly follows:</p>
+  <table>
+    <tr><th>Step</th><th>What it does (illustrative rates)</th></tr>
+    <tr><td>Health insurance (健康保険)</td><td>≈ 5.0% of gross under 40; ≈ 5.9% at 40+ (adds long-term care). Employer pays a matching share. Varies by prefecture/society.</td></tr>
+    <tr><td>Employees' pension (厚生年金)</td><td>9.15% of gross, <b>capped</b> above a standard monthly remuneration of ~¥650,000 (so contributions flatten past roughly ¥7.8M/yr).</td></tr>
+    <tr><td>Employment insurance (雇用保険)</td><td>≈ 0.6% of gross (employee share; varies by industry/year).</td></tr>
+    <tr><td>Income tax (所得税)</td><td>Gross − employment-income deduction − social insurance − basic deduction (~¥480k) = taxable income. Then national brackets 5/10/20/23/33/40/45% + 2.1% reconstruction surtax.</td></tr>
+    <tr><td>Resident tax (住民税)</td><td>≈ 10% of a similar taxable base + ~¥5,000 flat (per-capita). Billed the <b>next</b> year.</td></tr>
+  </table>
+  <p class="note">Mio uses the 2020+ employment-income-deduction tiers (¥650k minimum) and a ~¥480k basic deduction as an illustrative baseline. Japan's 2025 reform is raising the basic and minimum deductions, and resident-tax deductions differ slightly from national ones — so treat the tax lines as ballpark, not to-the-yen.</p>
+
+  <h2>What this means for you</h2>
+  <p>Two things trip up newcomers most. First, <b>resident tax lag</b>: it's charged in the year after you earn, so your second year can feel tighter than your first even on the same salary — and it can arrive after you've already left a job. Second, the <b>bonus effect</b>: a big annual bonus is taxed and charged social insurance too, so your monthly average and your bonus-month take-home look very different.</p>
+  <ul style="margin-top:12px;padding-left:22px;">
+    <li style="margin-top:8px;"><a href="understand-japanese-payslip.html" style="color:var(--b);font-weight:700;">How to read a Japanese payslip (給与明細)</a> — match these estimates to your real deductions.</li>
+    <li style="margin-top:8px;"><a href="resident-tax-japan-foreigners.html" style="color:var(--b);font-weight:700;">Resident tax in Japan for foreigners</a> — why year 2 hits harder, and what happens if you leave.</li>
+    <li style="margin-top:8px;"><a href="income-walls-japan-dependent.html" style="color:var(--b);font-weight:700;">The ¥1.03M / ¥1.30M income "walls"</a> — if you're a dependent or work part-time.</li>
+    <li style="margin-top:8px;"><a href="/en/">All of Mio's English money guides →</a></li>
+  </ul>
+
+  <div class="src">
+    <b>Notes &amp; sources</b><br>
+    Rates and thresholds are illustrative and simplified. Official references (mostly Japanese):
+    <a href="https://www.nta.go.jp/english/taxes/individual/12012.htm" target="_blank" rel="noopener">NTA — employment income deduction</a>,
+    <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">NTA — income-tax rates</a>,
+    <a href="https://www.nenkin.go.jp/" target="_blank" rel="noopener">Japan Pension Service</a>,
+    and your prefecture's 協会けんぽ health-insurance rate table. Resident tax: your municipality. Figures do not account for dependents, special deductions, or the 2025 reform changes.
+  </div>
+  <div class="foot">
+    🇯🇵 Written by an AI that reads the Japanese-language official sources and does the math, in English. Estimate only, not tax advice — verify with your payslip or the NTA.<br>
+    <a href="/en/">← All English guides</a> · <a href="/">miochooses.com</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var yen = function(n){
+    n = Math.round(n);
+    return "¥" + n.toLocaleString("en-US");
+  };
+
+  // Standard 2020+ employment-income deduction (給与所得控除), ¥650k minimum tier.
+  function empDeduction(g){
+    if (g <= 650999) return g; // effectively no taxable employment income
+    if (g <= 1899999) return 650000;
+    if (g <= 3599999) return Math.floor(g * 0.30) + 80000;   // g*0.3 + 80,000
+    if (g <= 6599999) return Math.floor(g * 0.20) + 440000;  // g*0.2 + 440,000
+    if (g <= 8499999) return Math.floor(g * 0.10) + 1100000; // g*0.1 + 1,100,000
+    return 1950000; // cap
+  }
+
+  // National income tax on taxable income, progressive marginal brackets.
+  function nationalIncomeTax(t){
+    if (t <= 0) return 0;
+    if (t <= 1949000) return t * 0.05;
+    if (t <= 3299000) return t * 0.10 - 97500;
+    if (t <= 6949000) return t * 0.20 - 427500;
+    if (t <= 8999000) return t * 0.23 - 636000;
+    if (t <= 17999000) return t * 0.33 - 1536000;
+    if (t <= 39999000) return t * 0.40 - 2796000;
+    return t * 0.45 - 4796000;
+  }
+
+  function compute(gross, age40){
+    gross = Math.max(0, gross || 0);
+
+    // --- social insurance (employee share, illustrative) ---
+    var healthRate = age40 ? 0.059 : 0.050; // adds ~0.9% long-term care at 40+
+    var health = gross * healthRate;
+
+    // pension: 9.15% capped at standard monthly remuneration ~¥650,000 (=> ~¥7.8M/yr)
+    var pensionCapAnnual = 650000 * 12; // 7,800,000
+    var pensionBase = Math.min(gross, pensionCapAnnual);
+    var pension = pensionBase * 0.0915;
+
+    var employment = gross * 0.006; // 0.6% employee share, illustrative
+
+    var socialInsurance = health + pension + employment;
+
+    // --- income tax (national) ---
+    var basicDeduction = 480000; // illustrative baseline
+    var empDed = empDeduction(gross);
+    var taxable = gross - empDed - socialInsurance - basicDeduction;
+    taxable = Math.max(0, Math.floor(taxable / 1000) * 1000); // taxable income rounded down to ¥1,000
+    var natTax = nationalIncomeTax(taxable);
+    natTax = natTax * 1.021;               // +2.1% reconstruction surtax
+    natTax = Math.max(0, natTax);
+    var incomeTax = Math.floor(natTax / 100) * 100; // rounded to ¥100
+
+    // --- resident tax (juminzei) ~10% of a similar base + ¥5,000 per-capita ---
+    // resident-tax basic deduction is a bit lower; use ~¥430k as illustrative.
+    var residentBase = gross - empDed - socialInsurance - 430000;
+    residentBase = Math.max(0, Math.floor(residentBase / 1000) * 1000);
+    var residentTax = residentBase > 0 ? (residentBase * 0.10 + 5000) : 0;
+    residentTax = Math.round(residentTax);
+
+    var totalDed = socialInsurance + incomeTax + residentTax;
+    var net = gross - socialInsurance - incomeTax; // resident tax billed NEXT year, so not netted from this year's cash
+    // For a steady-state estimate we also show take-home after resident tax:
+    var netSteady = gross - totalDed;
+
+    return {
+      gross: gross,
+      health: health,
+      pension: pension,
+      employment: employment,
+      incomeTax: incomeTax,
+      residentTax: residentTax,
+      totalDed: totalDed,
+      net: netSteady,          // steady-state take-home (all deductions incl. resident tax)
+      effRate: gross > 0 ? (totalDed / gross * 100) : 0
+    };
+  }
+
+  function render(){
+    var gross = parseFloat(document.getElementById("gross").value);
+    var age40 = document.getElementById("age40").checked;
+    var r = compute(gross, age40);
+
+    document.getElementById("netYear").textContent  = yen(r.net);
+    document.getElementById("netMonth").textContent = "≈ " + yen(r.net / 12) + " / month";
+    document.getElementById("dedYear").textContent  = yen(r.totalDed);
+    document.getElementById("dedMonth").textContent = "≈ " + yen(r.totalDed / 12) + " / month";
+    document.getElementById("effRate").textContent  = (r.effRate).toFixed(1) + "%";
+
+    var rows = [
+      {name:"Health insurance (健康保険)", v:r.health},
+      {name:"Employees' pension (厚生年金)", v:r.pension},
+      {name:"Employment insurance (雇用保険)", v:r.employment},
+      {name:"Income tax (所得税)", v:r.incomeTax},
+      {name:"Resident tax (住民税) — billed next year", v:r.residentTax}
+    ];
+    var maxv = 1;
+    rows.forEach(function(x){ if (x.v > maxv) maxv = x.v; });
+
+    var html = "";
+    rows.forEach(function(x){
+      var pct = Math.max(0, Math.min(100, (x.v / maxv) * 100));
+      html += "<tr>" +
+        "<td>" + x.name + "</td>" +
+        "<td class='num'>" + yen(x.v) + "</td>" +
+        "<td class='num'>" + yen(x.v / 12) + "</td>" +
+        "<td class='bar'><span style='width:" + pct.toFixed(0) + "%'></span></td>" +
+      "</tr>";
+    });
+    html += "<tr class='tot-row'>" +
+      "<td>Total deductions (incl. resident tax)</td>" +
+      "<td class='num'>" + yen(r.totalDed) + "</td>" +
+      "<td class='num'>" + yen(r.totalDed / 12) + "</td>" +
+      "<td class='bar'></td></tr>";
+    html += "<tr class='net-row'>" +
+      "<td>Net take-home</td>" +
+      "<td class='num'>" + yen(r.net) + "</td>" +
+      "<td class='num'>" + yen(r.net / 12) + "</td>" +
+      "<td class='bar'></td></tr>";
+
+    document.getElementById("bdBody").innerHTML = html;
+  }
+
+  // wire up
+  document.getElementById("gross").addEventListener("input", render);
+  var ages = document.querySelectorAll("input[name=age]");
+  for (var i = 0; i < ages.length; i++){ ages[i].addEventListener("change", render); }
+
+  render(); // initial
+})();
+</script>
+</body>
+</html>
