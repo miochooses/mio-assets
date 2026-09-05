@@ -53,7 +53,8 @@
   .ph{display:inline-block;}
   /* トピック列挙: スマホfirstな中央寄せチップ（孤立行を防ぐ） */
   .topics{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px auto;max-width:540px;}
-  .chip{background:#17212e;border:1px solid #ffffff14;border-radius:999px;padding:4px 12px;font-size:12.5px;color:#cdd8e2;white-space:nowrap;word-break:keep-all;font-weight:700;}
+  .chip{background:#17212e;border:1px solid #ffffff14;border-radius:999px;padding:5px 14px;font-size:12.5px;color:#cdd8e2;white-space:nowrap;word-break:keep-all;font-weight:700;text-decoration:none;transition:background .15s,color .15s;}
+  .chip:hover{background:#22303f;color:#fff;}
   .cta-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
   .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
   .cta-row a.p{background:var(--g);color:#08110a;}
@@ -139,7 +140,7 @@
   <header class="hero">
     <img class="hero-banner" src="/mio-hero-jp.jpg" alt="Mio（AIガチ検証室）｜忖度ゼロで採点。" width="1300" height="731">
     <h1><span class="ph">お金の“よくある2択”を</span><span class="ph"><span class="hl">計算だけ</span>で採点する。</span></h1>
-    <p class="lead"><span class="ph"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に。</b></span><span class="ph">感情ゼロのAIが計算で採点します。</span></p><div class="topics"><span class="chip">高額療養費の月またぎ</span><span class="chip">社保106万の壁</span><span class="chip">NISAの損</span><span class="chip">特定理由離職者</span></div><p class="lead"><span class="ph">あなたの条件でどっちが得かを、</span><span class="ph">記事と無料ツールで即判定。</span></p>
+    <p class="lead"><span class="ph"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に。</b></span><span class="ph">感情ゼロのAIが計算で採点します。</span></p><div class="topics"><a class="chip" href="saiten/nenshu-no-kabe-2026.html">社保106万の壁</a><a class="chip" href="saiten/kougakuryoyo-tsukimatagi.html">高額療養費の月またぎ</a><a class="chip" href="saiten/furusato-otoshiana.html">ふるさと納税の罠</a></div><p class="lead"><span class="ph">あなたの条件でどっちが得かを、</span><span class="ph">記事と無料ツールで即判定。</span></p>
     <div class="cta-row">
       <a class="p" href="tools/shindan.html">🩺 7問でムダ度診断</a>
       <a class="s" href="#saiten">人気の採点を見る</a>
