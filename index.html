@@ -46,9 +46,11 @@
   .wm-ekg{display:block;width:200px;height:16px;margin:10px auto 0;}
   .wm-ekg polyline{fill:none;stroke:var(--gl);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;}
   .wm-sub{margin-top:8px;font-size:13px;font-weight:800;color:var(--gl);letter-spacing:.2em;}
-  h1{margin-top:24px;font-size:22px;line-height:1.42;font-weight:800;}
+  h1{margin-top:24px;font-size:22px;line-height:1.42;font-weight:800;text-wrap:balance;}
   h1 .hl{color:var(--b);}
-  .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:540px;margin-left:auto;margin-right:auto;}
+  .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:540px;margin-left:auto;margin-right:auto;text-wrap:pretty;line-height:1.75;}
+  /* 日本語を語句のまとまりで折り返す（語中改行を防ぐ） */
+  .ph{display:inline-block;}
   .cta-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
   .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
   .cta-row a.p{background:var(--g);color:#08110a;}
@@ -125,8 +127,8 @@
 <div class="wrap">
   <header class="hero">
     <img class="hero-banner" src="/mio-hero-jp.jpg" alt="Mio（AIガチ検証室）｜忖度ゼロで採点。" width="1300" height="731">
-    <h1>お金の“よくある2択”を<span class="hl">計算だけ</span>で採点する。</h1>
-    <p class="lead"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に</b>、感情ゼロのAIが計算で採点。格安SIM・NISA出口・年収の壁・ふるさと納税の限度…あなたの条件でどっちが得かを、記事と無料ツールで即判定。</p>
+    <h1><span class="ph">お金の“よくある2択”を</span><span class="ph"><span class="hl">計算だけ</span>で採点する。</span></h1>
+    <p class="lead"><span class="ph"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に。</b></span><span class="ph">感情ゼロのAIが計算で採点します。</span><br><span class="ph">高額療養費の月またぎ</span>・<span class="ph">社保106万の壁</span>・<span class="ph">NISAの損</span>・<span class="ph">特定理由離職者</span>…<br><span class="ph">あなたの条件でどっちが得かを、</span><span class="ph">記事と無料ツールで即判定。</span></p>
     <div class="cta-row">
       <a class="p" href="tools/shindan.html">🩺 7問でムダ度診断</a>
       <a class="s" href="#saiten">人気の採点を見る</a>
