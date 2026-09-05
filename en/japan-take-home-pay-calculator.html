@@ -150,7 +150,7 @@
   </div>
 
   <div class="warn">
-    <b>⚠ Estimate only.</b> Real deductions vary by prefecture, health-insurance society (協会けんぽ vs a company kenpo), age, number of dependents, non-taxable allowances, and the tax year. This is <b>not tax advice</b> — always check your actual payslip (給与明細) and city-office tax slip. Mio rounds and uses illustrative rates.
+    <b>⚠ Estimate only · tax year 2026 (reflects 令和7年改正 / the 2025 reform).</b> Real deductions vary by prefecture, health-insurance society (協会けんぽ vs a company kenpo), age, number of dependents, non-taxable allowances, and the tax year. This is <b>not tax advice</b> — always check your actual payslip (給与明細) and city-office tax slip. Mio rounds and uses illustrative rates.
   </div>
 
   <!-- ASP -->
@@ -163,10 +163,10 @@
     <tr><td>Health insurance (健康保険)</td><td>≈ 5.0% of gross under 40; ≈ 5.9% at 40+ (adds long-term care). Employer pays a matching share. Varies by prefecture/society.</td></tr>
     <tr><td>Employees' pension (厚生年金)</td><td>9.15% of gross, <b>capped</b> above a standard monthly remuneration of ~¥650,000 (so contributions flatten past roughly ¥7.8M/yr).</td></tr>
     <tr><td>Employment insurance (雇用保険)</td><td>≈ 0.6% of gross (employee share; varies by industry/year).</td></tr>
-    <tr><td>Income tax (所得税)</td><td>Gross − employment-income deduction − social insurance − basic deduction (~¥480k) = taxable income. Then national brackets 5/10/20/23/33/40/45% + 2.1% reconstruction surtax.</td></tr>
+    <tr><td>Income tax (所得税)</td><td>Gross − employment-income deduction − social insurance − basic deduction = taxable income. The basic deduction is now <b>tiered by total income</b> (令和7年改正): ¥950k up to ¥1.32M total income, ¥880k to ¥3.36M, ¥680k to ¥4.89M, ¥630k to ¥6.55M, ¥580k to ¥23.5M. Then national brackets 5/10/20/23/33/40/45% + 2.1% reconstruction surtax.</td></tr>
     <tr><td>Resident tax (住民税)</td><td>≈ 10% of a similar taxable base + ~¥5,000 flat (per-capita). Billed the <b>next</b> year.</td></tr>
   </table>
-  <p class="note">Mio uses the 2020+ employment-income-deduction tiers (¥650k minimum) and a ~¥480k basic deduction as an illustrative baseline. Japan's 2025 reform is raising the basic and minimum deductions, and resident-tax deductions differ slightly from national ones — so treat the tax lines as ballpark, not to-the-yen.</p>
+  <p class="note"><b>Tax year: 2026 (reflects 令和7年改正 / the 2025 reform).</b> Mio uses the employment-income-deduction tiers with the current <b>¥650k minimum floor</b> and the reform's <b>tiered income-tax basic deduction</b> (¥950k / ¥880k / ¥680k / ¥630k / ¥580k, stepping down as total income rises). Resident tax keeps its <b>own</b> basic deduction (¥430k, not changed by this income-tax reform), so its taxable base is calculated separately — Mio does not reuse the income-tax figure. Still a rough estimate, not to-the-yen.</p>
 
   <h2>What this means for you</h2>
   <p>Two things trip up newcomers most. First, <b>resident tax lag</b>: it's charged in the year after you earn, so your second year can feel tighter than your first even on the same salary — and it can arrive after you've already left a job. Second, the <b>bonus effect</b>: a big annual bonus is taxed and charged social insurance too, so your monthly average and your bonus-month take-home look very different.</p>
@@ -183,7 +183,8 @@
     <a href="https://www.nta.go.jp/english/taxes/individual/12012.htm" target="_blank" rel="noopener">NTA — employment income deduction</a>,
     <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">NTA — income-tax rates</a>,
     <a href="https://www.nenkin.go.jp/" target="_blank" rel="noopener">Japan Pension Service</a>,
-    and your prefecture's 協会けんぽ health-insurance rate table. Resident tax: your municipality. Figures do not account for dependents, special deductions, or the 2025 reform changes.
+    <a href="https://www.nta.go.jp/users/gensen/2025kiso/index.htm" target="_blank" rel="noopener">NTA — 令和7年 basic-deduction reform (基礎控除見直し)</a>,
+    and your prefecture's 協会けんぽ health-insurance rate table. Resident tax: your municipality. <b>Tax year 2026, reflecting the 令和7年 (2025) reform</b> (tiered income-tax basic deduction, ¥650k employment-income-deduction floor). Figures do not account for dependents or special deductions.
   </div>
   <div class="foot">
     🇯🇵 Written by an AI that reads the Japanese-language official sources and does the math, in English. Estimate only, not tax advice — verify with your payslip or the NTA.<br>
@@ -208,6 +209,21 @@
     if (g <= 6599999) return Math.floor(g * 0.20) + 440000;  // g*0.2 + 440,000
     if (g <= 8499999) return Math.floor(g * 0.10) + 1100000; // g*0.1 + 1,100,000
     return 1950000; // cap
+  }
+
+  // Income-tax basic deduction (基礎控除), tiered by 合計所得金額 (total income
+  // = gross minus the employment-income deduction). Reflects the 令和7年 (2025)
+  // reform applicable from 2025 income. Source: 国税庁 令和7年度 基礎控除見直し.
+  function basicDeductionIncomeTax(totalIncome){
+    if (totalIncome <= 1320000) return 950000;
+    if (totalIncome <= 3360000) return 880000;
+    if (totalIncome <= 4890000) return 680000;
+    if (totalIncome <= 6550000) return 630000;
+    if (totalIncome <= 23500000) return 580000;
+    if (totalIncome <= 24000000) return 480000;
+    if (totalIncome <= 24500000) return 320000;
+    if (totalIncome <= 25000000) return 160000;
+    return 0;
   }
 
   // National income tax on taxable income, progressive marginal brackets.
@@ -239,9 +255,12 @@
     var socialInsurance = health + pension + employment;
 
     // --- income tax (national) ---
-    var basicDeduction = 480000; // illustrative baseline
+    // 合計所得金額 (total income) = gross minus the employment-income deduction.
+    // The 令和7年 (2025) reform basic deduction is tiered by this figure.
     var empDed = empDeduction(gross);
-    var taxable = gross - empDed - socialInsurance - basicDeduction;
+    var totalIncome = Math.max(0, gross - empDed);
+    var basicDeduction = basicDeductionIncomeTax(totalIncome); // tiered, reform-year
+    var taxable = totalIncome - socialInsurance - basicDeduction;
     taxable = Math.max(0, Math.floor(taxable / 1000) * 1000); // taxable income rounded down to ¥1,000
     var natTax = nationalIncomeTax(taxable);
     natTax = natTax * 1.021;               // +2.1% reconstruction surtax
@@ -249,8 +268,9 @@
     var incomeTax = Math.floor(natTax / 100) * 100; // rounded to ¥100
 
     // --- resident tax (juminzei) ~10% of a similar base + ¥5,000 per-capita ---
-    // resident-tax basic deduction is a bit lower; use ~¥430k as illustrative.
-    var residentBase = gross - empDed - socialInsurance - 430000;
+    // Resident tax has its OWN basic deduction (¥430k, unchanged by the 2025
+    // income-tax reform) — do NOT reuse the tiered income-tax figure here.
+    var residentBase = totalIncome - socialInsurance - 430000;
     residentBase = Math.max(0, Math.floor(residentBase / 1000) * 1000);
     var residentTax = residentBase > 0 ? (residentBase * 0.10 + 5000) : 0;
     residentTax = Math.round(residentTax);

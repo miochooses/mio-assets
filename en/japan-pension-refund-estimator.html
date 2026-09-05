@@ -137,7 +137,7 @@
     <div class="reclaim">
       <div class="k">💸 If you reclaim the tax, you get back about</div>
       <div class="v" id="reclaim">¥—</div>
-      <div class="sub">Appoint a <b>tax representative</b> before leaving and file a return, and most of the 20.42% typically comes back — because the actual tax due on the lump-sum (treated as retirement income) is usually far lower. Miss this and it's gone.</div>
+      <div class="sub" id="reclaimSub">Appoint a <b>tax representative</b> before leaving and file a return, and most of the 20.42% typically comes back — because the actual tax due on the lump-sum (treated as retirement income) is usually far lower. Miss this and it's gone.</div>
     </div>
 
     <table class="bd">
@@ -150,7 +150,7 @@
   </div>
 
   <div class="warn">
-    <b>⚠ Rough estimate — not a quote and not tax advice.</b> The payout multipliers and the month <b>cap</b> are set by an official schedule and <b>change</b> (the cap was recently raised, and further changes are planned). Your real lump-sum depends on your recorded <b>standard remuneration</b> history, not a single average salary. How much of the 20.42% you actually get back depends on your own return. Always verify with the <b>Japan Pension Service</b> and a <b>tax representative</b> before deciding anything. Mio rounds and uses illustrative figures.
+    <b>⚠ Rough estimate — not a quote and not tax advice.</b> The payout multipliers and the month <b>cap (currently 60 months)</b> are set by an official schedule and can <b>change</b> (the cap was last raised to 60 months in April 2021). Your real lump-sum depends on your recorded <b>standard remuneration</b> history, not a single average salary, and the tax reclaim depends on your exact gross, years of service and your own return. Always verify with the <b>Japan Pension Service</b> and a <b>tax representative</b> before deciding anything. Mio rounds and uses illustrative figures.
   </div>
 
   <!-- ASP -->
@@ -171,10 +171,16 @@
     <tr><td>54 – 59</td><td>4.9</td></tr>
     <tr><td>60+ (current CAP)</td><td>5.5</td></tr>
   </table>
-  <p class="note">These multipliers are <b>illustrative</b> and simplified from the published schedule. The count used is currently <b>capped at 60 months</b> — a recent pension-reform law raises this cap (toward 96 months / 8 years) with the effective date still to be set by cabinet order, so <b>verify the current table before relying on any number</b>. Under 6 months of contributions usually means no lump-sum at all. Then income tax of <b>20.42%</b> (including the reconstruction surtax) is withheld from the gross at source.</p>
+  <p class="note">These multipliers match the current 日本年金機構 (Japan Pension Service) "final month April 2021 or later" table (the 36–41 month band uses <b>3.3</b>, topping out at <b>5.5</b> at 60 months). The count used is currently <b>capped at 60 months (5 years)</b> per the current JPS page. Future pension-reform changes to the cap may follow, so <b>verify the current table before relying on any number</b>. Under 6 months of contributions usually means no lump-sum at all. Then income tax of <b>20.42%</b> (including the reconstruction surtax) is withheld from the gross at source.</p>
 
   <h2>The 20.42% you can usually claim back</h2>
-  <p>Here's the part people miss. The lump-sum is taxed as <b>retirement income</b>, which gets a generous deduction — so the tax you actually owe is normally <b>much less</b> than the flat 20.42% that was withheld. To get the difference back you must <b>appoint a tax representative (納税管理人 / nozei kanrinin)</b> in Japan <i>before</i> you leave, then file a Japanese tax return after you've received the lump-sum. The representative files, receives the refund, and remits it to you. For many people this reclaims the large majority of the 20.42% — but only if you set it up in time.</p>
+  <p>Here's the part people miss. The lump-sum is taxed as <b>retirement income (退職所得)</b>, and this estimator now does the <b>real retirement-income calculation</b> rather than assuming a flat percentage:</p>
+  <ol style="margin-top:12px;padding-left:22px;">
+    <li style="margin-top:6px;"><b>Retirement-income deduction (退職所得控除):</b> ¥400,000 × years of service (minimum ¥800,000) for 20 years or less.</li>
+    <li style="margin-top:6px;"><b>Taxable retirement income</b> = (gross lump-sum − deduction) × ½, floored at ¥0.</li>
+    <li style="margin-top:6px;"><b>Income tax</b> on that amount at the normal progressive brackets, <b>plus the 2.1% reconstruction surtax</b>.</li>
+  </ol>
+  <p>For short stints the deduction often exceeds the gross lump-sum, so the actual tax due is <b>¥0</b> and the <b>entire 20.42% is refundable</b>. For larger lump-sums some tax is genuinely owed, and only the difference comes back. To get it you must <b>appoint a tax representative (納税管理人 / nozei kanrinin)</b> in Japan <i>before</i> you leave, then file a Japanese tax return after you've received the lump-sum. The representative files, receives the refund, and remits it to you — but only if you set it up in time. This tool uses your entered months to estimate years of service; if it can't work out a proper figure it says so rather than inventing a number.</p>
 
   <h2>What to do (in order)</h2>
   <ul style="margin-top:12px;padding-left:22px;">
@@ -186,12 +192,12 @@
 
   <div class="src">
     <b>Notes &amp; sources</b><br>
-    Multipliers, the month cap and the tax treatment are illustrative and simplified — verify the current schedule before acting. Official references (some Japanese only):
-    <a href="https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20150406.html" target="_blank" rel="noopener">Japan Pension Service — lump-sum withdrawal payments</a>,
-    <a href="https://www.nenkin.go.jp/international/english/lumpsum/lumpsum.html" target="_blank" rel="noopener">Japan Pension Service (English)</a>,
+    Coefficients (3.3 at the 36–41 month band, 5.5 at the 60-month cap) match the current JPS table; the tax reclaim uses the retirement-income deduction (¥400,000 × years, min ¥800,000), taxable = (gross − deduction) × ½, then income-tax brackets plus the 2.1% reconstruction surtax. Estimates only — verify your own figures before acting. Official references (some Japanese only):
+    <a href="https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/dattai-ichiji/20150406.html" target="_blank" rel="noopener">Japan Pension Service — 脱退一時金 (payment coefficient table, 60-month cap)</a>,
+    <a href="https://www.nenkin.go.jp/international/japanese-system/withdrawalpayment/index.html" target="_blank" rel="noopener">Japan Pension Service (international / English)</a>,
     <a href="https://www.nta.go.jp/english/taxes/individual/12005.htm" target="_blank" rel="noopener">NTA — 20.42% withholding &amp; refund via tax return (Art. 171)</a>,
-    <a href="https://www.nta.go.jp/english/" target="_blank" rel="noopener">National Tax Agency (NTA)</a>.
-    Figures do not reflect your individual standard-remuneration record, pending schedule changes, or your specific tax situation.
+    <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm" target="_blank" rel="noopener">NTA No.1420 — retirement-income deduction &amp; ½ taxable calculation</a>.
+    Figures do not reflect your individual standard-remuneration record, future schedule changes, or your specific tax situation.
   </div>
   <div class="foot">
     🇯🇵 Written by an AI that reads the Japanese-language official sources and does the math, in English. Rough estimate, not tax advice — verify with the Japan Pension Service.<br>
@@ -226,29 +232,69 @@
   }
 
   var TAX_RATE = 0.2042; // 20.42% withheld at source (incl. reconstruction surtax)
+  var SURTAX = 0.021;    // 2.1% special reconstruction income tax on the income tax
 
-  function compute(salary, months){
+  // Retirement-income deduction (退職所得控除): for 20 years or less of service,
+  // ¥400,000 per year, minimum ¥800,000. (Above 20 years it grows faster; this
+  // tool models short foreign stints, which are almost always <= 20 years.)
+  function retirementDeduction(years){
+    if (years <= 0) return 0;
+    if (years <= 20) return Math.max(800000, 400000 * years);
+    return 8000000 + 700000 * (years - 20);
+  }
+
+  // Progressive income-tax on taxable income (国税庁 speedy table, income tax only,
+  // before the 2.1% reconstruction surtax).
+  function incomeTax(taxable){
+    if (taxable <= 0) return 0;
+    if (taxable <= 1950000)  return taxable * 0.05;
+    if (taxable <= 3300000)  return taxable * 0.10 - 97500;
+    if (taxable <= 6950000)  return taxable * 0.20 - 427500;
+    if (taxable <= 9000000)  return taxable * 0.23 - 636000;
+    if (taxable <= 18000000) return taxable * 0.33 - 1536000;
+    if (taxable <= 40000000) return taxable * 0.40 - 2796000;
+    return taxable * 0.45 - 4796000;
+  }
+
+  function compute(salary, months, years){
     salary = Math.max(0, salary || 0);
     months = Math.max(0, Math.floor(months || 0));
 
     var m = multiplier(months);
     var gross = salary * m;
-    var tax = gross * TAX_RATE;
+    var tax = gross * TAX_RATE;          // flat 20.42% withheld at source
     var netNoReclaim = gross - tax;
 
-    // If you file with a tax representative, most of the 20.42% typically comes
-    // back because the lump-sum is taxed as retirement income (large deduction).
-    // ILLUSTRATIVE: assume a small residual tax actually due (~2% of gross here),
-    // so the reclaim ≈ withheld tax minus that residual. Rough estimate only.
-    var residualTaxDue = gross * 0.02;
-    if (residualTaxDue > tax) residualTaxDue = tax;
-    var reclaim = tax - residualTaxDue;
-    var netReclaim = gross - residualTaxDue;
+    // Whether we can compute the ACTUAL tax due depends on knowing years of
+    // service (needed for the retirement-income deduction). If the caller gives
+    // us the enrolled months we derive years from them; otherwise we cannot
+    // honestly compute an individual figure.
+    var canCompute = gross > 0 && years > 0;
+    var deduction = null, taxableRetire = null, actualTax = null,
+        reclaim = null, netReclaim = null;
+
+    if (canCompute){
+      // Retirement income = (gross − deduction) × 1/2, floored at 0.
+      deduction = retirementDeduction(years);
+      taxableRetire = Math.max(0, (gross - deduction) / 2);
+      // Taxable income for retirement income is rounded down to the nearest ¥1,000.
+      var taxableRounded = Math.floor(taxableRetire / 1000) * 1000;
+      var baseTax = incomeTax(taxableRounded);
+      actualTax = baseTax * (1 + SURTAX);         // + 2.1% reconstruction surtax
+      if (actualTax > tax) actualTax = tax;       // never "owe" more than withheld
+      reclaim = tax - actualTax;                  // what comes back
+      netReclaim = gross - actualTax;
+    }
 
     return {
       gross: gross,
       mult: m,
       tax: tax,
+      canCompute: canCompute,
+      years: years,
+      deduction: deduction,
+      taxableRetire: taxableRetire,
+      actualTax: actualTax,
       reclaim: reclaim,
       netNoReclaim: netNoReclaim,
       netReclaim: netReclaim
@@ -258,11 +304,13 @@
   function render(){
     var salary = parseFloat(document.getElementById("salary").value);
     var months = parseFloat(document.getElementById("months").value);
-    var r = compute(salary, months);
+    // Years of service for the retirement-income deduction: JPS/NTA count any
+    // part-year as a full year, so we round the enrolled months UP to whole years.
+    var years = months > 0 ? Math.ceil(months / 12) : 0;
+    var r = compute(salary, months, years);
 
     document.getElementById("gross").textContent   = yen(r.gross);
     document.getElementById("tax").textContent     = yen(r.tax);
-    document.getElementById("reclaim").textContent = yen(r.reclaim);
     document.getElementById("mult").textContent    = r.mult.toFixed(1);
 
     if (r.gross <= 0){
@@ -271,12 +319,36 @@
       document.getElementById("grossSub").textContent = "before any tax";
     }
 
+    var reclaimEl = document.getElementById("reclaim");
+    var reclaimSub = document.getElementById("reclaimSub");
+
+    if (!r.canCompute){
+      reclaimEl.textContent = "—";
+      reclaimSub.innerHTML = "Enter your salary and months so the retirement-income tax can be worked out. Without enough detail this <b>cannot be computed individually</b> — the refund is not a fixed percentage.";
+    } else if (r.actualTax === 0){
+      reclaimEl.textContent = yen(r.reclaim);
+      reclaimSub.innerHTML = "At ~" + years + " year(s) of service, the retirement-income deduction (¥" +
+        (400000).toLocaleString("en-US") + " × years, min ¥800,000 = <b>" + yen(r.deduction) +
+        "</b>) is larger than the gross lump-sum, so the tax actually due is <b>¥0</b> and the <b>whole 20.42% is refundable</b> once you file with a tax representative.";
+    } else {
+      reclaimEl.textContent = yen(r.reclaim);
+      reclaimSub.innerHTML = "Retirement-income deduction ≈ <b>" + yen(r.deduction) +
+        "</b> (¥400,000 × ~" + years + " yr, min ¥800,000). Taxable retirement income = (gross − deduction) × ½ ≈ <b>" +
+        yen(r.taxableRetire) + "</b>, so the actual income tax due (incl. 2.1% surtax) is ≈ <b>" +
+        yen(r.actualTax) + "</b> — that's what you'd owe, and the rest of the 20.42% comes back when you file with a tax representative.";
+    }
+
     var rows = [
       {name:"Gross lump-sum (脱退一時金, estimate)", v:r.gross, cls:""},
-      {name:"Less: 20.42% income tax withheld", v:-r.tax, cls:"tax-row"},
-      {name:"Net if you DON'T reclaim the tax", v:r.netNoReclaim, cls:"tot-row"},
-      {name:"Net if you DO appoint a tax rep & reclaim", v:r.netReclaim, cls:"net-row"}
+      {name:"Less: 20.42% income tax withheld", v:-r.tax, cls:"tax-row"}
     ];
+    if (r.canCompute){
+      rows.push({name:"Actual tax due (as retirement income, incl. 2.1% surtax)", v:-r.actualTax, cls:"tax-row"});
+      rows.push({name:"Net if you DON'T reclaim the tax", v:r.netNoReclaim, cls:"tot-row"});
+      rows.push({name:"Net if you DO appoint a tax rep & reclaim", v:r.netReclaim, cls:"net-row"});
+    } else {
+      rows.push({name:"Net if you DON'T reclaim the tax", v:r.netNoReclaim, cls:"tot-row"});
+    }
 
     var html = "";
     rows.forEach(function(x){

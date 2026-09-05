@@ -144,7 +144,7 @@
       </div>
     </div>
 
-    <p class="note" style="margin-top:14px;">Assumes a <b>company employee on Shakai Hoken (社会保険)</b> with only salary income, using social insurance ≈ 15% of gross and illustrative deduction amounts. If you have other income, run the numbers again with an official simulator.</p>
+    <p class="note" style="margin-top:14px;">Assumes a <b>company employee on Shakai Hoken (社会保険)</b> with only salary income, using social insurance ≈ 15% of gross and the <b>令和7年度 (FY2025) tiered income-tax basic deduction</b>. If you have other income, run the numbers again with an official simulator.</p>
 
     <div class="headline">
       <div class="hbox">
@@ -180,7 +180,7 @@
   <p>Mio uses the standard Japanese "full-deduction limit" logic, working backwards from your resident tax:</p>
   <table>
     <tr><th>Step</th><th>What it does (illustrative)</th></tr>
-    <tr><td>1. Rough taxable income</td><td>Gross − employment-income deduction − social insurance (~15%) − basic deduction (~¥480k) − spouse / dependent deductions (¥380k each) − your "other deductions".</td></tr>
+    <tr><td>1. Rough taxable income</td><td>Gross − employment-income deduction − social insurance (~15%) − <b>基礎控除 (basic deduction), FY2025-tiered by total income: ¥950k / ¥880k / ¥680k / ¥630k / ¥580k</b> − spouse / dependent deductions (¥380k each) − your "other deductions".</td></tr>
     <tr><td>2. Marginal income-tax rate</td><td>Reads which national bracket that taxable income falls in: 5 / 10 / 20 / 23 / 33 / 40 / 45%.</td></tr>
     <tr><td>3. Resident-tax income levy (所得割)</td><td>≈ 10% of a similar taxable base — this is the pool the ~20% cap is measured against.</td></tr>
     <tr><td>4. The limit formula</td><td><b>Limit ≈ (resident-tax income levy × 20%) ÷ (100% − 10% − income-tax rate × 1.021) + ¥2,000</b></td></tr>
@@ -201,7 +201,9 @@
     <a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" target="_blank" rel="noopener">MIC (総務省) — furusato nozei deduction mechanism</a>,
     <a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/" target="_blank" rel="noopener">MIC — how furusato nozei works</a>,
     <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">NTA — income-tax rates</a>,
-    <a href="https://www.nta.go.jp/english/taxes/individual/12012.htm" target="_blank" rel="noopener">NTA — employment income deduction</a>.
+    <a href="https://www.nta.go.jp/english/taxes/individual/12012.htm" target="_blank" rel="noopener">NTA — employment income deduction</a>,
+    <a href="https://www.nta.go.jp/users/gensen/2025kiso/index.htm" target="_blank" rel="noopener">NTA (国税庁) — 令和7年度 basic deduction (基礎控除) reform</a>.
+    <b>Tax year: uses the 令和7年度 (FY2025) tiered income-tax basic deduction (基礎控除).</b> The furusato limit is driven mainly by the resident-tax income levy (住民税所得割) 20% cap; the FY2025 basic deduction is applied when working out your marginal income-tax rate.
     Resident-tax details: your municipality. Figures do not fully account for all deductions, other income, or year-specific reform changes. Verify with an official simulator before donating.
   </div>
   <div class="foot">
@@ -229,6 +231,19 @@
     return 1950000; // cap
   }
 
+  // 令和7年度 (FY2025 reform) income-tax basic deduction (基礎控除), tiered by
+  // TOTAL income (合計所得金額). Source: 国税庁 https://www.nta.go.jp/users/gensen/2025kiso/index.htm
+  // ≤¥1.32M: ¥950k / ¥1.32M–¥3.36M: ¥880k / ¥3.36M–¥4.89M: ¥680k /
+  // ¥4.89M–¥6.55M: ¥630k / ¥6.55M–¥23.5M: ¥580k.
+  function basicDeductionByIncome(totalIncome){
+    if (totalIncome <= 1320000)  return 950000;
+    if (totalIncome <= 3360000)  return 880000;
+    if (totalIncome <= 4890000)  return 680000;
+    if (totalIncome <= 6550000)  return 630000;
+    if (totalIncome <= 23500000) return 580000;
+    return 0; // over ¥23.5M: basic deduction phases out (unchanged by the reform)
+  }
+
   // Marginal national income-tax rate for a given taxable income (before surtax).
   function marginalRate(t){
     if (t <= 0)        return 0.05;   // floor to lowest bracket for tiny incomes
@@ -250,7 +265,10 @@
 
     // --- deductions ---
     var empDed = empDeduction(gross);
-    var basicDeduction = 480000; // illustrative baseline (national)
+    // Total income (合計所得金額) ≈ salary income after the employment-income deduction.
+    // This drives the 令和7年度 (FY2025) tiered income-tax basic deduction.
+    var totalIncome = Math.max(0, gross - empDed);
+    var basicDeduction = basicDeductionByIncome(totalIncome); // FY2025 reform, tiered
 
     // spouse / dependent deductions (¥380k each, illustrative national amount)
     var famDeduction = 0;
