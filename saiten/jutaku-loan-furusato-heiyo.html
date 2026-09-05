@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>住宅ローン控除×ふるさと納税、併用すると上限が減る人・減らない人｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/jutaku-loan-furusato-heiyo.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="住宅ローン控除×ふるさと納税｜併用で“2000円”が崩れる人・崩れない人。AIが条件で採点">
+<meta name="twitter:description" content="住宅ローン控除を住民税まで使い切る人は、ふるさと納税の枠が目減りするケースがある。所得税で引ききれるか／申告方法で扱いが変わる点を計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「住宅ローン控除×ふるさと納税の併用干渉」を採点。住宅ローン控除を住民税側まで使う人は、ふるさと納税の実質2,000円の枠が目減りするケースがある。所得税から引ききれるか／ワンストップと確定申告で扱いがどう違うかを、条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/jutaku-loan-furusato-heiyo.html">
+<meta property="og:title" content="住宅ローン控除×ふるさと納税｜併用で“2000円”が崩れる人・崩れない人。AIが条件で採点">
+<meta property="og:description" content="住宅ローン控除を住民税まで使い切る人は、ふるさと納税の枠が目減りするケースがある。所得税で引ききれるか／申告方法で扱いが変わる点を計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0603e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* summary diagram */
+  .diag{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-top:18px;}
+  .diag .dt{font-size:13px;font-weight:800;color:var(--b);letter-spacing:.03em;}
+  .diag .sub{font-size:12px;color:var(--faint);margin-top:4px;}
+  .flow{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+  .stack{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0b121a;}
+  .stack .cap{font-size:12px;font-weight:800;color:var(--mut);padding:8px 12px;background:#101a24;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;}
+  .bucket{display:flex;height:34px;font-size:11.5px;font-weight:800;color:#0b121a;}
+  .seg{display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15;padding:0 4px;}
+  .seg.income{background:#58a6ff;}
+  .seg.loan{background:#f0883e;}
+  .seg.furu{background:#2ea043;color:#eafff0;}
+  .seg.spill{background:#f0603e;color:#fff;}
+  .seg.free{background:#1c2b38;color:#6e7b8a;border-left:1px dashed #ffffff22;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:14px;font-size:11.5px;color:var(--mut);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .arrowlbl{text-align:center;font-size:12px;color:var(--faint);font-weight:700;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 住宅ローン控除×ふるさと納税</div>
+    <h1>住宅ローン控除とふるさと納税を併用すると、<br>ふるさと納税の“実質2,000円”が崩れる人がいる</h1>
+    <div class="who">🏠 家を買った年・買った翌年にふるさと納税もやる人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>住宅ローン控除を「所得税だけ」で引ききれる人</b>は、併用の干渉はほぼ起きない（大多数の共働き・高めの年収層）。</li>
+        <li><b>住宅ローン控除が所得税で余って住民税まで回る人</b>は、ふるさと納税の特例分（住民税所得割の20%枠）とぶつかり、<b>実質2,000円の上限が目減り</b>することがある。</li>
+        <li>会社員は<b>確定申告よりワンストップ特例のほうが干渉しにくい</b>。所得税に触れないぶん、住宅ローン控除を所得税側に温存できるため。ただし初年度など確定申告が必須の年は選べない。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。「併用できる／できない」の一般論はもう他所にあります。ここで見るのは <b>“併用したときに、あなたのふるさと納税枠が本当に丸ごと得になるか”</b> という一点だけです。</div>
+  </header>
+
+  <!-- 視覚的サマリー図：住宅ローン控除がふるさと納税枠に干渉する仕組み -->
+  <div class="diag" aria-label="住宅ローン控除がふるさと納税枠に干渉する仕組みの図">
+    <div class="dt">📊 なぜ枠が目減りするのか（1枚図）</div>
+    <div class="sub">あなたが納める税金は「所得税」と「住民税」の2つ。住宅ローン控除もふるさと納税も、この同じ財布から引かれます。</div>
+
+    <div class="flow">
+      <div class="arrowlbl">パターンA：住宅ローン控除を <b>所得税だけ</b> で引ききれる人 → 干渉しにくい</div>
+      <div class="stack">
+        <div class="cap"><span>所得税</span><span>住宅ローン控除で相殺</span></div>
+        <div class="bucket">
+          <div class="seg loan" style="width:55%">住宅ローン控除</div>
+          <div class="seg income" style="width:45%">所得税として納付</div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="cap"><span>住民税</span><span>ふるさと納税の枠がまるごと空いている</span></div>
+        <div class="bucket">
+          <div class="seg furu" style="width:22%">ふるさと納税 特例分</div>
+          <div class="seg income" style="width:78%">住民税として納付</div>
+        </div>
+      </div>
+
+      <div class="arrowlbl" style="margin-top:6px">パターンB：住宅ローン控除が <b>所得税で余って住民税まで</b> 回る人 → 枠を奪い合う</div>
+      <div class="stack">
+        <div class="cap"><span>所得税</span><span>控除しきれず余る ↓</span></div>
+        <div class="bucket">
+          <div class="seg loan" style="width:100%">住宅ローン控除（所得税を食い尽くす）</div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="cap"><span>住民税</span><span>ローン控除が下りてきて枠を圧迫</span></div>
+        <div class="bucket">
+          <div class="seg loan" style="width:40%">住宅ローン控除（住民税側）</div>
+          <div class="seg furu" style="width:20%">ふるさと納税</div>
+          <div class="seg spill" style="width:14%">はみ出し＝自己負担</div>
+          <div class="seg income" style="width:26%">住民税納付</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#f0883e"></i>住宅ローン控除</span>
+      <span><i style="background:#2ea043"></i>ふるさと納税で戻る分</span>
+      <span><i style="background:#f0603e"></i>枠を超えて戻らない＝自己負担増</span>
+      <span><i style="background:#58a6ff"></i>実際に納める税</span>
+    </div>
+    <div class="note">※図は仕組みのイメージ（幅は概念的なもので実額比ではありません）。実際の枠は所得・税額で変わります。判定はあなたの数字で。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">
+      住宅ローン控除が <span style="color:var(--g)">所得税だけで消える人</span> → 併用の干渉ほぼなし。ふるさと納税は普段どおりでOK。<br>
+      住宅ローン控除が <span style="color:var(--o)">住民税まで回っている人</span> → ふるさと納税の上限が目減りする可能性。会社員はワンストップ寄りが有利、金額が大きい年は事前シミュレーション必須。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>所得税で引ききれる人が受ける干渉</span><span>ほぼゼロ</span></div><div class="track"><div class="fill" style="width:10%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>住民税まで回る人が受ける干渉</span><span>要注意</span></div><div class="track"><div class="fill" style="width:68%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>ワンストップ特例が干渉を抑える度合い</span><span>比較的大きい</span></div><div class="track"><div class="fill" style="width:72%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※「併用で必ず損する」は言い過ぎ、「気にしなくていい」も言い過ぎ。<b>分かれ目は“住宅ローン控除が住民税まで下りているか”</b>。ここだけを見ます。</div>
+  </div>
+
+  <h2>まず前提：2つとも“同じ財布”から引く</h2>
+  <p>ふるさと納税は、<b>2,000円を超えた寄付分</b>が「所得税」と「住民税」から差し引かれる仕組みです。総務省の計算式では、大きく3階建てになっています。</p>
+  <div class="calc">
+    ①所得税から：（寄付額−2,000円）× 所得税率<br>
+    ②住民税・基本分：（寄付額−2,000円）× 10%<br>
+    ③住民税・特例分：（寄付額−2,000円）×（90%−所得税率）
+    <small>③には上限があり、「住民税所得割額の20%」を超える部分は戻りません（＝自己負担になる）</small>
+  </div>
+  <p>ポイントは<b>③特例分の上限＝住民税所得割の20%</b>です。ふるさと納税の「実質2,000円で済む上限額」は、ほぼこの③の枠で決まっています。ここが住宅ローン控除と取り合いになります。</p>
+  <p>住宅ローン控除は「税額そのものを直接減らす」控除で、まず所得税から引き、<b>所得税で引ききれなかった分だけ住民税から引く</b>という順番です（住民税から引ける額にも上限があります）。つまり住宅ローン控除が住民税に下りてくると、そのぶん住民税所得割が小さくなり、連動して<b>③の20%枠も小さくなる</b>――これが干渉の正体です。</p>
+
+  <h2>採点の分岐点：「所得税で引ききれるか」だけ見る</h2>
+  <p>併用で損するかどうかは、突き詰めると次の1問です。</p>
+  <div class="calc">あなたの<b>住宅ローン控除は、所得税だけで使い切れていますか？</b><small>源泉徴収票や確定申告で、所得税が住宅ローン控除でゼロ近くまで削られ、さらに余って住民税から引かれているか</small></div>
+  <table>
+    <tr><th>状態</th><th>ふるさと納税への影響</th><th>採点</th></tr>
+    <tr><td>住宅ローン控除が<b>所得税だけ</b>で収まる（住民税まで回らない）</td><td>住民税所得割は減らないので、③の20%枠は温存される。干渉ほぼなし</td><td class="win">◎ 気にしなくてよい</td></tr>
+    <tr><td>住宅ローン控除が所得税で余り、<b>住民税からも</b>引かれている</td><td>住民税所得割が減り、③の20%枠が縮む。ふるさと納税の実質2,000円の上限が目減りしうる</td><td class="warn">△ 上限を要再計算</td></tr>
+    <tr><td>もともと所得税・住民税が少ない（収入が低め／控除が多い年）</td><td>枠自体が小さく、はみ出しやすい</td><td class="bad">▲ 慎重に</td></tr>
+  </table>
+  <p>ざっくりの目安として、<b>共働きで年収が高め・借入残高が控えめ</b>な人ほど住宅ローン控除は所得税で消えやすく、干渉は起きにくい傾向です。逆に<b>単独名義で借入残高が大きく、所得税が住宅ローン控除で食い尽くされる</b>タイプは、住民税まで回りやすく要注意です。断定はできません――正確な線引きはあなたの税額次第です。</p>
+
+  <h2>会社員はなぜ「ワンストップ寄り」が有利になりやすいのか</h2>
+  <p>ここが今回のニッチな肝です。同じ寄付額でも、<b>申告方法によって干渉の起きやすさが変わります</b>。</p>
+  <table>
+    <tr><th>申告方法</th><th>ふるさと納税がどこから引かれるか</th><th>住宅ローン控除との関係</th></tr>
+    <tr><td>ワンストップ特例</td><td class="win">全額まとめて翌年度の<b>住民税から</b>（所得税には一切触れない）</td><td>所得税を減らさないので、住宅ローン控除を所得税側に温存できる＝住民税に押し出されにくい</td></tr>
+    <tr><td>確定申告</td><td>①所得税から還付＋②③住民税から</td><td>ふるさと納税で<b>所得税が先に減る</b>→そのぶん住宅ローン控除が住民税へ「押し出され」、住民税の枠を圧迫しやすい</td></tr>
+  </table>
+  <p>確定申告では、計算順序として<b>先にふるさと納税の寄付金控除が所得税を下げます</b>。所得税が下がると、住宅ローン控除が所得税で使いきれず住民税へ回りやすくなります。すると住民税所得割が小さくなり、ふるさと納税の③20%枠も縮む――という玉突きが起きます。ワンストップ特例は所得税をいじらないため、この玉突きが起きにくいのです。</p>
+  <div class="calc">会社員 × 住宅ローン控除2年目以降 × 寄付先5自治体以内<small>→ 干渉を避けたいならワンストップ特例が無難。ただし「損得の総額」自体は上限内なら本来どちらも同じで、差が出るのは“住民税まで回る人”という限られたケースです</small></div>
+  <p><b>ただし選べない年があります。</b>住宅ローン控除の<b>初年度</b>は確定申告が必須（＝ワンストップは使えない）。医療費控除やiDeCoの申告など、他の理由で確定申告する年も同様です。「ワンストップのほうが有利かも」でも、制度上そもそも使えない年がある点に注意してください。</p>
+
+  <div class="cta">
+    <div class="h">▶ その前に：併用後の“本当の上限”を数字で確認</div>
+    <div class="ph"><a href="../tools/furusato.html" style="color:#9fd0e6;font-weight:800;text-decoration:none">▶ ふるさと納税 上限シミュレーターで“いくらまで実質2,000円か”を計算する</a><br>住宅ローン控除がある年は、通常のかんたん計算より上限が下がることがあります。寄付前に、住宅ローン控除を反映できる詳細シミュレーションで確認するのが安全です。<br><!-- ASP_SLOT: ふるさと納税サイト/FP相談 --></div>
+  </div>
+
+  <h2>条件別の採点：あなたはどのケース？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>注意度</th><th>採点コメント</th></tr>
+    <tr><td>住宅ローン控除2年目以降・所得税で引ききれる・寄付先5自治体以内の会社員</td><td class="win">低</td><td>普段どおりでOK。会社員ならワンストップで所得税に触れず処理すればさらに安心</td></tr>
+    <tr><td>住宅ローン控除2年目以降・所得税で余り住民税まで回っている</td><td class="warn">中〜高</td><td>ふるさと納税の上限が目減りしうる。詳細シミュレーションで実額の上限を必ず確認</td></tr>
+    <tr><td>住宅ローン控除の<b>初年度</b>（確定申告必須）</td><td class="warn">中</td><td>ワンストップは使えず確定申告に一本化。所得税が先に減るので干渉が出やすい年。寄付額は控えめ＆事前計算が安全</td></tr>
+    <tr><td>医療費控除・iDeCo等で確定申告する年</td><td class="warn">中</td><td>ワンストップは無効化。確定申告で寄付分を必ず記載。所得税が減る要素が多く、住民税枠に注意</td></tr>
+    <tr><td>収入が低め／その年の税額が小さい</td><td class="bad">高</td><td>そもそも枠が小さく、住宅ローン控除でさらに削られやすい。寄付は少額から</td></tr>
+  </table>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「かんたんシミュレーション」の上限を鵜呑みにする：</b>ふるさと納税ポータルの年収だけで出る目安は、住宅ローン控除を反映していないことがあります。住宅ローン控除が住民税に回る人は、その目安より実際の上限が下がる可能性があります。</li>
+    <li><b>初年度にワンストップを申請してしまう：</b>住宅ローン控除の初年度は確定申告が必須で、確定申告するとワンストップは自動で無効。<b>確定申告書にふるさと納税の寄付金控除を書き忘れると控除ゼロ</b>になります。</li>
+    <li><b>「所得税還付が少ない＝損」と誤解する：</b>ワンストップや、住宅ローン控除で所得税が減っている年は所得税からの戻りが小さく見えますが、その分は住民税で減っています。還付額の大小だけで損得を判断しないこと。</li>
+    <li><b>翌年の住民税決定通知書を確認しない：</b>実際に枠内で控除されたかは、6月ごろ届く<b>住民税決定通知書（寄附金税額控除の欄）</b>で答え合わせできます。想定より控除が小さければ、翌年の寄付額を調整する材料になります。</li>
+    <li><b>「必ず損する」と怖がって寄付をやめる：</b>干渉が起きるのは住民税まで住宅ローン控除が回る一部の人だけ。多くの人は上限内なら影響はほぼありません。過剰反応も損です。</li>
+  </ul>
+
+  <h2>最適解（AIの結論）</h2>
+  <ul>
+    <li>分かれ目は1つ――<b>住宅ローン控除が「所得税だけ」で消えるか、「住民税」まで回るか</b>。回らない人は気にしなくてよい。</li>
+    <li>住民税まで回る人は、ふるさと納税の実質2,000円の上限が<b>目減りしうる</b>。断定はできないので、<b>住宅ローン控除を反映できる詳細シミュレーションで実額を確認</b>してから寄付額を決める。</li>
+    <li>会社員で選べる年は、所得税に触れない<b>ワンストップ特例</b>が干渉を抑えやすい。ただし初年度・医療費控除等の年は確定申告が必須で選べない。</li>
+    <li>答え合わせは<b>翌年の住民税決定通知書</b>で。想定より控除が小さければ翌年の寄付額を下げる。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 まず上限から：<a href="../tools/furusato.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 上限シミュレーターで“いくらまで実質2,000円か”を計算する →</a><br><span style="color:var(--faint);font-size:12px">申告方法で迷う人は</span> <a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ワンストップ vs 確定申告の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html" target="_blank" rel="noopener">総務省 ふるさと納税のしくみ｜税金の控除について</a>（所得税分＝（寄付額−2,000円）×所得税率／住民税基本分×10%／住民税特例分×（90%−所得税率）・<b>特例分の上限＝住民税所得割額の20%</b>／ワンストップは所得税分も含め全額を翌年度住民税から控除）<br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" target="_blank" rel="noopener">総務省 ふるさと納税のしくみ｜ふるさと納税の流れ</a>（ワンストップ特例＝確定申告不要の給与所得者・寄付先5自治体以内）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm" target="_blank" rel="noopener">国税庁 No.1155 ふるさと納税（寄附金控除）</a>（確定申告での寄付金控除の扱い・確定申告するとワンストップは無効）<br>
+    ・<a href="https://www.furusato-tax.jp/guide/furusato-nozei-jutakukojo-heiyo" target="_blank" rel="noopener">ふるさとチョイス｜住宅ローン控除とふるさと納税の併用</a>（確定申告では所得税が先に減り住宅ローン控除が住民税へ押し出される／ワンストップは所得税に触れず干渉しにくい旨の解説・参考）<br>
+    <span class="note">※制度は改正されることがあります。税率・上限・要件・期限は各時点の公式情報にもとづく参考です。住宅ローン控除が住民税から引ける額の上限や、その年に確定申告が必要かどうかは個別事情で変わります。最新の条件と個別判断は、総務省ふるさと納税ポータル・国税庁・お住まいの自治体・税務署・税理士等でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/furusato.html">上限シミュレーター</a> ／ <a href="furusato-onestop-vs-kakutei.html">ワンストップ vs 確定申告</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

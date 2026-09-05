@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>企業型DCがある会社員、マッチング拠出 vs iDeCo併用 どっちが得？AIが手数料・限度額で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kigyo-dc-matching-vs-ideco.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="マッチング拠出 vs iDeCo併用｜企業型DCの上乗せはどっちが得？AIが計算で採点">
+<meta name="twitter:description" content="会社の掛金が少ないならiDeCo、掛金が多いならマッチング。手数料・限度額・商品で機械的に採点。両方は使えない排他ルールも解説。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「企業型DCのマッチング拠出 vs iDeCo併用」を手数料・拠出限度額・会社掛金の関係で採点。会社掛金が少ない人はiDeCo、多い人はマッチングが有利になりやすい。両方は同時に使えない排他ルール、月2万円・5.5万円の限度額、月171円のiDeCo手数料まで公式準拠で解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kigyo-dc-matching-vs-ideco.html">
+<meta property="og:title" content="マッチング拠出 vs iDeCo併用｜企業型DCの上乗せはどっちが得？AIが計算で採点">
+<meta property="og:description" content="会社の掛金が少ないならiDeCo、掛金が多いならマッチング。手数料・限度額・商品で機械的に採点。両方は使えない排他ルールも解説。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* flow diagram */
+  .flow{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-top:18px;}
+  .flow .ft{font-size:13px;font-weight:800;color:var(--b);letter-spacing:.04em;text-align:center;}
+  .fnode{margin-top:12px;border-radius:12px;padding:11px 14px;font-size:13.5px;line-height:1.6;}
+  .fq{background:#0b121a;border:1px solid var(--line);text-align:center;font-weight:800;}
+  .fbranch{display:flex;gap:10px;margin-top:10px;}
+  .fbranch>div{flex:1;border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.55;}
+  .fyes{background:#101d16;border:1px solid #2ea04355;}
+  .fno{background:#2015103a;border:1px solid #f0883e55;}
+  .fyes b{color:#39d353;} .fno b{color:var(--o);}
+  .farrow{text-align:center;color:var(--faint);font-size:16px;line-height:1;margin-top:8px;}
+  .ftag{display:inline-block;font-size:11px;font-weight:800;padding:1px 7px;border-radius:6px;margin-bottom:4px;}
+  .tg{background:#12351f;color:#5fd97e;} .to{background:#3a2413;color:#f5a86a;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 企業型DC 上乗せの選び方</div>
+    <h1>企業型DCの上乗せ、マッチング拠出 vs iDeCo併用<br>結局どっちが得？</h1>
+    <div class="who">🏢 会社の企業型DC（企業型確定拠出年金）に入っている会社員へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>両方は同時に使えません。</b>マッチング拠出をしている人はiDeCoに加入できない（排他ルール）。まずどちらかを選ぶ。</li>
+        <li><b>会社の掛金が少ない人はiDeCo併用が有利になりやすい。</b>マッチング拠出は「会社掛金の範囲まで」しか上乗せできないため（2026年3月まで）。会社掛金が大きい人はマッチングでも枠を使い切れる。</li>
+        <li>手数料はマッチングが原則<b>会社負担</b>、iDeCoは<b>月171円（年約2,052円）</b>の自己負担。ここも判断材料。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>数字とルール</b>で採点します。先に核心 ―― 勝負を分けるのは「<b>会社の掛金がいくらか</b>」と「<b>会社の商品ラインナップに満足しているか</b>」の2点。この2つで機械的に決まります。</div>
+  </header>
+
+  <!-- ======= 視覚的サマリー図：判断分岐フロー ======= -->
+  <div class="flow">
+    <div class="ft">🔀 30秒でわかる 判断フロー（マッチング拠出 vs iDeCo併用）</div>
+
+    <div class="fnode fq">Q1. 勤め先に「マッチング拠出」制度はある？</div>
+    <div class="farrow">▼</div>
+    <div class="fbranch">
+      <div class="fno"><b>ない</b><br>→ 上乗せの選択肢は <b>iDeCo併用</b> 一択。<br>（会社が規約で認めていれば加入可）</div>
+      <div class="fyes"><b>ある</b><br>→ 下のQ2へ。両方は使えないので選ぶ。</div>
+    </div>
+    <div class="farrow">▼</div>
+
+    <div class="fnode fq">Q2. 会社の掛金（事業主掛金）は多い？少ない？</div>
+    <div class="farrow">▼</div>
+    <div class="fbranch">
+      <div class="fno"><span class="ftag to">少ない</span><br><b>会社掛金が月2万円未満 くらい</b><br>→ マッチングだと上乗せ額が小さく制限される<br>→ <b>iDeCo併用が有利になりやすい</b>（月2万円まで拠出可）</div>
+      <div class="fyes"><span class="ftag tg">多い</span><br><b>会社掛金が大きい（例：月2万円超）</b><br>→ マッチングでも十分に上乗せできる<br>→ 手数料が会社負担の <b>マッチングが有利になりやすい</b></div>
+    </div>
+    <div class="farrow">▼</div>
+
+    <div class="fnode fq">Q3. 会社の企業型DCの商品（信託報酬）に満足？</div>
+    <div class="fbranch">
+      <div class="fno"><b>不満／低コスト商品がない</b><br>→ 商品を自分で選べる <b>iDeCo</b> に寄せる価値あり</div>
+      <div class="fyes"><b>満足している</b><br>→ 手数料タダの <b>マッチング</b> で素直に上乗せ</div>
+    </div>
+    <div class="note" style="text-align:center">※金額の目安は一般的な傾向。実際の限度額・会社掛金は勤務先のDC加入者サイトで要確認。2026年4月以降はマッチングの上限ルールが変わります（後述）。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">会社掛金が少ない × 会社の商品に不満 → <span style="color:var(--g)">iDeCo併用</span>。<br>会社掛金が多い × 会社の商品に満足 × 転職予定なし → <span style="color:var(--o)">マッチング拠出</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>上乗せできる金額（会社掛金が少ない人）</span><span>iDeCoが多い</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>手数料の安さ</span><span>マッチングが有利（会社負担）</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>商品の自由度・転職時の持ち運び</span><span>iDeCoが有利</span></div><div class="track"><div class="fill" style="width:74%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※税制優遇（掛金が全額所得控除）はどちらも同じ。差が出るのは「上乗せできる額」「手数料」「商品」の3点だけです（出典は末尾）。</div>
+  </div>
+
+  <h2>大前提：マッチング拠出とiDeCoは「両方は使えない」</h2>
+  <p>最初に一番大事なルール。2022年10月の改正で企業型DC加入者もiDeCoに入りやすくなりましたが、<b>マッチング拠出を利用している人はiDeCoに加入できません</b>。この排他関係は改正後も変わっていません。iDeCoに入りたければマッチング拠出を止める必要があり、逆も同じです。まず「どちらかを選ぶ」問題だと理解してください。</p>
+  <div class="calc">マッチング拠出 と iDeCo は <b>同時利用不可（どちらか一方）</b><small>企業型DC加入者がiDeCoに入る条件の1つ＝「マッチング拠出を利用していないこと」</small></div>
+  <p>なお、そもそも勤め先が<b>マッチング拠出を導入していない</b>場合、上乗せの選択肢はiDeCo併用だけになります（会社が規約でiDeCo加入を認めていることが前提）。</p>
+
+  <h2>採点の核心①：あなたの「会社掛金」が勝敗を分ける</h2>
+  <p>ここがニッチだけど一番効く論点です。<b>マッチング拠出には「本人の掛金が会社の掛金（事業主掛金）を超えてはいけない」という上限ルールがあります（2026年3月まで）</b>。つまり会社の掛金が小さいと、自分で上乗せできる額も小さく縛られます。</p>
+  <div class="calc">マッチング拠出（〜2026年3月）＝ 本人掛金 ≦ 会社掛金 かつ 合計 ≦ 上限<small>会社掛金が月5,000円なら、マッチングの上乗せも月5,000円まで</small></div>
+  <p>一方 <b>iDeCo</b> は会社掛金の大小に関係なく、限度額の範囲まで拠出できます（企業型DCのみ加入なら原則<b>月2万円</b>）。だから会社掛金が少ない人ほど、iDeCoの方がたくさん積み立てられる=非課税で運用に回せる額が増えます。</p>
+  <table>
+    <tr><th>会社掛金の状況</th><th>マッチングで上乗せできる額</th><th>iDeCoで上乗せできる額</th><th>採点</th></tr>
+    <tr><td>会社掛金が少ない（例：月5,000円）</td><td>最大 月5,000円まで（会社掛金以下）</td><td>原則 月2万円まで</td><td class="win">iDeCo</td></tr>
+    <tr><td>会社掛金が中くらい（例：月2万円）</td><td>最大 月2万円まで</td><td>原則 月2万円まで</td><td>ほぼ互角（手数料で判断）</td></tr>
+    <tr><td>会社掛金が多い（例：月3.5万円）</td><td>会社掛金の範囲で大きく上乗せ可</td><td>限度額の上限で頭打ちになりやすい</td><td class="win">マッチング</td></tr>
+  </table>
+  <p class="note">※表は「企業型DCのみ」に加入しているケースの一般的な傾向です。会社掛金が非常に大きい場合、iDeCo側は合算上限で拠出できる額が減る／ゼロになることがあります（下記）。</p>
+
+  <h3>iDeCo側の限度額はこう決まる（合算ルールに注意）</h3>
+  <p>企業型DC加入者のiDeCo限度額は、単純な定額ではなく<b>会社掛金との合算上限</b>で決まります。ここが見落とされがちです。</p>
+  <ul>
+    <li><b>企業型DCのみに加入：</b>iDeCoは原則<b>月2万円</b>。ただし「会社掛金＋iDeCo ≦ 月5.5万円」。会社掛金が月3.5万円を超えるとiDeCoは2万円を下回り、掛金によっては拠出できないこともあります。</li>
+    <li><b>企業型DC＋DB（確定給付企業年金）等に加入：</b>2024年12月改正でiDeCo上限が月1.2万円→<b>月2万円</b>に引き上げ。ただし「会社掛金＋DB相当額＋iDeCo ≦ 月2.75万円」の合算上限があり、2万円まで出せない場合があります。</li>
+  </ul>
+  <p>要するに、<b>会社掛金が大きい人ほどiDeCoの枠は削られ、マッチングの方が上乗せしやすい</b>。会社掛金が小さい人ほどiDeCoの枠が生き、iDeCoが有利。これが採点の骨格です。</p>
+
+  <h2>採点の核心②：手数料と商品ラインナップ</h2>
+  <p>拠出できる額が同じくらいなら、次はコストと中身で決めます。</p>
+  <table>
+    <tr><th>項目</th><th>マッチング拠出</th><th>iDeCo併用</th></tr>
+    <tr><td>口座管理手数料</td><td class="win">原則 会社負担（本人0円が多い）</td><td>本人負担。拠出月あたり月171円（年 約2,052円）＋運営管理機関の手数料</td></tr>
+    <tr><td>商品ラインナップ</td><td>会社が用意した商品のみ</td><td class="win">自分で金融機関・商品を選べる（低コスト投信を選びやすい）</td></tr>
+    <tr><td>掛金の所得控除</td><td>全額が対象</td><td>全額が対象（差はなし）</td></tr>
+    <tr><td>転職・離職時</td><td>企業型DCの移換手続きが必要</td><td class="win">口座はそのまま。持ち運びしやすい</td></tr>
+    <tr><td>手続きの手間</td><td class="win">給与天引きで完結・申込が簡単</td><td>自分で金融機関に申込。運用も自分で管理</td></tr>
+  </table>
+  <p>手数料だけ見ればマッチングが有利です。ただし、<b>会社のDC商品が高コスト（信託報酬が高い）でしか選べない場合</b>、iDeCoで低コストの投信を選ぶと、長期・大きな残高では手数料171円/月を払ってもトータルで逆転することがあります。SBI証券の解説では、目安として運用残高が大きくなるほどiDeCoで低信託報酬を選ぶ価値が出る、とされています。断定はできませんが、「会社の商品が微妙 × 長期で大きく積む」ならiDeCoを検討する価値があります。</p>
+
+  <!-- ASP_SLOT: 証券口座/iDeCo -->
+  <div class="cta">
+    <div class="h">▶ iDeCo併用を選ぶなら：口座選び（商品と手数料）で差が出ます</div>
+    <div class="ph">iDeCoは金融機関ごとに商品ラインナップと運営管理手数料が違います。低コスト投信をそろえた口座を選ぶのが基本。<br><!-- ASP: （該当時）ネット証券のiDeCo口座 等 --></div>
+  </div>
+
+  <h2>2026年からのルール変更（先に知っておく）</h2>
+  <p>この分野は改正が続いています。判断に影響する2点を押さえておきましょう。</p>
+  <ul>
+    <li><b>2026年4月：マッチング拠出の「会社掛金を超えられない」上限が撤廃予定。</b>会社掛金が少なくても、限度額の範囲まで自分で上乗せできるようになります。これが実施されると、「会社掛金が少ないからiDeCo有利」という核心①の差は縮まります。</li>
+    <li><b>2026年12月：会社員等の企業型DC・iDeCoの合算上限が月5.5万円→月6.2万円に引き上げ予定。</b>上乗せできる枠そのものが広がります。</li>
+  </ul>
+  <p class="note">※改正内容・施行時期は今後変わる可能性があります。実際の適用は各時点の公式情報・勤務先の規約でご確認ください。</p>
+
+  <h2>条件別の採点：あなたはどっち？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>選ぶべき</th><th>理由</th></tr>
+    <tr><td>会社掛金が少ない × もっと積み立てたい</td><td class="win">iDeCo併用</td><td>マッチングは会社掛金までしか出せない（〜2026/3）。iDeCoなら月2万円まで</td></tr>
+    <tr><td>会社掛金が多い × 会社の商品に満足</td><td class="win">マッチング拠出</td><td>枠を使い切れて、手数料は会社負担で0円</td></tr>
+    <tr><td>会社の商品が高コスト／選べない</td><td class="win">iDeCo併用</td><td>低コスト投信を自分で選べる。長期・大残高で効く</td></tr>
+    <tr><td>手続きの手間を最小にしたい</td><td class="win">マッチング拠出</td><td>給与天引きで完結。申込・管理がラク</td></tr>
+    <tr><td>転職・独立の可能性がある</td><td class="win">iDeCo併用</td><td>口座を持ち運びやすい。勤務先が変わっても継続しやすい</td></tr>
+    <tr><td>そもそも会社にマッチング制度がない</td><td class="win">iDeCo併用</td><td>選択肢がiDeCoのみ（規約で認められていれば加入可）</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「どちらが数万円得」といった単純な差はありません。掛金の所得控除効果は同じ。差が出るのは「上乗せできる額」「手数料」「商品」の3点だけ。だから自分の会社掛金と商品ラインナップを確認すれば、機械的に答えが出ます。</p>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>両方できると思い込む：</b>マッチング拠出とiDeCoは<b>併用不可</b>。iDeCoに入るならマッチングを止める必要があります。</li>
+    <li><b>iDeCoの限度額を「常に月2万円」と誤解：</b>会社掛金との<b>合算上限</b>（5.5万円/2.75万円）があり、会社掛金が大きいと2万円まで出せない、あるいは出せないことがあります。まず勤務先のDC加入者サイトで会社掛金額を確認。</li>
+    <li><b>iDeCoの手数料を忘れる：</b>拠出のある月ごとに<b>月171円（年約2,052円）</b>＋運営管理機関の手数料が自己負担。少額を毎月積むだけだと手数料負けの度合いが相対的に大きくなります。</li>
+    <li><b>DB併用の限度額改正を知らない：</b>2024年12月からDB等併用者のiDeCo上限は月1.2万円→<b>月2万円</b>。古い情報のままだと過小に見積もります。</li>
+    <li><b>2026年の改正を無視して長期判断する：</b>2026年4月のマッチング上限撤廃・12月の枠拡大で有利不利が動きます。長期で決めるなら改正も織り込む。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>マッチング拠出とiDeCoは<b>両方は使えない</b>。まずどちらかを選ぶ問題。</li>
+    <li>会社掛金が<b>少ない</b>人はiDeCo併用が有利になりやすい（マッチングは会社掛金までしか出せない・〜2026/3）。</li>
+    <li>会社掛金が<b>多い</b>人はマッチングが有利になりやすい（枠を使い切れて手数料は会社負担）。</li>
+    <li>会社の商品が高コストなら、手数料171円/月を払ってもiDeCoの低コスト投信が長期で効くことがある。</li>
+    <li>2026年4月（マッチング上限撤廃）・12月（枠を6.2万円へ拡大）で前提が変わる。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a><br><span style="color:var(--faint);font-size:12px">年収の“壁”が気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.ideco-koushiki.jp/" target="_blank" rel="noopener">iDeCo公式サイト（国民年金基金連合会）</a>（iDeCoの加入資格・拠出限度額・税制優遇）<br>
+    ・<a href="https://www.gov-online.go.jp/article/202412/entry-6825.html" target="_blank" rel="noopener">政府広報オンライン：2024年12月iDeCo法改正のポイント</a>（DB等併用者のiDeCo上限を月1.2万円→2万円に引き上げ・合計は月5.5万円を超えられない・事業主証明書の廃止）<br>
+    ・<a href="https://dc.rakuten-sec.co.jp/about/revised/202210/" target="_blank" rel="noopener">楽天証券：2022年10月制度改正 企業型DCとiDeCoが併用可能に</a>（マッチング拠出利用者はiDeCo併用不可・企業型DCのみは月2万円/DB併用は月1.2万円・合算上限5.5万円/2.75万円）<br>
+    ・<a href="https://www.resonabank.co.jp/nenkin/ideco/column/matching-contribution.html" target="_blank" rel="noopener">りそなグループ：マッチング拠出とは（上限額と2026年4月の改正）</a>（本人掛金は事業主掛金以下・合計は限度額以下・手数料は会社負担・全額所得控除・2026年4月に事業主掛金以下の上限が撤廃予定）<br>
+    ・<a href="https://go.sbisec.co.jp/prd/ideco/ide-column-20260402-53.html" target="_blank" rel="noopener">SBI証券：iDeCoと企業型DCのマッチング拠出どっちがいい？</a>（会社掛金が少ないとiDeCoが多く拠出できる・iDeCoは口座管理手数料 月171円/年2,052円・商品と残高規模での使い分け）<br>
+    <span class="note">※制度は改正されることがあります。限度額・要件・施行時期は各時点の公式情報にもとづく参考です。最新の条件はiDeCo公式・厚生労働省・お勤め先の企業型DC加入者サイト・運営管理機関でご確認ください。個別の有利不利は掛金額や運用商品で変わるため、最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="furusato-onestop-vs-kakutei.html">ふるさと納税の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

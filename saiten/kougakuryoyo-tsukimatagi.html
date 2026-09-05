@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高額療養費の「月またぎ」で自己負担が倍に？入院・手術日で手取り負担が変わる仕組みをAIが計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kougakuryoyo-tsukimatagi.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="高額療養費の「月またぎ」落とし穴｜同じ治療でも自己負担が2か月分。AIが計算で採点">
+<meta name="twitter:description" content="高額療養費は暦月ごとの計算。月末〜翌月初にまたぐと上限が“2か月分”効いて自己負担が増える。予定入院・手術日の決め方で手取り負担が変わる。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「高額療養費の月またぎ」を計算だけで採点。高額療養費は暦月(1日〜末日)ごとに上限を計算するため、同じ入院・治療でも月末〜翌月初にまたぐと自己負担上限が“2か月分”適用され、手取り負担が最大で約2倍近くまで増えることがある。予定入院・手術日の決め方、年収区分別の上限額、限度額適用認定証まで条件別に出典つきで採点。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kougakuryoyo-tsukimatagi.html">
+<meta property="og:title" content="高額療養費の「月またぎ」落とし穴｜同じ治療でも自己負担が2か月分。AIが計算で採点">
+<meta property="og:description" content="高額療養費は暦月ごとの計算。月末〜翌月初にまたぐと上限が“2か月分”効いて自己負担が増える。予定入院・手術日で手取り負担が変わる。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .lose{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 月またぎ視覚図 */
+  .cal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+  @media(max-width:520px){.cal{grid-template-columns:1fr;}}
+  .cal .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;}
+  .cal .panel.good{border-color:#2ea04355;}
+  .cal .panel.bad{border-color:#e5534b55;}
+  .cal .ph{font-size:13px;font-weight:800;letter-spacing:.03em;}
+  .cal .ph.good{color:#39d353;} .cal .ph.bad{color:#ff7b72;}
+  .cal .strip{display:flex;margin-top:10px;border-radius:8px;overflow:hidden;border:1px solid var(--line);font-size:10px;font-weight:800;}
+  .cal .cell{flex:1;text-align:center;padding:8px 0;background:#0b121a;color:var(--faint);}
+  .cal .cell.stay{background:#1f3a2a;color:#8fe3a3;}
+  .cal .cell.stayb{background:#3a2020;color:#ff9b93;}
+  .cal .cell.eom{position:relative;}
+  .cal .cell.eom::after{content:"";position:absolute;top:-1px;bottom:-1px;right:0;width:2px;background:var(--o);}
+  .cal .cap{margin-top:12px;font-size:12px;color:var(--mut);line-height:1.6;}
+  .cal .amt{margin-top:8px;font-size:22px;font-weight:800;}
+  .cal .amt.good{color:#39d353;} .cal .amt.bad{color:#ff7b72;}
+  .cal .amt small{font-size:11px;font-weight:700;color:var(--faint);}
+  .legend{margin-top:10px;font-size:11px;color:var(--faint);display:flex;gap:14px;flex-wrap:wrap;}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 高額療養費 月またぎ</div>
+    <h1>高額療養費の「月またぎ」<br>同じ治療でも自己負担が“2か月分”になる罠</h1>
+    <div class="who">🏥 予定入院・手術の日程をこれから決める人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>高額療養費の上限は<b>暦月（毎月1日〜末日）ごと</b>にリセット。同じ入院でも<b>月末〜翌月初にまたぐと上限が2か月分</b>効き、自己負担が増える。</li>
+        <li><b>予定入院・待てる手術なら「月初スタート」が原則有利</b>。1か月に治療費を寄せた方が上限1回分で済みやすい。</li>
+        <li>ただし<b>緊急・急ぐべき治療は日程を優先。命と回復が最優先で、節約のために先延ばししない。</b></li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。高額療養費は「1回の入院ごと」ではなく<b>「暦月ごと」に計算</b>される制度。この一点を知らないと、同じ治療でもカレンダーのめぐり合わせで自己負担が変わります。以下、仕組みと最適解を数字で採点します。</div>
+  </header>
+
+  <!-- 視覚的サマリー図：月末入院 vs 月初入院 -->
+  <h2>まず1枚で：月末入院 vs 月初入院</h2>
+  <p>入院費30万円・年収約370〜770万円（区分ウ）の人が、<b>14日間の予定入院</b>をするケース。治療内容も総額もまったく同じでも、<b>いつ入院を始めるか</b>で自己負担が変わります。</p>
+  <div class="cal">
+    <div class="panel good">
+      <div class="ph good">◎ 月初スタート（1か月に収まる）</div>
+      <div class="strip">
+        <div class="cell">1日</div>
+        <div class="cell stay">入院</div>
+        <div class="cell stay">…</div>
+        <div class="cell stay">14日</div>
+        <div class="cell">末日</div>
+      </div>
+      <div class="cap">1か月にすべて収まる → 高額療養費の上限は<b>1回だけ</b>適用。</div>
+      <div class="amt good">約 8.7万円 <small>／ 自己負担（上限1回分）</small></div>
+    </div>
+    <div class="panel bad">
+      <div class="ph bad">△ 月末スタート（翌月にまたぐ）</div>
+      <div class="strip">
+        <div class="cell">…</div>
+        <div class="cell stayb">入院</div>
+        <div class="cell stayb eom">末日</div>
+        <div class="cell stayb">翌1日</div>
+        <div class="cell stayb">…</div>
+      </div>
+      <div class="cap">当月分と翌月分に<b>分割</b>され、上限が<b>2か月分</b>効く。1か月ごとに上限判定するため合計が増える。</div>
+      <div class="amt bad">最大 約 15万円前後 <small>／ 自己負担（上限が2回効く）</small></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:#1f3a2a"></i> 月初に収めた入院</span>
+    <span><i style="background:#3a2020"></i> 月をまたいだ入院</span>
+    <span><i style="background:#f0883e"></i> 月末（暦月の境目）</span>
+  </div>
+  <p class="note">※金額は区分ウ（上限＝80,100円＋（総医療費−267,000円）×1%）を用いた仕組み説明のための概算です。実際は医療費の総額・保険外費用・端数で変動します。要点は「金額の正確さ」ではなく<b>「月をまたぐと上限判定が2回に分かれる」という構造</b>です。</p>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">日程を選べる<b>予定入院・待てる手術</b> → <span style="color:var(--g)">月初スタートで1か月に寄せるのが原則有利</span>。<br>症状が急ぐ・医師が急ぐべきと言う<b>緊急/準緊急</b> → <span style="color:var(--o)">日程優先。節約目的で先延ばししない</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>治療の中身・総額（同じ治療なら）</span><span>変わらない</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>自己負担：1か月に収めた場合</span><span>小さい（上限1回）</span></div><div class="track"><div class="fill" style="width:40%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>自己負担：月をまたいだ場合</span><span>大きい（上限2回）</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#e5534b,#c23a33)"></div></div></div>
+    </div>
+    <div class="note">※上限は暦月ごとに判定。だから「同じ入院を分割して2か月にまたぐ」と、それぞれの月で上限まで自己負担が発生し得ます（出典は末尾）。</div>
+  </div>
+
+  <h2>なぜ月またぎで増えるのか（ここがAI検証室の“計算”）</h2>
+  <p>高額療養費制度は、1か月（<b>毎月1日から末日までの暦月</b>）の医療費の自己負担が、年収区分ごとに決まった<b>上限額</b>を超えたとき、超えた分が払い戻される（または窓口負担が上限で止まる）制度です。ポイントは<b>「入院1回ごと」でも「治療1件ごと」でもなく、あくまで“ひと月ごと”に区切って計算する</b>ことです。</p>
+  <div class="calc">高額療養費は「暦月」で判定<small>1日〜末日でリセット。だから同じ入院を2つの月に分けると、上限判定も2回に分かれる</small></div>
+  <p>つまり、月末に入院して翌月初に退院すると、<b>「先月分の自己負担」と「今月分の自己負担」の2本立て</b>になります。それぞれの月で上限まで負担が積み上がるため、1か月に収めていれば上限1回分で済んだものが、上限2回分に近づくのです。ここが見落とされがちな最大の罠です。</p>
+  <table>
+    <tr><th>ケース</th><th>上限が効く回数</th><th>自己負担の傾向</th></tr>
+    <tr><td>1つの暦月に治療費が収まる</td><td class="win">1回</td><td class="win">小さい</td></tr>
+    <tr><td>月末〜翌月初で2つの暦月にまたぐ</td><td class="lose">2回（当月＋翌月）</td><td class="lose">大きくなりやすい</td></tr>
+  </table>
+
+  <h2>年収区分別：ひと月の自己負担上限（70歳未満）</h2>
+  <p>そもそも「上限1回分」がいくらかは、あなたの年収区分で決まります。以下は<b>70歳未満・改正前（2026年7月診療分まで）</b>の上限額です。区分は健康保険の<b>標準報酬月額</b>で判定されます（自分の給与とは限らないので注意）。</p>
+  <table>
+    <tr><th>区分</th><th>標準報酬月額／年収の目安</th><th>ひと月の上限額（計算式）</th><th>多数回該当</th></tr>
+    <tr><td>ア</td><td>83万円以上／約1,160万円〜</td><td>252,600円＋(総医療費−842,000円)×1%</td><td>140,100円</td></tr>
+    <tr><td>イ</td><td>53〜79万円／約770〜1,160万円</td><td>167,400円＋(総医療費−558,000円)×1%</td><td>93,000円</td></tr>
+    <tr><td>ウ</td><td>28〜50万円／約370〜770万円</td><td>80,100円＋(総医療費−267,000円)×1%</td><td>44,400円</td></tr>
+    <tr><td>エ</td><td>26万円以下／〜約370万円</td><td>57,600円（定額）</td><td>44,400円</td></tr>
+    <tr><td>オ</td><td>住民税非課税</td><td>35,400円（定額）</td><td>24,600円</td></tr>
+  </table>
+  <p class="note">「多数回該当」＝直近12か月で3回以上上限に達した場合、4回目からはこの軽減額が上限になります。月またぎで無理に2か月に分けると、多数回該当のカウントの積み上がり方にも影響し得ます。</p>
+
+  <h3>2026年8月からの改正（上限が引き上げに）</h3>
+  <p>厚生労働省の見直しにより、<b>2026年（令和8年）8月診療分から上限額が引き上げ</b>られました。区分は5区分のままで、例えば区分ウは「80,100円→<b>85,800円</b>＋1%」、区分エは「57,600円→<b>61,500円</b>」、区分オは「35,400円→<b>36,900円</b>」に。多数回該当の額は<b>据え置き</b>で、長期療養者向けの<b>年間上限</b>も新設されました。<b>金額は変わっても「暦月で判定＝月またぎで2回効く」という月またぎの構造は同じ</b>です。金額は改正が続くため、必ず末尾の公式で最新をご確認ください。</p>
+
+  <h2>AI判定：条件別「月初に寄せる or 日程優先」</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>予定入院・日程を選べる手術（白内障・ヘルニア等の待てる手術）</td><td class="win">月初スタートに寄せる</td><td>1か月に収めれば上限1回分。月末開始より自己負担が小さくなりやすい</td></tr>
+    <tr><td>短期入院（数日）で月末に予定が入りそう</td><td class="win">数日ずらして月初へ</td><td>短期ほど「1か月に収める」のが容易。またぐと2か月分で損しやすい</td></tr>
+    <tr><td>長期入院で必ず月をまたぐ</td><td class="win">またぎは避けられない前提で認定証＋多数回該当を活用</td><td>物理的にまたぐなら、各月で確実に上限適用を受け、3回目以降は多数回該当で軽減</td></tr>
+    <tr><td>症状が急ぐ・医師が早期治療を推奨</td><td class="lose">日程優先（月初待ちしない）</td><td>先延ばしは重症化リスク。医療上の判断が上限節約より常に優先</td></tr>
+    <tr><td>緊急入院・救急搬送</td><td class="lose">日程は選べない</td><td>選択の余地なし。事後に高額療養費・認定証で負担を上限内に抑える方に集中</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>この採点は<b>「日程を選べる予定治療」に限った話</b>です。「月初まで待てば数万円得」だとしても、<b>体調・医師の判断を犠牲にしてはいけません</b>。AI検証室は数字で採点しますが、命と回復のスピードは金額で割り引く対象ではありません。ここは断定します。</p>
+
+  <div class="cta">
+    <div class="h">▶ 月またぎしても「一時的な立て替え」で家計が詰まないように</div>
+    <div class="ph">高額療養費は原則あとで戻る仕組みですが、<b>限度額適用認定証（またはマイナ保険証）</b>を使えば窓口負担を最初から上限内に抑えられます。差額ベッド代・食事代・先進医療など<b>高額療養費の対象外</b>の出費に備えるなら、医療保険やFP相談で“自分に必要な保障だけ”を見極めるのが計算的。<br><!-- ASP_SLOT: 医療保険/FP相談 --></div>
+  </div>
+
+  <h2>実務：窓口負担を最初から上限で止める方法</h2>
+  <ul>
+    <li><b>限度額適用認定証を事前に取得：</b>加入している健康保険（協会けんぽ・健保組合・国保）に申請すると発行されます。入院前に病院へ提示すれば、<b>窓口支払いが最初から上限額まで</b>で済み、いったん全額払って後で還付を待つ必要がありません。</li>
+    <li><b>マイナ保険証なら認定証が原則不要：</b>マイナンバーカードを保険証として使える医療機関では、本人同意により<b>限度額情報が連携され、認定証なしでも窓口負担が上限内</b>で止まります。急な入院で認定証が間に合わない時に有効です。</li>
+    <li><b>世帯合算：</b>同じ公的医療保険に加入する家族の自己負担を<b>同じ暦月内で合算</b>できます。70歳未満は<b>1件21,000円以上</b>の自己負担が合算対象。家族が同月に医療費を使ったなら、まとめて上限判定できることがあります（＝ここでも「同じ月に寄せる」が効く）。</li>
+    <li><b>多数回該当：</b>直近12か月で3回以上上限に達したら、4回目から上限が下がります。長期治療では月ごとに確実に上限適用を受けておくことがのちの軽減につながります。</li>
+  </ul>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「入院1回=上限1回」と思い込む：</b>制度は入院回数ではなく<b>暦月</b>で数えます。1回の入院でも月をまたげば上限は2回判定されます。</li>
+    <li><b>差額ベッド・食事・先進医療は対象外：</b>高額療養費で戻るのは<b>保険適用の自己負担</b>だけ。個室代（差額ベッド代）・入院中の食事代・先進医療の技術料などは対象外で、月またぎ調整でも減りません。</li>
+    <li><b>節約のために危険な先延ばし：</b>月初を待つ判断は<b>待てる治療だけ</b>。数万円のために治療を遅らせるのは、この検証室でも<b>非推奨</b>です。</li>
+    <li><b>認定証の申請忘れ：</b>認定証もマイナ保険証連携もない状態だと、窓口でいったん全額（3割等）を立て替えることになります。予定入院なら<b>事前申請</b>が計算的。</li>
+    <li><b>区分は「年収」でなく「標準報酬月額」：</b>自分の年収イメージと保険上の区分がずれることがあります。上限額を見積もる前に、自分の区分を保険者に確認するのが確実です。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>高額療養費は<b>暦月（1日〜末日）ごと</b>に上限判定。月をまたぐと上限が<b>2か月分</b>効き、同じ治療でも自己負担が増えやすい。</li>
+    <li>日程を選べる<b>予定入院・待てる手術</b>は、<b>月初スタートで1か月に寄せる</b>のが原則有利。</li>
+    <li>ただし<b>緊急・急ぐべき治療は日程優先</b>。節約のために危険な先延ばしはしない。</li>
+    <li><b>限度額適用認定証／マイナ保険証</b>で窓口負担を最初から上限内に。<b>世帯合算</b>も「同じ月に寄せる」が効く。</li>
+    <li>2026年8月から上限額は引き上げ。<b>金額は変わっても月またぎの構造（暦月判定）は同じ</b>。最新額は公式で確認を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 他の「制度の落とし穴」も採点中：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a><br><span style="color:var(--faint);font-size:12px">年収区分が気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html" target="_blank" rel="noopener">厚生労働省「高額療養費制度」</a>（暦月〔ひと月〕単位で自己負担上限を計算・多数回該当は直近12か月で3回以上該当時に4回目から軽減・限度額適用認定証の事前提示で窓口負担を上限内に・令和8年8月からの見直しで上限引き上げおよび年間上限の新設）<br>
+    ・<a href="https://www.mhlw.go.jp/content/000333280.pdf" target="_blank" rel="noopener">厚生労働省保険局「高額療養費制度を利用される皆さまへ」（PDF）</a>（70歳未満の所得区分ア〜オごとの自己負担限度額の計算式・多数回該当額・世帯合算〔70歳未満は1件21,000円以上を合算〕）<br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/g3/sb3030/sbb30302/1935-66724/" target="_blank" rel="noopener">全国健康保険協会（協会けんぽ）「高額療養費簡易試算（70歳未満用）」</a>（区分ごとの上限額計算式・多数回該当の判定）<br>
+    <span class="note">※本ページの金額は仕組みを説明するための概算・参考であり、正確な自己負担額は医療費の総額・保険外費用等で変わります。制度は改正されることがあり、2026年8月から上限額が改定されています。入院日・手術日の判断は必ず主治医の医療上の判断を優先し、金額の最新情報・自分の所得区分・認定証の要否は加入している健康保険（協会けんぽ・健保組合・国民健康保険）・医療機関でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="furusato-onestop-vs-kakutei.html">ふるさと納税の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言（医療・税務・保険）ではありません。制度・数値は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
