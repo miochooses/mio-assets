@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>共働き夫婦の医療費控除、夫と妻どっちで申告すると得？所得・住民税・ふるさと納税で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/iryohi-koujo-dare-de-shinkoku.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="医療費控除は夫と妻どっちで申告？高所得側が原則だが逆転する条件をAIが計算で採点">
+<meta name="twitter:description" content="共働きの医療費は合算OK。原則は所得が高い方が得だが、足切り10万円・住民税・ふるさと納税上限で逆転する条件を数字で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「共働き夫婦の医療費控除は夫と妻どっちで申告すべきか」を計算だけで採点。生計を一にする家族の医療費は合算でき、原則は税率の高い高所得側が得。ただし足切り10万円・総所得5%・住民税・ふるさと納税上限・所得制限で逆転する条件を国税庁No.1120出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/iryohi-koujo-dare-de-shinkoku.html">
+<meta property="og:title" content="共働き夫婦の医療費控除は夫と妻どっちで申告？高所得側が原則だが逆転条件あり｜AIが計算で採点">
+<meta property="og:description" content="医療費は合算OK。原則は所得が高い方が得。だが足切り・住民税・ふるさと納税上限で逆転する条件を数字で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .flow{background:#0b121a;border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-top:16px;}
+  .flow .frow{display:flex;align-items:stretch;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .flow .frow:first-child{margin-top:0;}
+  .flow .fp{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .flow .fp .fh{font-size:12px;font-weight:800;color:var(--mut);}
+  .flow .fp .fv{margin-top:4px;font-size:14px;font-weight:800;}
+  .flow .fp.hi{border-color:#2ea04355;background:#101d16;}
+  .flow .fp.lo{border-color:#f0883e44;background:#1c1610;}
+  .flow .arrow{display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--faint);min-width:20px;}
+  .flow .cap{margin-top:12px;font-size:12px;color:var(--faint);line-height:1.6;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 医療費控除 どっちで申告</div>
+    <h1>共働き夫婦の医療費控除<br>夫と妻、どっちで申告すると得？</h1>
+    <div class="who">💊 家族の医療費が年10万円前後～超えた共働き世帯へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>生計を一にする家族の医療費は<b>1人にまとめて合算OK</b>。分けて別々に申告するより、まとめる方がほぼ確実に得。</li>
+        <li>原則は<b>所得税率が高い高所得側</b>で申告が得（同じ控除額でも戻る税が大きい）。</li>
+        <li>ただし<b>①医療費が10万円未満で低所得側が総所得200万円未満</b>のとき／<b>②高所得側がふるさと納税を上限ギリギリまでしている</b>とき等は<span class="warn">逆転</span>あり。下で条件別に採点。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に骨組み ―― 医療費控除は「誰が払ったか」ではなく<b>生計を一にしていれば1人に合算できる</b>。そして同じ控除額なら<b>税率が高い人ほど得</b>。だから原則は高所得側。逆転するのは足切り・住民税・ふるさと納税上限がぶつかる特定条件だけです。</div>
+  </header>
+
+  <!-- (2) 視覚的サマリー図：高所得側で申告する方が得な仕組み -->
+  <div class="flow">
+    <div style="font-size:13px;font-weight:800;color:#9fd0e6">📊 なぜ「高所得側」が原則得なのか（同じ控除20万円で比較）</div>
+    <div class="frow">
+      <div class="fp hi">
+        <div class="fh">夫：課税所得 500万円（所得税率20%）</div>
+        <div class="fv">控除20万円 × 20% ＝ <span class="win">所得税 約4.0万円↓</span></div>
+      </div>
+      <div class="arrow">＞</div>
+      <div class="fp lo">
+        <div class="fh">妻：課税所得 250万円（所得税率10%）</div>
+        <div class="fv">控除20万円 × 10% ＝ <span class="warn">所得税 約2.0万円↓</span></div>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fp">
+        <div class="fh">＋ 住民税（どちらで申告しても）</div>
+        <div class="fv">控除20万円 × 10% ＝ 一律 約2.0万円↓</div>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fp hi"><div class="fh">夫で申告した場合の合計軽減</div><div class="fv"><span class="win">約6.0万円 戻る/減る</span></div></div>
+      <div class="arrow">＞</div>
+      <div class="fp lo"><div class="fh">妻で申告した場合の合計軽減</div><div class="fv"><span class="warn">約4.0万円</span></div></div>
+    </div>
+    <div class="cap">💡 控除額（差し引く金額）は誰で申告しても同じ。だが<b>所得税は超過累進</b>で税率が階段状（5→10→20→23→33→40→45%）。住民税は所得割が原則一律10%で差が出ない。つまり<b>差が出るのは所得税部分だけ</b>で、税率が高い高所得側に寄せるほど戻りが大きい――これが「原則 高所得側」の正体。（税率は課税所得帯のイメージ。実額は各人の状況で変わります）</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">原則 → <span style="color:var(--g)">所得（＝所得税率）が高い方でまとめて申告</span>。<br>ただし <span style="color:var(--o)">医療費が10万円前後で少ない × 低所得側が総所得200万円未満</span> なら足切りが下がる低所得側が有利になり得る。ふるさと納税を上限まで使っている人へ寄せると<span style="color:var(--o)">控除の食い合い</span>で逆転することも。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>医療費が大きい（20万↑）× 所得差あり → 高所得側</span><span>ほぼ確定で得</span></div><div class="track"><div class="fill" style="width:94%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>医療費が10万前後 × 低所得側が総所得200万未満 → 低所得側</span><span>逆転あり</span></div><div class="track"><div class="fill" style="width:58%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>夫婦で別々に分けて申告</span><span>ほぼ損</span></div><div class="track"><div class="fill" style="width:20%;background:linear-gradient(90deg,#8b98a5,#6e7b8a)"></div></div></div>
+    </div>
+    <div class="note">※合算した医療費は「1人の申告書」に全額入れます。夫婦で分割して二重取りはできません（同じ領収書を両方で使うのは不可）。</div>
+  </div>
+
+  <h2>ルール①：医療費は「生計を一にする家族」で合算できる</h2>
+  <p>医療費控除は、納税者が<b>自己または自己と生計を一にする配偶者・その他の親族のために支払った医療費</b>が対象です（国税庁 No.1120）。ここが最大のポイント ―― 夫の医療費・妻の医療費・子どもの医療費を、<b>どちらか1人の申告にまとめて全部入れられる</b>。財布が同じ（生計を一にする）なら、誰の分かは問われません。</p>
+  <div class="calc">夫の医療費 ＋ 妻の医療費 ＋ 子の医療費 → <b>まとめて1人で申告</b><small>共働きで財布が別々でも「生計を一にする」なら合算OK。別居の仕送り家族分も要件を満たせば対象</small></div>
+  <p>逆に、<b>夫婦で半分ずつ分けて別々に申告</b>するのは、原則として損になりやすい。理由は次のルール②の「足切り」を2回払うことになるからです。</p>
+
+  <h2>ルール②：足切りは「10万円 or 総所得の5% の低い方」</h2>
+  <p>医療費控除額は次で計算します（国税庁 No.1120）。</p>
+  <div class="calc">医療費控除額 ＝（支払った医療費 − 保険金等で補てんされた額）− <b>足切り額</b><small>足切り額 ＝「10万円」と「その年の総所得金額等 × 5%」の <b>低い方</b>／控除上限は最高200万円</small></div>
+  <table>
+    <tr><th>その年の総所得金額等</th><th>足切り額（差し引かれる額）</th></tr>
+    <tr><td>200万円以上</td><td>一律 10万円</td></tr>
+    <tr><td class="warn">200万円未満</td><td class="warn">総所得金額等 × 5%（10万円より小さくなる）</td></tr>
+  </table>
+  <p>ここが逆転を生む急所です。総所得が<b>200万円未満</b>の人は、足切りが10万円ではなく<b>総所得の5%</b>まで下がります。例えば総所得120万円の人なら足切りは<b>6万円</b>。つまり同じ医療費でも、<b>低所得側で申告した方が控除に回せる金額が増える</b>ケースがあるわけです。</p>
+  <div class="box">
+    <b>足切りが下がる具体例：</b>医療費が年<b>9万円</b>だった場合。<br>
+    ・夫（総所得500万）で申告 → 足切り10万円 → <b>控除ゼロ</b>（9万＜10万で切られる）。<br>
+    ・妻（総所得120万）で申告 → 足切り6万円 → 控除は<b>9万−6万＝3万円</b>成立。<br>
+    → この場合は<span class="warn">低所得側の妻で申告した方が得</span>。「高所得側が原則」の例外です。
+  </div>
+
+  <h2>ルール③：住民税は一律、差が出るのは所得税だけ</h2>
+  <p>戻る税金は「所得税」＋「翌年の住民税」の2本立て。このうち<b>住民税の所得割は原則一律10%</b>なので、夫で申告しても妻で申告しても住民税の軽減額は同じ（＝控除額×10%）。差が出るのは<b>所得税部分だけ</b>です。所得税は課税所得に応じて<b>5%→10%→20%→23%→33%→40%→45%</b>の超過累進（国税庁 No.2260）。だから所得税率が1段でも高い側に寄せるほど、同じ控除額でも戻りが大きくなる ―― これが「原則 高所得側」の数学的な理由です。</p>
+  <table>
+    <tr><th>課税される所得金額（速算表の帯）</th><th>所得税率</th></tr>
+    <tr><td>195万円以下</td><td>5%</td></tr>
+    <tr><td>195万円超～330万円以下</td><td>10%</td></tr>
+    <tr><td>330万円超～695万円以下</td><td>20%</td></tr>
+    <tr><td>695万円超～900万円以下</td><td>23%</td></tr>
+    <tr><td>900万円超～1,800万円以下</td><td>33%</td></tr>
+    <tr><td>1,800万円超～4,000万円以下</td><td>40%</td></tr>
+    <tr><td>4,000万円超</td><td>45%</td></tr>
+  </table>
+  <p class="note">※上表は所得税の速算表の税率帯（復興特別所得税は別途）。夫婦の所得税率が<b>同じ帯</b>なら、所得税の戻りは同額 → その場合は下の「逆転条件」で決めます。</p>
+
+  <h2>条件別の採点：あなたの家はどっちで申告？</h2>
+  <table>
+    <tr><th>あなたの家の状況</th><th>申告する人</th><th>理由（採点根拠）</th></tr>
+    <tr><td>医療費が大きい（例20万↑）× 夫婦で所得税率が違う</td><td class="win">高所得側</td><td>控除額同じ×所得税率が高い→戻る所得税が最大。住民税は同額</td></tr>
+    <tr><td>医療費が10万円前後で少ない × 低所得側の総所得が200万円未満</td><td class="warn">低所得側</td><td>足切りが5%へ下がり、高所得側だと10万で切られて控除ゼロになるのを回避</td></tr>
+    <tr><td>夫婦の所得税率が同じ帯（例：両方20%）</td><td class="win">足切りが低い方</td><td>所得税の戻りは同額→総所得200万未満で足切り5%になる側があればそこへ</td></tr>
+    <tr><td>高所得側が<b>ふるさと納税を上限ギリギリ</b>まで使っている</td><td class="warn">要試算（低所得側も検討）</td><td>医療費控除で課税所得が下がるとふるさと納税の上限も下がり、寄付が自己負担化する恐れ</td></tr>
+    <tr><td>高所得側が<b>住宅ローン控除で所得税がほぼゼロ</b></td><td class="warn">住民税で効く方/低所得側</td><td>所得税が既に0なら医療費控除の所得税分が効かない。住民税と足切りで判断</td></tr>
+    <tr><td>子どもの高校無償化・保育料など<b>所得制限</b>の境界にいる</td><td class="warn">境界側に寄せる</td><td>所得控除で判定所得が下がり支給/減額ラインを跨げる場合あり（自治体・制度で要確認）</td></tr>
+    <tr><td>どちらも総所得200万円以上×税率も同じ</td><td class="win">どちらでも同じ</td><td>足切りも税率も同じなら結果は一致。手続きが楽な方でOK</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「必ず夫が得」「必ず妻が得」という一般論はこの検証室のやり方ではありません。差を決めるのは<b>①足切りが10万円か5%か ②所得税率が何段か ③ふるさと納税・住宅ローン控除・所得制限とぶつかるか</b>の3点。ここを両方のケースで機械的に試算すれば正解が出ます。</p>
+
+  <h2>逆転の急所①：ふるさと納税の上限が削れる罠</h2>
+  <p>これが最も見落とされる落とし穴です。ふるさと納税の「自己負担2,000円で済む上限額」は、その人の<b>課税所得（住民税所得割額）</b>で決まります。医療費控除で課税所得が下がると、<b>ふるさと納税の上限も連動して下がる</b>。高所得側が上限ギリギリまで寄付していると、医療費控除を高所得側に乗せた瞬間に上限が下振れし、<b>はみ出た寄付が自己負担（持ち出し）</b>になることがあります。</p>
+  <div class="box">
+    <b>採点の順番：</b>①まず医療費控除を高所得側に乗せた場合のふるさと納税上限を再計算 → ②はみ出しが出るなら、その持ち出し額と「高所得側で申告して増える戻り」を比較 → ③持ち出しの方が大きければ、医療費控除は<b>低所得側（ふるさと納税をしていない方）</b>へ寄せる。どちらが得かは寄付額と所得差で変わるので、両方試算が正解。
+  </div>
+  <p class="note">※ふるさと納税の上限は毎年の所得・控除で変わります。申告方法を決める前に、上限を再計算しておくのが安全です。</p>
+
+  <div class="cta">
+    <div class="h">▶ 「どっちが得か」を自分の数字で確かめたい人へ</div>
+    <div class="ph">医療費・夫婦の所得・ふるさと納税額が絡むと、正解は家庭ごとに変わります。境界ケース（総所得200万円前後、税率帯の境目、ふるさと納税を上限まで使っている）は、独立系FPの無料相談や医療保険の見直しとあわせて試算すると取りこぼしが減ります。<br><!-- ASP_SLOT: FP相談/医療保険 --></div>
+  </div>
+
+  <h2>逆転の急所②：セルフメディケーション税制との選択</h2>
+  <p>ドラッグストアで市販薬（スイッチOTC医薬品）を多く買った年は、通常の医療費控除ではなく<b>セルフメディケーション税制</b>を選べます（国税庁 No.1129）。両者は<b>選択制で併用不可</b>。どちらが得かは金額で決まります。</p>
+  <table>
+    <tr><th>項目</th><th>通常の医療費控除</th><th>セルフメディケーション税制</th></tr>
+    <tr><td>対象</td><td>治療のための医療費全般（合算可）</td><td>対象の市販薬（スイッチOTC等）の購入費</td></tr>
+    <tr><td>足切り</td><td>10万円 or 総所得5%の低い方</td><td class="win">1万2,000円</td></tr>
+    <tr><td>控除上限</td><td class="win">最高200万円</td><td>最高8万8,000円</td></tr>
+    <tr><td>適用の追加要件</td><td>特になし</td><td>健診・予防接種など「一定の取組」を受けていること</td></tr>
+  </table>
+  <p>ざっくりの分岐 ―― <b>医療費の総額が10万円（または総所得5%）を大きく超えるなら通常の医療費控除</b>、<b>対象の市販薬中心で総額が小さい年はセルフメディケーション税制</b>が有利になりやすい。どちらを選ぶかも「合算した金額」を見てから決めます。<b>選んだ後の変更はできない</b>ので、申告前に両方の控除額を計算して比較を。</p>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>夫婦で半分ずつ分けて申告：</b>足切り（10万 or 5%）を<b>2回</b>差し引かれ、合算より控除が減る／消えることが多い。原則は1人にまとめる。</li>
+    <li><b>同じ領収書を夫婦で二重に使う：</b>不可。合算した医療費は1人の申告にだけ計上します。</li>
+    <li><b>「高所得側なら常に得」と思い込む：</b>医療費が足切り前後の少額のとき、総所得200万円未満の低所得側の方が足切りが下がって得になる逆転があります。</li>
+    <li><b>ふるさと納税を先に上限まで寄付済み：</b>医療費控除で課税所得が下がると上限も下がる。高所得側に医療費控除を乗せると寄付が持ち出しになる場合あり。</li>
+    <li><b>高所得側の所得税がローン控除等でほぼゼロ：</b>所得税分の医療費控除が効かない。住民税と足切りで判断し、低所得側の方が得なこともある。</li>
+    <li><b>補てん金の引き忘れ：</b>高額療養費・出産育児一時金・保険金は、その給付の対象となった医療費から<b>差し引いて</b>から控除額を計算します（引き忘れは過大控除）。</li>
+    <li><b>対象外費用の混入：</b>健康診断・人間ドック（異常が見つかり治療した場合を除く）・美容目的・予防目的のサプリ・自家用車のガソリン代/駐車場代・里帰り以外のタクシー代などは原則対象外（国税庁 No.1122）。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>生計を一にする家族の医療費は<b>1人に合算</b>。分けて申告は足切り2回で損。</li>
+    <li>原則は<b>所得税率が高い高所得側</b>で申告（住民税は一律、差が出るのは所得税だけ）。</li>
+    <li>逆転条件：①医療費が足切り前後の少額×低所得側の総所得200万円未満 ②高所得側がふるさと納税上限ギリギリ ③高所得側の所得税が住宅ローン控除等でほぼゼロ ④所得制限の境界。</li>
+    <li>市販薬中心の年は<b>セルフメディケーション税制</b>（足切り1.2万円/上限8.8万円）との選択も比較。併用不可。</li>
+    <li>境界ケースは<b>夫・妻の両方で控除額を試算</b>して大きい方を選ぶのが唯一の正解。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 ふるさと納税とぶつかる人は：<a href="../tools/furusato.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 上限シミュレーターで“医療費控除後の上限”を確認 →</a><br><span style="color:var(--faint);font-size:12px">申告方法で迷う人は</span> <a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ワンストップ vs 確定申告の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" target="_blank" rel="noopener">国税庁 No.1120 医療費を支払ったとき（医療費控除）</a>（対象＝自己または生計を一にする配偶者・その他の親族のために支払った医療費／控除額＝支払医療費−補てん金−足切り／足切り＝10万円と総所得金額等5%の低い方／総所得200万円未満は5%／控除上限200万円）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1122.htm" target="_blank" rel="noopener">国税庁 No.1122 医療費控除の対象となる医療費</a>（対象・対象外費用の範囲。健診・予防・美容目的等の扱い）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm" target="_blank" rel="noopener">国税庁 No.1129 特定一般用医薬品等購入費を支払ったとき（セルフメディケーション税制）</a>（足切り1万2,000円/上限8万8,000円/通常の医療費控除と選択制・併用不可/一定の取組が要件）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">国税庁 No.2260 所得税の税率</a>（超過累進 5%～45%の税率速算表）<br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/" target="_blank" rel="noopener">総務省 ふるさと納税ポータルサイト</a>（控除上限は課税所得・住民税所得割に連動）<br>
+    <span class="note">※制度は改正されることがあります。税率帯・足切り・上限・所得制限の要件は各時点の公式情報にもとづく参考です。ふるさと納税上限・所得制限との連動や住宅ローン控除との兼ね合いは個別事情で変わるため、断定はできません。最終判断は国税庁・お住まいの自治体・税務署・税理士でご確認ください。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="../tools/furusato.html">上限シミュレーター</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特定理由離職者 vs 普通の自己都合退職｜給付制限なし・国保3割軽減の差を条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/tokutei-riyuu-rishokusha.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="特定理由離職者 vs 普通の自己都合｜給付制限“ゼロ”と国保3割軽減。AIが条件別に採点">
+<meta name="twitter:description" content="病気・介護・雇止めで辞めた自己都合は「特定理由離職者」かも。給付制限1ヶ月がゼロに、国保は前年給与を30%扱い。ただし黙っていると普通の自己都合。条件別に計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「特定理由離職者 vs 普通の自己都合退職」を採点。病気・介護・雇止め等の正当な理由なら給付制限（原則1ヶ月）がゼロ、被保険者期間の要件も緩和、雇止めは給付日数が会社都合並み、国保は前年給与所得を30/100とみなして軽減。ただし自己申告と証拠書類がないと普通の自己都合扱いになる罠を、条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/tokutei-riyuu-rishokusha.html">
+<meta property="og:title" content="特定理由離職者 vs 普通の自己都合｜給付制限“ゼロ”と国保3割軽減。AIが条件別に採点">
+<meta property="og:description" content="病気・介護・雇止めで辞めた自己都合は「特定理由離職者」かも。給付制限1ヶ月がゼロに、国保は前年給与を30%扱い。ただし黙っていると普通の自己都合。条件別に計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .lose{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* サマリー図 */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .vs .col{border-radius:14px;padding:14px;border:1px solid var(--line);}
+  .vs .col.good{background:#101d16;border-color:#2ea04355;}
+  .vs .col.bad{background:#1e1414;border-color:#e5534b44;}
+  .vs .cap{font-size:12px;font-weight:800;letter-spacing:.03em;}
+  .vs .col.good .cap{color:#39d353;}
+  .vs .col.bad .cap{color:#f2857f;}
+  .vs .sub{font-size:11px;color:var(--faint);margin-top:2px;line-height:1.5;}
+  .vs .row{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+  .vs .row:first-of-type{border-top:none;}
+  .vs .k{font-size:11px;color:var(--mut);}
+  .vs .v{font-size:14px;font-weight:800;margin-top:2px;line-height:1.4;}
+  .vs .col.good .v{color:#d6f5df;}
+  .vs .col.bad .v{color:#f3d6d4;}
+  .axis{margin-top:8px;font-size:11px;color:var(--faint);text-align:center;}
+  @media(max-width:480px){.vs .v{font-size:13px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 特定理由離職者</div>
+    <h1>「自己都合」で辞めても給付制限ゼロ？<br>特定理由離職者 vs 普通の自己都合</h1>
+    <div class="who">🏥 病気・介護・雇止め・妊娠・通勤困難などで“自分から”辞めた人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>病気・介護・雇止め・妊娠出産・通勤困難などが理由</b>なら「特定理由離職者」になれる可能性。給付制限（原則<b>1ヶ月</b>）が<b>ゼロ</b>＝待期7日で受給開始。</li>
+        <li>受給資格の要件も緩和（<b>離職前1年に6ヶ月</b>／普通の自己都合は<b>2年に12ヶ月</b>）。雇止めは給付日数も会社都合並みに増える（<b>2027/3/31まで</b>の暫定）。</li>
+        <li>国保も軽減。前年の<b>給与所得を30/100（3割）とみなして</b>計算（離職翌月〜翌年度末）。</li>
+        <li><b>最大の罠：黙っていると普通の自己都合。</b>証拠書類を出してハローワークで申告しないと認定されない。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に結論 ―― <b>「同じ“自己都合”でも、理由と手続き次第で数十万円と数ヶ月が動く</b>」。差は損得ではなく「あなたの離職理由と、申告するかどうか」で決まります。金額・日数はあなたの被保険者期間・年齢・前年給与で変わるため、以下は仕組みの採点です。</div>
+  </header>
+
+  <!-- (2) 視覚的サマリー図 -->
+  <div class="axis">▼ 同じ「自分から辞めた」でも、こんなに違う（一枚図）</div>
+  <div class="vs">
+    <div class="col bad">
+      <div class="cap">✕ 普通の自己都合</div>
+      <div class="sub">理由が「一身上の都合」／申告なし（離職コード40）</div>
+      <div class="row"><div class="k">給付制限</div><div class="v">原則 1ヶ月<br><span style="font-size:11px;color:var(--faint)">＋待期7日（5年で3回以上は3ヶ月）</span></div></div>
+      <div class="row"><div class="k">受給資格の要件</div><div class="v">離職前2年に<br>被保険者期間12ヶ月</div></div>
+      <div class="row"><div class="k">所定給付日数</div><div class="v">90〜150日<br><span style="font-size:11px;color:var(--faint)">被保険者期間だけで決定</span></div></div>
+      <div class="row"><div class="k">国保軽減（30/100）</div><div class="v" style="color:#f2857f">対象外</div></div>
+    </div>
+    <div class="col good">
+      <div class="cap">◎ 特定理由離職者</div>
+      <div class="sub">病気・介護・雇止め等＋証拠＋申告（コード23/33/34）</div>
+      <div class="row"><div class="k">給付制限</div><div class="v">なし<br><span style="font-size:11px;color:#8fd6a1">待期7日のみで受給開始</span></div></div>
+      <div class="row"><div class="k">受給資格の要件</div><div class="v">離職前1年に<br>被保険者期間6ヶ月</div></div>
+      <div class="row"><div class="k">所定給付日数</div><div class="v">雇止めは会社都合並み<br><span style="font-size:11px;color:#8fd6a1">最大330日（〜2027/3/31暫定）</span></div></div>
+      <div class="row"><div class="k">国保軽減（30/100）</div><div class="v" style="color:#8fd6a1">対象<br><span style="font-size:11px;color:var(--faint)">前年給与所得を3割で計算</span></div></div>
+    </div>
+  </div>
+  <div class="axis">※金額は年齢・被保険者期間・前年給与で変動。上表は「制度上の差」。認定はハローワーク／自治体の判断が最終。</div>
+
+  <!-- (3) AI判定（条件別） -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">「一身上の都合」で片付けず、<span style="color:var(--g)">理由を証明できるなら必ず特定理由離職者を狙う</span>。<br>特に<span style="color:var(--o)">雇止め・病気・家族の介護・妊娠出産・通勤困難</span>は該当可能性が高い。<b>黙って辞める＝自ら数万〜数十万円を捨てる</b>行為。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>特定理由離職者になる価値（受給開始の早さ）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:96%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>国保軽減のインパクト（前年給与が高いほど）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>手続きの手間（証拠集め＋窓口申告）</span><span>中</span></div><div class="track"><div class="fill" style="width:48%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※「正当な理由のある自己都合（コード33・34）」は、給付<b>日数</b>そのものは普通の自己都合と同じ算式（被保険者期間ベース）。得の中心は<b>①給付制限ゼロ ②受給資格の要件緩和 ③国保軽減</b>。<b>雇止め（コード23）</b>だけは日数も会社都合並みに増える暫定措置あり。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>「自己都合」と一括りにされがちですが、雇用保険は離職者を大きく3つに分けます。<b>特定受給資格者</b>（倒産・解雇など会社都合）、<b>特定理由離職者</b>（正当な理由のある自己都合＋雇止め）、そして<b>一般の離職者</b>（普通の自己都合）。真ん中の「特定理由離職者」は“自分から辞めた”のに、扱いが会社都合に近づく特別枠です。</p>
+  <div class="calc">得の源泉 ＝ ①給付制限（原則1ヶ月）がゼロ × ②受給要件の緩和 × ③国保を前年給与3割で計算<small>この3つが同時に効く。理由を証明して申告できるかどうかが全て</small></div>
+  <p>差が出る4つの軸を、条件別に採点します。</p>
+
+  <h2>条件別の採点：あなたはどの離職コード？</h2>
+  <p>ポイントは「辞めた<b>理由</b>」と「証明できるか」。雇用保険受給資格者証の<b>離職理由コード</b>で扱いが決まります。特定理由離職者は主に<b>23・33・34</b>です。</p>
+  <table>
+    <tr><th>あなたの辞めた理由</th><th>判定</th><th>コード目安／差のポイント</th></tr>
+    <tr><td>契約社員などで<b>契約更新を希望したのに雇止め</b>（自分に責任なし・更新明示なし等）</td><td class="win">特定理由離職者（最強）</td><td>コード23。給付制限なし＋<b>給付日数も会社都合並み（暫定〜2027/3/31）</b>＋国保軽減。実質“会社都合級”</td></tr>
+    <tr><td><b>病気・ケガ・体力低下・メンタル不調</b>で仕事の継続が困難</td><td class="win">特定理由離職者</td><td>コード33/34。給付制限なし＋要件緩和＋国保軽減。<b>診断書等の証拠が要</b></td></tr>
+    <tr><td><b>家族の介護・看護</b>（30日以上継続見込み等）で辞めざるを得ない</td><td class="win">特定理由離職者</td><td>コード33/34。同上。要介護状況の証明が要</td></tr>
+    <tr><td><b>妊娠・出産・育児</b>で離職し、受給期間延長の措置を受けた</td><td class="win">特定理由離職者</td><td>コード33/34。まず<b>受給期間延長の申請</b>が前提</td></tr>
+    <tr><td><b>結婚・転居・配偶者の転勤等で通勤困難</b>（片道おおむね往復4時間超など）／交通機関の廃止</td><td class="win">特定理由離職者</td><td>コード33/34。通勤困難を客観的に説明できることが要</td></tr>
+    <tr><td>特に事情なく<b>「一身上の都合」で退職</b></td><td class="lose">普通の自己都合</td><td>コード40。給付制限原則1ヶ月＋要件は2年に12ヶ月＋国保軽減なし</td></tr>
+    <tr><td>正当な理由があるのに<b>会社の離職票を鵜呑みにして何も申告しなかった</b></td><td class="lose">普通の自己都合扱い</td><td>本来は該当でも、申告・証拠がないと救済されない（＝最大の取りこぼし）</td></tr>
+  </table>
+  <p class="note">※上記の該当例は代表的なものです。同じ理由でも個別事情で判定は変わり、<b>最終認定はハローワークの判断</b>です。倒産・解雇・退職勧奨など“会社都合寄り”は特定<b>受給資格者</b>（コード11・12・21・22・31・32）で、こちらはさらに手厚くなります。</p>
+
+  <h2>差①：給付制限 ―― 原則1ヶ月がゼロになる</h2>
+  <p>2025年4月の改正で、普通の自己都合の給付制限は<b>従来の2ヶ月から原則1ヶ月へ短縮</b>されました（2025年3月31日以前の離職は原則2ヶ月）。ただし<b>5年以内に3回以上</b>自己都合退職している場合は<b>3ヶ月</b>です。</p>
+  <div class="calc">普通の自己都合：待期7日 ＋ 給付制限 原則1ヶ月 → 受給開始<br>特定理由離職者：待期7日のみ → すぐ受給開始<small>この“1ヶ月”の差が、生活費が一番きつい退職直後に効く</small></div>
+  <p>特定理由離職者は<b>給付制限がありません</b>。7日の待期を終えれば基本手当の対象です。手当日額×約30日分、受給開始が早まるイメージです（金額は人により異なります）。</p>
+
+  <h2>差②：受給資格の要件が緩和される</h2>
+  <table>
+    <tr><th>区分</th><th>受給資格の要件（被保険者期間）</th></tr>
+    <tr><td>普通の自己都合（一般）</td><td class="lose">離職前<b>2年間に通算12ヶ月以上</b></td></tr>
+    <tr><td>特定理由離職者／特定受給資格者</td><td class="win">離職前<b>1年間に通算6ヶ月以上</b></td></tr>
+  </table>
+  <p>短期間しか働けなかった人は、この緩和で<b>「そもそも失業給付をもらえるか」自体が変わります</b>。普通の自己都合なら要件不足で0円だった人が、特定理由離職者なら受給できるケースがあります。</p>
+
+  <h2>差③：給付日数 ―― 雇止めだけは会社都合並み</h2>
+  <p>ここは誤解が多いので正確に。<b>「正当な理由のある自己都合（コード33・34）」の給付日数は、普通の自己都合と同じ算式</b>（被保険者期間だけで決まる90〜150日）です。日数は増えません。増えるのは<b>雇止め（コード23）</b>で、<b>2009/3/31〜2027/3/31の暫定措置</b>として<b>特定受給資格者と同じ日数</b>（年齢・被保険者期間により最大330日）が適用されます。</p>
+  <table>
+    <tr><th>区分</th><th>所定給付日数の目安</th></tr>
+    <tr><td>普通の自己都合／正当な理由の自己都合（33・34）</td><td>被保険者期間により <b>90日・120日・150日</b></td></tr>
+    <tr><td>雇止め（23・暫定）／特定受給資格者</td><td class="win">年齢＋被保険者期間により <b>90〜330日</b>（会社都合並み）</td></tr>
+  </table>
+  <p class="note">※具体的な日数は年齢と被保険者期間の表で決まります。正確な数字は受給資格者証・ハローワークで確認を。暫定措置の期限（現時点で2027/3/31）は延長・改正の可能性があります。</p>
+
+  <h2>差④：国民健康保険料の軽減 ―― 前年給与を「3割」とみなす</h2>
+  <p>退職して会社の健康保険を抜け、国保に入る人は要チェック。特定理由離職者（＋特定受給資格者）は、国保料の計算で<b>前年の「給与所得」を100分の30（3割）とみなして</b>算定されます。前年の給料が高かった人ほど、退職直後の国保料が大きく下がります。</p>
+  <div class="calc">国保料の算定：前年の給与所得 × 30/100 で計算<small>給与以外の所得（事業・不動産等）は対象外。所得割部分が主に軽減される</small></div>
+  <ul>
+    <li><b>対象コード：</b>特定受給資格者（11・12・21・22・31・32）と<b>特定理由離職者（23・33・34）</b>。つまり「正当な理由の自己都合」も国保軽減の対象です。</li>
+    <li><b>軽減期間：</b>離職日の翌日が属する月から、その<b>翌年度末（翌年度の3月）</b>まで。最大で約2年度分。</li>
+    <li><b>対象年齢：</b>離職時に<b>65歳未満</b>。</li>
+    <li><b>対象外：</b><b>特例受給資格者証・高年齢受給資格者証</b>を持つ人は、上記コードでも対象外。</li>
+    <li><b>手続き：</b>市区町村の窓口で申告。<b>雇用保険受給資格者証（または受給資格通知）の原本</b>が必要（コピー不可の自治体が多い）。届出が遅れても遡って適用されます。</li>
+  </ul>
+  <p class="note">※国保は自治体（市区町村）ごとの制度で、名称・軽減の細部・必要書類が異なります。金額のインパクトはお住まいの自治体の料率で変わります。必ず居住地の国保窓口でご確認を。</p>
+
+  <div class="cta">
+    <div class="h">▶ 退職後、失業給付だけで足りる？ 早めの次の一手も採点対象</div>
+    <div class="ph">給付制限ゼロでも、基本手当は在職時給与の全額ではありません。生活の再設計や、次の仕事・収支の見直しは早いほど選択肢が多い。<br><!-- ASP_SLOT: 転職/FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴（罠）</h2>
+  <ul>
+    <li><b>最大の罠｜黙っていると「普通の自己都合」：</b>会社が離職票に「一身上の都合（コード40）」と書いて出すと、そのままでは普通の自己都合です。病気・介護・通勤困難などの正当な理由があるなら、<b>ハローワークの窓口で自己申告し、証拠書類を出して「特定理由離職者」への区分変更を求める</b>必要があります。黙っていて向こうから救済してくれる制度ではありません。</li>
+    <li><b>証拠がないと認定されない：</b>体調不良なら診断書、介護なら要介護状況の証明、通勤困難なら転居・通勤時間の疎明など。<b>「言っただけ」では通りません。</b>最終判断はハローワークです。</li>
+    <li><b>妊娠・出産・育児は先に「受給期間延長」：</b>すぐ働けない場合、まず受給期間延長の申請をしておかないと、いざ働けるようになった時に受給できないことがあります。</li>
+    <li><b>給付日数は33/34では増えない：</b>「特定理由＝日数も増える」と思い込みがちですが、日数が会社都合並みに増えるのは<b>雇止め（23）</b>と特定受給資格者。33/34は「給付制限ゼロ＋要件緩和＋国保軽減」が中心です。</li>
+    <li><b>国保軽減は自動ではない：</b>国保に切り替えても、<b>自分で市区町村に申告</b>しないと軽減されません。受給資格者証の原本を持って窓口へ。任意継続（協会けんぽ等）と国保軽減後の保険料は、どちらが安いか<b>両方試算して選ぶ</b>のが正解。</li>
+    <li><b>特例・高年齢受給資格者証は国保軽減の対象外：</b>短期・高齢のケースでは受給資格者証の種類が違い、国保軽減が使えないことがあります。</li>
+  </ul>
+
+  <h2>最適解（採点の結論）</h2>
+  <ul>
+    <li>「自分から辞めた」でも、<b>病気・介護・雇止め・妊娠出産・通勤困難</b>なら、まず<b>特定理由離職者を疑う</b>。</li>
+    <li>離職票の理由が「一身上の都合」でも鵜呑みにしない。<b>証拠書類を用意してハローワークで区分を主張</b>する。これが最大の“取りこぼし防止”。</li>
+    <li>認定されれば<b>給付制限（原則1ヶ月）がゼロ</b>、<b>受給資格は1年に6ヶ月へ緩和</b>、<b>雇止めなら日数も会社都合並み</b>（〜2027/3/31暫定）。</li>
+    <li>国保に入るなら、受給資格者証（コード23/33/34）の原本を持って<b>市区町村で軽減申告</b>。前年給与を<b>30/100</b>で計算。任意継続との<b>二択も試算</b>して安い方を選ぶ。</li>
+    <li>数値は年齢・被保険者期間・前年給与・自治体で変わる。<b>正確な金額は受給資格者証・ハローワーク・国保窓口で確定</b>させる。</li>
+  </ul>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.hellowork.mhlw.go.jp/insurance/insurance_benefitdays.html" target="_blank" rel="noopener">ハローワークインターネットサービス（厚生労働省）基本手当の所定給付日数</a>（特定受給資格者・特定理由離職者の給付日数＝最大330日／一般離職者は90〜150日／特定理由離職者の暫定措置＝離職日が2009年3月31日〜2027年3月31日の雇止め等に特定受給資格者と同じ日数）<br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyouhoken/index.html" target="_blank" rel="noopener">厚生労働省 雇用保険制度</a>（特定理由離職者の範囲・正当な理由のある自己都合／雇止め・給付制限・受給資格要件）<br>
+    ・<a href="https://job.atimes.co.jp/useful/guide/56/" target="_blank" rel="noopener">2025年4月改正 給付制限の短縮（解説）</a>（2025年4月1日以降の離職は自己都合の給付制限が原則2ヶ月→1ヶ月／5年以内に3回以上は3ヶ月／特定理由離職者は給付制限なし・待期7日のみ）<br>
+    ・<a href="https://www.city.saitama.lg.jp/001/153/002/004/p010048.html" target="_blank" rel="noopener">さいたま市 非自発的失業者の国民健康保険税の軽減</a>（対象コード11・12・21・22・31・32＋23・33・34／前年の給与所得を100分の30とみなして算定／離職日の翌日の属する月〜翌年度末／65歳未満／特例・高年齢受給資格者証は対象外）<br>
+    ・<a href="https://www.city.suginami.tokyo.jp/s035/1995.html" target="_blank" rel="noopener">杉並区 非自発的失業者（特例対象被保険者等）の国保料軽減</a>（同・軽減対象コードと前年給与所得30/100・受給資格者証原本が必要）<br>
+    ・<a href="https://www.city.hiroshima.lg.jp/living/hoken-nenkin/1021143/1025566/1003468.html" target="_blank" rel="noopener">広島市 倒産・解雇・雇止め等による国保料軽減</a>（離職理由コードの区分・軽減内容の確認）<br>
+    <span class="note">※制度は改正されることがあります。給付制限の月数・暫定措置の期限（現時点で2027/3/31）・国保軽減の細部は各時点の公式情報にもとづく参考です。離職コード・認定はハローワーク、国保軽減は市区町村が判断します。最新の条件と金額は必ずハローワーク・お住まいの自治体・厚生労働省でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

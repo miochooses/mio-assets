@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>株の配当金、総合課税 vs 申告分離 vs 申告不要 どれで申告すると得？課税所得ラインで採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/haitou-sougou-vs-bunri.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="配当金 総合課税 vs 申告分離 vs 申告不要｜課税所得ラインで最適解をAIが採点">
+<meta name="twitter:description" content="配当は源泉20.315%で終わりじゃない。課税所得695万円が分かれ目。総合課税は配当控除10%で得だが、国保・扶養に波及する罠を計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが上場株の配当金「総合課税 vs 申告分離課税 vs 申告不要」を計算で採点。配当控除10%が効くため課税所得695万円以下は総合課税が有利になりやすい一方、住民税は5%の申告分離が原則有利。国保料・扶養・住民税へ波及する落とし穴を課税所得ゾーン別の判定表で解説。出典は国税庁 No.1250等。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/haitou-sougou-vs-bunri.html">
+<meta property="og:title" content="配当金 総合課税 vs 申告分離 vs 申告不要｜課税所得ラインで最適解をAIが採点">
+<meta property="og:description" content="配当は源泉20.315%で終わりじゃない。課税所得695万円が分かれ目。総合課税は配当控除10%で得だが、国保・扶養に波及する罠を計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* zone map */
+  .zonemap{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .zonemap .zh{display:flex;background:#0b121a;font-size:11px;font-weight:800;color:var(--mut);border-bottom:1px solid var(--line);}
+  .zonemap .zh div{padding:7px 8px;text-align:center;}
+  .zonemap .zh .zc1{width:34%;text-align:left;} .zonemap .zh .zc2{width:22%;} .zonemap .zh .zc3{width:22%;} .zonemap .zh .zc4{width:22%;}
+  .zrow{display:flex;font-size:12.5px;border-bottom:1px solid var(--line);}
+  .zrow:last-child{border-bottom:none;}
+  .zrow .zone{width:34%;padding:9px 8px;font-weight:800;background:#0b121a;color:var(--tx);border-right:1px solid var(--line);line-height:1.4;}
+  .zrow .zone small{display:block;font-weight:600;color:var(--faint);font-size:11px;}
+  .cell{width:22%;padding:9px 6px;text-align:center;font-weight:800;font-size:11.5px;line-height:1.35;border-right:1px solid var(--line);}
+  .cell:last-child{border-right:none;}
+  .c-best{background:#12331d;color:#5fe07f;} .c-ok{background:#173042;color:#7cc4ff;} .c-mid{background:#3a2a16;color:#f0b070;} .c-no{background:#3a1c1a;color:#f08a84;}
+  .cell span{display:block;font-weight:600;color:#c9d4de;font-size:10.5px;margin-top:2px;opacity:.85;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:11px;color:var(--mut);}
+  .legend b{display:inline-flex;align-items:center;gap:5px;font-weight:700;}
+  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 配当金 課税方式の選択</div>
+    <h1>株の配当金、総合課税 vs 申告分離 vs 申告不要<br>結局どれで申告すると得？</h1>
+    <div class="who">📈 特定口座（源泉あり）で上場株の配当をもらっている個人投資家へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>上場株の配当は源泉<b>20.315%</b>で完結できる（＝申告不要）。でも人によっては<b>申告した方が税金が戻る</b>。</li>
+        <li>分かれ目は<b>課税所得695万円</b>。ここ以下なら<b>総合課税＋配当控除</b>で所得税が有利になりやすい。695万超は<b>申告不要／申告分離</b>が無難。</li>
+        <li>ただし総合課税は<b>合計所得が増える</b>＝国保料・扶養・住民税非課税判定に<span class="bad">波及する罠</span>。得しても別の負担が増える人がいる。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルールと税率</b>で採点します。先に結論 ―― 配当は「どの箱で申告するか」で税率が変わる数少ない所得。<b>課税所得ゾーンごとに最適解が入れ替わり</b>ます。しかも総合課税は税金以外の副作用があるので、単純な税率比較では足りません。</div>
+  </header>
+
+  <!-- ===== 視覚的サマリー図 ===== -->
+  <h2>課税所得ゾーン別・有利な課税方式マップ</h2>
+  <p class="note" style="margin-top:8px">※「課税所得」＝各種控除を引いた後の課税総所得金額。給与だけの人は年収ではなくこの金額で判定。所得税の話が中心で、住民税は原則いつも申告分離（住民税5%）が有利な点に注意（後述）。</p>
+  <div class="zonemap">
+    <div class="zh">
+      <div class="zc1">課税所得ゾーン</div>
+      <div class="zc2">総合課税</div>
+      <div class="zc3">申告分離</div>
+      <div class="zc4">申告不要</div>
+    </div>
+    <div class="zrow">
+      <div class="zone">〜195万円<small>低所得・年金のみ等</small></div>
+      <div class="cell c-best">◎ 最有利<span>実質5%〜還付</span></div>
+      <div class="cell c-mid">△ 15%固定<span>損しやすい</span></div>
+      <div class="cell c-mid">△ 源泉のまま<span>取り戻せる分を放置</span></div>
+    </div>
+    <div class="zrow">
+      <div class="zone">195万〜330万<small>所得税10%帯</small></div>
+      <div class="cell c-best">◎ 有利<span>10%−10%＝実質0%</span></div>
+      <div class="cell c-mid">△ 15%固定</div>
+      <div class="cell c-mid">△ 15.315%相当</div>
+    </div>
+    <div class="zrow">
+      <div class="zone">330万〜695万<small>所得税20%帯</small></div>
+      <div class="cell c-ok">○ やや有利<span>20%−10%＝10%</span></div>
+      <div class="cell c-mid">△ 15%</div>
+      <div class="cell c-mid">△ 15.315%</div>
+    </div>
+    <div class="zrow">
+      <div class="zone">695万〜900万<small>所得税23%帯</small></div>
+      <div class="cell c-mid">△ ほぼ拮抗<span>23%−10%＝13%</span></div>
+      <div class="cell c-ok">○ 分離が無難</div>
+      <div class="cell c-ok">○ 手間ゼロ</div>
+    </div>
+    <div class="zrow">
+      <div class="zone">900万〜1800万<small>所得税33%帯</small></div>
+      <div class="cell c-no">✕ 不利<span>33%−10%＝23%</span></div>
+      <div class="cell c-best">◎ 15%固定で得</div>
+      <div class="cell c-best">◎ 20.315%で完結</div>
+    </div>
+    <div class="zrow">
+      <div class="zone">1800万超<small>所得税40〜45%帯</small></div>
+      <div class="cell c-no">✕ 大幅不利<span>控除後も高税率</span></div>
+      <div class="cell c-best">◎ 15%固定</div>
+      <div class="cell c-best">◎ 完結が楽</div>
+    </div>
+  </div>
+  <div class="legend">
+    <b><i style="background:#12331d"></i>◎ 最有利</b>
+    <b><i style="background:#173042"></i>○ 有利／無難</b>
+    <b><i style="background:#3a2a16"></i>△ 拮抗・条件次第</b>
+    <b><i style="background:#3a1c1a"></i>✕ 不利</b>
+  </div>
+  <p class="note">数値は所得税（配当控除10%）だけを見た概算。住民税・国保・扶養への波及は下の「落とし穴」で必ず確認してください。断定ではなく傾向です。</p>
+
+  <!-- ===== AI判定（条件別） ===== -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      課税所得<b>695万円以下</b>で国保・扶養に影響がない人 → <span style="color:var(--g)">総合課税で配当控除を取りに行く</span>。<br>
+      課税所得<b>900万円超</b>／手間を掛けたくない人 → <span style="color:var(--o)">申告不要（そのまま）or 申告分離</span>。<br>
+      国保加入・扶養に入っている人 → <span style="color:var(--r)">税だけで判断しない</span>（総合は保険料・扶養外れの罠）。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>総合課税の“所得税だけ”の得（課税所得330万以下）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:88%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>総合課税の得（課税所得900万超）</span><span>マイナス</span></div><div class="track"><div class="fill" style="width:14%;background:linear-gradient(90deg,#e5534b,#b8433c)"></div></div></div>
+      <div class="bar"><div class="lb"><span>申告不要の手間</span><span>ゼロ</span></div><div class="track"><div class="fill" style="width:6%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>総合課税の“副作用リスク”（国保・扶養）</span><span>人により大</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※上場株・特定口座（源泉あり）・大口株主でない前提。非上場株や大口株主は別ルール（総合課税など）で本記事の対象外です。</div>
+  </div>
+
+  <h2>3つの箱の違い（ここがAI検証室の“計算”）</h2>
+  <p>上場株の配当は、受け取った時点で<b>20.315%</b>（所得税・復興特別所得税15.315%＋住民税5%）が源泉徴収されます。ここから先、あなたは3つの箱のどれかを選べます。</p>
+  <table>
+    <tr><th>箱</th><th>税率（上場株の配当）</th><th>配当控除</th><th>特徴</th></tr>
+    <tr><td><b>申告不要</b></td><td>源泉20.315%で完結</td><td>使えない</td><td>何もしなくてよい。合計所得に加算されない＝国保・扶養に響かない</td></tr>
+    <tr><td><b>申告分離課税</b></td><td>20.315%（所得税15.315＋住民税5）</td><td>使えない</td><td>株の<b>譲渡損と損益通算</b>できるのが最大の利点</td></tr>
+    <tr><td><b>総合課税</b></td><td>給与等と合算し累進（5〜45%）＋住民税10%</td><td class="win">所得税10%・住民税2.8%</td><td>低〜中所得なら配当控除で有利。ただし合計所得が増える</td></tr>
+  </table>
+  <p>ポイントは、<b>申告不要と申告分離は税率が固定（20.315%）</b>なのに対し、<b>総合課税だけは自分の所得の高さで税率が変わる</b>こと。だから「所得が低い人ほど総合課税が得、高い人ほど損」という逆転が起きます。</p>
+
+  <h2>配当控除で総合課税の税率はこう下がる</h2>
+  <p>総合課税を選ぶと、税額計算のあとで<b>配当控除</b>が引けます。国内株の配当なら、課税総所得金額1,000万円以下の部分で<b>所得税10%・住民税2.8%</b>（1,000万円を超える部分は所得税5%・住民税1.4%に半減）です（国税庁 No.1250）。つまり<b>実効税率＝「所得税の累進税率 − 10%」</b>で概算できます。</p>
+  <div class="calc">総合課税の実効税率（所得税分）≒ あなたの所得税率 − 配当控除10%<small>例：課税所得300万円 → 税率10% − 10% ＝ 実質0%（源泉された所得税15.315%が申告で戻る方向）</small></div>
+  <table>
+    <tr><th>課税所得</th><th>所得税率</th><th>−配当控除</th><th>総合の実効(所得税)</th><th>分離(所得税15.315%)と比較</th></tr>
+    <tr><td>〜195万</td><td>5%</td><td>−10%</td><td class="win">実質0%以下</td><td class="win">総合が大幅有利</td></tr>
+    <tr><td>195万〜330万</td><td>10%</td><td>−10%</td><td class="win">0%</td><td class="win">総合が有利</td></tr>
+    <tr><td>330万〜695万</td><td>20%</td><td>−10%</td><td class="win">10%</td><td class="win">総合が有利</td></tr>
+    <tr><td>695万〜900万</td><td>23%</td><td>−10%</td><td class="warn">13%</td><td class="warn">ほぼ拮抗（僅差で総合寄り）</td></tr>
+    <tr><td>900万〜1800万</td><td>33%</td><td>−10%</td><td class="bad">23%</td><td class="bad">分離が有利</td></tr>
+    <tr><td>1800万超</td><td>40〜45%</td><td>−10%</td><td class="bad">30%超</td><td class="bad">分離が明確に有利</td></tr>
+  </table>
+  <p><b>所得税だけ</b>を見れば、境目は課税所得<b>695万円</b>あたり。ここ以下なら総合課税＋配当控除の勝ち、900万を超えると総合は明確に負けます。695万〜900万はほぼ引き分けなので、後述の副作用で決めるのが安全です。</p>
+
+  <h2>落とし穴①：住民税は「申告分離5%」が原則有利</h2>
+  <p>ここが一番の罠。総合課税の住民税は税率<b>10%</b>で、配当控除は<b>2.8%</b>しか引けません（実効7.2%）。一方、申告分離・申告不要の住民税は<b>5%固定</b>。つまり<b>住民税だけで見ると、ほぼ全所得層で申告分離（5%）の方が安い</b>（7.2% &gt; 5%）。</p>
+  <div class="calc">住民税：総合10% − 配当控除2.8% ＝ 実効7.2%　vs　申告分離5%<small>住民税は原則いつも申告分離が有利。差は配当額×約2.2%</small></div>
+  <p>かつては「所得税は総合課税、住民税は申告不要」という<b>異なる課税方式の選択</b>で両取りできましたが、<b>令和6年度（2024年）分の住民税から、所得税と住民税で異なる課税方式を選ぶことはできなくなりました</b>。所得税で総合課税を選ぶと、住民税も総合課税で連動します。だから「所得税で得しても住民税で少し取り返される」前提で、合算の損得を見る必要があります。</p>
+  <p class="note">※住民税率10%・配当割5%・配当控除2.8%は標準。自治体により細部が異なる場合があります。異なる課税方式の選択廃止は総務省の改正によるもの。</p>
+
+  <h2>落とし穴②：総合課税は「合計所得」を押し上げて波及する</h2>
+  <p>申告不要なら配当は合計所得に入りません。ところが<b>総合課税（や申告分離）で申告すると、配当が合計所得金額に加算</b>されます。これが以下に連鎖します。</p>
+  <ul>
+    <li><b>国民健康保険料・後期高齢者医療保険料が上がる：</b>保険料は所得ベース。自営業・年金生活者・退職者が配当を総合課税で申告すると、税金は戻っても<b>保険料が増えて逆ザヤ</b>になることがある。</li>
+    <li><b>扶養から外れる：</b>配偶者控除・扶養控除の判定は「合計所得金額」。配当を申告して<b>合計所得48万円（給与のみなら年収103万円相当）</b>等の基準を超えると、扶養する側の控除が消える。専業主婦・学生の配当申告は要注意。</li>
+    <li><b>住民税の非課税判定・各種給付：</b>住民税非課税世帯の判定や自治体の給付・保育料等も合計所得で決まる。申告で外れると影響が大きい。</li>
+    <li><b>医療費の自己負担割合：</b>高齢者は所得により1割→2割・3割へ上がることがある。</li>
+  </ul>
+  <p>特に<b>国保加入者・扶養に入っている人・住民税非課税ライン付近の人</b>は、「所得税の還付額」より「保険料増・控除喪失」の方が大きくなりがち。<b>税率だけで総合課税に飛びつかない</b>のがAI判定の結論です。会社員（健保・被扶養でない）は国保の影響がないので、この罠は比較的軽い。</p>
+
+  <h2>落とし穴③：申告分離の“本当の使いどころ”は損益通算</h2>
+  <p>「税率が固定なら申告分離は申告不要と同じでは？」と思いがちですが、申告分離を選ぶ最大の理由は<b>株の譲渡損（売却損）と配当を相殺できる</b>こと。その年に株で損を出した人・繰越損失がある人は、申告分離で配当と通算すると<b>源泉された税が戻る</b>ことがあります。損がないなら、わざわざ申告分離にする実益は薄く、申告不要のままで十分です。</p>
+
+  <!-- ASP_SLOT: 証券口座 -->
+
+  <div class="cta">
+    <div class="h">▶ そもそも「特定口座（源泉あり）」で持っていますか？</div>
+    <div class="ph">課税方式を自由に選べる前提は「特定口座 源泉あり」。一般口座や源泉なしだと申告の扱いが変わります。まずは口座区分の確認から。<br><!-- ASP: （該当時）ネット証券 口座開設 --></div>
+  </div>
+
+  <h2>条件別の採点：あなたはどれ？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>選ぶべき</th><th>理由</th></tr>
+    <tr><td>課税所得330万円以下・会社員（健保）・扶養に入れていない</td><td class="win">総合課税</td><td>配当控除で所得税が実質0〜数%。国保・扶養の罠が効かない層</td></tr>
+    <tr><td>課税所得330万〜695万・会社員</td><td class="win">総合課税</td><td>所得税実効10%で分離15%より有利。住民税増を差し引いても概ね勝ち</td></tr>
+    <tr><td>課税所得695万〜900万</td><td class="warn">拮抗（要試算）</td><td>ほぼ引き分け。手間を避けるなら申告不要、微差を取るなら総合</td></tr>
+    <tr><td>課税所得900万円超・高所得</td><td class="win">申告不要／申告分離</td><td>総合は実効23%以上で不利。20.315%で完結が正解</td></tr>
+    <tr><td>国保加入（自営業・年金・退職者）</td><td class="bad">原則 申告不要</td><td>税が戻っても保険料増で逆ザヤになりやすい。要シミュレーション</td></tr>
+    <tr><td>扶養に入っている（配偶者・学生）</td><td class="bad">原則 申告不要</td><td>申告で合計所得が増え扶養控除が消えるリスク</td></tr>
+    <tr><td>その年に株の売却損がある</td><td class="win">申告分離</td><td>譲渡損と損益通算して源泉税を取り戻せる</td></tr>
+    <tr><td>とにかく手間を掛けたくない</td><td class="win">申告不要</td><td>源泉20.315%で完結。合計所得にも響かない</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「必ず総合課税が得」という断定はできません。得か損かは<b>課税所得の額</b>と<b>国保・扶養の有無</b>の掛け算で決まります。会社員・中低所得・扶養に入っていない ―― この3つが揃えば総合課税が有力、というのがルール上の傾向です。境界付近や国保加入者は、実際の還付額と保険料増を必ず両方試算してください。</p>
+
+  <h2>採点でハマる落とし穴（まとめ）</h2>
+  <ul>
+    <li><b>所得税だけで決めない：</b>住民税は原則いつも申告分離5%が有利。所得税と住民税は同じ方式に連動する（異なる課税方式の選択は令和6年度分から不可）。</li>
+    <li><b>国保・扶養・非課税判定に波及：</b>総合課税・申告分離で申告すると合計所得が増え、保険料・扶養控除・給付に響く。会社員（健保）は影響が小さいが、国保加入者・被扶養者は要注意。</li>
+    <li><b>「課税所得」で判定：</b>年収ではなく各種控除後の課税総所得金額で見る。分岐は概ね695万円と900万円。</li>
+    <li><b>大口株主・非上場株は対象外：</b>本記事は上場株・特定口座・少数株主が前提。大口株主や非上場株は原則総合課税など別ルール。</li>
+    <li><b>申告分離のうまみは損益通算：</b>売却損がなければ申告分離にする実益は薄い。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>上場株の配当は「申告不要（20.315%完結）／申告分離（20.315%・損益通算可）／総合課税（累進＋配当控除10%）」の3択。</li>
+    <li>所得税の分岐は課税所得695万円。以下なら総合課税＋配当控除が有利、900万超は申告不要・申告分離。</li>
+    <li>住民税は原則いつも申告分離5%が有利。所得税と方式が連動する点を織り込んで合算で判断。</li>
+    <li>総合課税・申告分離は合計所得を押し上げ、国保料・扶養・非課税判定に波及。国保加入者・被扶養者は税だけで決めない。</li>
+    <li>会社員（健保）・中低所得・非扶養なら総合課税が有力。境界付近と国保加入者は実額を両方試算。最終判断は税務署・専門家へ。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連採点：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a><br><span style="color:var(--faint);font-size:12px">年収の“壁”が気になる人は</span> <a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1250.htm" target="_blank" rel="noopener">国税庁 No.1250 配当所得があるとき（配当控除）</a>（配当控除：課税総所得金額1,000万円以下は所得税10%、1,000万円超の部分は5%）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1330.htm" target="_blank" rel="noopener">国税庁 No.1330 配当金を受け取ったとき（配当所得）</a>（総合課税・申告分離課税・申告不要制度の3択／上場株式等の配当は源泉15.315%＋地方税5%＝20.315%）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" target="_blank" rel="noopener">国税庁 No.2260 所得税の税率</a>（課税所得ごとの累進税率5〜45%）<br>
+    ・<a href="https://www.tax.metro.tokyo.lg.jp/kazei/life/hi-kab" target="_blank" rel="noopener">東京都主税局 都民税配当割・株式等譲渡所得割</a>（住民税の配当割5%・申告方式の取扱い）<br>
+    ・<a href="https://www.soumu.go.jp/main_content/000713006.pdf" target="_blank" rel="noopener">総務省 上場株式の配当等への課税方式の選択（資料）</a>（住民税の配当控除2.8%／異なる課税方式の選択に関する制度）<br>
+    <span class="note">※税制は改正されます。配当控除率・税率・住民税の取扱い・異なる課税方式の選択の可否・国保／扶養への影響は各時点の公式情報にもとづく参考です。特定口座（源泉あり）・上場株・少数株主を前提とした一般的解説であり、個別の税額・保険料への影響は必ず国税庁・総務省・お住まいの自治体・税務署・税理士でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="furusato-onestop-vs-kakutei.html">ふるさと納税の採点</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

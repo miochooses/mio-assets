@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>60歳以降も働く人の「高年齢雇用継続給付」と「在職老齢年金」の二重の落とし穴｜賃金いくらで手取り最大か、条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/koureikoyou-zaishokurourei.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="高年齢雇用継続給付 × 在職老齢年金｜給付をもらうと年金が止まる干渉を計算で採点">
+<meta name="twitter:description" content="60歳以降の賃金を下げて給付をもらうと、年金がさらに削られる。手取り最大の賃金ラインはどこか。2025年の給付縮小・2026年の年金緩和まで条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「高年齢雇用継続給付 × 在職老齢年金」の干渉を計算だけで採点。給付をもらうと年金が標準報酬月額の最大4%(旧6%)支給停止。賃金をどこまで下げれば手取りが最大化するか、2025年4月の給付縮小(15%→10%)・2026年4月の年金緩和(51万円→引き上げ)まで条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/koureikoyou-zaishokurourei.html">
+<meta property="og:title" content="高年齢雇用継続給付 × 在職老齢年金｜給付をもらうと年金が止まる干渉を計算で採点">
+<meta property="og:description" content="60歳以降の賃金を下げて給付をもらうと、年金がさらに削られる。手取り最大の賃金ラインはどこか。2025年の給付縮小・2026年の年金緩和まで条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f0524f;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:16.5px;font-weight:800;line-height:1.6;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:15.5px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--o);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* --- サマリー図 --- */
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px;margin-top:18px;}
+  .fig .cap{font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.03em;}
+  .fig .sub{font-size:11.5px;color:var(--faint);margin-top:4px;}
+  .zone{position:relative;margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+  .zrow{display:flex;align-items:stretch;font-size:11.5px;font-weight:800;}
+  .zrow .seg{padding:8px 8px;text-align:center;line-height:1.35;color:#0b121a;}
+  .zrow .z1{background:linear-gradient(180deg,#f0883e,#e0653a);flex:0 0 30%;}
+  .zrow .z2{background:linear-gradient(180deg,#43b25a,#2ea043);flex:0 0 38%;color:#eafff0;}
+  .zrow .z3{background:linear-gradient(180deg,#5aa9f0,#3f7fd6);flex:0 0 32%;color:#eaf3ff;}
+  .axis{display:flex;justify-content:space-between;font-size:10.5px;color:var(--faint);margin-top:6px;padding:0 2px;}
+  .legend{display:flex;flex-direction:column;gap:6px;margin-top:12px;font-size:12px;color:var(--mut);}
+  .legend div{display:flex;gap:8px;align-items:flex-start;}
+  .legend .sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto;margin-top:3px;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 高年齢雇用継続給付 × 在職老齢年金</div>
+    <h1>給付をもらうと年金が止まる。<br>60歳以降の「賃金いくらが手取り最大」かを計算で採点</h1>
+    <div class="who">👴 60〜64歳で働きながら年金・給付をもらう（もらえる）人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>高年齢雇用継続給付</b>（賃金が60歳時の75%未満に下がった人に支給）を受けると、<b>在職老齢年金がさらに減らされる</b>二重の干渉が起きる。給付でもらった分の一部を年金で取り返される構造。</li>
+        <li>年金の停止額は、給付をもらうと<b>標準報酬月額の最大4%</b>（2025年4月の縮小前は最大6%）が上乗せで支給停止。給付率10%との差が「実質の手取り増」。</li>
+        <li>賃金を下げすぎると給付は増えるが月給が減る。<b>賃金＝60歳時の約64%あたりが給付率のピーク</b>で、そこから下は損。逆に賃金＋年金が高いと<b>在職老齢年金の停止</b>（2025年度は51万円超で発動）に当たる。<a href="#saiten">条件別採点へ</a></li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。「給付をもらった方が得」と単純には言えません。給付・年金・社会保険料・所得税が同じ月給の上で綱引きするからです。ここでは<b>3つの数字（60歳時賃金・今の賃金・年金月額）</b>だけで、あなたが得な側にいるか損な側にいるかを機械的に判定します。</div>
+  </header>
+
+  <!-- ===== 視覚的サマリー図 ===== -->
+  <div class="fig">
+    <div class="cap">📊 一枚図：60歳以降の「賃金」を横軸にした3つのゾーン</div>
+    <div class="sub">今の賃金が60歳到達時賃金の何%か（左が低い＝下げすぎ／右が高い＝下げなさすぎ）</div>
+    <div class="zone">
+      <div class="zrow">
+        <div class="seg z1">下げすぎゾーン<br><span style="font-weight:600">賃金50%以下</span></div>
+        <div class="seg z2">給付ピーク帯<br><span style="font-weight:600">賃金 約61〜75%</span></div>
+        <div class="seg z3">年金停止リスク帯<br><span style="font-weight:600">賃金＋年金が高い</span></div>
+      </div>
+    </div>
+    <div class="axis"><span>◀ 賃金が低い</span><span>60歳時の75%が給付の境界</span><span>賃金が高い ▶</span></div>
+    <div class="legend">
+      <div><span class="sw" style="background:#e0653a"></span><span><b>下げすぎ：</b>給付率は最大でも10%止まり。賃金そのものが減り、手取り総額はむしろ下がる。給付のために賃金を削るのは本末転倒。</span></div>
+      <div><span class="sw" style="background:#2ea043"></span><span><b>給付ピーク帯：</b>賃金が60歳時の約64%以下で給付率が最大（2025年4月以降は10%）。ただし給付を受けた月は年金が標準報酬月額の最大4%（旧6%）追加停止される。</span></div>
+      <div><span class="sw" style="background:#3f7fd6"></span><span><b>年金停止リスク帯：</b>年金（基本月額）＋総報酬月額相当額が<b>支給停止調整額</b>（2025年度51万円／2024年度50万円）を超えると、超過分の半額が年金停止。賃金が高い人はここで削られる。</span></div>
+    </div>
+    <div class="note" style="margin-top:10px">※あくまで構造の概念図。実際の%やピーク位置は個人の賃金・年金・賞与で動きます。数字は本文と早見表で確認してください。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（総論）</div>
+    <div class="t">給付をもらうこと自体は原則プラス。ただし<span style="color:var(--r)">「給付欲しさに賃金を下げる」のは高確率で損</span>。<br>手取り最大の要は<span style="color:var(--g)">賃金の下げ幅を出しすぎない</span>こと＋<span style="color:var(--b)">年金停止ラインを超えない賃金設定</span>の両立。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>給付をもらう価値（賃金75%未満に自然に下がった人）</span><span>プラス</span></div><div class="track"><div class="fill" style="width:74%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>給付のため“わざと”賃金を下げる作戦の得</span><span>ほぼ損</span></div><div class="track"><div class="fill" style="width:20%;background:linear-gradient(90deg,#f0524f,#c23b38)"></div></div></div>
+      <div class="bar"><div class="lb"><span>賃金＋年金を51万円以下に収める設計の効き（2025年度）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:66%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※給付率は2025年4月以降に60歳到達の人で最大10%（それ以前は最大15%）。年金の追加停止は最大4%（旧6%）。支給停止調整額は2025年度51万円で、2026年4月からさらに引き上げ（後述）。</div>
+  </div>
+
+  <h2>まず前提：この2制度は「別物」だが同じ月給の上でぶつかる</h2>
+  <p>登場する制度は2つ。どちらも60代前半の働き方に直結しますが、目的も財源も別です。</p>
+  <table>
+    <tr><th>制度</th><th>何の制度か</th><th>財源／窓口</th></tr>
+    <tr><td>高年齢雇用継続給付</td><td>60歳以降に賃金が下がった人へ、下がった賃金の一部を補う雇用保険の給付</td><td>雇用保険／ハローワーク（会社経由）</td></tr>
+    <tr><td>在職老齢年金</td><td>働きながら厚生年金をもらう人の、賃金と年金の合計が高いと年金を一部止める調整</td><td>厚生年金／日本年金機構</td></tr>
+  </table>
+  <p>問題は、<b>この2つが同じ「あなたの月給」を見て別々に作用する</b>ことです。しかも制度上、<b>高年齢雇用継続給付をもらうと、在職老齢年金がさらに追加で止まる</b>という直接の干渉（併給調整）が定められています。だから「給付をもらう＝まるっと得」ではなく、片手で受け取り、もう片手で削られる構造になります。</p>
+
+  <h2>① 高年齢雇用継続給付：もらえる条件と、2025年4月の縮小</h2>
+  <p>ざっくり言うと「60歳到達時の賃金より、今の賃金が<b>75%未満</b>に下がった人」に、今の賃金の一定率が支給されます（60〜64歳／雇用保険の被保険者期間が通算5年以上が前提）。</p>
+  <div class="calc">今の賃金 ÷ 60歳到達時の賃金 ＜ 75% → 給付の対象<small>低下率が大きい（賃金がより下がった）ほど給付率が上がる。ただし上限あり</small></div>
+  <h3>給付率の目安（早見のイメージ）</h3>
+  <table>
+    <tr><th>賃金の低下率（今の賃金÷60歳時賃金）</th><th>給付率（2025年4月以降に60歳到達）</th><th>給付率（2025年3月以前）</th></tr>
+    <tr><td>75%以上（あまり下がっていない）</td><td>0%（対象外）</td><td>0%（対象外）</td></tr>
+    <tr><td>75%未満〜だんだん下がる</td><td>0%から段階的に増える</td><td>0%から段階的に増える</td></tr>
+    <tr><td><b>約61〜64%以下</b>まで下がると</td><td class="warn">上限の <b>10%</b></td><td class="warn">上限の <b>15%</b></td></tr>
+  </table>
+  <p>正確な給付率は「支給率早見表」（ハローワーク）で0.1%刻みに定められています。ポイントは、<b>賃金を下げるほど給付率は上がるが、上限（10%または15%）で頭打ち</b>になること。そして給付は<b>今の（下がった）賃金</b>に率を掛けるので、賃金を下げすぎると「率は上限でも、掛ける元の賃金が小さい」＝もらえる額が伸びない、という頭打ちが二重に効きます。</p>
+  <div class="calc">給付額 ＝ 今の賃金 × 給付率（最大10%）<small>例：今の賃金18万円 × 10% ＝ 月18,000円（旧15%なら27,000円）</small></div>
+  <div class="box">
+    <h3 style="margin-top:0">2025年4月の縮小（ここが最新の罠）</h3>
+    <p style="margin-top:8px">2025年4月1日から、給付の<b>最大支給率が15%→10%</b>に引き下げられました。対象は<b>2025年4月1日以降に60歳へ到達する人</b>（おおむね昭和40年4月2日以降生まれ）。それ以前に到達済みの人は、従来の最大15%が引き続き適用されます。つまり<b>生年月日1つで、もらえる上限が1.5倍違う</b>という段差が発生しています。将来的にはさらなる縮小・廃止も議論されています。</p>
+  </div>
+  <p><b>賃金・給付額の上限下限（令和8年度の目安）：</b>支給の対象となる賃金には上限（月522,000円）・下限（月96,090円）があり、賃金が月397,369円以上だと給付は出ません（毎年度改定。最新はハローワークで要確認）。</p>
+
+  <h2>② 在職老齢年金：賃金＋年金が高いと年金が止まる</h2>
+  <p>厚生年金（報酬比例部分）をもらいながら厚生年金の被保険者として働く人は、<b>年金の月額（基本月額）＋総報酬月額相当額</b>の合計が<b>支給停止調整額</b>を超えると、超えた分の<b>半額</b>が年金から止まります。</p>
+  <div class="calc">支給停止額 ＝（基本月額 ＋ 総報酬月額相当額 − 支給停止調整額）÷ 2<small>合計が調整額以下なら年金は全額支給。超えた分の“半分だけ”止まる</small></div>
+  <table>
+    <tr><th>用語</th><th>中身</th></tr>
+    <tr><td>基本月額</td><td>老齢厚生年金（報酬比例部分）の月額。加給年金・老齢基礎年金は含めない</td></tr>
+    <tr><td>総報酬月額相当額</td><td>その月の標準報酬月額 ＋（直近1年間の標準賞与額の合計 ÷ 12）</td></tr>
+    <tr><td>支給停止調整額</td><td class="warn">2024年度 50万円／<b>2025年度 51万円</b>（毎年度改定）</td></tr>
+  </table>
+  <div class="box">
+    <h3 style="margin-top:0">計算例（2025年度・51万円基準）</h3>
+    <p style="margin-top:8px">基本月額20万円、総報酬月額相当額35万円の人。合計55万円で、51万円を4万円オーバー。</p>
+    <div class="calc" style="margin-top:10px">支給停止額 ＝（20万 ＋ 35万 − 51万）÷ 2 ＝ <b>2万円</b><small>受け取れる年金 ＝ 20万 − 2万 ＝ 18万円／月</small></div>
+    <p style="margin-top:10px">合計が51万円<b>以下</b>なら年金は全額（20万円）出ます。つまり<b>賃金＋賞与＋年金を51万円ラインに収められるか</b>が、この制度単独での勝負どころです。</p>
+  </div>
+  <div class="box">
+    <h3 style="margin-top:0">2026年4月からの緩和（重要な最新動向）</h3>
+    <p style="margin-top:8px">2025年6月成立の年金制度改正法により、2026年（令和8年）4月から支給停止調整額が引き上げられます。<b>法律上の見直しは月62万円</b>（令和6年度水準ベース）で、これに<b>賃金・物価スライド</b>が加わるため、令和8年度の実際の適用額は<b>62万円以上</b>（一部の解説では65万円と試算）になる見込みです。<span class="note">※最終確定額は施行直前に厚生労働省が告示します。本記事執筆時点では確定告示前のため、62万円を下限に、実額は公式発表で必ずご確認ください。</span></p>
+    <p style="margin-top:10px">意味するところ：<b>年金停止で悩んでいた高賃金層ほど、2026年4月から止まりにくくなる</b>。これまで51万円ラインを意識して賃金や賞与を抑えていた人は、その調整の必要性が薄れます。逆に言うと「①給付」側は縮小（15%→10%）、「②年金停止」側は緩和と、2制度が真逆に動いているのが現在の局面です。</p>
+  </div>
+
+  <h2>③ 二重の干渉：給付をもらうと年金が“さらに”止まる</h2>
+  <p>ここが本題です。②の在職老齢年金の停止に<b>加えて</b>、①の高年齢雇用継続給付を受けている月は、年金が<b>もうひと段階</b>止まります。給付でもらった額の一部を、年金側で相殺される形です。</p>
+  <div class="calc">給付を受けた月 → 在職老齢年金の停止 ＋ <b>標準報酬月額 × 最大4%</b> を追加停止<small>2025年3月以前に要件を満たした人は最大6%。賃金が60歳時の61%以下で最大率になる</small></div>
+  <table>
+    <tr><th>いつ要件を満たしたか</th><th>給付の最大率</th><th>年金の追加停止（最大）</th><th>差し引きの“実質手取り増”イメージ</th></tr>
+    <tr><td>2025年3月以前</td><td>賃金の15%</td><td class="bad">標準報酬月額の6%</td><td>おおむね 15% − 6% ＝ 実質9%前後</td></tr>
+    <tr><td>2025年4月以降に60歳到達</td><td>賃金の10%</td><td class="bad">標準報酬月額の4%</td><td>おおむね 10% − 4% ＝ 実質6%前後</td></tr>
+  </table>
+  <p><b>AIの読み：</b>給付率も年金停止率も同時に縮んだので、実質の手取り増（給付−年金停止）は昔ほど大きくありません。それでも<b>差はプラス側</b>なので、「もともと賃金が75%未満に下がってしまった人」が給付を申請するのは合理的です。問題は次の④、<b>給付欲しさに賃金を“わざと”下げる</b>作戦です。</p>
+
+  <h2 id="saiten">④ AI判定（条件別）：あなたはどのゾーン？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>判定</th><th>理由・数字</th></tr>
+    <tr><td>再雇用で賃金が自然に60歳時の75%未満へ下がった（60代前半・年金は少額か未受給）</td><td class="win">給付を申請</td><td>給付は純増に近い。年金追加停止は年金を受けている人だけの話。もらわない理由がない</td></tr>
+    <tr><td>給付を多くもらうため、賃金をさらに下げようか迷っている</td><td class="bad">やめる</td><td>給付率は最大10%止まり。賃金を1万円下げても給付は最大1,000円しか増えず、手取りは差し引きマイナス。下げすぎゾーン</td></tr>
+    <tr><td>賃金＋賞与月割＋年金の合計が51万円を少し超える（2025年度）</td><td class="warn">賞与配分を調整</td><td>超過分の半額が年金停止。賞与の月割で合計が跳ねやすい。2026年4月以降は基準額引き上げで緩和</td></tr>
+    <tr><td>年金を受けながら、給付も受けている</td><td class="warn">実質率で判断</td><td>給付10% − 年金追加停止4%＝実質6%前後が“真水”。額面の給付だけ見て喜ばない</td></tr>
+    <tr><td>2025年3月以前に60歳到達済み（旧15%対象）</td><td class="win">現制度を活用</td><td>最大15%の給付が継続適用。ただし年金は最大6%停止。生年月日の段差の“得な側”</td></tr>
+    <tr><td>賃金が高く、年金停止で悩んでいる（高所得層）</td><td class="win">2026年4月を待つ視点</td><td>支給停止調整額が62万円以上へ引き上げ予定。止まりにくくなる。賃金抑制の必要性が下がる</td></tr>
+    <tr><td>65歳以降も働く</td><td class="warn">別ルール</td><td>高年齢雇用継続給付は65歳未満が対象で対象外に。在職老齢年金は継続（基準額は同じ枠組み）</td></tr>
+  </table>
+
+  <div class="cta">
+    <div class="h">▶ 自分の年金月額・停止額が分からないと判定できません</div>
+    <div class="ph">在職老齢年金は「基本月額」「総報酬月額相当額」「賞与の月割」で結果が大きく変わります。ねんきん定期便や年金事務所の試算、または年金・退職に強いFPで<b>あなたの正確な数字</b>を出してから賃金設計を。<br><!-- ASP_SLOT: FP相談 --></div>
+  </div>
+
+  <h2>手取りを最大化する考え方（結論）</h2>
+  <ul>
+    <li><b>賃金は「無理に下げない」。</b>給付率は最大10%（旧15%）で頭打ち。給付のために月給を削ると、削った額の方が大きく手取りが減る。給付は「下がってしまった時の緩衝材」であって、狙って下げる道具ではない。</li>
+    <li><b>年金を受ける人は「実質率」で見る。</b>給付でもらえる額から、年金の追加停止（標準報酬月額の最大4%／旧6%）を引いた“真水”が本当の増分。</li>
+    <li><b>2025年度は51万円ラインを意識。</b>賃金＋賞与の月割＋年金の合計が支給停止調整額（2025年度51万円）を超えると超過分の半額が年金停止。<b>賞与の払い方（月割の跳ね）</b>で意図せず超えることがある。</li>
+    <li><b>2026年4月からは年金停止が緩む。</b>支給停止調整額が62万円以上へ引き上げ予定。高賃金で年金を我慢していた人は、賃金抑制をやめて働く選択が取りやすくなる。</li>
+    <li><b>生年月日の段差を知る。</b>2025年3月以前に60歳到達なら給付最大15%、4月以降は10%。同じ会社の同僚でももらえる上限が違う。</li>
+  </ul>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「給付＝まるまる得」と思う：</b>年金を受けている人は給付を受けた月に年金が追加で止まる。額面の給付だけ見ると実際の増分を過大評価する。</li>
+    <li><b>賞与の月割で年金停止に不意打ち：</b>総報酬月額相当額は「直近1年の賞与÷12」を毎月加算する。賞与月でなくても合計が跳ね、51万円（2025年度）を超えて年金が止まることがある。</li>
+    <li><b>賃金を下げれば給付が増えると誤解：</b>給付率は最大10%で頭打ち。しかも掛ける元の賃金が減るので、下げすぎは二重に損。</li>
+    <li><b>手続き漏れ：</b>高年齢雇用継続給付は原則2か月ごとに会社経由でハローワークへ申請。年金との調整は年金事務所側で自動処理されるが、給付の申請自体を忘れると何も始まらない。</li>
+    <li><b>75%の“境界”付近：</b>賃金が60歳時の74%〜75%あたりは給付率がごくわずか。手間の割にほぼ増えないこともある。低下率で早見表を確認。</li>
+    <li><b>年度で数字が動く：</b>支給停止調整額・給付の賃金上限下限は毎年度改定。51万円・522,000円等はその年度の告示で必ず更新確認を。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>高年齢雇用継続給付（賃金75%未満で最大10%／旧15%）と在職老齢年金（賃金＋年金が51万円超で超過分の半額停止）は別制度だが、同じ月給の上でぶつかる。</li>
+    <li>給付を受けると年金が標準報酬月額の最大4%（旧6%）追加停止。実質の手取り増は「給付率−追加停止率」。</li>
+    <li>給付のために賃金を下げるのは高確率で損。賃金は無理に下げず、年金停止ラインを超えない設計が手取り最大の要。</li>
+    <li>2025年4月＝給付縮小（15%→10%）、2026年4月＝年金停止緩和（51万円→62万円以上へ）。方向が真逆。自分の生年月日と年度でどちらの数字が効くかを確認。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a><br><span style="color:var(--faint);font-size:12px">申告まわりが気になる人は</span> <a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a></div>
+
+  <div class="src">
+    <b>出典（公式・一次情報）</b><br>
+    ・<a href="https://www.nenkin.go.jp/service/jukyu/seido/roureinenkin/koyou-chosei/20140421-02.html" target="_blank" rel="noopener">日本年金機構「年金と雇用保険の高年齢雇用継続給付との調整」</a>（給付を受けると在職老齢年金がさらに支給停止／停止額は最高で標準報酬月額の4%、令和7年3月31日以前に要件を満たす人は最大6%）<br>
+    ・<a href="https://jsite.mhlw.go.jp/aichi-roudoukyoku/var/rev0/0120/0059/hayamihyou.pdf" target="_blank" rel="noopener">厚生労働省・都道府県労働局「高年齢雇用継続給付 支給率・支給額早見表」（PDF）</a>（賃金低下率75%以上は0%、低下率が大きいほど給付率が上がり上限で頭打ち）<br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koyou_kaizen/index.html" target="_blank" rel="noopener">厚生労働省「高年齢雇用継続給付」</a>（60〜64歳・被保険者期間5年以上・賃金75%未満、2025年4月から最大支給率15%→10%へ縮小、賃金上限下限）<br>
+    ・<a href="https://www.gov-online.go.jp/tokusyu/roureinenkin/" target="_blank" rel="noopener">政府広報オンライン「在職老齢年金制度の基準額が2026年4月から引上げ」</a>（在職老齢年金の仕組みと2026年4月からの支給停止調整額の引き上げ）<br>
+    ・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/nenkin/nenkin/jukyu/zaishoku.html" target="_blank" rel="noopener">厚生労働省「在職老齢年金について」</a>（基本月額＋総報酬月額相当額が支給停止調整額を超えた分の半額が支給停止／支給停止調整額 2024年度50万円→2025年度51万円）<br>
+    <span class="note">※制度・数値は毎年度改定・法改正で変わります。給付率の詳細（0.1%刻み）、賃金上限下限、支給停止調整額の年度額、2026年4月以降の確定額、生年月日による適用区分は、必ずハローワーク・日本年金機構（年金事務所）・厚生労働省の最新公式情報でご確認ください。本ページは一般的な情報提供であり、個別の助言ではありません。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

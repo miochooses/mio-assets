@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NISAの落とし穴｜損は「なかったこと」に。損益通算・繰越控除できない罠をAIが計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/nisa-songi-tsusan-wana.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NISAの損は損益通算できない｜損切りで税金が“増える”罠をAIが計算で採点">
+<meta name="twitter:description" content="NISAの損は「なかったもの」扱い。課税口座の利益と相殺できず、繰越控除もゼロ。どの資産をNISAへ置くか、条件別に計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIがNISAの盲点を計算で採点。NISA口座の損失は「ないもの」とみなされ、特定口座の利益と損益通算できず、翌年以降の繰越控除もできない。損切りで逆に税負担が増える具体例と、値上がり期待の資産をNISAへ・損の可能性がある短期売買は課税口座での置き分けを条件別に解説。出典は国税庁。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/nisa-songi-tsusan-wana.html">
+<meta property="og:title" content="NISAの損は損益通算できない｜損切りで税金が“増える”罠をAIが計算で採点">
+<meta property="og:description" content="NISAの損は「なかったもの」扱い。課税口座の利益と相殺できず、繰越控除もゼロ。どの資産をNISAへ置くか、条件別に計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#f04e4e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* サマリー図 */
+  .fig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .fig .col{border-radius:14px;padding:14px;border:1px solid var(--line);}
+  .fig .col.nisa{background:#1d1212;border-color:#f04e4e44;}
+  .fig .col.tax{background:#101d16;border-color:#2ea04344;}
+  .fig .cap{font-size:12px;font-weight:800;letter-spacing:.03em;}
+  .fig .cap.n{color:#ff8f8f;} .fig .cap.t{color:#39d353;}
+  .fig .chip{margin-top:8px;background:#0b121a;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:12.5px;line-height:1.5;}
+  .fig .chip b{font-size:13px;}
+  .fig .arrow{text-align:center;font-size:11px;color:var(--faint);margin-top:6px;}
+  .fig .res{margin-top:8px;font-size:13px;font-weight:800;border-radius:9px;padding:8px 10px;text-align:center;}
+  .fig .res.n{background:#2a1414;color:#ff8f8f;border:1px solid #f04e4e44;}
+  .fig .res.t{background:#12261a;color:#59e07a;border:1px solid #2ea04355;}
+  .strike{text-decoration:line-through;color:var(--faint);}
+  @media(max-width:520px){.fig{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ NISA 損益通算の落とし穴</div>
+    <h1>NISAの盲点、損は「なかったこと」に。<br>損益通算・繰越控除できない罠</h1>
+    <div class="who">📉 NISAで損切りを考えている人・どの資産をNISAに入れるか迷う人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>NISA口座で出た損失は「ないもの」とみなされ</b>、課税口座（特定・一般）の利益と<b>損益通算できません</b>（国税庁 No.1535）。</li>
+        <li>だから<b>NISAで損切り→課税口座の利益と相殺</b>ができず、課税口座だけで見れば払う税金が“増える”場面がある。<b>翌年への繰越控除もゼロ</b>。</li>
+        <li>最適解は置き分け ―― <b>値上がり期待が高い長期資産はNISA</b>、<b>損切りの可能性がある短期売買は課税口座</b>。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>制度のルール</b>で採点します。NISAは「利益が非課税」ばかり語られますが、裏返しの盲点は<b>「損失も“無”扱い」</b>。この一点だけを計算で詰めます。一括か積立かといった一般論は扱いません。</div>
+  </header>
+
+  <!-- 視覚的サマリー図 -->
+  <div class="verdict" style="padding:16px;">
+    <div class="h">図で一発：同じ「損」でも扱いが真逆</div>
+    <div class="fig">
+      <div class="col nisa">
+        <div class="cap n">❌ NISA口座で −10万円の損</div>
+        <div class="chip"><b>NISAで損失</b><br>−100,000円</div>
+        <div class="arrow">↓ 制度上「ないものとみなす」</div>
+        <div class="chip"><b>課税口座の利益</b> +100,000円<br><span class="strike">−100,000で相殺したい</span> → <b class="bad">不可</b></div>
+        <div class="res n">利益+10万に満額課税<br>税 約20,315円＋損は消滅</div>
+      </div>
+      <div class="col tax">
+        <div class="cap t">✅ 課税口座で −10万円の損</div>
+        <div class="chip"><b>課税口座で損失</b><br>−100,000円</div>
+        <div class="arrow">↓ 損益通算OK・残りは3年繰越</div>
+        <div class="chip"><b>別の課税口座の利益</b> +100,000円<br>−100,000で相殺 → <b class="win">可</b></div>
+        <div class="res t">利益0円扱い<br>税 0円（相殺しきる）</div>
+      </div>
+    </div>
+    <div class="note">※税率20.315％（所得税15％＋復興特別所得税0.315％＋住民税5％）で計算。同じ「−10万円」でも、NISAで出すと相殺できず消え、課税口座で出すと利益を打ち消せる。<b>損は課税口座で出すほど“使える”</b>のが制度の構造です（出典は末尾）。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">値上がり益・配当を長く狙う資産は <span style="color:var(--g)">NISAへ</span>。<br>損切りの現実味がある短期売買・値動きの荒い個別株は <span style="color:var(--o)">課税口座へ</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>NISA：利益が出た時の強さ（非課税）</span><span>最強</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>NISA：損が出た時の弱さ（通算・繰越不可）</span><span>最弱</span></div><div class="track"><div class="fill" style="width:12%;background:linear-gradient(90deg,#f04e4e,#c53a3a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>課税口座：損の使い勝手（通算＋3年繰越）</span><span>高い</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※NISAは「勝つ資産を入れると最強、負ける資産を入れると最弱」。損の可能性が高いものほど、損を税金に使える課税口座向き、という非対称が本質です。</div>
+  </div>
+
+  <h2>採点の起点：NISAの損は税務上「存在しない」</h2>
+  <p>国税庁は明確です。<b>「非課税口座で取得した上場株式等を売却したことにより生じた損失はないものとみなされます」</b>（No.1535）。つまりNISA内でいくら含み損を確定させても、税金の世界では最初から損はなかった扱い。ここから2つの“できない”が生まれます。</p>
+  <div class="calc">NISAの損失 ＝ 税務上「ゼロ」<small>→ ①他口座の利益と損益通算できない ／ ②翌年以降へ繰越控除できない</small></div>
+  <table>
+    <tr><th>制度</th><th>損益通算（他の利益と相殺）</th><th>繰越控除（翌年以降3年）</th></tr>
+    <tr><td><b>NISA口座</b>の損失</td><td class="bad">できない（No.1535）</td><td class="bad">できない（No.1535）</td></tr>
+    <tr><td><b>課税口座</b>（特定・一般）の損失</td><td class="win">できる（配当・譲渡益と通算）</td><td class="win">できる（翌年以後3年・No.1474）</td></tr>
+  </table>
+  <p>課税口座なら、上場株式等の譲渡損失は同じ年の配当・譲渡益と<b>損益通算</b>でき、控除しきれない分は<b>翌年以後3年間</b>繰り越せます（No.1474）。NISAだけがこの土俵に上がれません。「非課税」は利益にだけ効く片刃で、損には何の救済もない ―― これが盲点です。</p>
+
+  <h2>具体例：NISAで損切りすると税金が“増える”</h2>
+  <p>同じ相場、同じ損益でも、どの口座で損を出したかで手残りが変わります。数字で見ます（税率20.315％）。</p>
+
+  <h3>ケースA：損をNISAで出した（相殺できず消える）</h3>
+  <div class="box">
+    <table>
+      <tr><th>取引</th><th>口座</th><th>損益</th><th>税務上の扱い</th></tr>
+      <tr><td>個別株B 損切り</td><td>NISA</td><td class="bad">−100,000円</td><td>ないものとみなす（消滅）</td></tr>
+      <tr><td>個別株A 利確</td><td>特定口座</td><td>+100,000円</td><td>満額に課税</td></tr>
+    </table>
+    <div class="calc" style="border-color:#f04e4e;color:#ff8f8f">課税対象＝+100,000円 → 税 <b>約20,315円</b><small>NISAの−10万は使えず、手元の損得は「実質±0なのに税だけ2万円」</small></div>
+  </div>
+
+  <h3>ケースB：同じ損を課税口座で出した（相殺できる）</h3>
+  <div class="box">
+    <table>
+      <tr><th>取引</th><th>口座</th><th>損益</th><th>税務上の扱い</th></tr>
+      <tr><td>個別株B 損切り</td><td>特定口座</td><td class="win">−100,000円</td><td>損益通算に使える</td></tr>
+      <tr><td>個別株A 利確</td><td>特定口座</td><td>+100,000円</td><td>損と相殺</td></tr>
+    </table>
+    <div class="calc" style="border-color:#2ea043;color:#59e07a">課税対象＝+100,000 −100,000 ＝ 0円 → 税 <b>0円</b><small>同じ相場でもBの置き場所を変えるだけで税が約2万円変わる</small></div>
+  </div>
+  <p><b>差額は約20,315円。</b>相場も損益も同一なのに、負ける可能性のある株をNISAに入れていたか課税口座に入れていたかだけで、この差が出ます。NISAは損切りとの相性が最悪 ―― これが計算で出た結論です。</p>
+
+  <h3>ケースC：さらに繰越控除の差</h3>
+  <p>課税口座で年間トータル<b>−50万円</b>の損が残り、その年に相殺する利益がなければ、翌年以後3年間、将来の利益や配当から差し引けます（No.1474）。同じ−50万円をNISAで出しても、繰越は<b>1円もできず</b>、翌年以降の利益に満額課税されます。損失が大きいほど、この“繰り越せない差”は効いてきます。</p>
+
+  <h2>最適解：どの資産をどの口座へ置くか（採点）</h2>
+  <p>非対称を逆手に取ります。<b>NISAには「勝つ確率・値上がり期待が高く、長く持つ」資産</b>を、<b>課税口座には「損切りの現実味がある・短期回転・値動きの荒い」資産</b>を。損は税金に使える課税口座で出すのが理にかないます。</p>
+  <table>
+    <tr><th>資産・使い方</th><th>置くべき口座</th><th>採点理由</th></tr>
+    <tr><td>全世界株・S&P500等の長期積立インデックス</td><td class="win">NISA</td><td>長期で値上がり益・分配金を狙う本命。非課税メリット最大化。損切り前提でない</td></tr>
+    <tr><td>長期保有前提の高配当・優良株</td><td class="win">NISA</td><td>配当が非課税。売らずに持つなら通算不可の弱点が出にくい</td></tr>
+    <tr><td>値動きの荒い個別株・テーマ株の短期売買</td><td class="bad">課税口座</td><td>損切りする前提。損を通算・繰越に使える課税口座が有利</td></tr>
+    <tr><td>デイ/スイングなど回転売買</td><td class="bad">課税口座</td><td>損益が頻発。年間で損が残っても3年繰越できる</td></tr>
+    <tr><td>すでに含み損が大きく損切り予定のもの</td><td class="bad">課税口座</td><td>損を確定して他の利益と相殺したいなら、NISAでは無意味</td></tr>
+    <tr><td>NISA枠が余っていて“とりあえず”荒い株を入れる</td><td class="bad">要再考</td><td>負けたら損が消える。枠は勝つ確率が高い本命に使う方が期待値が高い</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「NISAは万能でお得」という煽りは、この検証室のやり方ではありません。利益局面では最強、損失局面では最弱 ―― どちらも事実です。将来のリターンは誰にも断定できないので、「勝つ前提の本命だけNISA、負けうるものは課税口座」という置き分けが、制度の穴を踏まない機械的な正解です。</p>
+
+  <div class="cta">
+    <div class="h">▶ その前に：置き分けを実行できる証券口座を持っていますか？</div>
+    <div class="ph"><!-- ASP_SLOT: 証券口座 --><br>NISA口座と課税口座（特定口座）は同じ証券会社の中で使い分けられます。まだ口座がない・特定口座（源泉徴収あり）を持っていないなら、損益通算の土台づくりが先決です。<br><span style="color:var(--faint)">※広告（PR）を含む場合があります。採点内容は広告の有無と無関係です。</span></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「非課税だから損しても安心」は誤解：</b>非課税は利益にだけ効きます。損失は「ないもの」扱いで、他の利益と相殺も繰越もできません（No.1535）。むしろ損の救済がない分、損には不利です。</li>
+    <li><b>NISAで損切り→課税口座の利益と相殺、はできない：</b>別口座であっても通算不可。損切りで税金を減らしたいなら、その資産は最初から課税口座に置くべきでした。</li>
+    <li><b>繰越控除もゼロ：</b>課税口座なら翌年以後3年使える損失が、NISAでは完全消滅。大きく負けるほど痛い。</li>
+    <li><b>NISAの配当を非課税にするには受取方法に注意：</b>株式の配当を非課税で受け取るには、証券会社の口座で受け取る方式（株式数比例配分方式）の選択が必要です。設定を誤ると配当が課税扱いになることがあります。詳細は各証券会社・国税庁で確認を。</li>
+    <li><b>「枠が余ったから荒い株を放り込む」は期待値が下がる：</b>負けたら損が消える口座に、負けやすい資産を入れるのは非対称に逆行。枠は勝つ確率の高い本命へ。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>NISAの損失は税務上「ないもの」。課税口座の利益との<b>損益通算も、翌年以降の繰越控除もできない</b>（国税庁 No.1535）。</li>
+    <li>課税口座の損失は<b>通算でき、3年繰越できる</b>（No.1474）。同じ損でも置き場所で税が変わる（例：約2万円の差）。</li>
+    <li>最適解は置き分け ―― <b>値上がり期待の高い長期資産はNISA、損切りの現実味がある短期売買は課税口座</b>。</li>
+    <li>NISAは利益に最強・損失に最弱。「勝つ前提の本命だけNISA」が穴を踏まない機械的正解。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 制度の穴つながりで読む：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告の採点 →</a><br><span style="color:var(--faint);font-size:12px">採点のやり方が気になる人は</span> <a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">採点の方法論 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1535.htm" target="_blank" rel="noopener">国税庁 No.1535 NISA制度</a>（非課税口座で生じた損失は「ないものとみなされ」、特定口座・一般口座の配当等や譲渡益との損益通算・繰越控除はできない）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1474.htm" target="_blank" rel="noopener">国税庁 No.1474 上場株式等に係る譲渡損失の損益通算及び繰越控除</a>（課税口座の上場株式等の譲渡損失は配当・譲渡益と損益通算でき、控除しきれない分は翌年以後3年間繰越控除できる。NISA・ジュニアNISA内の譲渡損失は対象外）<br>
+    ・<a href="https://www.fsa.go.jp/policy/nisa2/" target="_blank" rel="noopener">金融庁 NISA特設ウェブサイト</a>（NISA制度の概要・非課税メリット）<br>
+    <span class="note">※税率は20.315％（所得税15％＋復興特別所得税0.315％＋住民税5％）として計算した参考例です。制度・税率・要件は改正されることがあります。損益通算や繰越控除の適用には確定申告等の手続きや要件があります。将来のリターンは断定できません。最新の条件・個別判断は国税庁・金融庁・お取引の証券会社・税務署・税理士でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

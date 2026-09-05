@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高額医療・高額介護合算療養費制度、申請しないと戻らない年間限度額を所得区分別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kougaku-iryo-kaigo-gassan.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="医療費＋介護費が両方かさんだ年に戻るお金｜高額医療・高額介護合算をAIが採点">
+<meta name="twitter:description" content="医療と介護の自己負担を1年分合算し、所得区分別の限度額を超えた分が戻る制度。自動では戻らず申請主義。所得区分別の年間限度額を計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「高額医療・高額介護合算療養費制度」を採点。8/1〜翌7/31の医療費と介護費を合算し、所得区分別の年間自己負担限度額(70歳未満34〜212万円/70歳以上19〜212万円)を超えた分が戻る。自動では戻らない申請主義・2年時効・世帯合算の罠を出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kougaku-iryo-kaigo-gassan.html">
+<meta property="og:title" content="医療費＋介護費が両方かさんだ年に戻るお金｜高額医療・高額介護合算をAIが採点">
+<meta property="og:description" content="医療と介護の自己負担を1年分合算し、所得区分別の限度額を超えた分が戻る制度。自動では戻らず申請主義。所得区分別の年間限度額を計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .warn{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* サマリー図 */
+  .fig{background:#0b121a;border:1px solid var(--line);border-radius:14px;padding:16px 14px;margin-top:16px;}
+  .fig .cap{font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.03em;text-align:center;}
+  .stack{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+  .seg{display:flex;align-items:stretch;gap:8px;}
+  .seg .lbl{flex:0 0 62px;font-size:11px;font-weight:800;color:var(--mut);display:flex;align-items:center;justify-content:flex-end;text-align:right;line-height:1.3;}
+  .seg .barbox{flex:1;position:relative;height:44px;border-radius:8px;overflow:hidden;display:flex;}
+  .seg .med{background:linear-gradient(180deg,#3f7fd6,#2f6bc0);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;}
+  .seg .kai{background:linear-gradient(180deg,#2ea043,#26833a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;}
+  .seg .over{background:repeating-linear-gradient(45deg,#e5534b,#e5534b 6px,#c9463f 6px,#c9463f 12px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800;}
+  .limline{position:relative;height:0;margin-top:6px;}
+  .limtag{display:inline-block;font-size:11px;font-weight:800;color:var(--o);background:#0b121a;border:1px dashed var(--o);border-radius:6px;padding:2px 8px;}
+  .legend{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:11.5px;color:var(--mut);}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .chip{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .c-med{background:#3f7fd6;} .c-kai{background:#2ea043;} .c-over{background:repeating-linear-gradient(45deg,#e5534b,#e5534b 4px,#c9463f 4px,#c9463f 8px);}
+  .figfoot{margin-top:12px;font-size:12px;color:var(--faint);text-align:center;line-height:1.6;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 高額医療・高額介護合算</div>
+    <h1>医療費と介護費、両方かさんだ年に<br>「合算で戻るお金」を取り逃していないか採点</h1>
+    <div class="who">🏥 同じ世帯で医療も介護もお金がかかった人・その家族へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>8/1〜翌7/31の1年間</b>で、医療保険と介護保険の自己負担を<b>合算</b>し、所得区分別の<b>年間限度額</b>を超えた分が戻る制度（高額医療・高額介護合算療養費）。</li>
+        <li>最大の罠は<b>申請しないと1円も戻らない</b>こと。自動では振り込まれず、超過額が501円以上でも申請主義。<b>基準日(7/31)の翌日から2年で時効</b>。</li>
+        <li>限度額は<b>70歳未満で34〜212万円／70歳以上で19〜212万円</b>。低所得ほど戻りやすい。まず自分の所得区分と1年分の領収書を確認。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルールと数字</b>で採点します。先に結論 ―― この制度は<b>「知って申請した人だけ」</b>が得をします。高額療養費（月単位）や高額介護サービス費（月単位）で戻り切らなかった<b>1年分の自己負担</b>を、医療＋介護でまとめて救済するのが本制度。該当しそうなら、限度額表で機械的に判定できます。</div>
+  </header>
+
+  <!-- 視覚的サマリー図：医療＋介護の合算が年間限度額を超えた分が戻る -->
+  <div class="fig">
+    <div class="cap">📊 1年分（8/1〜翌7/31）の自己負担を「医療＋介護」で積み上げ、限度額を超えた分が戻る</div>
+    <div class="stack">
+      <div class="seg">
+        <div class="lbl">世帯の<br>年間<br>自己負担</div>
+        <div class="barbox">
+          <div class="med" style="flex:0 0 42%">医療の自己負担</div>
+          <div class="kai" style="flex:0 0 36%">介護の自己負担</div>
+          <div class="over" style="flex:0 0 22%">超過＝戻る</div>
+        </div>
+      </div>
+    </div>
+    <div class="limline" style="text-align:center;"><span class="limtag">◀ ここまでが所得区分別の「年間自己負担限度額」（自己負担）</span></div>
+    <div class="legend">
+      <span><span class="chip c-med"></span>医療保険の自己負担（高額療養費適用後）</span>
+      <span><span class="chip c-kai"></span>介護保険の自己負担（高額介護サービス費適用後）</span>
+      <span><span class="chip c-over"></span>限度額を超えた分＝合算療養費として戻る</span>
+    </div>
+    <div class="figfoot">※医療と介護の<b>両方に自己負担がある世帯</b>だけが対象。片方だけ・超過501円未満は対象外。金額は所得区分で変わります（下の表）。図はイメージで、比率は実際の負担とは一致しません。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">同一世帯で医療も介護も自己負担が発生し、1年合計が限度額を超えそう → <span style="color:var(--g)">申請すれば戻る可能性が高い</span>。<br>ただし<span style="color:var(--r)">自動では戻らない</span>。心当たりがあれば<b>領収書を1年分集めて保険者へ申請</b>。低所得区分・要介護度が高い世帯ほど該当しやすい。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>医療＋介護が両方かさんだ年の該当可能性</span><span>高い</span></div><div class="track"><div class="fill" style="width:82%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>申請しないと戻らないリスク（放置の危険度）</span><span>大</span></div><div class="track"><div class="fill" style="width:90%;background:linear-gradient(90deg,#e5534b,#c9463f)"></div></div></div>
+      <div class="bar"><div class="lb"><span>手続きの手間（介護→医療の2段階）</span><span>中</span></div><div class="track"><div class="fill" style="width:55%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※本制度は高額「療養費」（医療・月単位）や高額介護サービス費（介護・月単位）を<b>使い切った後</b>に、なお残る1年分の自己負担を医療＋介護でまとめて救済する“最後の網”です。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>この制度の正式名称は<b>高額医療・高額介護合算療養費制度</b>。仕組みは単純です。<b>8月1日〜翌年7月31日の1年間</b>に、同じ医療保険の世帯で払った<b>医療の自己負担</b>と<b>介護の自己負担</b>を足し合わせ、所得区分ごとに決まった<b>年間限度額</b>を超えていたら、超過分が払い戻されます。</p>
+  <div class="calc">戻る額 ＝（1年間の医療自己負担 ＋ 介護自己負担）− 所得区分別の年間限度額<small>マイナスなら対象外。超過が501円以上のときだけ支給されます</small></div>
+  <p>ここで足すのは、月ごとの<b>高額療養費</b>（医療）と<b>高額介護サービス費</b>（介護）を適用した<b>後</b>の自己負担額です。つまり「毎月の上限で戻り切らなかった残り」を、1年分・医療＋介護でまとめて救済する制度です。片方だけ（医療のみ・介護のみ）では対象外、超過が500円以下でも対象外です。</p>
+
+  <h2>対象期間：ここを間違えると計算が狂う</h2>
+  <p>計算期間は暦年（1〜12月）でも年度（4〜3月）でもありません。<b>毎年8月1日〜翌年7月31日</b>の12か月です。基準日は<b>7月31日</b>。この基準日時点で加入している医療保険と、その日の所得区分で判定します。年の途中で75歳になった・保険が変わった・所得区分が変わった等は、公式ルールで按分・調整されるため、複雑なケースは保険者に確認してください（断定は避けます）。</p>
+  <div class="calc">計算期間 ＝ 8/1 〜 翌7/31（基準日＝7/31）<small>「去年の医療費と今年の介護費」のように暦年で合算すると誤ります</small></div>
+
+  <h2>所得区分別・年間自己負担限度額（判定表）</h2>
+  <p>限度額は<b>年齢構成と所得区分</b>で変わります。数字が小さい区分ほど「超えやすい＝戻りやすい」ということです。以下は<b>2018年8月〜</b>の基準額（公的資料ベース）。</p>
+
+  <h3>70歳未満の世帯</h3>
+  <table>
+    <tr><th>所得区分（目安）</th><th>年間限度額</th><th>判定の目安</th></tr>
+    <tr><td>区分ア（標報83万円以上／年収約1,160万円〜）</td><td>212万円</td><td>相当な高負担でないと超えない</td></tr>
+    <tr><td>区分イ（標報53〜79万円／約770〜1,160万円）</td><td>141万円</td><td>高負担世帯向け</td></tr>
+    <tr><td>区分ウ（標報28〜50万円／約370〜770万円）</td><td>67万円</td><td>医療＋介護が重なると届き得る</td></tr>
+    <tr><td>区分エ（標報26万円以下／〜約370万円）</td><td class="win">60万円</td><td>該当しやすい層</td></tr>
+    <tr><td>区分オ（低所得者・住民税非課税）</td><td class="win">34万円</td><td>最も超えやすい＝要チェック</td></tr>
+  </table>
+
+  <h3>70〜74歳の世帯</h3>
+  <table>
+    <tr><th>所得区分（目安）</th><th>年間限度額</th><th>判定の目安</th></tr>
+    <tr><td>現役並みⅢ（年収約1,160万円〜）</td><td>212万円</td><td>ほぼ超えない</td></tr>
+    <tr><td>現役並みⅡ（約770〜1,160万円）</td><td>141万円</td><td>高負担世帯向け</td></tr>
+    <tr><td>現役並みⅠ（約370〜770万円）</td><td>67万円</td><td>重なれば届き得る</td></tr>
+    <tr><td>一般（年収約156〜370万円）</td><td class="win">56万円</td><td>該当しやすい層</td></tr>
+    <tr><td>低所得Ⅱ（住民税非課税世帯）</td><td class="win">31万円</td><td>超えやすい＝要チェック</td></tr>
+    <tr><td>低所得Ⅰ（非課税・所得が一定以下）</td><td class="win">19万円</td><td>最も超えやすい＝最重要</td></tr>
+  </table>
+  <p class="note">※後期高齢者医療（75歳以上）は原則70〜74歳と同じ区分体系（一般56万円・低所得Ⅱ31万円・低所得Ⅰ19万円・現役並み67／141／212万円）で運用されます。世帯に70歳未満と70歳以上が混在する場合は、<b>先に70歳以上分に限度額を適用→残りと70歳未満分を合算して再度限度額を適用</b>する2段階計算になります。</p>
+
+  <h2>世帯合算のルール（誰と誰を足せるか）</h2>
+  <p>合算できるのは<b>同一の医療保険に加入している世帯</b>です。夫婦でも加入している医療保険が違えば合算できません（例：夫が会社の健保、妻が国保だと別々）。逆に、同じ国保・同じ後期高齢者医療なら、世帯内の医療＋介護をまとめられます。70歳未満の医療自己負担は、<b>1か月・医療機関別・入院外来別に21,000円以上</b>のものだけを合算対象に拾う点にも注意（70歳未満特有のルール）。</p>
+
+  <h2>申請手続き：ここが最大の落とし穴</h2>
+  <p>この制度は<b>申請主義</b>です。高額療養費のように後日自動で戻る自治体・保険者もありますが、<b>合算療養費は原則、自分で申請しないと戻りません</b>。しかも医療と介護で保険者が違うため、多くの場合<b>2段階</b>になります。</p>
+  <div class="calc">① 介護保険者（市区町村）へ申請 → 介護自己負担額証明書を受け取る<br>② その証明書を添えて医療保険者（協会けんぽ・国保・後期広域連合など）へ申請<small>基準日(7/31)時点の医療保険者が支給窓口。国保・後期は「支給対象者にお知らせを送る」自治体もあるが、届かない・気づかない例が多い</small></div>
+  <ul>
+    <li><b class="warn">自動では戻らない：</b>「該当すれば勝手に振り込まれる」と思い込むのが最大の取り逃し原因。心当たりがあれば自分から動く。</li>
+    <li><b class="warn">2年で時効：</b>基準日(7/31)の翌日から起算して<b>2年</b>で申請権が消滅します（協会けんぽ・国保とも）。過ぎると戻りません。過去分に心当たりがあれば早めに。</li>
+    <li><b class="warn">証明書の取り忘れ：</b>介護側の「自己負担額証明書」がないと医療側で処理できないケースが一般的。①→②の順を守る。</li>
+    <li><b class="warn">保険が変わった年：</b>年度途中で転職・引越し・75歳到達で保険者が変わると、前の保険者の証明が必要になることがある。</li>
+  </ul>
+
+  <div class="cta">
+    <div class="h">▶ 医療も介護も長引く前に：民間の保障や家計の備えは足りていますか？</div>
+    <div class="ph">合算療養費は「払い過ぎた後に一部戻る」制度で、そもそもの自己負担はゼロにはなりません。医療・介護の長期化に備える保険や、家計全体の見直しはFP相談で整理できます。<br><!-- ASP_SLOT: 介護/医療保険/FP相談 --></div>
+  </div>
+
+  <h2>条件別の採点：あなたは該当しそう？</h2>
+  <table>
+    <tr><th>あなたの世帯の状況</th><th>判定</th><th>理由</th></tr>
+    <tr><td>同一医療保険の世帯で、医療も介護も1年間ずっと自己負担があった</td><td class="win">要申請チェック</td><td>合算で限度額を超えている可能性。まず領収書集計</td></tr>
+    <tr><td>住民税非課税・低所得区分（限度額19〜34万円）</td><td class="win">該当しやすい</td><td>限度額が低く超えやすい。放置は損</td></tr>
+    <tr><td>要介護度が高く、入院・通院も多い高齢世帯</td><td class="win">該当しやすい</td><td>医療＋介護の合算が積み上がる</td></tr>
+    <tr><td>医療だけ／介護だけ多い（片方はほぼゼロ）</td><td>対象外の可能性</td><td>両方に自己負担が必要。片方だけは合算不可</td></tr>
+    <tr><td>夫婦で加入する医療保険が違う（健保と国保など）</td><td>個別に判定</td><td>別保険は合算不可。各自で判定する</td></tr>
+    <tr><td>超えた額が数百円（501円未満）</td><td class="warn">対象外</td><td>超過501円以上が支給の下限。少額は戻らない</td></tr>
+    <tr><td>該当しそうだが2年以上前の年度</td><td class="warn">時効の恐れ</td><td>基準日翌日から2年で権利消滅。早急に窓口確認</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「該当すれば必ずいくら戻る」とは言い切れません。戻る額は所得区分・年齢構成・世帯構成・その年の負担額で一件ずつ変わり、按分計算もあります。この記事でできるのは<b>「取り逃していないか気づく」ところまで</b>。最終的な金額と可否は、必ず自分の保険者（協会けんぽ支部・市区町村国保・後期高齢者医療広域連合）で確認してください。</p>
+
+  <h2>採点でハマる落とし穴（まとめ）</h2>
+  <ul>
+    <li><b class="warn">自動で戻ると思い込む：</b>合算療養費は原則申請主義。動かなければ0円。</li>
+    <li><b>期間を暦年で数える：</b>正しくは8/1〜翌7/31。基準日は7/31。</li>
+    <li><b>月単位の制度と混同する：</b>高額療養費（医療・月）／高額介護サービス費（介護・月）を適用した“後”の残りを、1年・医療＋介護で救済するのが本制度。順番が違う。</li>
+    <li><b>介護の証明書を取り忘れる：</b>先に市区町村で自己負担額証明書 → 医療保険者へ、の2段階。</li>
+    <li><b class="warn">2年放置で時効：</b>基準日翌日から2年で申請不可。過去分の心当たりは今すぐ確認。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>8/1〜翌7/31の医療＋介護の自己負担を合算し、所得区分別の年間限度額（70歳未満34〜212万円／70歳以上19〜212万円）を超えた分が戻る。</li>
+    <li>最大の罠は<b>申請しないと戻らない</b>こと。自動振込を前提にしない。基準日翌日から<b>2年で時効</b>。</li>
+    <li>低所得区分・要介護度が高い高齢世帯ほど該当しやすい。心当たりがあれば1年分の領収書を集め、介護→医療の順で申請。</li>
+    <li>金額と可否の最終判断は保険者へ。この記事は「取り逃しに気づく」ためのもの。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 医療費が多い年は<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700">医療費控除（国税庁）</a>も併用可（別制度）。<br><span style="color:var(--faint);font-size:12px">※合算療養費で戻った分は医療費控除の対象額から差し引く必要があります。二重取りはできません。</span></div>
+
+  <div class="src">
+    <b>出典（公式一次情報）</b><br>
+    ・<a href="https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/003/index.html" target="_blank" rel="noopener">全国健康保険協会（協会けんぽ）高額介護合算療養費</a>（対象期間8月から1年間・医療と介護の両方に自己負担がある場合・超過501円以上・70歳未満は21,000円以上を合算・70歳未満の年額限度額212／141／67／60／34万円・70〜74歳の限度額212／141／67／56／31／19万円・支給申請書の提出）<br>
+    ・<a href="https://www.tyojyu.or.jp/net/kaigo-seido/kaigo-hoken/kogakukaigogassanryoyohiseido.html" target="_blank" rel="noopener">健康長寿ネット（長寿科学振興財団）高額介護合算療養費制度</a>（対象期間8/1〜翌7/31・2018年8月〜の所得区分別年額限度額・世帯に70〜74歳と70歳未満が混在する場合の2段階計算・介護保険者→医療保険者の申請手順）<br>
+    ・<a href="https://www.cao.go.jp/bunken-suishin/kaigi/doc/senmon138shi02_6.pdf" target="_blank" rel="noopener">内閣府 高額介護合算療養費制度 概要（資料）</a>（毎年8月1日〜翌年7月31日の1年間の自己負担を合算する制度概要）<br>
+    ・<a href="https://www.city.yokohama.lg.jp/kurashi/koseki-zei-hoken/kokuho/iryo/kogaku/high-cost-kaigo.html" target="_blank" rel="noopener">横浜市 高額医療・高額介護合算療養費制度</a>（申請主義・基準日翌日から2年で時効）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm" target="_blank" rel="noopener">国税庁 No.1120 医療費控除（併用時の調整）</a><br>
+    <span class="note">※制度は改正されることがあります。所得区分・限度額・時効・申請方法は各時点の公式情報にもとづく参考です。年齢構成の混在・保険者変更・年度途中の異動など個別ケースの計算は複雑なため、必ずご加入の医療保険者（協会けんぽ支部・市区町村国保・後期高齢者医療広域連合）とお住まいの市区町村でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
