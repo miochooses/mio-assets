@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>個人事業主の車、いくらまで経費にできる？事業割合の家事按分と4年落ち中古の減価償却を計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/kojin-jigyo-car-keihi.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="個人事業主の車、いくらまで経費？事業割合の按分と4年落ち中古の減価償却｜AIが計算で採点">
+<meta name="twitter:description" content="自家用車を経費にできる範囲を計算だけで採点。事業使用割合で家事按分、4年落ち中古が1年で償却できる仕組みまで、公式一次情報で条件別に。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「個人事業主の車はいくらまで経費にできるか」を計算だけで採点。事業使用割合での家事按分(ガソリン・保険・車検・減価償却)、新車6年/中古の耐用年数と定額法、4年落ち中古が節税に効く理由、按分の証拠(走行記録)を国税庁の一次情報つきで条件別に解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/kojin-jigyo-car-keihi.html">
+<meta property="og:title" content="個人事業主の車、いくらまで経費？事業割合の按分と4年落ち中古の減価償却｜AIが計算で採点">
+<meta property="og:description" content="自家用車を経費にできる範囲を計算だけで採点。事業使用割合で家事按分、4年落ち中古が1年で償却できる仕組みまで、公式一次情報で条件別に。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* --- 視覚サマリー図 --- */
+  .viz{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-top:18px;}
+  .viz .vh{font-size:12px;font-weight:800;color:var(--b);letter-spacing:.04em;}
+  .viz .vt{margin-top:4px;font-size:17px;font-weight:800;line-height:1.4;}
+  .splitbar{display:flex;height:64px;border-radius:12px;overflow:hidden;margin-top:14px;border:1px solid var(--line);}
+  .splitbar .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#04140a;font-weight:800;}
+  .splitbar .biz{background:linear-gradient(135deg,#39d353,#2ea043);}
+  .splitbar .home{background:#0b121a;color:var(--faint);}
+  .splitbar .big{font-size:22px;line-height:1;}
+  .splitbar .sub{font-size:11px;margin-top:4px;font-weight:700;}
+  .arrow{text-align:center;font-size:22px;color:var(--b);margin:8px 0;font-weight:800;}
+  .resbox{background:#101d16;border:1px solid #2ea04355;border-radius:12px;padding:14px;text-align:center;}
+  .resbox .rn{font-size:30px;font-weight:800;color:#39d353;line-height:1;}
+  .resbox .rl{font-size:12px;color:var(--mut);margin-top:6px;font-weight:700;}
+  .depre{margin-top:16px;}
+  .depgrid{display:flex;gap:8px;margin-top:10px;}
+  .depcol{flex:1;text-align:center;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:12px 6px;}
+  .depcol.new{opacity:.85;}
+  .depcol.used{border-color:#2ea04366;background:#101d16;}
+  .depcol .yr{font-size:26px;font-weight:800;line-height:1;color:var(--tx);}
+  .depcol.used .yr{color:#39d353;}
+  .depcol .cap{font-size:11px;color:var(--mut);margin-top:6px;font-weight:700;}
+  .yrstrip{display:flex;gap:3px;margin-top:8px;justify-content:center;}
+  .yrstrip span{flex:1;height:10px;border-radius:3px;background:#1a2733;}
+  .yrstrip span.on{background:#39d353;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 個人事業主の車 経費</div>
+    <h1>個人事業主の車、いくらまで「経費」にできる？<br>事業割合の按分と4年落ち中古を計算で採点</h1>
+    <div class="who">🚗 自家用車を仕事にも使う個人事業主・フリーランスへ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>車の費用（ガソリン・保険・車検・減価償却）は<b>事業で使った割合ぶんだけ</b>経費にできます。全額はNG（家事按分）。</li>
+        <li>普通車の法定耐用年数は<b>6年</b>。だが<b>4年落ちの中古</b>を買うと、簡便法で耐用年数が<b>2年</b>になり、早く償却できる傾向があります。</li>
+        <li>按分割合は<b>感覚で決めない</b>。走行距離や使用日数など、区分できる<b>記録</b>が必要（国税庁の条件）。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に結論 ―― 車は経費にできますが「事業で使った分だけ」。そして<b>いくらまで経費になるかは、事業使用割合と、新車か何年落ちの中古かで大きく変わります</b>。ここを計算で見える化します。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図 -->
+  <div class="viz">
+    <div class="vh">① 家事按分：経費になるのは「事業で使った割合」だけ</div>
+    <div class="vt">例）事業6割で使うなら、車の費用の60%が経費</div>
+    <div class="splitbar">
+      <div class="seg biz" style="flex:60"><span class="big">60%</span><span class="sub">事業使用 → 経費OK</span></div>
+      <div class="seg home" style="flex:40"><span class="big" style="color:#6e7b8a">40%</span><span class="sub">私用 → 経費×</span></div>
+    </div>
+    <div class="arrow">▼ 年間の車の費用が100万円なら</div>
+    <div class="resbox">
+      <div class="rn">60万円</div>
+      <div class="rl">が必要経費になる目安（＝100万円 × 事業割合60%）</div>
+    </div>
+  </div>
+
+  <div class="viz depre">
+    <div class="vh">② 減価償却：4年落ち中古は「短い年数」で落とせる</div>
+    <div class="vt">同じ普通車でも、償却しきる年数はこう変わる</div>
+    <div class="depgrid">
+      <div class="depcol new">
+        <div class="yr">6年</div>
+        <div class="cap">新車の普通車<br>（法定耐用年数）</div>
+        <div class="yrstrip"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></div>
+      </div>
+      <div class="depcol used">
+        <div class="yr">2年</div>
+        <div class="cap">4年落ち中古の普通車<br>（簡便法で計算）</div>
+        <div class="yrstrip"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="calc" style="margin-top:14px">6年 × 20% ＝ 1.2年 → 端数切捨て → 下限2年<small>法定耐用年数を全部過ぎた中古は「法定耐用年数×20%」。2年未満は2年（国税庁 No.2108）</small></div>
+  </div>
+
+  <!-- (3) AI判定（条件別） -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">車を仕事で使う個人事業主 → <span style="color:var(--g)">按分して経費計上できる</span>。<br>ただし<span style="color:var(--o)">全額計上・記録なしの按分</span>は否認リスク。<span style="color:var(--o)">私用メインの車</span>は経費割合を低く見る必要あり。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>事業でしか使わない車</span><span>ほぼ全額が経費（要根拠）</span></div><div class="track"><div class="fill" style="width:95%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>事業6割・私用4割の車</span><span>費用の約60%が経費</span></div><div class="track"><div class="fill" style="width:60%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>私用メイン・たまに仕事</span><span>経費割合は小さい</span></div><div class="track"><div class="fill" style="width:22%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※割合は一律の正解値ではなく、実際の使用実態を記録で区分して決めます。ここでの数値はあくまでイメージです（出典は末尾）。</div>
+  </div>
+
+  <h2>① いくらまで経費？ ―― 家事按分の考え方</h2>
+  <p>自家用車を仕事にも使う場合、その車の費用は「家事上（私用）と業務上（仕事）の両方にかかわる費用」です。これを国税庁は<b>家事関連費</b>と呼びます。ガソリン代・自動車保険料・車検費用・自動車税・駐車場代・そして車両本体の減価償却費まで、いずれも家事関連費として按分の対象になります。</p>
+  <p>国税庁 No.2210は、家事関連費のうち必要経費にできるのは「取引の記録などに基づいて、<b>業務遂行上直接必要であったことが明らかに区分できる場合の、その区分できる金額に限られる</b>」としています。つまり<b>事業で使った割合ぶんだけ</b>が経費であり、全額は原則NG。そして「なんとなく6割」ではなく、区分できる<b>根拠</b>が必要という考え方です。</p>
+  <div class="calc">車の経費 ＝ 年間の車の費用 × 事業使用割合<small>費用＝ガソリン・保険・車検・税金・駐車場・減価償却費 など</small></div>
+  <table>
+    <tr><th>費用の種類</th><th>按分の対象？</th><th>メモ</th></tr>
+    <tr><td>ガソリン代</td><td class="win">按分対象</td><td>事業使用割合ぶんが経費</td></tr>
+    <tr><td>自動車保険・車検・整備</td><td class="win">按分対象</td><td>同上</td></tr>
+    <tr><td>自動車税・駐車場代</td><td class="win">按分対象</td><td>同上</td></tr>
+    <tr><td>車両本体（減価償却費）</td><td class="win">按分対象</td><td>まず償却費を出し、その事業割合ぶん（後述）</td></tr>
+  </table>
+
+  <h2>② 車両本体は「減価償却」で分割 ―― 定額法の考え方</h2>
+  <p>車は「時の経過によって価値が減っていく資産（減価償却資産）」なので、買った年に全額を経費にはできず、耐用年数に分けて費用にします（国税庁 No.2100）。取得価額が<b>10万円未満なら全額をその年の経費</b>にできますが、車はほぼ該当しません。</p>
+  <p><b>定額法</b>は、毎年ほぼ同じ額を経費にする方法です。個人事業主が届出をしない場合の法定の償却方法は定額法です（償却方法は届出で選べます）。ざっくりの目安はこうです。</p>
+  <div class="calc">1年あたりの減価償却費 ＝ 取得価額 × 定額法の償却率<small>普通車（耐用年数6年）の定額法償却率は 0.167 が目安。取得初年は使用月数で月割りします</small></div>
+  <p>そして最後に、この減価償却費にも<b>事業使用割合を掛ける</b>のを忘れないでください。仕事6割の車なら、減価償却費の60%が経費です。</p>
+  <table>
+    <tr><th>取得価額</th><th>扱い</th></tr>
+    <tr><td>10万円未満</td><td class="win">その年に全額を経費にできる</td></tr>
+    <tr><td>10万円以上</td><td>減価償却で耐用年数に分けて経費（車はほぼこちら）</td></tr>
+  </table>
+  <p class="note">※「30万円未満なら全額」という少額特例（少額減価償却資産の特例）は、青色申告など一定の要件がある制度です。適用可否は要件を必ず確認してください。</p>
+
+  <h2>③ なぜ「4年落ち中古」が節税に効くのか</h2>
+  <p>ここがこの記事の本題です。中古車は「あと何年使えるか」で耐用年数を計算し直せます（中古資産の耐用年数、国税庁 No.2108）。簡便法の式はこうです。</p>
+  <div class="calc">法定耐用年数を<b>全部</b>過ぎた中古 → 法定耐用年数 × 20%<br>法定耐用年数の<b>一部</b>だけ過ぎた中古 → （法定耐用年数 − 経過年数）＋ 経過年数 × 20%<small>1年未満の端数は切り捨て。計算結果が2年未満なら2年（下限）</small></div>
+  <p>普通車の法定耐用年数は<b>6年</b>です。ここに「4年落ち（＝経過4年）」を当てはめます。まだ全部は過ぎていないので、一部経過の式を使います。</p>
+  <div class="calc">（6年 − 4年）＋ 4年 × 20% ＝ 2 ＋ 0.8 ＝ 2.8年 → 端数切捨て → <b>2年</b><small>4年落ちの普通車は、簡便法で耐用年数2年になります</small></div>
+  <p>耐用年数が2年になると、定額法の償却率は0.5。つまり取得価額を<b>2年で償却しきる</b>形になり、1年あたりに落とせる金額が新車（6年で分割）より大きくなります。年の途中で買えば初年は月割りになるため、丸ごと1年で全額とはならない点には注意ですが、「短い年数で費用化できる」のが中古の節税効果の正体です。</p>
+  <table>
+    <tr><th>車の種類</th><th>法定耐用年数</th><th>4年落ち中古の耐用年数（簡便法）</th></tr>
+    <tr><td>普通自動車</td><td>6年</td><td class="win">2年</td></tr>
+    <tr><td>軽自動車</td><td>4年</td><td class="win">2年（全部経過→4×20%=0.8→下限2年）</td></tr>
+  </table>
+  <p class="note">※耐用年数は「減価償却資産の耐用年数等に関する省令」の別表で定められています。用途・構造によって異なる場合があるため、実際の区分は必ず確認してください。取得価額の50%超の資本的支出がある場合は簡便法を使えません。</p>
+
+  <h2>④ 按分の「証拠」がないと否認されやすい</h2>
+  <p>No.2210のポイントは、按分割合そのものより「<b>記録で区分できること</b>」です。税務署に「なぜ6割なのか」と聞かれて、感覚で答えるのが一番危ない。次のような客観的な根拠を残しておくのが安全です。</p>
+  <ul>
+    <li><b>走行距離での按分：</b>年間の総走行距離のうち、事業での走行距離が何kmか。運転記録・営業訪問の記録などで示す。</li>
+    <li><b>使用日数での按分：</b>週7日のうち事業で使うのが何日か、など合理的な基準。</li>
+    <li><b>ガソリン・高速代のレシート：</b>いつ・どこへ・何のために使ったかがわかる記録。</li>
+    <li><b>一度決めた基準は継続：</b>年によって都合よく割合を変えない。合理的な基準を継続的に使う。</li>
+  </ul>
+  <p>採点の要点：<b>「全額経費」も「記録ゼロの按分」も否認リスク</b>。逆に、合理的な基準と記録があれば、その区分できた金額はきちんと経費になります。</p>
+
+  <div class="cta">
+    <div class="h">▶ 按分と減価償却、自分で計算するのがしんどい人へ</div>
+    <div class="ph">
+      走行距離での按分・中古車の耐用年数・定額法の償却費は、会計ソフトなら車両を登録するだけで自動計算できます。判断に迷う按分割合や少額特例の適用は、税理士に一度みてもらうと安全です。<br>
+      <!-- ASP_SLOT: 会計ソフト/税理士 -->
+    </div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>自家用車の費用は<b>事業使用割合ぶんだけ</b>経費（家事按分）。ガソリン・保険・車検・税金・減価償却費が対象。全額はNG。</li>
+    <li>車両本体は<b>減価償却</b>で耐用年数に分けて費用化。10万円未満なら全額。届出なしの法定方法は定額法。</li>
+    <li>普通車の法定耐用年数は<b>6年</b>。<b>4年落ち中古</b>は簡便法で<b>2年</b>になり、短い年数で償却できる（＝節税に効きやすい）。</li>
+    <li>按分割合は感覚で決めず、<b>走行距離など区分できる記録</b>を残す。ここが否認されるかどうかの分かれ目。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 個人事業のお金の判断をもっと採点：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブを見る →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2210.htm" target="_blank" rel="noopener">国税庁 No.2210 必要経費の知識</a>（家事関連費は「取引の記録などに基づいて業務遂行上直接必要であったことが明らかに区分できる場合の、その区分できる金額に限られる」）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2100.htm" target="_blank" rel="noopener">国税庁 No.2100 減価償却のあらまし</a>（減価償却資産・耐用年数・取得価額10万円未満は全額必要経費）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2108.htm" target="_blank" rel="noopener">国税庁 No.2108 中古資産の耐用年数</a>（簡便法＝全部経過は「法定耐用年数×20%」、一部経過は「(法定耐用年数−経過年数)＋経過年数×20%」、端数切捨て・2年未満は2年）<br>
+    ・<a href="https://www.nta.go.jp/law/tsutatsu/kobetsu/sonota/700525/besshyo.htm" target="_blank" rel="noopener">国税庁 減価償却資産の耐用年数表（別表）</a>（車両運搬具の法定耐用年数。普通自動車6年・軽自動車4年）<br>
+    <span class="note">※制度は改正されることがあります。耐用年数・償却率・按分の考え方・少額特例の要件は各時点の公式情報にもとづく参考です。最新の条件・個別の適用可否は国税庁・税務署・税理士でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

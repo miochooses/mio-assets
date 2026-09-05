@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>住民税非課税世帯のラインはいくら？世帯人数別の非課税限度額と“入ると得なこと”を採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/juminzei-hikazei-setai.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="住民税非課税世帯のライン｜世帯人数別の非課税限度額と得することをAIが採点">
+<meta name="twitter:description" content="いくらまで稼ぐと非課税世帯？均等割の非課税限度額を級地×世帯人数で採点。入ると高額療養費・国保・給付金でどう得か、感情ゼロで計算。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「住民税非課税世帯になるライン」を計算で採点。均等割の非課税限度額は生活保護基準(級地1〜3)と世帯人数で決まる。単身の目安は年収100万円前後、扶養がいると加算で上がる。入ると高額療養費の上限が下がる・国保/介護保険料の軽減・給付金対象などのメリットも条件別に解説。数値は自治体差あり。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/juminzei-hikazei-setai.html">
+<meta property="og:title" content="住民税非課税世帯のライン｜世帯人数別の非課税限度額と得することをAIが採点">
+<meta property="og:description" content="いくらまで稼ぐと非課税世帯？均等割の非課税限度額を級地×世帯人数で採点。入ると高額療養費・国保・給付金でどう得か、感情ゼロで計算。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 一枚図サマリー */
+  .figwrap{background:linear-gradient(160deg,#101a26,#0d1620);border:1px solid #1f3040;border-radius:16px;padding:16px 14px 18px;margin-top:18px;}
+  .figttl{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.03em;text-align:center;}
+  .figsub{font-size:11px;color:var(--faint);text-align:center;margin-top:3px;}
+  .figgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
+  .figcard{background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:11px 10px;text-align:center;}
+  .figcard .who2{font-size:12px;color:var(--mut);font-weight:700;}
+  .figcard .amt{font-size:23px;font-weight:800;color:var(--tx);line-height:1.2;margin-top:3px;}
+  .figcard .amt small{font-size:12px;color:var(--faint);font-weight:700;}
+  .figcard .unit{font-size:11px;color:var(--faint);margin-top:2px;}
+  .figmerit{margin-top:12px;background:#101d16;border:1px solid #2ea04340;border-radius:12px;padding:11px 12px;}
+  .figmerit .mh{font-size:12px;font-weight:800;color:#39d353;}
+  .figmerit ul{margin-top:6px;padding-left:0;list-style:none;}
+  .figmerit li{margin-top:6px;font-size:13px;line-height:1.5;display:flex;gap:7px;align-items:flex-start;}
+  .figmerit li b{color:var(--tx);}
+  .figmerit .ic{flex:0 0 auto;color:#39d353;font-weight:800;}
+  @media(max-width:400px){.figcard .amt{font-size:20px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 住民税非課税世帯のライン</div>
+    <h1>住民税非課税世帯のラインはいくら？<br>世帯人数別の非課税限度額を採点</h1>
+    <div class="who">🧾 「あと少しで非課税世帯なのに」が気になる人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>ラインは<b>「所得金額 ≦ ○万円×世帯人数 ＋ 加算」</b>で決まる。○万円は<b>お住まいの級地（1〜3級地）で変わる</b>ため、全国一律ではない。</li>
+        <li>単身の目安は<b>年収100万円前後</b>（給与）。扶養が増えるほど加算で<b>ラインは上がる</b>（＝多く稼いでも非課税になりやすい）。</li>
+        <li>入ると<b>高額療養費の上限が下がる／国保・介護保険料の軽減／給付金の対象</b>など効果は大きいが、<b>1円超えると全て外れる</b>崖がある。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>公的なルール</b>で採点します。「住民税非課税世帯」は年収の丸い数字ではなく、<b>生活保護基準に連動した“所得”の限度額</b>で決まります。だから同じ年収でも、住む地域と世帯人数で結果が変わります。</div>
+  </header>
+
+  <!-- ===== (2) 視覚サマリー 一枚図 ===== -->
+  <div class="figwrap">
+    <div class="figttl">📊 世帯人数別・住民税「非課税」になる年収の目安</div>
+    <div class="figsub">給与収入のみ・扶養が専業主婦(夫)＋子の一般的モデル／級地・自治体で数万円ずれます</div>
+    <div class="figgrid">
+      <div class="figcard"><div class="who2">単身</div><div class="amt">100<small>万円</small></div><div class="unit">前後まで非課税</div></div>
+      <div class="figcard"><div class="who2">夫婦（扶養1人）</div><div class="amt">156<small>万円</small></div><div class="unit">目安（1級地）</div></div>
+      <div class="figcard"><div class="who2">夫婦＋子1人</div><div class="amt">205<small>万円</small></div><div class="unit">目安</div></div>
+      <div class="figcard"><div class="who2">夫婦＋子2人</div><div class="amt">255<small>万円</small></div><div class="unit">目安</div></div>
+    </div>
+    <div class="figmerit">
+      <div class="mh">✅ このラインを下回る＝「非課税世帯」で得られること</div>
+      <ul>
+        <li><span class="ic">▶</span><span><b>高額療養費の上限が最安クラス</b>に（70歳未満で月35,400円→多数回24,600円 ※2026年8月から改定）</span></li>
+        <li><span class="ic">▶</span><span><b>国民健康保険料・介護保険料が軽減</b>（7割・5割・2割など・多くは自動判定）</span></li>
+        <li><span class="ic">▶</span><span><b>各種「非課税世帯向け給付金」の対象</b>（物価高騰対策の1世帯○万円など）</span></li>
+        <li><span class="ic">▶</span><span><b>高等教育の修学支援・保育料・NHK減免</b>など個別制度の対象になりやすい</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">ラインは<span style="color:var(--b)">住む級地×世帯人数×扶養</span>で動く。<br>単身なら年収100万円前後、扶養が多いほど<span style="color:var(--g)">ラインは上がる</span>。ただし1円超えると<span style="color:var(--o)">恩恵が一気に消える崖</span>あり。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>ラインに与える「世帯人数・扶養」の影響</span><span>とても大きい</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>ラインに与える「級地（住む地域）」の影響</span><span>中くらい</span></div><div class="track"><div class="fill" style="width:50%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>ライン超えの「崖」で失う恩恵の大きさ</span><span>大きい</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※数値は目安。均等割の非課税限度額は各市区町村の条例（級地区分）で定まり、地域差があります。正確な判定は必ずお住まいの自治体でご確認ください。</div>
+  </div>
+
+  <h2>採点の考え方：「均等割」も「所得割」も0なら非課税世帯</h2>
+  <p>住民税には<b>均等割</b>（定額部分・多くの自治体で年5,000円前後）と<b>所得割</b>（所得に応じた部分・標準税率10%）があります。「住民税非課税世帯」とは、<b>世帯全員がこの両方とも非課税</b>の世帯を指します。所得割は非課税でも均等割がかかっていれば「均等割のみ課税世帯」で、非課税世帯とは扱いが違います。</p>
+  <div class="calc">世帯全員が「均等割0円」かつ「所得割0円」＝ 住民税非課税世帯<small>均等割の方が基準が厳しめ。均等割が非課税なら所得割も基本は非課税になります</small></div>
+
+  <h3>均等割が非課税になる限度額（生活保護基準に連動）</h3>
+  <p>ここが最大のニッチ。均等割の非課税限度額は、<b>生活保護の級地区分（1級地・2級地・3級地）</b>で使う金額が変わります。総務省の標準的な考え方では次のとおりです（各自治体が条例で採用）。</p>
+  <table>
+    <tr><th>級地（例）</th><th>1人あたり</th><th>扶養がいる場合の加算</th></tr>
+    <tr><td>1級地（東京23区・政令市など）</td><td class="win">35万円</td><td>＋10万円＋21万円</td></tr>
+    <tr><td>2級地（県庁所在市など）</td><td>31.5万円</td><td>＋10万円＋18.9万円</td></tr>
+    <tr><td>3級地（一般の市町村など）</td><td>28万円</td><td>＋10万円＋16.8万円</td></tr>
+  </table>
+  <div class="calc">均等割 非課税ライン（1級地）＝ 35万円 × 世帯人数 ＋ 10万円 ＋ 21万円<small>※右側の「＋10万円＋21万円」の加算は、控除対象配偶者や扶養親族がいる場合のみ。単身は「35万円＋10万円＝45万円（所得）」が目安</small></div>
+  <p>単身者は加算がないため、<b>合計所得45万円（1級地）＝給与収入なら約100万円</b>が目安になります（給与所得控除55万円を足し戻すため）。3級地なら1人あたりが28万円なので、単身の所得ラインは38万円と、地域によって数万円下がります。</p>
+
+  <h3>所得割が非課税になる限度額（均等割より基準はゆるい）</h3>
+  <p>所得割は級地に関係なく、<b>35万円×世帯人数＋10万円（＋扶養がいれば＋32万円）</b>が全国共通の目安です。加算額が21万円→32万円と大きいぶん、均等割より基準がゆるく、<b>先に均等割で判定される</b>のが普通です。</p>
+
+  <h2>世帯人数別の年収目安（会社員＋扶養モデル）</h2>
+  <p>「所得」ではピンとこないので、給与収入のみのモデルで年収に直したのが下表です。<b>あくまで目安</b>で、級地・障害者/寡婦等の有無・収入の種類（年金か給与か）で変わります。</p>
+  <table>
+    <tr><th>世帯構成</th><th>非課税ラインの年収目安</th><th>ひとこと</th></tr>
+    <tr><td>単身（扶養なし）</td><td class="win">約100万円</td><td>加算なし。ここが基本の起点</td></tr>
+    <tr><td>夫婦（配偶者を扶養・1人分加算）</td><td>約156万円</td><td>1級地の一般的な目安</td></tr>
+    <tr><td>夫婦＋子1人（3人世帯）</td><td>約205万円</td><td>扶養2人分でラインが上がる</td></tr>
+    <tr><td>夫婦＋子2人（4人世帯）</td><td>約255万円</td><td>人数が増えるほど非課税になりやすい</td></tr>
+  </table>
+  <p>ポイントは<b>「世帯人数が多いほどラインが上がる」</b>こと。同じ年収250万円でも、単身なら課税、4人世帯なら非課税、という逆転が起きます。</p>
+
+  <h2>入ると得なこと（非課税世帯のメリットを採点）</h2>
+  <h3>① 高額療養費の自己負担上限が最安クラス</h3>
+  <p>医療費が高額になったとき、月の自己負担には上限があります。<b>住民税非課税世帯は最も低い区分</b>で、70歳未満の場合、現行はひと月<b>35,400円</b>（過去1年に3回以上該当した4回目以降＝多数回該当は<b>24,600円</b>）。同じ年収帯でも課税世帯だと約8万円台なので、差はとても大きいです。</p>
+  <div class="note">※2026年8月診療分から高額療養費は見直しがあり、非課税区分の月額は35,400円→36,900円へ引き上げ、あわせて外来等に年間上限（区分により29万円・18万円など）が新設される予定です。多数回該当24,600円は据え置き。詳細は厚生労働省の公表資料をご確認ください。</div>
+  <h3>② 国民健康保険料・介護保険料の軽減</h3>
+  <p>国保料は所得が低い世帯に<b>7割・5割・2割の軽減</b>があり、非課税世帯はこの軽減の対象になりやすい設計です。介護保険料（第1号被保険者）も非課税世帯は低い段階（基準額×一定割合）に。<b>多くは申請不要で自動判定</b>されますが、算定に必要な所得の申告が前提になる場合があります。</p>
+  <h3>③ 給付金・その他の減免</h3>
+  <p>物価高騰対策などの<b>「住民税非課税世帯向け給付金」</b>は近年たびたび実施され、非課税世帯が主な対象です（金額・実施は年度・自治体で異なる）。ほかに高等教育の修学支援新制度、保育料、NHK放送受信料の免除など、<b>非課税を入口にした制度が横断的にあります</b>。</p>
+
+  <div class="cta">
+    <div class="h">▶ 「あと少しで非課税」の人へ：崖の前後で家計はどう変わる？</div>
+    <div class="ph">非課税ラインは1円超えると恩恵がまとめて消える“崖”です。働き方・扶養・iDeCoや控除で所得をどう扱うかは、税と社会保険の両にらみが必要。判断に迷うときは中立のFPに一度整理してもらうのも手です。<br><!-- ASP_SLOT: FP相談 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「年収いくら」は近似にすぎない：</b>判定は<b>所得</b>。給与か年金か、控除の有無で年収換算は動きます。年金受給者は控除が違うため、給与モデルの目安をそのまま当てないこと。</li>
+    <li><b>級地で数万円ズレる：</b>1級地35万円と3級地28万円では1人あたり7万円差。<b>全国一律の“正解の年収”は存在しません</b>。必ずお住まいの市区町村で確認を。</li>
+    <li><b>「世帯全員」が条件：</b>同居家族の誰か1人でも課税されていると、世帯としては非課税世帯になりません（給付金等の判定は制度ごとに「世帯」「本人」「世帯主合算」など見方が違う点にも注意）。</li>
+    <li><b>崖のギリギリを狙う是非：</b>あえてラインを超えない働き方は、確かに恩恵は残せます。ただし<b>手取りそのものが増えにくい・将来の年金額が伸びにくい</b>など長期のコストもあり、機械的に得とは言えません。恩恵の合計と、稼いで得る手取りを比べて判断すべきです。</li>
+    <li><b>制度は毎年変わる：</b>限度額・給付金・高額療養費はいずれも改定されます。過去年度の数字を今年に流用しないこと。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>非課税世帯のラインは「所得 ≦ ○万円×世帯人数＋加算」。○万円は級地（1級地35万・2級地31.5万・3級地28万）で変わる。</li>
+    <li>単身は年収100万円前後、扶養が増えるほどラインは上がる（4人世帯で約255万円目安）。</li>
+    <li>入ると高額療養費が最安クラス・国保/介護の軽減・給付金対象などメリット大。ただし1円超えで崖。</li>
+    <li>数値はすべて目安。判定は所得ベースで自治体差あり。最終確認は必ずお住まいの市区町村・公式資料で。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="nenshu-no-kabe-2026.html" style="color:#58a6ff;text-decoration:none;font-weight:700">年収の壁 2026年版の採点 →</a><br><span style="color:var(--faint);font-size:12px">申告方法で迷う人は</span> <a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告 →</a></div>
+
+  <div class="src">
+    <b>出典（2026年時点で確認）</b><br>
+    ・<a href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/149767_03.html" target="_blank" rel="noopener">総務省 個人住民税（均等割・所得割の非課税限度額／生活保護基準に連動する級地区分）</a><br>
+    ・<a href="https://www.mhlw.go.jp/stf/newpage_21517.html" target="_blank" rel="noopener">厚生労働省 高額療養費制度を利用される皆さまへ（自己負担限度額・住民税非課税区分）</a><br>
+    ・<a href="https://www.mhlw.go.jp/content/12401000/001621844.pdf" target="_blank" rel="noopener">厚生労働省 高額療養費制度の見直しについて（2026年8月改定・年間上限の新設／社会保障審議会資料）</a><br>
+    <span class="note">※級地区分・軽減割合・給付金の金額や実施有無は市区町村ごとに異なります。本ページは公的な一次情報にもとづく参考であり、断定的な個別判定ではありません。最新の限度額・要件はお住まいの自治体、厚生労働省、加入する医療保険者で必ずご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>米国株の配当、外国税額控除で二重課税は取り戻せる？NISAの落とし穴も条件別に採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/gaikokukabu-nijukazei-koujo.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="米国株の配当 外国税額控除｜二重課税は取り戻せる？NISAの落とし穴をAIが採点">
+<meta name="twitter:description" content="米国株の配当は現地10%＋日本20.315%の二重課税。確定申告の外国税額控除で現地分の一部が戻る場合も。申告する価値がある人/ない人を計算で採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「米国株の配当・外国税額控除」を計算だけで採点。現地10%＋日本20.315%の二重課税は確定申告の外国税額控除で一部戻せる場合があるが、控除には上限があり全額は戻らない。NISAは非課税ゆえ対象外という落とし穴も。申告する価値がある人/ない人を条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/gaikokukabu-nijukazei-koujo.html">
+<meta property="og:title" content="米国株の配当 外国税額控除｜二重課税は取り戻せる？NISAの落とし穴をAIが採点">
+<meta property="og:description" content="米国株の配当は現地10%＋日本20.315%の二重課税。確定申告の外国税額控除で現地分の一部が戻る場合も。申告する価値がある人/ない人を計算で採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 二重課税フロー図 */
+  .flow{background:#0b121a;border:1px solid var(--line);border-radius:16px;padding:20px 16px;margin-top:16px;}
+  .flow .ttl{font-size:13px;font-weight:800;color:var(--mut);text-align:center;letter-spacing:.04em;}
+  .flow-row{display:flex;align-items:stretch;justify-content:center;gap:6px;margin-top:16px;flex-wrap:nowrap;}
+  .fstep{flex:1;min-width:0;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 6px;}
+  .fstep .cap{font-size:11px;font-weight:800;color:var(--faint);}
+  .fstep .amt{font-size:22px;font-weight:800;margin-top:4px;line-height:1.2;}
+  .fstep .sub{font-size:10.5px;color:var(--mut);margin-top:3px;line-height:1.5;}
+  .farrow{display:flex;align-items:center;font-size:22px;font-weight:800;color:var(--o);flex:0 0 auto;}
+  .fcut{color:var(--o);}
+  .fback{background:#101d16;border:1px solid #2ea04355;border-radius:12px;padding:12px 14px;margin-top:14px;text-align:center;}
+  .fback .amt{font-size:20px;font-weight:800;color:#39d353;}
+  .fback .sub{font-size:11.5px;color:var(--mut);margin-top:4px;}
+  .fnisa{background:#241014;border:1px solid #f0883e55;border-radius:12px;padding:12px 14px;margin-top:12px;text-align:center;}
+  .fnisa .amt{font-size:16px;font-weight:800;color:var(--o);}
+  .fnisa .sub{font-size:11.5px;color:var(--mut);margin-top:4px;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 米国株 配当の二重課税</div>
+    <h1>米国株の配当、外国税額控除で<br>二重課税は取り戻せる？</h1>
+    <div class="who">🇺🇸 米国株・米国ETFの配当を受け取っている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>米国株の配当は<b>現地で約10％＋日本で20.315％</b>が引かれる「二重課税」。二重に取られた現地分の一部を、確定申告の<b>外国税額控除</b>で取り戻せる場合があります。</li>
+        <li>ただし<b>全額は戻りません</b>。控除には「控除限度額」という上限があり、戻るのは限度額まで。</li>
+        <li><b>NISA口座は要注意。</b>日本側が非課税＝二重課税にならないため、外国税額控除は<b>使えず</b>、現地の約10％は取り戻せません。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に結論 ―― <b>取り戻せる金額は「あなたの税額」と「配当額」次第</b>。申告する手間に見合う人と、見合わない人がはっきり分かれます。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図：二重課税の流れと外国税額控除で戻る分 -->
+  <div class="flow">
+    <div class="ttl">📊 米国株の配当が「二重課税」される流れ（配当100の例）</div>
+    <div class="flow-row">
+      <div class="fstep">
+        <div class="cap">① 配当</div>
+        <div class="amt">100</div>
+        <div class="sub">米国企業からの<br>配当（税引前）</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fstep">
+        <div class="cap">② 米国で源泉</div>
+        <div class="amt fcut">−10</div>
+        <div class="sub">現地 約10％<br>（日米租税条約）</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fstep">
+        <div class="cap">③ 日本で源泉</div>
+        <div class="amt fcut">−約18</div>
+        <div class="sub">残90に20.315％<br>＝約18</div>
+      </div>
+    </div>
+    <div class="fback">
+      <div class="amt">↩ 外国税額控除で「②の一部」が戻る可能性</div>
+      <div class="sub">確定申告すると、現地で引かれた約10を控除限度額まで取り戻せる（＝二重課税の調整）。ただし<b>上限あり・全額は戻らない</b>。</div>
+    </div>
+    <div class="fnisa">
+      <div class="amt">⚠ NISA口座の場合：③がゼロ＝取り戻せない</div>
+      <div class="sub">日本側が非課税なので二重課税が起きず、外国税額控除の対象外。②の約10はそのまま自己負担。</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">配当が多い × 元々確定申告する人 → <span style="color:var(--g)">外国税額控除を使う価値あり</span>。<br>配当がごく少額 × NISA中心 or 申告の手間が惜しい → <span style="color:var(--o)">無理に申告しなくてよい</span>。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>取り戻せる可能性（配当が多い課税口座）</span><span>大きい</span></div><div class="track"><div class="fill" style="width:78%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>取り戻せる金額（配当が少額）</span><span>小さい</span></div><div class="track"><div class="fill" style="width:22%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>NISA口座で取り戻せる分</span><span>ゼロ</span></div><div class="track"><div class="fill" style="width:3%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※戻る金額は控除限度額（下記の計算式）と、その年の所得税額・国外所得の割合で決まります。全員が全額戻るわけではありません（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>米国株や米国ETFの配当には、税金が<b>2回</b>かかります。1回目は米国で、日米租税条約にもとづく<b>約10％</b>の源泉徴収。2回目は日本で、残った金額に<b>20.315％</b>（所得税＋復興特別所得税＋住民税）。同じ配当に日米が二重に課税するので「二重課税」と呼ばれます。</p>
+  <div class="calc">配当100 →（米国−10）→ 手取り90 →（日本−約18）→ 実質手取り約72<small>この「米国で引かれた約10」の一部を取り戻す仕組みが外国税額控除です</small></div>
+  <p>外国税額控除は、国税庁の説明では「居住者が、その年において外国の法令により所得税に相当する租税を納付することとなる場合には……その外国所得税額をその年分の所得税額から差し引くことができます」とされる制度です。二重課税を調整するのが目的ですが、<b>差し引けるのは「控除限度額」まで</b>という上限がついています。</p>
+
+  <h2>外国税額控除の計算と“上限”</h2>
+  <p>取り戻せる金額には上限があります。国税庁No.1240の控除限度額の計算式は次のとおりです。</p>
+  <div class="calc">所得税の控除限度額 ＝ その年分の所得税額 ×（調整国外所得金額 ÷ 所得総額）<small>この限度額を超えて外国で払った税は、その年は所得税から引ききれない</small></div>
+  <p>ポイントは、<b>所得税から引ききれない分は捨てるのではなく段階的に回せる</b>ことです。国税庁の記載では、所得税の限度額のほかに、</p>
+  <ul>
+    <li><b>復興特別所得税分</b>：復興特別所得税額 ×（調整国外所得金額 ÷ 所得総額）でも控除限度額が計算される</li>
+    <li><b>地方税（住民税）分</b>：所得税の控除限度額に<b>30％</b>を乗じた金額まで、住民税側でも控除余地がある</li>
+    <li><b>3年間の繰越</b>：控除限度額を超えた外国所得税は、前年以前3年内から繰り越された分と合わせて調整できる</li>
+  </ul>
+  <p>つまり「所得税 → 復興特別所得税 → 住民税」の順に控除枠を使い、それでも余れば最長3年繰り越す、という多段構造です。<b>だからこそ、そもそも所得税を払っている（＝控除枠がある）人ほど、取り戻せる余地が大きくなります。</b>逆に所得税額が小さい人は、限度額も小さくなり、戻る額は限られます。</p>
+
+  <h2>【最重要】NISA口座は対象外という落とし穴</h2>
+  <p>ここが多くの人が見落とすポイントです。<b>NISA口座で米国株の配当を受け取っても、外国税額控除は使えません。</b></p>
+  <p>理由はシンプルで、外国税額控除は「二重課税を調整する」制度だからです。NISAは日本側が非課税なので、そもそも日本では課税されていません。日本で課税されていない＝二重課税になっていないため、調整すべき二重課税が存在せず、控除の対象外になる、という理屈です。</p>
+  <div class="calc">NISAの米国株配当：米国で約10％だけは引かれる → 日本は非課税 → <b>二重課税ではない → 外国税額控除で取り戻せない</b><small>NISAでも「現地の約10％」は自己負担として残ります</small></div>
+  <p>NISAは日本の税金がゼロになるという大きな利点があり、多くの人にとって有利であることは変わりません。ただし<b>「現地の約10％まで完全に非課税」ではない</b>点、そして<b>その10％は取り戻せない</b>点は、採点上フェアに伝えておきます。</p>
+
+  <h2>採点の分岐点：申告する価値がある人／ない人</h2>
+  <p>外国税額控除は、還付を受けるために<b>自分で確定申告</b>する必要があります（証券会社が勝手にやってはくれません）。だから判断軸は「取り戻せる額」対「申告の手間」です。</p>
+  <table>
+    <tr><th>あなたの状況</th><th>採点</th><th>理由</th></tr>
+    <tr><td>課税口座で米国株の配当が多い・元々確定申告する</td><td class="win">使う価値大</td><td>控除枠があり戻る額も大きい。申告のついでに書けば手間も小さい</td></tr>
+    <tr><td>課税口座で配当がそこそこ・普段は年末調整だけ</td><td class="win">要試算</td><td>戻る額と、わざわざ確定申告する手間を天秤に。少額なら見送りも合理的</td></tr>
+    <tr><td>配当がごく少額（年数百円〜数千円レベル）</td><td class="win">見送り可</td><td>戻る額より手間が上回りやすい。無理に申告しなくてよい</td></tr>
+    <tr><td>NISA口座で米国株を保有</td><td class="win">対象外</td><td>そもそも外国税額控除は使えない。申告しても取り戻せない</td></tr>
+    <tr><td>所得税をほとんど払っていない（控除枠が小さい）</td><td class="win">効果限定</td><td>控除限度額が小さく、戻る額も小さくなりやすい</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「外国税額控除で二重課税が丸ごと戻る」と煽る説明はこの検証室のやり方ではありません。戻るのは<b>控除限度額まで</b>で、NISAは<b>対象外</b>。自分の配当額と税額しだいで、価値は大きく変わります。</p>
+
+  <div class="cta">
+    <div class="h">▶ その前に：どの証券口座・どの口座区分で持つかで手取りは変わります</div>
+    <div class="ph">
+      <!-- ASP_SLOT: 証券口座 -->
+      課税口座なら外国税額控除の余地、NISAなら日本非課税。自分の使い方に合う証券口座・口座区分を、条件で見比べてから決めるのが先決です。
+    </div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「全額戻る」と思い込む：</b>戻るのは控除限度額まで。限度額は「所得税額 ×（国外所得 ÷ 所得総額）」で決まり、所得税額が小さい人ほど戻る額も小さくなります。</li>
+    <li><b>NISAを課税口座と混同：</b>NISAは非課税なので二重課税が発生せず、外国税額控除の対象外。現地の約10％は取り戻せません。</li>
+    <li><b>申告しないと戻らない：</b>外国税額控除は自動では適用されません。取り戻すには確定申告が必要です。</li>
+    <li><b>投資信託経由は仕組みが違うことがある：</b>「外国税額控除」自体は個別株・ETFを想定した説明です。投資信託の分配金では、二重課税の調整方式が異なる場合があるため、必ず各運用会社・証券会社の案内で確認してください。</li>
+    <li><b>税率・制度は改正され得る：</b>20.315％や条約の限度税率、繰越の扱いなどは各時点の公式情報で確認を。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>米国株の配当は「現地 約10％＋日本 20.315％」の二重課税。現地分の一部を確定申告の外国税額控除で取り戻せる場合がある。</li>
+    <li>戻るのは控除限度額まで。所得税を払っている・配当が多い人ほど取り戻せる余地が大きい。</li>
+    <li>NISA口座は非課税＝二重課税にならないため、外国税額控除は使えない（現地の約10％は自己負担）。</li>
+    <li>配当がごく少額なら、申告の手間に見合わないこともある。自分の配当額と税額で採点するのが正解。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="haitou-sougou-vs-bunri.html" style="color:#58a6ff;text-decoration:none;font-weight:700">配当は総合課税 vs 申告分離、どっちが得？ →</a><br><span style="color:var(--faint);font-size:12px">NISAをどう使い切るか気になる人は</span> <a href="nisa-1800-tsukaikiri.html" style="color:#58a6ff;text-decoration:none;font-weight:700">NISA 1800万円の使い切り方の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1240.htm" target="_blank" rel="noopener">国税庁 No.1240 居住者に係る外国税額控除</a>（外国所得税額をその年分の所得税額から控除できる／所得税の控除限度額＝所得税額×(調整国外所得金額÷所得総額)／復興特別所得税・地方税(所得税の控除限度額×30％)の控除限度額／控除しきれない分は前年以前3年内から繰り越し調整）<br>
+    ・<a href="https://www.mof.go.jp/tax_policy/summary/international/tax_convention/press_release/sy151107_index.htm" target="_blank" rel="noopener">財務省 日米租税条約のポイント</a>（配当に対する源泉地国課税の限度税率。一般の個人投資家（ポートフォリオ投資）は原則10％）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1550.htm" target="_blank" rel="noopener">国税庁 No.1550 配当所得</a>（配当所得の課税方法。総合課税・申告分離課税・申告不要の選択）<br>
+    <span class="note">※制度は改正されることがあります。税率・限度税率・控除限度額・繰越の要件は各時点の公式情報にもとづく参考です。NISAや投資信託の取り扱いは、口座区分・商品ごとに異なる場合があります。最新の条件は国税庁・財務省・お取引の証券会社・税務署でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="haitou-sougou-vs-bunri.html">配当 総合 vs 分離</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

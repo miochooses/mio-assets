@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高年齢求職者給付金、64歳退職と65歳退職どっちが得？退職日1日差の落とし穴を計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/koureikyushoku-ichiji.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="高年齢求職者給付金 vs 失業給付｜64歳退職と65歳退職どっちが得？AIが計算で採点">
+<meta name="twitter:description" content="65歳以上は失業給付でなく一時金（30日 or 50日分）。ただし年金と併給できる。退職日1日の差で数十万円動く落とし穴を条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「64歳退職の失業給付 vs 65歳以降退職の高年齢求職者給付金」を計算で採点。65歳以上は一時金（被保険者期間で30日or50日分）だが年金と併給できる。64歳退職は日数が多いが特別支給の老齢厚生年金が停止。退職日1日の差の落とし穴を条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/koureikyushoku-ichiji.html">
+<meta property="og:title" content="高年齢求職者給付金 vs 失業給付｜64歳退職と65歳退職どっちが得？AIが計算で採点">
+<meta property="og:description" content="65歳以上は失業給付でなく一時金（30日 or 50日分）。ただし年金と併給できる。退職日1日の差で数十万円動く落とし穴を条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図 */
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .vs .col{padding:18px 14px;text-align:center;}
+  .vs .c64{background:#231a12;}
+  .vs .c65{background:#101d16;}
+  .vs .cap{font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--mut);}
+  .vs .big{font-size:26px;font-weight:800;line-height:1.25;margin-top:8px;}
+  .vs .b64{color:var(--o);} .vs .b65{color:#39d353;}
+  .vs .kind{margin-top:8px;font-size:13px;font-weight:800;color:var(--tx);}
+  .vs .pn{margin-top:12px;font-size:13.5px;font-weight:800;}
+  .vs .stop{color:#ff6b6b;} .vs .keep{color:#39d353;}
+  .vs .mid{display:flex;align-items:center;justify-content:center;background:#0b121a;font-size:18px;font-weight:800;color:var(--faint);padding:0 8px;}
+  @media(max-width:520px){.vs{grid-template-columns:1fr;} .vs .mid{padding:8px;}}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 高年齢求職者給付金</div>
+    <h1>高年齢求職者給付金、64歳退職と65歳退職<br>結局どっちが得？退職日1日差の落とし穴</h1>
+    <div class="who">👴 65歳前後で退職を考えている人へ（会社員・雇用保険の被保険者）</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>65歳以上で退職</b>すると、失業給付は「一時金」の<b>高年齢求職者給付金</b>。被保険者期間で<b>30日分 or 50日分</b>を一括で受け取れます。</li>
+        <li>この一時金は<b>年金と一緒に受け取れる</b>（併給OK）。一方、65歳未満の失業給付（基本手当）を受けると<b>特別支給の老齢厚生年金が止まる</b>のが最大の違い。</li>
+        <li><b>65歳の誕生日の前日で「65歳到達」</b>扱い。退職日が1日ずれるだけで「基本手当」か「一時金」かが変わり、総額が大きく動きます。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。「64歳で辞めた方が日数が多くて得」という話は半分正解、半分ワナ。<b>年金がいくら止まるか</b>で答えが逆転します。ここを計算で切り分けます。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図：64歳退職 vs 65歳以降退職 -->
+  <div class="vs">
+    <div class="col c64">
+      <div class="cap">64歳（65歳未満）で退職</div>
+      <div class="big b64">失業給付<br>（基本手当）</div>
+      <div class="kind">分割で支給・日数は多め</div>
+      <div class="pn stop">✕ 年金は支給停止<br><span style="font-size:11.5px;color:var(--faint);font-weight:600">（特別支給の老齢厚生年金）</span></div>
+    </div>
+    <div class="mid">VS</div>
+    <div class="col c65">
+      <div class="cap">65歳以降で退職</div>
+      <div class="big b65">高年齢<br>求職者給付金</div>
+      <div class="kind">一時金・30日 or 50日分</div>
+      <div class="pn keep">◯ 年金と併給OK<br><span style="font-size:11.5px;color:var(--faint);font-weight:600">（一時金＋年金を同時に）</span></div>
+    </div>
+  </div>
+  <div class="note" style="text-align:center">👉 分かれ目は<b>「65歳の誕生日の前日＝65歳到達日」</b>。到達日より前に離職＝基本手当、到達日以降に離職＝一時金。</div>
+
+  <!-- (3) AI判定（条件別） -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      年金（特別支給の老齢厚生年金）が<b>少ない・もらえない</b>人 → <span style="color:var(--o)">64歳退職で基本手当</span>が有利になりやすい。<br>
+      年金が<b>多い</b>人（＝止まると痛い人） → <span style="color:var(--g)">65歳以降の退職で一時金＋年金</span>が上回るケースあり。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>基本手当（64歳退職）の給付日数</span><span>多い</span></div><div class="track"><div class="fill" style="width:90%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>高年齢求職者給付金（65歳〜）の日数</span><span>30 or 50日分</span></div><div class="track"><div class="fill" style="width:34%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>年金を止めずに受け取れるか</span><span>65歳〜が有利</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+    </div>
+    <div class="note">※金額は「基本手当日額 × 日数」で決まり、人によって違います。ここでは日数と年金停止の有無という<b>制度の構造</b>で採点しています。実額は自分の日額と年金額で確認を（末尾出典）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>65歳以上（高年齢被保険者）が退職して失業状態になると、64歳までの「基本手当（いわゆる失業保険）」ではなく、<b>高年齢求職者給付金</b>という別の給付が支給されます。これは公式に定められた制度で、名前も中身も基本手当とは異なります。ポイントは3つ。<b>①一時金（一括）である ②日数が短い ③年金と併給できる</b>。</p>
+  <div class="calc">高年齢求職者給付金 ＝ 基本手当日額 × 支給日数（30日 or 50日）<small>一時金として原則一括で支給されます（分割ではありません）</small></div>
+  <p>支給日数は<b>被保険者期間の長さ</b>で決まります。</p>
+  <table>
+    <tr><th>離職日以前の被保険者期間</th><th>支給日数</th></tr>
+    <tr><td>1年以上</td><td class="win">基本手当日額の 50日分</td></tr>
+    <tr><td>6か月以上 1年未満</td><td>基本手当日額の 30日分</td></tr>
+  </table>
+  <p>64歳までに退職した場合の基本手当は、年齢や被保険者期間・離職理由により<b>もっと長い日数</b>を分割で受け取れます。日数“だけ”を見れば64歳退職が有利に見える理由はここにあります。</p>
+
+  <h2>本当の分かれ目は「年金が止まるかどうか」</h2>
+  <p>ここが検証室のいちばん大事な採点ポイントです。64歳（65歳未満）で基本手当を受け取っている間は、<b>特別支給の老齢厚生年金が支給停止</b>になります。基本手当と年金は同時にはもらえないルールだからです。</p>
+  <p>一方、65歳以降に退職して高年齢求職者給付金（一時金）を受け取る場合は、<b>老齢年金と併給できます</b>。年金を止めずに、一時金も受け取れるということです。</p>
+  <div class="calc">64歳退職：基本手当（多め）― 止まった年金 ＝ 実質の手取り<br>65歳退職：一時金（30/50日）＋ 止まらない年金<small>年金が多い人ほど「止まる損」が大きく、65歳退職側が追いつく／逆転しやすい</small></div>
+  <p>つまり「64歳退職が得か、65歳退職が得か」は、<b>あなたの特別支給の老齢厚生年金がいくらか</b>で答えが変わります。年金が少ない（またはもらえない）人は日数の多い基本手当が効く一方、年金が大きい人は「止まる損」が重く、65歳以降退職で一時金＋年金の合計が上回ることがあります。断定はできず、自分の数字で試算する必要があります。</p>
+
+  <h2>退職日「1日」の落とし穴</h2>
+  <p>雇用保険では、年齢計算に関する法律の考え方により<b>誕生日の前日に「65歳に達した（65歳到達日）」</b>と扱われます。ここが実務で最も間違えやすい点です。</p>
+  <ul>
+    <li><b>65歳到達日より前に離職</b> → 65歳未満の扱い＝<b>基本手当</b>の対象。</li>
+    <li><b>65歳到達日以降に離職</b> → 高年齢被保険者＝<b>高年齢求職者給付金（一時金）</b>の対象。</li>
+  </ul>
+  <p>「65歳の誕生日ギリギリまで働いてから辞めよう」と思っていたら、実は誕生日の前日で“もう65歳”とカウントされ、退職日が数日ずれただけで基本手当のつもりが一時金になっていた――という取り違えが起こり得ます。基本手当を前提に設計するなら、<b>到達日より前の退職日</b>になっているかを必ず確認してください（会社の雇用契約の終了日設定にも注意）。具体的な日付判定は必ずハローワークで確認するのが安全です。</p>
+  <div class="calc">退職日 1日の差 ＝「基本手当（多め・ただし年金停止）」か「一時金＋年金併給」かの分岐<small>数十万円単位で総額が動く可能性があります。日付は自己判断せず窓口確認を</small></div>
+
+  <div class="cta">
+    <div class="h">▶ その前に：あなたは「64歳退職」と「65歳退職」どちらが得か、年金額を入れて計算しましたか？</div>
+    <div class="ph">
+      基本手当日額・給付日数・特別支給の老齢厚生年金の額――この3つで結論は逆転します。自分のケースの試算や退職タイミングの相談は、お金の専門家に整理してもらうのが早くて確実です。<br>
+      <!-- ASP_SLOT: FP相談 -->
+    </div>
+  </div>
+
+  <h2>受給の要件（65歳以上の高年齢求職者給付金）</h2>
+  <ul>
+    <li><b>高年齢被保険者であったこと：</b>65歳以上で雇用保険に加入して働いていた人が対象です。</li>
+    <li><b>被保険者期間：</b>離職日以前の1年間に、被保険者期間が<b>通算して6か月以上</b>あること。この長さで30日分／50日分が決まります。</li>
+    <li><b>失業の状態にあること：</b>働く意思と能力があり、求職活動をしているのに就職できない状態であること。</li>
+    <li><b>ハローワークで求職の申込みをすること：</b>離職票を持って手続きします。一時金なので、基本手当のような長期の失業認定を繰り返す必要はありません。</li>
+  </ul>
+  <p>受給手続きには<b>受給期限</b>があります（離職日の翌日から一定期間内）。うっかり過ぎると受け取れなくなるため、退職後は早めにハローワークで確認してください。正確な期限・必要書類は公式・窓口で確認を。</p>
+
+  <h2>条件別の採点：あなたはどっち側？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>採点の向き</th><th>理由</th></tr>
+    <tr><td>特別支給の老齢厚生年金が少ない／もらえない</td><td class="win">64歳退職が有利になりやすい</td><td>止まって困る年金が小さく、日数の多い基本手当が効く</td></tr>
+    <tr><td>特別支給の老齢厚生年金が多い</td><td class="win">65歳以降退職が追いつく／逆転あり</td><td>基本手当中は年金停止。止まる損が大きいと一時金＋年金が上回る</td></tr>
+    <tr><td>年金と失業給付を同時に受け取りたい</td><td class="win">65歳以降退職</td><td>高年齢求職者給付金は老齢年金と併給できる</td></tr>
+    <tr><td>被保険者期間が6か月以上1年未満</td><td>一時金は30日分</td><td>65歳以降退職なら30日分。1年以上あれば50日分に増える</td></tr>
+    <tr><td>退職日を誕生日ギリギリに設定している</td><td class="win">要確認（落とし穴）</td><td>誕生日の前日で65歳到達扱い。基本手当のつもりが一時金になり得る</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「64歳11か月で辞めれば必ず得」という単純化は、この検証室のやり方ではありません。得かどうかは<b>基本手当の日数・日額</b>と<b>止まる年金の額</b>の綱引きで、人によって逆になります。数字を入れて比べれば、機械的に正解へたどり着けます。年金の繰上げ・在職老齢年金など他の要素が絡む場合もあり、最終判断は必ず公的機関・専門家で確認してください。</p>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「失業保険がもらえる」と同じ感覚でいると日数で驚く：</b>65歳以上は基本手当ではなく一時金。最大でも50日分です。長期の分割給付ではありません。</li>
+    <li><b>年金停止を見落とす：</b>64歳退職の基本手当は、受給中は特別支給の老齢厚生年金が止まります。「日数が多い」だけで判断すると、止まった年金分の損を見落とします。</li>
+    <li><b>誕生日と退職日の勘違い：</b>65歳到達＝誕生日の前日。退職日の設定を1〜数日間違えると、狙った給付と違う給付になります。</li>
+    <li><b>手続きの期限切れ：</b>一時金でも受給期限があります。退職後に放置せず、離職票を持って早めにハローワークへ。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>65歳以上で退職＝失業給付は<b>高年齢求職者給付金（一時金）</b>。被保険者期間1年以上で50日分、6か月以上1年未満で30日分（基本手当日額×日数）。</li>
+    <li>この一時金は<b>年金と併給できる</b>。64歳退職の基本手当は日数が多い代わりに<b>特別支給の老齢厚生年金が停止</b>する。</li>
+    <li>どちらが得かは<b>止まる年金の額</b>次第で逆転する。断定できないので自分の数字で試算を。</li>
+    <li><b>65歳到達日＝誕生日の前日</b>。退職日1日の差で給付の種類が変わる。日付は窓口で確認。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 関連の採点：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブを見る →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.mhlw.go.jp/content/11600000/000695108.pdf" target="_blank" rel="noopener">厚生労働省「離職されたみなさまへ ＜高年齢求職者給付金のご案内＞」（PDF）</a>（高年齢被保険者が失業した場合に支給される手当が高年齢求職者給付金・一時金・被保険者期間1年以上で50日分／6か月以上1年未満で30日分・受給要件）<br>
+    ・<a href="https://www.hellowork.mhlw.go.jp/" target="_blank" rel="noopener">ハローワークインターネットサービス（厚生労働省）</a>（雇用保険の基本手当・高年齢求職者給付金の手続き・受給要件・受給期限の案内）<br>
+    ・<a href="https://www.nenkin.go.jp/service/jukyu/roureinenkin/jukyu-yoken/20140421-01.html" target="_blank" rel="noopener">日本年金機構（老齢年金・特別支給の老齢厚生年金）</a>（65歳未満の基本手当受給中は特別支給の老齢厚生年金が支給停止／高年齢求職者給付金は年金と併給の扱いを確認する際の一次情報）<br>
+    <span class="note">※制度は改正されることがあります。支給日数・受給期限・年金との調整・65歳到達日の判定は、各時点の公式情報とハローワーク・年金事務所の窓口で必ずご確認ください。本ページは一般的な情報提供であり個別の助言ではありません。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
