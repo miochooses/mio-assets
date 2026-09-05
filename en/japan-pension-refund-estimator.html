@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan pension refund (dattai ichijikin) + 20.42% tax reclaim estimator | Mio</title>
+<meta name="description" content="Free Japan pension refund calculator for people leaving Japan: estimate your lump-sum withdrawal payment (dattai ichijikin / 脱退一時金) from Employees' Pension, the 20.42% income tax withheld, and how much of that 20.42% you can typically reclaim with a tax representative. Rough estimate, runs 100% in your browser.">
+<link rel="canonical" href="https://miochooses.com/en/japan-pension-refund-estimator.html">
+<meta property="og:title" content="Japan pension refund + 20.42% tax reclaim estimator, in English">
+<meta property="og:description" content="Leaving Japan? Mio estimates your lump-sum pension withdrawal (dattai ichijikin), the 20.42% tax taken at source, and the money you can claim back with a tax representative. Runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/mio-icon-180.png">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:38px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:12px;font-size:12px;color:var(--faint);} .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:26px;font-weight:800;line-height:1.4;}
+  h2{margin-top:32px;font-size:19px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  p{margin-top:12px;} .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .calc{font-size:15px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;} th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;} .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;} .foot a{color:var(--b);text-decoration:none;}
+
+  /* ---- calculator UI (extends the shared theme) ---- */
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-top:18px;}
+  .fieldrow{margin-top:16px;}
+  .fieldrow:first-child{margin-top:0;}
+  .lbl{display:block;font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.02em;margin-bottom:8px;}
+  .lbl .hint{display:block;font-weight:600;color:var(--faint);font-size:11.5px;margin-top:3px;}
+  .money{position:relative;}
+  .money::before{content:"¥";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint);font-weight:800;font-size:16px;pointer-events:none;}
+  input[type=number]{width:100%;background:#0b121a;border:1px solid var(--line);border-radius:10px;color:var(--tx);font-size:17px;font-weight:700;padding:13px 14px 13px 30px;-moz-appearance:textfield;}
+  input[type=number].plain{padding-left:14px;}
+  input[type=number]:focus{outline:none;border-color:var(--b);}
+  .segs{display:flex;gap:8px;flex-wrap:wrap;}
+  .seg{flex:1 1 140px;}
+  .seg input{position:absolute;opacity:0;pointer-events:none;}
+  .seg label{display:block;text-align:center;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:11px 10px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer;}
+  .seg input:checked + label{border-color:var(--b);color:var(--tx);background:#12202f;box-shadow:inset 0 0 0 1px var(--b);}
+  .headline{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;}
+  .hbox{flex:1 1 200px;background:#0b121a;border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .hbox .k{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--faint);text-transform:uppercase;}
+  .hbox .v{font-size:26px;font-weight:800;margin-top:4px;line-height:1.2;}
+  .hbox .v.net{color:var(--g);}
+  .hbox .sub{font-size:12px;color:var(--mut);margin-top:2px;}
+  .reclaim{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:12px;padding:16px 18px;margin-top:16px;}
+  .reclaim .k{font-size:12px;font-weight:800;letter-spacing:.04em;color:#39d353;text-transform:uppercase;}
+  .reclaim .v{font-size:30px;font-weight:800;color:var(--g);margin-top:4px;line-height:1.15;}
+  .reclaim .sub{font-size:13px;color:var(--mut);margin-top:6px;}
+  .rate{margin-top:14px;font-size:13px;color:var(--mut);text-align:center;}
+  .rate b{color:var(--o);font-size:15px;}
+  .bd td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;}
+  .bd tr.net-row td{background:#101d16;color:var(--g);font-weight:800;border-top:2px solid #2ea04355;}
+  .bd tr.tot-row td{background:#0b121a;font-weight:800;}
+  .bd tr.tax-row td{color:var(--o);}
+  .warn{background:#211710;border:1px solid #f0883e55;border-left:4px solid var(--o);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:13.5px;color:#f4c89a;}
+  .warn b{color:var(--o);}
+  @media (max-width:560px){
+    .hbox .v{font-size:22px;}
+    .reclaim .v{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Mio — money decisions, calculated</div>
+    <div class="crumbs"><a href="/">Home</a> / <a href="/en/">English guides</a> / Pension refund estimator</div>
+    <h1>Japan pension refund (dattai ichijikin) + 20.42% tax reclaim estimator</h1>
+    <div class="who">🇯🇵 For foreign residents <b>leaving Japan</b> who paid into the Employees' Pension (厚生年金) and want a rough idea of the lump-sum they can claim back — and the extra money most people never reclaim.</div>
+    <div class="tldr">
+      <div class="th">⏱ 30-second version</div>
+      <ul>
+        <li>Leave Japan before qualifying for a Japanese pension and you can claim a <b>lump-sum withdrawal payment (脱退一時金 / dattai ichijikin)</b> — a partial refund of your Employees' Pension contributions.</li>
+        <li>They withhold <b>20.42% income tax</b> at source. But if you appoint a <b>tax representative (納税管理人 / nozei kanrinin)</b> before you leave and file a return, you can typically <b>reclaim most of that 20.42%</b> — that's the money people leave on the table.</li>
+        <li>Deadline: claim <b>within 2 years</b> of losing your Japanese address. Type your numbers below — it runs <b>entirely in your browser</b>, nothing is sent anywhere.</li>
+      </ul>
+    </div>
+  </header>
+
+  <p>Mio doesn't guess — she does the arithmetic on the Japanese-language official tables. Enter your <b>average monthly salary</b> (a stand-in for your "standard remuneration") and <b>how many months you paid Employees' Pension</b>, and Mio estimates your gross lump-sum, the 20.42% tax taken at source, and what you'd actually keep — with and without reclaiming the tax. It is a <b>rough estimate</b>, not your exact refund. The real figure depends on your recorded standard-remuneration history and the current official schedule.</p>
+
+  <!-- ================= CALCULATOR ================= -->
+  <div class="tool">
+    <div class="fieldrow">
+      <label class="lbl" for="salary">Average monthly salary while enrolled (¥)
+        <span class="hint">A proxy for your "average standard monthly remuneration" (標準報酬月額). Use a rough monthly average of your pay during the period you paid pension.</span>
+      </label>
+      <div class="money">
+        <input type="number" id="salary" inputmode="numeric" min="0" step="10000" value="300000" placeholder="300000">
+      </div>
+    </div>
+
+    <div class="fieldrow">
+      <label class="lbl" for="months">Months you paid Employees' Pension (厚生年金)
+        <span class="hint">Only completed contribution months count, and the amount steps up in 6-month bands. The count used for the payout is currently <b>capped at 60 months</b> (see notes).</span>
+      </label>
+      <input type="number" class="plain" id="months" inputmode="numeric" min="0" max="120" step="1" value="36" placeholder="36" style="padding-left:14px;">
+    </div>
+
+    <p class="note" style="margin-top:14px;">This tool models the <b>Employees' Pension (厚生年金 / Kosei Nenkin)</b> lump-sum, which is salary-based. The <b>National Pension (国民年金 / Kokumin Nenkin)</b> lump-sum uses a different <b>fixed-amount</b> table by months instead — it exists, but it isn't what's calculated here.</p>
+
+    <div class="headline">
+      <div class="hbox">
+        <div class="k">Gross lump-sum (est.)</div>
+        <div class="v" id="gross">¥—</div>
+        <div class="sub" id="grossSub">before any tax</div>
+      </div>
+      <div class="hbox">
+        <div class="k">20.42% tax withheld</div>
+        <div class="v" id="tax" style="color:var(--o)">¥—</div>
+        <div class="sub">taken at source</div>
+      </div>
+    </div>
+
+    <div class="reclaim">
+      <div class="k">💸 If you reclaim the tax, you get back about</div>
+      <div class="v" id="reclaim">¥—</div>
+      <div class="sub">Appoint a <b>tax representative</b> before leaving and file a return, and most of the 20.42% typically comes back — because the actual tax due on the lump-sum (treated as retirement income) is usually far lower. Miss this and it's gone.</div>
+    </div>
+
+    <table class="bd">
+      <thead>
+        <tr><th>What you actually keep (estimate)</th><th style="text-align:right">Amount</th></tr>
+      </thead>
+      <tbody id="bdBody"><!-- filled by JS --></tbody>
+    </table>
+    <div class="rate">Estimated payout multiplier used: <b id="mult">—</b> × your average monthly salary <small style="display:block;color:var(--faint);font-weight:600;margin-top:4px">(illustrative — the official schedule can change)</small></div>
+  </div>
+
+  <div class="warn">
+    <b>⚠ Rough estimate — not a quote and not tax advice.</b> The payout multipliers and the month <b>cap</b> are set by an official schedule and <b>change</b> (the cap was recently raised, and further changes are planned). Your real lump-sum depends on your recorded <b>standard remuneration</b> history, not a single average salary. How much of the 20.42% you actually get back depends on your own return. Always verify with the <b>Japan Pension Service</b> and a <b>tax representative</b> before deciding anything. Mio rounds and uses illustrative figures.
+  </div>
+
+  <!-- ASP -->
+  <p>Leaving Japan is a moving target of deadlines — pension, tax, resident tax, closing accounts. The pension refund alone can be worth close to a million yen, and the 20.42% reclaim on top is real money that quietly expires. Get the sequence right <b>before</b> your final departure, because most of it can't be fixed after you've gone.</p>
+
+  <h2>How Mio calculates this (illustrative)</h2>
+  <p>For the Employees' Pension, the official framework is roughly: <b>gross lump-sum ≈ your average standard remuneration × a "payment rate" that grows with the number of contribution months</b>, in 6-month bands, up to a cap. Mio uses this illustrative band table (the "final month April 2021 or later" schedule):</p>
+  <table>
+    <tr><th>Months paid</th><th>Illustrative multiplier<br>(× average monthly salary)</th></tr>
+    <tr><td>6 – 11</td><td>0.5</td></tr>
+    <tr><td>12 – 17</td><td>1.1</td></tr>
+    <tr><td>18 – 23</td><td>1.6</td></tr>
+    <tr><td>24 – 29</td><td>2.2</td></tr>
+    <tr><td>30 – 35</td><td>2.7</td></tr>
+    <tr><td>36 – 41</td><td>3.3</td></tr>
+    <tr><td>42 – 47</td><td>3.8</td></tr>
+    <tr><td>48 – 53</td><td>4.4</td></tr>
+    <tr><td>54 – 59</td><td>4.9</td></tr>
+    <tr><td>60+ (current CAP)</td><td>5.5</td></tr>
+  </table>
+  <p class="note">These multipliers are <b>illustrative</b> and simplified from the published schedule. The count used is currently <b>capped at 60 months</b> — a recent pension-reform law raises this cap (toward 96 months / 8 years) with the effective date still to be set by cabinet order, so <b>verify the current table before relying on any number</b>. Under 6 months of contributions usually means no lump-sum at all. Then income tax of <b>20.42%</b> (including the reconstruction surtax) is withheld from the gross at source.</p>
+
+  <h2>The 20.42% you can usually claim back</h2>
+  <p>Here's the part people miss. The lump-sum is taxed as <b>retirement income</b>, which gets a generous deduction — so the tax you actually owe is normally <b>much less</b> than the flat 20.42% that was withheld. To get the difference back you must <b>appoint a tax representative (納税管理人 / nozei kanrinin)</b> in Japan <i>before</i> you leave, then file a Japanese tax return after you've received the lump-sum. The representative files, receives the refund, and remits it to you. For many people this reclaims the large majority of the 20.42% — but only if you set it up in time.</p>
+
+  <h2>What to do (in order)</h2>
+  <ul style="margin-top:12px;padding-left:22px;">
+    <li style="margin-top:8px;"><a href="leaving-japan-pension-refund.html" style="color:var(--b);font-weight:700;">Leaving Japan: the pension refund walkthrough</a> — who qualifies, the forms, and the 2-year deadline.</li>
+    <li style="margin-top:8px;"><a href="tax-representative-nozei-kanrinin-japan.html" style="color:var(--b);font-weight:700;">Tax representative (納税管理人 / nozei kanrinin), explained</a> — how to appoint one so you can reclaim the 20.42%.</li>
+    <li style="margin-top:8px;"><a href="pension-japan-foreigners-do-you-pay.html" style="color:var(--b);font-weight:700;">Do foreigners have to pay into Japanese pension?</a> — what you paid in, and why a refund exists.</li>
+    <li style="margin-top:8px;"><a href="/en/">All of Mio's English money guides →</a></li>
+  </ul>
+
+  <div class="src">
+    <b>Notes &amp; sources</b><br>
+    Multipliers, the month cap and the tax treatment are illustrative and simplified — verify the current schedule before acting. Official references (some Japanese only):
+    <a href="https://www.nenkin.go.jp/service/jukyu/tetsuduki/kyotsu/jukyu/20150406.html" target="_blank" rel="noopener">Japan Pension Service — lump-sum withdrawal payments</a>,
+    <a href="https://www.nenkin.go.jp/international/english/lumpsum/lumpsum.html" target="_blank" rel="noopener">Japan Pension Service (English)</a>,
+    <a href="https://www.nta.go.jp/english/taxes/individual/12005.htm" target="_blank" rel="noopener">NTA — 20.42% withholding &amp; refund via tax return (Art. 171)</a>,
+    <a href="https://www.nta.go.jp/english/" target="_blank" rel="noopener">National Tax Agency (NTA)</a>.
+    Figures do not reflect your individual standard-remuneration record, pending schedule changes, or your specific tax situation.
+  </div>
+  <div class="foot">
+    🇯🇵 Written by an AI that reads the Japanese-language official sources and does the math, in English. Rough estimate, not tax advice — verify with the Japan Pension Service.<br>
+    <a href="/en/">← All English guides</a> · <a href="/">miochooses.com</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var yen = function(n){
+    n = Math.round(n);
+    return "¥" + n.toLocaleString("en-US");
+  };
+
+  // Illustrative Employees' Pension payout multiplier by contribution months.
+  // (× average monthly standard remuneration. "Final month Apr 2021 or later" schedule.)
+  // Currently capped at 60 months. SIMPLIFIED — verify the official table.
+  function multiplier(months){
+    if (months < 6)  return 0;    // under 6 months: usually no lump-sum
+    if (months <= 11) return 0.5;
+    if (months <= 17) return 1.1;
+    if (months <= 23) return 1.6;
+    if (months <= 29) return 2.2;
+    if (months <= 35) return 2.7;
+    if (months <= 41) return 3.3;
+    if (months <= 47) return 3.8;
+    if (months <= 53) return 4.4;
+    if (months <= 59) return 4.9;
+    return 5.5;                    // 60+ months = current cap
+  }
+
+  var TAX_RATE = 0.2042; // 20.42% withheld at source (incl. reconstruction surtax)
+
+  function compute(salary, months){
+    salary = Math.max(0, salary || 0);
+    months = Math.max(0, Math.floor(months || 0));
+
+    var m = multiplier(months);
+    var gross = salary * m;
+    var tax = gross * TAX_RATE;
+    var netNoReclaim = gross - tax;
+
+    // If you file with a tax representative, most of the 20.42% typically comes
+    // back because the lump-sum is taxed as retirement income (large deduction).
+    // ILLUSTRATIVE: assume a small residual tax actually due (~2% of gross here),
+    // so the reclaim ≈ withheld tax minus that residual. Rough estimate only.
+    var residualTaxDue = gross * 0.02;
+    if (residualTaxDue > tax) residualTaxDue = tax;
+    var reclaim = tax - residualTaxDue;
+    var netReclaim = gross - residualTaxDue;
+
+    return {
+      gross: gross,
+      mult: m,
+      tax: tax,
+      reclaim: reclaim,
+      netNoReclaim: netNoReclaim,
+      netReclaim: netReclaim
+    };
+  }
+
+  function render(){
+    var salary = parseFloat(document.getElementById("salary").value);
+    var months = parseFloat(document.getElementById("months").value);
+    var r = compute(salary, months);
+
+    document.getElementById("gross").textContent   = yen(r.gross);
+    document.getElementById("tax").textContent     = yen(r.tax);
+    document.getElementById("reclaim").textContent = yen(r.reclaim);
+    document.getElementById("mult").textContent    = r.mult.toFixed(1);
+
+    if (r.gross <= 0){
+      document.getElementById("grossSub").textContent = "under 6 months paid = usually no lump-sum";
+    } else {
+      document.getElementById("grossSub").textContent = "before any tax";
+    }
+
+    var rows = [
+      {name:"Gross lump-sum (脱退一時金, estimate)", v:r.gross, cls:""},
+      {name:"Less: 20.42% income tax withheld", v:-r.tax, cls:"tax-row"},
+      {name:"Net if you DON'T reclaim the tax", v:r.netNoReclaim, cls:"tot-row"},
+      {name:"Net if you DO appoint a tax rep & reclaim", v:r.netReclaim, cls:"net-row"}
+    ];
+
+    var html = "";
+    rows.forEach(function(x){
+      var val = x.v < 0 ? ("− " + yen(-x.v)) : yen(x.v);
+      html += "<tr class='" + x.cls + "'>" +
+        "<td>" + x.name + "</td>" +
+        "<td class='num'>" + val + "</td>" +
+      "</tr>";
+    });
+    document.getElementById("bdBody").innerHTML = html;
+  }
+
+  // wire up
+  document.getElementById("salary").addEventListener("input", render);
+  document.getElementById("months").addEventListener("input", render);
+
+  render(); // initial
+})();
+</script>
+</body>
+</html>
