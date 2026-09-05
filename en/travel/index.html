@@ -64,6 +64,14 @@
   .foot{margin-top:34px;text-align:center;font-size:12.5px;color:var(--faint);border-top:1px solid var(--line);padding:22px 0 46px;}
   .foot a{color:var(--b);text-decoration:none;}
 </style>
+<style id="mnfix">
+/* mobile-first nav fix: 単語途中改行を防ぎ、スマホ幅で収める */
+.nav *{overflow-wrap:normal;word-break:keep-all;}
+.nav .brand b,.nav .links a{white-space:nowrap;}
+.nav .brand{min-width:0;}
+.nav .links{flex-shrink:0;}
+@media(max-width:560px){.nav .brand b{font-size:13px;}.nav .links a{font-size:12px;padding:6px 9px;}.nav .in{gap:6px;}}
+</style>
 </head>
 <body>
 <nav class="nav">

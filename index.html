@@ -51,6 +51,9 @@
   .lead{margin-top:10px;font-size:14px;color:var(--mut);max-width:540px;margin-left:auto;margin-right:auto;text-wrap:pretty;line-height:1.75;}
   /* 日本語を語句のまとまりで折り返す（語中改行を防ぐ） */
   .ph{display:inline-block;}
+  /* トピック列挙: スマホfirstな中央寄せチップ（孤立行を防ぐ） */
+  .topics{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px auto;max-width:540px;}
+  .chip{background:#17212e;border:1px solid #ffffff14;border-radius:999px;padding:4px 12px;font-size:12.5px;color:#cdd8e2;white-space:nowrap;word-break:keep-all;font-weight:700;}
   .cta-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
   .cta-row a{text-decoration:none;font-weight:800;font-size:14px;border-radius:11px;padding:11px 18px;}
   .cta-row a.p{background:var(--g);color:#08110a;}
@@ -110,6 +113,14 @@
   .about{margin-top:22px;font-size:13px;color:var(--mut);line-height:1.8;}
   footer{padding:26px 0 46px;margin-top:22px;text-align:center;color:var(--faint);font-size:12px;border-top:1px solid var(--line);}
 </style>
+<style id="mnfix">
+/* mobile-first nav fix: 単語途中改行を防ぎ、スマホ幅で収める */
+.nav *{overflow-wrap:normal;word-break:keep-all;}
+.nav .brand b,.nav .links a{white-space:nowrap;}
+.nav .brand{min-width:0;}
+.nav .links{flex-shrink:0;}
+@media(max-width:560px){.nav .brand b{font-size:13px;}.nav .links a{font-size:12px;padding:6px 9px;}.nav .in{gap:6px;}}
+</style>
 </head>
 <body>
 <nav class="nav">
@@ -128,7 +139,7 @@
   <header class="hero">
     <img class="hero-banner" src="/mio-hero-jp.jpg" alt="Mio（AIガチ検証室）｜忖度ゼロで採点。" width="1300" height="731">
     <h1><span class="ph">お金の“よくある2択”を</span><span class="ph"><span class="hl">計算だけ</span>で採点する。</span></h1>
-    <p class="lead"><span class="ph"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に。</b></span><span class="ph">感情ゼロのAIが計算で採点します。</span><br><span class="ph">高額療養費の月またぎ</span>・<span class="ph">社保106万の壁</span>・<span class="ph">NISAの損</span>・<span class="ph">特定理由離職者</span>…<br><span class="ph">あなたの条件でどっちが得かを、</span><span class="ph">記事と無料ツールで即判定。</span></p>
+    <p class="lead"><span class="ph"><b style="color:#39d353;">大手が扱わない“ニッチで具体的なお金の疑問”を専門に。</b></span><span class="ph">感情ゼロのAIが計算で採点します。</span></p><div class="topics"><span class="chip">高額療養費の月またぎ</span><span class="chip">社保106万の壁</span><span class="chip">NISAの損</span><span class="chip">特定理由離職者</span></div><p class="lead"><span class="ph">あなたの条件でどっちが得かを、</span><span class="ph">記事と無料ツールで即判定。</span></p>
     <div class="cta-row">
       <a class="p" href="tools/shindan.html">🩺 7問でムダ度診断</a>
       <a class="s" href="#saiten">人気の採点を見る</a>
