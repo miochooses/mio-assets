@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>インボイス 2割特例 vs 簡易課税 vs 本則課税 どれが一番トク？業種・売上別に納税額を計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/invoice-2wari-vs-kani.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="インボイス 2割特例 vs 簡易課税 vs 本則課税｜納税額が一番少ないのはどれ？AIが計算で採点">
+<meta name="twitter:description" content="免税だった小規模事業者が消費税で払いすぎないための3択。2割特例・簡易課税・本則、あなたの業種と売上で最適が変わる。期限つきで採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIがインボイス発行事業者の消費税「2割特例 vs 簡易課税 vs 本則課税」を計算で採点。多くの業種で2割特例が最も納税額が少ないが、卸売業(みなし90%)や経費の多い事業では簡易・本則が有利になることも。2割特例の期限も含め条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/invoice-2wari-vs-kani.html">
+<meta property="og:title" content="インボイス 2割特例 vs 簡易課税 vs 本則課税｜納税額が一番少ないのはどれ？AIが計算で採点">
+<meta property="og:description" content="免税だった小規模事業者が消費税で払いすぎないための3択。2割特例・簡易課税・本則、あなたの業種と売上で最適が変わる。期限つきで採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* ---- 視覚サマリー図 ---- */
+  .vmap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 14px;margin-top:18px;}
+  .vmap .cap{font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.03em;}
+  .vmap .sub{font-size:11.5px;color:var(--faint);margin-top:4px;}
+  .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px;margin-top:12px;}
+  .grid .hd{font-size:12px;font-weight:800;color:var(--mut);background:#0b121a;border-radius:8px;padding:8px 6px;text-align:center;line-height:1.35;}
+  .grid .rl{font-size:12.5px;font-weight:800;color:var(--tx);background:#0b121a;border-radius:8px;padding:10px 8px;display:flex;flex-direction:column;justify-content:center;line-height:1.35;}
+  .grid .rl small{font-weight:600;color:var(--faint);font-size:10.5px;margin-top:2px;}
+  .cell{border-radius:8px;padding:10px 6px;text-align:center;font-size:13px;font-weight:800;color:#06110a;display:flex;align-items:center;justify-content:center;line-height:1.3;}
+  .c-2wari{background:linear-gradient(135deg,#39d353,#2ea043);}
+  .c-kani{background:linear-gradient(135deg,#58a6ff,#3f7fd6);color:#04121f;}
+  .c-tie{background:linear-gradient(135deg,#f0883e,#e0653a);color:#160902;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:12px;color:var(--mut);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;font-weight:700;}
+  .legend i{width:13px;height:13px;border-radius:4px;display:inline-block;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ インボイス 消費税の方式</div>
+    <h1>インボイスで課税事業者になった小規模事業者<br>2割特例 vs 簡易課税 vs 本則課税、どれが一番トク？</h1>
+    <div class="who">🧾 免税だったのにインボイスで消費税を払うことになった小規模事業者へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li><b>多くの業種は「2割特例」が最少</b>。届出不要で、業種を問わず売上税額の8割を控除＝納税は売上税額の約2割。</li>
+        <li><b>卸売業（みなし仕入率90%）だけは簡易課税が有利</b>。経費(課税仕入)が売上の8割を超える事業は本則課税が最少のことも。</li>
+        <li><b>2割特例には期限がある</b>。原則、令和5年10月1日〜令和8年9月30日を含む課税期間まで。個人事業者は令和8年分が最後。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>計算</b>で採点します。結論から言うと ―― 「どれが得か」は<b>あなたの業種（みなし仕入率）と、経費の大きさ</b>で決まります。人によって答えが逆転するので、数字で機械的に選びます。</div>
+  </header>
+
+  <!-- ========== (2) 視覚サマリー図 ========== -->
+  <div class="vmap">
+    <div class="cap">📊 一枚でわかる：業種別「一番トクな方式」マップ</div>
+    <div class="sub">前提＝基準期間の課税売上高1,000万円以下・2割特例が使える課税期間・経費(課税仕入)は「ごく普通」の場合。経費が極端に多い/少ないと結果は動きます。</div>
+    <div class="grid">
+      <div class="hd">業種（みなし仕入率）</div>
+      <div class="hd">簡易課税の<br>控除率</div>
+      <div class="hd">一番トク<br>（納税最少）</div>
+
+      <div class="rl">第1種 卸売業<small>みなし 90%</small></div>
+      <div class="cell c-kani">90%控除</div>
+      <div class="cell c-kani">簡易課税</div>
+
+      <div class="rl">第2種 小売業ほか<small>みなし 80%</small></div>
+      <div class="cell c-tie">80%控除</div>
+      <div class="cell c-tie">2割特例＝簡易 引分</div>
+
+      <div class="rl">第3種 建設・製造ほか<small>みなし 70%</small></div>
+      <div class="cell c-kani">70%控除</div>
+      <div class="cell c-2wari">2割特例</div>
+
+      <div class="rl">第4種 飲食業ほか<small>みなし 60%</small></div>
+      <div class="cell c-kani">60%控除</div>
+      <div class="cell c-2wari">2割特例</div>
+
+      <div class="rl">第5種 サービス業ほか<small>みなし 50%</small></div>
+      <div class="cell c-kani">50%控除</div>
+      <div class="cell c-2wari">2割特例</div>
+
+      <div class="rl">第6種 不動産業<small>みなし 40%</small></div>
+      <div class="cell c-kani">40%控除</div>
+      <div class="cell c-2wari">2割特例</div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#2ea043"></i>2割特例が最少</span>
+      <span><i style="background:#58a6ff"></i>簡易課税が最少</span>
+      <span><i style="background:#f0883e"></i>2割特例＝簡易課税（同額）</span>
+    </div>
+    <div class="note" style="margin-top:10px">読み方：みなし仕入率が<b>80%より低い業種</b>（第3〜6種）は、8割控除できる<b>2割特例が有利</b>。<b>90%の卸売業</b>だけ簡易課税が上回る。<b>80%の小売業等</b>は理屈上ほぼ同額。ただし<b>実際の経費が課税仕入で売上の8割超</b>なら、業種に関係なく本則課税が最少になることがあります。</div>
+  </div>
+
+  <!-- ========== (3) AI判定（条件別） ========== -->
+  <div class="verdict">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">迷ったら、まず <span style="color:var(--g)">2割特例</span> が基本。<br>卸売中心なら <span style="color:var(--b)">簡易課税</span>、大きな設備投資・課税仕入が多い年は <span style="color:var(--o)">本則課税</span> を計算してみる。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>2割特例：手軽さ（届出不要・業種不問）</span><span>とても高い</span></div><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>簡易課税：卸売・小売での強さ</span><span>高い</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>本則課税：経費・投資が多い年の強さ</span><span>状況次第</span></div><div class="track"><div class="fill" style="width:50%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※前提として、2割特例は「インボイスを機に免税から課税になった人」向けの期間限定措置です。基準期間の課税売上高が1,000万円を超える等の場合は対象外になります（出典は末尾）。数値は一般的な考え方の目安で、断定はできません。</div>
+  </div>
+
+  <h2>3つの方式は、そもそも何が違う？</h2>
+  <p>消費税の納税額は、ざっくり「<b>売上で預かった消費税 − 仕入・経費で払った消費税</b>」です。この「払った側（＝仕入税額控除）」をどう計算するかで3方式に分かれます。</p>
+  <table>
+    <tr><th>方式</th><th>控除の計算</th><th>届出・要件</th></tr>
+    <tr><td><b>本則課税</b>（原則）</td><td>実際に支払った消費税を集計（インボイス等の保存が必要）</td><td>届出不要（原則の方式）</td></tr>
+    <tr><td><b>簡易課税</b></td><td>売上税額 × 業種ごとの<b>みなし仕入率</b>（40〜90%）</td><td>事前に選択届出が必要・基準期間の課税売上高5,000万円以下</td></tr>
+    <tr><td><b>2割特例</b></td><td>業種を問わず売上税額の<b>80%</b>を控除＝納税は売上税額の<b>約2割</b></td><td>事前届出<b>不要</b>・申告時に選択・期間限定</td></tr>
+  </table>
+  <div class="calc">2割特例の納税額 ＝ 売上税額 ×（1 − 80%）＝ 売上税額の約20%<small>業種に関係なく一律8割を控除。だから「みなし仕入率が80%未満の業種」には強い</small></div>
+
+  <h2>採点の核心：なぜ多くの業種で2割特例が勝つのか</h2>
+  <p>2割特例は<b>誰でも一律「8割控除」</b>。一方、簡易課税の控除率は業種で決まっています。つまり<b>自分の業種のみなし仕入率が80%より低ければ、2割特例のほうが控除が大きい＝納税が少ない</b>という単純な話です。</p>
+  <table>
+    <tr><th>あなたの業種</th><th>簡易のみなし率</th><th>2割特例(一律80%)との比較</th></tr>
+    <tr><td>第1種 卸売業</td><td>90%</td><td class="win">簡易が有利（90%＞80%）</td></tr>
+    <tr><td>第2種 小売業・飲食料品関連の農林漁業</td><td>80%</td><td>ほぼ同額（80%＝80%）</td></tr>
+    <tr><td>第3種 農林漁業・鉱業・建設業・製造業ほか</td><td>70%</td><td class="win">2割特例が有利（80%＞70%）</td></tr>
+    <tr><td>第4種 飲食店業・その他の事業</td><td>60%</td><td class="win">2割特例が有利</td></tr>
+    <tr><td>第5種 運輸・通信・金融・保険・サービス業ほか</td><td>50%</td><td class="win">2割特例が有利</td></tr>
+    <tr><td>第6種 不動産業</td><td>40%</td><td class="win">2割特例が有利</td></tr>
+  </table>
+  <p>ライター・デザイナー・コンサル・エンジニアなどの<b>サービス業(第5種)</b>は、簡易だと控除50%。2割特例なら80%控除なので、多くの人が2割特例で納税を減らせる計算になります。</p>
+
+  <h2>本則課税が勝つケース：経費（課税仕入）が多い年</h2>
+  <p>2割特例と簡易課税は「売上ベースのみなし計算」。実際の経費が少なくても控除がもらえる反面、<b>経費（課税仕入）が非常に多い年</b>は本則課税のほうが控除が大きくなることがあります。</p>
+  <div class="calc">課税仕入が売上の80%を超える → 本則課税の控除が2割特例(80%)を上回る可能性<small>大きな設備投資・仕入・外注が多い年は、本則を一度計算する価値あり</small></div>
+  <ul>
+    <li>店舗の内装・機材など<b>大きな設備投資をした年</b></li>
+    <li>外注費・仕入が売上の大半を占める<b>薄利の事業</b></li>
+    <li>ただし本則は<b>インボイス（適格請求書）の保存と集計</b>が必要で手間は大きい</li>
+  </ul>
+  <p>逆に、経費のほとんどが人件費や家賃(非課税)のように<b>課税仕入が少ない事業</b>は、本則課税だと控除が小さく不利になりがちです。</p>
+
+  <h2>【重要】2割特例は「期限」がある措置です</h2>
+  <p>2割特例は恒久制度ではありません。<b>インボイス発行事業者の登録により免税から課税事業者になった人</b>が、<b>令和5年10月1日から令和8年9月30日までの日が属する各課税期間</b>で使える期間限定の負担軽減措置です。</p>
+  <div class="calc">個人事業者の2割特例 → 原則「令和8年分」の申告が最後<small>法人は事業年度により最終の課税期間が変わります</small></div>
+  <ul>
+    <li><b>個人事業者：</b>暦年課税なので、原則<b>令和8年分(令和9年に申告)まで</b>が2割特例の対象。</li>
+    <li><b>期限後の動き：</b>令和8年度税制改正では、個人事業者について<b>令和9年分・令和10年分</b>に「3割特例（売上税額の3割を納税＝7割控除相当）」を創設する内容が示されています。適用要件・詳細は必ず最新の公式情報で確認してください。</li>
+    <li>いずれも改正・経過措置は変わり得ます。<b>断定せず、その年の要件を毎回確認</b>するのが安全です。</li>
+  </ul>
+
+  <h2>届出でハマる落とし穴</h2>
+  <ul>
+    <li><b>2割特例は届出不要・申告時に選べる：</b>事前手続きなしで、確定申告のときに適用を選択できます。年ごとに「2割特例」か他の方式かを選び直せます。</li>
+    <li><b>簡易課税は「事前届出」が必要：</b>原則、適用したい課税期間の<b>初日の前日まで</b>に「消費税簡易課税制度選択届出書」を提出する必要があります。使いたい年に慌てても間に合いません。</li>
+    <li><b>簡易課税には2年しばり：</b>いったん簡易課税を選ぶと、原則<b>2年間は本則課税に戻せません</b>。設備投資予定がある年に困ることがあります。</li>
+    <li><b>簡易課税を出していても2割特例は選べる：</b>2割特例は簡易課税の届出の有無に関わらず適用可能。届出済みでも、その年は申告時に2割特例を選ぶことができます。</li>
+    <li><b>対象外になる人：</b>基準期間の課税売上高が1,000万円を超える、資本金1,000万円以上の新設法人など、登録と関係なく免税でなくなる人は2割特例の対象外です。</li>
+  </ul>
+
+  <!-- ========== (5) ASP スロット ========== -->
+  <div class="cta">
+    <div class="h">▶ どの方式が一番トクか、自分の数字で確かめたい人へ</div>
+    <div class="ph">売上と経費を入れれば納税額を自動で試算できる会計ソフトなら、2割特例・簡易・本則を同時に比較できます。金額が大きい・投資予定があるなら、税理士に一度シミュレーションしてもらうのが確実です。<br><!-- ASP_SLOT: 会計ソフト/税理士 --></div>
+  </div>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>迷ったらまず<b>2割特例</b>。届出不要・業種不問で売上税額の8割控除＝納税は約2割。第3〜6種の多くはこれが最少。</li>
+    <li><b>卸売業(みなし90%)は簡易課税</b>が有利。小売等(みなし80%)は理屈上ほぼ同額。</li>
+    <li>大きな投資・課税仕入が多い年は<b>本則課税</b>を一度計算する価値あり（ただしインボイス保存の手間大）。</li>
+    <li>2割特例は<b>期限つき</b>。個人は原則令和8年分まで。その後は令和8年度改正の3割特例(令和9・10年分)など最新情報を毎回確認。</li>
+    <li>簡易課税は<b>事前届出＋2年しばり</b>に注意。判断は必ず公式・税理士で。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧾 関連の採点：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブで他のお金の2択を見る →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/invoice_2tokurei.htm" target="_blank" rel="noopener">国税庁 2割特例（インボイス発行事業者となる小規模事業者に対する負担軽減措置）特設ページ</a>（対象者＝インボイスを機に免税から課税になった人・売上税額の8割控除＝納税は約2割・事前届出不要で申告時に選択・簡易課税の届出有無を問わず適用可）<br>
+    ・<a href="https://www.nta.go.jp/publication/pamph/shohi/kaisei/202304/01.htm" target="_blank" rel="noopener">国税庁 2割特例の概要（パンフレット）</a>（適用期間＝令和5年10月1日〜令和8年9月30日までの日の属する各課税期間・個人事業者は令和5年分〜令和8年分・基準期間の課税売上高1,000万円超などは対象外）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6505.htm" target="_blank" rel="noopener">国税庁 No.6505 簡易課税制度</a>（基準期間の課税売上高5,000万円以下・事前の選択届出が必要・みなし仕入率＝第1種90%/第2種80%/第3種70%/第4種60%/第5種50%/第6種40%）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/invoice-review/index.htm" target="_blank" rel="noopener">国税庁 令和8年度税制改正特集（インボイス関連）</a>（個人事業者の令和9年分・令和10年分に「3割特例」を創設する改正の概要）<br>
+    <span class="note">※制度は改正されることがあります。期限・要件・みなし仕入率・特例の適用可否は各時点の公式情報にもとづく参考です。実際の有利判定は売上・経費・業種で変わり、断定はできません。最新の条件と自分のケースは国税庁・お住まいの税務署・税理士でご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>死亡保険金の税金、契約者・被保険者・受取人の組み合わせで相続税/所得税/贈与税が変わる｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/shibou-hokenkin-zeikin.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="死亡保険金は「誰が誰に」で税金が3種類に変わる｜AIが組み合わせ別に採点">
+<meta name="twitter:description" content="同じ保険金でも契約者・被保険者・受取人の並びで相続税・所得税・贈与税に分かれる。500万円×法定相続人の非課税枠が使える形はどれか、条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「死亡保険金の税金」を組み合わせ別に採点。契約者(保険料負担者)・被保険者・受取人の3者の並びで、相続税・所得税・贈与税のどれになるかが変わる。相続税なら500万円×法定相続人の非課税枠が使える形が多い。誰を受取人にすると枠を活かせるかを条件別に出典つきで整理。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/shibou-hokenkin-zeikin.html">
+<meta property="og:title" content="死亡保険金は「誰が誰に」で税金が3種類に変わる｜AIが組み合わせ別に採点">
+<meta property="og:description" content="同じ保険金でも契約者・被保険者・受取人の並びで相続税・所得税・贈与税に分かれる。500万円×法定相続人の非課税枠が使える形はどれか、条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--p:#a371f7;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図 */
+  .diagram{margin-top:16px;display:grid;gap:12px;}
+  .dcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 16px;}
+  .dcard .dtag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.03em;padding:3px 10px;border-radius:999px;}
+  .dtag.sozoku{background:#0f2317;color:#39d353;border:1px solid #2ea04366;}
+  .dtag.shotoku{background:#0f1e30;color:#7cc0ff;border:1px solid #58a6ff55;}
+  .dtag.zoyo{background:#231533;color:#c79bff;border:1px solid #a371f755;}
+  .dflow{display:flex;align-items:stretch;gap:8px;margin-top:12px;flex-wrap:nowrap;}
+  .dnode{flex:1;min-width:0;background:#0b121a;border:1px solid var(--line);border-radius:10px;padding:8px 6px;text-align:center;}
+  .dnode .nl{font-size:11px;color:var(--faint);font-weight:700;}
+  .dnode .nv{font-size:18px;font-weight:800;margin-top:2px;line-height:1.2;}
+  .darrow{align-self:center;font-size:20px;font-weight:800;color:var(--mut);flex:0 0 auto;}
+  .dresult{margin-top:12px;text-align:center;font-size:18px;font-weight:800;}
+  .dresult small{display:block;font-size:12px;font-weight:600;color:var(--mut);margin-top:3px;}
+  .dlegend{margin-top:8px;font-size:12px;color:var(--faint);text-align:center;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 死亡保険金の税金</div>
+    <h1>死亡保険金の税金は<br>「契約者・被保険者・受取人」の並びで3種類に変わる</h1>
+    <div class="who">💴 生命保険の受取人を誰にするか迷っている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>同じ死亡保険金でも、<b>保険料を払った人・被保険者・受取人</b>の組み合わせで<b>相続税・所得税・贈与税</b>のどれになるかが変わります。</li>
+        <li><b>相続税になる形</b>（保険料負担者＝被保険者）だけ、<b>500万円×法定相続人の数</b>の非課税枠が使える可能性があります。</li>
+        <li>3者が全員バラバラだと<b>贈与税</b>になりやすく、一般に税負担が重くなる傾向とされます。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。先に結論 ―― <b>「誰を受取人にするか」より「保険料を誰が払っているか」の並びで税目が決まる</b>。ここを外すと非課税枠が丸ごと使えないことがあります。</div>
+  </header>
+
+  <!-- 視覚サマリー図：契約形態3パターン → 課される税 -->
+  <h2>一枚図：3パターンで課税がこう変わる</h2>
+  <div class="diagram">
+
+    <div class="dcard">
+      <span class="dtag sozoku">パターン① 相続税</span>
+      <div class="dflow">
+        <div class="dnode"><div class="nl">保険料負担者</div><div class="nv">夫</div></div>
+        <div class="darrow">＝</div>
+        <div class="dnode"><div class="nl">被保険者</div><div class="nv">夫</div></div>
+        <div class="darrow">→</div>
+        <div class="dnode"><div class="nl">受取人</div><div class="nv">妻</div></div>
+      </div>
+      <div class="dresult" style="color:#39d353">相続税<small>非課税枠 500万円×法定相続人 が使える可能性</small></div>
+    </div>
+
+    <div class="dcard">
+      <span class="dtag shotoku">パターン② 所得税</span>
+      <div class="dflow">
+        <div class="dnode"><div class="nl">保険料負担者</div><div class="nv">妻</div></div>
+        <div class="darrow">≠</div>
+        <div class="dnode"><div class="nl">被保険者</div><div class="nv">夫</div></div>
+        <div class="darrow">→</div>
+        <div class="dnode"><div class="nl">受取人</div><div class="nv">妻</div></div>
+      </div>
+      <div class="dresult" style="color:#7cc0ff">所得税（＋住民税）<small>払った本人が受け取る＝一時所得などで課税</small></div>
+    </div>
+
+    <div class="dcard">
+      <span class="dtag zoyo">パターン③ 贈与税</span>
+      <div class="dflow">
+        <div class="dnode"><div class="nl">保険料負担者</div><div class="nv">夫</div></div>
+        <div class="darrow">≠</div>
+        <div class="dnode"><div class="nl">被保険者</div><div class="nv">妻</div></div>
+        <div class="darrow">→</div>
+        <div class="dnode"><div class="nl">受取人</div><div class="nv">子</div></div>
+      </div>
+      <div class="dresult" style="color:#c79bff">贈与税<small>3者が全員別人＝一般に税負担が重い傾向</small></div>
+    </div>
+
+    <div class="dlegend">※「保険料負担者」は実際に保険料を払っている人。契約者名義とズレることがあるので実態で判定されます。</div>
+  </div>
+
+  <div class="verdict">
+    <div class="h">AI判定</div>
+    <div class="t">非課税枠を活かしたいなら <span style="color:var(--g)">「保険料負担者＝被保険者、受取人は相続人」</span>＝相続税パターンが基本。<br>払った本人が受け取る形は<span style="color:#7cc0ff">所得税</span>、3者バラバラは<span style="color:var(--p)">贈与税</span>で不利になりやすい。</div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>相続税パターンの「非課税枠の使いやすさ」</span><span>高い</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>所得税パターン（一時所得の控除あり）</span><span>中</span></div><div class="track"><div class="fill" style="width:55%;background:linear-gradient(90deg,#58a6ff,#3f7fd6)"></div></div></div>
+      <div class="bar"><div class="lb"><span>贈与税パターンの負担の重さ（＝不利）</span><span>大きい傾向</span></div><div class="track"><div class="fill" style="width:80%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※実際の税額は保険金額・他の相続財産・所得・法定相続人の数などで変わります。ここでは「どの税目になるか」の枠組みを採点しています（出典は末尾）。</div>
+  </div>
+
+  <h2>採点の考え方（ここがAI検証室の“計算”）</h2>
+  <p>ネットには「保険金は相続税だから非課税」という説明がよくありますが、それは<b>並びが合っているときだけ</b>です。国税庁は、死亡保険金の税金を<b>「保険料の負担者」「被保険者」「受取人」の3者が誰か</b>で3つに分けています。採点の軸はここに尽きます。</p>
+  <div class="calc">税目 ＝ 「誰が保険料を払ったか」×「誰が受け取るか」で決まる<small>受取人の名前だけでは決まりません。保険料を実際に負担した人が起点です</small></div>
+  <p>3つの分かれ方を、国税庁の基準に沿って整理します。</p>
+
+  <h3>① 相続税になる形</h3>
+  <p><b>保険料を負担した人（＝被保険者）が亡くなり、その保険金を相続人などが受け取る</b>形です。被保険者本人が保険料を払っていたケースが典型で、この形なら死亡保険金の非課税枠を使える可能性があります。</p>
+
+  <h3>② 所得税になる形</h3>
+  <p><b>保険料を負担した人と、保険金を受け取る人が同じ</b>場合です。たとえば妻が保険料を払い、夫を被保険者にして、受取人も妻――というケース。受け取った保険金は一時所得などとして課税されます。一時所得なら「受取額−払った保険料−特別控除50万円」を計算し、その<b>半分</b>が課税対象になります（一時所得の一般的な計算）。</p>
+
+  <h3>③ 贈与税になる形</h3>
+  <p><b>保険料負担者・被保険者・受取人が全員バラバラ</b>の場合です。夫が保険料を払い、被保険者が妻、受取人が子――のように3者が別人だと贈与税の対象になります。贈与税は一般に税率が高く、<b>この形は避けたほうが無難</b>とされることが多いです。</p>
+
+  <table>
+    <tr><th>保険料を払った人</th><th>被保険者</th><th>受取人</th><th>かかる税</th></tr>
+    <tr><td>夫</td><td>夫</td><td>妻・子（相続人）</td><td class="win">相続税（非課税枠の対象になりうる）</td></tr>
+    <tr><td>妻</td><td>夫</td><td>妻（払った本人）</td><td>所得税・住民税（一時所得など）</td></tr>
+    <tr><td>夫</td><td>妻</td><td>子</td><td>贈与税（3者が別人）</td></tr>
+  </table>
+
+  <h2>相続税パターンの「非課税枠」を採点する</h2>
+  <p>相続税になる形では、死亡保険金に専用の非課税枠があります。金額は次のとおりです。</p>
+  <div class="calc">非課税限度額 ＝ 500万円 × 法定相続人の数<small>例：法定相続人が3人なら 500万円×3＝1,500万円 まで非課税の枠</small></div>
+  <p>ただし採点上、外してはいけない条件があります。国税庁の基準では、<b>この非課税枠が使えるのは受取人が「相続人」のとき</b>です。相続人でない人（たとえば相続放棄をした人など）が受け取った死亡保険金には、この非課税枠は適用されません。</p>
+  <ul>
+    <li><b>受取人が相続人であること</b>が非課税枠の前提。相続人以外が受け取ると枠は使えません。</li>
+    <li>法定相続人の数は、<b>相続放棄があっても「放棄がなかったもの」として</b>数えます（枠の計算上）。</li>
+    <li>養子を法定相続人の数に含められる数には上限があります（実子がいれば1人、いなければ2人まで）。</li>
+    <li>すべての相続人が受け取った保険金の合計が非課税限度額を超えた分が、課税対象になります。</li>
+  </ul>
+  <p>つまり「相続税パターン × 受取人＝相続人」という並びを満たして初めて、非課税枠というメリットが立ち上がります。ここがこのテーマの一番の“隅”です。</p>
+
+  <h2>条件別の採点：あなたはどの並び？</h2>
+  <table>
+    <tr><th>あなたの状況</th><th>おすすめの並び</th><th>理由</th></tr>
+    <tr><td>自分に万一のとき、家族（相続人）に遺したい</td><td class="win">保険料も被保険者も自分／受取人は相続人</td><td>相続税パターン。500万円×法定相続人の非課税枠を使える可能性</td></tr>
+    <tr><td>配偶者にかけた保険を自分の資金で準備し、自分が受け取りたい</td><td class="win">保険料＝自分／被保険者＝配偶者／受取人＝自分</td><td>所得税（一時所得）。特別控除50万円＋課税は1/2で、条件次第で軽くなることも</td></tr>
+    <tr><td>親が払う保険で、被保険者と受取人を別々の家族にしている</td><td class="win">並びの見直しを検討</td><td>3者が別人＝贈与税で不利になりやすい。負担者か受取人の整理を検討</td></tr>
+    <tr><td>受取人を「相続放棄しそうな人」にしている</td><td class="win">受取人を相続人へ見直し</td><td>相続人でないと非課税枠が使えず、枠のメリットを取りこぼす</td></tr>
+  </table>
+  <p><b>正直な注意点：</b>「どの形が一番トクか」は保険金額・他の財産・所得・家族構成で変わり、一律の正解はありません。この検証室が言えるのは、<b>まず税目（相続税／所得税／贈与税）を並びで確定させ、非課税枠が使える形かを最初に確認する</b>のが順序として正しい、ということだけです。金額の最適解は個別試算が必要です。</p>
+
+  <!-- ASP_SLOT: 生命保険/FP相談 -->
+  <div class="cta">
+    <div class="h">▶ その前に：あなたの契約は「どの税目」になる並びですか？</div>
+    <div class="ph">保険証券の「契約者（保険料負担者）・被保険者・受取人」を並べて確認するだけで、相続税・所得税・贈与税のどれになるかが見えてきます。並びの見直しや非課税枠の試算は、中立のFPや税理士など専門家への相談が確実です。<br><!-- ASP: （該当時）生命保険の見直し／FP相談サービス等 --></div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「契約者名義」と「実際に払っている人」がズレる：</b>税目は名義ではなく<b>実際に保険料を負担した人</b>で判定されます。名義だけ整えても実態が違えば結果が変わります。</li>
+    <li><b>受取人が相続人でないと非課税枠が使えない：</b>相続放棄した人などが受け取ると、500万円×法定相続人の枠は適用外です。</li>
+    <li><b>3者バラバラは贈与税：</b>負担者・被保険者・受取人が全員別人だと贈与税。一般に税率が高く、意図せず不利になりがちです。</li>
+    <li><b>所得税パターンを相続税と誤解しない：</b>払った本人が受け取る形は所得税（一時所得など）で、相続税の非課税枠とは別の話です。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>死亡保険金の税目は「保険料を払った人・被保険者・受取人」の並びで、相続税／所得税／贈与税に分かれる。</li>
+    <li>相続税パターン（保険料負担者＝被保険者・受取人が相続人）なら、500万円×法定相続人の非課税枠が使える可能性。</li>
+    <li>払った本人が受け取る＝所得税（一時所得）、3者バラバラ＝贈与税で不利になりやすい。</li>
+    <li>まず自分の証券で3者の並びを確認し、税目と非課税枠の可否を最初に押さえる。金額の最適化は個別試算・専門家へ。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 お金の“並び”で結果が変わる話つながり：<a href="furusato-onestop-vs-kakutei.html" style="color:#58a6ff;text-decoration:none;font-weight:700">ふるさと納税 ワンストップ vs 確定申告の採点 →</a></div>
+
+  <div class="src">
+    <b>出典</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1750.htm" target="_blank" rel="noopener">国税庁 No.1750 死亡保険金を受け取ったとき</a>（保険料負担者＝受取人なら所得税、被保険者＝保険料負担者で相続人等が受取れば相続税、3者が別人なら贈与税。一時所得は特別控除50万円・課税は1/2）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/sozoku/4114.htm" target="_blank" rel="noopener">国税庁 No.4114 相続税の課税対象になる死亡保険金</a>（非課税限度額＝500万円×法定相続人の数。非課税は相続人が受け取った場合に適用。相続放棄者・相続権を失った者は対象外。法定相続人の数は放棄がなかったものとして計算・養子の算入上限あり）<br>
+    <span class="note">※制度は改正されることがあります。税目・非課税枠・要件は各時点の公式情報にもとづく参考です。実際の税額や個別の判定は、国税庁・税務署・税理士など専門家で最新をご確認ください。最終判断はご自身で。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

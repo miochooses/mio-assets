@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>退職金とiDeCo一時金、同じ年に受け取ると損？退職所得控除の"かぶり"を計算で採点｜AIガチ検証室</title>
+<!--mio-og-->
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/saiten/taishoku-ideco-uketori-jiki.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="退職金とiDeCo一時金、受取時期をずらすと手取りが変わる｜AIが計算で採点">
+<meta name="twitter:description" content="同じ年に受け取ると退職所得控除が"かぶって"課税増。iDeCo先なら10年、退職金先なら20年空けると控除がフルに使える。2026年改正後の最新ルールを条件別に採点。">
+<meta name="twitter:image" content="https://miochooses.com/mio-og-default.png">
+<!--/mio-og-->
+<meta name="description" content="感情ゼロのAIが「退職金とiDeCo一時金の受取時期」を計算だけで採点。同じ年に受け取ると退職所得控除の勤続・加入期間が"かぶり"、控除枠が目減りして課税が増えます。2026年改正で『iDeCo先なら10年ルール（前年以前9年内）』『退職金先なら19年ルール（前年以前19年内）』。条件別に出典つきで解説。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/saiten/taishoku-ideco-uketori-jiki.html">
+<meta property="og:title" content="退職金とiDeCo一時金、受取時期をずらすと手取りが変わる｜AIが計算で採点">
+<meta property="og:description" content="同じ年に受け取ると退職所得控除が"かぶって"課税増。iDeCo先なら10年、退職金先なら20年空けると控除がフルに使える。2026年改正後の最新ルールを条件別に採点。">
+<meta property="og:type" content="article">
+<style>
+  :root{--bg:#0f1720;--card:#141d28;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;--g:#2ea043;--b:#58a6ff;--o:#f0883e;--r:#e5534b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;padding:0 16px 60px;overflow-wrap:anywhere;}
+  .wrap{max-width:720px;margin:0 auto;}
+  header{padding:40px 0 8px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em;}
+  .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--g);}
+  .crumbs{margin-top:14px;font-size:12px;color:var(--faint);}
+  .crumbs a{color:var(--b);text-decoration:none;}
+  h1{margin-top:10px;font-size:27px;font-weight:800;line-height:1.4;}
+  h2{margin-top:36px;font-size:20px;font-weight:800;border-left:4px solid var(--b);padding-left:10px;}
+  h3{margin-top:22px;font-size:16px;font-weight:800;color:var(--mut);}
+  p{margin-top:12px;}
+  .tldr{background:#101d16;border:1px solid #2ea04355;border-left:4px solid var(--g);border-radius:14px;padding:15px 18px;margin-top:18px;}
+  .tldr .th{font-size:13px;font-weight:800;color:#39d353;letter-spacing:.04em;}
+  .tldr ul{margin-top:10px;padding-left:20px;} .tldr li{margin-top:8px;font-size:14.5px;line-height:1.7;}
+  .tldr a{color:var(--b);font-weight:800;text-decoration:none;}
+  .who{margin-top:12px;font-size:13px;color:var(--faint);}
+  .lead{margin-top:14px;font-size:15px;color:var(--mut);}
+  .verdict{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:22px;}
+  .verdict .h{font-size:13px;font-weight:800;color:var(--o);letter-spacing:.04em;}
+  .verdict .t{margin-top:8px;font-size:17px;font-weight:800;}
+  .bars{margin-top:16px;}
+  .bar{margin-top:10px;}
+  .bar .lb{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);}
+  .bar .track{height:16px;background:#0b121a;border-radius:8px;overflow:hidden;margin-top:4px;border:1px solid var(--line);}
+  .bar .fill{height:100%;border-radius:8px;}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .calc{font-size:16px;font-weight:800;text-align:center;color:var(--tx);background:#0b121a;border:1px dashed var(--b);border-radius:12px;padding:16px;margin-top:14px;}
+  .calc small{display:block;font-weight:600;color:var(--mut);font-size:12px;margin-top:6px;}
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;}
+  th{background:#0b121a;color:var(--mut);}
+  .win{color:var(--g);font-weight:800;}
+  .bad{color:var(--r);font-weight:800;}
+  .cta{background:linear-gradient(135deg,#132a3a,#0f2230);border:1px solid #1f4a63;border-radius:14px;padding:18px;margin-top:26px;}
+  .cta .h{font-size:14px;font-weight:800;color:#9fd0e6;}
+  .cta .ph{margin-top:8px;font-size:13px;color:var(--faint);}
+  ul{margin-top:12px;padding-left:20px;} li{margin-top:6px;}
+  .src{margin-top:30px;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:16px;}
+  .src a{color:var(--b);}
+  .foot{margin-top:26px;text-align:center;font-size:13px;color:var(--faint);border-top:1px solid var(--line);padding-top:20px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .note{margin-top:14px;font-size:12px;color:var(--faint);}
+  /* 視覚サマリー図 */
+  .fig{background:#0b121a;border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-top:18px;}
+  .fig .cap{font-size:13px;font-weight:800;color:var(--b);letter-spacing:.03em;text-align:center;}
+  .fig .sub{font-size:12px;color:var(--faint);text-align:center;margin-top:4px;}
+  .scen{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:12px;}
+  .scen.ng{border-color:#e5534b55;background:#1c1214;}
+  .scen.ok{border-color:#2ea04355;background:#101d16;}
+  .scen .tag{display:inline-block;font-size:12px;font-weight:800;padding:3px 9px;border-radius:8px;}
+  .scen.ng .tag{background:#e5534b22;color:#ff8a80;}
+  .scen.ok .tag{background:#2ea04322;color:#5be584;}
+  .scen .desc{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.6;}
+  .tl{display:flex;align-items:stretch;gap:0;margin-top:12px;height:64px;border-radius:8px;overflow:hidden;}
+  .tl .seg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;font-weight:800;text-align:center;line-height:1.25;color:#0b121a;padding:2px;}
+  .seg .yr{font-size:11px;font-weight:800;opacity:.9;}
+  .seg .amt{font-size:15px;font-weight:800;margin-top:2px;}
+  .segRet{background:linear-gradient(135deg,#58a6ff,#3f7fd6);}
+  .segIde{background:linear-gradient(135deg,#f0883e,#e0653a);}
+  .segGap{background:#1a2734;color:#9fb3c8;border-left:1px dashed #ffffff33;border-right:1px dashed #ffffff33;}
+  .segOverlap{background:repeating-linear-gradient(45deg,#e5534b,#e5534b 8px,#c23b34 8px,#c23b34 16px);color:#fff;}
+  .kabuki{margin-top:10px;font-size:13px;font-weight:800;text-align:center;}
+  .kabuki.ng{color:#ff8a80;}
+  .kabuki.ok{color:#5be584;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;font-size:11.5px;color:var(--mut);}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block;}
+</style>
+</head>
+<body>
+<!--mio-topbar-->
+<div style="position:sticky;top:0;z-index:99999;background:#0f1720ee;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff14;font-family:-apple-system,'Segoe UI',Roboto,'Yu Gothic UI','Hiragino Sans',sans-serif;"><div style="max-width:900px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:10px;"><a href="/" style="display:flex;align-items:center;gap:9px;color:#e9eef3;text-decoration:none;font-weight:800;font-size:15px;"><img src="/mio-icon-512.png" alt="Mio" width="30" height="30" style="border-radius:8px;">AIガチ検証室<span style="color:#39d353;">／Mio</span></a><span style="margin-left:auto;display:flex;gap:2px;"><a href="/#saiten" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">採点</a><a href="/tools/" style="font-size:13px;font-weight:800;color:#c9d4de;text-decoration:none;padding:7px 10px;border-radius:9px;">ツール</a><a href="/en/" style="font-size:13px;font-weight:800;color:#39d353;text-decoration:none;padding:7px 10px;border-radius:9px;">EN</a></span></div></div>
+<!--/mio-topbar-->
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> AIガチ検証室 ｜ Mio</div>
+    <div class="crumbs"><a href="../">トップ</a> ／ <a href="./">AI採点アーカイブ</a> ／ 退職金・iDeCo 受取時期</div>
+    <h1>退職金とiDeCo一時金<br>同じ年に受け取ると損する？受取時期を計算で採点</h1>
+    <div class="who">🏦 退職金とiDeCoの一時金、いつ受け取るか迷っている人へ</div>
+    <div class="tldr">
+      <div class="th">⏱ 30秒でわかる結論</div>
+      <ul>
+        <li>退職金とiDeCo一時金を<b>同じ年（近い年）に受け取る</b>と、退職所得控除の勤続・加入期間が<b>"かぶって"</b>控除枠が目減りし、課税が増えることがある。</li>
+        <li><b>2026年1月改正後</b>：<b>iDeCoを先</b>に受け取るなら退職金まで<b>10年</b>（前年以前9年内）、<b>退職金を先</b>なら<b>20年</b>（前年以前19年内）空けると、控除がそれぞれフルで使える。</li>
+        <li>ずらせない場合は、<b>片方を年金受取</b>にして「退職所得のかぶり」を避ける手もある。<a href="#hantei">条件別の採点はこちら</a>。</li>
+      </ul>
+    </div>
+    <div class="lead">感情ゼロのAIが、印象ではなく<b>ルール</b>で採点します。退職金もiDeCoの一時金も、どちらも税金上は「退職所得」。同じ年に受け取ると<b>退職所得控除は1つの枠を分け合う</b>ため、受取時期しだいで手取りが十万円単位で変わることがあります。ここは"隅の落とし穴"。計算で確かめます。</div>
+  </header>
+
+  <!-- (2) 視覚サマリー図 -->
+  <div class="fig">
+    <div class="cap">📊 受取時期で「退職所得控除の枠」がかぶる／分かれる（一枚図）</div>
+    <div class="sub">同じ勤続30年・iDeCo加入20年のモデル。控除枠がかぶる＝課税増、分かれる＝控除フル活用</div>
+
+    <div class="scen ng">
+      <span class="tag">✕ 同じ年に受取＝控除が"かぶる"</span>
+      <div class="tl">
+        <div class="seg segOverlap" style="flex:2"><span class="yr">同じ年</span><span class="amt">退職金＋iDeCo</span>期間が重複</div>
+        <div class="seg segRet" style="flex:1"><span class="yr">勤続分だけ</span><span class="amt">控除1回分</span></div>
+      </div>
+      <div class="kabuki ng">▲ 控除枠は"長いほうの期間"で1回だけ。重複年数ぶんは二重に使えない＝課税が増える</div>
+    </div>
+
+    <div class="scen ok">
+      <span class="tag">◯ iDeCo先→10年空けて退職金（2026年改正後）</span>
+      <div class="tl">
+        <div class="seg segIde" style="flex:2"><span class="yr">60歳など</span><span class="amt">iDeCo一時金</span>控除フル</div>
+        <div class="seg segGap" style="flex:2"><span class="yr">10年以上あける</span>前年以前<br>9年より前</div>
+        <div class="seg segRet" style="flex:2"><span class="yr">70歳など</span><span class="amt">退職金</span>控除フル</div>
+      </div>
+      <div class="kabuki ok">◎ 期間が"分かれる"＝退職所得控除をそれぞれ満額で使える</div>
+    </div>
+
+    <div class="scen ok">
+      <span class="tag">◯ 退職金先→20年空けてiDeCo（従来どおり）</span>
+      <div class="tl">
+        <div class="seg segRet" style="flex:2"><span class="yr">60歳など</span><span class="amt">退職金</span>控除フル</div>
+        <div class="seg segGap" style="flex:4"><span class="yr">20年以上あける（現実には困難）</span>前年以前<br>19年より前</div>
+      </div>
+      <div class="kabuki ok">◎ 分かれれば満額。ただし退職金先は"20年"のカベが高く、実務上ずらしきれないことが多い</div>
+    </div>
+
+    <div class="legend">
+      <span><i class="segRet"></i>退職金</span>
+      <span><i class="segIde"></i>iDeCo一時金</span>
+      <span><i class="segOverlap"></i>控除がかぶる期間（課税増）</span>
+      <span><i style="background:#1a2734"></i>受取をあける期間</span>
+    </div>
+    <div class="note" style="text-align:center">※数値は仕組みを示すモデル図。実際の控除額・年数は勤続年数・加入年数・受取順で変わります（計算は本文と出典）。</div>
+  </div>
+
+  <!-- (3) AI判定 -->
+  <div class="verdict" id="hantei">
+    <div class="h">AI判定（条件別）</div>
+    <div class="t">
+      受取時期を<b>調整できる</b>人 → <span style="color:var(--g)">「iDeCoを先に受け取り、退職金まで10年以上あける」</span>が有力（2026年改正後）。<br>
+      調整<b>できない</b>（同じ年・近い年に受け取らざるを得ない）人 → <span style="color:var(--o)">片方（多くはiDeCo）を年金受取にして"退職所得のかぶり"を回避</span>を検討。
+    </div>
+    <div class="bars">
+      <div class="bar"><div class="lb"><span>同じ年に両方一時金（かぶる）</span><span>控除の重複ロスあり</span></div><div class="track"><div class="fill" style="width:92%;background:linear-gradient(90deg,#e5534b,#c23b34)"></div></div></div>
+      <div class="bar"><div class="lb"><span>iDeCo先→10年あけて退職金</span><span>控除フル活用</span></div><div class="track"><div class="fill" style="width:24%;background:linear-gradient(90deg,#2ea043,#26833a)"></div></div></div>
+      <div class="bar"><div class="lb"><span>退職金先→iDeCoは20年待ち</span><span>現実には難しい</span></div><div class="track"><div class="fill" style="width:70%;background:linear-gradient(90deg,#f0883e,#e0653a)"></div></div></div>
+    </div>
+    <div class="note">※どれが得かは「勤続年数」「iDeCo加入年数」「金額」「他の所得」で変わります。以下で計算の考え方を出します。断定ではなく、あなたの数字を当てはめて確認してください。</div>
+  </div>
+
+  <h2>まず押さえる：退職所得控除と"1/2課税"の計算</h2>
+  <p>退職金もiDeCoの一時金も、税金上はどちらも<b>退職所得</b>。退職所得は、まず<b>退職所得控除</b>を引き、残りをさらに<b>1/2</b>にしてから課税されます。ここが優遇の正体です。</p>
+  <div class="calc">退職所得 ＝（収入金額 − 退職所得控除額）× 1/2<small>この1/2があるため、退職所得は他の所得より税負担が軽くなります（特定役員等は1/2の適用なし）</small></div>
+  <p>退職所得控除の額は<b>勤続年数（iDeCoは加入年数）</b>で決まります。国税庁の式は次のとおりです（1年未満の端数は1年に切上げ）。</p>
+  <table>
+    <tr><th>期間</th><th>退職所得控除額</th></tr>
+    <tr><td>20年以下</td><td>40万円 × 年数<span class="note" style="display:block;margin-top:2px">（最低80万円）</span></td></tr>
+    <tr><td>20年超</td><td>800万円 ＋ 70万円 ×（年数 − 20年）</td></tr>
+  </table>
+  <p>例）勤続30年なら控除は <b>800万円＋70万円×10年＝1,500万円</b>。iDeCo加入20年なら <b>40万円×20年＝800万円</b>。<b>本来は合計2,300万円</b>ぶんの控除枠があるはずです。ところが――ここに落とし穴があります。</p>
+
+  <h2>落とし穴：同じ年（近い年）に受け取ると控除が"かぶる"</h2>
+  <p>退職金とiDeCo一時金を<b>同じ年</b>に受け取ると、退職所得控除は<b>合算した金額に対して1回ぶん</b>しか使えません。しかも、勤続期間とiDeCo加入期間が<b>重なっている年数</b>は、控除計算上ダブって数えられません。国税庁のルールでは、前に受け取った退職手当等の勤続期間と<b>重複する期間</b>を差し引いて控除額を計算します。</p>
+  <div class="calc">かぶる＝「勤続30年」と「iDeCo加入20年」の<b>重複年数</b>ぶん、控除枠が消える<small>2つ足して2,300万円…とはならず、長いほう（勤続30年＝1,500万円）を軸に、重複ぶんが目減りするイメージ</small></div>
+  <p>つまり「退職金の控除」と「iDeCoの控除」を<b>両取り</b>したいなら、勤続期間とiDeCo加入期間が<b>かぶらないよう受取年をずらす</b>のが基本戦略になります。</p>
+
+  <h2>ずらし方：iDeCo先は「10年」、退職金先は「20年」（2026年改正）</h2>
+  <p>受取時期を空ければ、それぞれの控除をフルに使えます。空ける年数は<b>受取の順番で違う</b>のがポイント。しかも<b>2026年1月1日</b>から片方のルールが延びました。</p>
+  <table>
+    <tr><th>受取の順番</th><th>控除をかぶらせない条件</th><th>実務上あける年数</th></tr>
+    <tr><td><b>iDeCo一時金が先</b>→退職金が後</td><td class="win">前年以前<b>9年内</b>に重なりがないこと（改正後）<span class="note" style="display:block;margin-top:2px">2025年までは「前年以前4年内」＝5年ルールでした</span></td><td class="win">約<b>10年</b></td></tr>
+    <tr><td><b>退職金が先</b>→iDeCo一時金が後</td><td>前年以前<b>19年内</b>に重なりがないこと（<b>改正なし</b>）</td><td class="bad">約<b>20年</b></td></tr>
+  </table>
+  <p>この非対称がクセモノです。<b>iDeCo先</b>なら「60歳でiDeCo→70歳で退職金」のように10年あければ両方フル活用しやすい。一方<b>退職金先</b>だと「60歳で退職金→iDeCoは80歳」となり、iDeCoの受給開始上限（原則<b>75歳まで</b>）を超えてしまい、実質的に年金受取を選ばざるを得ないケースが出ます。</p>
+  <div class="calc">2026年1月改正：iDeCo先の重複判定が「前年以前<b>4年内→9年内</b>」に延長<small>＝これまで「5年あければOK」だったのが「10年あける」意識が必要に。退職金先の"19年内"は変わっていません（施行日：2026年1月1日以後に支払われる退職手当等）</small></div>
+
+  <h2>比較：ずらせないなら「年金受取」でかぶりを避ける</h2>
+  <p>10年・20年も空けられない人は多いはず。その場合は<b>片方を年金として受け取る</b>選択肢があります。iDeCoは一時金・年金・併用が選べます。</p>
+  <ul>
+    <li><b>一時金</b>：退職所得（退職所得控除＋1/2課税）。ただし退職金と<b>かぶる</b>と控除が目減り。</li>
+    <li><b>年金</b>：公的年金等に係る雑所得（<b>公的年金等控除</b>の対象）。退職所得の"かぶり"は避けられるが、他の年金と合算され、社会保険料等に影響することもある。</li>
+    <li><b>併用</b>：一部を一時金（退職所得控除の枠内まで）、残りを年金にして両制度の控除を使い分ける。</li>
+  </ul>
+  <p>どれが有利かは金額・他の所得・社会保険で変わるため、<b>断定はしません</b>。少なくとも「退職金と同じ年に、iDeCoも満額一時金」は控除がかぶりやすく、要注意パターンです。</p>
+
+  <div id="hikaku"></div>
+  <div class="cta">
+    <div class="h">▶ 自分の数字だと控除はいくら？かぶりでいくら損する？</div>
+    <div class="ph">
+      勤続年数・iDeCo加入年数・金額・受取順で答えは変わります。年数が近い・金額が大きい人ほど影響が大きく、受取設計は数十万円単位で効きます。<br>
+      <!-- ASP_SLOT: 証券/FP相談 --><br>
+      <span style="color:#9fd0e6;font-weight:800">受取順の最適化は、退職前に一度シミュレーションしておくのが安全です。</span>
+    </div>
+  </div>
+
+  <h2>採点でハマる落とし穴</h2>
+  <ul>
+    <li><b>「控除は足し算」だと思い込む：</b>退職金1,500万円ぶん＋iDeCo800万円ぶん＝2,300万円…と<b>単純合算はできません</b>。同年・近い年だと重複年数ぶんが消えます。</li>
+    <li><b>2026年改正で"5年"が"10年"に：</b>「iDeCoを5年先に受け取ればOK」は<b>2025年までの話</b>。2026年1月以後に支払われる退職手当等は、iDeCo先の判定が「前年以前9年内」＝実質10年に延びています。</li>
+    <li><b>退職金先は"19年内"のまま：</b>退職金を先に取ると、iDeCoの一時金でフル控除を狙うには約20年空ける必要があり、iDeCoの受給上限（原則75歳）に阻まれがち。順番の選択が重要。</li>
+    <li><b>受取順は自分の年齢で決まりやすい：</b>会社都合の退職金の時期は動かせないことが多く、「順番を自由に選べる」前提が崩れる場合があります。まず自分がどちらを先に取るのか確認を。</li>
+    <li><b>1年未満は切上げ：</b>勤続・加入年数は1年未満の端数を1年に切り上げて計算します（控除にプラス方向）。</li>
+  </ul>
+
+  <h2>まとめ</h2>
+  <ul>
+    <li>退職金もiDeCo一時金も「退職所得」。同じ年・近い年に受け取ると退職所得控除が<b>かぶって</b>課税が増える。</li>
+    <li>控除をフルに使うなら受取をずらす。<b>iDeCo先＝約10年（2026年改正、前年以前9年内）</b>、<b>退職金先＝約20年（前年以前19年内、改正なし）</b>。</li>
+    <li>ずらせないなら<b>年金受取・併用</b>で退職所得のかぶりを回避する手もある。</li>
+    <li>有利不利は勤続年数・加入年数・金額・他所得で変わる。<b>断定せず、自分の数字で確認</b>を。</li>
+  </ul>
+
+  <div style="margin-top:22px;background:#141d28;border:1px solid #ffffff14;border-radius:12px;padding:14px 16px;font-size:14px">🧮 お金の"どっち得"をもっと採点：<a href="./" style="color:#58a6ff;text-decoration:none;font-weight:700">AI採点アーカイブ →</a><br><span style="color:var(--faint);font-size:12px">採点のやり方は</span> <a href="houhouron.html" style="color:#58a6ff;text-decoration:none;font-weight:700">採点の方法論 →</a></div>
+
+  <div class="src">
+    <b>出典（いずれも2026年時点で確認）</b><br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm" target="_blank" rel="noopener">国税庁 No.1420 退職金を受け取ったとき（退職所得）</a>（退職所得控除額の計算式：20年以下＝40万円×年数〔最低80万円〕／20年超＝800万円＋70万円×（年数−20年）。退職所得＝（収入−控除）×1/2。勤続年数の1年未満端数は1年に切上げ。前に受け取った退職手当等がある場合の重複期間の調整）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2735.htm" target="_blank" rel="noopener">国税庁 No.2735 同じ年に2か所以上から退職手当等が支払われるとき</a>（同年に複数の退職手当等がある場合の退職所得控除額の計算特例・重複勤続期間の扱い）<br>
+    ・<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2732.htm" target="_blank" rel="noopener">国税庁 No.2732 退職手当等に対する源泉徴収</a>（前年以前に受け取った退職手当等がある場合の控除計算）<br>
+    ・<a href="https://www.ideco-koushiki.jp/" target="_blank" rel="noopener">iDeCo公式サイト（国民年金基金連合会）</a>（iDeCoの受け取り方法：一時金・年金・併用、老齢給付金の受給開始年齢）<br>
+    ・退職所得控除の重複判定期間（iDeCo先＝前年以前9年内〔2026年1月1日以後支払分〕、退職金先＝前年以前19年内）は、2020年度・2025年度税制改正大綱および国税庁タックスアンサーの取扱いにもとづく参考整理です。<br>
+    <span class="note">※制度・数値は改正されることがあります。本ページは一般的な情報提供であり、個別の税務助言ではありません。受取順・受取方法の最終判断は、国税庁・iDeCo公式・お住まいの税務署・税理士等でご自身の数字にもとづきご確認ください。</span>
+  </div>
+  <div class="foot">
+    <a href="./">← AI採点アーカイブ</a> ／ <a href="houhouron.html">採点の方法論</a> ／ <a href="https://bsky.app/profile/miochooses.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+  </div>
+</div>
+<footer class="mio-trust" style="max-width:720px;margin:36px auto 0;padding:16px 14px;border-top:1px solid #ffffff14;color:#6e7b8a;font-size:12px;line-height:1.75;text-align:center">
+<div>運営：Honey bee Queen株式会社 ｜ お金の採点は感情ゼロの架空AI「Mio」が、計算と公的な一次情報にもとづいて行っています（採点は広告の有無と無関係です）。</div>
+<div>最終更新：2026-09-05 ｜ 本ページは一般的な情報提供であり、個別の助言ではありません。制度・数値・料金は変わることがあるため、必ず公式・専門家で最新をご確認ください。</div>
+<div>※本サイトには広告（PR）を含む場合があります。広告リンクには広告である旨を明示します。 <a href="../policy/" style="color:#9fb3c8">広告・免責・プライバシー</a></div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
