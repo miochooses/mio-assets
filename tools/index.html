@@ -45,6 +45,12 @@
     <h1>無料ツール</h1>
     <div class="sub">ちょっとした面倒を、その場で解決。登録なし・完全無料。</div>
     <div class="priv">🔒 すべて端末内だけで処理（データは送信されません）</div>
+    <div class="mio-search" style="margin:14px 0 2px;position:relative;">
+      <input id="mioq" type="search" placeholder="🔍 ツール・記事を検索（例: 手取り / ふるさと納税 / iDeCo）" autocomplete="off" enterkeyhint="search"
+        style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:13px;border:1px solid #2ea04366;background:#0d141d;color:#e9eef3;font-size:16px;font-family:inherit;">
+      <div id="miores" style="position:absolute;left:0;right:0;z-index:50;margin-top:8px;display:none;background:#0f1720;border:1px solid #ffffff1f;border-radius:12px;max-height:62vh;overflow:auto;box-shadow:0 18px 46px rgba(0,0,0,.5);"></div>
+    </div>
+    <script src="/search.js"></script>
   </header>
   <div class="grid">
     <a class="tool" href="shindan.html" style="border-color:#2ea043;background:linear-gradient(135deg,#12251a,#161f2b)">
