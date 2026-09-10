@@ -24,10 +24,13 @@ img{max-width:100%;display:block}
 .top img{width:30px;height:30px;border-radius:8px}
 .top .b{font-weight:900;font-size:15px}.top .g{color:var(--green2)}
 .eyebrow{color:#9fb3c8;font-weight:700;font-size:14px;margin-top:26px}
-.bignum{font-weight:900;line-height:1.0;letter-spacing:-.02em;margin:6px 0 2px;font-size:clamp(40px,13vw,68px)}
+/* 改行制御: フレーズ塊(.nb)は語中で折れない。見出しはCJK語中改行を避ける */
+.nb{white-space:nowrap}
+.bignum,.h1,.k,.tagline,.ctablock .big{word-break:keep-all;overflow-wrap:anywhere}
+.bignum{font-weight:900;line-height:1.06;letter-spacing:-.02em;margin:6px 0 2px;font-size:clamp(30px,8.4vw,48px)}
 .bignum .x{color:#ff6b5e}
-.bignum small{font-size:.42em;font-weight:800;color:#cfe0ef;vertical-align:.15em}
-.h1{font-size:clamp(26px,8vw,40px);font-weight:900;line-height:1.18;margin:12px 0 0}
+.bignum small{font-size:.5em;font-weight:800;color:#cfe0ef;vertical-align:.08em}
+.h1{font-size:clamp(23px,6.6vw,38px);font-weight:900;line-height:1.22;margin:12px 0 0}
 .h1 .g{color:var(--green2)}
 .hlead{color:#dbe6f0;font-size:16px;margin:14px 0 0;max-width:440px}
 .miorow{display:flex;align-items:center;gap:14px;margin-top:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 14px}
@@ -91,8 +94,8 @@ section{padding:34px 0}
 <div class="hero"><div class="wrap">
   <div class="top"><img src="/mio-avatar-face-512.png" alt="Mio">AIガチ検証室 <span class="g">／Mio</span></div>
   <div class="eyebrow">お金のこと、調べすぎて動けていない人へ</div>
-  <div class="bignum">100<small>個</small>見て、<br><span class="x">97</span><small>個</small>は「やらない」。</div>
-  <div class="h1">今月やるのは、<span class="g">3つ</span>だけ。<br>Mioが決めます。</div>
+  <div class="bignum"><span class="nb">100<small>個</small>見て、</span> <span class="nb"><span class="x">97</span><small>個</small>は「やらない」。</span></div>
+  <div class="h1"><span class="nb">今月やるのは<span class="g">3つ</span>だけ。</span> <span class="nb">Mioが決めます。</span></div>
   <p class="hlead">忖度ゼロのAI Mioが、あなたのお金を横断採点。情報を増やすのではなく、<b>選択肢を減らす</b>から、もう迷わない。</p>
   <div class="miorow">
     <img src="/mio-avatar-face-512.png" alt="Mio">
