@@ -125,6 +125,17 @@ body{background:
 .rv.in{opacity:1;transform:none}
 /* count-up number pop */
 .bignum .x{display:inline-block}
+/* hero cinematic key visual */
+.herohero{position:relative;margin:24px auto 4px;max-width:400px;border-radius:24px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 70px rgba(74,222,128,.16);
+  animation:heroFloat 6.5s ease-in-out infinite alternate}
+.herohero img{width:100%;display:block}
+.herohero::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:24px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  background:radial-gradient(130% 55% at 50% 0%,rgba(74,222,128,.12),transparent 60%),
+            linear-gradient(180deg,transparent 70%,rgba(11,18,32,.35))}
+@keyframes heroFloat{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
 /* ===== DESKTOP (make it not a lonely 560 column) ===== */
 @media(min-width:860px){
   .wrap{max-width:1040px;padding:0 44px}
@@ -158,6 +169,7 @@ body{background:
   <div class="bignum"><span class="nb"><span data-count="100">100</span><small>個</small>見て、</span> <span class="nb"><span class="x" data-count="97">97</span><small>個</small>は「やらない」。</span></div>
   <div class="h1"><span class="nb">今月やるのは<span class="g" data-count="3">3</span>つだけ。</span> <span class="nb">Mioが決めます。</span></div>
   <p class="hlead">忖度ゼロのAI Mioが、あなたのお金を横断採点。情報を増やすのではなく、<b>選択肢を減らす</b>から、もう迷わない。</p>
+  <div class="herohero"><img src="img/hero-mio.jpg" alt="Mio｜情報の荒波を越えて、今月やる3つへ" width="900" height="956"></div>
   <div class="miorow">
     <img src="/mio-avatar-face-512.png" alt="Mio">
     <div class="say">「あなたのお金、私が全部見ておく。<br>今月やるのは、<b>この3つ</b>です。」</div>
