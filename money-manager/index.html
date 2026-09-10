@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mio Money Manager｜あなたのお金を横断診断して、今やるべきことだけ決めます</title>
+<meta name="description" content="忖度ゼロのAI Mioが、あなたの条件を独自の判断ロジックで横断分析。今やること・やらないこと・あとで見直すことを優先順位つきで決めます。情報を増やすのではなく、あなたの選択肢を減らすAI。">
+<meta property="og:title" content="Mio Money Manager｜今やるべきことだけ決めます">
+<meta property="og:description" content="あなたのお金、まだ全部自分で比較し続けますか？ Mioが横断診断し「今月やる3つ」を決めます。忖度なし・売りつけなし。">
+<meta property="og:type" content="website">
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:"Noto Sans JP","Yu Gothic","Meiryo",sans-serif;color:#16202c;background:#f6f8fa;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.hero{background:#0b1220;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 82% -10%,rgba(10,143,60,.30),transparent 60%)}
+.hero .wrap{position:relative;z-index:1;padding:54px 20px 46px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px}
+.brand img{width:34px;height:34px;border-radius:9px}.brand .g{color:#4ade80}
+.hook{color:#9fb3c8;font-weight:800;font-size:19px;margin-top:30px}
+.h1{font-size:40px;font-weight:900;line-height:1.15;margin:6px 0 10px}.h1 .g{color:#4ade80}
+.lead{color:#dbe6f0;font-size:18px;max-width:640px}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.chip{background:#141f31;border:1px solid #26405f;border-radius:999px;padding:7px 15px;font-weight:800;font-size:14px;color:#cfe3ff}
+.chip.on{background:#0a8f3c;border-color:#0a8f3c;color:#fff}
+section{padding:38px 0}
+h2{font-size:23px;color:#0a3d2a;border-left:7px solid #0a8f3c;padding-left:11px;margin-bottom:14px}
+.card{background:#fff;border:1px solid #e4e9ef;border-radius:14px;padding:20px 22px;margin:12px 0;box-shadow:0 1px 3px rgba(16,32,44,.04)}
+.states{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.st{background:#fff;border:1px solid #e4e9ef;border-radius:12px;padding:14px 16px}
+.st .b{font-weight:900;font-size:16px}
+.st.now .b{color:#d92d20}.st.keep .b{color:#0a8f3c}.st.watch .b{color:#c46a10}.st.info .b{color:#3a6ea5}
+.st p{font-size:14.5px;color:#41505f;margin-top:3px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cmp .col{border-radius:12px;padding:16px 18px}
+.cmp .other{background:#f1f3f5}.cmp .mio{background:#f2fbf5;border:1px solid #bfe6cc}
+.cmp h3{font-size:16px;margin-bottom:6px}.cmp .other h3{color:#6b7885}.cmp .mio h3{color:#0a8f3c}
+.cmp ul{margin:0;padding-left:18px}.cmp li{font-size:14.5px;margin:4px 0}
+.cta{background:#0a8f3c;color:#fff;border-radius:16px;padding:26px;text-align:center}
+.cta .big{font-size:26px;font-weight:900}
+.cta .note{font-size:14px;color:#dff5e6;margin-top:8px}
+.cta a{display:inline-block;margin-top:16px;background:#fff;color:#0a3d2a;font-weight:900;text-decoration:none;padding:13px 26px;border-radius:999px}
+.foot{font-size:12.5px;color:#8a97a5;padding:26px 0 40px;line-height:1.6}
+@media(max-width:600px){.h1{font-size:31px}.states,.cmp{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <div class="brand"><img src="/mio-avatar-face-512.png" alt="Mio">AIガチ検証室 <span class="g">／Mio</span></div>
+  <div class="hook">あなたのお金、まだ全部、自分で比較し続けますか？</div>
+  <div class="h1">もう迷わない。<br>あなたならどうすべきか、<span class="g">Mioが決めます。</span></div>
+  <p class="lead">Mioは、あなたの条件を独自の判断ロジックで横断分析。今やること・やらないこと・あとで見直すことを、優先順位つきで決めます。忖度しない。売りつけない。</p>
+  <div class="chips"><span class="chip on">今やる</span><span class="chip">今は動かない</span><span class="chip">あとで見直す</span><span class="chip">要確認</span></div>
+</div></div>
+
+<div class="wrap">
+  <section>
+    <h2>こんな状態になっていませんか</h2>
+    <div class="card">
+      ・格安SIM、ふるさと納税、NISA、ポイント…やった方がいい事が多すぎて、結局どれも動けていない<br>
+      ・調べるほど選択肢が増えて、逆に決められない<br>
+      ・「自分の場合はどうすべきか」を毎回ゼロから比較するのに疲れた
+    </div>
+  </section>
+
+  <section>
+    <h2>Mioがすること</h2>
+    <p>あなたのお金（約15項目）をお聞きし、通信・カード・サブスク・保険・税・ポイントを<b>同じ基準で横断チェック</b>。その中から<b>「今月やるべきこと」だけ</b>を、優先順位つきで決めてお渡しします。</p>
+    <img src="img/before-after.png" alt="情報だらけの頭の中を、Mioが今月やる3つに絞る" style="width:100%;border-radius:14px;margin-top:14px;border:1px solid #e4e9ef">
+    <div class="states" style="margin-top:14px">
+      <div class="st now"><div class="b">今やる</div><p>年間いくら変わるか・期限・なぜ今・次の1手まで。</p></div>
+      <div class="st keep"><div class="b">今は動かない</div><p>「その乗り換えは損」等、動かない方が得も断言。</p></div>
+      <div class="st watch"><div class="b">あとで見直す</div><p>旅行前など、再判定するタイミングを提示。</p></div>
+      <div class="st info"><div class="b">要確認</div><p>あと何を教えてもらえば決まるかまで提示。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>なぜ、検索やChatGPTでなくMioか</h2>
+    <div class="cmp">
+      <div class="col other"><h3>汎用AI・検索</h3><ul>
+        <li>その都度、状況説明と比較・判断が要る</li>
+        <li>頼めば答えるが、毎回ゼロから相談</li>
+        <li>領域ごとにバラバラに調べがち</li>
+      </ul></div>
+      <div class="col mio"><h3>Mio</h3><ul>
+        <li>条件と固定ルールで、同じ基準から判断</li>
+        <li>今やる/やらない/見直す/要確認に振り分け</li>
+        <li>やらないことも決めて、迷いを消す</li>
+      </ul></div>
+    </div>
+    <p style="margin-top:12px;font-size:14.5px;color:#5b6875">Mioは保険・金融商品を売って手数料を得ません（＝中立）。だから「動かない方が得」も正直に言えます。すべての金額に、入力値かMioの明示ルールという根拠があります。</p>
+  </section>
+
+  <section>
+    <h2>まずは無料で「お金の見落とし」セルフ診断</h2>
+    <p>下の10項目をチェック。<b>7個未満なら、見落としがあるサイン</b>です。保存して使ってください。</p>
+    <img src="img/selfcheck.png" alt="お金の見落としセルフ診断 10チェック" style="width:100%;max-width:520px;display:block;margin:14px auto 0;border-radius:14px;border:1px solid #e4e9ef">
+  </section>
+
+  <section>
+    <div class="cta">
+      <div class="big">気になった項目、Mioが全部見て「今月やる3つ」を決めます</div>
+      <div class="note">忖度なし・売りつけなし。あなたの条件で、今やること・やらないことを優先順位つきで。</div>
+      <a href="#apply" id="apply">本格診断を申し込む（近日提供）</a>
+      <div class="note" style="margin-top:14px">本格診断「今月やる3つ」は近日提供。公開までお待ちください。</div>
+    </div>
+  </section>
+
+  <div class="foot">
+    ※本サービスは一般的な情報提供・学習支援です。特定商品の勧誘や個別の投資／保険助言ではありません。最終的な判断はご自身の責任でお願いします。金額は目安で、最新条件は各社公式でご確認ください。<br>
+    © AIガチ検証室／Mio（Honey bee Queen株式会社）
+  </div>
+</div>
+</body>
+</html>
