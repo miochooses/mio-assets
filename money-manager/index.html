@@ -90,86 +90,17 @@ section{padding:34px 0}
 .foot{color:#8a97a5;font-size:11.5px;line-height:1.7;padding:24px 0 40px}
 .foot b{color:#5b6875}
 @media(min-width:600px){ .hlead{font-size:17px} }
-
-/* ===== PREMIUM LAYER (2026 upgrade: motion / depth / desktop / finish) ===== */
-body{background:
-  radial-gradient(900px 520px at 100% -5%,rgba(18,184,102,.07),transparent 60%),
-  radial-gradient(760px 520px at -10% 26%,rgba(88,166,255,.05),transparent 55%),
-  linear-gradient(180deg,#eef2f6,#f5f7f9 40%)}
-/* film grain for material depth */
-.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px}
-/* hero: living ambient glow + grain + soft top light */
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(560px 420px at 18% 118%,rgba(74,222,128,.20),transparent 62%);
-  animation:heroGlow 9s ease-in-out infinite alternate}
-@keyframes heroGlow{0%{opacity:.55;transform:translateY(6px)}100%{opacity:1;transform:translateY(-14px)}}
-.hero .wrap{position:relative;z-index:1}
-/* eyebrow -> pill */
-.eyebrow{display:inline-block;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.28);
-  color:#9dedb1;padding:6px 13px;border-radius:999px;font-size:12.5px;margin-top:22px;backdrop-filter:blur(6px)}
-/* card depth + hover lift */
-.pain,.step,.st,.vs .col,.proof img{
-  box-shadow:0 12px 34px rgba(16,32,44,.10),0 2px 6px rgba(16,32,44,.05);
-  transition:transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .55s cubic-bezier(.2,.8,.2,1)}
-.step:hover,.st:hover,.vs .mio:hover{transform:translateY(-5px);box-shadow:0 22px 46px rgba(16,32,44,.16)}
-.vs .mio{box-shadow:0 14px 40px rgba(18,184,102,.18)}
-.miorow{backdrop-filter:blur(10px)}
-/* CTA: glow pulse + press feedback */
-.cta:not(.sub2){position:relative;animation:ctaPulse 2.8s ease-in-out infinite;transition:transform .25s ease}
-.cta:not(.sub2):hover{transform:translateY(-2px) scale(1.012)}
-.cta:not(.sub2):active{transform:translateY(0) scale(.99)}
-@keyframes ctaPulse{0%,100%{box-shadow:0 8px 24px rgba(18,184,102,.38)}50%{box-shadow:0 12px 40px rgba(18,184,102,.62),0 0 0 5px rgba(18,184,102,.12)}}
-/* scroll reveal (fail-safe: only hides after JS marks .rv) */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
-.rv.in{opacity:1;transform:none}
-/* count-up number pop */
-.bignum .x{display:inline-block}
-/* hero cinematic key visual */
-.herohero{position:relative;margin:24px auto 4px;max-width:400px;border-radius:24px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 70px rgba(74,222,128,.16);
-  animation:heroFloat 6.5s ease-in-out infinite alternate}
-.herohero img{width:100%;display:block}
-.herohero::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:24px;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  background:radial-gradient(130% 55% at 50% 0%,rgba(74,222,128,.12),transparent 60%),
-            linear-gradient(180deg,transparent 70%,rgba(11,18,32,.35))}
-@keyframes heroFloat{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
-/* ===== DESKTOP (make it not a lonely 560 column) ===== */
-@media(min-width:860px){
-  .wrap{max-width:1040px;padding:0 44px}
-  /* hero: centered, intentional column (not a lonely left block) */
-  .hero .wrap{max-width:760px;padding:48px 44px 64px;text-align:center}
-  .hero .top{justify-content:center}
-  .hero .miorow{max-width:520px;margin-left:auto;margin-right:auto;text-align:left}
-  .hero .chips{max-width:520px;margin-left:auto;margin-right:auto}
-  .bignum{font-size:60px}.h1{font-size:46px;margin-top:16px}.hlead{font-size:19px;max-width:none;margin-left:auto;margin-right:auto}
-  section{padding:62px 0}
-  .k{font-size:34px}.sub{font-size:16px;margin-bottom:22px}
-  .steps{flex-direction:row}.step{flex:1;flex-direction:column;align-items:flex-start}
-  .step .n{margin-bottom:6px}
-  .states{grid-template-columns:repeat(4,1fr)}
-  .vs{max-width:760px;margin:0 auto}
-  .pain{font-size:18px}
-  .chips{grid-template-columns:repeat(4,1fr)}
-  .cta{max-width:420px;margin-left:auto;margin-right:auto}
-  .ctablock{max-width:720px;margin:0 auto;padding:40px 32px}
-  .proof img{max-width:760px;margin:0 auto}
-}
 </style>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
 
 <!-- HERO -->
 <div class="hero"><div class="wrap">
   <div class="top"><img src="/mio-avatar-face-512.png" alt="Mio">AIガチ検証室 <span class="g">／Mio</span></div>
   <div class="eyebrow">お金のこと、調べすぎて動けていない人へ</div>
-  <div class="bignum"><span class="nb"><span data-count="100">100</span><small>個</small>見て、</span> <span class="nb"><span class="x" data-count="97">97</span><small>個</small>は「やらない」。</span></div>
-  <div class="h1"><span class="nb">今月やるのは<span class="g" data-count="3">3</span>つだけ。</span> <span class="nb">Mioが決めます。</span></div>
+  <div class="bignum"><span class="nb">100<small>個</small>見て、</span> <span class="nb"><span class="x">97</span><small>個</small>は「やらない」。</span></div>
+  <div class="h1"><span class="nb">今月やるのは<span class="g">3つ</span>だけ。</span> <span class="nb">Mioが決めます。</span></div>
   <p class="hlead">忖度ゼロのAI Mioが、あなたのお金を横断採点。情報を増やすのではなく、<b>選択肢を減らす</b>から、もう迷わない。</p>
-  <div class="herohero"><img src="img/hero-mio.jpg" alt="Mio｜情報の荒波を越えて、今月やる3つへ" width="900" height="956"></div>
   <div class="miorow">
     <img src="/mio-avatar-face-512.png" alt="Mio">
     <div class="say">「あなたのお金、私が全部見ておく。<br>今月やるのは、<b>この3つ</b>です。」</div>
@@ -268,45 +199,5 @@ body{background:
   </section>
 
 </div>
-
-<script>
-(function(){
-  var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // ---- scroll reveal (fail-safe: only applied by JS) ----
-  var targets = [].slice.call(document.querySelectorAll('section, .pain, .step, .st, .vs .col, .tagline, .proof img, .ctablock'));
-  if(!prefersReduce && 'IntersectionObserver' in window){
-    targets.forEach(function(el){ el.classList.add('rv'); });
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var el=e.target;
-          var sibs=[].slice.call((el.parentNode||document).children).filter(function(c){return c.classList&&c.classList.contains('rv');});
-          var idx=sibs.indexOf(el);
-          el.style.transitionDelay=(Math.max(0,idx)*70)+'ms';
-          el.classList.add('in');
-          io.unobserve(el);
-        }
-      });
-    }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'});
-    targets.forEach(function(el){ io.observe(el); });
-  }
-  // ---- count-up ----
-  function countUp(el){
-    var to=parseInt(el.getAttribute('data-count'),10); if(isNaN(to))return;
-    var dur=900, st=null;
-    function step(ts){ if(!st)st=ts; var p=Math.min(1,(ts-st)/dur);
-      var eased=1-Math.pow(1-p,3);
-      el.textContent=Math.round(to*eased);
-      if(p<1)requestAnimationFrame(step); else el.textContent=to; }
-    requestAnimationFrame(step);
-  }
-  var nums=[].slice.call(document.querySelectorAll('[data-count]'));
-  if(prefersReduce){ nums.forEach(function(el){ el.textContent=el.getAttribute('data-count'); }); }
-  else if('IntersectionObserver' in window){
-    var io2=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); io2.unobserve(e.target);} }); },{threshold:1});
-    nums.forEach(function(el){ el.textContent='0'; io2.observe(el); });
-  }
-})();
-</script>
 </body>
 </html>
