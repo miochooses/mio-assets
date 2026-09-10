@@ -28,6 +28,9 @@ img{max-width:100%;display:block}
 .eyebrow{color:#9fb3c8;font-weight:700;font-size:14px;margin-top:26px}
 /* 改行制御: フレーズ塊(.nb)は語中で折れない。見出しはCJK語中改行を避ける */
 .nb{white-space:nowrap}
+/* .jp = 短い/目立つ文字列用。keep-allで「見て|おく」等の語中改行を止め、句読点でだけ折る。
+   万一収まらない時だけanywhereで折り返す=はみ出さない。長い本文には付けない。 */
+.jp{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
 .bignum{font-weight:900;line-height:1.06;letter-spacing:-.02em;margin:6px 0 2px;font-size:clamp(30px,8.4vw,48px)}
 .bignum .x{color:#ff6b5e}
 .bignum small{font-size:.5em;font-weight:800;color:#cfe0ef;vertical-align:.08em}
@@ -36,16 +39,16 @@ img{max-width:100%;display:block}
 .hlead{color:#dbe6f0;font-size:16px;margin:14px 0 0;max-width:440px}
 .miorow{display:flex;align-items:center;gap:14px;margin-top:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 14px}
 .miorow img{width:64px;height:64px;border-radius:14px;flex:none}
-.miorow .say{font-size:15px;font-weight:700;color:#eaf3ee;line-height:1.5}
+.miorow .say{font-size:15px;font-weight:700;color:#eaf3ee;line-height:1.5;word-break:keep-all;overflow-wrap:anywhere}
 .miorow .say b{color:var(--green2)}
-.cta{display:block;text-align:center;background:var(--green);color:#03130a;font-weight:900;font-size:19px;text-decoration:none;padding:16px 20px;border-radius:16px;margin-top:22px;box-shadow:0 8px 24px rgba(18,184,102,.35)}
+.cta{display:block;text-align:center;background:var(--green);color:#03130a;font-weight:900;font-size:19px;text-decoration:none;padding:16px 20px;border-radius:16px;margin-top:22px;box-shadow:0 8px 24px rgba(18,184,102,.35);word-break:keep-all;overflow-wrap:anywhere}
 .cta.sub2{background:transparent;color:#cfe0ef;box-shadow:none;font-size:15px;font-weight:700;padding:12px;margin-top:6px}
 .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
 .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:9px 12px;font-weight:800;font-size:13.5px;color:#cfe3ff;text-align:center}
 .chip.on{background:var(--green);border-color:var(--green);color:#03130a}
 /* ===== SECTIONS ===== */
 section{padding:34px 0}
-.k{font-weight:900;font-size:clamp(21px,6vw,27px);line-height:1.3;color:#0e1a12;margin-bottom:6px}
+.k{font-weight:900;font-size:clamp(21px,6vw,27px);line-height:1.3;color:#0e1a12;margin-bottom:6px;word-break:keep-all;overflow-wrap:anywhere}
 .k .g{color:var(--green)}
 .sub{color:var(--muted);font-size:15px;margin-bottom:16px}
 .pain{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;font-size:16px;line-height:2}
@@ -59,7 +62,7 @@ section{padding:34px 0}
 .vs .orb{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c7ccd2,#8b95a1);margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
 .vs h3{font-size:15px;margin-bottom:8px}.vs .other h3{color:#6b7885}.vs .mio h3{color:var(--green)}
 .vs ul{list-style:none}
-.vs li{font-size:13.5px;line-height:1.5;padding:5px 0 5px 22px;position:relative;color:#2a3646}
+.vs li{font-size:12px;line-height:1.5;padding:5px 0 5px 18px;position:relative;color:#2a3646;word-break:keep-all;overflow-wrap:anywhere}
 .vs .other li{color:#7c8794}
 .vs li::before{position:absolute;left:0;top:4px;font-weight:900}
 .vs .other li::before{content:"×";color:#b0bac3}
@@ -69,11 +72,11 @@ section{padding:34px 0}
 .steps{display:flex;flex-direction:column;gap:12px}
 .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start}
 .step .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--green);color:#03130a;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:17px}
-.step .t{font-weight:800;font-size:16px}.step .d{color:var(--muted);font-size:14.5px;margin-top:2px}
+.step .t{font-weight:800;font-size:16px;word-break:keep-all;overflow-wrap:anywhere}.step .d{color:var(--muted);font-size:14.5px;margin-top:2px}
 /* 4状態 */
 .states{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .st{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
-.st .b{font-weight:900;font-size:15px}.st p{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
+.st .b{font-weight:900;font-size:15px;word-break:keep-all;overflow-wrap:anywhere}.st p{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
 .st.now{border-top:4px solid #d92d20}.st.keep{border-top:4px solid var(--green)}
 .st.watch{border-top:4px solid #c46a10}.st.info{border-top:4px solid #3a6ea5}
 .st.now .b{color:#d92d20}.st.keep .b{color:var(--green)}.st.watch .b{color:#c46a10}.st.info .b{color:#3a6ea5}
@@ -81,9 +84,9 @@ section{padding:34px 0}
 .proof img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 20px rgba(16,32,44,.08)}
 /* CTAブロック */
 .ctablock{background:linear-gradient(180deg,#0e1526,#0b1220);color:#fff;border-radius:20px;padding:26px 20px;text-align:center}
-.ctablock .big{font-size:clamp(20px,6vw,25px);font-weight:900;line-height:1.35}
+.ctablock .big{font-size:clamp(20px,6vw,25px);font-weight:900;line-height:1.35;word-break:keep-all;overflow-wrap:anywhere}
 .ctablock .note{color:#9fb3c8;font-size:14px;margin-top:10px}
-.tagline{background:var(--green);color:#03130a;border-radius:16px;padding:18px;text-align:center;font-weight:900;font-size:clamp(16px,4.6vw,20px);line-height:1.5;margin-top:14px}
+.tagline{background:var(--green);color:#03130a;border-radius:16px;padding:18px;text-align:center;font-weight:900;font-size:clamp(16px,4.6vw,20px);line-height:1.5;margin-top:14px;word-break:keep-all;overflow-wrap:anywhere}
 .foot{color:#8a97a5;font-size:11.5px;line-height:1.7;padding:24px 0 40px}
 .foot b{color:#5b6875}
 @media(min-width:600px){ .hlead{font-size:17px} }
@@ -144,7 +147,7 @@ section{padding:34px 0}
           <li>条件を覚えて採点</li>
           <li>選択肢を減らす</li>
           <li>今月やる3つに絞る</li>
-          <li>やらない事も決める</li>
+          <li>やめる事も決める</li>
         </ul>
       </div>
       <div class="vsbadge">VS</div>
