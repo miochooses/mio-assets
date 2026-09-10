@@ -13,7 +13,7 @@
 :root{ --bg:#0b1220; --ink:#0e1a12; --green:#12b866; --green2:#4ade80; --card:#ffffff; --line:#e6ebef; --muted:#5b6875; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;color:#16202c;background:#f5f7f9;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;color:#16202c;background:#f5f7f9;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all;line-break:strict;overflow-wrap:normal}
 .wrap{max-width:560px;margin:0 auto;padding:0 18px}
 img{max-width:100%;display:block}
 .accent{color:var(--green)}
@@ -26,7 +26,7 @@ img{max-width:100%;display:block}
 .eyebrow{color:#9fb3c8;font-weight:700;font-size:14px;margin-top:26px}
 /* 改行制御: フレーズ塊(.nb)は語中で折れない。見出しはCJK語中改行を避ける */
 .nb{white-space:nowrap}
-.bignum,.h1,.k,.tagline,.ctablock .big{word-break:keep-all;overflow-wrap:anywhere}
+.bignum,.h1,.k,.tagline,.ctablock .big{overflow-wrap:normal}
 .bignum{font-weight:900;line-height:1.06;letter-spacing:-.02em;margin:6px 0 2px;font-size:clamp(30px,8.4vw,48px)}
 .bignum .x{color:#ff6b5e}
 .bignum small{font-size:.5em;font-weight:800;color:#cfe0ef;vertical-align:.08em}
@@ -123,27 +123,27 @@ section{padding:34px 0}
 
   <!-- なぜMio -->
   <section id="why">
-    <div class="k">なぜ、検索やChatGPTでなく<span class="g">Mio</span>？</div>
+    <div class="k">なぜ検索や<span class="nb">ChatGPT</span>でなく<span class="g nb">Mio</span>？</div>
     <div class="sub">同じ「お金の相談」でも、役割が違います。</div>
     <div class="vs">
       <div class="col other">
         <div class="orb">🤖</div>
-        <h3>ChatGPT等の汎用AI</h3>
+        <h3><span class="nb">汎用AI</span><br>（ChatGPT等）</h3>
         <ul>
-          <li>毎回ゼロから状況を説明</li>
-          <li>選択肢を"増やす"</li>
-          <li>比較・判断はあなたの仕事</li>
-          <li>領域ごとにバラバラ</li>
+          <li>毎回ゼロから説明</li>
+          <li>選択肢が増える</li>
+          <li>判断は自分まかせ</li>
+          <li>領域がバラバラ</li>
         </ul>
       </div>
       <div class="col mio">
         <img class="face" src="/mio-avatar-face-512.png" alt="Mio">
-        <h3>Mio</h3>
+        <h3><span class="nb">Mio</span></h3>
         <ul>
-          <li>あなたの条件を覚えて横断採点</li>
-          <li>選択肢を"減らす"</li>
-          <li>今月やる3つまで決める</li>
-          <li>やらない事も決めてくれる</li>
+          <li>条件を覚えて採点</li>
+          <li>選択肢を減らす</li>
+          <li>今月やる3つに絞る</li>
+          <li>やらない事も決める</li>
         </ul>
       </div>
       <div class="vsbadge">VS</div>
