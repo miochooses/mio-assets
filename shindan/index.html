@@ -1,0 +1,138 @@
+<!doctype html><html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>お金の"損"総合診断ツール（保存版）｜AIガチ検証室 ／Mio</title>
+<style>
+ :root{--bg:#0b0f14;--card:#141d28;--tx:#e9eef3;--mut:#9fb3c8;--grn:#39d353;--red:#ff6b6b;--org:#ffb43e;--line:#ffffff1a;--blue:#4aa3ff}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,'Segoe UI','Hiragino Sans','Yu Gothic UI',sans-serif;line-height:1.7}
+ .wrap{max-width:760px;margin:0 auto;padding:22px 16px 70px}
+ .badge{color:var(--grn);font-weight:800;font-size:13px;letter-spacing:.04em}
+ h1{font-size:25px;font-weight:900;margin:6px 0 4px}
+ .sub{color:var(--mut);font-size:14px}
+ .priv{font-size:12px;color:var(--mut);background:#0d2a17;border:1px solid #1f7a3f55;border-radius:9px;padding:8px 12px;margin:12px 0}
+ .sec{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 16px 6px;margin:14px 0}
+ .sec h2{font-size:17px;margin:0 0 4px;font-weight:800}
+ .sec .q{font-size:13px;color:var(--mut);margin-bottom:10px}
+ label{display:block;font-size:14px;margin:10px 0 4px;font-weight:700}
+ input,select{width:100%;padding:11px 12px;border-radius:9px;border:1px solid #33475b;background:#0a0f16;color:var(--tx);font-size:16px;font-family:inherit}
+ .row{display:flex;gap:10px}.row>div{flex:1}
+ .btn{display:block;width:100%;margin:22px 0 10px;padding:16px;border:0;border-radius:12px;background:var(--grn);color:#062610;font-size:18px;font-weight:900;cursor:pointer}
+ .out{display:none;margin-top:18px}
+ .total{background:linear-gradient(135deg,#1a2a1f,#12202a);border:1px solid #2f6b45;border-radius:14px;padding:20px;text-align:center}
+ .total .n{font-size:46px;font-weight:900;color:var(--grn);line-height:1.1}
+ .total .lb{font-size:14px;color:var(--mut)}
+ .item{border-left:4px solid var(--line);padding:8px 0 8px 12px;margin:10px 0}
+ .item.hi{border-color:var(--red)}.item.mid{border-color:var(--org)}.item.ok{border-color:var(--grn)}
+ .item b{font-size:15px}.item .amt{font-weight:900}.item .amt.r{color:var(--red)}.item .amt.g{color:var(--grn)}
+ .item .act{font-size:13px;color:var(--mut)}
+ .foot{font-size:11px;color:var(--mut);margin-top:22px;line-height:1.6}
+ .noprint{}@media print{.noprint{display:none}body{background:#fff;color:#000}.sec,.total,.item{background:#fff}}
+ a{color:var(--blue)}
+</style></head><body>
+<div class="wrap">
+ <div class="badge">AIガチ検証室 ／Mio ｜ 忖度ゼロで、数字だけ</div>
+ <h1>お金の"損"総合診断ツール</h1>
+ <div class="sub">あなたの数字を入れるだけ。保険・通信・年金・税の「今いくら損しているか」を円で採点します。</div>
+ <div class="priv">🔒 <b>あなたの入力はこの端末の中だけで計算</b>されます（どこにも送信されません／オフラインでも動作）。安心して実額を入れてください。</div>
+
+ <div class="sec">
+  <h2>① スマホ代（通信）</h2><div class="q">大手→格安SIMで、使わない大容量分が損に。</div>
+  <label>今のスマホ月額（円）</label><input id="sim_now" type="number" inputmode="numeric" placeholder="例: 8000">
+  <label>月のデータ使用量</label>
+  <select id="sim_gb"><option value="low">20GB以下</option><option value="high">20GB超・大容量必須</option></select>
+  <label>家族割・セット割で強く縛られている？</label>
+  <select id="sim_lock"><option value="no">いいえ</option><option value="yes">はい（家族全員大手で割引中 等）</option></select>
+ </div>
+
+ <div class="sec">
+  <h2>② 医療保険</h2><div class="q">高額療養費で自己負担は月約8万円で頭打ち。会社員＋貯蓄ありなら過剰かも。</div>
+  <label>今の医療保険の月額（円）</label><input id="ins_now" type="number" inputmode="numeric" placeholder="例: 4000">
+  <div class="row"><div>
+   <label>雇用形態</label><select id="ins_emp"><option value="emp">会社員（傷病手当金あり）</option><option value="self">自営・フリー（なし）</option></select>
+  </div><div>
+   <label>当面の医療費を払える貯蓄</label><select id="ins_sav"><option value="yes">ある（50万円以上目安）</option><option value="no">薄い</option></select>
+  </div></div>
+ </div>
+
+ <div class="sec">
+  <h2>③ 老後の積立（個人年金 vs iDeCo/NISA）</h2><div class="q">同じ積立でも節税は桁違い。順番＝NISA→iDeCo→保険。</div>
+  <label>個人年金保険に毎月いくら？（円・入っていなければ0）</label><input id="pen_now" type="number" inputmode="numeric" placeholder="例: 15000">
+  <label>NISA / iDeCo をやっている？</label>
+  <select id="pen_nisa"><option value="no">まだ（個人年金だけ / 何もしていない）</option><option value="yes">やっている</option></select>
+  <label>あなたの所得税率</label>
+  <select id="pen_tax"><option value="0.05">5%（課税所得〜195万）</option><option value="0.1" selected>10%（〜330万）</option><option value="0.2">20%（〜695万）</option><option value="0.23">23%（〜900万）</option></select>
+ </div>
+
+ <div class="sec">
+  <h2>④ 副業の住民税</h2><div class="q">20万円ルールは所得税だけ。住民税は別途申告が必要。</div>
+  <label>副業の「所得（収入−経費）」が年20万円以下でも、住民税の申告をしていますか？（副業なしは「該当なし」）</label>
+  <select id="side"><option value="na">副業なし・該当なし</option><option value="ok">申告している / 確定申告する</option><option value="ng">していない</option></select>
+ </div>
+
+ <button class="btn noprint" onclick="calc()">▶ 損を採点する</button>
+
+ <div class="out" id="out">
+  <div class="total"><div class="lb">あなたが今、年間で取り戻せる可能性のある額（概算）</div><div class="n" id="totaln">¥0</div></div>
+  <div id="items"></div>
+  <button class="btn noprint" onclick="window.print()" style="background:#2a3a4a;color:#fff">🖨 この診断結果を保存／印刷</button>
+  <div class="noprint" style="margin-top:16px;background:#12202a;border:1px solid #2f6b45;border-radius:12px;padding:16px">
+   <div style="font-weight:900;font-size:16px;color:var(--grn)">この無料診断は"入口"です</div>
+   <p style="font-size:14px;color:var(--mut);margin:8px 0 0">手数料で生きるFPには頼めない<b style="color:var(--tx)">中立の"深い"診断</b>を近日 有料で。とくに<b style="color:var(--tx)">高額・一回きりの決断</b>（退職金の受け取り方・住宅ローン変動/固定・iDeCo出口）は、間違えると数十万損。Mioは何も売りつけないから<b style="color:var(--tx)">"買うな・やめろ"まで言えます</b>。<br>あなたの数字を横断で見て、"自分で選べる観点"ごと渡します。</p>
+  </div>
+ </div>
+
+ <div class="foot">
+  ※本ツールは公開情報にもとづく一般的な概算で、個別の税務・保険・投資助言ではありません。金額はプラン・所得・時期・商品で変わります。最終判断はご自身で、必要に応じて公式・専門家にご確認ください。採点は広告の有無と無関係です。<br>
+  © AIガチ検証室 ／Mio（Honey bee Queen株式会社）｜ 最新の詳しい採点は <a href="https://miochooses.com/saiten/">miochooses.com</a>
+ </div>
+</div>
+<script>
+const yen=n=>'¥'+Math.round(n).toLocaleString('ja-JP');
+function v(id){return document.getElementById(id).value}
+function num(id){const x=parseFloat(v(id));return isNaN(x)?0:x}
+function calc(){
+ let items=[],total=0;
+ // ① 通信
+ const simNow=num('sim_now');
+ if(simNow>0){
+  if(v('sim_gb')==='low' && v('sim_lock')==='no'){
+   const save=Math.max(0,(simNow-2500))*12;
+   if(save>0){total+=save;items.push(['hi','① スマホ代','r',save,'月20GB以下×家族割なし＝格安SIM(月2,500円前後)の勝ち。年の差額＝(今−乗換後)×12。']);}
+   else items.push(['ok','① スマホ代','g',0,'既に十分安い水準。乗り換えメリットは小さめ。']);
+  } else items.push(['ok','① スマホ代','g',0,'大容量必須 or 家族割中なら大手が正解のことも。無理な乗換は不要。']);
+ }
+ // ② 医療保険
+ const insNow=num('ins_now');
+ if(insNow>0){
+  if(v('ins_emp')==='emp' && v('ins_sav')==='yes'){
+   const save=Math.round(insNow*12*0.5);
+   total+=save;items.push(['hi','② 医療保険','r',save,'会社員＋貯蓄あり＝高額療養費(月約8万上限)＋傷病手当金で守られ、必要度は低め。保険料の見直し余地。']);
+  } else items.push(['mid','② 医療保険','g',0,'貯蓄が薄い/自営(傷病手当金なし)なら最小限の保障に価値。"不安"でなく差額で判断を。']);
+ }
+ // ③ 老後積立
+ const penNow=num('pen_now');
+ if(penNow>0 && v('pen_nisa')==='no'){
+  const annual=penNow*12, rate=parseFloat(v('pen_tax'));
+  const idecoSave=Math.round(annual*(rate+0.1));            // iDeCoなら全額所得控除
+  const penSave=Math.round(Math.min(annual,40000)*rate);    // 個人年金控除は上限4万
+  const diff=Math.max(0,idecoSave-penSave);
+  total+=diff;items.push(['hi','③ 老後の積立','r',diff,'同額をiDeCoに回すと節税が約'+yen(idecoSave)+'/年(個人年金は約'+yen(penSave)+')。差額＝'+yen(diff)+'/年。順番はNISA→iDeCo→保険。']);
+ } else if(penNow>0){
+  items.push(['ok','③ 老後の積立','g',0,'NISA/iDeCoを併用済み。順番(流動性→節税→保険)を意識すれば概ねOK。']);
+ }
+ // ④ 副業住民税
+ if(v('side')==='ng'){
+  items.push(['hi','④ 副業の住民税','r',0,'⚠️金額でなくリスク。20万円ルールは所得税だけ。住民税は別途申告が必要＝放置は追徴リスク。確定申告 or 住民税申告を。']);
+ } else if(v('side')==='ok'){
+  items.push(['ok','④ 副業の住民税','g',0,'申告OK。問題なし。']);
+ }
+ if(items.length===0){items.push(['ok','入力なし','g',0,'各項目に数字を入れると採点できます。']);}
+ // sort: hi first
+ const ord={hi:0,mid:1,ok:2};items.sort((a,b)=>ord[a[0]]-ord[b[0]]);
+ document.getElementById('totaln').textContent=yen(total)+(total>0?'／年':'');
+ document.getElementById('items').innerHTML=items.map(it=>
+  '<div class="item '+it[0]+'"><b>'+it[1]+'</b> '+(it[3]>0?'<span class="amt '+it[2]+'">'+(it[2]==='r'?'−':'')+yen(it[3])+'/年</span>':'')+'<div class="act">'+it[4]+'</div></div>').join('');
+ document.getElementById('out').style.display='block';
+ document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+</script></body></html>
