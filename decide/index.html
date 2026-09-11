@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>迷ってる二択、Mioが1つに絞ります｜忖度ゼロのお金の判定</title>
+<meta name="description" content="スマホで数タップ。カード・格安SIM・サブスクの「やる/やめる」を、忖度ゼロのMioが1つに絞ります。長い入力なし・登録なし・端末内で完結。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/decide/">
+<!--mio-og-->
+<meta property="og:title" content="迷ってる二択、Mioが1つに絞ります｜忖度ゼロのお金の判定">
+<meta property="og:description" content="スマホで数タップ。長い説明なしで、あなたの「やる/やめる」を1つに絞ります。">
+<meta property="og:image" content="https://miochooses.com/mio-og-default.png">
+<meta property="og:url" content="https://miochooses.com/decide/">
+<meta name="twitter:card" content="summary_large_image">
+<!--/mio-og-->
+<style>
+  :root{
+    --bg:#0f1720;--card:#161f2b;--card2:#1b2735;--line:#ffffff14;--tx:#e9eef3;--mut:#9fb3c8;--faint:#6e7b8a;
+    --g:#2ea043;--gl:#39d353;--b:#58a6ff;--o:#f0883e;--r:#f0645a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{overscroll-behavior-y:none;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;
+    padding:0 16px calc(40px + env(safe-area-inset-bottom));overflow-wrap:anywhere;word-break:normal;}
+  .wrap{max-width:520px;margin:0 auto;}
+  .top{padding:16px 0 4px;display:flex;align-items:center;gap:9px;}
+  .top a{display:flex;align-items:center;gap:8px;color:var(--tx);text-decoration:none;font-weight:800;font-size:14px;}
+  .top .en{color:var(--gl);}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;color:var(--mut);letter-spacing:.04em;margin-top:14px;}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--g);}
+
+  /* 画面遷移 */
+  .screen{display:none;animation:fade .28s ease;}
+  .screen.on{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* HERO */
+  .hero{text-align:center;padding:8px 0 4px;}
+  .hero .face{width:132px;height:132px;object-fit:contain;margin:6px auto 2px;display:block;filter:drop-shadow(0 6px 18px #0008);}
+  h1{font-size:23px;font-weight:900;line-height:1.4;margin-top:4px;}
+  h1 .hl{color:var(--gl);}
+  .sub{margin-top:10px;font-size:14px;color:var(--mut);}
+  .priv{margin-top:10px;font-size:12px;color:var(--g);font-weight:700;}
+
+  .entries{margin-top:20px;display:flex;flex-direction:column;gap:11px;}
+  .entry{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 16px;cursor:pointer;text-align:left;color:var(--tx);transition:border-color .15s,transform .05s;}
+  .entry:active{transform:scale(.985);}
+  .entry:hover{border-color:#33475b;}
+  .entry .ico{font-size:24px;flex:0 0 auto;width:30px;text-align:center;}
+  .entry .et{font-size:16px;font-weight:800;}
+  .entry .ed{margin-top:2px;font-size:12px;color:var(--mut);}
+  .arrow{margin-left:auto;color:var(--faint);font-size:18px;}
+
+  .whatis{margin-top:22px;background:#0d151e;border:1px solid var(--line);border-radius:14px;padding:16px 17px;}
+  .whatis h2{font-size:13px;font-weight:800;color:var(--b);}
+  .whatis p{margin-top:7px;font-size:13px;color:#cdd9e4;}
+  .whatis b{color:var(--gl);}
+
+  /* 入力 */
+  .inbox{margin-top:18px;}
+  .inlabel{font-size:15px;font-weight:800;}
+  .inhint{margin-top:4px;font-size:12px;color:var(--faint);}
+  .inrow{margin-top:12px;display:flex;gap:8px;}
+  input[type=text]{flex:1;min-width:0;padding:14px 14px;border-radius:12px;border:1px solid #33475b;background:#010409;color:#e6edf3;font-size:16px;font-family:inherit;}
+  .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{padding:9px 13px;border-radius:999px;border:1px solid #33475b;background:var(--card);color:#cdd9e4;font-size:13px;font-weight:700;cursor:pointer;}
+  .chip:active{transform:scale(.96);}
+
+  /* 質問 */
+  .qhead{margin-top:14px;display:flex;align-items:center;gap:12px;}
+  .qhead .qface{width:64px;height:64px;object-fit:contain;flex:0 0 auto;}
+  .qhead .qtheme{font-size:11px;font-weight:800;color:var(--faint);letter-spacing:.04em;}
+  .dots{margin-top:2px;display:flex;gap:5px;}
+  .dots i{width:7px;height:7px;border-radius:50%;background:#2b3a4b;display:inline-block;}
+  .dots i.on{background:var(--gl);}
+  .qcard{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 18px;position:relative;touch-action:pan-y;}
+  .qcard .qt{font-size:19px;font-weight:900;line-height:1.5;}
+  .qcard .qh{margin-top:8px;font-size:12.5px;color:var(--mut);}
+  .opts{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+  .opt{padding:15px 16px;border-radius:13px;border:1.5px solid #33475b;font-size:16px;font-weight:700;color:#dbe4ee;background:var(--card2);cursor:pointer;display:flex;align-items:center;gap:10px;transition:transform .05s,border-color .12s,background .12s;}
+  .opt:active{transform:scale(.98);}
+  .opt:hover{border-color:#4a6076;}
+  .opt .sw{margin-left:auto;font-size:11px;font-weight:800;color:var(--faint);}
+  .swipehint{margin-top:12px;text-align:center;font-size:11px;color:var(--faint);}
+  .backrow{margin-top:14px;display:flex;justify-content:space-between;align-items:center;}
+  .lnk{background:none;border:none;color:var(--mut);font-size:13px;font-weight:700;cursor:pointer;padding:6px;}
+
+  /* 結果 */
+  .verdict{margin-top:8px;text-align:center;}
+  .verdict .rface{width:150px;height:150px;object-fit:contain;margin:0 auto;display:block;filter:drop-shadow(0 8px 22px #0009);}
+  .vbadge{display:inline-block;margin-top:4px;font-size:15px;font-weight:900;padding:8px 20px;border-radius:999px;letter-spacing:.06em;}
+  .v-GO{background:#123b1f;color:#4ade80;border:1.5px solid #2ea043;}
+  .v-HOLD{background:#3a2f10;color:#fbbf24;border:1.5px solid #b7791f;}
+  .v-NO{background:#3a1717;color:#fca5a5;border:1.5px solid #b91c1c;}
+  .chosen{margin-top:12px;font-size:22px;font-weight:900;text-align:center;}
+  .headline{margin-top:10px;font-size:16px;font-weight:700;color:#e9eef3;text-align:center;background:#0d151e;border:1px solid var(--line);border-radius:14px;padding:15px 16px;}
+  .block{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;}
+  .block .bh{font-size:12px;font-weight:800;color:var(--gl);letter-spacing:.03em;}
+  .block ul{margin:8px 0 0;padding-left:1.1em;}
+  .block li{font-size:14px;color:#d6dee6;margin-top:6px;}
+  .block p{margin-top:7px;font-size:14px;color:#d6dee6;}
+  .block.drop .bh{color:var(--o);}
+  .block.blind{background:linear-gradient(135deg,#132a3a,#0f2230);border-color:#1f4a63;}
+  .block.blind .bh{color:#7fd3ff;}
+  .block.today{background:#123b1f22;border-color:#2ea04366;}
+  .block.today .bh{color:#4ade80;}
+  .trace{margin-top:12px;font-size:11.5px;color:var(--faint);background:#0b1119;border:1px solid var(--line);border-radius:10px;padding:10px 13px;}
+  .caution{margin-top:10px;font-size:11.5px;color:var(--mut);}
+  /* 発見の結果 */
+  .rtype{margin-top:6px;text-align:center;font-size:12px;font-weight:800;color:var(--faint);}
+  .leanbox{margin-top:16px;background:#0d151e;border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:center;}
+  .leanlabel{font-size:12px;font-weight:800;color:var(--mut);}
+  .leanval{margin-top:8px;display:inline-block;font-size:19px;font-weight:900;padding:9px 20px;border-radius:999px;border:1.5px solid #33475b;color:#cdd9e4;background:#131c27;}
+  .leanval.lean-A{border-color:#2ea04366;color:#8fe3a6;}
+  .leanval.lean-B{border-color:#b7791f66;color:#f4d38a;}
+  .leanval.lean-neutral{border-color:#4a6076;color:#9fb3c8;}
+  .leannote{margin-top:10px;font-size:13px;color:#d6dee6;}
+  .leanwarn{margin-top:10px;font-size:11.5px;color:var(--faint);line-height:1.6;}
+  .block.need{background:linear-gradient(135deg,#132a3a,#0f2230);border-color:#1f4a63;}
+  .block.need .bh{color:#7fd3ff;}
+  .paidnote{margin-top:10px;font-size:11.5px;color:#b6d3a8;line-height:1.6;}
+
+  /* 有料CTA / リード */
+  .paid{margin-top:20px;background:linear-gradient(135deg,#1a2f14,#122910);border:1px solid #2ea04366;border-radius:16px;padding:19px 17px;text-align:center;}
+  .paid .ph{font-size:16px;font-weight:900;color:#d7f5c8;}
+  .paid .ps{margin-top:8px;font-size:13px;color:#b6d3a8;}
+  .btn{display:block;width:100%;margin-top:14px;padding:15px;border:0;border-radius:13px;background:var(--g);color:#04120a;font-size:16px;font-weight:900;cursor:pointer;text-decoration:none;text-align:center;}
+  .btn:active{transform:scale(.99);}
+  .btn.sec{background:transparent;border:1.5px solid #33475b;color:#cdd9e4;}
+  .btnrow{margin-top:12px;display:flex;flex-direction:column;gap:10px;}
+
+  .foot{margin-top:26px;text-align:center;font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:18px;}
+  .foot a{color:var(--b);text-decoration:none;}
+  .disc{margin-top:10px;font-size:11px;color:var(--faint);line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/"><img src="/mio-icon-512.png" alt="Mio" width="26" height="26" style="border-radius:7px;">AIガチ検証室<span class="en">／Mio</span></a>
+  </div>
+
+  <!-- ===== 画面: ホーム（発見） ===== -->
+  <section class="screen on" id="s-home">
+    <div class="hero">
+      <img class="face" id="homeFace" src="/decide/mio/normal.png" alt="Mio">
+      <div class="badge"><span class="dot"></span> まず“迷いの正体”を見つける（無料）</div>
+      <h1>そのお金の迷い、<br><span class="hl">正体を数タップで。</span></h1>
+      <div class="sub">何に引っかかっているか、うまく言葉にできなくてOK。Mioがあなたの<b>「題材」と「判断軸」</b>を見つけ、今の<b>傾き</b>まで示します。<b>やる／やめるの言い切りは有料判定</b>で。</div>
+      <div class="priv">🔒 登録なし・端末内で処理・送信しません</div>
+    </div>
+
+    <div class="entries">
+      <button class="entry" data-entry="name">
+        <span class="ico">💬</span>
+        <span><span class="et">ひとことで伝える</span><span class="ed">「アメックス作るか」など短い言葉から題材を探す</span></span>
+        <span class="arrow">›</span>
+      </button>
+      <button class="entry" data-entry="show">
+        <span class="ico">🔗</span>
+        <span><span class="et">URL・商品名を貼る</span><span class="ed">貼った文字のキーワードから題材を推定（本文・画像の中身は読まない）</span></span>
+        <span class="arrow">›</span>
+      </button>
+      <button class="entry" data-entry="moya">
+        <span class="ico">🌀</span>
+        <span><span class="et">モヤモヤから探す</span><span class="ed">言葉にできない不安をタップ→判断すべき題材を発見</span></span>
+        <span class="arrow">›</span>
+      </button>
+    </div>
+
+    <div class="whatis">
+      <h2>Mioの仕組み（正直に言います）</h2>
+      <p>Mioは、あなたの回答を<b>ブレない独自の判定ロジック</b>で採点します（毎回同じ基準・忖度なし・売りつけなし）。※AIが自由に文章を作って判断しているのではありません。</p>
+      <p style="margin-top:8px;"><b>無料はここまで＝「題材・判断軸・今の傾き」の発見。</b> 最終判定（やる／やめる／今は決めない）や、あなたの数字での言い切り・見落とし・今日の一手は<b>有料判定</b>で出します。</p>
+      <p style="margin-top:8px;">今できるのは<b>カード・格安SIM・サブスクの「やる／やめる」</b>（行動判定型）。<b>AとB（例：ANAかJALか）を比べる比較判定</b>や、URL・画像の中身の読み取りは<b>有料の半手動判定</b>で対応します。</p>
+    </div>
+
+    <div class="foot">
+      <div class="disc">※ 一般的な情報提供・学習支援です。特定商品の投資・保険・税務の個別助言ではありません。最終判断はご自身で。</div>
+    </div>
+  </section>
+
+  <!-- ===== 画面: 入力（名前 / 見せる） ===== -->
+  <section class="screen" id="s-input">
+    <div class="badge"><span class="dot"></span> <span id="inBadge">名前で伝える</span></div>
+    <div class="inbox">
+      <div class="inlabel" id="inLabel"></div>
+      <div class="inhint" id="inHint"></div>
+      <div class="inrow">
+        <input type="text" id="inText" autocomplete="off" enterkeyhint="go" placeholder="">
+        <button class="btn" style="width:auto;margin-top:0;padding:0 18px;" id="inGo">見る</button>
+      </div>
+      <div class="chips" id="inChips"></div>
+    </div>
+    <div class="backrow"><button class="lnk" data-go="home">← 戻る</button></div>
+  </section>
+
+  <!-- ===== 画面: モヤモヤカード ===== -->
+  <section class="screen" id="s-moya">
+    <div class="badge"><span class="dot"></span> モヤモヤから探す</div>
+    <div class="qcard" style="margin-top:14px;">
+      <div class="qt">いちばん近いのはどれ？</div>
+      <div class="qh">タップするだけ。今のモヤモヤから、Mioが判断すべき題材を見つけます。</div>
+      <div class="opts" id="moyaOpts"></div>
+    </div>
+    <div class="backrow"><button class="lnk" data-go="home">← 戻る</button></div>
+  </section>
+
+  <!-- ===== 画面: 質問（適応型） ===== -->
+  <section class="screen" id="s-quiz">
+    <div class="qhead">
+      <img class="qface" id="qFace" src="/decide/mio/thinking.png" alt="">
+      <div>
+        <div class="qtheme" id="qTheme"></div>
+        <div class="dots" id="qDots"></div>
+      </div>
+    </div>
+    <div class="qcard" id="qCard">
+      <div class="qt" id="qText"></div>
+      <div class="qh" id="qHint"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="swipehint" id="qSwipe"></div>
+    </div>
+    <div class="backrow">
+      <button class="lnk" id="qBack">← 前へ</button>
+      <button class="lnk" data-go="home">最初から</button>
+    </div>
+  </section>
+
+  <!-- ===== 画面: 発見の結果（無料＝題材/判断軸/傾き/不足情報。最終判定は出さない） ===== -->
+  <section class="screen" id="s-result">
+    <div class="verdict">
+      <img class="rface" id="rFace" src="/decide/mio/thinking.png" alt="Mio">
+      <div class="badge" style="justify-content:center;"><span class="dot"></span> Mioが見つけた“あなたの迷いの正体”</div>
+    </div>
+    <div class="chosen" id="rTopic"></div>
+    <div class="rtype" id="rType"></div>
+
+    <div class="leanbox">
+      <div class="leanlabel">いまの傾き（まだ確定ではありません）</div>
+      <div class="leanval" id="rLean"></div>
+      <div class="leannote" id="rLeanNote"></div>
+      <div class="leanwarn">※ これは大まかな回答による“傾き”です。実際の数字で覆ることがあります。<b>言い切りではありません。</b></div>
+    </div>
+
+    <div class="block">
+      <div class="bh">あなたが引っかかっている「判断軸」</div>
+      <ul id="rAxes"></ul>
+    </div>
+    <div class="block need">
+      <div class="bh">最終判定に必要な、あなたの情報</div>
+      <ul id="rNeeded"></ul>
+    </div>
+
+    <!-- 有料への接続（言い切りは有料） -->
+    <div class="paid">
+      <div class="ph">この“傾き”を、あなたの数字で「言い切り」に変えます</div>
+      <div class="ps">Mioがあなたの実際の金額で <b>GO／やめとけ／今は決めない</b> を1つに確定。<b>選ばなかった方を捨てる理由・見落とし・今日やる一手</b>まで、PDFでお渡しします（ココナラ／半手動）。</div>
+      <a class="btn" id="paidBtn" href="https://coconala.com/services/4395009" target="_blank" rel="noopener">Mioに“言い切り”で判定してもらう →</a>
+      <div class="paidnote">※ 無料版は「題材・判断軸・傾き」まで。<b>最終判定（GO/HOLD/NO）・盲点・今日の一手は有料版</b>で出します。</div>
+    </div>
+    <div class="btnrow">
+      <button class="btn sec" id="againBtn">別のテーマも診てみる</button>
+    </div>
+
+    <div class="foot">
+      <div class="disc">※ 一般的な情報提供・学習支援です。特定商品の投資・保険・税務の個別助言ではありません。金額はあなたの入力値またはMioの明示ルールに基づく概算で、最終判断はご自身で行ってください。</div>
+    </div>
+  </section>
+</div>
+
+<script type="module" src="/decide/app.js"></script>
+</body>
+</html>
