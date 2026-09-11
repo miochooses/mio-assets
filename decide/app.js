@@ -31,10 +31,10 @@ function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
   $(id).classList.add('on');
   window.scrollTo(0, 0);
-  // ファネル各段を別URLへ(Cloudflare Web Analyticsが段ごとのpageviewとして受信＝保存先)。UTMは保持。
+  // ファネル各段を別"パス名"へ(CF Web AnalyticsのrequestPathはパス単位=クエリでは分離不可)。UTMはクエリで保持。
   try {
-    const step = { 's-home': 'home', 's-input': 'input', 's-moya': 'moya', 's-quiz': 'quiz', 's-result': 'result' }[id] || id;
-    history.pushState(null, '', '/decide/?s=' + step + (window.__utm ? '&' + window.__utm : ''));
+    const path = { 's-home': '/decide/', 's-input': '/decide/input', 's-moya': '/decide/moya', 's-quiz': '/decide/quiz', 's-result': '/decide/result' }[id] || '/decide/';
+    history.pushState(null, '', path + (window.__utm ? '?' + window.__utm : ''));
   } catch (e) { }
 }
 
@@ -300,8 +300,8 @@ $('againBtn').addEventListener('click', () => show('s-home'));
 })();
 $('paidBtn').addEventListener('click', () => {
   track('paid_click', { from: tplId });
-  // CTAクリックを別URLのpageviewとしてCloudflare Web Analyticsへ(購入CTAクリック数の保存先)
-  try { history.pushState(null, '', '/decide/?s=cta' + (window.__utm ? '&' + window.__utm : '')); } catch (e) { }
+  // 購入CTAクリックを別"パス名"のpageviewとしてCF Web Analyticsへ(sendBeaconで遷移直前でも欠損しない)。/decide/go-coconala の件数=CTAクリック数。
+  try { history.pushState(null, '', '/decide/go-coconala' + (window.__utm ? '?' + window.__utm : '')); } catch (e) { }
 });
 
 // 初期表示
