@@ -31,6 +31,11 @@ function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
   $(id).classList.add('on');
   window.scrollTo(0, 0);
+  // ファネル各段を別URLへ(Cloudflare Web Analyticsが段ごとのpageviewとして受信＝保存先)。UTMは保持。
+  try {
+    const step = { 's-home': 'home', 's-input': 'input', 's-moya': 'moya', 's-quiz': 'quiz', 's-result': 'result' }[id] || id;
+    history.pushState(null, '', '/decide/?s=' + step + (window.__utm ? '&' + window.__utm : ''));
+  } catch (e) { }
 }
 
 // 例示フレーズ（ゼロ入力でも始められるチップ）
@@ -274,7 +279,30 @@ function renderDiscovery(r) {
   show('s-result');
 }
 $('againBtn').addEventListener('click', () => show('s-home'));
-$('paidBtn').addEventListener('click', () => track('paid_click', { from: tplId }));
+
+// 流入UTM(動画/記事別)を捕捉→保持＆ココナラCTAへ伝播(流入元を識別)
+(function () {
+  const p = new URLSearchParams(location.search);
+  const keep = new URLSearchParams();
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => { if (p.get(k)) keep.set(k, p.get(k)); });
+  window.__utm = keep.toString();
+  const b = $('paidBtn');
+  if (b) {
+    try {
+      const u = new URL(b.href);
+      u.searchParams.set('utm_source', keep.get('utm_source') || 'mio_decide');
+      u.searchParams.set('utm_medium', 'paid_cta');
+      u.searchParams.set('utm_campaign', keep.get('utm_campaign') || 'nitaku');
+      if (keep.get('utm_content')) u.searchParams.set('utm_content', keep.get('utm_content'));
+      b.href = u.toString();
+    } catch (e) { }
+  }
+})();
+$('paidBtn').addEventListener('click', () => {
+  track('paid_click', { from: tplId });
+  // CTAクリックを別URLのpageviewとしてCloudflare Web Analyticsへ(購入CTAクリック数の保存先)
+  try { history.pushState(null, '', '/decide/?s=cta' + (window.__utm ? '&' + window.__utm : '')); } catch (e) { }
+});
 
 // 初期表示
 show('s-home');
