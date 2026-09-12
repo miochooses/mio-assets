@@ -108,7 +108,7 @@ function build(i){
     bottom.appendChild(el('div','free','無料はここまで＝“今の傾き”の発見。'));
     bottom.appendChild(el('div','code','あなたの判定コード: '+rv.code));
     var a=el('a','paid'); a.href='https://coconala.com/services/4395009?utm_source=stories&utm_medium=paid_cta&utm_campaign=card'; a.target='_blank'; a.rel='noopener';
-    a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入し、この判定コード（'+rv.code+'）を最初のメッセージに送るだけ。もう同じ質問は聞きません（必要な場合のみ追加で最大2問）。GO／見送り／今は決めない＋決め手・盲点・今日の一手をお届け。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
+    a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（通常は数時間以内、夜間は最大24時間）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
     a.addEventListener('click',function(){ track('paid_cta'); }); bottom.appendChild(a);
   }
   else { bottom.appendChild(el('div','msg',s.msg)); if(s.sub)bottom.appendChild(el('div','sub',s.sub));
