@@ -305,5 +305,11 @@ $('paidBtn').addEventListener('click', () => {
   try { history.pushState(null, '', '/decide/go-coconala' + (window.__utm ? '?' + window.__utm : '')); } catch (e) { }
 });
 
-// 初期表示
-show('s-home');
+// 初期表示 / 記事からのディープリンク（?t=<template>で該当テンプレの発見を直接開始＝ホーム選択・題材入力の摩擦を除去）
+(function () {
+  try {
+    const want = new URLSearchParams(location.search).get('t');
+    if (want && TEMPLATES[want]) { entryMethod = 'deeplink'; startTemplate(want); return; }
+  } catch (e) { }
+  show('s-home');
+})();
