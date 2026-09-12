@@ -222,7 +222,85 @@ const SUB = {
   },
 };
 
-export const TEMPLATES = { card: CARD, sim: SIM, sub: SUB };
+// -----------------------------------------------------------------------------
+// テンプレ4: 光回線を乗り換えるか（乗り換える vs 今のまま）※行動判定型
+//   記事(hikari-kaisen-norikae / hikari-cashback-wana)からの流入トピックに対応。
+//   税・投資・保険と違い高リスク領域でなく、SIMと同型の固定費最適化=¥1,000二択に適合。
+// -----------------------------------------------------------------------------
+const HIKARI = {
+  id: 'hikari',
+  title: '光回線を乗り換えるか、今のままか',
+  subtitle: '自宅の光回線・ネット料金',
+  choiceA: '乗り換える',
+  choiceB: '今のまま',
+  match: ['光回線', '光コラボ', '光', 'ひかり', 'プロバイダ', 'フレッツ', 'ドコモ光', 'ソフトバンク光', 'auひかり', 'nuro', 'ホームルーター', 'ネット回線', 'hikari'],
+  questions: [
+    { id: 'q_current', prompt: '今の光回線、月いくら払ってる？',
+      hint: 'プロバイダ込み・割引後の実額で。分からなければ「わからない」。',
+      face: FACES.thinking,
+      options: [
+        { value: 'gt6000', label: '6千円くらい〜' },
+        { value: 'mid', label: '4〜6千円' },
+        { value: 'lt4000', label: '〜4千円' },
+        { value: 'unknown', label: 'わからない' },
+      ] },
+    { id: 'q_cashback', prompt: '今の契約、キャッシュバックや割引の適用期間は終わってる？',
+      hint: '割引が切れると相場より高くなりがち。終了後の実額で判断します。',
+      face: FACES.smirk,
+      options: [
+        { value: 'ended', label: '終わった/元々ない', swipe: 'right' },
+        { value: 'active', label: 'まだ割引中', swipe: 'left' },
+        { value: 'unknown', label: 'わからない' },
+      ] },
+    { id: 'q_bundle', prompt: 'スマホとのセット割（自宅ネット×スマホ）を使ってる？',
+      hint: '乗り換えるとこの割引が消えることがある（＝失う額）。',
+      face: FACES.thinking,
+      options: [
+        { value: 'yes', label: '使ってる', swipe: 'left' },
+        { value: 'no', label: '使ってない', swipe: 'right' },
+        { value: 'unknown', label: 'わからない' },
+      ] },
+    { id: 'q_contract', prompt: '更新月・違約金（解約金）は確認した？',
+      hint: '期間中の解約は違約金や工事費の残債が出ることがある。',
+      face: FACES.thinking,
+      options: [
+        { value: 'soon', label: 'もうすぐ更新/縛りなし', swipe: 'right' },
+        { value: 'mid', label: 'まだ期間中', swipe: 'left' },
+        { value: 'unknown', label: 'わからない' },
+      ] },
+    { id: 'q_hassle', prompt: '開通工事・回線切替の手間、どれくらい平気？',
+      hint: '新規回線は工事や事務手数料が発生することがある。',
+      face: FACES.smirk,
+      options: [
+        { value: 'ok', label: '多少なら平気', swipe: 'right' },
+        { value: 'hate', label: '面倒は絶対いや', swipe: 'left' },
+      ] },
+  ],
+  discover: {
+    ask: ['q_current', 'q_cashback'],
+    result(a) {
+      let lean;
+      if (a.q_current === 'unknown' || a.q_current === undefined) lean = { dir: 'neutral', label: 'まだ五分', note: '今の実質月額がわからないと傾きが出せません。' };
+      else if (a.q_cashback === 'unknown' || a.q_cashback === undefined) lean = { dir: 'neutral', label: 'まだ五分', note: '割引・キャッシュバックの適用状況で変わるため、まだ五分。' };
+      else if (a.q_current === 'lt4000') lean = { dir: 'neutral', label: 'まだ五分', note: 'すでに安め。候補プランや使い方しだいで差は小さめです。' };
+      else if (a.q_cashback === 'active') lean = { dir: 'neutral', label: 'まだ五分', note: 'まだ割引適用中。今動くと違約金やキャッシュバック条件を失う恐れがあり、更新月まで待つ判断もあります。' };
+      else if (a.q_current === 'gt6000') lean = { dir: 'A', label: 'ゆるく「乗り換える」寄り', note: '割引が切れて相場より高めなら、乗り換えで下げる余地があります（実額で要確認）。' };
+      else lean = { dir: 'A', label: 'ゆるく「乗り換える」寄り', note: '割引終了後の実質月額しだいで差が出ます。工事費・違約金と釣り合うか確認を。' };
+      return {
+        topic: '光回線を乗り換えるか、今のままか',
+        type: '行動判定型（乗り換える／今のまま）',
+        axes: ['割引終了後の実質月額の高さ', '乗り換えで発生する 工事費・違約金・失うセット割'],
+        lean,
+        needed: ['割引/キャッシュバック終了後の実質月額', '更新月と違約金（解約金）・工事費の残債', 'スマホとのセット割で引かれている実額', '新回線の工事費・事務手数料と、受け取り条件つきキャッシュバック'],
+        face: FACES.thinking,
+      };
+    },
+  },
+};
+
+// 順序に意味あり: 「光 乗り換え」のような重複語入力で SIM(汎用語'乗り換え'を持つ) より
+// HIKARI を先に一致させるため、hikari を sim の前に置く。
+export const TEMPLATES = { card: CARD, hikari: HIKARI, sim: SIM, sub: SUB };
 
 // -----------------------------------------------------------------------------
 // 公開API（発見のみ）
@@ -302,9 +380,10 @@ export function discover(templateId, answers) {
 
 // モヤモヤ（感情カード）→ 候補テンプレのマッピング
 export const MOYA_CARDS = [
-  { id: 'money_leak', label: '毎月なんとなくお金が減る', face: FACES.troubled, suggest: ['sub', 'sim'] },
+  { id: 'money_leak', label: '毎月なんとなくお金が減る', face: FACES.troubled, suggest: ['sub', 'sim', 'hikari'] },
   { id: 'too_many', label: '選択肢が多すぎて決められない', face: FACES.thinking, suggest: ['card', 'sim'] },
   { id: 'phone_bill', label: 'スマホ代が高い気がする', face: FACES.thinking, suggest: ['sim'] },
+  { id: 'net_bill', label: '家のネット・光回線の料金が高い気がする', face: FACES.thinking, suggest: ['hikari'] },
   { id: 'card_tempt', label: 'カードの勧誘に迷っている', face: FACES.smirk, suggest: ['card'] },
   { id: 'unused', label: '使ってないのに払ってる気がする', face: FACES.surprised, suggest: ['sub'] },
 ];

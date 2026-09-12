@@ -41,6 +41,7 @@ function show(id) {
 // 例示フレーズ（ゼロ入力でも始められるチップ）
 const CHIP_PHRASES = {
   card: 'カードを作るか',
+  hikari: '光回線を乗り換えるか',
   sim: '格安SIMに乗り換えるか',
   sub: 'サブスクを解約するか',
 };
