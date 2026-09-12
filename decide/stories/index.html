@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>そのカード、申し込む？見送る？｜Mioと1分で（無料）</title>
+<meta name="description" content="長文入力なし。数タップで、そのクレジットカードを申し込むか見送るかの“今の傾き”をMioが見つけます。">
+<meta property="og:title" content="そのカード、申し込む？見送る？｜Mioと1分で">
+<meta property="og:image" content="https://miochooses.com/mio-hero-jp.jpg">
+<meta property="og:url" content="https://miochooses.com/decide/stories/">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://miochooses.com/decide/stories/">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;overflow:hidden;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;background:#0b1220;color:#eef3f7;}
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  .screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 22px calc(28px + env(safe-area-inset-bottom));text-align:center;opacity:0;transform:translateY(24px);transition:opacity .35s ease,transform .35s ease;pointer-events:none;background:radial-gradient(1000px 620px at 70% 12%,#16324a,#0b1220 62%);}
+  .screen.on{opacity:1;transform:none;pointer-events:auto;}
+  .mio{width:132px;height:132px;border-radius:50%;object-fit:cover;border:2px solid #ffffff24;margin-bottom:18px;box-shadow:0 10px 34px rgba(0,0,0,.45);}
+  .kicker{font-size:12px;font-weight:800;letter-spacing:.14em;color:#39d353;margin-bottom:12px;}
+  .msg{font-size:24px;font-weight:900;line-height:1.55;max-width:440px;}
+  .msg .g{color:#7fd3ff;}.msg .y{color:#ffd23f;}
+  .sub{margin-top:14px;font-size:14px;color:#9fb3c8;line-height:1.7;max-width:420px;}
+  .opts{margin-top:26px;display:flex;flex-direction:column;gap:12px;width:100%;max-width:400px;}
+  .opt{font-family:inherit;font-size:17px;font-weight:800;padding:17px 18px;border-radius:15px;border:1px solid #33566e;background:#132a3a;color:#eaf3fb;cursor:pointer;transition:transform .08s,background .15s;}
+  .opt:active{transform:scale(.97);background:#1b3d52;}
+  .opt b{color:#7fd3ff;}
+  .tapnext{margin-top:26px;font-size:15px;font-weight:800;color:#0b1220;background:#39d353;border:0;border-radius:14px;padding:15px 30px;font-family:inherit;cursor:pointer;}
+  .paid{margin-top:22px;display:block;text-decoration:none;background:linear-gradient(135deg,#0e3d24,#0f2230);border:2px solid #39d353;border-radius:16px;padding:18px;width:100%;max-width:400px;}
+  .paid .pt{font-size:18px;font-weight:900;color:#eafff0;}
+  .paid .pp{margin-top:6px;font-size:13px;color:#bfe6cc;}
+  .paid .pb{margin-top:12px;display:inline-block;background:#39d353;color:#06210f;font-weight:900;border-radius:12px;padding:11px 20px;font-size:15px;}
+  .free{margin-top:14px;font-size:12.5px;color:#8aa;}
+  .prog{position:fixed;top:0;left:0;height:3px;background:#39d353;width:0;transition:width .35s;z-index:5;}
+  .hint{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:11px;color:#5b6b7a;}
+  .restart{position:fixed;top:10px;right:14px;font-size:11px;color:#6e7b8a;background:none;border:0;font-family:inherit;cursor:pointer;z-index:6;}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<button class="restart" id="restart">最初から</button>
+<div id="stage"></div>
+<div class="hint" id="hint">タップで進む</div>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script>
+<script>
+var M='/decide/mio/';
+// 傾きスコア: 見送り方向に加点
+var lean=0, answered=0;
+var SC=[
+ {k:'start', face:'normal', kicker:'MioとカードのDecision', msg:'その年会費カード、<span class="g">本当に必要</span>？<br>それとも<span class="y">特典を逃したくない</span>だけ？', sub:'長文入力なし。数タップで“今の傾き”を出します。', tap:'はじめる'},
+ {k:'q1', face:'thinking', kicker:'Q1', msg:'怖いのは、どっち？', opts:[{t:'入会<b>特典</b>を逃すこと', lean:1},{t:'<b>年会費</b>を払い続けること', lean:0}]},
+ {k:'q2', face:'surprised', kicker:'Q2', msg:'今のカードに、不満は？', opts:[{t:'ある（ポイント/特典が物足りない）', lean:0},{t:'実は<b>困っていない</b>', lean:1}]},
+ {k:'q3', face:'troubled', kicker:'Q3', msg:'年間の決済、この1枚に<br>寄せられる？', opts:[{t:'寄せられる', lean:0},{t:'<b>分からない</b>', lean:1}]},
+ {k:'insight', face:'smirk', kicker:'Mioの気づき', msg:'カードが必要なんじゃなくて、<br><span class="y">特典を逃したくないだけ</span>かも。', sub:'“損したくない”気持ちと、実際の損得は別物。', tap:'今の傾きを見る'},
+ {k:'result', face:'troubled', kicker:'無料の結果', dynamic:true, tap:null},
+];
+var stage=document.getElementById('stage'), prog=document.getElementById('prog');
+var idx=0, screens=[];
+function track(path){ try{ history.pushState(null,'', '/decide/stories/'+path); }catch(e){} }
+function el(tag,cls,html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+function build(i){
+  var s=SC[i]; var d=el('div','screen');
+  d.appendChild(Object.assign(el('img','mio'),{src:M+s.face+'.png',alt:'Mio'}));
+  if(s.kicker)d.appendChild(el('div','kicker',s.kicker));
+  if(s.dynamic){
+    // 無料=傾きのみ（GO/NO/確定・決め手・盲点・今日の一手は出さない=有料境界）
+    var miokuri = lean>=2;
+    var face = miokuri?'convinced':'thinking';
+    d.querySelector('.mio').src = M+face+'.png';
+    d.appendChild(el('div','msg', miokuri
+      ? '今は<span class="y">「見送り」寄り</span>。<br>ただし、まだ<b>確定ではありません</b>。'
+      : '今は<span class="g">「検討の価値あり」寄り</span>。<br>ただし、まだ<b>確定ではありません</b>。'));
+    d.appendChild(el('div','free','無料はここまで＝“今の傾き”の発見。'));
+    var a=el('a','paid'); a.href='/card/?utm_source=stories&utm_medium=paid_cta&utm_campaign=card';
+    a.innerHTML='<div class="pt">Mioに3問で<span style="color:#39d353">言い切って</span>もらう</div><div class="pp">GO／見送り／今は決めない＋決め手・盲点・今日の一手。¥1,000・買い切り（サブスクではありません）。</div><span class="pb">¥1,000で判定を受ける →</span>';
+    a.addEventListener('click',function(){ track('paid_cta'); });
+    d.appendChild(a);
+  } else {
+    d.appendChild(el('div','msg',s.msg));
+    if(s.sub)d.appendChild(el('div','sub',s.sub));
+    if(s.opts){ var w=el('div','opts'); s.opts.forEach(function(o){ var b=el('button','opt',o.t); b.addEventListener('click',function(){ lean+=o.lean; answered++; next(); }); w.appendChild(b); }); d.appendChild(w); }
+    else if(s.tap){ var t=el('button','tapnext',s.tap); t.addEventListener('click',next); d.appendChild(t); }
+  }
+  return d;
+}
+function show(i){
+  screens.forEach(function(sc){ sc.classList.remove('on'); });
+  if(!screens[i]){ screens[i]=build(i); stage.appendChild(screens[i]); }
+  else if(SC[i].dynamic){ stage.removeChild(screens[i]); screens[i]=build(i); stage.appendChild(screens[i]); }
+  requestAnimationFrame(function(){ screens[i].classList.add('on'); });
+  prog.style.width=Math.round((i/(SC.length-1))*100)+'%';
+  var s=SC[i]; track(s.k==='start'?'start':(s.k==='result'?'result':'step-'+s.k));
+  document.getElementById('hint').style.display = s.opts?'none':'block';
+}
+function next(){ if(idx<SC.length-1){ idx++; show(idx); } }
+// スワイプ上=次(メッセージ画面のみ)
+var y0=null;
+document.addEventListener('touchstart',function(e){ y0=e.touches[0].clientY; },{passive:true});
+document.addEventListener('touchend',function(e){ if(y0==null)return; var dy=y0-e.changedTouches[0].clientY; if(dy>60 && !SC[idx].opts && idx<SC.length-1) next(); y0=null; },{passive:true});
+document.getElementById('restart').addEventListener('click',function(){ idx=0;lean=0;answered=0; show(0); });
+show(0);
+</script>
+</body>
+</html>
