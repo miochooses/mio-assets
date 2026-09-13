@@ -50,8 +50,7 @@
   <div id="stage"></div>
 </div>
 <script type="module">
-import { TEMPLATES, invalidAnswers } from './decide-engine.js';
-import { decide } from './decide-engine.js';
+import { TEMPLATES, decide } from './decide-engine.js';
 const stage = document.getElementById('stage');
 const params = new URLSearchParams(location.search);
 const THEMES = { card:'クレジットカード（申し込む/見送る）', sim:'格安SIM（乗り換える/今のまま）', sub:'サブスク（解約する/続ける）', hikari:'光回線（乗り換える/今のまま）' };
@@ -92,10 +91,7 @@ function askFlow(){
 function showResult(){
   track('result');
   let r;
-  try {
-    const bad = invalidAnswers(theme, ans);
-    r = decide(theme, ans);
-  } catch(e){ r = null; }
+  try { r = decide(theme, ans); } catch(e){ r = null; }
   stage.innerHTML='';
   stage.appendChild(el('div','kicker','Mioの判定（有料版）'));
   const img=el('img','mio'); img.src=FACE(r?r.verdict:'HOLD'); img.alt='Mio'; stage.appendChild(img);
