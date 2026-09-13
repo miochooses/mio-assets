@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>その格安SIM、乗り換える？続ける？｜Mioと1分で（無料）</title>
+<meta name="description" content="長文入力なし。数タップで、格安SIMに乗り換えるか今のまま続けるかの“今の傾き”をMioが見つけます。">
+<meta property="og:title" content="そのスマホ代、乗り換える？続ける？｜Mioと1分で">
+<meta property="og:image" content="https://miochooses.com/mio-hero-jp.jpg">
+<meta property="og:url" content="https://miochooses.com/decide/stories/sim/">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon-32.png">
+<link rel="canonical" href="https://miochooses.com/decide/stories/sim/">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;overflow:hidden;background:#05070c;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;color:#eef3f7;display:flex;align-items:center;justify-content:center;}
+  /* PCでは中央に最大430pxのスマホキャンバス。スマホでは全画面(100dvh) */
+  #canvas{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;overflow:hidden;background:#0b1220;box-shadow:0 0 60px rgba(0,0,0,.6);}
+  @media(min-width:460px){ #canvas{height:calc(100dvh - 24px);max-height:900px;border-radius:22px;} }
+  .prog{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:5px;z-index:8;}
+  .prog i{flex:1;height:3px;border-radius:2px;background:#ffffff2a;overflow:hidden;}
+  .prog i b{display:block;height:100%;width:0;background:#39d353;transition:width .35s;}
+  .restart{position:absolute;top:18px;right:14px;font-size:11px;color:#8090a0;background:none;border:0;font-family:inherit;cursor:pointer;z-index:9;}
+  .screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:44px 20px calc(26px + env(safe-area-inset-bottom));text-align:center;opacity:0;transform:translateY(100%);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none;background:radial-gradient(1000px 640px at 72% 22%,#16324a,#0b1220 60%);}
+  .screen.on{opacity:1;transform:translateY(0);pointer-events:auto;}
+  .screen.out{opacity:0;transform:translateY(-100%);}
+  .miowrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;min-height:0;}
+  .mio{max-height:44vh;max-width:82%;object-fit:contain;filter:drop-shadow(0 14px 34px rgba(0,0,0,.5));animation:pop .5s ease;}
+  @keyframes pop{from{transform:scale(.9) translateY(10px);opacity:.4}to{transform:scale(1);opacity:1}}
+  .kicker{font-size:11px;font-weight:800;letter-spacing:.16em;color:#39d353;margin-bottom:8px;}
+  .msg{font-size:23px;font-weight:900;line-height:1.5;max-width:360px;}
+  .msg .g{color:#7fd3ff;}.msg .y{color:#ffd23f;}
+  .sub{margin-top:12px;font-size:13.5px;color:#9fb3c8;line-height:1.7;max-width:340px;}
+  .bottom{width:100%;max-width:400px;}
+  .opts{display:flex;flex-direction:column;gap:11px;margin-top:16px;}
+  .opt{font-family:inherit;font-size:17px;font-weight:800;padding:18px 16px;border-radius:16px;border:1px solid #33566e;background:#132a3aee;color:#eaf3fb;cursor:pointer;transition:transform .08s,background .15s;}
+  .opt:active{transform:scale(.97);background:#1b3d52;}
+  .opt b{color:#7fd3ff;}
+  .tapnext{width:100%;font-size:16px;font-weight:900;color:#06210f;background:#39d353;border:0;border-radius:15px;padding:17px;font-family:inherit;cursor:pointer;margin-top:8px;}
+  .code{margin:10px auto 0;display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:800;letter-spacing:.08em;color:#7fd3ff;background:#0b1a26;border:1px dashed #1f4a63;border-radius:10px;padding:8px 14px;}
+  .paid{display:block;text-decoration:none;background:linear-gradient(135deg,#0e3d24,#0f2230);border:2px solid #39d353;border-radius:16px;padding:16px;margin-top:12px;text-align:left;}
+  .paid .pt{font-size:16px;font-weight:900;color:#eafff0;}
+  .paid .pp{margin-top:5px;font-size:12px;color:#bfe6cc;line-height:1.6;}
+  .paid .pb{margin-top:10px;display:inline-block;background:#39d353;color:#06210f;font-weight:900;border-radius:11px;padding:10px 18px;font-size:14px;}
+  .samp{margin-top:12px;background:#0d151e;border:1.5px dashed #33475b;border-radius:14px;padding:14px;text-align:left;}
+  .samp .sht{font-size:11px;font-weight:800;color:#58a6ff;}
+  .samp .sto{margin-top:8px;font-size:13px;font-weight:800;color:#e9eef3;}
+  .samp .sv{margin-top:8px;display:inline-block;font-size:15px;font-weight:900;padding:5px 14px;border-radius:999px;border:1.5px solid #39d35366;color:#8fe3a6;background:#131c27;}
+  .samp .sl{margin-top:9px;font-size:10.5px;font-weight:800;color:#39d353;}
+  .samp .svv{margin-top:2px;font-size:12px;color:#d6dee6;line-height:1.55;}
+  .samp .snt{margin-top:11px;font-size:10.5px;color:#6e7b8a;line-height:1.55;}
+  .free{margin-top:10px;font-size:12px;color:#8aa;}
+  .hint{position:absolute;bottom:calc(10px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:11px;color:#5b6b7a;z-index:7;pointer-events:none;}
+</style>
+</head>
+<body>
+<div id="canvas">
+  <div class="prog" id="prog"></div>
+  <button class="restart" id="restart">最初から</button>
+  <div id="stage"></div>
+  <div class="hint" id="hint">タップ / 上スワイプで進む</div>
+</div>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script>
+<script>
+var M='/decide/mio/';
+var TRACK='/decide/stories/sim/'; // card版と別パスで計測分離(CFで転換比較)
+var ans={}; // q1,q2,q3 -> 'A' | 'B'
+var SC=[
+ {k:'start', face:'normal', kicker:'Mioとスマホ代のDecision', msg:'そのスマホ代、<span class="g">払いすぎ</span>？<br>それとも<span class="y">乗り換えが面倒なだけ</span>？', sub:'長文入力なし。数タップで“今の傾き”を出します。', tap:'はじめる'},
+ {k:'q1', q:'q1', face:'thinking', kicker:'Q1', msg:'気になるのは、どっち？', opts:[{t:'乗り換えの<b>手間・つながるか</b>の不安', v:'A'},{t:'毎月<b>払い続ける料金</b>のこと', v:'B'}]},
+ {k:'q2', q:'q2', face:'surprised', kicker:'Q2', msg:'今の料金・通信に、不満は？', opts:[{t:'ある（高い／データが足りない）', v:'A'},{t:'実は<b>困っていない</b>', v:'B'}]},
+ {k:'q3', q:'q3', face:'troubled', kicker:'Q3', msg:'毎月のデータ量や通話は<br>だいたい決まってる？', opts:[{t:'だいたい決まってる', v:'A'},{t:'月によって<b>バラバラ</b>', v:'B'}]},
+ {k:'insight', face:'smirk', kicker:'Mioの気づき', dynamic:'insight', tap:'今の傾きを見る'},
+ {k:'result', face:'convinced', kicker:'無料の結果', dynamic:'result'},
+];
+// 気づき: 回答別に変える(全通りで同一にならない)
+function insightText(){
+  var q1=ans.q1,q2=ans.q2;
+  var head = (q1==='A')
+    ? '料金が高いんじゃなくて、<span class="y">乗り換えの手間が面倒なだけ</span>かも。'
+    : '本当は、<span class="y">毎月の料金を払い続ける</span>ことが引っかかってるのかも。';
+  var tail = (q2==='B')
+    ? '今の通信で困ってないなら、急がなくていい。'
+    : '“高い気がする”の正体を、年額で確かめる価値はある。';
+  return {msg:head, sub:tail};
+}
+// 傾き: 現状維持(見送り)方向スコア(A手間怖い/ B困ってない/ B使い方バラバラ = 現状維持寄り)
+function leanScore(){ return (ans.q1==='A'?1:0)+(ans.q2==='B'?1:0)+(ans.q3==='B'?1:0); }
+function resultView(){
+  var s=leanScore(); var msg, face;
+  if(s>=2){ face='convinced'; msg='今は<span class="y">「今のまま」寄り</span>。<br>ただし、まだ<b>確定ではありません</b>。'; }
+  else if(s<=0){ face='overjoyed'; msg='今は<span class="g">「乗り換え検討の価値あり」寄り</span>。<br>ただし、まだ<b>確定ではありません</b>。'; }
+  else { face='thinking'; msg='今は<span class="g">ほぼ五分</span>。<br><b>確定には実額の確認</b>が要ります。'; }
+  return {face:face, msg:msg, code:'SIM-'+(ans.q1||'?')+'-'+(ans.q2||'?')+'-'+(ans.q3||'?')};
+}
+var stage=document.getElementById('stage'), progEl=document.getElementById('prog');
+var idx=0, screens=[];
+function track(path){ try{ history.pushState(null,'', TRACK+path); }catch(e){} }
+function el(tag,cls,html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+// 進行バー(セグメント)
+(function(){ for(var i=0;i<SC.length;i++){ var seg=el('i'); seg.appendChild(el('b')); progEl.appendChild(seg); } })();
+function setProg(i){ var segs=progEl.querySelectorAll('i b'); for(var j=0;j<segs.length;j++){ segs[j].style.width=(j<=i?'100%':'0'); } }
+function build(i){
+  var s=SC[i]; var d=el('div','screen');
+  var mw=el('div','miowrap'); var img=el('img','mio'); img.alt='Mio';
+  var face=s.face;
+  if(s.dynamic==='insight'){ /* keep smirk */ }
+  if(s.dynamic==='result'){ face=resultView().face; }
+  img.src=M+face+'.png'; mw.appendChild(img); d.appendChild(mw);
+  var bottom=el('div','bottom');
+  if(s.kicker) d.insertBefore(el('div','kicker',s.kicker), mw); // kicker上部
+  if(s.dynamic==='insight'){ var it=insightText(); bottom.appendChild(el('div','msg',it.msg)); bottom.appendChild(el('div','sub',it.sub)); var t=el('button','tapnext',s.tap); t.addEventListener('click',next); bottom.appendChild(t); }
+  else if(s.dynamic==='result'){ var rv=resultView();
+    bottom.appendChild(el('div','msg',rv.msg));
+    bottom.appendChild(el('div','free','無料はここまで＝“今の傾き”の発見。'));
+    bottom.appendChild(el('div','code','あなたの判定コード: '+rv.code));
+    bottom.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：大手キャリア(月8,000円・20GB)から格安SIMに乗り換える？</div><div class="sv">判定：GO（乗り換え推奨）</div><div class="sl">決め手</div><div class="svv">月20GB以下＆家族割に縛られていないなら、格安SIMで月5,000円前後・年6万円の削減が見込める。</div><div class="sl">「大手継続」を捨てる理由</div><div class="svv">使っていないかけ放題・店舗サポートに年6万円は割高。乗り換えは基本1回で済む。</div><div class="sl">今日の一手</div><div class="svv">直近3ヶ月の平均データ量と通話時間を出す→対応する格安SIMを1つ選ぶ→MNPワンストップで乗り換え。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
+    var a=el('a','paid'); a.href='https://coconala.com/services/4395009?utm_source=stories_sim&utm_medium=paid_cta&utm_campaign=sim'; a.target='_blank'; a.rel='noopener';
+    a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（購入後は通常24時間以内に受付・質問、判定は納期1日以内）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
+    a.addEventListener('click',function(){ track('paid_cta'); }); bottom.appendChild(a);
+  }
+  else { bottom.appendChild(el('div','msg',s.msg)); if(s.sub)bottom.appendChild(el('div','sub',s.sub));
+    if(s.opts){ var w=el('div','opts'); s.opts.forEach(function(o){ var b=el('button','opt',o.t); b.addEventListener('click',function(){ if(s.q)ans[s.q]=o.v; next(); }); w.appendChild(b); }); bottom.appendChild(w); }
+    else if(s.tap){ var tp=el('button','tapnext',s.tap); tp.addEventListener('click',next); bottom.appendChild(tp); }
+  }
+  d.appendChild(bottom);
+  return d;
+}
+function show(i){
+  screens.forEach(function(sc){ if(sc.classList.contains('on')){ sc.classList.remove('on'); sc.classList.add('out'); } });
+  var fresh = !screens[i] || SC[i].dynamic;
+  if(screens[i] && fresh){ stage.removeChild(screens[i]); screens[i]=null; }
+  if(!screens[i]){ screens[i]=build(i); stage.appendChild(screens[i]); }
+  screens[i].classList.remove('out');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ screens[i].classList.add('on'); }); });
+  setProg(i);
+  var s=SC[i]; track(s.k==='start'?'start':(s.k==='result'?'result':'step-'+s.k));
+  document.getElementById('hint').style.display = s.opts?'none':'block';
+}
+function next(){ if(idx<SC.length-1){ idx++; show(idx); } }
+var y0=null;
+document.addEventListener('touchstart',function(e){ y0=e.touches[0].clientY; },{passive:true});
+document.addEventListener('touchend',function(e){ if(y0==null)return; var dy=y0-e.changedTouches[0].clientY; if(dy>55 && !SC[idx].opts && idx<SC.length-1) next(); y0=null; },{passive:true});
+document.getElementById('restart').addEventListener('click',function(){ idx=0;ans={}; screens.forEach(function(sc){if(sc)stage.removeChild(sc);}); screens=[]; show(0); });
+show(0);
+</script>
+</body>
+</html>
