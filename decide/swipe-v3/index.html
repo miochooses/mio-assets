@@ -184,6 +184,45 @@
   .step .don{font-size:12.5px;color:#8fe0a3;line-height:1.6;}
   .srcln{margin-top:8px;font-size:12.5px;color:var(--dim);line-height:1.7;}
   .checked{margin-top:8px;font-size:12px;color:var(--faint);}
+  /* DEEP：auto-height（空白を作らない） */
+  .deepmode #cardzone{display:flex;align-items:center;justify-content:center;overflow:visible;}
+  .card.deepc{position:static;inset:auto;width:100%;max-width:400px;height:auto;min-height:0;justify-content:flex-start;padding:22px 22px 20px;}
+  .card.deepc .num{position:static;margin-bottom:10px;}
+  .selgrid{margin-top:18px;display:flex;flex-direction:column;gap:10px;width:100%;}
+  .selbtn{font-family:inherit;font-size:16px;font-weight:800;padding:15px 16px;border-radius:14px;border:none;background:rgba(255,255,255,.07);color:#eaf3fb;cursor:pointer;text-align:left;}
+  .selbtn:active{background:rgba(94,179,255,.22);}
+  .numdisp{margin-top:20px;text-align:center;}
+  .numdisp .nv{font-size:44px;font-weight:900;color:#eaf1f9;letter-spacing:.02em;}
+  .numdisp .nu{font-size:20px;font-weight:800;color:var(--dim);margin-left:6px;}
+  .numhint{margin-top:8px;text-align:center;font-size:12.5px;color:var(--faint);}
+  .keypad{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:12px 16px calc(10px + env(safe-area-inset-bottom));}
+  .key{font-family:inherit;font-size:22px;font-weight:800;padding:15px 0;border-radius:14px;border:none;background:rgba(255,255,255,.06);color:#eef4fb;cursor:pointer;}
+  .key:active{background:rgba(94,179,255,.2);}
+  .key.sub{font-size:17px;color:var(--dim);}
+  .kprow{grid-column:1/4;display:flex;gap:10px;margin-top:2px;}
+  .kskip{flex:1;font-family:inherit;font-size:14px;font-weight:800;border:1px solid rgba(255,255,255,.14);background:none;color:var(--dim);border-radius:14px;padding:14px;cursor:pointer;}
+  .kok{flex:2;font-family:inherit;font-size:17px;font-weight:900;border:none;border-radius:14px;padding:14px;cursor:pointer;color:#04203a;background:linear-gradient(120deg,var(--mio),#8fd0ff);}
+  /* 有料結果：金額差・第一表示・開閉 */
+  .gap{margin-top:12px;text-align:center;font-size:26px;font-weight:900;}
+  .gap.pos{color:#7ee29a;} .gap.neg{color:#ff9d9d;}
+  .gap small{font-size:14px;font-weight:800;color:var(--dim);margin-left:6px;}
+  .firstblk{margin-top:18px;background:rgba(255,255,255,.05);border-radius:16px;padding:15px 16px;}
+  .firstblk .fbh{font-size:11px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
+  .firstblk .fbh:not(:first-child){margin-top:12px;}
+  .firstblk .fbt{margin-top:6px;font-size:15px;line-height:1.7;color:#eef4fb;}
+  .assume{display:block;width:100%;margin-top:12px;background:none;border:1px dashed rgba(255,255,255,.18);color:#9fd0ff;font-family:inherit;font-size:12.5px;font-weight:700;border-radius:12px;padding:11px;cursor:pointer;}
+  details.acc{margin-top:10px;background:rgba(255,255,255,.03);border-radius:14px;overflow:hidden;}
+  details.acc summary{list-style:none;cursor:pointer;padding:15px 16px;font-size:15px;font-weight:900;color:#eaf1f9;display:flex;align-items:center;justify-content:space-between;}
+  details.acc summary::-webkit-details-marker{display:none;}
+  details.acc summary::after{content:"＋";color:var(--mio);font-weight:900;}
+  details.acc[open] summary::after{content:"−";}
+  details.acc > *:not(summary){margin:0 16px 14px;}
+  .stepurl{display:inline-block;margin-top:8px;font-size:13px;font-weight:800;color:#9fd0ff;text-decoration:none;}
+  a.srcln{display:block;color:#9fd0ff;text-decoration:none;}
+  .niwrap{margin-top:18px;background:rgba(255,255,255,.05);border-radius:18px;padding:16px 12px 6px;}
+  .nilabel{text-align:center;font-size:15px;font-weight:800;color:#eef4fb;}
+  .nilabel small{display:block;font-size:12px;font-weight:600;color:var(--dim);margin-top:4px;}
+  .niwrap .keypad{padding:12px 6px 6px;}
   @media (prefers-reduced-motion: reduce){ .card,.mioImg,.chipfly,.lensbox .ring,.phase2,.whybody,#dots i{transition:none !important;} }
 </style>
 </head>
@@ -200,7 +239,7 @@
 <script type="module">
 import { TEMPLATES } from '/decide/decide-core.js';
 import { buildDeck, leanFree, DECK_ORDER } from '/decide/swipe-v2/swipe-lean.js';
-import { QLINES, CARD_DEEP, selectDeep, sufficiency, refinedInsight } from '/decide/swipe-v3/card-quest.js';
+import { QLINES, CARD_DEEP, selectDeep, sufficiency, refinedInsight, decisionId } from '/decide/swipe-v3/card-quest.js';
 
 const FACE = s => `/decide/mio/${s}.png`;
 const stage = document.getElementById('stage');
@@ -487,7 +526,7 @@ async function runAnalyze(){
 }
 
 // ============ RESULT（ルーター） ============
-function resultChips(){ const chips=el('div','chips'); state.cards.forEach(c=>{ const v=state.answers[c.id]; if(v===undefined)return; let a; if(c.type==='deep'){ const o=(c.options||[]).find(o=>o.v===v); a=o?o.l:v; } else { a=v==='unknown'?'わからない':(v===c.left.value?sideLabel(c,'l'):sideLabel(c,'r')); } chips.appendChild(el('div','chip','<b>'+a+'</b>')); }); return chips; }
+function resultChips(){ const chips=el('div','chips'); state.cards.forEach(c=>{ const key=c.answerKey||c.id; const v=state.answers[key]; if(v===undefined)return; let a; if(c.type==='deep'){ if(c.kind==='select'){ const o=(c.options||[]).find(o=>o.v===v); a=o?o.l:v; } else { a=Number(v).toLocaleString('ja-JP')+(c.unit||''); } } else { a=v==='unknown'?'わからない':(v===c.left.value?sideLabel(c,'l'):sideLabel(c,'r')); } chips.appendChild(el('div','chip','<b>'+a+'</b>')); }); return chips; }
 function resultHead(res, face, kick, cls, word, line){
   const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); im.alt='Mio'; w.appendChild(im); res.appendChild(w);
   res.appendChild(el('div','r-kick',kick));

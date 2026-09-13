@@ -22,8 +22,8 @@ export const CARD_TABLE = {
 const yen = n => (n==null||isNaN(n)) ? '—' : Math.round(n).toLocaleString('ja-JP') + '円';
 const pct = r => (Math.round(r*1000)/10) + '%';
 
-// 数値入力の正規化
-function num(v){ if(v==null||v==='') return null; const n=Number(String(v).replace(/[^\d.-]/g,'')); return isNaN(n)?null:n; }
+// 数値入力の正規化（'unknown'/'skip'/空/非数値 は null。Number('')===0 の罠を避ける）
+function num(v){ if(v==null||v===''||v==='unknown'||v==='skip') return null; const c=String(v).replace(/[^\d.-]/g,''); if(c==='') return null; const n=Number(c); return isNaN(n)?null:n; }
 
 // メイン：本人の実額で定量判定。inp は quick+deep の統合回答。
 export function cardDecideRich(inp, now){

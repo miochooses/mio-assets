@@ -99,16 +99,18 @@ export function decisionId(theme, ans) {
   return theme + '-' + (h>>>0).toString(36);
 }
 
-// DEEP後の「気付き」精緻化（無料・方向づけのみ・verdictは出さない）。
+// DEEP後の「気付き」精緻化（無料・方向づけのみ・verdictは出さない）。実額ベース。
 export function refinedInsight(theme, ans) {
   if (theme !== 'card') return null;
   const a = ans || {};
   if (a.q_revolving === 'yes') return 'リボ・分割・ローンの返済が最優先です。金利（年15%前後）は、どんなカード特典よりも大きな固定コストになります。';
-  const fee = a.q_fee, spend = a.q_spend, benefit = a.q_benefit;
-  if ((fee === 'high' || fee === 'mid') && (spend === 'lt50')) return '年会費に対して年間の利用額が控えめです。還元（1%前後）だけで年会費を取り返すのは難しめ。使う特典の価値がカギになります。';
-  if (benefit === 'yes' && (spend === 'gt150')) return '特典を使い、利用額も大きめ。年会費に見合う可能性が高い形です。実際の年会費と特典の使用回数で最終確認します。';
-  if (fee === 'under2000') return '年会費が小さいので、使う特典が少しでもあれば見合いやすいゾーンです。';
-  return '年会費と年間利用額のバランス次第です。実額がそろえば、はっきり言い切れます。';
+  const fee = Number(a.fee_yen), spend = Number(a.spend_yen);
+  if (isFinite(fee) && isFinite(spend)) {
+    const base = Math.round(spend * 0.01);
+    if (base >= fee) return '年間利用額 ' + spend.toLocaleString('ja-JP') + '円の基本還元だけで、年会費 ' + fee.toLocaleString('ja-JP') + '円の目安に届きそうです。結論で正確に計算します。';
+    return '年間利用額の基本還元（約' + base.toLocaleString('ja-JP') + '円）だけでは年会費 ' + fee.toLocaleString('ja-JP') + '円に届きません。使う特典の価値で埋まるかがカギです。';
+  }
+  return '年会費と年間利用額の実額がそろえば、はっきり言い切れます。';
 }
 
 // checked_at 用（呼び出し側で new Date() を渡してもよい）
