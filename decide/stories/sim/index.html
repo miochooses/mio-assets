@@ -27,6 +27,11 @@
   .screen.out{opacity:0;transform:translateY(-100%);}
   .miowrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;min-height:0;}
   .mio{max-height:44vh;max-width:82%;object-fit:contain;filter:drop-shadow(0 14px 34px rgba(0,0,0,.5));animation:pop .5s ease;}
+  /* 結果画面: 有料CTAが固定高canvasの外にクリップされ(overflow:hidden)タップ不能になるのを解消=スクロール可+Mio縮小でCTAを可視域へ */
+  .screen.result{justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .screen.result .miowrap{flex:0 0 auto;}
+  .screen.result .mio{max-height:23vh;}
+  .scrollcue{margin-top:14px;font-size:11.5px;font-weight:800;color:#6e7b8a;}
   @keyframes pop{from{transform:scale(.9) translateY(10px);opacity:.4}to{transform:scale(1);opacity:1}}
   .kicker{font-size:11px;font-weight:800;letter-spacing:.16em;color:#39d353;margin-bottom:8px;}
   .msg{font-size:23px;font-weight:900;line-height:1.5;max-width:360px;}
@@ -111,14 +116,15 @@ function build(i){
   var bottom=el('div','bottom');
   if(s.kicker) d.insertBefore(el('div','kicker',s.kicker), mw); // kicker上部
   if(s.dynamic==='insight'){ var it=insightText(); bottom.appendChild(el('div','msg',it.msg)); bottom.appendChild(el('div','sub',it.sub)); var t=el('button','tapnext',s.tap); t.addEventListener('click',next); bottom.appendChild(t); }
-  else if(s.dynamic==='result'){ var rv=resultView();
+  else if(s.dynamic==='result'){ var rv=resultView(); d.classList.add('result');
     bottom.appendChild(el('div','msg',rv.msg));
     bottom.appendChild(el('div','free','無料はここまで＝“今の傾き”の発見。'));
     bottom.appendChild(el('div','code','あなたの判定コード: '+rv.code));
-    bottom.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：大手キャリア(月8,000円・20GB)から格安SIMに乗り換える？</div><div class="sv">判定：GO（乗り換え推奨）</div><div class="sl">決め手</div><div class="svv">月20GB以下＆家族割に縛られていないなら、格安SIMで月5,000円前後・年6万円の削減が見込める。</div><div class="sl">「大手継続」を捨てる理由</div><div class="svv">使っていないかけ放題・店舗サポートに年6万円は割高。乗り換えは基本1回で済む。</div><div class="sl">今日の一手</div><div class="svv">直近3ヶ月の平均データ量と通話時間を出す→対応する格安SIMを1つ選ぶ→MNPワンストップで乗り換え。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
     var a=el('a','paid'); a.href='https://coconala.com/services/4395009?utm_source=stories_sim&utm_medium=paid_cta&utm_campaign=sim'; a.target='_blank'; a.rel='noopener';
     a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（通常は数時間以内・対応時間内は最短数分・夜間は最大24時間でお届け）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
     a.addEventListener('click',function(){ track('paid_cta'); }); bottom.appendChild(a);
+    bottom.appendChild(el('div','scrollcue','↓ ¥1,000で届く「言い切り判定」の見本'));
+    bottom.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：大手キャリア(月8,000円・20GB)から格安SIMに乗り換える？</div><div class="sv">判定：GO（乗り換え推奨）</div><div class="sl">決め手</div><div class="svv">月20GB以下＆家族割に縛られていないなら、格安SIMで月5,000円前後・年6万円の削減が見込める。</div><div class="sl">「大手継続」を捨てる理由</div><div class="svv">使っていないかけ放題・店舗サポートに年6万円は割高。乗り換えは基本1回で済む。</div><div class="sl">今日の一手</div><div class="svv">直近3ヶ月の平均データ量と通話時間を出す→対応する格安SIMを1つ選ぶ→MNPワンストップで乗り換え。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
   }
   else { bottom.appendChild(el('div','msg',s.msg)); if(s.sub)bottom.appendChild(el('div','sub',s.sub));
     if(s.opts){ var w=el('div','opts'); s.opts.forEach(function(o){ var b=el('button','opt',o.t); b.addEventListener('click',function(){ if(s.q)ans[s.q]=o.v; next(); }); w.appendChild(b); }); bottom.appendChild(w); }
