@@ -30,63 +30,73 @@ export const QLINES = {
   },
 };
 
-// DEEP DIVE：カードの追加質問バンク（スワイプに固執せず選択チップ）。why=なぜ聞くか1行。
+// DEEP DIVE：カードの追加質問（実額）。粗いバンドをやめ、カード特定＋数値入力を取得。why=なぜ聞くか。
 export const CARD_DEEP = {
-  q_fee: {
-    lines:['この年会費は、','いくらくらい？'],
-    why:'年会費を回収できるか計算するために使います',
-    kind:'chips',
-    options:[ {v:'under2000',l:'〜2千円'}, {v:'mid',l:'1〜3万円台'}, {v:'high',l:'4万円以上'}, {v:'unknown',l:'わからない'} ],
+  q_card: {
+    kind:'select', lines:['どのカードで、','迷ってる？'],
+    why:'公式の年会費・特典・キャンペーンを表示するために使います',
+    options:[ {v:'jal',l:'JALカード'}, {v:'smcc',l:'三井住友カード'}, {v:'amex',l:'アメックス'}, {v:'rakuten',l:'楽天カード'}, {v:'other',l:'その他・入力'} ],
   },
-  q_spend: {
-    lines:['このカードで、','年いくら使う？'],
+  fee_yen: {
+    kind:'num', unit:'円', lines:['年会費は、','いくら？'],
+    why:'年会費を回収できるか、実額で計算するために使います',
+    hint:'本会員＋家族会員の年額', placeholder:'例 11000', allowUnknown:true,
+  },
+  spend_yen: {
+    kind:'num', unit:'円', lines:['1年で、','いくら使う？'],
     why:'還元で年会費を取り返せるか計算するために使います',
-    kind:'chips',
-    options:[ {v:'lt50',l:'〜50万円'}, {v:'mid150',l:'50〜150万円'}, {v:'gt150',l:'150万円〜'}, {v:'unknown',l:'わからない'} ],
+    hint:'還元対象の年間利用額', placeholder:'例 800000', allowUnknown:true,
   },
-  q_benefit_detail: {
-    lines:['よく使う特典は、','どれ？'],
-    why:'特典の価値を、あなたの使い方で見積もるために使います',
-    kind:'chips',
-    options:[ {v:'lounge',l:'空港ラウンジ'}, {v:'insurance',l:'旅行保険'}, {v:'continue',l:'継続特典'}, {v:'points',l:'ポイント優遇'}, {v:'none',l:'特にない'} ],
+  lounge_count: {
+    kind:'num', unit:'回', lines:['空港ラウンジ、','年に何回使う？'],
+    why:'特典の価値を、使う回数×本人評価で見積もるために使います',
+    hint:'使わなければ 0', placeholder:'例 2',
   },
-  q_campaign: {
-    lines:['入会キャンペーンで、','初年度は実質おトク？'],
-    why:'初年度の年会費を上回る特典があるか確認するために使います',
-    kind:'chips',
-    options:[ {v:'yes',l:'上回りそう'}, {v:'no',l:'そうでもない'}, {v:'unknown',l:'わからない'} ],
+  campaign_value: {
+    kind:'num', unit:'円', lines:['入会特典は、','いくら相当？'],
+    why:'初年度だけの損得を分けて計算するために使います',
+    hint:'分からなければスキップ', placeholder:'例 5000', optional:true, allowUnknown:true,
   },
 };
 
-// 最初の3回答から「まだ必要な追加質問」を選ぶ（同じ5問を全員には出さない）。最大5。
+const has = (a,k)=> a[k]!==undefined && a[k]!==null && a[k]!=='' && a[k]!=='unknown';
+
+// 最初の回答から「結論を変える不足項目だけ」を選ぶ（全員同じ5問は出さない）。最大5。
 export function selectDeep(theme, ans) {
-  if (theme !== 'card') return []; // 今回はカードのみDEEP実装
+  if (theme !== 'card') return [];
   const a = ans || {};
-  // リボあり→結論はNOで確定。追加質問で結論は変わらない＝聞かない。
-  if (a.q_revolving === 'yes') return [];
+  if (a.q_revolving === 'yes') return []; // 返済優先でNO確定＝追加不要
   const need = [];
-  if (a.q_fee === undefined || a.q_fee === 'unknown') need.push('q_fee');
-  if (a.q_spend === undefined || a.q_spend === 'unknown') need.push('q_spend');
-  // 特典を使う人には、どの特典か＋キャンペーンで初年度を相殺できるかを聞くと理由が具体化する
+  if (!has(a,'card')) need.push('q_card');
+  if (!has(a,'fee_yen')) need.push('fee_yen');
+  if (!has(a,'spend_yen')) need.push('spend_yen');
   if (a.q_benefit === 'yes') {
-    if (a.q_benefit_detail === undefined) need.push('q_benefit_detail');
-    if (a.q_campaign === undefined) need.push('q_campaign');
+    if (!has(a,'lounge_count')) need.push('lounge_count');
+    if (!has(a,'campaign_value')) need.push('campaign_value');
   }
   return need.slice(0, 5);
 }
 
-// 回答の十分性：3問だけで安全に言い切れるか（推測でGO/NOを出さないための門）。
+// 回答の十分性（定量判定に必要な実額がそろったか）。ok=計算可能。
 export function sufficiency(theme, ans) {
   const a = ans || {};
-  if (theme !== 'card') {
-    // 他テーマは現状QUICKのみ＝傾きは出せるが最終結論は有料前提で常に「追加余地あり」
-    return { ok: true, missing: [] };
-  }
-  if (a.q_revolving === 'yes') return { ok: true, missing: [] }; // 返済優先でNO確定
+  if (theme !== 'card') return { ok: true, missing: [] };
+  if (a.q_revolving === 'yes') return { ok: true, missing: [] };
   const missing = [];
-  if (a.q_fee === undefined || a.q_fee === 'unknown') missing.push('q_fee');
-  if (a.q_spend === undefined || a.q_spend === 'unknown') missing.push('q_spend');
+  if (!has(a,'card')) missing.push('q_card');
+  if (!has(a,'fee_yen')) missing.push('fee_yen');
+  if (!has(a,'spend_yen')) missing.push('spend_yen');
+  if (a.q_benefit === 'yes' && !has(a,'lounge_count')) missing.push('lounge_count');
   return { ok: missing.length === 0, missing };
+}
+
+// 同一入力＝同一 decision_id（二重消費防止・再読込で同じ結果）。安定ハッシュ。
+export function decisionId(theme, ans) {
+  const a = ans || {};
+  const keys = ['card','q_revolving','q_benefit','q_free_ok','fee_yen','spend_yen','lounge_count','lounge_val','other_benefit_value','campaign_value'];
+  const s = theme + '|' + keys.map(k=> k+'='+(a[k]===undefined?'':a[k])).join('&');
+  let h = 5381; for (let i=0;i<s.length;i++){ h = ((h<<5)+h) ^ s.charCodeAt(i); h |= 0; }
+  return theme + '-' + (h>>>0).toString(36);
 }
 
 // DEEP後の「気付き」精緻化（無料・方向づけのみ・verdictは出さない）。

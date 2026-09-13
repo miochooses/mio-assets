@@ -321,25 +321,70 @@ function qLinesHTML(card){ const o=(QLINES[state.theme]||{})[card.id]; if(o&&o.l
 function qSub(card){ const o=(QLINES[state.theme]||{})[card.id]; return o?o.sub:(card.hint||''); }
 function sideLabel(card,side){ const o=(QLINES[state.theme]||{})[card.id]; if(o) return side==='l'?o.L:o.R; return side==='l'?card.left.label:card.right.label; }
 
+let numBuf='';
 function renderDeck(){
-  stage.className=''; stage.innerHTML=''; paintDots(); backBtn.classList.toggle('on', state.idx>0);
-  const wrap=el('div','deck');
-  wrap.appendChild(mioBlock(96, state.idx===0?'normal':'thinking', 170));
+  stage.className=''; stage.innerHTML=''; paintDots(); backBtn.classList.toggle('on', state.idx>0 || state.stage==='deep');
+  const deep = state.stage==='deep';
+  const wrap=el('div','deck'+(deep?' deepmode':''));
+  wrap.appendChild(mioBlock(deep?78:96, (state.idx===0&&!deep)?'normal':'thinking', deep?150:170));
   const bub=el('div','bubble'); bub.id='bubble'; wrap.appendChild(bub);
   const zone=el('div'); zone.id='cardzone'; wrap.appendChild(zone);
-  const next=state.cards[state.idx+1]; if(next){ const b=buildCard(next,true); b.classList.add('back'); zone.appendChild(b); }
-  const cur=state.cards[state.idx]; const front=buildCard(cur,false); zone.appendChild(front);
-  // bottom zones
-  if(cur.type==='swipe'){
-    const z=el('div'); z.id='zones';
-    const zl=el('div','zone l'); zl.innerHTML='<span class="dir">←</span><span class="lab">'+sideLabel(cur,'l')+'</span>'; zl.onclick=()=>commit('left');
-    const zr=el('div','zone r'); zr.innerHTML='<span class="dir">→</span><span class="lab">'+sideLabel(cur,'r')+'</span>'; zr.onclick=()=>commit('right');
-    z.appendChild(zl); z.appendChild(zr); wrap.appendChild(z);
-    const uns=el('button',null,'どちらとも言えない → <b>わからない</b>'); uns.id='unsure'; uns.onclick=()=>commit('unsure'); wrap.appendChild(uns);
-    attachDrag(front,cur);
+  const cur=state.cards[state.idx];
+  if(deep){
+    numBuf='';
+    zone.appendChild(buildDeepCard(cur));
+    if(cur.kind==='num') wrap.appendChild(buildKeypad(cur));
+  } else {
+    const next=state.cards[state.idx+1]; if(next){ const b=buildCard(next,true); b.classList.add('back'); zone.appendChild(b); }
+    const front=buildCard(cur,false); zone.appendChild(front);
+    if(cur.type==='swipe'){
+      const z=el('div'); z.id='zones';
+      const zl=el('div','zone l'); zl.innerHTML='<span class="dir">←</span><span class="lab">'+sideLabel(cur,'l')+'</span>'; zl.onclick=()=>commit('left');
+      const zr=el('div','zone r'); zr.innerHTML='<span class="dir">→</span><span class="lab">'+sideLabel(cur,'r')+'</span>'; zr.onclick=()=>commit('right');
+      z.appendChild(zl); z.appendChild(zr); wrap.appendChild(z);
+      const uns=el('button',null,'どちらとも言えない → <b>わからない</b>'); uns.id='unsure'; uns.onclick=()=>commit('unsure'); wrap.appendChild(uns);
+      attachDrag(front,cur);
+    }
   }
   stage.appendChild(wrap);
-  document.onkeydown=onKey;
+  document.onkeydown = deep ? null : onKey;
+}
+// DEEP：内容に応じたauto-height（不要な空白を作らない）
+function buildDeepCard(card){
+  const c=el('div','card deepc');
+  c.appendChild(el('div','num','条件を反映 '+(state.idx+1)+' / '+state.cards.length));
+  const q=el('div','q'); q.innerHTML=linesHTML(card.lines); c.appendChild(q);
+  if(card.why) c.appendChild(el('div','why-line','🔎 '+card.why));
+  if(card.kind==='select'){
+    const g=el('div','selgrid'); card.options.forEach(o=>{ const b=el('button','selbtn',o.l); b.onclick=()=>commitDeep(card,o.v); g.appendChild(b); }); c.appendChild(g);
+  } else if(card.kind==='num'){
+    const disp=el('div','numdisp'); disp.id='numdisp'; disp.innerHTML='<span class="nv">0</span><span class="nu">'+(card.unit||'')+'</span>'; c.appendChild(disp);
+    if(card.hint) c.appendChild(el('div','numhint',card.hint));
+  }
+  return c;
+}
+function fmtNum(s){ if(!s) return '0'; return Number(s).toLocaleString('ja-JP'); }
+function paintNum(card){ const d=document.getElementById('numdisp'); if(d) d.innerHTML='<span class="nv">'+fmtNum(numBuf)+'</span><span class="nu">'+(card.unit||'')+'</span>'; }
+function buildKeypad(card, onCommit){
+  const commit = onCommit || ((v)=>commitDeep(card, v));
+  const kp=el('div','keypad');
+  const keys=['1','2','3','4','5','6','7','8','9','⌫','0','000'];
+  keys.forEach(k=>{ const b=el('button','key'+(k==='⌫'||k==='000'?' sub':''),k); b.onclick=()=>{ if(k==='⌫') numBuf=numBuf.slice(0,-1); else if(k==='000') numBuf=(numBuf||'0')+'000'; else numBuf=(numBuf==='0'?'':numBuf)+k; if(numBuf.length>9)numBuf=numBuf.slice(0,9); paintNum(card); }; kp.appendChild(b); });
+  const row=el('div','kprow');
+  if(card.allowUnknown||card.optional){ const sk=el('button','kskip',card.optional?'スキップ':'わからない'); sk.onclick=()=>commit(card.optional?'skip':'unknown'); row.appendChild(sk); }
+  const ok=el('button','kok','決定'); ok.onclick=()=>{ if(numBuf===''){ return; } commit(Number(numBuf)); }; row.appendChild(ok);
+  kp.appendChild(row);
+  return kp;
+}
+function commitDeep(card, value){
+  if(value==='unknown'){ /* 未確定＝後でNEEDS_INPUTで再取得 */ }
+  else if(value==='skip'){ value=undefined; }
+  if(value!==undefined) state.answers[card.answerKey]=value; else delete state.answers[card.answerKey];
+  state.order.push(card.answerKey);
+  bubble('了解。','convinced');
+  logEv('deep_answer',{q:card.answerKey,value});
+  state.idx++;
+  if(state.idx>=state.cards.length) runAnalyze(); else renderDeck();
 }
 function buildCard(card,isBack){
   const c=el('div','card');
@@ -449,9 +494,14 @@ function resultHead(res, face, kick, cls, word, line){
   res.appendChild(el('div','r-lean '+cls, word));
   if(line) res.appendChild(el('div','r-line', line));
 }
+const isPass=()=>!!(pass&&pass.credits>0);
+function goBtn(primary,main,sub,on){ const b=el('button','choicebtn'+(primary?' primary':''),'<span class="cm">'+main+'</span><span class="cs">'+sub+'</span>'); b.onclick=on; return b; }
+function conclBtn(primary,on){ return isPass() ? goBtn(primary,'Passを1回使って結論を見る','判定が完成するまで回数は減りません',on) : goBtn(primary,'この条件で、結論を見る','最終判定・理由・実現手順まで（'+prod('card').price+'）',on); }
+// 回数消費の二重防止（同じdecision_idは一度だけ）
+function consumedHas(id){ try{ return (JSON.parse(localStorage.getItem('mio_consumed')||'[]')).includes(id); }catch(e){ return false; } }
+function consumedAdd(id){ try{ const a=JSON.parse(localStorage.getItem('mio_consumed')||'[]'); if(!a.includes(id)){ a.push(id); localStorage.setItem('mio_consumed',JSON.stringify(a.slice(-100))); } }catch(e){} }
 function showResult(){
   if(state.theme==='card'){ return state.stage==='deep' ? showDeepResultCard() : showQuickResultCard(); }
-  // 他テーマ(sim/sub/hikari)は従来の無料傾き（or pass時は汎用decide）
   return state.mode==='pass' ? showPaidResultGeneric() : showFreeResultGeneric();
 }
 
@@ -470,15 +520,13 @@ function showQuickResultCard(){
   res.appendChild(resultChips());
   // DEEP DIVE 分岐
   const p2=el('div','phase2'); p2.appendChild(el('div','divhead','ここから、どうする？'));
-  const goBtn = (primary, main, sub, on)=>{ const b=el('button','choicebtn'+(primary?' primary':''), '<span class="cm">'+main+'</span><span class="cs">'+sub+'</span>'); b.onclick=on; return b; };
-  const aBtn = goBtn(suff.ok, suff.ok?'この条件で、結論を見る':'それでも、結論を見る', '最終判定・理由・実現手順まで（'+prod('card').price+'）', ()=>goConclusion('quick'));
-  const bMain = suff.ok ? '条件をもっと反映する' : 'あと'+Math.max(need.length,1)+'問で、条件を揃える';
-  const bBtn = goBtn(!suff.ok, bMain, '自分向けに詳しくする・約1分', ()=>startDeep());
+  const aBtn = conclBtn(suff.ok, ()=>goConclusion('quick'));
+  const bMain = suff.ok ? '条件をもっと反映する' : 'あと'+Math.max(need.length,1)+'項目で、条件を揃える';
+  const bBtn = goBtn(!suff.ok, bMain, '正確な年会費・利用額を入力・約1分', ()=>startDeep());
   if(suff.ok){ p2.appendChild(aBtn); p2.appendChild(bBtn); }
   else {
     p2.appendChild(bBtn);
     p2.appendChild(el('div','warnline','このままでは推測になるため、Mioはまだ言い切りません。'));
-    p2.appendChild(aBtn);
   }
   p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　QUICKは無料の目安です。最終判定・金額計算・個別助言は含みません。'));
   const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
@@ -488,11 +536,12 @@ function showQuickResultCard(){
 }
 
 // ---- DEEP DIVE：不足情報だけを追加で聞く ----
+function deepCard(id){ const s=CARD_DEEP[id]; return { type:'deep', kind:s.kind, id, answerKey:(id==='q_card'?'card':id), lines:s.lines, why:s.why, options:s.options, unit:s.unit, hint:s.hint, placeholder:s.placeholder, allowUnknown:s.allowUnknown, optional:s.optional }; }
 function startDeep(){
   const need=selectDeep('card', state.answers);
   if(!need.length){ return goConclusion('deep'); }
   state.stage='deep'; state.idx=0; state.order=[]; state.animating=false;
-  state.cards=need.map(id=>({ type:'deep', id, lines:CARD_DEEP[id].lines, why:CARD_DEEP[id].why, options:CARD_DEEP[id].options }));
+  state.cards=need.map(deepCard);
   state.screen='deck'; dots.classList.remove('hide'); buildDots(state.cards.length);
   renderDeck(); track('deep'); logEv('deep_start',{n:need.length});
 }
@@ -506,8 +555,8 @@ function showDeepResultCard(){
   const ins=el('div','insightcard'); ins.appendChild(el('div','lb','反映した気付き')); ins.appendChild(el('div','tx', refinedInsight('card',state.answers)||lean.insight)); res.appendChild(ins);
   res.appendChild(resultChips());
   const p2=el('div','phase2');
-  const b=el('button','choicebtn primary','<span class="cm">この条件で、結論を見る</span><span class="cs">最終判定・理由・実現手順まで（'+prod('card').price+'）</span>'); b.onclick=()=>goConclusion('deep'); p2.appendChild(b);
-  p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　最終判定・実現手順は結論（有料）で表示します。'));
+  p2.appendChild(conclBtn(true, ()=>goConclusion('deep')));
+  p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　最終判定・実現手順は結論で表示します。'));
   const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
   res.appendChild(p2); stage.appendChild(res);
   const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,600);
@@ -534,40 +583,69 @@ function showPurchase(){
 }
 
 // ---- カード有料：トレーサブルな詳細結果（段階表示） ----
+let CARDMOD=null;
 async function showPaidRichCard(){
   state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('paid-result');
   const load=el('div','res'); resultHead(load,'thinking','','N','Mioが結論を出しています…',''); stage.appendChild(load);
-  let rich=null; try{ const m=await import('/decide/swipe-v3/card-verdict.js'); rich=m.cardDecideRich(state.answers); }catch(e){ rich=null; }
-  stage.innerHTML=''; const box=el('div','res');
-  if(!rich){ resultHead(box,'troubled','Mioの結論','N','出力に失敗しました','時間をおいて、もう一度お試しください。'); stage.appendChild(box); return; }
+  try{ CARDMOD=await import('/decide/swipe-v3/card-verdict.js'); }catch(e){ CARDMOD=null; }
+  if(!CARDMOD){ stage.innerHTML=''; const b=el('div','res'); resultHead(b,'troubled','Mioの結論','N','出力に失敗しました','時間をおいて、もう一度お試しください。（回数は消費していません）'); const rd=el('button','redo','戻る'); rd.onclick=()=>showQuickResultCard(); b.appendChild(rd); stage.appendChild(b); return; }
+  renderRich();
+}
+function renderRich(){
+  let rich; try{ rich=CARDMOD.cardDecideRich(state.answers); }catch(e){ rich=null; }
+  stage.className='scroll'; stage.innerHTML='';
+  if(!rich){ const b=el('div','res'); resultHead(b,'troubled','Mioの結論','N','出力に失敗しました','（エラー時は回数を消費しません）'); const rd=el('button','redo','戻る'); rd.onclick=()=>showQuickResultCard(); b.appendChild(rd); stage.appendChild(b); return; }
+  logEv('paid_result',{state:rich.state,decision:rich.decision});
+  if(rich.state==='NEEDS_INPUT') return renderNeedsInput(rich);
+  return renderDelivered(rich);
+}
+// NEEDS_INPUT：回数を消費せず、その場で不足分を1つずつ入力→同じ判定として再計算
+function renderNeedsInput(rich){
+  const res=el('div','res');
+  resultHead(res,'thinking','あと少しで、確定できます','N', rich.headline, '正確な値を入れると、この画面のまま結論まで出します。回数は減りません。');
+  const need=rich.needed[0];
+  numBuf='';
+  const box=el('div','niwrap');
+  box.appendChild(el('div','nilabel', need.label+'　<small>'+need.hint+'</small>'));
+  const disp=el('div','numdisp'); disp.id='numdisp'; disp.innerHTML='<span class="nv">0</span><span class="nu">'+need.unit+'</span>'; box.appendChild(disp);
+  const card={ kind:'num', unit:need.unit };
+  box.appendChild(buildKeypad(card, (v)=>{ if(v==='unknown'||v==='skip') return; state.answers[need.key]=Number(v); renderRich(); }));
+  res.appendChild(box);
+  if(rich.needed.length>1) res.appendChild(el('div','meta','入力後、あと'+(rich.needed.length-1)+'項目でそろいます。'));
+  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); res.appendChild(redo);
+  stage.appendChild(res);
+}
+// READY_*：段階表示（結論＋金額差＋決め手＋今日→開閉で詳細）。回数は納品時に一度だけ消費。
+function renderDelivered(rich){
+  if(isPass() && CARDMOD.isDeliverable(rich)){
+    const id=decisionId('card', state.answers);
+    if(!consumedHas(id)){ consumedAdd(id); if(pass&&pass.credits>0){ pass.credits--; localStorage.setItem('mio_pass',JSON.stringify(pass)); renderPass(); } }
+  }
   const dec=rich.decision;
   const badge = dec==='GO'?'✅ 申し込む':(dec==='NO'?'⛔ 見送り':'🟡 今は決めない');
-  const face = rich.face || (dec==='GO'?'thumbs_up':dec==='NO'?'troubled':'thinking');
-  // 第一表示：結論
-  const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); w.appendChild(im); box.appendChild(w);
-  box.appendChild(el('div','r-kick','Mioの結論'));
-  const center=el('div'); center.style.textAlign='center'; center.appendChild(el('span','badge '+dec,badge)); box.appendChild(center);
-  if(rich.headline) box.appendChild(el('div','r-line', rich.headline));
-  // 段階表示
-  const p2=el('div','phase2');
-  // なぜ、この結論？（reason_trace）
-  const sec=(title)=>{ const s=el('div','rsec'); s.appendChild(el('div','rsh',title)); return s; };
-  if(rich.reason_trace&&rich.reason_trace.length){ const s=sec('なぜ、この結論？'); rich.reason_trace.slice(0,4).forEach(t=>{ const tr=el('div','trace'); tr.appendChild(el('div','tq',t.question)); tr.appendChild(el('div','ta','→ '+t.answer)); tr.appendChild(el('div','ti','影響：'+t.impact)); tr.appendChild(el('div','trn',t.reason)); s.appendChild(tr); }); p2.appendChild(s); }
-  // 捨てる理由
-  if(rich.discarded_alternatives&&rich.discarded_alternatives.length){ const s=sec(dec==='NO'?'見送ってよい理由':'この選択でよい理由'); rich.discarded_alternatives.forEach(d=>{ const it=el('div','disc'); it.appendChild(el('div','dt','「'+d.option+'」を選ばない')); it.appendChild(el('div','dr',d.why)); s.appendChild(it); }); p2.appendChild(s); }
-  // 条件が変わると
-  if(rich.change_conditions&&rich.change_conditions.length){ const s=sec('この条件なら、結論が変わります'); const ul=el('ul','condlist'); rich.change_conditions.forEach(c=>{ const li=el('li'); li.textContent=c; ul.appendChild(li); }); s.appendChild(ul); p2.appendChild(s); }
-  // 盲点
-  if(rich.blind_spots&&rich.blind_spots.length){ const s=sec('見落としやすい盲点'); rich.blind_spots.forEach(b=>{ s.appendChild(el('div','blind','👁 '+b)); }); p2.appendChild(s); }
-  // 実現手順
-  if(rich.action_plan&&rich.action_plan.length){ const s=sec('この結論を、今日どう動かす？'); rich.action_plan.forEach(st=>{ const sp=el('div','step'); sp.appendChild(el('div','stephead','<span class="no">'+st.order+'</span><span class="when">'+st.when+'</span>')); sp.appendChild(el('div','stepact',st.action)); const mt=el('div','stepmeta'); if(st.caution&&st.caution!=='—')mt.appendChild(el('div','cau','⚠ '+st.caution)); mt.appendChild(el('div','don','✓ 完了：'+st.done)); sp.appendChild(mt); s.appendChild(sp); }); p2.appendChild(s); }
-  // 参照
-  const src=sec('参照情報'); rich.sources.forEach(so=>{ src.appendChild(el('div','srcln','・'+so.label+(so.note?'（'+so.note+'）':''))); }); src.appendChild(el('div','checked','情報確認日：'+rich.checked_at)); p2.appendChild(src);
-  if(pass&&pass.credits>0){ pass.credits--; localStorage.setItem('mio_pass',JSON.stringify(pass)); renderPass(); }
-  const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); p2.appendChild(redo);
-  box.appendChild(p2); stage.appendChild(box);
-  const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,900);
-  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show'))reveal(); },{once:true});
+  const res=el('div','res');
+  const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(rich.face); w.appendChild(im); res.appendChild(w);
+  res.appendChild(el('div','r-kick','Mioの結論'));
+  const center=el('div'); center.style.textAlign='center'; center.appendChild(el('span','badge '+dec,badge)); res.appendChild(center);
+  if(rich.amount_gap!=null){ const g=el('div','gap '+(rich.amount_gap>=0?'pos':'neg')); g.innerHTML='年 '+(rich.amount_gap>=0?'+':'−')+Math.abs(rich.amount_gap).toLocaleString('ja-JP')+'円 <small>'+(rich.amount_gap>=0?'お得':'持ち出し')+'</small>'; res.appendChild(g); }
+  res.appendChild(el('div','r-line', rich.headline));
+  // 第一表示：最大の決め手＋今日の一手（スクロール前に結論と次の行動が分かる）
+  const fb=el('div','firstblk');
+  fb.appendChild(el('div','fbh','最大の決め手')); fb.appendChild(el('div','fbt',rich.key_point));
+  fb.appendChild(el('div','fbh','今日の一手')); fb.appendChild(el('div','fbt',rich.action_plan[0].action));
+  res.appendChild(fb);
+  // 前提の変更（仮定値は利用者が変更可）
+  if(rich.assumptions&&rich.assumptions.length){ const as=rich.assumptions[0]; const ab=el('button','assume','前提：ラウンジ1回＝'+as.value.toLocaleString('ja-JP')+'円 を変更'); ab.onclick=()=>{ numBuf=''; const wrap=el('div','niwrap'); wrap.appendChild(el('div','nilabel','ラウンジ1回の価値　<small>あなたの評価額</small>')); const d=el('div','numdisp'); d.id='numdisp'; d.innerHTML='<span class="nv">0</span><span class="nu">円</span>'; wrap.appendChild(d); wrap.appendChild(buildKeypad({kind:'num',unit:'円'},(v)=>{ if(v==='unknown'||v==='skip')return; state.answers.lounge_val=Number(v); renderRich(); })); stage.innerHTML=''; const r2=el('div','res'); resultHead(r2,'thinking','前提を変更','N','ラウンジ1回の価値を入れ直します',''); r2.appendChild(wrap); stage.appendChild(r2); }; res.appendChild(ab); }
+  // 開閉式の詳細
+  const acc=(title,build)=>{ const d=el('details','acc'); d.appendChild(el('summary',null,title)); build(d); res.appendChild(d); };
+  acc('なぜ、この結論？（あなたの数字）', d=>{ rich.reason_trace.forEach(t=>{ const tr=el('div','trace'); tr.appendChild(el('div','tq',t.question)); tr.appendChild(el('div','ta','→ '+t.answer)); tr.appendChild(el('div','ti','影響：'+t.impact)); tr.appendChild(el('div','trn',t.reason)); d.appendChild(tr); }); });
+  acc(dec==='NO'?'見送ってよい理由':'この選択でよい理由', d=>{ rich.discarded_alternatives.forEach(x=>{ const it=el('div','disc'); it.appendChild(el('div','dt','「'+x.option+'」を選ばない')); it.appendChild(el('div','dr',x.why)); d.appendChild(it); }); });
+  acc('この条件なら、結論が変わります', d=>{ const ul=el('ul','condlist'); rich.change_conditions.forEach(x=>{ const li=el('li'); li.textContent=x; ul.appendChild(li); }); d.appendChild(ul); });
+  acc('見落としやすい盲点', d=>{ rich.blind_spots.forEach(b=>d.appendChild(el('div','blind','👁 '+b))); });
+  acc('実現手順（今日から）', d=>{ rich.action_plan.forEach(st=>{ const sp=el('div','step'); sp.appendChild(el('div','stephead','<span class="no">'+st.order+'</span><span class="when">'+st.when+'</span>')); sp.appendChild(el('div','stepact',st.action)); if(st.url){ const a=el('a','stepurl','🔗 公式ページを開く'); a.href=st.url; a.target='_blank'; a.rel='noopener'; sp.appendChild(a); } const mt=el('div','stepmeta'); if(st.caution&&st.caution!=='—')mt.appendChild(el('div','cau','⚠ '+st.caution)); mt.appendChild(el('div','don','✓ 完了：'+st.done_condition)); sp.appendChild(mt); d.appendChild(sp); }); });
+  acc('参照情報', d=>{ rich.sources.forEach(so=>{ if(so.url){ const a=el('a','srcln','・'+so.label+'（公式）'); a.href=so.url; a.target='_blank'; a.rel='noopener'; d.appendChild(a);} else d.appendChild(el('div','srcln','・'+so.label+(so.note?'（'+so.note+'）':''))); }); d.appendChild(el('div','checked','情報確認日：'+rich.checked_at)); });
+  const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); res.appendChild(redo);
+  stage.appendChild(res);
 }
 
 // ---- 他テーマ（sim/sub/hikari）：従来の無料傾き ----

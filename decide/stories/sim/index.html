@@ -145,9 +145,14 @@ function show(i){
   document.getElementById('hint').style.display = s.opts?'none':'block';
 }
 function next(){ if(idx<SC.length-1){ idx++; show(idx); } }
+// 画面タップ/上スワイプで前進(Shorts流入のタップ操作に合わせる)。選択肢画面と結果画面は除外し、ボタン/リンクは各自の動作を優先。連続発火はdebounce。
+var lastAdv=0;
+function tryAdvance(){ var t=Date.now(); if(t-lastAdv<420) return; lastAdv=t; next(); }
+function canTapAdvance(e){ var s=SC[idx]; if(!s||s.opts||s.dynamic==='result') return false; if(e&&e.target&&e.target.closest&&e.target.closest('button,a,.opts,.paid,.samp')) return false; return true; }
+stage.addEventListener('click',function(e){ if(canTapAdvance(e)) tryAdvance(); });
 var y0=null;
 document.addEventListener('touchstart',function(e){ y0=e.touches[0].clientY; },{passive:true});
-document.addEventListener('touchend',function(e){ if(y0==null)return; var dy=y0-e.changedTouches[0].clientY; if(dy>55 && !SC[idx].opts && idx<SC.length-1) next(); y0=null; },{passive:true});
+document.addEventListener('touchend',function(e){ if(y0==null)return; var dy=y0-e.changedTouches[0].clientY; if(dy>55 && !SC[idx].opts && idx<SC.length-1) tryAdvance(); y0=null; },{passive:true});
 document.getElementById('restart').addEventListener('click',function(){ idx=0;ans={}; screens.forEach(function(sc){if(sc)stage.removeChild(sc);}); screens=[]; show(0); });
 show(0);
 </script>
