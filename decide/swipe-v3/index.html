@@ -140,6 +140,50 @@
   .psec{margin-top:14px;border-radius:16px;padding:15px 16px;background:rgba(255,255,255,.05);}
   .psec .lb{font-size:11px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
   .psec .tx{margin-top:7px;font-size:14.5px;color:#e6eef6;line-height:1.75;}
+  /* 改行制御：lines[] を span で明示 */
+  .card .q .ln{display:block;word-break:keep-all;line-break:strict;overflow-wrap:normal;text-wrap:balance;}
+  .why-line{margin-top:14px;font-size:13px;font-weight:700;color:#9fd0ff;background:rgba(94,179,255,.1);border-radius:10px;padding:9px 12px;line-height:1.6;}
+  .choices.g3{grid-template-columns:1fr 1fr;} .choices .choice{white-space:nowrap;}
+  /* QUICK結果 気付き */
+  .insightcard{margin-top:18px;background:rgba(255,255,255,.05);border-radius:16px;padding:15px 16px;}
+  .insightcard .lb{font-size:11px;font-weight:800;color:var(--go);letter-spacing:.05em;}
+  .insightcard .tx{margin-top:7px;font-size:15px;line-height:1.75;color:#e6eef6;}
+  /* DEEP DIVE 分岐 */
+  .divhead{margin-top:24px;text-align:center;font-size:14px;font-weight:800;color:var(--dim);}
+  .choicebtn{display:block;width:100%;margin-top:12px;text-align:left;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);
+    border-radius:16px;padding:15px 18px;cursor:pointer;font-family:inherit;color:var(--tx);}
+  .choicebtn:active{transform:scale(.99);}
+  .choicebtn.primary{border-color:rgba(94,179,255,.5);background:linear-gradient(120deg,rgba(94,179,255,.18),rgba(178,139,255,.14));}
+  .choicebtn .cm{display:block;font-size:17px;font-weight:900;}
+  .choicebtn .cs{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:var(--dim);}
+  .warnline{margin-top:10px;font-size:12.5px;font-weight:700;color:#ffcf7a;text-align:center;line-height:1.6;}
+  .tile.open{background:linear-gradient(165deg,rgba(57,211,83,.16),rgba(27,44,70,.5));}
+  .tile.open::after{display:none;}
+  /* 有料 詳細結果 */
+  .rsec{margin-top:22px;}
+  .rsh{font-size:15px;font-weight:900;color:#eaf1f9;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.09);}
+  .trace{margin-top:12px;background:rgba(255,255,255,.04);border-left:3px solid var(--mio);border-radius:0 12px 12px 0;padding:12px 14px;}
+  .trace .tq{font-size:13px;color:var(--dim);font-weight:700;}
+  .trace .ta{margin-top:3px;font-size:16px;font-weight:900;color:#eaf1f9;}
+  .trace .ti{margin-top:6px;font-size:13.5px;font-weight:800;color:#9fd0ff;}
+  .trace .trn{margin-top:5px;font-size:13px;color:#c3d0de;line-height:1.7;}
+  .disc{margin-top:12px;background:rgba(255,255,255,.04);border-radius:12px;padding:12px 14px;}
+  .disc .dt{font-size:14.5px;font-weight:900;color:#f0d6d6;}
+  .disc .dr{margin-top:5px;font-size:13px;color:#c3d0de;line-height:1.7;}
+  .condlist{margin:12px 0 0 2px;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .condlist li{position:relative;padding-left:22px;font-size:14px;color:#e2eaf3;line-height:1.6;}
+  .condlist li::before{content:"↳";position:absolute;left:2px;color:var(--violet);font-weight:900;}
+  .blind{margin-top:10px;font-size:14px;color:#e6edf3;line-height:1.7;background:rgba(255,207,74,.08);border-radius:10px;padding:11px 13px;}
+  .step{margin-top:12px;background:rgba(255,255,255,.04);border-radius:14px;padding:13px 15px;}
+  .step .stephead{display:flex;align-items:center;gap:9px;}
+  .step .no{width:24px;height:24px;border-radius:50%;background:var(--mio);color:#04203a;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .step .when{font-size:12px;font-weight:800;color:#9fd0ff;background:rgba(94,179,255,.12);border-radius:99px;padding:3px 10px;}
+  .step .stepact{margin-top:9px;font-size:14.5px;font-weight:700;color:#eef4fb;line-height:1.7;}
+  .step .stepmeta{margin-top:8px;display:flex;flex-direction:column;gap:4px;}
+  .step .cau{font-size:12.5px;color:#ffcf7a;line-height:1.6;}
+  .step .don{font-size:12.5px;color:#8fe0a3;line-height:1.6;}
+  .srcln{margin-top:8px;font-size:12.5px;color:var(--dim);line-height:1.7;}
+  .checked{margin-top:8px;font-size:12px;color:var(--faint);}
   @media (prefers-reduced-motion: reduce){ .card,.mioImg,.chipfly,.lensbox .ring,.phase2,.whybody,#dots i{transition:none !important;} }
 </style>
 </head>
@@ -156,6 +200,7 @@
 <script type="module">
 import { TEMPLATES } from '/decide/decide-core.js';
 import { buildDeck, leanFree, DECK_ORDER } from '/decide/swipe-v2/swipe-lean.js';
+import { QLINES, CARD_DEEP, selectDeep, sufficiency, refinedInsight } from '/decide/swipe-v3/card-quest.js';
 
 const FACE = s => `/decide/mio/${s}.png`;
 const stage = document.getElementById('stage');
@@ -218,8 +263,9 @@ function goHome(){
 }
 function startTheme(theme){
   const paid = pass && pass.credits>0;
-  state = { screen:'deck', theme, idx:0, answers:{}, order:[], mode: paid?'pass':'free',
-    cards: paid ? buildPassCards(theme) : buildDeck(theme).cards.map(c=>({...c,type:'swipe'})), animating:false };
+  // 常に QUICK SCAN(3スワイプ)から。DEEP/有料結論は結果画面で分岐。
+  state = { screen:'deck', theme, idx:0, answers:{}, order:[], mode: paid?'pass':'free', stage:'quick',
+    cards: buildDeck(theme).cards.map(c=>({...c,type:'swipe'})), animating:false };
   dots.classList.remove('hide'); renderPass(); buildDots(state.cards.length);
   renderDeck(); track((paid?'pass-':'')+theme); logEv('deck_start',{theme,mode:state.mode});
 }
@@ -269,9 +315,11 @@ function renderHome(){
 
 // ============ DECK（スワイプ） ============
 let drag=null;
-function qText(card){ const o=(SHORT_Q[state.theme]||{})[card.id]; return o?o[0]:card.prompt; }
-function qSub(card){ const o=(SHORT_Q[state.theme]||{})[card.id]; return o?o[1]:(card.hint||''); }
-function sideLabel(card,side){ const o=(SIDE_LABEL[state.theme]||{})[card.id]; if(o) return side==='l'?o[0]:o[1]; return side==='l'?card.left.label:card.right.label; }
+// 改行はCSS任せにせず lines[] を span で描画（word-break:keep-all併用）
+function linesHTML(lines){ return (lines||[]).map(l=>'<span class="ln">'+l+'</span>').join(''); }
+function qLinesHTML(card){ const o=(QLINES[state.theme]||{})[card.id]; if(o&&o.lines) return linesHTML(o.lines); return '<span class="ln">'+(card.prompt||'')+'</span>'; }
+function qSub(card){ const o=(QLINES[state.theme]||{})[card.id]; return o?o.sub:(card.hint||''); }
+function sideLabel(card,side){ const o=(QLINES[state.theme]||{})[card.id]; if(o) return side==='l'?o.L:o.R; return side==='l'?card.left.label:card.right.label; }
 
 function renderDeck(){
   stage.className=''; stage.innerHTML=''; paintDots(); backBtn.classList.toggle('on', state.idx>0);
@@ -295,15 +343,20 @@ function renderDeck(){
 }
 function buildCard(card,isBack){
   const c=el('div','card');
-  c.appendChild(el('div','num','質問 '+(state.cards.indexOf(card)+1)+' / '+state.cards.length));
+  const stageLbl = state.stage==='deep' ? '条件を反映' : '質問';
+  c.appendChild(el('div','num', stageLbl+' '+(state.cards.indexOf(card)+1)+' / '+state.cards.length));
   if(card.type==='swipe'){
     const eL=el('div','elabel l','<span class="cue">←</span>'+sideLabel(card,'l'));
     const eR=el('div','elabel r','<span class="cue">→</span>'+sideLabel(card,'r'));
     eL.dataset.e='l'; eR.dataset.e='r'; c.appendChild(eL); c.appendChild(eR);
-    c.appendChild(el('div','q',qText(card)));
+    const q=el('div','q'); q.innerHTML=qLinesHTML(card); c.appendChild(q);
     const s=qSub(card); if(s) c.appendChild(el('div','sub',s));
+  } else if(card.type==='deep'){
+    const q=el('div','q'); q.innerHTML=linesHTML(card.lines); c.appendChild(q);
+    if(card.why) c.appendChild(el('div','why-line','🔎 '+card.why));
+    const g=el('div','choices'+(card.options.length>4?' g3':'')); card.options.forEach(o=>{ const b=el('button','choice',o.l); b.onclick=()=>commitChoice(card,o.v); g.appendChild(b); }); c.appendChild(g);
   } else {
-    c.appendChild(el('div','q',card.prompt));
+    const q=el('div','q'); q.innerHTML='<span class="ln">'+card.prompt+'</span>'; c.appendChild(q);
     if(card.hint) c.appendChild(el('div','sub',card.hint));
     const g=el('div','choices'); card.options.forEach(o=>{ const b=el('button','choice',o.label); b.onclick=()=>commitChoice(card,o.value); g.appendChild(b); }); c.appendChild(g);
   }
@@ -348,8 +401,11 @@ function flyOut(side){
 function onKey(e){ if(state.screen!=='deck')return; const card=state.cards[state.idx]; if(!card||card.type!=='swipe')return;
   if(e.key==='ArrowLeft'){e.preventDefault();commit('left');} else if(e.key==='ArrowRight'){e.preventDefault();commit('right');} else if(e.key==='ArrowDown'){e.preventDefault();commit('unsure');} }
 backBtn.onclick=()=>{
-  if(state.screen==='deck'){ if(state.idx>0){ const last=state.order.pop(); delete state.answers[last]; state.idx--; renderDeck(); } else goHome(); }
-  else if(state.screen==='result'){ state.idx=state.cards.length-1; const last=state.order.pop(); if(last)delete state.answers[last]; state.screen='deck'; dots.classList.remove('hide'); renderDeck(); }
+  if(state.screen==='deck'){
+    if(state.idx>0){ const last=state.order.pop(); delete state.answers[last]; state.idx--; renderDeck(); }
+    else if(state.stage==='deep'){ state.stage='quick'; showQuickResultCard(); } // DEEP最初→QUICK結果へ
+    else goHome();
+  }
   else goHome();
 };
 
@@ -385,58 +441,164 @@ async function runAnalyze(){
   await sleep(260); showResult();
 }
 
-// ============ RESULT ============
-function showResult(){
-  if(state.mode==='pass') return showPaidResult();
-  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('result'); backBtn.classList.remove('on');
-  const lean=leanFree(state.theme, state.answers); const tpl=TEMPLATES[state.theme];
-  logEv('result',{theme:state.theme,dir:lean.dir,code:lean.code});
-  const res=el('div','res');
-  const face = lean.dir==='neutral'?'thinking':'convinced';
+// ============ RESULT（ルーター） ============
+function resultChips(){ const chips=el('div','chips'); state.cards.forEach(c=>{ const v=state.answers[c.id]; if(v===undefined)return; let a; if(c.type==='deep'){ const o=(c.options||[]).find(o=>o.v===v); a=o?o.l:v; } else { a=v==='unknown'?'わからない':(v===c.left.value?sideLabel(c,'l'):sideLabel(c,'r')); } chips.appendChild(el('div','chip','<b>'+a+'</b>')); }); return chips; }
+function resultHead(res, face, kick, cls, word, line){
   const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); im.alt='Mio'; w.appendChild(im); res.appendChild(w);
-  res.appendChild(el('div','r-kick','いまのあなたは'));
-  const leanCls = lean.dir==='A'?'A':lean.dir==='B'?'B':'N';
-  const leanWord = lean.dir==='neutral' ? 'まだ五分' : (lean.dir==='A'?tpl.choiceA:tpl.choiceB)+' 寄り';
-  res.appendChild(el('div','r-lean '+leanCls, leanWord));
-  const shortLine = lean.dir==='neutral' ? '決め手になる数字が、まだ足りません。' : '「'+(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+'」に傾いています。';
-  res.appendChild(el('div','r-line', shortLine));
-  // どうして？（気付きを開く）
-  const why=el('button','why','どうして？ ▾'); const whyBody=el('div','whybody'); whyBody.appendChild(el('p','',lean.insight));
-  why.onclick=()=>{ whyBody.classList.toggle('open'); why.innerHTML = whyBody.classList.contains('open')?'とじる ▴':'どうして？ ▾'; };
-  res.appendChild(why); res.appendChild(whyBody);
-  // phase2
-  const p2=el('div','phase2');
-  const chips=el('div','chips');
-  state.cards.forEach(c=>{ const v=state.answers[c.id]; const a=v==='unknown'?'わからない':(v===c.left.value?sideLabel(c,'l'):sideLabel(c,'r')); chips.appendChild(el('div','chip','<b>'+a+'</b>')); });
-  p2.appendChild(chips);
-  p2.appendChild(el('div','paidhead','結論まで進めると、ここが分かります'));
-  const tiles=el('div','tiles');
-  [['🔒','最終判定'],['🔒','決め手'],['🔒','見落とし'],['🔒','今日やること']].forEach(([lk,t])=>{ const ti=el('div','tile'); ti.appendChild(el('div','lk',lk)); ti.appendChild(el('div','t',t)); tiles.appendChild(ti); });
-  p2.appendChild(tiles);
-  const pr=prod(state.theme);
-  const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url; cta.target='_blank'; cta.rel='noopener';
-  cta.onclick=()=>{ logEv('cta_click',{theme:state.theme,code:lean.code}); track('cta'); };
-  p2.appendChild(cta);
-  const meta=el('div','meta'); meta.innerHTML='判定コード <span class="code">'+lean.code+'</span>　この傾きは無料の目安です。<br>最終判定・金額計算・個別助言は含みません。';
-  p2.appendChild(meta);
-  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
-  res.appendChild(p2);
-  stage.appendChild(res);
-  const reveal=()=>p2.classList.add('show');
-  if(reduce()) reveal(); else setTimeout(reveal, 950);
-  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show')) reveal(); },{once:true});
+  res.appendChild(el('div','r-kick',kick));
+  res.appendChild(el('div','r-lean '+cls, word));
+  if(line) res.appendChild(el('div','r-line', line));
+}
+function showResult(){
+  if(state.theme==='card'){ return state.stage==='deep' ? showDeepResultCard() : showQuickResultCard(); }
+  // 他テーマ(sim/sub/hikari)は従来の無料傾き（or pass時は汎用decide）
+  return state.mode==='pass' ? showPaidResultGeneric() : showFreeResultGeneric();
 }
 
-async function showPaidResult(){
+// ---- カード QUICK SCAN 結果（傾き＋気付き＋回答要約＋DEEP DIVE分岐） ----
+function showQuickResultCard(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('quick'); backBtn.classList.remove('on');
+  const lean=leanFree('card', state.answers); const tpl=TEMPLATES.card;
+  const suff=sufficiency('card', state.answers); const need=selectDeep('card', state.answers);
+  logEv('quick_result',{dir:lean.dir,code:lean.code,sufficient:suff.ok});
+  const res=el('div','res');
+  const word = lean.dir==='neutral' ? 'まだ五分' : (lean.dir==='A'?tpl.choiceA:tpl.choiceB)+' 寄り';
+  const cls = lean.dir==='A'?'A':lean.dir==='B'?'B':'N';
+  resultHead(res, lean.dir==='neutral'?'thinking':'convinced', 'QUICK SCAN｜いまの傾き', cls, word,
+    lean.dir==='neutral'?'決め手になる数字が、まだ足りません。':'「'+(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+'」に傾いています。');
+  const ins=el('div','insightcard'); ins.appendChild(el('div','lb','いちばんの気付き')); ins.appendChild(el('div','tx',lean.insight)); res.appendChild(ins);
+  res.appendChild(resultChips());
+  // DEEP DIVE 分岐
+  const p2=el('div','phase2'); p2.appendChild(el('div','divhead','ここから、どうする？'));
+  const goBtn = (primary, main, sub, on)=>{ const b=el('button','choicebtn'+(primary?' primary':''), '<span class="cm">'+main+'</span><span class="cs">'+sub+'</span>'); b.onclick=on; return b; };
+  const aBtn = goBtn(suff.ok, suff.ok?'この条件で、結論を見る':'それでも、結論を見る', '最終判定・理由・実現手順まで（'+prod('card').price+'）', ()=>goConclusion('quick'));
+  const bMain = suff.ok ? '条件をもっと反映する' : 'あと'+Math.max(need.length,1)+'問で、条件を揃える';
+  const bBtn = goBtn(!suff.ok, bMain, '自分向けに詳しくする・約1分', ()=>startDeep());
+  if(suff.ok){ p2.appendChild(aBtn); p2.appendChild(bBtn); }
+  else {
+    p2.appendChild(bBtn);
+    p2.appendChild(el('div','warnline','このままでは推測になるため、Mioはまだ言い切りません。'));
+    p2.appendChild(aBtn);
+  }
+  p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　QUICKは無料の目安です。最終判定・金額計算・個別助言は含みません。'));
+  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
+  res.appendChild(p2); stage.appendChild(res);
+  const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,700);
+  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show'))reveal(); },{once:true});
+}
+
+// ---- DEEP DIVE：不足情報だけを追加で聞く ----
+function startDeep(){
+  const need=selectDeep('card', state.answers);
+  if(!need.length){ return goConclusion('deep'); }
+  state.stage='deep'; state.idx=0; state.order=[]; state.animating=false;
+  state.cards=need.map(id=>({ type:'deep', id, lines:CARD_DEEP[id].lines, why:CARD_DEEP[id].why, options:CARD_DEEP[id].options }));
+  state.screen='deck'; dots.classList.remove('hide'); buildDots(state.cards.length);
+  renderDeck(); track('deep'); logEv('deep_start',{n:need.length});
+}
+function showDeepResultCard(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('deep-result'); backBtn.classList.remove('on');
+  const lean=leanFree('card', state.answers); const tpl=TEMPLATES.card;
+  const word = lean.dir==='neutral'?'まだ五分':(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+' 寄り';
+  const cls = lean.dir==='A'?'A':lean.dir==='B'?'B':'N';
+  const res=el('div','res');
+  resultHead(res,'convinced','DEEP DIVE｜条件を反映した傾き', cls, word, '条件がそろいました。結論まで進めます。');
+  const ins=el('div','insightcard'); ins.appendChild(el('div','lb','反映した気付き')); ins.appendChild(el('div','tx', refinedInsight('card',state.answers)||lean.insight)); res.appendChild(ins);
+  res.appendChild(resultChips());
+  const p2=el('div','phase2');
+  const b=el('button','choicebtn primary','<span class="cm">この条件で、結論を見る</span><span class="cs">最終判定・理由・実現手順まで（'+prod('card').price+'）</span>'); b.onclick=()=>goConclusion('deep'); p2.appendChild(b);
+  p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　最終判定・実現手順は結論（有料）で表示します。'));
+  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
+  res.appendChild(p2); stage.appendChild(res);
+  const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,600);
+}
+
+// ---- 結論へ：無料=購入CTA / pass=詳細結果を同画面表示 ----
+function goConclusion(from){
+  logEv('conclusion_click',{from,mode:state.mode});
+  if(state.mode==='pass') return showPaidRichCard();
+  return showPurchase();
+}
+function showPurchase(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('purchase');
+  const pr=prod('card'); const res=el('div','res');
+  resultHead(res,'smirk','あと一歩','A','結論と、動き方まで','あなたの回答をもとに、Mioが結論・理由・実現手順まで出します。');
+  const tiles=el('div','tiles');
+  [['✅','最終判定'],['🧭','決め手と理由'],['🚫','捨てる理由'],['🔄','結論が変わる条件'],['👁','見落とし'],['🗺','今日の実現手順']].forEach(([lk,t])=>{ const ti=el('div','tile open'); ti.appendChild(el('div','lk',lk)); ti.appendChild(el('div','t',t)); tiles.appendChild(ti); });
+  res.appendChild(tiles);
+  const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url; cta.target='_blank'; cta.rel='noopener';
+  cta.onclick=()=>{ logEv('cta_click',{theme:'card'}); track('cta'); }; res.appendChild(cta);
+  res.appendChild(el('div','meta','ご購入後、同じ回答から結論・理由・実現手順をお届けします。最新の年会費・特典は各社公式でご確認ください。'));
+  const back=el('button','redo','← 傾きの画面に戻る'); back.onclick=()=>showQuickResultCard(); res.appendChild(back);
+  stage.appendChild(res);
+}
+
+// ---- カード有料：トレーサブルな詳細結果（段階表示） ----
+async function showPaidRichCard(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('paid-result');
+  const load=el('div','res'); resultHead(load,'thinking','','N','Mioが結論を出しています…',''); stage.appendChild(load);
+  let rich=null; try{ const m=await import('/decide/swipe-v3/card-verdict.js'); rich=m.cardDecideRich(state.answers); }catch(e){ rich=null; }
+  stage.innerHTML=''; const box=el('div','res');
+  if(!rich){ resultHead(box,'troubled','Mioの結論','N','出力に失敗しました','時間をおいて、もう一度お試しください。'); stage.appendChild(box); return; }
+  const dec=rich.decision;
+  const badge = dec==='GO'?'✅ 申し込む':(dec==='NO'?'⛔ 見送り':'🟡 今は決めない');
+  const face = rich.face || (dec==='GO'?'thumbs_up':dec==='NO'?'troubled':'thinking');
+  // 第一表示：結論
+  const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); w.appendChild(im); box.appendChild(w);
+  box.appendChild(el('div','r-kick','Mioの結論'));
+  const center=el('div'); center.style.textAlign='center'; center.appendChild(el('span','badge '+dec,badge)); box.appendChild(center);
+  if(rich.headline) box.appendChild(el('div','r-line', rich.headline));
+  // 段階表示
+  const p2=el('div','phase2');
+  // なぜ、この結論？（reason_trace）
+  const sec=(title)=>{ const s=el('div','rsec'); s.appendChild(el('div','rsh',title)); return s; };
+  if(rich.reason_trace&&rich.reason_trace.length){ const s=sec('なぜ、この結論？'); rich.reason_trace.slice(0,4).forEach(t=>{ const tr=el('div','trace'); tr.appendChild(el('div','tq',t.question)); tr.appendChild(el('div','ta','→ '+t.answer)); tr.appendChild(el('div','ti','影響：'+t.impact)); tr.appendChild(el('div','trn',t.reason)); s.appendChild(tr); }); p2.appendChild(s); }
+  // 捨てる理由
+  if(rich.discarded_alternatives&&rich.discarded_alternatives.length){ const s=sec(dec==='NO'?'見送ってよい理由':'この選択でよい理由'); rich.discarded_alternatives.forEach(d=>{ const it=el('div','disc'); it.appendChild(el('div','dt','「'+d.option+'」を選ばない')); it.appendChild(el('div','dr',d.why)); s.appendChild(it); }); p2.appendChild(s); }
+  // 条件が変わると
+  if(rich.change_conditions&&rich.change_conditions.length){ const s=sec('この条件なら、結論が変わります'); const ul=el('ul','condlist'); rich.change_conditions.forEach(c=>{ const li=el('li'); li.textContent=c; ul.appendChild(li); }); s.appendChild(ul); p2.appendChild(s); }
+  // 盲点
+  if(rich.blind_spots&&rich.blind_spots.length){ const s=sec('見落としやすい盲点'); rich.blind_spots.forEach(b=>{ s.appendChild(el('div','blind','👁 '+b)); }); p2.appendChild(s); }
+  // 実現手順
+  if(rich.action_plan&&rich.action_plan.length){ const s=sec('この結論を、今日どう動かす？'); rich.action_plan.forEach(st=>{ const sp=el('div','step'); sp.appendChild(el('div','stephead','<span class="no">'+st.order+'</span><span class="when">'+st.when+'</span>')); sp.appendChild(el('div','stepact',st.action)); const mt=el('div','stepmeta'); if(st.caution&&st.caution!=='—')mt.appendChild(el('div','cau','⚠ '+st.caution)); mt.appendChild(el('div','don','✓ 完了：'+st.done)); sp.appendChild(mt); s.appendChild(sp); }); p2.appendChild(s); }
+  // 参照
+  const src=sec('参照情報'); rich.sources.forEach(so=>{ src.appendChild(el('div','srcln','・'+so.label+(so.note?'（'+so.note+'）':''))); }); src.appendChild(el('div','checked','情報確認日：'+rich.checked_at)); p2.appendChild(src);
+  if(pass&&pass.credits>0){ pass.credits--; localStorage.setItem('mio_pass',JSON.stringify(pass)); renderPass(); }
+  const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); p2.appendChild(redo);
+  box.appendChild(p2); stage.appendChild(box);
+  const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,900);
+  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show'))reveal(); },{once:true});
+}
+
+// ---- 他テーマ（sim/sub/hikari）：従来の無料傾き ----
+function showFreeResultGeneric(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('result'); backBtn.classList.remove('on');
+  const lean=leanFree(state.theme, state.answers); const tpl=TEMPLATES[state.theme];
+  const res=el('div','res');
+  const word = lean.dir==='neutral'?'まだ五分':(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+' 寄り';
+  const cls = lean.dir==='A'?'A':lean.dir==='B'?'B':'N';
+  resultHead(res, lean.dir==='neutral'?'thinking':'convinced','いまのあなたは',cls,word, lean.dir==='neutral'?'決め手になる数字が、まだ足りません。':'「'+(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+'」に傾いています。');
+  const ins=el('div','insightcard'); ins.appendChild(el('div','lb','いちばんの気付き')); ins.appendChild(el('div','tx',lean.insight)); res.appendChild(ins);
+  res.appendChild(resultChips());
+  const p2=el('div','phase2'); p2.appendChild(el('div','paidhead','結論まで進めると、ここが分かります'));
+  const tiles=el('div','tiles'); [['🔒','最終判定'],['🔒','決め手'],['🔒','見落とし'],['🔒','今日やること']].forEach(([lk,t])=>{ const ti=el('div','tile'); ti.appendChild(el('div','lk',lk)); ti.appendChild(el('div','t',t)); tiles.appendChild(ti); }); p2.appendChild(tiles);
+  const pr=prod(state.theme); const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url; cta.target='_blank'; cta.rel='noopener'; cta.onclick=()=>{ logEv('cta_click',{theme:state.theme}); track('cta'); }; p2.appendChild(cta);
+  p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　この傾きは無料の目安です。'));
+  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
+  res.appendChild(p2); stage.appendChild(res);
+  const reveal=()=>p2.classList.add('show'); if(reduce())reveal(); else setTimeout(reveal,900);
+  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show'))reveal(); },{once:true});
+}
+async function showPaidResultGeneric(){
   state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('pass-result');
-  const load=el('div','res'); load.appendChild(el('div','r-kick','Mioが結論を出しています…')); stage.appendChild(load);
+  const load=el('div','res'); resultHead(load,'thinking','','N','Mioが結論を出しています…',''); stage.appendChild(load);
   let decide; try{ ({decide}=await import('/decide/paid/decide-engine.js')); }catch(e){ decide=null; }
   let out=null; try{ out=decide?decide(state.theme,state.answers):null; }catch(e){ out=null; }
   const r=(out&&out.done&&out.result)?out.result:null;
   stage.innerHTML=''; const box=el('div','res');
-  const face=r?(r.verdict==='GO'?'thumbs_up':r.verdict==='NO'?'troubled':'thinking'):'troubled';
+  if(!r){ resultHead(box,'troubled','Mioの結論','N','もう少し情報が要ります','推測では判定しません（HOLD）。'); stage.appendChild(box); return; }
+  const face=r.verdict==='GO'?'thumbs_up':r.verdict==='NO'?'troubled':'thinking';
   const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); w.appendChild(im); box.appendChild(w);
-  if(!r){ box.appendChild(el('div','r-lean N','もう少し情報が要ります')); box.appendChild(el('div','r-line','推測では判定しません（HOLD）。不足項目を確認してお届けします。')); stage.appendChild(box); return; }
   const lab=r.verdict==='GO'?'✅ GO':(r.verdict==='NO'?'⛔ 見送り':'🟡 今は決めない');
   const center=el('div'); center.style.textAlign='center'; center.style.marginTop='14px'; center.appendChild(el('span','badge '+r.verdict,lab)); box.appendChild(center);
   if(r.chosen) box.appendChild(el('div','r-lean '+(r.verdict==='GO'?'A':r.verdict==='NO'?'B':'N'),r.chosen));
@@ -447,8 +609,7 @@ async function showPaidResult(){
   if(r.blindspot) mk('見落としやすい盲点', r.blindspot);
   if(r.today) mk('今日やる一手', r.today);
   if(pass&&pass.credits>0){ pass.credits--; localStorage.setItem('mio_pass',JSON.stringify(pass)); renderPass(); }
-  box.appendChild(el('div','meta','最新の年会費・料金・特典は各社公式でご確認ください。個別の与信・投資・借入の助言ではありません。'));
-  const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); box.appendChild(redo);
+  box.appendChild(el('div','meta','最新の年会費・料金・特典は各社公式でご確認ください。')); const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); box.appendChild(redo);
   stage.appendChild(box);
 }
 
