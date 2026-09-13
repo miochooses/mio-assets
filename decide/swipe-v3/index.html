@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Mio｜迷いを、3スワイプで。</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#060a12">
+<link rel="icon" href="/favicon-32.png">
+<style>
+  :root{
+    --bg:#060a12; --bg2:#0a1120;
+    --card:#1b2c46; --card2:#213655; --cardtop:#26406a;
+    --tx:#eef4fb; --dim:#93a4bb; --faint:#6b7d96;
+    --mio:#5eb3ff; --violet:#b28bff; --gray:#8b98ab;
+    --go:#39d353; --hold:#ffcf4a; --no:#ff6f6f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;}
+  html,body{height:100%;background:var(--bg);overscroll-behavior:none;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;color:var(--tx);
+    display:flex;align-items:center;justify-content:center;line-height:1.4;}
+  #app{position:relative;width:100%;max-width:460px;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;
+    background:
+      radial-gradient(90% 55% at 50% 20%, rgba(60,120,200,.24) 0%, rgba(20,40,80,.05) 45%, transparent 70%),
+      radial-gradient(120% 90% at 50% 120%, #0d1830 0%, var(--bg2) 40%, var(--bg) 100%);}
+  @media(min-width:480px){#app{height:min(880px,96vh);border-radius:28px;box-shadow:0 30px 90px rgba(0,0,0,.65);}}
+  /* header */
+  #hdr{display:flex;align-items:center;gap:10px;padding:14px 18px 4px;flex:0 0 auto;z-index:30;}
+  #back{width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.06);color:#cdd9e6;font-size:19px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;}
+  #back.on{opacity:.8;pointer-events:auto;}
+  #dots{display:flex;gap:7px;margin:0 auto;}
+  #dots i{width:22px;height:4px;border-radius:99px;background:rgba(255,255,255,.14);transition:background .3s,width .3s;}
+  #dots i.fill{background:var(--mio);}
+  #dots i.now{background:linear-gradient(90deg,var(--mio),#9ad3ff);width:30px;}
+  #dots.hide{visibility:hidden;}
+  #pass{font-size:11px;font-weight:800;color:#eaf6ff;background:rgba(94,179,255,.18);border:1px solid rgba(94,179,255,.4);border-radius:999px;padding:4px 10px;}
+  #pass.hide{display:none;}
+  /* stage */
+  #stage{position:relative;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;}
+  #stage.scroll{overflow-y:auto;overflow-x:hidden;}
+  /* Mio + glow */
+  .mioWrap{position:relative;flex:0 0 auto;display:flex;align-items:center;justify-content:center;margin-top:8px;}
+  .mioWrap .glow{position:absolute;width:190px;height:190px;border-radius:50%;
+    background:radial-gradient(circle, rgba(94,179,255,.36) 0%, rgba(94,179,255,.10) 45%, transparent 70%);filter:blur(2px);}
+  .mioImg{position:relative;border-radius:50%;object-fit:cover;background:#0b1424;z-index:2;
+    box-shadow:0 8px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06) inset;transition:transform .18s;}
+  .bubble{position:relative;z-index:3;margin-top:8px;min-height:20px;font-size:14px;font-weight:800;color:#cfe6ff;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s;}
+  .bubble.on{opacity:1;transform:none;}
+  /* ---- theme select ---- */
+  .home{flex:1;display:flex;flex-direction:column;}
+  .home h1{margin:16px 22px 2px;font-size:30px;font-weight:900;letter-spacing:.01em;}
+  .home .sub{margin:0 22px;font-size:15px;color:var(--dim);font-weight:600;}
+  .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 30px 10px;-webkit-overflow-scrolling:touch;flex:1;align-items:stretch;}
+  .track::-webkit-scrollbar{display:none;}
+  .tcard{scroll-snap-align:center;flex:0 0 84%;max-width:330px;border-radius:26px;padding:26px 24px;display:flex;flex-direction:column;cursor:pointer;
+    background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 20px 50px rgba(0,0,0,.5);transition:transform .16s;}
+  .tcard:active{transform:scale(.975);}
+  .tcard .ic{width:60px;height:60px;}
+  .tcard .theme{margin-top:20px;font-size:13px;font-weight:800;color:var(--mio);letter-spacing:.04em;}
+  .tcard h3{margin-top:8px;font-size:26px;font-weight:900;line-height:1.4;}
+  .tcard .time{margin-top:14px;font-size:13px;color:var(--dim);font-weight:700;}
+  .tcard .start{margin-top:auto;padding-top:22px;font-size:15px;font-weight:900;color:#eaf4ff;display:flex;align-items:center;gap:7px;}
+  .tcard .start .a{color:var(--mio);}
+  .homehint{text-align:center;font-size:12px;color:var(--faint);padding:6px 0 16px;font-weight:600;}
+  /* ---- deck ---- */
+  .deck{flex:1;display:flex;flex-direction:column;min-height:0;}
+  #cardzone{position:relative;flex:1;min-height:0;margin:10px 10px 0;}
+  .card{position:absolute;left:16px;right:16px;top:8px;bottom:8px;border-radius:28px;padding:26px 26px;
+    background:linear-gradient(168deg,var(--card2),var(--card));box-shadow:0 22px 55px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.05) inset;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;will-change:transform;touch-action:none;}
+  .card.back{transform:scale(.92) translateY(18px);opacity:.5;filter:saturate(.6) brightness(.85);pointer-events:none;}
+  .card .num{position:absolute;top:18px;left:0;right:0;font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--faint);}
+  .card .q{font-size:30px;font-weight:900;line-height:1.42;max-width:15em;}
+  .card .sub{margin-top:16px;font-size:15px;color:var(--dim);font-weight:600;line-height:1.6;max-width:17em;}
+  .elabel{position:absolute;top:50%;transform:translateY(-50%);font-size:12px;font-weight:800;letter-spacing:.02em;opacity:.5;max-width:5.5em;line-height:1.3;}
+  .elabel.l{left:16px;text-align:left;color:var(--mio);}
+  .elabel.r{right:16px;text-align:right;color:var(--violet);}
+  .elabel .cue{display:block;font-size:15px;opacity:.8;}
+  /* choice card (pass only) */
+  .choices{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:11px;width:100%;}
+  .choice{font-family:inherit;font-size:15px;font-weight:800;padding:15px 12px;border-radius:15px;border:none;background:rgba(255,255,255,.07);color:#eaf3fb;cursor:pointer;}
+  .choice:active{background:rgba(94,179,255,.22);}
+  /* bottom answer zones (translucent, not boxes) */
+  #zones{flex:0 0 auto;display:flex;gap:0;padding:14px 14px 4px;}
+  .zone{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;border-radius:20px;cursor:pointer;transition:background .12s;}
+  .zone:active{background:rgba(255,255,255,.05);}
+  .zone .dir{font-size:18px;font-weight:900;opacity:.55;}
+  .zone.l .dir{color:var(--mio);} .zone.r .dir{color:var(--violet);}
+  .zone .lab{font-size:15px;font-weight:900;color:#e7eef7;}
+  #unsure{display:block;margin:2px auto 0;background:none;border:none;color:var(--faint);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:8px 12px calc(10px + env(safe-area-inset-bottom));}
+  #unsure b{color:var(--gray);}
+  /* ---- analyze ---- */
+  .ana{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;}
+  .lensbox{position:relative;width:210px;height:210px;display:flex;align-items:center;justify-content:center;}
+  .lensbox .ring{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.10);inset:22px;}
+  .lensbox .ring.r2{inset:6px;} .lensbox .ring.r3{inset:-14px;}
+  .lensbox .ring.lit{border-color:var(--mio);box-shadow:0 0 26px rgba(94,179,255,.5);}
+  .lensbox .core{position:absolute;inset:22px;border-radius:50%;background:radial-gradient(circle,rgba(94,179,255,.0),transparent);transition:background .5s;}
+  .lensbox .core.fill{background:radial-gradient(circle,rgba(94,179,255,.30),rgba(178,139,255,.16) 60%,transparent 75%);}
+  .lensbox img{width:132px;height:132px;border-radius:50%;object-fit:cover;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,.5);}
+  .flash{position:absolute;inset:22px;border-radius:50%;background:#cfe8ff;opacity:0;z-index:4;}
+  .chipfly{position:absolute;font-size:12px;font-weight:800;padding:6px 11px;border-radius:11px;color:#eaf3fb;background:rgba(94,179,255,.22);border:1px solid rgba(94,179,255,.3);
+    transition:transform .75s cubic-bezier(.5,0,.2,1),opacity .75s;z-index:5;}
+  .anatext{margin-top:30px;font-size:16px;font-weight:800;color:#cbd9e8;}
+  /* ---- result ---- */
+  .res{padding:6px 22px 34px;}
+  .rmioWrap{position:relative;display:flex;align-items:center;justify-content:center;margin-top:6px;}
+  .rmioWrap .glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(94,179,255,.3),transparent 68%);}
+  .rmioWrap img{position:relative;width:120px;height:120px;border-radius:50%;object-fit:cover;z-index:2;box-shadow:0 8px 30px rgba(0,0,0,.5);}
+  .r-kick{text-align:center;margin-top:14px;font-size:15px;font-weight:800;color:var(--dim);}
+  .r-lean{text-align:center;margin-top:6px;font-size:44px;font-weight:900;line-height:1.15;letter-spacing:.01em;}
+  .r-lean.A{color:#8fd0ff;} .r-lean.B{color:#c9b3ff;} .r-lean.N{color:#e7eef7;}
+  .r-line{text-align:center;margin-top:12px;font-size:16px;font-weight:700;color:#d6e2ee;line-height:1.7;}
+  .why{display:block;margin:14px auto 0;background:none;border:none;color:var(--mio);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;}
+  .whybody{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s,opacity .35s;margin:0 auto;max-width:20em;}
+  .whybody.open{max-height:200px;opacity:1;margin-top:10px;}
+  .whybody p{font-size:14.5px;color:#cdd9e6;line-height:1.75;text-align:center;}
+  .phase2{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;}
+  .phase2.show{opacity:1;transform:none;}
+  .chips{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .chip{font-size:12.5px;font-weight:800;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);color:#cdd9e6;}
+  .chip b{color:#eef4fb;}
+  .paidhead{margin-top:26px;text-align:center;font-size:14px;font-weight:800;color:var(--dim);}
+  .tiles{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .tile{position:relative;border-radius:16px;padding:16px 12px;background:linear-gradient(165deg,rgba(40,64,106,.5),rgba(27,44,70,.5));text-align:center;overflow:hidden;}
+  .tile .lk{font-size:15px;opacity:.65;}
+  .tile .t{margin-top:7px;font-size:14.5px;font-weight:900;color:#eaf1f9;}
+  .tile::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 8px,rgba(255,255,255,.02) 8px 9px);}
+  .cta{margin-top:20px;display:block;text-align:center;text-decoration:none;border-radius:18px;padding:18px 14px;font-weight:900;font-size:18px;color:#04210f;
+    background:linear-gradient(120deg,var(--go),#84e79a);box-shadow:0 12px 30px rgba(57,211,83,.28);}
+  .cta small{display:block;font-size:12px;font-weight:700;color:#0a3a1c;margin-top:5px;opacity:.92;}
+  .meta{margin-top:16px;text-align:center;font-size:11.5px;color:var(--faint);line-height:1.7;}
+  .meta .code{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;color:#9db0c6;}
+  .redo{margin-top:12px;display:block;width:100%;background:none;border:none;color:var(--faint);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:8px;}
+  /* paid final result */
+  .badge{display:inline-block;font-size:26px;font-weight:900;padding:9px 26px;border-radius:999px;}
+  .badge.GO{background:rgba(57,211,83,.16);color:#7ee787;box-shadow:0 0 0 2px rgba(57,211,83,.35) inset;}
+  .badge.NO{background:rgba(255,111,111,.14);color:#ff9d9d;box-shadow:0 0 0 2px rgba(255,111,111,.35) inset;}
+  .badge.HOLD{background:rgba(255,207,74,.14);color:#ffd76a;box-shadow:0 0 0 2px rgba(255,207,74,.35) inset;}
+  .psec{margin-top:14px;border-radius:16px;padding:15px 16px;background:rgba(255,255,255,.05);}
+  .psec .lb{font-size:11px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
+  .psec .tx{margin-top:7px;font-size:14.5px;color:#e6eef6;line-height:1.75;}
+  @media (prefers-reduced-motion: reduce){ .card,.mioImg,.chipfly,.lensbox .ring,.phase2,.whybody,#dots i{transition:none !important;} }
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="hdr">
+    <button id="back" aria-label="戻る">‹</button>
+    <div id="dots" class="hide"></div>
+    <div id="pass" class="hide"></div>
+  </header>
+  <main id="stage"></main>
+</div>
+
+<script type="module">
+import { TEMPLATES } from '/decide/decide-core.js';
+import { buildDeck, leanFree, DECK_ORDER } from '/decide/swipe-v2/swipe-lean.js';
+
+const FACE = s => `/decide/mio/${s}.png`;
+const stage = document.getElementById('stage');
+const dots  = document.getElementById('dots');
+const backBtn = document.getElementById('back');
+const passEl = document.getElementById('pass');
+const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
+const sleep = ms => new Promise(r=>setTimeout(r, ms));
+const params = new URLSearchParams(location.search);
+
+// 統一アイコン（Mioブランド・Mio blueの線画・絵文字を廃止）
+const ICON = {
+  card:  '<svg class="ic" viewBox="0 0 48 48" fill="none" stroke="#5eb3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="38" height="26" rx="5"/><path d="M5 19h38"/><path d="M11 29h9"/><circle cx="35" cy="29" r="3" stroke="#b28bff"/></svg>',
+  sim:   '<svg class="ic" viewBox="0 0 48 48" fill="none" stroke="#5eb3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M20 37h8" stroke="#b28bff"/><path d="M24 12v.01M24 16v6M20 19h8" opacity=".0"/><path d="M19 13c3-2 7-2 10 0M21 17c2-1.2 5-1.2 6 0" stroke="#b28bff"/></svg>',
+  sub:   '<svg class="ic" viewBox="0 0 48 48" fill="none" stroke="#5eb3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="38" height="26" rx="5"/><path d="M16 41h16" stroke="#b28bff"/><path d="M24 35v6" stroke="#b28bff"/><path d="M21 17l8 5-8 5z" fill="#5eb3ff" stroke="none"/></svg>',
+  hikari:'<svg class="ic" viewBox="0 0 48 48" fill="none" stroke="#5eb3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20c8.5-8 21.5-8 30 0"/><path d="M15 26c5.5-5 12.5-5 18 0" stroke="#7fc4ff"/><path d="M20.5 31.5c2.4-2.2 4.6-2.2 7 0" stroke="#b28bff"/><circle cx="24" cy="37" r="1.6" fill="#b28bff" stroke="none"/></svg>',
+};
+// テーマ表示（前提を具体化：1テーマ1行動）
+const THEME_META = {
+  card:  { tag:'クレジットカード', h:'この年会費、\n本当に払う？', time:'約20秒 / 3スワイプ' },
+  sim:   { tag:'スマホ通信費',     h:'スマホ代、\n下げられる？',   time:'約20秒 / 3スワイプ' },
+  sub:   { tag:'サブスク',         h:'この月額、\nまだ必要？',     time:'約20秒 / 3スワイプ' },
+  hikari:{ tag:'自宅の光回線',     h:'ネット代、\n見直す？',       time:'約20秒 / 3スワイプ' },
+};
+// 質問の短縮表示（値のマッピングは swipe-lean/decide-core が正本。ここは表示のみ）
+const SHORT_Q = {
+  card:{ q_revolving:['リボ・分割・ローンの残高、ある？','カードローン等の残高'], q_benefit:['年会費特典、年1回以上使ってる？','ラウンジ・旅行保険・継続特典など'], q_free_ok:['今の無料カードに、不満ある？','ポイントや特典で物足りなさ'] },
+  sim:{ q_bundle:['家族割・セット割、使ってる？','自宅ネットとのセット割など'], q_hassle:['乗り換えの手続き、平気？','MNP・SIM差し替え・初期設定'], q_usage:['データ、たくさん使う？','月20GB超くらい'] },
+  sub:{ q_used:['この1か月、実際に使った？','入ってる安心ではなく実利用'], q_alt:['無料や別契約で、代わりになる？','同じ用途を他で満たせる'], q_rejoin:['また使うとき、すぐ入り直せる？','ほとんどのサブスクは即再開'] },
+  hikari:{ q_cashback:['割引・キャッシュバックは終わった？','適用期間の終了／元々なし'], q_bundle:['スマホとのセット割、使ってる？','自宅ネット×スマホ割'], q_contract:['更新月・違約金は確認した？','縛り・解約金の有無'] },
+};
+const SIDE_LABEL = {
+  card:{ q_revolving:['ある','ない'], q_benefit:['使わない','使う'], q_free_ok:['満足','物足りない'] },
+  sim:{ q_bundle:['使ってる','使ってない'], q_hassle:['面倒はいや','平気'], q_usage:['たくさん','少なめ'] },
+  sub:{ q_used:['使ってない','使った'], q_alt:['代わりある','これが必要'], q_rejoin:['入り直しにくい','すぐ入れる'] },
+  hikari:{ q_cashback:['まだ割引中','終わった'], q_bundle:['使ってる','使ってない'], q_contract:['まだ期間中','縛りゆるい'] },
+};
+// 商品設計（価格・回数は単一ソース。UIへ¥1,000単発を固定しない）
+const PRODUCTS = {
+  card:   { url:'https://coconala.com/services/4398298', price:'¥1,000', note:'いまはココナラで受付中' },
+  _default:{ url:'https://coconala.com/services/4395009', price:'¥1,000', note:'いまはココナラで受付中' },
+};
+const prod = th => PRODUCTS[th] || PRODUCTS._default;
+
+function track(p){ try{ history.replaceState(null,'','/decide/swipe-v3/'+p); }catch(e){} }
+function logEv(name,data){ try{ const k='mio_v3_ev'; const a=JSON.parse(localStorage.getItem(k)||'[]'); a.push({t:Date.now(),name,...data}); localStorage.setItem(k,JSON.stringify(a.slice(-200))); }catch(e){} }
+
+// Pass（有料）状態：本番はマジックリンク/サーバ発行。ここはデモ用スタブ
+function readPass(){ try{ if(params.get('pass')){ const cur=JSON.parse(localStorage.getItem('mio_pass')||'null'); if(!cur||cur.credits==null){ const p={credits:3,issued:Date.now()}; localStorage.setItem('mio_pass',JSON.stringify(p)); return p; } return cur; } return JSON.parse(localStorage.getItem('mio_pass')||'null'); }catch(e){ return null; } }
+let pass = readPass();
+function renderPass(){ if(pass&&pass.credits>0){ passEl.textContent='Mio Pass 残り'+pass.credits+'回'; passEl.classList.remove('hide'); } else passEl.classList.add('hide'); }
+
+let state = { screen:'home', theme:null, cards:[], idx:0, answers:{}, order:[], mode:'free', animating:false };
+
+function goHome(){
+  state = { screen:'home', theme:null, cards:[], idx:0, answers:{}, order:[], mode:'free', animating:false };
+  renderPass(); dots.classList.add('hide'); backBtn.classList.remove('on');
+  renderHome(); track('start');
+}
+function startTheme(theme){
+  const paid = pass && pass.credits>0;
+  state = { screen:'deck', theme, idx:0, answers:{}, order:[], mode: paid?'pass':'free',
+    cards: paid ? buildPassCards(theme) : buildDeck(theme).cards.map(c=>({...c,type:'swipe'})), animating:false };
+  dots.classList.remove('hide'); renderPass(); buildDots(state.cards.length);
+  renderDeck(); track((paid?'pass-':'')+theme); logEv('deck_start',{theme,mode:state.mode});
+}
+function buildPassCards(theme){
+  const tpl=TEMPLATES[theme];
+  return tpl.questions.map(q=>{
+    const main=q.options.filter(o=>o.value!=='unknown'); const unsure=q.options.find(o=>o.value==='unknown');
+    if(main.length===2){ const l=q.options.find(o=>o.swipe==='left')||main[0]; const r=q.options.find(o=>o.swipe==='right')||main[1];
+      return {type:'swipe',id:q.id,prompt:q.prompt,hint:q.hint||'',face:q.face,left:{value:l.value,label:l.label},right:{value:r.value,label:r.label},unsure:unsure?{value:'unknown',label:unsure.label}:{value:'unknown',label:'わからない'}}; }
+    return {type:'choice',id:q.id,prompt:q.prompt,hint:q.hint||'',face:q.face,options:q.options.map(o=>({value:o.value,label:o.label}))};
+  });
+}
+function buildDots(n){ dots.innerHTML=''; for(let i=0;i<n;i++) dots.appendChild(el('i')); }
+function paintDots(){ [...dots.children].forEach((it,i)=>{ it.className=i<state.idx?'fill':(i===state.idx?'now':''); }); }
+
+// ============ Mio helper ============
+function mioBlock(size, face, glowW){
+  const w=el('div','mioWrap');
+  const g=el('div','glow'); if(glowW){ g.style.width=glowW+'px'; g.style.height=glowW+'px'; } w.appendChild(g);
+  const img=el('img','mioImg'); img.src=FACE(face); img.alt='Mio'; img.width=size; img.height=size; img.style.width=size+'px'; img.style.height=size+'px'; w.appendChild(img);
+  return w;
+}
+
+// ============ HOME（テーマ選択） ============
+function renderHome(){
+  stage.className=''; stage.innerHTML='';
+  const home=el('div','home');
+  home.appendChild(mioBlock(132,'normal',210));
+  home.appendChild(el('h1','','今日は、何を決める？'));
+  home.appendChild(el('div','sub','3回スワイプするだけ。'));
+  const track_=el('div','track');
+  DECK_ORDER.forEach(theme=>{
+    const m=THEME_META[theme];
+    const c=el('div','tcard');
+    c.insertAdjacentHTML('beforeend', ICON[theme]);
+    c.appendChild(el('div','theme',m.tag));
+    c.appendChild(el('h3','', m.h.replace(/\n/g,'<br>')));
+    c.appendChild(el('div','time',m.time));
+    const s=el('div','start'); s.innerHTML='タップして開始 <span class="a">→</span>'; c.appendChild(s);
+    c.onclick=()=>startTheme(theme);
+    track_.appendChild(c);
+  });
+  home.appendChild(track_);
+  home.appendChild(el('div','homehint','← 横に送ってテーマを選ぶ →'));
+  stage.appendChild(home);
+}
+
+// ============ DECK（スワイプ） ============
+let drag=null;
+function qText(card){ const o=(SHORT_Q[state.theme]||{})[card.id]; return o?o[0]:card.prompt; }
+function qSub(card){ const o=(SHORT_Q[state.theme]||{})[card.id]; return o?o[1]:(card.hint||''); }
+function sideLabel(card,side){ const o=(SIDE_LABEL[state.theme]||{})[card.id]; if(o) return side==='l'?o[0]:o[1]; return side==='l'?card.left.label:card.right.label; }
+
+function renderDeck(){
+  stage.className=''; stage.innerHTML=''; paintDots(); backBtn.classList.toggle('on', state.idx>0);
+  const wrap=el('div','deck');
+  wrap.appendChild(mioBlock(96, state.idx===0?'normal':'thinking', 170));
+  const bub=el('div','bubble'); bub.id='bubble'; wrap.appendChild(bub);
+  const zone=el('div'); zone.id='cardzone'; wrap.appendChild(zone);
+  const next=state.cards[state.idx+1]; if(next){ const b=buildCard(next,true); b.classList.add('back'); zone.appendChild(b); }
+  const cur=state.cards[state.idx]; const front=buildCard(cur,false); zone.appendChild(front);
+  // bottom zones
+  if(cur.type==='swipe'){
+    const z=el('div'); z.id='zones';
+    const zl=el('div','zone l'); zl.innerHTML='<span class="dir">←</span><span class="lab">'+sideLabel(cur,'l')+'</span>'; zl.onclick=()=>commit('left');
+    const zr=el('div','zone r'); zr.innerHTML='<span class="dir">→</span><span class="lab">'+sideLabel(cur,'r')+'</span>'; zr.onclick=()=>commit('right');
+    z.appendChild(zl); z.appendChild(zr); wrap.appendChild(z);
+    const uns=el('button',null,'どちらとも言えない → <b>わからない</b>'); uns.id='unsure'; uns.onclick=()=>commit('unsure'); wrap.appendChild(uns);
+    attachDrag(front,cur);
+  }
+  stage.appendChild(wrap);
+  document.onkeydown=onKey;
+}
+function buildCard(card,isBack){
+  const c=el('div','card');
+  c.appendChild(el('div','num','質問 '+(state.cards.indexOf(card)+1)+' / '+state.cards.length));
+  if(card.type==='swipe'){
+    const eL=el('div','elabel l','<span class="cue">←</span>'+sideLabel(card,'l'));
+    const eR=el('div','elabel r','<span class="cue">→</span>'+sideLabel(card,'r'));
+    eL.dataset.e='l'; eR.dataset.e='r'; c.appendChild(eL); c.appendChild(eR);
+    c.appendChild(el('div','q',qText(card)));
+    const s=qSub(card); if(s) c.appendChild(el('div','sub',s));
+  } else {
+    c.appendChild(el('div','q',card.prompt));
+    if(card.hint) c.appendChild(el('div','sub',card.hint));
+    const g=el('div','choices'); card.options.forEach(o=>{ const b=el('button','choice',o.label); b.onclick=()=>commitChoice(card,o.value); g.appendChild(b); }); c.appendChild(g);
+  }
+  return c;
+}
+function attachDrag(cardEl,card){
+  const eL=cardEl.querySelector('.elabel.l'), eR=cardEl.querySelector('.elabel.r');
+  const mio=stage.querySelector('.mioImg'); const TH=88;
+  cardEl.addEventListener('pointerdown',e=>{ if(state.animating)return; cardEl.setPointerCapture&&cardEl.setPointerCapture(e.pointerId); drag={x0:e.clientX,y0:e.clientY,dx:0}; cardEl.style.transition='none'; if(mio)mio.src=FACE('thinking'); });
+  cardEl.addEventListener('pointermove',e=>{ if(!drag)return; drag.dx=e.clientX-drag.x0; const dy=e.clientY-drag.y0; const rot=Math.max(-6,Math.min(6,drag.dx/18));
+    cardEl.style.transform=`translate(${drag.dx}px,${dy*0.25}px) rotate(${reduce()?0:rot}deg)`;
+    const t=Math.min(1,Math.abs(drag.dx)/TH);
+    if(drag.dx>0){ eR.style.opacity=0.5+t*0.5; eL.style.opacity=0.22; if(mio&&t>.6)mio.style.transform='translateX(3px)'; }
+    else if(drag.dx<0){ eL.style.opacity=0.5+t*0.5; eR.style.opacity=0.22; if(mio&&t>.6)mio.style.transform='translateX(-3px)'; } });
+  const up=()=>{ if(!drag)return; const dx=drag.dx; drag=null; if(mio)mio.style.transform='';
+    if(Math.abs(dx)>TH) commit(dx>0?'right':'left');
+    else { cardEl.style.transition='transform .28s cubic-bezier(.2,.8,.3,1)'; cardEl.style.transform=''; eL.style.opacity=0.5; eR.style.opacity=0.5; if(mio)mio.src=FACE(state.idx===0?'normal':'thinking'); } };
+  cardEl.addEventListener('pointerup',up); cardEl.addEventListener('pointercancel',up);
+}
+function bubble(txt,face){ const b=document.getElementById('bubble'); const mio=stage.querySelector('.mioImg'); if(face&&mio)mio.src=FACE(face); if(!b)return; b.textContent=txt; b.classList.add('on'); setTimeout(()=>b.classList.remove('on'),950); }
+
+function commit(dir){
+  if(state.animating)return; const card=state.cards[state.idx]; let value,side;
+  if(dir==='unsure'){ value=card.unsure.value; side='unsure'; } else { value=dir==='right'?card.right.value:card.left.value; side=dir; }
+  state.answers[card.id]=value; state.order.push(card.id);
+  const remain=state.cards.length-1-state.idx;
+  if(side==='unsure') bubble('OK、そこは有料で詰めよう','thinking');
+  else if(remain===1) bubble('あと1枚。','smirk');
+  else if(remain===0) bubble('よし、見えてきた','convinced');
+  else bubble(['なるほど。','ここ、大事。','了解。'][state.idx%3],'convinced');
+  logEv('answer',{theme:state.theme,q:card.id,value,side});
+  flyOut(side);
+}
+function commitChoice(card,value){ if(state.animating)return; state.answers[card.id]=value; state.order.push(card.id); bubble('了解。','convinced'); logEv('answer',{theme:state.theme,q:card.id,value,side:'choice'}); flyOut('right'); }
+function flyOut(side){
+  state.animating=true; const front=stage.querySelector('#cardzone .card:last-child'); const dur=reduce()?0:300;
+  if(front&&!reduce()){ front.style.transition='transform .3s ease,opacity .3s ease';
+    const x=side==='left'?-640:side==='right'?640:0, y=side==='unsure'?-720:0;
+    front.style.transform=`translate(${x}px,${y}px) rotate(${side==='left'?-15:side==='right'?15:0}deg)`; front.style.opacity='0'; }
+  setTimeout(()=>{ state.animating=false; state.idx++; if(state.idx>=state.cards.length) runAnalyze(); else renderDeck(); }, dur);
+}
+function onKey(e){ if(state.screen!=='deck')return; const card=state.cards[state.idx]; if(!card||card.type!=='swipe')return;
+  if(e.key==='ArrowLeft'){e.preventDefault();commit('left');} else if(e.key==='ArrowRight'){e.preventDefault();commit('right');} else if(e.key==='ArrowDown'){e.preventDefault();commit('unsure');} }
+backBtn.onclick=()=>{
+  if(state.screen==='deck'){ if(state.idx>0){ const last=state.order.pop(); delete state.answers[last]; state.idx--; renderDeck(); } else goHome(); }
+  else if(state.screen==='result'){ state.idx=state.cards.length-1; const last=state.order.pop(); if(last)delete state.answers[last]; state.screen='deck'; dots.classList.remove('hide'); renderDeck(); }
+  else goHome();
+};
+
+// ============ ANALYZE ============
+async function runAnalyze(){
+  state.screen='analyze'; stage.className=''; stage.innerHTML=''; dots.classList.add('hide'); backBtn.classList.remove('on'); track('analyze');
+  const ana=el('div','ana');
+  const box=el('div','lensbox');
+  box.appendChild(el('div','ring r1')); box.appendChild(el('div','ring r2')); box.appendChild(el('div','ring r3'));
+  const core=el('div','core'); box.appendChild(core);
+  const img=el('img'); img.src=FACE('thinking'); img.alt='Mio'; box.appendChild(img);
+  const flash=el('div','flash'); box.appendChild(flash);
+  ana.appendChild(box);
+  const N=state.cards.length;
+  const txt=el('div','anatext', N+'つの回答から、迷いの芯を探しています'); ana.appendChild(txt);
+  stage.appendChild(ana);
+  if(reduce()){ await sleep(350); return showResult(); }
+  // 回答チップが複数方向からレンズへ入る（枚数に応じて配置）
+  const r=box.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const spanL=r.left-6, spanR=r.right-54, y0=r.bottom+10;
+  const starts=state.cards.map((c,i)=>{ const x = N<=1 ? cx-30 : spanL + (spanR-spanL)*(i/(N-1)); const y = y0 + (i%2? 44:0); return [x,y]; });
+  state.cards.forEach((c,i)=>{
+    const lbl = c.type==='swipe' ? (state.answers[c.id]==='unknown'?'？':(state.answers[c.id]===c.left.value?sideLabel(c,'l'):sideLabel(c,'r'))) : '回答'+(i+1);
+    const chip=el('div','chipfly',lbl); chip.style.left=starts[i][0]+'px'; chip.style.top=starts[i][1]+'px'; stage.appendChild(chip);
+    requestAnimationFrame(()=>setTimeout(()=>{ chip.style.transform=`translate(${cx-starts[i][0]-30}px,${cy-starts[i][1]-12}px) scale(.35)`; chip.style.opacity='0'; }, 80+i*150));
+  });
+  const rings=[...box.querySelectorAll('.ring')];
+  await sleep(360); rings[0].classList.add('lit');
+  await sleep(300); rings[1].classList.add('lit'); core.classList.add('fill');
+  await sleep(300); rings[2].classList.add('lit'); img.src=FACE('convinced');
+  // 一度だけ発光
+  flash.style.transition='opacity .12s'; flash.style.opacity='.55'; await sleep(120); flash.style.transition='opacity .4s'; flash.style.opacity='0';
+  await sleep(260); showResult();
+}
+
+// ============ RESULT ============
+function showResult(){
+  if(state.mode==='pass') return showPaidResult();
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('result'); backBtn.classList.remove('on');
+  const lean=leanFree(state.theme, state.answers); const tpl=TEMPLATES[state.theme];
+  logEv('result',{theme:state.theme,dir:lean.dir,code:lean.code});
+  const res=el('div','res');
+  const face = lean.dir==='neutral'?'thinking':'convinced';
+  const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); im.alt='Mio'; w.appendChild(im); res.appendChild(w);
+  res.appendChild(el('div','r-kick','いまのあなたは'));
+  const leanCls = lean.dir==='A'?'A':lean.dir==='B'?'B':'N';
+  const leanWord = lean.dir==='neutral' ? 'まだ五分' : (lean.dir==='A'?tpl.choiceA:tpl.choiceB)+' 寄り';
+  res.appendChild(el('div','r-lean '+leanCls, leanWord));
+  const shortLine = lean.dir==='neutral' ? '決め手になる数字が、まだ足りません。' : '「'+(lean.dir==='A'?tpl.choiceA:tpl.choiceB)+'」に傾いています。';
+  res.appendChild(el('div','r-line', shortLine));
+  // どうして？（気付きを開く）
+  const why=el('button','why','どうして？ ▾'); const whyBody=el('div','whybody'); whyBody.appendChild(el('p','',lean.insight));
+  why.onclick=()=>{ whyBody.classList.toggle('open'); why.innerHTML = whyBody.classList.contains('open')?'とじる ▴':'どうして？ ▾'; };
+  res.appendChild(why); res.appendChild(whyBody);
+  // phase2
+  const p2=el('div','phase2');
+  const chips=el('div','chips');
+  state.cards.forEach(c=>{ const v=state.answers[c.id]; const a=v==='unknown'?'わからない':(v===c.left.value?sideLabel(c,'l'):sideLabel(c,'r')); chips.appendChild(el('div','chip','<b>'+a+'</b>')); });
+  p2.appendChild(chips);
+  p2.appendChild(el('div','paidhead','結論まで進めると、ここが分かります'));
+  const tiles=el('div','tiles');
+  [['🔒','最終判定'],['🔒','決め手'],['🔒','見落とし'],['🔒','今日やること']].forEach(([lk,t])=>{ const ti=el('div','tile'); ti.appendChild(el('div','lk',lk)); ti.appendChild(el('div','t',t)); tiles.appendChild(ti); });
+  p2.appendChild(tiles);
+  const pr=prod(state.theme);
+  const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url; cta.target='_blank'; cta.rel='noopener';
+  cta.onclick=()=>{ logEv('cta_click',{theme:state.theme,code:lean.code}); track('cta'); };
+  p2.appendChild(cta);
+  const meta=el('div','meta'); meta.innerHTML='判定コード <span class="code">'+lean.code+'</span>　この傾きは無料の目安です。<br>最終判定・金額計算・個別助言は含みません。';
+  p2.appendChild(meta);
+  const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
+  res.appendChild(p2);
+  stage.appendChild(res);
+  const reveal=()=>p2.classList.add('show');
+  if(reduce()) reveal(); else setTimeout(reveal, 950);
+  stage.addEventListener('click',()=>{ if(!p2.classList.contains('show')) reveal(); },{once:true});
+}
+
+async function showPaidResult(){
+  state.screen='result'; stage.className='scroll'; stage.innerHTML=''; track('pass-result');
+  const load=el('div','res'); load.appendChild(el('div','r-kick','Mioが結論を出しています…')); stage.appendChild(load);
+  let decide; try{ ({decide}=await import('/decide/paid/decide-engine.js')); }catch(e){ decide=null; }
+  let out=null; try{ out=decide?decide(state.theme,state.answers):null; }catch(e){ out=null; }
+  const r=(out&&out.done&&out.result)?out.result:null;
+  stage.innerHTML=''; const box=el('div','res');
+  const face=r?(r.verdict==='GO'?'thumbs_up':r.verdict==='NO'?'troubled':'thinking'):'troubled';
+  const w=el('div','rmioWrap'); w.appendChild(el('div','glow')); const im=el('img'); im.src=FACE(face); w.appendChild(im); box.appendChild(w);
+  if(!r){ box.appendChild(el('div','r-lean N','もう少し情報が要ります')); box.appendChild(el('div','r-line','推測では判定しません（HOLD）。不足項目を確認してお届けします。')); stage.appendChild(box); return; }
+  const lab=r.verdict==='GO'?'✅ GO':(r.verdict==='NO'?'⛔ 見送り':'🟡 今は決めない');
+  const center=el('div'); center.style.textAlign='center'; center.style.marginTop='14px'; center.appendChild(el('span','badge '+r.verdict,lab)); box.appendChild(center);
+  if(r.chosen) box.appendChild(el('div','r-lean '+(r.verdict==='GO'?'A':r.verdict==='NO'?'B':'N'),r.chosen));
+  if(r.headline) box.appendChild(el('div','r-line',r.headline));
+  const mk=(lb,tx)=>{ const s=el('div','psec'); s.appendChild(el('div','lb',lb)); s.appendChild(el('div','tx',tx)); box.appendChild(s); };
+  if(r.reasons&&r.reasons.length) mk('決め手', r.reasons.map(x=>'・'+x).join('<br>'));
+  if(r.drop_reason) mk('選ばなかった方を捨てる理由', r.drop_reason);
+  if(r.blindspot) mk('見落としやすい盲点', r.blindspot);
+  if(r.today) mk('今日やる一手', r.today);
+  if(pass&&pass.credits>0){ pass.credits--; localStorage.setItem('mio_pass',JSON.stringify(pass)); renderPass(); }
+  box.appendChild(el('div','meta','最新の年会費・料金・特典は各社公式でご確認ください。個別の与信・投資・借入の助言ではありません。'));
+  const redo=el('button','redo','別のテーマも判定する'); redo.onclick=()=>goHome(); box.appendChild(redo);
+  stage.appendChild(box);
+}
+
+// ============ 起動 ============
+window.__mio = () => ({ screen:state.screen, idx:state.idx, n:state.cards.length, animating:!!state.animating, answers:{...state.answers}, theme:state.theme, mode:state.mode });
+renderPass();
+const t0 = params.get('t');
+if(t0 && TEMPLATES[t0]) startTheme(t0); else goHome();
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "08aad352d6904b17afbea5bf38438a6c"}'></script>
+</body>
+</html>
