@@ -116,7 +116,7 @@ function build(i){
     bottom.appendChild(el('div','code','あなたの判定コード: '+rv.code));
     bottom.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：年会費11,000円のゴールドカードに切替える？</div><div class="sv">判定：GO（条件つき）</div><div class="sl">決め手</div><div class="svv">年200万円を集約するなら還元＋ラウンジ＋保険で年会費を回収できる。</div><div class="sl">「無料カード継続」を捨てる理由</div><div class="svv">無料カードは還元0.5%止まり。集約額が大きいほど取り逃す額が年会費を超える。</div><div class="sl">今日の一手</div><div class="svv">直近12ヶ月の利用額を出す→回収ラインを1分で計算→超えれば締め日前に申込。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
     var a=el('a','paid'); a.href='https://coconala.com/services/4398298?utm_source=stories&utm_medium=paid_cta&utm_campaign=card'; a.target='_blank'; a.rel='noopener';
-    a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（通常は数時間以内、夜間は最大24時間）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
+    a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（購入後は通常24時間以内に受付・質問、判定は納期1日以内）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
     a.addEventListener('click',function(){ track('paid_cta'); }); bottom.appendChild(a);
   }
   else { bottom.appendChild(el('div','msg',s.msg)); if(s.sub)bottom.appendChild(el('div','sub',s.sub));
