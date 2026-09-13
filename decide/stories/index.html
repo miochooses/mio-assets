@@ -43,6 +43,13 @@
   .paid .pt{font-size:16px;font-weight:900;color:#eafff0;}
   .paid .pp{margin-top:5px;font-size:12px;color:#bfe6cc;line-height:1.6;}
   .paid .pb{margin-top:10px;display:inline-block;background:#39d353;color:#06210f;font-weight:900;border-radius:11px;padding:10px 18px;font-size:14px;}
+  .samp{margin-top:12px;background:#0d151e;border:1.5px dashed #33475b;border-radius:14px;padding:14px;text-align:left;}
+  .samp .sht{font-size:11px;font-weight:800;color:#58a6ff;}
+  .samp .sto{margin-top:8px;font-size:13px;font-weight:800;color:#e9eef3;}
+  .samp .sv{margin-top:8px;display:inline-block;font-size:15px;font-weight:900;padding:5px 14px;border-radius:999px;border:1.5px solid #39d35366;color:#8fe3a6;background:#131c27;}
+  .samp .sl{margin-top:9px;font-size:10.5px;font-weight:800;color:#39d353;}
+  .samp .svv{margin-top:2px;font-size:12px;color:#d6dee6;line-height:1.55;}
+  .samp .snt{margin-top:11px;font-size:10.5px;color:#6e7b8a;line-height:1.55;}
   .free{margin-top:10px;font-size:12px;color:#8aa;}
   .hint{position:absolute;bottom:calc(10px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:11px;color:#5b6b7a;z-index:7;pointer-events:none;}
 </style>
@@ -107,6 +114,7 @@ function build(i){
     bottom.appendChild(el('div','msg',rv.msg));
     bottom.appendChild(el('div','free','無料はここまで＝“今の傾き”の発見。'));
     bottom.appendChild(el('div','code','あなたの判定コード: '+rv.code));
+    bottom.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：年会費11,000円のゴールドカードに切替える？</div><div class="sv">判定：GO（条件つき）</div><div class="sl">決め手</div><div class="svv">年200万円を集約するなら還元＋ラウンジ＋保険で年会費を回収できる。</div><div class="sl">「無料カード継続」を捨てる理由</div><div class="svv">無料カードは還元0.5%止まり。集約額が大きいほど取り逃す額が年会費を超える。</div><div class="sl">今日の一手</div><div class="svv">直近12ヶ月の利用額を出す→回収ラインを1分で計算→超えれば締め日前に申込。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
     var a=el('a','paid'); a.href='https://coconala.com/services/4395009?utm_source=stories&utm_medium=paid_cta&utm_campaign=card'; a.target='_blank'; a.rel='noopener';
     a.innerHTML='<div class="pt">Mioに<span style="color:#39d353">言い切って</span>もらう（¥1,000・買い切り）</div><div class="pp">ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。すでにここで選んだ方は、最初のメッセージに判定コード「'+rv.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手を、PDFでお届け（通常は数時間以内、夜間は最大24時間）。</div><span class="pb">¥1,000で判定を受ける（ココナラ）→</span>';
     a.addEventListener('click',function(){ track('paid_cta'); }); bottom.appendChild(a);
