@@ -91,7 +91,7 @@ function askFlow(){
 function showResult(){
   track('result');
   let r;
-  try { r = decide(theme, ans); } catch(e){ r = null; }
+  try { const out = decide(theme, ans); r = (out && out.done && out.result) ? out.result : null; } catch(e){ r = null; }
   stage.innerHTML='';
   stage.appendChild(el('div','kicker','Mioの判定（有料版）'));
   const img=el('img','mio'); img.src=FACE(r?r.verdict:'HOLD'); img.alt='Mio'; stage.appendChild(img);
@@ -100,7 +100,7 @@ function showResult(){
   const label = r.verdict==='GO'?'✅ GO':(r.verdict==='NO'?'⛔ NO':'🟡 HOLD');
   rv.appendChild(el('div','badge '+r.verdict, label));
   rv.appendChild(el('div','chosen', r.chosen||''));
-  if(r.conclusion||r.concl) rv.appendChild(el('div','concl', r.conclusion||r.concl||''));
+  if(r.headline||r.conclusion||r.concl) rv.appendChild(el('div','concl', r.headline||r.conclusion||r.concl||''));
   stage.appendChild(rv);
   // 決め手
   if(r.reasons && r.reasons.length){ const s=el('div','sec'); s.appendChild(el('div','lb','決め手')); const ol=el('ol'); r.reasons.forEach(x=>{const li=el('li'); li.textContent=x; ol.appendChild(li);}); s.appendChild(ol); stage.appendChild(s); }
