@@ -277,6 +277,21 @@ function renderDiscovery(r) {
   const needed = $('rNeeded'); needed.innerHTML = '';
   r.needed.forEach(x => { const li = document.createElement('li'); li.textContent = x; needed.appendChild(li); });
 
+  // 納品見本を題材に合わせる（例: 格安SIM流入にカードの見本を見せる不一致=§0-A/第7条 を解消）。未定義なら静的HTML(card例)のまま。
+  try {
+    const smp = TEMPLATES[tplId] && TEMPLATES[tplId].sample;
+    if (smp) {
+      const st = document.querySelector('.sample .stopic'); if (st) st.textContent = smp.topic;
+      const sv = document.querySelector('.sample .sverdict span'); if (sv) sv.textContent = smp.verdict;
+      const rows = document.querySelectorAll('.sample .srow');
+      (smp.rows || []).forEach((row, i) => {
+        if (!rows[i]) return;
+        const l = rows[i].querySelector('.srl'), v = rows[i].querySelector('.srv');
+        if (l) l.textContent = row.l; if (v) v.textContent = row.v;
+      });
+    }
+  } catch (e) { /* 見本切替失敗は診断を止めない */ }
+
   show('s-result');
 }
 $('againBtn').addEventListener('click', () => show('s-home'));
