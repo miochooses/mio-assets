@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Mio 判定（有料版・即時）｜AIガチ検証室</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon-32.png">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;background:#05070c;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",sans-serif;color:#eef3f7;display:flex;align-items:center;justify-content:center;}
+  #canvas{position:relative;width:100%;max-width:460px;min-height:100vh;min-height:100dvh;background:#0b1220;padding:20px 18px calc(30px + env(safe-area-inset-bottom));}
+  @media(min-width:480px){#canvas{min-height:auto;margin:18px 0;border-radius:20px;box-shadow:0 0 50px rgba(0,0,0,.5);}}
+  .top{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#9fb3c8;}
+  .top .dot{width:8px;height:8px;border-radius:50%;background:#39d353;}
+  .paidtag{margin-left:auto;font-size:11px;font-weight:800;color:#06210f;background:#39d353;border-radius:8px;padding:3px 9px;}
+  h1{margin-top:16px;font-size:20px;font-weight:900;line-height:1.5;}
+  .mio{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid #ffffff24;display:block;margin:14px auto 6px;}
+  .kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:#39d353;text-align:center;}
+  .q{margin-top:16px;background:#131d29;border:1px solid #ffffff12;border-radius:14px;padding:16px;}
+  .q .p{font-size:17px;font-weight:800;}
+  .q .h{margin-top:3px;font-size:12px;color:#6e7b8a;}
+  .opts{margin-top:12px;display:flex;flex-direction:column;gap:9px;}
+  .opt{font-family:inherit;font-size:16px;font-weight:800;padding:15px 14px;border-radius:13px;border:1px solid #33566e;background:#132a3a;color:#eaf3fb;cursor:pointer;text-align:left;}
+  .opt:active{background:#1b3d52;}
+  .prog{font-size:11px;color:#6e7b8a;text-align:center;margin-top:10px;}
+  .theme-sel{margin-top:18px;display:flex;flex-direction:column;gap:10px;}
+  .theme{font-family:inherit;font-size:16px;font-weight:800;padding:16px;border-radius:14px;border:1px solid #1f4a63;background:#132a3a;color:#cfe8f5;cursor:pointer;text-align:left;}
+  /* result */
+  .rv{text-align:center;margin-top:8px;}
+  .rv .badge{display:inline-block;font-size:30px;font-weight:900;padding:8px 26px;border-radius:999px;margin-top:8px;}
+  .rv .badge.GO{background:#12351f;color:#7ee787;border:2px solid #2ea04366;}
+  .rv .badge.NO{background:#3a1620;color:#fca5a5;border:2px solid #f0645a55;}
+  .rv .badge.HOLD{background:#2a2410;color:#ffd23f;border:2px solid #f0883e55;}
+  .rv .chosen{margin-top:10px;font-size:19px;font-weight:900;}
+  .rv .concl{margin-top:8px;font-size:14px;color:#cdd9e4;line-height:1.7;}
+  .sec{margin-top:16px;background:#0d151e;border:1px solid #ffffff12;border-radius:12px;padding:14px;}
+  .sec .lb{font-size:11px;font-weight:800;color:#39d353;}
+  .sec .tx{margin-top:6px;font-size:14px;color:#e6edf3;line-height:1.7;}
+  .sec ol{margin:6px 0 0 18px;font-size:14px;color:#e6edf3;line-height:1.75;}
+  .meta{margin-top:14px;font-size:11.5px;color:#6e7b8a;line-height:1.7;border-top:1px solid #ffffff12;padding-top:12px;}
+  .save{margin-top:14px;display:block;text-align:center;text-decoration:none;font-weight:900;font-size:15px;background:#132a3a;border:1px solid #1f4a63;color:#cfe8f5;border-radius:13px;padding:14px;cursor:pointer;}
+  .err{margin-top:16px;background:#2a1618;border:1px solid #f0645a55;border-radius:12px;padding:14px;font-size:13px;color:#fca5a5;}
+</style>
+</head>
+<body>
+<div id="canvas">
+  <div class="top"><span class="dot"></span> AIガチ検証室 ｜ Mio<span class="paidtag">有料版・即時</span></div>
+  <div id="stage"></div>
+</div>
+<script type="module">
+import { TEMPLATES, invalidAnswers } from './decide-engine.js';
+import { decide } from './decide-engine.js';
+const stage = document.getElementById('stage');
+const params = new URLSearchParams(location.search);
+const THEMES = { card:'クレジットカード（申し込む/見送る）', sim:'格安SIM（乗り換える/今のまま）', sub:'サブスク（解約する/続ける）', hikari:'光回線（乗り換える/今のまま）' };
+const FACE = v => '/decide/mio/' + (v==='GO'?'thumbs_up':v==='NO'?'troubled':'thinking') + '.png';
+let theme = params.get('t');
+let ans = {};
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+function track(p){ try{ history.pushState(null,'','/decide/paid/'+p); }catch(e){} }
+function start(){
+  if(theme && TEMPLATES[theme]){ askFlow(); }
+  else { pickTheme(); }
+}
+function pickTheme(){
+  stage.innerHTML='';
+  stage.appendChild(el('h1','', '有料判定を始めます。<br>今日、決めたいテーマは？'));
+  const w=el('div','theme-sel');
+  Object.keys(THEMES).forEach(k=>{ if(!TEMPLATES[k])return; const b=el('button','theme', THEMES[k]); b.onclick=()=>{ theme=k; ans={}; track('theme-'+k); askFlow(); }; w.appendChild(b); });
+  stage.appendChild(w);
+  track('start');
+}
+function askFlow(){
+  const qs = TEMPLATES[theme].questions || [];
+  const next = qs.find(q=>!(q.id in ans));
+  if(!next){ return showResult(); }
+  stage.innerHTML='';
+  const done = qs.filter(q=>q.id in ans).length;
+  stage.appendChild(el('div','kicker','有料判定 ｜ '+THEMES[theme]));
+  const img=el('img','mio'); img.src='/decide/mio/thinking.png'; img.alt='Mio'; stage.appendChild(img);
+  const q=el('div','q');
+  q.appendChild(el('div','p',next.prompt));
+  if(next.hint) q.appendChild(el('div','h',next.hint));
+  const w=el('div','opts');
+  (next.options||[]).forEach(o=>{ const b=el('button','opt',o.label); b.onclick=()=>{ ans[next.id]=o.value; track('q-'+(done+1)); askFlow(); }; w.appendChild(b); });
+  q.appendChild(w);
+  stage.appendChild(q);
+  stage.appendChild(el('div','prog', (done+1)+' / '+qs.length+' 問'));
+}
+function showResult(){
+  track('result');
+  let r;
+  try {
+    const bad = invalidAnswers(theme, ans);
+    r = decide(theme, ans);
+  } catch(e){ r = null; }
+  stage.innerHTML='';
+  stage.appendChild(el('div','kicker','Mioの判定（有料版）'));
+  const img=el('img','mio'); img.src=FACE(r?r.verdict:'HOLD'); img.alt='Mio'; stage.appendChild(img);
+  if(!r){ stage.appendChild(el('div','err','判定に必要な入力が不足しています。推測では判定しません（HOLD）。もう一度お試しください。')); return; }
+  const rv=el('div','rv');
+  const label = r.verdict==='GO'?'✅ GO':(r.verdict==='NO'?'⛔ NO':'🟡 HOLD');
+  rv.appendChild(el('div','badge '+r.verdict, label));
+  rv.appendChild(el('div','chosen', r.chosen||''));
+  if(r.conclusion||r.concl) rv.appendChild(el('div','concl', r.conclusion||r.concl||''));
+  stage.appendChild(rv);
+  // 決め手
+  if(r.reasons && r.reasons.length){ const s=el('div','sec'); s.appendChild(el('div','lb','決め手')); const ol=el('ol'); r.reasons.forEach(x=>{const li=el('li'); li.textContent=x; ol.appendChild(li);}); s.appendChild(ol); stage.appendChild(s); }
+  if(r.drop_reason){ const s=el('div','sec'); s.appendChild(el('div','lb','選ばなかった方を捨てる理由')); s.appendChild(el('div','tx', r.drop_reason)); stage.appendChild(s); }
+  if(r.blindspot){ const s=el('div','sec'); s.appendChild(el('div','lb','見落としやすい盲点')); s.appendChild(el('div','tx', r.blindspot)); stage.appendChild(s); }
+  if(r.today){ const s=el('div','sec'); s.appendChild(el('div','lb','今日やる一手')); s.appendChild(el('div','tx', r.today)); stage.appendChild(s); }
+  // 前提・確認日
+  const today = new Date();
+  const d = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+  const meta = el('div','meta');
+  meta.innerHTML = '使用した前提：'+(r.caution||'Mio標準評価（還元1%等の一般前提）にもとづく概算です。')+'<br>情報確認日：'+d+'（最新の年会費・料金・特典は各社公式でご確認ください）<br>※ 不足情報がある場合は推測せずHOLDにしています。個別の与信・投資・借入の助言ではありません。';
+  stage.appendChild(meta);
+  // 任意保存(印刷/PDF)
+  const save = el('a','save','この結果を保存する（任意・PDF/印刷）');
+  save.onclick=()=>{ track('save'); window.print(); };
+  stage.appendChild(save);
+}
+start();
+</script>
+</body>
+</html>
