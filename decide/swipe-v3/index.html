@@ -258,6 +258,10 @@ const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').match
 const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const sleep = ms => new Promise(r=>setTimeout(r, ms));
 const params = new URLSearchParams(location.search);
+// ★実験フラグ保持: ?exp=... を sessionStorage へ退避し、track()のreplaceStateでも落とさない（ルーターがクエリを捨てても維持）
+const EXP = (params.get('exp') || (()=>{ try{ return sessionStorage.getItem('mio_exp')||''; }catch(e){ return ''; } })()).slice(0,40);
+try{ if(EXP) sessionStorage.setItem('mio_exp', EXP); }catch(e){}
+const expQS = () => EXP ? ('?exp='+encodeURIComponent(EXP)) : '';
 
 // 統一アイコン（Mioブランド・Mio blueの線画・絵文字を廃止）
 const ICON = {
@@ -293,7 +297,7 @@ const PRODUCTS = {
 };
 const prod = th => PRODUCTS[th] || PRODUCTS._default;
 
-function track(p){ try{ history.replaceState(null,'','/decide/swipe-v3/'+p); }catch(e){} }
+function track(p){ try{ history.replaceState(null,'','/decide/swipe-v3/'+p+expQS()); }catch(e){} }
 function logEv(name,data){ try{ const k='mio_v3_ev'; const a=JSON.parse(localStorage.getItem(k)||'[]'); a.push({t:Date.now(),name,...data}); localStorage.setItem(k,JSON.stringify(a.slice(-200))); }catch(e){} }
 
 // Pass（有料）状態：本番はマジックリンク/サーバ発行。ここはデモ用スタブ
@@ -743,7 +747,7 @@ async function showPaidResultGeneric(){
 }
 
 // ============ 起動 ============
-window.__mio = () => ({ screen:state.screen, idx:state.idx, n:state.cards.length, animating:!!state.animating, answers:{...state.answers}, theme:state.theme, mode:state.mode });
+window.__mio = () => ({ screen:state.screen, idx:state.idx, n:state.cards.length, animating:!!state.animating, answers:{...state.answers}, theme:state.theme, mode:state.mode, exp:EXP });
 renderPass();
 const t0 = params.get('t');
 if(t0 && TEMPLATES[t0]) startTheme(t0); else goHome();
