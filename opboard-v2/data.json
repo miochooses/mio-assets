@@ -3,7 +3,7 @@
     "version": "opboard-v2-review-1",
     "generated_at": "2026-09-14T21:30:00+09:00",
     "data_source": "fixture(anonymized)",
-    "note": "レビュー用・匿名fixture。実データ入りv2は認証実装後に非公開ビューで表示。ここに実売上・顧客情報・secret・ローカルパスは載せない。",
+    "note": "レビュー用・完全架空fixture(全値ダミー)。実運用データ(実Idea/実Task/実next_review_at/実status/実blocker/実TODO)は含めない。実データは認証済/ローカルの /api/ideas ・ /api/todos のみ。",
     "canonical_repo": "hbq-ai-ops (git) — 文書/Schema/Prompt/DomainPack/Eval/Runbookの唯一の正本。OpBoardは索引兼コックピット。"
   },
   "freshness": {
@@ -13,50 +13,544 @@
     "runner_last_success_at": "2026-09-13T20:11:02+09:00",
     "stale_threshold_min": 120
   },
-  "revenue": { "verified_jpy": 0, "note": "実売上のみ。Artifactのpublic_live/verifiedとは別管理。" },
+  "revenue": {
+    "verified_jpy": 0,
+    "note": "(架空fixture)"
+  },
   "ideas": [
-    { "idea_id": "idea_20260914_mio_bunki_yohou", "working_name": "Mio分岐予報", "title": "Mioの選択肢提示を活用した経済選択の分岐占い", "origin": "KENTARO_IDEA", "owner": "CLAUDE", "status": "DISCOVERY", "workstream": "PRODUCT_EXPERIMENT", "priority": "P1", "revenue_impact": "MEDIUM_HIGH", "next_action": "swipe-v3再利用のfixtureプロト(1テーマ)+QUICK/DEEPサンプル完成→少流入で反応計測の準備", "next_review_at": "2026-09-15T01:39:00+09:00", "production_blocked_by": "カードDecision OS HTTP+フロントE2E (T-C020)", "discovery_blocked_by": "NONE", "blocker": null, "target_user": "25-44歳・一般スピ占いに抵抗・次の経済選択に関心(男性向け反応は検証仮説)", "user_problem": "大きな経済選択で『今は攻めどきか守りどきか』を長い相談なしに知りたい", "mio_fit": "Decision OSの選択肢提示/非ローカル軸発見/変わる条件/実行手順を占い体験で包む", "success_condition": "少流入で無料開始→DEEP到達→有料CTAが汎用/decide以上 or 質的関心確認", "failure_condition": "無料開始が汎用同等以下かつDEEP到達ほぼ0、または占い表現がブランド毀損/規約抵触", "cheapest_next_experiment": "swipe-v3再利用の1テーマ『今、大きな買い物をしてよい状態か』でDISCOVERYサンプル", "experiment_result": "DISCOVERY成果物作成済(質問6-8/QUICK/DEEP/逆転条件/手順/訴求3案/計測/判定基準)", "decision": "—", "evidence": ["data/experiments/mio-bunki-yohou/discovery.md", "登録タスク t_mu0kw5xr(lane=ai)"] }
+    {
+      "idea_id": "fixture_idea_001",
+      "working_name": "SAMPLE",
+      "title": "サンプル商品アイデア",
+      "origin": "ASSET_REUSE",
+      "owner": "SAMPLE_AI",
+      "status": "DISCOVERY",
+      "workstream": "SAMPLE",
+      "priority": "P2",
+      "revenue_impact": "MEDIUM",
+      "next_action": "サンプルの次の一手",
+      "next_review_at": "2099-01-01T00:00:00+09:00",
+      "production_blocked_by": "SAMPLE_BLOCKER",
+      "discovery_blocked_by": "NONE",
+      "blocker": null,
+      "target_user": "サンプル対象",
+      "user_problem": "サンプル課題",
+      "mio_fit": "サンプル適合",
+      "success_condition": "サンプル成功条件",
+      "failure_condition": "サンプル失敗条件",
+      "cheapest_next_experiment": "サンプル最小実験",
+      "experiment_result": "サンプル結果",
+      "decision": "—",
+      "evidence": [
+        "(架空)sample-evidence"
+      ]
+    }
   ],
   "tasks": [
-    { "task_id": "T-K001", "title": "ココナラ純正通知の設定確認", "owner": "KENTARO", "type": "CHECK", "workstream": "card_sales", "status": "HUMAN_GATE", "priority": "high", "revenue_impact": "high", "why_now": "初回購入を見逃すと受注対応運用が始まらない", "next_action": "ココナラ アカウント設定>通知 で メール/トークルーム/アプリ通知ON・受信可を確認", "expected_minutes": 5, "options": [], "where": "coconala.com アカウント設定>通知", "done_condition": "メール・トークルーム・アプリ通知のON確認", "unblocks": ["T-C010"], "proof_required": true, "evidence": [], "created_at": "2026-09-13", "updated_at": "2026-09-14" },
-    { "task_id": "T-K002", "title": "旅行保険アフィリエイト新規契約の方針", "owner": "KENTARO", "type": "DECIDE", "workstream": "en_travel_monetize", "status": "HUMAN_GATE", "priority": "normal", "revenue_impact": "medium", "why_now": "医療費Short(184視聴)の題材記事が旅行保険推奨だがASPに商品なし=新規契約要", "next_action": "GO / NO / LATER を選択", "expected_minutes": 10, "options": ["GO", "NO", "LATER"], "where": "—", "done_condition": "方針選択", "unblocks": ["T-C011"], "proof_required": false, "evidence": [], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-K003", "title": "OpenAI Project 予算上限・通知の実設定/不要判断", "owner": "KENTARO", "type": "DECIDE", "workstream": "decision_os", "status": "NEEDS_REVIEW", "priority": "normal", "revenue_impact": "low", "why_now": "Decision OSがLuna課金を使う。残$5.98/上限$100が専用か共有か未検証", "next_action": "Mio専用Project分離・月次上限・使用量通知 を設定 or 不要判断", "expected_minutes": 10, "options": ["専用Project作成", "現状のまま(共有)", "後で"], "where": "platform.openai.com > Settings/Limits", "done_condition": "上限・通知の実設定 または不要の明示判断", "unblocks": ["T-C012"], "proof_required": true, "evidence": ["Claude報告値(残$5.98)は未検証=要dashboard確認"], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-C010", "title": "初回購入の受付/質問/判定/QA 半自動運用の待機", "owner": "CLAUDE", "workstream": "card_sales", "status": "WAITING_EXTERNAL", "priority": "high", "revenue_impact": "high", "why_now": "購入発生時にClaudeが受付文/質問/判定/QAを作成→健太郎が送信", "next_action": "購入通知の受信を待機(通知設定=T-K001完了で解錠)", "expected_minutes": 0, "blocked_by": ["T-K001"], "unblocks": [], "proof_required": true, "evidence": ["runbook: CARD-FULFILLMENT-SEMIAUTO"], "related_knowledge": ["K-RUN-CARD"], "created_at": "2026-09-13", "updated_at": "2026-09-14" },
-    { "task_id": "T-C020", "title": "Decision OS: /api/mio HTTP搭載＋フロントexp接続＋速度改善", "owner": "CLAUDE", "workstream": "decision_os", "status": "IN_PROGRESS", "priority": "high", "revenue_impact": "medium", "why_now": "engine E2E成功(実Luna)。顧客が画面から使えるにはHTTP搭載と速度(p95 17.3s→短縮)が必要", "next_action": "server.jsに/api/mio/{session,next,decision}搭載→exp経路で呼出→プロンプト短縮/先読み", "expected_minutes": 240, "blocked_by": [], "unblocks": [], "proof_required": true, "evidence": ["engine.mjs(git e9da6cb)", "10session実測 p50 12.6s/p95 17.3s", "cost p95 ¥0.51"], "related_knowledge": ["K-ARCH", "K-ENGINE"], "related_run": ["R-3011"], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-C021", "title": "Decision OS axis発見のfound=false化＋10-20件 local vs AI 比較Eval", "owner": "CLAUDE", "workstream": "decision_os", "status": "READY", "priority": "normal", "revenue_impact": "low", "why_now": "10/10軸発見=過剰の疑い。ローカル十分な時はfound=falseを返すべき", "next_action": "axis-discoveryプロンプト厳格化＋eval作成(有効/不要/結論変化をラベル)", "expected_minutes": 120, "proof_required": true, "evidence": [], "related_knowledge": ["K-EVAL"], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-C022", "title": "カードDomain Pack分離 card.pack.json + card.rules.mjs", "owner": "CLAUDE", "workstream": "decision_os", "status": "READY", "priority": "normal", "revenue_impact": "low", "why_now": "実行ロジックのJSON化を避け、data(pack)とcode(rules)を分離", "next_action": "card-quest/card-verdictから pack(データ)とrules(計算)へ分割", "expected_minutes": 90, "proof_required": true, "evidence": [], "related_knowledge": ["K-PACK"], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-C030", "title": "実顧客ファネルのsource別受信(自己テスト除外)", "owner": "CLAUDE", "workstream": "card_traffic", "status": "WAITING_EXTERNAL", "priority": "high", "revenue_impact": "high", "why_now": "カードshort→swipe-v3接続済。実流入のlanding→...→paid_ctaを計測", "next_action": "2026-09-15 CFで utm_source=yt_card の各ステップを自己テスト分離で集計", "expected_minutes": 30, "blocked_by": [], "unblocks": [], "proof_required": true, "evidence": [], "related_knowledge": [], "created_at": "2026-09-14", "updated_at": "2026-09-14" },
-    { "task_id": "T-S001", "title": "OpBoard v2 本番昇格(認証実装後・実データ)", "owner": "SYSTEM", "workstream": "opboard", "status": "BACKLOG", "priority": "normal", "revenue_impact": "none", "why_now": "レビュー合格＋認証が前提。実データ入りv2は認証まで非公開", "next_action": "認証(短期トークン)実装→実データバインド→現行と切替", "expected_minutes": 180, "proof_required": true, "evidence": [], "created_at": "2026-09-14", "updated_at": "2026-09-14" }
+    {
+      "task_id": "T-K001",
+      "title": "サンプル: 承認が必要な作業(T-K001)",
+      "owner": "KENTARO",
+      "type": "CHECK",
+      "workstream": "card_sales",
+      "status": "HUMAN_GATE",
+      "priority": "high",
+      "revenue_impact": "high",
+      "why_now": "(架空)サンプル理由",
+      "next_action": "(架空)サンプル操作",
+      "expected_minutes": 5,
+      "options": [],
+      "where": "(架空)サンプル操作先",
+      "done_condition": "(架空)サンプル完了条件",
+      "unblocks": [],
+      "proof_required": true,
+      "evidence": [],
+      "created_at": "2026-09-13",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-K002",
+      "title": "サンプル: 承認が必要な作業(T-K002)",
+      "owner": "KENTARO",
+      "type": "DECIDE",
+      "workstream": "en_travel_monetize",
+      "status": "HUMAN_GATE",
+      "priority": "normal",
+      "revenue_impact": "medium",
+      "why_now": "(架空)サンプル理由",
+      "next_action": "(架空)サンプル操作",
+      "expected_minutes": 10,
+      "options": [
+        "SAMPLE_A",
+        "SAMPLE_B"
+      ],
+      "where": "(架空)サンプル操作先",
+      "done_condition": "(架空)サンプル完了条件",
+      "unblocks": [],
+      "proof_required": false,
+      "evidence": [],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-K003",
+      "title": "サンプル: 承認が必要な作業(T-K003)",
+      "owner": "KENTARO",
+      "type": "DECIDE",
+      "workstream": "decision_os",
+      "status": "NEEDS_REVIEW",
+      "priority": "normal",
+      "revenue_impact": "low",
+      "why_now": "(架空)サンプル理由",
+      "next_action": "(架空)サンプル操作",
+      "expected_minutes": 10,
+      "options": [
+        "SAMPLE_A",
+        "SAMPLE_B"
+      ],
+      "where": "(架空)サンプル操作先",
+      "done_condition": "(架空)サンプル完了条件",
+      "unblocks": [],
+      "proof_required": true,
+      "evidence": [
+        "Claude報告値(残$5.98)は未検証=要dashboard確認"
+      ],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-C010",
+      "title": "初回購入の受付/質問/判定/QA 半自動運用の待機",
+      "owner": "CLAUDE",
+      "workstream": "card_sales",
+      "status": "WAITING_EXTERNAL",
+      "priority": "high",
+      "revenue_impact": "high",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 0,
+      "blocked_by": [
+        "T-K001"
+      ],
+      "unblocks": [],
+      "proof_required": true,
+      "evidence": [],
+      "related_knowledge": [
+        "K-RUN-CARD"
+      ],
+      "created_at": "2026-09-13",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-C020",
+      "title": "サンプルAI作業: /api/mio HTTP搭載＋フロントexp接続＋速度改善",
+      "owner": "CLAUDE",
+      "workstream": "decision_os",
+      "status": "IN_PROGRESS",
+      "priority": "high",
+      "revenue_impact": "medium",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 240,
+      "blocked_by": [],
+      "unblocks": [],
+      "proof_required": true,
+      "evidence": [],
+      "related_knowledge": [
+        "K-ARCH",
+        "K-ENGINE"
+      ],
+      "related_run": [
+        "R-3011"
+      ],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-C021",
+      "title": "サンプルAI作業 axis発見のfound=false化＋10-20件 local vs AI 比較Eval",
+      "owner": "CLAUDE",
+      "workstream": "decision_os",
+      "status": "READY",
+      "priority": "normal",
+      "revenue_impact": "low",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 120,
+      "proof_required": true,
+      "evidence": [],
+      "related_knowledge": [
+        "K-EVAL"
+      ],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-C022",
+      "title": "サンプルAI作業Domain Pack分離 card.pack.json + card.rules.mjs",
+      "owner": "CLAUDE",
+      "workstream": "decision_os",
+      "status": "READY",
+      "priority": "normal",
+      "revenue_impact": "low",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 90,
+      "proof_required": true,
+      "evidence": [],
+      "related_knowledge": [
+        "K-PACK"
+      ],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-C030",
+      "title": "実顧客ファネルのsource別受信(自己テスト除外)",
+      "owner": "CLAUDE",
+      "workstream": "card_traffic",
+      "status": "WAITING_EXTERNAL",
+      "priority": "high",
+      "revenue_impact": "high",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 30,
+      "blocked_by": [],
+      "unblocks": [],
+      "proof_required": true,
+      "evidence": [],
+      "related_knowledge": [],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    },
+    {
+      "task_id": "T-S001",
+      "title": "OpBoard v2 本番昇格(認証実装後・実データ)",
+      "owner": "SYSTEM",
+      "workstream": "opboard",
+      "status": "BACKLOG",
+      "priority": "normal",
+      "revenue_impact": "none",
+      "why_now": "(架空)",
+      "next_action": "(架空)サンプル",
+      "expected_minutes": 180,
+      "proof_required": true,
+      "evidence": [],
+      "created_at": "2026-09-14",
+      "updated_at": "2026-09-14"
+    }
   ],
   "knowledge": [
-    { "knowledge_id": "K-DOCTRINE", "title": "Mio PRODUCT DOCTRINE(中核価値)", "type": "Doctrine", "canonical_path": "hbq-ai-ops/mio/doctrine/PRODUCT-DOCTRINE.md", "version": "draft", "commit": "(未作成)", "sha": "-", "summary": "自分では質問できなかった重要な観点を見つけ、判断が変わる条件と実行手順まで示す。ChatGPT代替でなくDecision UI Platform。", "status": "DRAFT", "owner": "CLAUDE", "related_tasks": ["T-C020"], "related_decisions": ["D-001"], "updated_at": "2026-09-14" },
-    { "knowledge_id": "K-ARCH", "title": "Decision OS アーキテクチャ(責任分界)", "type": "Architecture", "canonical_path": "hbq-ai-ops/mio/README.md", "version": "v1", "commit": "e9da6cb", "sha": "0568c2bd", "summary": "UI/Local(計算・分岐・十分性)/OpenAI Luna(不足軸発見・個別化)/Retrieval/Validator/Renderer/Logging の分界。Luna一本。", "status": "ACTIVE", "owner": "CLAUDE", "related_tasks": ["T-C020"], "related_decisions": ["D-002"], "updated_at": "2026-09-14" },
-    { "knowledge_id": "K-ENGINE", "title": "Decision OS engine(Luna orchestrator)", "type": "Skill", "canonical_path": "hbq-ai-ops/mio/runtime-src/api/engine.mjs", "version": "v1", "commit": "e9da6cb", "sha": "-", "summary": "local-first→Luna軸発見→検証→¥30/監査/fallback。他モデルfallback無し。", "status": "ACTIVE", "owner": "CLAUDE", "related_tasks": ["T-C020"], "related_decisions": ["D-002"], "updated_at": "2026-09-14" },
-    { "knowledge_id": "K-PACK", "title": "カードDomain Pack(pack+rules分離)", "type": "Domain Pack", "canonical_path": "hbq-ai-ops/mio/domain-packs/ (未分離・現行=card-quest/card-verdict)", "version": "v0", "commit": "6377c97", "sha": "-", "summary": "軸/質問/選択肢/結果部品=pack.json、計算/hard stop/sufficiency/verdict=rules.mjs へ分離予定。", "status": "DRAFT", "owner": "CLAUDE", "related_tasks": ["T-C022"], "updated_at": "2026-09-14" },
-    { "knowledge_id": "K-EVAL", "title": "カードEval(正常系+異常系)", "type": "Eval", "canonical_path": "hbq-ai-ops/mio/evals/ (未作成)", "version": "v0", "commit": "-", "sha": "-", "summary": "非ローカル軸発見/重複禁止/数値一致/古情報/injection/schema違反/無料有料漏れ/安定性 等をPASS/FAIL機械判定。", "status": "DRAFT", "owner": "CLAUDE", "related_tasks": ["T-C021"], "updated_at": "2026-09-14" },
-    { "knowledge_id": "K-RUN-CARD", "title": "カード判定 半自動フルフィルメント", "type": "Runbook", "canonical_path": "opboard/automation/CARD-FULFILLMENT-SEMIAUTO.md → 正本化予定", "version": "v1", "commit": "-", "sha": "-", "summary": "購入検知→Claude受付/質問/判定/QA→健太郎送信のみ(自動返信は規約13条2項22号で禁止)。", "status": "ACTIVE", "owner": "CLAUDE", "related_tasks": ["T-C010"], "updated_at": "2026-09-13" }
+    {
+      "knowledge_id": "K-DOCTRINE",
+      "title": "Mio PRODUCT DOCTRINE(中核価値)",
+      "type": "Doctrine",
+      "canonical_path": "hbq-ai-ops/mio/doctrine/PRODUCT-DOCTRINE.md",
+      "version": "draft",
+      "commit": "(未作成)",
+      "sha": "-",
+      "summary": "自分では質問できなかった重要な観点を見つけ、判断が変わる条件と実行手順まで示す。ChatGPT代替でなくDecision UI Platform。",
+      "status": "DRAFT",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C020"
+      ],
+      "related_decisions": [
+        "D-001"
+      ],
+      "updated_at": "2026-09-14"
+    },
+    {
+      "knowledge_id": "K-ARCH",
+      "title": "Decision OS アーキテクチャ(責任分界)",
+      "type": "Architecture",
+      "canonical_path": "hbq-ai-ops/mio/README.md",
+      "version": "v1",
+      "commit": "e9da6cb",
+      "sha": "0568c2bd",
+      "summary": "UI/Local(計算・分岐・十分性)/OpenAI Luna(不足軸発見・個別化)/Retrieval/Validator/Renderer/Logging の分界。Luna一本。",
+      "status": "ACTIVE",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C020"
+      ],
+      "related_decisions": [
+        "D-002"
+      ],
+      "updated_at": "2026-09-14"
+    },
+    {
+      "knowledge_id": "K-ENGINE",
+      "title": "Decision OS engine(Luna orchestrator)",
+      "type": "Skill",
+      "canonical_path": "hbq-ai-ops/mio/runtime-src/api/engine.mjs",
+      "version": "v1",
+      "commit": "e9da6cb",
+      "sha": "-",
+      "summary": "local-first→Luna軸発見→検証→¥30/監査/fallback。他モデルfallback無し。",
+      "status": "ACTIVE",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C020"
+      ],
+      "related_decisions": [
+        "D-002"
+      ],
+      "updated_at": "2026-09-14"
+    },
+    {
+      "knowledge_id": "K-PACK",
+      "title": "カードDomain Pack(pack+rules分離)",
+      "type": "Domain Pack",
+      "canonical_path": "hbq-ai-ops/mio/domain-packs/ (未分離・現行=card-quest/card-verdict)",
+      "version": "v0",
+      "commit": "6377c97",
+      "sha": "-",
+      "summary": "軸/質問/選択肢/結果部品=pack.json、計算/hard stop/sufficiency/verdict=rules.mjs へ分離予定。",
+      "status": "DRAFT",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C022"
+      ],
+      "updated_at": "2026-09-14"
+    },
+    {
+      "knowledge_id": "K-EVAL",
+      "title": "カードEval(正常系+異常系)",
+      "type": "Eval",
+      "canonical_path": "hbq-ai-ops/mio/evals/ (未作成)",
+      "version": "v0",
+      "commit": "-",
+      "sha": "-",
+      "summary": "非ローカル軸発見/重複禁止/数値一致/古情報/injection/schema違反/無料有料漏れ/安定性 等をPASS/FAIL機械判定。",
+      "status": "DRAFT",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C021"
+      ],
+      "updated_at": "2026-09-14"
+    },
+    {
+      "knowledge_id": "K-RUN-CARD",
+      "title": "カード判定 半自動フルフィルメント",
+      "type": "Runbook",
+      "canonical_path": "opboard/automation/CARD-FULFILLMENT-SEMIAUTO.md → 正本化予定",
+      "version": "v1",
+      "commit": "-",
+      "sha": "-",
+      "summary": "購入検知→Claude受付/質問/判定/QA→健太郎送信のみ(自動返信は規約13条2項22号で禁止)。",
+      "status": "ACTIVE",
+      "owner": "CLAUDE",
+      "related_tasks": [
+        "T-C010"
+      ],
+      "updated_at": "2026-09-13"
+    }
   ],
   "decisions": [
-    { "decision_id": "D-001", "question": "Mioの中核価値をどう定義するか", "decision": "固定診断ツリーでなく、非ローカル軸発見+変更条件+実行手順まで示すDecision UI Platform", "rationale": "ChatGPTのように質問設計/長文/再解釈を利用者にさせない価値が差別化", "alternatives": ["3問固定診断のまま", "AI全丸投げ"], "evidence": ["Luna E2Eで非ローカル軸 eligible_spend_ratio 発見"], "effective_at": "2026-09-14", "supersedes": null },
-    { "decision_id": "D-002", "question": "Decision OSで使うOpenAIモデル", "decision": "gpt-5.6-luna 一本(単一設定)。他モデルへ自動fallback禁止。effortのみ調整", "rationale": "モデル選定に時間を使わずLunaで品質/速度/原価を実測。返却モデル不一致はFAIL", "alternatives": ["nano/mini/5.4等の役割分担", "上位astra常用"], "evidence": ["10session mismatch 0", "cost p95 ¥0.51", "健太郎裁定"], "effective_at": "2026-09-13", "supersedes": null }
+    {
+      "decision_id": "D-001",
+      "question": "Mioの中核価値をどう定義するか",
+      "decision": "固定診断ツリーでなく、非ローカル軸発見+変更条件+実行手順まで示すDecision UI Platform",
+      "rationale": "ChatGPTのように質問設計/長文/再解釈を利用者にさせない価値が差別化",
+      "alternatives": [
+        "3問固定診断のまま",
+        "AI全丸投げ"
+      ],
+      "evidence": [
+        "Luna E2Eで非ローカル軸 eligible_spend_ratio 発見"
+      ],
+      "effective_at": "2026-09-14",
+      "supersedes": null
+    },
+    {
+      "decision_id": "D-002",
+      "question": "Decision OSで使うOpenAIモデル",
+      "decision": "gpt-5.6-luna 一本(単一設定)。他モデルへ自動fallback禁止。effortのみ調整",
+      "rationale": "モデル選定に時間を使わずLunaで品質/速度/原価を実測。返却モデル不一致はFAIL",
+      "alternatives": [
+        "nano/mini/5.4等の役割分担",
+        "上位astra常用"
+      ],
+      "evidence": [
+        "10session mismatch 0",
+        "cost p95 ¥0.51",
+        "健太郎裁定"
+      ],
+      "effective_at": "2026-09-13",
+      "supersedes": null
+    }
   ],
   "runs": [
-    { "run_id": "R-3011", "started_at": "2026-09-14T21:00", "ended_at": "2026-09-14T21:05", "status": "done", "task_ids": ["T-C020"], "external_changes": ["exp保持修正deploy(MIO_FULL changed=2)"], "evidence": ["raw main exp 4件", "live edge 2件"], "errors": [], "next_run": "-" },
-    { "run_id": "R-2011", "started_at": "2026-09-13T20:11", "ended_at": "2026-09-13T20:21", "status": "done", "task_ids": [], "external_changes": ["cf-analytics確認"], "evidence": [], "errors": [], "next_run": "毎時11分" },
-    { "run_id": "R-LEGACY-SNAPSHOT", "started_at": "2026-09-14", "ended_at": "2026-09-14", "status": "archived", "task_ids": [], "external_changes": ["現行OpBoard v1のtodos/status/deliverablesをbackups/opboard-v1-20260914へ退避。巨大PDCA文章はTask自動分解せずLegacyとして保存。"], "evidence": ["backups/opboard-v1-20260914/{todos,status,deliverables}.json"], "errors": [], "next_run": "-" }
+    {
+      "run_id": "R-3011",
+      "started_at": "2026-09-14T21:00",
+      "ended_at": "2026-09-14T21:05",
+      "status": "done",
+      "task_ids": [
+        "T-C020"
+      ],
+      "external_changes": [
+        "exp保持修正deploy(MIO_FULL changed=2)"
+      ],
+      "evidence": [
+        "raw main exp 4件",
+        "live edge 2件"
+      ],
+      "errors": [],
+      "next_run": "-"
+    },
+    {
+      "run_id": "R-2011",
+      "started_at": "2026-09-13T20:11",
+      "ended_at": "2026-09-13T20:21",
+      "status": "done",
+      "task_ids": [],
+      "external_changes": [
+        "cf-analytics確認"
+      ],
+      "evidence": [],
+      "errors": [],
+      "next_run": "毎時11分"
+    },
+    {
+      "run_id": "R-LEGACY-SNAPSHOT",
+      "started_at": "2026-09-14",
+      "ended_at": "2026-09-14",
+      "status": "archived",
+      "task_ids": [],
+      "external_changes": [
+        "現行OpBoard v1のtodos/status/deliverablesをbackups/opboard-v1-20260914へ退避。巨大PDCA文章はTask自動分解せずLegacyとして保存。"
+      ],
+      "evidence": [
+        "backups/opboard-v1-20260914/{todos,status,deliverables}.json"
+      ],
+      "errors": [],
+      "next_run": "-"
+    }
   ],
   "metrics": [
-    { "metric_name": "decide到達(qualified visit)", "product": "card", "source": "cf(/g/*)", "value": "12", "window": "1日", "self_test_excluded": false, "measured_at": "2026-09-12T17:40", "data_source": "CF Web Analytics snapshot", "verified": false, "stale": true },
-    { "metric_name": "coconala遷移(paid_cta)", "product": "card", "source": "cf(/decide/go-coconala)", "value": "実質0", "window": "1日", "self_test_excluded": true, "measured_at": "2026-09-12T17:40", "data_source": "CF snapshot", "verified": false, "stale": true },
-    { "metric_name": "Luna session cost(p95)", "product": "decision_os", "source": "engine audit", "value": "¥0.51", "window": "10 session", "self_test_excluded": true, "measured_at": "2026-09-14T21:20", "data_source": "audit.jsonl(実測)", "verified": true, "stale": false },
-    { "metric_name": "Luna session latency(p95)", "product": "decision_os", "source": "engine audit", "value": "17.3s", "window": "10 session", "self_test_excluded": true, "measured_at": "2026-09-14T21:20", "data_source": "audit.jsonl(実測)", "verified": true, "stale": false },
-    { "metric_name": "verified revenue", "product": "all", "source": "coconala", "value": "¥0", "window": "累計", "self_test_excluded": true, "measured_at": "2026-09-14T21:30", "data_source": "coconala管理画面(目視)", "verified": true, "stale": false }
+    {
+      "metric_name": "サンプル指標",
+      "product": "sample",
+      "source": "cf(/g/*)",
+      "value": "—",
+      "window": "1日",
+      "self_test_excluded": false,
+      "measured_at": "2026-09-12T17:40",
+      "data_source": "(架空)",
+      "verified": false,
+      "stale": true
+    },
+    {
+      "metric_name": "サンプル指標",
+      "product": "sample",
+      "source": "cf(/decide/go-coconala)",
+      "value": "—",
+      "window": "1日",
+      "self_test_excluded": true,
+      "measured_at": "2026-09-12T17:40",
+      "data_source": "(架空)",
+      "verified": false,
+      "stale": true
+    },
+    {
+      "metric_name": "サンプル指標",
+      "product": "sample",
+      "source": "engine audit",
+      "value": "—",
+      "window": "10 session",
+      "self_test_excluded": true,
+      "measured_at": "2026-09-14T21:20",
+      "data_source": "(架空)",
+      "verified": true,
+      "stale": false
+    },
+    {
+      "metric_name": "サンプル指標",
+      "product": "sample",
+      "source": "engine audit",
+      "value": "—",
+      "window": "10 session",
+      "self_test_excluded": true,
+      "measured_at": "2026-09-14T21:20",
+      "data_source": "(架空)",
+      "verified": true,
+      "stale": false
+    },
+    {
+      "metric_name": "サンプル指標",
+      "product": "sample",
+      "source": "coconala",
+      "value": "—",
+      "window": "累計",
+      "self_test_excluded": true,
+      "measured_at": "2026-09-14T21:30",
+      "data_source": "(架空)",
+      "verified": true,
+      "stale": false
+    }
   ],
   "artifacts": [
-    { "artifact_id": "A-CARD-COCONALA", "title": "ココナラ カード判定 4398298", "public_url": "https://coconala.com/services/4398298", "product": "card(4398298)", "state": "public_live", "verified_at": "2026-09-14", "related_task": "T-C010", "current": true, "deprecated": false, "note": "¥1,000・5枠・購入ボタン・販売0・お気に入り0。カード専用商品。" },
-    { "artifact_id": "A-MM-COCONALA", "title": "ココナラ Money Manager 4395009", "public_url": "https://coconala.com/services/4395009", "product": "money_manager(4395009)", "state": "public_live", "verified_at": "2026-09-11", "related_task": null, "current": true, "deprecated": false, "note": "¥1,000・汎用家計/お金判定(松/バックエンド)。カード商品とは別導線・別商品。" },
-    { "artifact_id": "A-CARD-SHORT", "title": "YouTube カードshort vR_cBSwTBgY", "public_url": "https://youtube.com/watch?v=vR_cBSwTBgY", "product": "card(4398298)", "state": "public_live", "verified_at": "2026-09-13", "related_task": "T-C030", "current": true, "deprecated": false, "note": "247視聴。説明欄/固定コメント→/decide/swipe-v3/?t=card。" },
-    { "artifact_id": "A-CARD-AD-DELETED", "title": "旧カード広告 t6WSZWR7ljU", "public_url": "", "product": "card", "state": "deprecated", "verified_at": "2026-09-14", "related_task": null, "current": false, "deprecated": true, "note": "uploader削除(低視聴prune)。public_live除外済。削除URLを外部成果として表示しない。" },
-    { "artifact_id": "A-DECISION-OS-EXP", "title": "Decision OS 実験(swipe-v3 ?exp=decision-os-v1)", "public_url": "https://miochooses.com/decide/swipe-v3/?exp=decision-os-v1&t=card", "product": "card(decision_os)", "state": "internal_ready", "verified_at": "2026-09-14", "related_task": "T-C020", "current": true, "deprecated": false, "note": "exp保持済。HTTP/api/mio未搭載=まだ顧客はDecision OSを画面から使えない(public_live未達)。" }
+    {
+      "artifact_id": "A-CARD-COCONALA",
+      "title": "サンプル成果物(public_live)",
+      "public_url": "https://example.com/sample",
+      "product": "sample",
+      "state": "public_live",
+      "verified_at": "2026-09-14",
+      "related_task": "T-C010",
+      "current": true,
+      "deprecated": false,
+      "note": "(架空)サンプル"
+    },
+    {
+      "artifact_id": "A-MM-COCONALA",
+      "title": "サンプル成果物(public_live)",
+      "public_url": "https://example.com/sample",
+      "product": "sample",
+      "state": "public_live",
+      "verified_at": "2026-09-11",
+      "related_task": null,
+      "current": true,
+      "deprecated": false,
+      "note": "(架空)サンプル"
+    },
+    {
+      "artifact_id": "A-CARD-SHORT",
+      "title": "サンプル成果物(public_live)",
+      "public_url": "https://example.com/sample",
+      "product": "sample",
+      "state": "public_live",
+      "verified_at": "2026-09-13",
+      "related_task": "T-C030",
+      "current": true,
+      "deprecated": false,
+      "note": "(架空)サンプル"
+    },
+    {
+      "artifact_id": "A-CARD-AD-DELETED",
+      "title": "サンプル成果物(deprecated)",
+      "public_url": "",
+      "product": "sample",
+      "state": "deprecated",
+      "verified_at": "2026-09-14",
+      "related_task": null,
+      "current": false,
+      "deprecated": true,
+      "note": "(架空)サンプル"
+    },
+    {
+      "artifact_id": "A-DECISION-OS-EXP",
+      "title": "サンプル成果物(internal_ready)",
+      "public_url": "https://example.com/sample",
+      "product": "sample",
+      "state": "internal_ready",
+      "verified_at": "2026-09-14",
+      "related_task": "T-C020",
+      "current": true,
+      "deprecated": false,
+      "note": "(架空)サンプル"
+    }
   ]
 }
