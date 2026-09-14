@@ -3,91 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Mio分岐予報｜今、大きな買い物をしてよい？（プロトタイプ）</title>
-<!-- ★fixtureプロト: 非本番・導線非接続・noindex。判定はbunki.rules.mjs(コード確定)。実決済/Luna未接続。 -->
+<title>Mio分岐予報｜今、大きな買い物をしてよい？</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#060a12">
 <link rel="icon" href="/favicon-32.png">
 <style>
-  :root{
-    --bg:#060a12; --bg2:#0a1120; --card:#1b2c46; --cardtop:#26406a;
-    --tx:#eef4fb; --dim:#93a4bb; --faint:#6b7d96; --mio:#5eb3ff; --violet:#b28bff;
-    --attack:#39d353; --tune:#ffcf4a; --wait:#ff9f6f;
-    --go:#39d353; --reduce:#ffcf4a; --hold:#ffcf4a; --waitc:#ff9f6f; --yes:#39d353; --no:#ff6f6f;
-  }
+  :root{--bg:#060a12;--bg2:#0a1120;--card:#1b2c46;--cardtop:#26406a;--tx:#eef4fb;--dim:#93a4bb;--faint:#6b7d96;--mio:#5eb3ff;--violet:#b28bff;--attack:#39d353;--tune:#ffcf4a;--wait:#ff9f6f;--go:#39d353;--reduce:#ffcf4a;--waitc:#ff9f6f;--yes:#39d353;--no:#ff6f6f;}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;}
   html,body{height:100%;background:var(--bg);overscroll-behavior:none;}
-  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;color:var(--tx);
-    display:flex;align-items:center;justify-content:center;line-height:1.5;}
-  #app{position:relative;width:100%;max-width:460px;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;
-    background:radial-gradient(90% 55% at 50% 18%, rgba(60,120,200,.24) 0%, rgba(20,40,80,.05) 45%, transparent 70%),
-      radial-gradient(120% 90% at 50% 120%, #0d1830 0%, var(--bg2) 40%, var(--bg) 100%);}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;color:var(--tx);display:flex;align-items:center;justify-content:center;line-height:1.5;}
+  #app{position:relative;width:100%;max-width:460px;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(90% 55% at 50% 16%,rgba(60,120,200,.24),transparent 70%),radial-gradient(120% 90% at 50% 120%,#0d1830,var(--bg2) 40%,var(--bg));}
   @media(min-width:480px){#app{height:min(880px,96vh);border-radius:28px;box-shadow:0 30px 90px rgba(0,0,0,.65);}}
-  #proto{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.03em;text-align:center;color:#ffd9a8;
-    background:rgba(255,159,111,.12);border-bottom:1px solid rgba(255,159,111,.24);padding:4px 8px;}
-  #hdr{display:flex;align-items:center;gap:10px;padding:12px 18px 2px;flex:0 0 auto;z-index:30;}
-  #back{width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.06);color:#cdd9e6;font-size:19px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;}
+  #hdr{display:flex;align-items:center;gap:10px;padding:14px 18px 4px;flex:0 0 auto;z-index:30;}
+  #back{width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.06);color:#cdd9e6;font-size:19px;cursor:pointer;opacity:0;pointer-events:none;transition:.2s;}
   #back.on{opacity:.8;pointer-events:auto;}
-  #dots{display:flex;gap:6px;margin:0 auto;flex-wrap:wrap;justify-content:center;max-width:70%;}
-  #dots i{width:16px;height:4px;border-radius:99px;background:rgba(255,255,255,.14);transition:background .3s,width .3s;}
-  #dots i.fill{background:var(--mio);} #dots i.now{background:linear-gradient(90deg,var(--mio),#9ad3ff);width:24px;}
-  #dots.hide{visibility:hidden;}
+  #prog{margin:0 auto;font-size:12px;font-weight:800;color:var(--dim);}
+  #prog.hide{visibility:hidden;}
   #stage{position:relative;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;}
   #stage.scroll{overflow-y:auto;overflow-x:hidden;}
-  .mioWrap{position:relative;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px;}
-  .mioWrap .glow{position:absolute;top:-6px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle, rgba(94,179,255,.34) 0%, rgba(94,179,255,.10) 45%, transparent 70%);filter:blur(2px);}
-  .mioAv{position:relative;z-index:2;width:82px;height:82px;border-radius:50%;background:linear-gradient(160deg,#2a4570,#16233c);display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 8px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06) inset;}
-  .bubble{position:relative;z-index:3;margin-top:10px;min-height:20px;font-size:13.5px;font-weight:800;color:#cfe6ff;padding:0 24px;text-align:center;}
+  /* Mio guide row */
+  .mio{display:flex;align-items:center;gap:11px;padding:4px 4px 2px;}
+  .mio .av{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:linear-gradient(160deg,#2a4570,#16233c);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 14px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.06) inset;}
+  .mio .say{font-size:13px;font-weight:700;color:#cfe6ff;}
   .intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px 26px 26px;}
   .intro .kicker{font-size:13px;font-weight:800;color:var(--mio);letter-spacing:.06em;}
   .intro h1{margin-top:10px;font-size:28px;font-weight:900;line-height:1.35;}
   .intro .lead{margin-top:14px;font-size:15px;color:var(--dim);font-weight:600;}
-  .intro .note{margin-top:12px;font-size:12px;color:var(--faint);}
-  .cta{border:none;border-radius:16px;padding:16px;font-size:16px;font-weight:900;color:#04121f;cursor:pointer;background:linear-gradient(135deg,#7cc4ff,#5eb3ff);box-shadow:0 12px 30px rgba(94,179,255,.35);}
-  .cta:active{transform:scale(.985);} .cta:disabled{opacity:.45;box-shadow:none;}
+  .heroAv{width:84px;height:84px;border-radius:50%;background:linear-gradient(160deg,#2a4570,#16233c);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06) inset;}
+  .cta{border:none;border-radius:16px;padding:16px;font-size:16px;font-weight:900;color:#04121f;cursor:pointer;background:linear-gradient(135deg,#7cc4ff,#5eb3ff);box-shadow:0 12px 30px rgba(94,179,255,.35);width:100%;}
+  .cta:active{transform:scale(.985);} .cta:disabled{opacity:.4;box-shadow:none;}
   .cta.ghost{background:rgba(255,255,255,.06);color:#dbe7f4;box-shadow:none;border:1px solid rgba(255,255,255,.12);}
   .intro .cta{margin-top:auto;}
-  #qwrap{flex:1;position:relative;display:flex;flex-direction:column;}
-  .qhead{padding:14px 24px 0;text-align:center;}
-  .qhead .qn{font-size:12px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
-  .qhead .qt{margin-top:6px;font-size:20px;font-weight:900;line-height:1.4;}
-  .deck{flex:1;position:relative;margin:14px 22px 6px;}
-  .swipe{position:absolute;inset:0;border-radius:24px;padding:26px 24px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 20px 50px rgba(0,0,0,.5);touch-action:none;will-change:transform;}
-  .swipe .opt{font-size:22px;font-weight:900;line-height:1.5;}
-  .swipe .hint{margin-top:auto;display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--faint);}
-  .swipe .hint b{color:#cfe6ff;}
-  .badge{position:absolute;top:22px;font-size:24px;font-weight:900;padding:6px 14px;border-radius:12px;border:3px solid;opacity:0;}
-  .badge.L{left:20px;color:var(--no);border-color:var(--no);} .badge.R{right:20px;color:var(--yes);border-color:var(--yes);}
-  .thumbs{display:flex;gap:14px;justify-content:center;padding:6px 22px 18px;}
-  .tb{flex:1;max-width:180px;border:none;border-radius:14px;padding:13px;font-size:15px;font-weight:800;cursor:pointer;}
-  .tb.no{background:rgba(255,111,111,.13);color:#ffb0b0;border:1px solid rgba(255,111,111,.3);}
-  .tb.yes{background:rgba(57,211,83,.13);color:#9be9ad;border:1px solid rgba(57,211,83,.3);}
-  .res{padding:8px 20px 26px;display:flex;flex-direction:column;gap:13px;}
-  .modeCard{border-radius:22px;padding:20px;text-align:center;background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 18px 44px rgba(0,0,0,.5);}
-  .modeCard .lab{font-size:12px;font-weight:800;color:var(--dim);letter-spacing:.05em;}
+  /* question (QUICK & numeric share) */
+  .qwrap{flex:1;display:flex;flex-direction:column;padding:10px 20px 18px;}
+  .nq{margin-top:6px;font-size:21px;font-weight:900;line-height:1.35;}
+  .why{margin-top:9px;font-size:12.5px;color:var(--mio);font-weight:700;background:rgba(94,179,255,.08);border:1px solid rgba(94,179,255,.2);border-radius:10px;padding:8px 11px;}
+  /* QUICK tap cards */
+  .qcards{margin-top:18px;display:flex;flex-direction:column;gap:12px;}
+  .qcard{border:1px solid rgba(255,255,255,.14);background:linear-gradient(165deg,var(--cardtop),var(--card));color:#eef4fb;border-radius:18px;padding:20px 18px;font-size:19px;font-weight:900;cursor:pointer;text-align:left;box-shadow:0 10px 26px rgba(0,0,0,.4);display:flex;align-items:center;gap:12px;}
+  .qcard:active{transform:scale(.98);} .qcard.sel{border-color:var(--mio);box-shadow:0 0 0 2px rgba(94,179,255,.4);}
+  .qcard .em{font-size:24px;}
+  .qcard .sub{display:block;font-size:12px;font-weight:700;color:var(--dim);margin-top:3px;}
+  /* numeric choice chips */
+  .chips{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .chip{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e7eefb;border-radius:14px;padding:17px 10px;font-size:16px;font-weight:800;cursor:pointer;text-align:center;}
+  .chip:active{transform:scale(.97);} .chip.sel{background:rgba(94,179,255,.22);border-color:var(--mio);color:#eaf6ff;}
+  .chip.exact{grid-column:1/-1;border-style:dashed;color:var(--dim);background:transparent;}
+  .kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+  .kp button{border:none;border-radius:12px;padding:15px;font-size:19px;font-weight:800;background:rgba(255,255,255,.06);color:#eaf2fb;cursor:pointer;}
+  .kpbox{margin-top:12px;text-align:center;font-size:30px;font-weight:900;color:var(--mio);}
+  .react{margin-top:14px;font-size:13.5px;font-weight:800;color:#e2d8fb;background:rgba(178,139,255,.1);border:1px solid rgba(178,139,255,.28);border-radius:12px;padding:11px 13px;display:flex;gap:8px;align-items:flex-start;}
+  .react .rav{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:linear-gradient(160deg,#2a4570,#16233c);display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .gonext{margin-top:16px;}
+  .res{padding:8px 18px 26px;display:flex;flex-direction:column;gap:12px;}
+  .modeCard{border-radius:20px;padding:20px;text-align:center;background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 18px 44px rgba(0,0,0,.5);}
+  .modeCard .lab{font-size:12px;font-weight:800;color:var(--dim);}
   .modeCard .mode{margin-top:8px;font-size:32px;font-weight:900;}
   .modeCard .mode.attack{color:var(--attack);} .modeCard .mode.tune{color:var(--tune);} .modeCard .mode.wait{color:var(--wait);}
   .modeCard .tend{margin-top:10px;font-size:14px;color:#dbe7f4;font-weight:600;}
   .row{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 16px;}
-  .row .k{font-size:11.5px;font-weight:800;color:var(--mio);letter-spacing:.03em;}
+  .row .k{font-size:11.5px;font-weight:800;color:var(--mio);}
   .row .v{margin-top:6px;font-size:14.5px;font-weight:600;color:#e7eefb;}
   .row.lock{background:rgba(178,139,255,.08);border:1px dashed rgba(178,139,255,.34);} .row.lock .k{color:var(--violet);} .row.lock .v{color:#d9cdfb;}
   .basis{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:8px;}
   .basis li{font-size:12.5px;font-weight:600;color:#cdd9e6;padding-left:14px;position:relative;line-height:1.5;}
   .basis li:before{content:'▸';position:absolute;left:0;color:var(--mio);}
-  .verdict{border-radius:22px;padding:20px;box-shadow:0 18px 44px rgba(0,0,0,.5);border:1px solid rgba(178,139,255,.28);background:linear-gradient(165deg,#2a2140,#1c1830);}
-  .verdict .tag{font-size:12px;font-weight:800;letter-spacing:.05em;}
-  .verdict .st{display:inline-block;margin-top:6px;font-size:12px;font-weight:900;padding:3px 11px;border-radius:999px;}
-  .verdict .st.GO{background:rgba(57,211,83,.16);color:var(--go);border:1px solid rgba(57,211,83,.4);}
-  .verdict .st.REDUCE,.verdict .st.COND_HOLD{background:rgba(255,207,74,.16);color:var(--reduce);border:1px solid rgba(255,207,74,.4);}
-  .verdict .st.WAIT{background:rgba(255,159,111,.16);color:var(--waitc);border:1px solid rgba(255,159,111,.4);}
-  .verdict .st.NEEDS_INPUT{background:rgba(139,152,171,.18);color:#b7c4d6;border:1px solid rgba(139,152,171,.4);}
-  .verdict .concl{margin-top:10px;font-size:20px;font-weight:900;line-height:1.45;}
-  .branch{display:flex;gap:10px;}
-  .branch .b{flex:1;border-radius:14px;padding:13px;font-size:12.5px;font-weight:600;line-height:1.5;}
-  .branch .go{background:rgba(94,179,255,.08);border:1px solid rgba(94,179,255,.26);color:#cfe6ff;}
-  .branch .skip{background:rgba(57,211,83,.08);border:1px solid rgba(57,211,83,.26);color:#cdefd4;}
-  .branch .bt{display:block;font-weight:900;font-size:12.5px;margin-bottom:5px;color:#fff;}
+  .suff{margin-top:8px;font-size:12px;color:var(--dim);font-weight:700;}
+  .suffbar{height:6px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden;}
+  .suffbar>div{height:100%;background:linear-gradient(90deg,var(--mio),#9ad3ff);}
+  .hero{border-radius:22px;padding:22px 20px;background:linear-gradient(165deg,#22314f,#141f36);box-shadow:0 18px 44px rgba(0,0,0,.5);text-align:center;}
+  .hero .lab{margin-top:10px;font-size:12px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
+  .hero .pick{margin-top:8px;font-size:23px;font-weight:900;line-height:1.4;}
+  .hero .why1{margin-top:10px;font-size:14px;color:#cfe6ff;font-weight:600;}
+  .whybox{margin-top:12px;font-size:13px;color:#dbe7f4;font-weight:600;background:rgba(255,255,255,.05);border-radius:12px;padding:12px;text-align:left;display:none;}
+  .whybox.on{display:block;}
+  .optcard{border-radius:16px;padding:15px 16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);}
+  .optcard.rec{border-color:var(--mio);background:rgba(94,179,255,.08);box-shadow:0 0 0 1px rgba(94,179,255,.25);}
+  .optcard .ot{font-size:16px;font-weight:900;color:#eef4fb;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .optcard .tag{font-size:10px;font-weight:900;color:#04121f;background:var(--mio);border-radius:99px;padding:2px 8px;}
+  .optcard .g{margin-top:10px;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:12.5px;line-height:1.45;}
+  .optcard .g .kk{color:var(--faint);font-weight:800;white-space:nowrap;}
+  .optcard .g .vv{color:#dbe7f4;font-weight:600;}
+  .optcard .g .vv.eval{color:#cfe6ff;font-weight:800;}
   .steps{counter-reset:st;list-style:none;display:flex;flex-direction:column;gap:9px;}
   .steps li{position:relative;padding-left:32px;font-size:13.5px;font-weight:600;color:#e7eefb;line-height:1.5;}
   .steps li:before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:rgba(94,179,255,.18);color:var(--mio);font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;}
@@ -95,287 +92,252 @@
   .rev li{font-size:13.5px;font-weight:600;color:#ffe6cf;padding-left:18px;position:relative;line-height:1.5;}
   .rev li:before{content:'↺';position:absolute;left:0;color:var(--reduce);font-weight:900;}
   .rev.none li{color:#9be9ad;} .rev.none li:before{content:'✓';color:var(--go);}
-  .insight{background:rgba(178,139,255,.08);border:1px solid rgba(178,139,255,.3);border-radius:16px;padding:14px 16px;}
-  .insight .k{font-size:11.5px;font-weight:800;color:var(--violet);}
-  .insight .v{margin-top:6px;font-size:14px;font-weight:600;color:#e2d8fb;}
+  .insight{background:rgba(178,139,255,.1);border:1px solid rgba(178,139,255,.36);border-radius:16px;padding:15px 16px;}
+  .insight .k{font-size:12px;font-weight:900;color:var(--violet);}
+  .insight .v{margin-top:7px;font-size:14px;font-weight:700;color:#e2d8fb;}
+  .insight .ch{margin-top:8px;font-size:12.5px;font-weight:700;color:#cfe6ff;background:rgba(94,179,255,.1);border-radius:10px;padding:9px 11px;}
+  .calcToggle{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#cfd9e6;border-radius:12px;padding:12px;font-size:13.5px;font-weight:800;cursor:pointer;text-align:center;width:100%;}
+  .calcBody{display:none;flex-direction:column;gap:12px;} .calcBody.on{display:flex;}
   .disc{font-size:11px;color:var(--faint);line-height:1.6;}
-  .sampleTag{display:inline-block;font-size:10px;font-weight:800;color:#ffd9a8;background:rgba(255,159,111,.14);border:1px solid rgba(255,159,111,.3);border-radius:999px;padding:2px 9px;margin-left:6px;}
-  /* number entry */
-  .numwrap{flex:1;display:flex;flex-direction:column;padding:10px 22px 18px;}
-  .numwrap .nq{font-size:19px;font-weight:900;line-height:1.4;}
-  .numwrap .nh{font-size:12.5px;color:var(--dim);font-weight:600;margin-top:6px;}
-  .numbox{margin:18px 0 8px;text-align:center;}
-  .numbox .amt{font-size:40px;font-weight:900;color:var(--mio);} .numbox .yen{font-size:16px;color:var(--dim);font-weight:700;margin-left:6px;}
-  .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:auto;}
-  .pad button{border:none;border-radius:13px;padding:16px;font-size:20px;font-weight:800;background:rgba(255,255,255,.06);color:#eaf2fb;cursor:pointer;}
-  .pad button:active{background:rgba(94,179,255,.24);}
-  .zerohint{font-size:11.5px;color:var(--faint);text-align:center;margin-top:8px;}
-  .axis{flex:1;display:flex;flex-direction:column;padding:12px 22px 20px;gap:12px;}
-  .axis .aq{font-size:19px;font-weight:900;line-height:1.4;}
-  .axis .an{font-size:12.5px;color:var(--dim);font-weight:600;}
-  .axis .opts{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
-  .axis .opts button{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e7eefb;border-radius:14px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;text-align:left;}
-  .axis .opts button:active{background:rgba(94,179,255,.2);border-color:var(--mio);}
-  #analyze{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(60% 40% at 50% 40%, rgba(94,179,255,.16), transparent 70%), rgba(6,10,18,.94);}
-  #analyze.on{display:flex;}
-  #analyze .ring{width:70px;height:70px;border-radius:50%;border:3px solid rgba(94,179,255,.2);border-top-color:var(--mio);animation:spin 1s linear infinite;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  #analyze .msg{font-size:15px;font-weight:800;color:#cfe6ff;}
-  .fade{animation:fade .34s ease;} @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .st{display:inline-block;font-size:12px;font-weight:900;padding:3px 11px;border-radius:999px;}
+  .st.GO{background:rgba(57,211,83,.16);color:var(--go);} .st.REDUCE,.st.COND_HOLD{background:rgba(255,207,74,.16);color:var(--reduce);} .st.WAIT{background:rgba(255,159,111,.16);color:var(--waitc);} .st.NEEDS_INPUT{background:rgba(139,152,171,.18);color:#b7c4d6;}
+  .axis .opts{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .axis .opts button{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#e7eefb;border-radius:14px;padding:16px;font-size:15px;font-weight:800;cursor:pointer;text-align:left;}
+  #analyze{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:radial-gradient(60% 40% at 50% 40%,rgba(94,179,255,.16),transparent 70%),rgba(6,10,18,.94);}
+  #analyze.on{display:flex;} #analyze .ring{width:64px;height:64px;border-radius:50%;border:3px solid rgba(94,179,255,.2);border-top-color:var(--mio);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}} #analyze .msg{font-size:14.5px;font-weight:800;color:#cfe6ff;}
+  .fade{animation:fade .3s ease;} @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
   .gap{margin-top:6px;}
 </style>
 </head>
 <body>
 <div id="app">
-  <div id="proto">プロトタイプ（サンプル・課金なし・判定はコードで確定／実データ未接続）</div>
-  <div id="hdr"><button id="back" aria-label="戻る">‹</button><div id="dots" class="hide"></div><div style="width:32px"></div></div>
+  <div id="hdr"><button id="back" aria-label="戻る">‹</button><div id="prog" class="hide"></div><div style="width:32px"></div></div>
   <div id="stage"></div>
-  <div id="analyze"><div class="ring"></div><div class="msg">Mioが上限と分岐を計算中…</div></div>
+  <div id="analyze"><div class="ring"></div><div class="msg">Mioがあなたの選択肢を組み立て中…</div></div>
 </div>
 <script type="module">
-import { quickMode, decide, assess, isGo, DEEP_FIELDS, FIELD_LABEL, branchesFor, stepsFor, selectExtraAxis, foldExtraAxis, YEN }
-  from './bunki.rules.mjs';
+import { quickMode, decide, assess, buildOptions, FIELD_LABEL, stepsFor, selectExtraAxis, YEN } from './bunki.rules.mjs';
 
-// ---- 計測(自己テスト分離) ----
-const P = new URLSearchParams(location.search);
-const host = location.hostname || '';
-const SELFTEST = !P.get('utm_source') || P.get('utm_source')==='selftest' || P.get('selftest')==='1'
-  || location.protocol==='file:' || host==='localhost' || host==='127.0.0.1' || host.indexOf('192.168.')===0;
-const SRC = P.get('utm_source') || (SELFTEST?'selftest':'unknown');
-function track(ev, extra){ try{
-  const e = Object.assign({ ev, exp:'proto-bunki', src:SRC, selftest:SELFTEST, t:new Date().toISOString() }, extra||{});
-  const arr = JSON.parse(localStorage.getItem('mio_proto_events')||'[]'); arr.push(e);
-  localStorage.setItem('mio_proto_events', JSON.stringify(arr.slice(-200)));
-  if(!SELFTEST && navigator.sendBeacon){ try{ navigator.sendBeacon('/api/proto-metrics', new Blob([JSON.stringify(e)],{type:'application/json'})); }catch(_){}}
-}catch(_){}}
+const P=new URLSearchParams(location.search),host=location.hostname||'';
+const SELFTEST=!P.get('utm_source')||P.get('utm_source')==='selftest'||P.get('selftest')==='1'||location.protocol==='file:'||host==='localhost'||host==='127.0.0.1'||host.indexOf('192.168.')===0;
+const SRC=P.get('utm_source')||(SELFTEST?'selftest':'unknown');
+function track(ev,extra){try{const e=Object.assign({ev,exp:'proto-bunki',src:SRC,selftest:SELFTEST,t:new Date().toISOString()},extra||{});const a=JSON.parse(localStorage.getItem('mio_proto_events')||'[]');a.push(e);localStorage.setItem('mio_proto_events',JSON.stringify(a.slice(-200)));if(!SELFTEST&&navigator.sendBeacon){try{navigator.sendBeacon('/api/proto-metrics',new Blob([JSON.stringify(e)],{type:'application/json'}))}catch(_){}}}catch(_){}}
 track('landing');
 
-const stage=document.getElementById('stage'), back=document.getElementById('back'),
-      dots=document.getElementById('dots'), analyze=document.getElementById('analyze');
-const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
-function reset(){ stage.className=''; stage.innerHTML=''; }
-function setDots(total, idx){ dots.classList.remove('hide'); dots.innerHTML='';
-  for(let i=0;i<total;i++){ const s=document.createElement('i'); if(i<idx)s.className='fill'; if(i===idx)s.className='now'; dots.appendChild(s);} }
-function hideDots(){ dots.classList.add('hide'); }
-function showBack(on,fn){ back.classList.toggle('on',!!on); back.onclick=fn||null; }
-function analyzeThen(cb){ analyze.classList.add('on'); setTimeout(()=>{ analyze.classList.remove('on'); cb(); },1000); }
+const stage=document.getElementById('stage'),back=document.getElementById('back'),prog=document.getElementById('prog'),analyze=document.getElementById('analyze');
+const el=h=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
+function reset(){stage.className='';stage.innerHTML='';}
+function setProg(txt){prog.classList.remove('hide');prog.textContent=txt;}
+function hideProg(){prog.classList.add('hide');}
+function showBack(on,fn){back.classList.toggle('on',!!on);back.onclick=fn||null;}
+function analyzeThen(cb){analyze.classList.add('on');setTimeout(()=>{analyze.classList.remove('on');cb();},1000);}
+const mioRow=say=>`<div class="mio"><div class="av">🔮</div><div class="say">${say}</div></div>`;
 
 const QUICK=[
-  {n:'Q1 / 3', t:'手元の生活防衛資金は？', left:'心もとない', right:'生活費6か月分ある', leftLab:'薄い', rightLab:'十分'},
-  {n:'Q2 / 3', t:'毎月の家計は？', left:'赤字ぎみ', right:'黒字', leftLab:'赤字', rightLab:'黒字'},
-  {n:'Q3 / 3', t:'借入・分割の残高は？', left:'ある', right:'ない', leftLab:'あり', rightLab:'なし'},
+  {t:'手元の生活防衛資金は？',why:'手元資金は「いくらまで出せるか」に直結するため',
+    a:{em:'😌',t:'生活費6か月分ある',sub:'急な出費にも耐えられる',v:true},b:{em:'😥',t:'心もとない',sub:'貯蓄は薄め',v:false},
+    react:v=>v?'いいですね。手元資金があると上限が上がります。':'手元資金が薄いと、守りを優先する判断になりやすいです。'},
+  {t:'毎月の家計は？',why:'買った後に毎月赤字化しないかを見るため',
+    a:{em:'🟢',t:'黒字',sub:'毎月お金が残る',v:true},b:{em:'🔴',t:'赤字ぎみ',sub:'足りない月がある',v:false},
+    react:v=>v?'黒字なら、購入後の維持もしやすいです。':'赤字ぎみだと、固定費が増える買い物は要注意です。'},
+  {t:'借入・分割の残高は？',why:'守りの厚み（家計の耐性）を見るため',
+    a:{em:'✅',t:'ない',sub:'ローンなし',v:true},b:{em:'📄',t:'ある',sub:'ローン/分割あり',v:false},
+    react:v=>v?'借入なしは強みです。':'借入があると、守りを固める判断に寄りやすいです。'},
 ];
-let quickAns=[]; const deepAns={ desired:null, savings:null, living:null, surplus:null, upcoming:null, added:null };
+let quickAns=[]; const deepAns={desired:null,savings:null,living:null,surplus:null,upcoming:null,added:null}; const deepApprox={};
 
 // ---------- INTRO ----------
 function intro(){
-  reset(); hideDots(); showBack(false);
-  const d=el('<div class="mioWrap fade"><div class="glow"></div><div class="mioAv">🔮</div><div class="bubble">未来は当てない。あなたの数字で、買ってよい上限と分岐をコードで計算する。</div></div>');
-  const i=el('<div class="intro"><div class="kicker">Mio分岐予報</div><h1>今、大きな買い物を<br>してよい状態？</h1><div class="lead">3スワイプで今の傾きを、数字を入れれば「買ってよい上限額」と分岐をお見せします。</div><div class="note">占いは入口。上限も分岐も、あなたの入力からコードで計算します（当てもの・架空数値なし）。</div></div>');
-  const b=el('<button class="cta">3スワイプで診断する →</button>');
-  b.onclick=()=>{ track('start'); quickAns=[]; quiz(0); };
-  i.appendChild(b); stage.appendChild(d); stage.appendChild(i);
+  reset();hideProg();showBack(false);
+  const i=el(`<div class="intro fade"><div class="heroAv">🔮</div><div class="kicker" style="text-align:center;margin-top:14px">Mio分岐予報</div><h1 style="text-align:center">今、大きな買い物を<br>してよい状態？</h1><div class="lead" style="text-align:center">3つ選ぶだけ。Mioがあなた向けの<b style="color:#cfe6ff">選択肢</b>と<b style="color:#cfe6ff">迷わない答え</b>を出します。</div></div>`);
+  const b=el('<button class="cta">Mioと一緒に始める →</button>');b.onclick=()=>{track('start');quickAns=[];quiz(0);};
+  i.appendChild(b);stage.appendChild(i);
 }
 
-// ---------- QUICK ----------
+// ---------- QUICK (tap-first big cards) ----------
 function quiz(idx){
-  if(idx>=QUICK.length){ return analyzeThen(quickResult); }
-  reset(); setDots(3,idx); showBack(idx>0, ()=>{ quickAns.pop(); quiz(idx-1); });
+  if(idx>=QUICK.length)return analyzeThen(quickResult);
+  reset();stage.className='scroll';const remain=QUICK.length-idx;setProg(`あと${remain}問・約${remain*8}秒`);
+  showBack(idx>0,()=>{quickAns.pop();quiz(idx-1);});
   const q=QUICK[idx];
-  const wrap=el(`<div id="qwrap" class="fade"><div class="qhead"><div class="qn">${q.n}</div><div class="qt">${q.t}</div></div>`+
-    `<div class="deck"><div class="swipe"><div class="badge L">${q.leftLab}</div><div class="badge R">${q.rightLab}</div>`+
-    `<div class="opt">👉 右: ${q.right}<br>👈 左: ${q.left}</div>`+
-    `<div class="hint"><span>← <b>${q.left}</b></span><span><b>${q.right}</b> →</span></div></div></div>`+
-    `<div class="thumbs"><button class="tb no">${q.left}</button><button class="tb yes">${q.right}</button></div></div>`);
-  stage.appendChild(wrap);
-  const card=wrap.querySelector('.swipe'), bl=card.querySelector('.badge.L'), br=card.querySelector('.badge.R');
-  const choose=(yes)=>{ quickAns[idx]=yes; quiz(idx+1); };
-  wrap.querySelector('.tb.no').onclick=()=>fly(card,-1,()=>choose(false));
-  wrap.querySelector('.tb.yes').onclick=()=>fly(card,1,()=>choose(true));
-  dragify(card,bl,br,(dir)=>choose(dir>0));
+  const w=el(`<div class="qwrap fade">${mioRow('まず、今のあなたを教えてください。')}<div class="nq">${q.t}</div><div class="why">なぜ聞くか：${q.why}</div><div class="qcards"></div><div class="react" style="display:none"></div></div>`);
+  const cards=w.querySelector('.qcards'),react=w.querySelector('.react');
+  stage.appendChild(w);
+  [q.a,q.b].forEach(opt=>{const c=el(`<button class="qcard"><span class="em">${opt.em}</span><span>${opt.t}<span class="sub">${opt.sub}</span></span></button>`);
+    c.onclick=()=>{[...cards.children].forEach(x=>x.classList.remove('sel'));c.classList.add('sel');
+      react.style.display='flex';react.innerHTML=`<span class="rav">🔮</span><span>${q.react(opt.v)}</span>`;
+      quickAns[idx]=opt.v; setTimeout(()=>quiz(idx+1),760);};
+    cards.appendChild(c);});
 }
-function dragify(card,bl,br,done){ let sx=0,dx=0,drag=false;
-  card.addEventListener('pointerdown',e=>{drag=true;sx=e.clientX;card.setPointerCapture(e.pointerId);card.style.transition='none';});
-  card.addEventListener('pointermove',e=>{ if(!drag)return; dx=e.clientX-sx; card.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`;
-    const r=Math.min(Math.abs(dx)/120,1); if(dx>0){br.style.opacity=r;bl.style.opacity=0;}else{bl.style.opacity=r;br.style.opacity=0;} });
-  card.addEventListener('pointerup',e=>{ if(!drag)return; drag=false; card.style.transition='transform .28s ease';
-    if(Math.abs(dx)>105){ fly(card,dx>0?1:-1,()=>done(dx>0?1:-1)); } else { card.style.transform=''; bl.style.opacity=0; br.style.opacity=0; } dx=0; });
-}
-function fly(card,dir,cb){ card.style.transition='transform .3s ease, opacity .3s ease';
-  card.style.transform=`translateX(${dir*520}px) rotate(${dir*24}deg)`; card.style.opacity='0'; setTimeout(cb,260); }
 
-// ---------- QUICK result (free) ----------
+// ---------- QUICK result (無料) ----------
 function quickResult(){
-  reset(); stage.className='scroll'; hideDots(); showBack(false);
-  const m=quickMode(quickAns); track('quick_complete',{mode:m.key});
-  const wrap=el(`<div class="res fade">`+
-    `<div class="modeCard"><div class="lab">今のあなたの傾き（無料）</div>`+
-      `<div class="mode ${m.key}">${m.key==='attack'?'⚔ ':m.key==='tune'?'🛡 ':'⏳ '}${m.label}</div>`+
-      `<div class="tend">${m.tend}</div></div>`+
-    `<div class="row"><div class="k">気づき</div><div class="v">大きな買い物の前に、「生活防衛資金3〜6か月」の状態を数字で確かめると判断がぶれません。</div></div>`+
-    `<div class="row lock"><div class="k">🔒 数字を入れると分かること</div><div class="v">貯蓄・生活費・毎月余剰・半年内支出・購入後の固定費を入れると、<b>買ってよい上限額（計算式つき）</b>と、GO/減額/HOLD/待ちの<b>判定と逆転条件</b>が出せます。</div></div>`+
-    `</div>`);
-  const b=el('<button class="cta gap">数字を入れて、暫定判定へ →</button>');
-  b.onclick=()=>{ track('paid_cta'); deepStart(); };
-  const g=el('<button class="cta ghost gap">もう一度スワイプする</button>'); g.onclick=intro;
-  wrap.appendChild(b); wrap.appendChild(g); stage.appendChild(wrap);
+  reset();stage.className='scroll';hideProg();showBack(false);
+  const m=quickMode(quickAns);track('quick_complete',{mode:m.key});
+  const w=el(`<div class="res fade">${mioRow('今の傾きが出ました。')}`+
+    `<div class="modeCard"><div class="lab">今のあなたの傾き</div><div class="mode ${m.key}">${m.key==='attack'?'⚔ ':m.key==='tune'?'🛡 ':'⏳ '}${m.label}</div><div class="tend">${m.tend}</div></div>`+
+    `<div class="row"><div class="k">気づき</div><div class="v">大きな買い物の前に「生活防衛資金3〜6か月」の状態を確かめると、判断がぶれません。</div></div>`+
+    `<div class="row lock"><div class="k">🔒 あと数問で分かること</div><div class="v">あなた向けの<b>選択肢（2〜3案）</b>・Mioの<b>おすすめ</b>・見落とし観点・判断が変わる条件・実行手順。</div></div></div>`);
+  const b=el('<button class="cta gap">選択肢づくりに進む →</button>');b.onclick=()=>{track('paid_cta');deepStart();};
+  const g=el('<button class="cta ghost gap">もう一度やり直す</button>');g.onclick=intro;
+  w.appendChild(b);w.appendChild(g);stage.appendChild(w);
 }
 
-// ---------- DEEP numeric (段階的: 3問→暫定判定の区切り→残り3問→詳細判定) ----------
-// GROUP1で方向とハードストップ、GROUP2で正確な上限・月次維持が揃う。
-const GROUPS = [['savings','living','desired'], ['upcoming','surplus','added']];
-const ORDER = GROUPS.flat();
-const HINT = {
-  desired:'この買い物にかけたい金額', savings:'すぐ使える預貯金（投資・固定分は除く）',
-  living:'家賃・食費など毎月の生活費', surplus:'収入から生活費・固定費を引いた毎月の残り',
-  upcoming:'車検・税・学費など半年以内に出る大きな支出（無ければ0）', added:'保険・通信・維持など、買った後に毎月増える額（無ければ0）'
+// ---------- 選択肢ファーストの数値入力（概算チップ + 正確に入力） ----------
+const GROUPS=[['savings','living','desired'],['upcoming','surplus','added']];
+const ORDER=GROUPS.flat();
+const QMETA={
+  savings:{why:'購入後も生活防衛資金が残るか計算するため',chips:[['50万円未満',250000,1],['100万円前後',1000000,1],['300万円以上',3000000,1]]},
+  living:{why:'買った後に家計が赤字化しないかの基準にするため',chips:[['10万円',100000,0],['15万円',150000,0],['20万円',200000,0]]},
+  desired:{why:'この金額を今の家計で無理なく出せるか判定するため',chips:[['30万円',300000,0],['50万円',500000,0],['100万円',1000000,0]]},
+  upcoming:{why:'半年内の出費で買える上限が下がらないか見るため',chips:[['なし',0,0],['30万円未満',150000,1],['30万円以上',300000,1]]},
+  surplus:{why:'今買うか、待つ余地があるか判断するため',chips:[['3万円',30000,0],['5万円',50000,0],['10万円',100000,0]]},
+  added:{why:'買った後に固定費で毎月赤字にならないか確認するため',chips:[['なし',0,0],['3千円',3000,0],['1万円',10000,0]]},
 };
-const ZERO_OK = { upcoming:true, added:true };
-function deepStart(){ track('deep_select'); deepField(0,0); }
-function fieldIndex(g,i){ let n=0; for(let x=0;x<g;x++) n+=GROUPS[x].length; return n+i; }
-function deepField(g,i){
-  reset(); stage.className=''; const abs=fieldIndex(g,i); setDots(ORDER.length, abs);
-  showBack(true, ()=> abs>0 ? (i>0?deepField(g,i-1):breakBack(g)) : quickResult());
-  const key=GROUPS[g][i]; let digits = (deepAns[key]!=null)? String(deepAns[key]) : '';
-  const wrap=el(`<div class="numwrap fade"><div class="nq">${abs+1}. ${FIELD_LABEL[key]}</div><div class="nh">${HINT[key]}</div>`+
-    `<div class="numbox"><span class="amt">0</span><span class="yen">円</span></div>`+
-    (ZERO_OK[key]?'<div class="zerohint">無ければ 0 のまま「次へ」</div>':'')+
-    `<div class="pad"></div></div>`);
-  stage.appendChild(wrap);
-  const amt=wrap.querySelector('.amt'), pad=wrap.querySelector('.pad');
-  const touched=()=> digits.length>0 || ZERO_OK[key];
-  const paint=()=>{ deepAns[key]= digits? parseInt(digits,10) : (ZERO_OK[key]?0:null);
-    amt.textContent = digits? parseInt(digits,10).toLocaleString('ja-JP') : '0'; nextBtn.disabled = !touched(); };
-  ['1','2','3','4','5','6','7','8','9','000','0','⌫'].forEach(k=>{ const bt=el(`<button>${k}</button>`);
-    bt.onclick=()=>{ if(k==='⌫'){digits=digits.slice(0,-1);} else if(digits.length<10){ digits+=k; } paint(); }; pad.appendChild(bt); });
-  const last = (i===GROUPS[g].length-1);
-  const nextBtn=el(`<button class="cta gap">${last?'ここまでで一度みる →':'次へ →'}</button>`);
-  nextBtn.onclick=()=>{ if(nextBtn.disabled)return; deepAns[key]= digits? parseInt(digits,10) : (ZERO_OK[key]?0:null);
-    // ハードストップに該当したら不要な質問を続けず早期に区切りへ
-    if(assess(deepAns).hardStop) return breakScreen(g);
-    if(!last) deepField(g,i+1); else breakScreen(g); };
-  wrap.appendChild(nextBtn); paint();
-}
-function breakBack(g){ // 区切りから前グループ末尾へ戻る
-  if(g<=0) return deepField(0,GROUPS[0].length-1);
-  return deepField(g-1, GROUPS[g-1].length-1);
-}
-// 区切り: 主「あとN問で詳細まで」/ 副「ここまでで暫定判定」。ハードストップ時は早期判定を主に。
-function breakScreen(g){
-  const a = assess(deepAns);
-  // 全項目そろった or 最終グループ → 詳細判定へ
-  if (a.canFinalize) return analyzeThen(()=>afterNumbers());
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(g,GROUPS[g].length-1));
-  const remain = ORDER.length - fieldIndex(g, GROUPS[g].length-1) - 1;
-  const wrap=el(`<div class="res fade"></div>`);
-  if (a.hardStop){
-    wrap.appendChild(el(`<div class="verdict"><div class="tag" style="color:var(--waitc)">早期判定できます</div>`+
-      `<div><span class="st WAIT">待ち</span></div>`+
-      `<div class="concl" style="font-size:17px">${a.hardStop.reason}</div></div>`));
-    const b1=el('<button class="cta gap">早期判定（待ち）の詳細を見る →</button>');
-    b1.onclick=()=>analyzeThen(()=>afterNumbers()); // decideがearlyHardStopで確定WAIT
-    const b2=el('<button class="cta ghost gap">それでも残りも入力する</button>');
-    b2.onclick=()=>deepField(g+1,0);
-    wrap.appendChild(b1); wrap.appendChild(b2); stage.appendChild(wrap); return;
+function reactFor(key){
+  switch(key){
+    case 'savings':return 'ここで<b>買える上限</b>が大きく変わります。';
+    case 'living':return `生活防衛資金の基準が<b>${YEN(deepAns.living*6)}円</b>に決まりました。`;
+    case 'desired':return 'この金額が上限に収まるかを見ます。';
+    case 'upcoming':return deepAns.upcoming>0?'半年内の出費は<b>上限を押し下げます</b>。':'半年内の出費なし。上限はそのまま。';
+    case 'surplus':return 'これで<b>待てるか／今動くか</b>の軸が入りました。';
+    case 'added':return deepAns.added>0?'固定費増は<b>毎月の余裕</b>を削ります。':'固定費は増えない前提で計算します。';
+    default:return '';
   }
-  // 暫定判定パネル（最終結論ではない）
-  wrap.appendChild(provisionalPanel(a));
-  const b1=el(`<button class="cta gap">あと${remain}問で、詳細判定（上限・分岐・手順）まで出す →</button>`);
-  b1.onclick=()=>deepField(g+1,0);
-  const b2=el('<button class="cta ghost gap">ここまでの情報で見る（暫定）</button>');
-  b2.onclick=()=>{ track('provisional_view',{sufficiency:a.sufficiency}); showProvisional(a); };
-  wrap.appendChild(b1); wrap.appendChild(b2); stage.appendChild(wrap);
 }
-function provisionalPanel(a){
-  return el(`<div class="verdict" style="border-color:rgba(94,179,255,.3);background:linear-gradient(165deg,#16233c,#101a2e)">`+
-    `<div class="tag" style="color:var(--mio)">暫定（最終結論ではありません）</div>`+
-    (a.direction?`<div class="concl" style="font-size:19px">現時点では「${a.direction}」</div>`:`<div class="concl" style="font-size:17px">もう少し数字が必要です</div>`)+
-    `<div style="margin-top:10px;font-size:12px;color:var(--dim);font-weight:700">情報充足度 ${a.sufficiency}%（判定に必要な軸ベース）</div>`+
-    `<div style="height:6px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden"><div style="height:100%;width:${a.sufficiency}%;background:linear-gradient(90deg,var(--mio),#9ad3ff)"></div></div>`+
-    `</div>`);
+function deepStart(){track('deep_select');deepField(0,0);}
+function fieldIndex(g,i){let n=0;for(let x=0;x<g;x++)n+=GROUPS[x].length;return n+i;}
+function deepField(g,i){
+  reset();stage.className='scroll';const abs=fieldIndex(g,i),remain=ORDER.length-abs;setProg(`あと${remain}問・約${remain*10}秒`);
+  showBack(true,()=>abs>0?(i>0?deepField(g,i-1):breakBack(g)):quickResult());
+  const key=GROUPS[g][i],meta=QMETA[key];
+  const w=el(`<div class="qwrap fade">${mioRow('数字は「だいたい」でもOK。近い選択肢を選んでください。')}<div class="nq">${abs+1}. ${FIELD_LABEL[key]}</div><div class="why">なぜ聞くか：${meta.why}</div><div class="chips"></div><div class="react" style="display:none"></div></div>`);
+  const chips=w.querySelector('.chips'),react=w.querySelector('.react');
+  stage.appendChild(w);
+  const last=(i===GROUPS[g].length-1);
+  function afterCommit(){
+    react.style.display='flex';react.innerHTML=`<span class="rav">🔮</span><span>${reactFor(key)}</span>`;
+    if(!w.querySelector('.gonext')){const nb=el(`<button class="cta gonext">${last?'ここまでの結果を見る →':'次へ →'}</button>`);
+      nb.onclick=()=>{if(assess(deepAns).hardStop)return breakScreen(g);last?breakScreen(g):deepField(g,i+1);};w.appendChild(nb);}
+  }
+  function commit(v,approx){deepAns[key]=v;deepApprox[key]=!!approx;afterCommit();}
+  meta.chips.forEach(([t,v,ap])=>{const c=el(`<button class="chip">${t}</button>`);
+    c.onclick=()=>{[...chips.querySelectorAll('.chip')].forEach(x=>x.classList.remove('sel'));c.classList.add('sel');commit(v,ap);};chips.appendChild(c);});
+  const ex=el('<button class="chip exact">正確に入力する</button>');
+  ex.onclick=()=>{if(w.querySelector('.kp'))return;
+    const box=el('<div class="kpbox">0<span style="font-size:15px;color:var(--dim)"> 円</span></div>'),kp=el('<div class="kp"></div>');chips.after(box,kp);let digits='';
+    const paint=()=>{box.innerHTML=(digits?parseInt(digits,10).toLocaleString('ja-JP'):'0')+'<span style="font-size:15px;color:var(--dim)"> 円</span>';};
+    ['1','2','3','4','5','6','7','8','9','000','0','⌫'].forEach(k=>{const b=el(`<button>${k}</button>`);b.onclick=()=>{if(k==='⌫')digits=digits.slice(0,-1);else if(digits.length<10)digits+=k;paint();[...chips.querySelectorAll('.chip')].forEach(x=>x.classList.remove('sel'));ex.classList.add('sel');if(digits.length)commit(parseInt(digits,10),false);};kp.appendChild(b);});};
+  chips.appendChild(ex);
+  if(deepAns[key]!=null)afterCommit();
 }
-// 「ここまでで見る」= 暫定判定の全文（分かったこと/まだ分からないこと/変わり得る結論/続けると分かること）
-function showProvisional(a){
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>breakScreenFromState());
-  const list = arr => arr.length? arr.map(x=>`<li>${x}</li>`).join('') : '<li>—</li>';
-  const w=el(`<div class="res fade">`+
-    `<div class="verdict" style="border-color:rgba(94,179,255,.3);background:linear-gradient(165deg,#16233c,#101a2e)">`+
-      `<div class="tag" style="color:var(--mio)">暫定判定<span class="sampleTag">最終結論ではありません</span></div>`+
-      (a.direction?`<div class="concl" style="font-size:20px">現時点では「${a.direction}」</div>`:'')+
-      `<div style="margin-top:8px;font-size:12px;color:var(--dim);font-weight:700">情報充足度 ${a.sufficiency}%</div>`+
-      `<div style="height:6px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden"><div style="height:100%;width:${a.sufficiency}%;background:linear-gradient(90deg,var(--mio),#9ad3ff)"></div></div></div>`+
-    `<div class="row"><div class="k">✅ 現時点で分かったこと</div><ul class="basis">${list(a.known)}</ul></div>`+
-    `<div class="row"><div class="k">❔ まだ分からないこと</div><ul class="basis">${list(a.unknown)}</ul></div>`+
-    `<div class="row"><div class="k">⚠ 未入力で変わり得る結論</div><ul class="basis">${list(a.couldChange)}</ul></div>`+
-    `<div class="row lock"><div class="k">▶ 続けると具体的に分かること</div><ul class="basis">${list(a.nextReveals)}</ul></div>`+
-    `<div class="disc">※これは暫定です。必要な軸が揃うまで確定結論・上限額は出しません。情報充足度は質問数でなく判定軸で計算しています。</div>`+
-    `</div>`);
-  const b=el('<button class="cta gap">続けて詳細判定まで出す →</button>');
-  b.onclick=()=>{ // 次の未入力グループへ
-    const g = deepAns.upcoming==null || deepAns.surplus==null || deepAns.added==null ? 1 : 0;
-    deepField(g,0);
-  };
-  const g2=el('<button class="cta ghost gap">最初からやり直す</button>'); g2.onclick=intro;
-  w.appendChild(b); w.appendChild(g2); stage.appendChild(w);
+function breakBack(g){return g<=0?deepField(0,GROUPS[0].length-1):deepField(g-1,GROUPS[g-1].length-1);}
+function anyApprox(){return ORDER.some(k=>deepApprox[k]);}
+
+// ---------- 区切り = 途中結果を「その場で」直接表示（二重遷移なし） ----------
+function breakScreen(g){
+  const a=assess(deepAns);
+  if(a.canFinalize)return analyzeThen(afterNumbers);
+  reset();stage.className='scroll';hideProg();showBack(true,()=>deepField(g,GROUPS[g].length-1));
+  const remain=ORDER.length-fieldIndex(g,GROUPS[g].length-1)-1;
+  if(a.hardStop){
+    const w=el(`<div class="res fade">${mioRow('ここで方向が決まりました。')}`+
+      `<div class="hero"><div class="heroAv">🔮</div><div class="lab" style="color:var(--waitc)">今の答え</div><div class="pick" style="font-size:19px">今は「待ち」が最優先</div><div class="why1">${a.hardStop.reason}</div></div></div>`);
+    const b1=el('<button class="cta gap">この判定の詳しい案と手順を見る →</button>');b1.onclick=()=>analyzeThen(afterNumbers);
+    const b2=el('<button class="cta ghost gap">残りも入力する</button>');b2.onclick=()=>deepField(g+1,0);
+    w.appendChild(b1);w.appendChild(b2);stage.appendChild(w);return;
+  }
+  const cc=a.couldChange.slice(0,2);
+  const w=el(`<div class="res fade">${mioRow('ここまでで、いったんお答えします。')}`+
+    `<div class="hero" style="background:linear-gradient(165deg,#16233c,#101a2e)"><div class="lab">現時点の傾き</div>`+
+      `<div class="pick" style="font-size:22px">${a.direction||'もう少しで方向が出ます'}</div>`+
+      (a.directionReason?`<div class="why1">${a.directionReason}</div>`:'')+
+      `<div class="suff">情報充足度 ${a.sufficiency}%</div><div class="suffbar"><div style="width:${a.sufficiency}%"></div></div></div>`+
+    `<div class="row"><div class="k">✅ ここまでで分かったこと</div><ul class="basis">${a.known.map(x=>`<li>${x}</li>`).join('')||'<li>—</li>'}</ul></div>`+
+    (cc.length?`<div class="row"><div class="k">⚠ まだ確認していない・結論が変わり得る点</div><ul class="basis">${cc.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:'')+
+    `<div class="row lock"><div class="k">▶ あと${remain}問で分かること</div><div class="v">あなた向けの<b>選択肢2〜3案</b>と、ぴったりの<b>購入上限</b>・Mioのおすすめ・実行手順。</div></div></div>`);
+  const b1=el(`<button class="cta gap">あと${remain}問で、正確な上限と選択肢まで出す →</button>`);b1.onclick=()=>deepField(g+1,0);
+  const b2=el('<button class="cta ghost gap">この結果で終了する</button>');b2.onclick=()=>{track('provisional_end',{sufficiency:a.sufficiency});provEnd(a);};
+  w.appendChild(b1);w.appendChild(b2);stage.appendChild(w);
 }
-function breakScreenFromState(){ // 暫定から戻る先: 直近に埋まったグループの区切り
-  const g = (deepAns.upcoming!=null && deepAns.surplus!=null && deepAns.added!=null) ? 1 : 0;
-  breakScreen(g);
+function provEnd(a){
+  reset();stage.className='scroll';hideProg();showBack(true,()=>breakScreen(0));
+  const w=el(`<div class="res fade">${mioRow('ここまでの結果です。続きはいつでもどうぞ。')}`+
+    `<div class="hero" style="background:linear-gradient(165deg,#16233c,#101a2e)"><div class="lab">ここまでの答え（暫定）</div><div class="pick" style="font-size:21px">${a.direction||'—'}</div>${a.directionReason?`<div class="why1">${a.directionReason}</div>`:''}</div>`+
+    `<div class="row"><div class="k">分かっていること</div><ul class="basis">${a.known.map(x=>`<li>${x}</li>`).join('')}</ul></div>`+
+    `<div class="row"><div class="k">まだ分からないこと</div><ul class="basis">${a.unknown.map(x=>`<li>${x}</li>`).join('')||'<li>—</li>'}</ul></div>`+
+    `<div class="disc">※ここまでは無料の暫定です。確定の上限や選択肢は、続けて数問で出ます。</div></div>`);
+  const b=el('<button class="cta gap">続けて、選択肢まで出す →</button>');b.onclick=()=>deepField(1,0);
+  const g2=el('<button class="cta ghost gap">最初からやり直す</button>');g2.onclick=intro;
+  w.appendChild(b);w.appendChild(g2);stage.appendChild(w);
 }
+
 function afterNumbers(){
   const d=decide(deepAns);
-  if(d.state==='NEEDS_INPUT'){ return showResult(d,null,null); }
+  if(d.state==='NEEDS_INPUT')return showNeeds(d);
   const axis=selectExtraAxis(deepAns,d);
-  if(!axis){ return showResult(d,null,null); }
+  if(!axis)return showRecommendation(d,null,null);
   askAxis(d,axis);
 }
+function showNeeds(d){
+  reset();stage.className='scroll';hideProg();showBack(true,()=>deepField(0,0));
+  const w=el(`<div class="res fade">${mioRow('もう少しだけ教えてください。')}<div class="hero"><div class="lab" style="color:#b7c4d6">まだ判定できません</div><div class="pick" style="font-size:18px">追加の情報が必要です</div></div>`+
+    `<div class="row"><div class="k">足りない項目</div><div class="v">${d.missing.map(k=>FIELD_LABEL[k]).join(' / ')}</div></div></div>`);
+  const g=el('<button class="cta ghost gap">入力に戻る</button>');g.onclick=()=>deepField(0,0);w.appendChild(g);stage.appendChild(w);
+}
 function askAxis(d,axis){
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(1, GROUPS[1].length-1));
-  const wrap=el(`<div class="axis fade"><div class="aq">${axis.q}</div><div class="an">${axis.note}</div><div class="opts"></div></div>`);
-  const opts=wrap.querySelector('.opts');
-  axis.opts.forEach(o=>{ const b=el(`<button>${o.t}</button>`);
-    b.onclick=()=>{ analyzeThen(()=>showResult(d,axis,o.v)); }; opts.appendChild(b); });
-  stage.appendChild(wrap);
+  reset();stage.className='scroll';hideProg();showBack(true,()=>deepField(1,GROUPS[1].length-1));
+  const w=el(`<div class="qwrap fade">${mioRow('あなたが見落としがちな点を、ひとつ確認します。')}<div class="nq">${axis.q}</div><div class="why">${axis.note}</div><div class="axis"><div class="opts"></div></div></div>`);
+  const opts=w.querySelector('.opts');
+  axis.opts.forEach(o=>{const b=el(`<button>${o.t}</button>`);b.onclick=()=>analyzeThen(()=>showRecommendation(d,axis,o.v));opts.appendChild(b);});
+  stage.appendChild(w);
 }
 
-// ---------- Result ----------
-function showResult(d,axis,axisVal){
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(1, GROUPS[1].length-1));
-  if(d.state==='NEEDS_INPUT'){
-    const w=el(`<div class="res fade"><div class="verdict"><div class="tag" style="color:#b7c4d6">判定できません</div>`+
-      `<span class="st NEEDS_INPUT">追加情報が必要</span><div class="concl">${d.need}</div></div>`+
-      `<div class="row"><div class="k">不足している数値</div><div class="v">${d.missing.map(k=>FIELD_LABEL[k]).join(' / ')}</div></div>`+
-      `<div class="disc">※必要な数値が揃わない間は、架空の上限額を出しません。</div></div>`);
-    const g=el('<button class="cta ghost gap">入力に戻る</button>'); g.onclick=()=>deepField(0,0); w.appendChild(g); stage.appendChild(w); return;
-  }
-  track('deep_complete',{ state:d.state, cap:d.cashCap, amount:d.inp.desired });
-  const br=branchesFor(d);
-  const axisKey = axis ? axis.key : null;
-  const fold = axis ? foldExtraAxis(d, axisKey, axisVal) : null;
-  // ★手順は stepsFor 側で観点を意味統合済み（最大3・追加/重複なし）。ここでは連結しない。
-  const steps = stepsFor(d, axisKey, axisVal);
-  const revItems = d.reversalConditions.length
-    ? d.reversalConditions.map(t=>`<li>${t}</li>`).join('')
-    : '<li>現状で3条件（防衛資金・上限内・固定費）を満たしています</li>';
-  const hasRev = d.reversalConditions.length>0;
-  const insight = (fold && fold.affects!=='none')
-    ? `<div class="insight"><div class="k">💡 追加観点が変えたもの: 手順（action_plan）</div><div class="v">${fold.text}</div></div>`
-    : '';
-  const w=el(`<div class="res fade">`+
-    `<div class="verdict"><div class="tag" style="color:var(--violet)">Mioの結論<span class="sampleTag">プロト・コード計算</span></div>`+
-      `<div><span class="st ${d.state}">${({GO:'GO',REDUCE:'減額',COND_HOLD:'条件付きHOLD',WAIT:'待ち'})[d.state]}</span></div>`+
-      `<div class="concl">${d.concl}</div></div>`+
-    `<div class="row"><div class="k">買ってよい上限（計算根拠）</div><div class="v"><b style="font-size:22px;color:${d.withinCash?'var(--go)':'var(--reduce)'}">${YEN(d.cashCap)}円</b> ${d.withinCash?'≥':'＜'} 希望額 ${YEN(d.inp.desired)}円`+
-      `<ul class="basis">${d.basis.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>`+
-    `<div class="row"><div class="k">どの回答が効いたか</div><div class="v">貯蓄 ${YEN(d.inp.savings)}円 / 生活費 月${YEN(d.inp.living)}円 / 毎月余剰 ${YEN(d.inp.surplus)}円 / 半年内支出 ${YEN(d.inp.upcoming)}円 / 固定費増 月${YEN(d.inp.added)}円</div></div>`+
-    `<div class="branch"><div class="b go"><span class="bt">▶ ${br.go.t}</span>${br.go.lines.map(l=>`<div>・${l}</div>`).join('')}</div>`+
-      `<div class="b skip"><span class="bt">▷ ${br.skip.t}</span>${br.skip.lines.map(l=>`<div>・${l}</div>`).join('')}</div></div>`+
-    `<div class="row"><div class="k">判断が逆転する条件${hasRev?'（未達かつ実行可能なもののみ）':''}</div><ul class="rev ${hasRev?'':'none'}">${revItems}</ul></div>`+
-    insight+
+// ===== 結果: R1 おすすめ → R2 選択肢比較+見落とし+条件 → R3 手順+計算 =====
+function capLabel(d){return anyApprox()?`概算 約${YEN(d.cashCap)}円`:`${YEN(d.cashCap)}円`;}
+function showRecommendation(d,axis,axisVal){
+  reset();stage.className='scroll';hideProg();showBack(true,()=>deepField(1,GROUPS[1].length-1));
+  track('deep_complete',{state:d.state,cap:d.cashCap,amount:d.inp.desired,approx:anyApprox()});
+  const built=buildOptions(d,axis?axis.key:null,axisVal);
+  const rec=built.options.find(o=>o.recommended)||built.options[0];
+  const w=el(`<div class="res fade">${mioRow('あなたに合う答えが出ました。')}`+
+    `<div class="hero"><div class="heroAv">🔮</div><div class="lab">Mioのおすすめ</div><div class="pick">${rec.title}</div><div class="why1">${built.recommendation.why}</div><div class="whybox"></div></div></div>`);
+  const whyBtn=el('<button class="cta ghost gap">なぜこれ？</button>');const wb=w.querySelector('.whybox');
+  whyBtn.onclick=()=>{wb.classList.toggle('on');wb.innerHTML=`Mioの見立て：<b>${rec.mioEval}</b><br>あなたに向く理由：${rec.fit}<br>ほかの案（${built.options.filter(o=>!o.recommended).map(o=>o.title).join(' / ')}）は次で比較できます。`;};
+  const b=el('<button class="cta gap">3つの選択肢を比べる →</button>');b.onclick=()=>showOptions(d,axis,axisVal,built);
+  w.appendChild(whyBtn);w.appendChild(b);stage.appendChild(w);
+}
+function showOptions(d,axis,axisVal,built){
+  reset();stage.className='scroll';hideProg();showBack(true,()=>showRecommendation(d,axis,axisVal));
+  const cards=built.options.map(o=>`<div class="optcard ${o.recommended?'rec':''}"><div class="ot">${o.id}. ${o.title}${o.recommended?'<span class="tag">おすすめ</span>':''}</div>`+
+    `<div class="g"><span class="kk">得られるもの</span><span class="vv">${o.merit}</span>`+
+    `<span class="kk">失うもの</span><span class="vv">${o.loss}</span>`+
+    `<span class="kk">向く理由</span><span class="vv">${o.fit}</span>`+
+    `<span class="kk">最大リスク</span><span class="vv">${o.risk||o.loss}</span>`+
+    `<span class="kk">判断が変わる条件</span><span class="vv">${o.condition}</span></div></div>`).join('');
+  const rev=d.reversalConditions.length?d.reversalConditions.map(t=>`<li>${t}</li>`).join(''):'<li>現状で3条件（防衛資金・上限内・固定費）を満たしています</li>';
+  const blind = axis ? `<div class="insight"><div class="k">💡 Mioが見つけた見落とし</div><div class="v">${axis.note}</div>`+
+    (built.changed?`<div class="ch">この観点で ${built.changed}</div>`:`<div class="ch">今回の回答では、選択肢の順位は変わりませんでした（参考情報）。</div>`)+`</div>` : '';
+  const w=el(`<div class="res fade">${mioRow('3つの案を、あなたの数字で比べました。')}`+cards+blind+
+    `<div class="row"><div class="k">判断が変わる条件${d.reversalConditions.length?'（実行できるものだけ）':''}</div><ul class="rev ${d.reversalConditions.length?'':'none'}">${rev}</ul></div></div>`);
+  const b=el('<button class="cta gap">今日からの手順を見る →</button>');b.onclick=()=>showSteps(d,axis,axisVal,built);
+  w.appendChild(b);stage.appendChild(w);
+}
+function showSteps(d,axis,axisVal,built){
+  reset();stage.className='scroll';hideProg();showBack(true,()=>showOptions(d,axis,axisVal,built));
+  const steps=stepsFor(d,axis?axis.key:null,axisVal);
+  const w=el(`<div class="res fade">${mioRow('この順にやれば、迷わず動けます。')}`+
     `<div class="row"><div class="k">今日からの手順</div><ol class="steps gap">${steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`+
-    `<div class="disc">※これはプロトの固定サンプルです。結論・上限・未来・逆転条件・手順はすべて上の入力値から同一計算で生成（固定の危機文を使わない・Luna非依存・実決済未接続）。生活防衛資金6か月は判断材料で将来の断定ではありません。情報確認日 2026-09-14。</div>`+
-    `</div>`);
-  const g=el('<button class="cta ghost gap">最初からやり直す</button>'); g.onclick=intro; w.appendChild(g); stage.appendChild(w);
+    `<button class="calcToggle">▼ 詳しい計算を見る</button><div class="calcBody"></div>`+
+    `<div class="disc">※サンプル版のため、実際の購入手続きや決済はありません。金額はすべてあなたの入力から計算しています。</div></div>`);
+  const toggle=w.querySelector('.calcToggle'),body=w.querySelector('.calcBody');
+  toggle.onclick=()=>{body.classList.toggle('on');toggle.textContent=body.classList.contains('on')?'▲ 計算を閉じる':'▼ 詳しい計算を見る';
+    if(!body.dataset.f){body.dataset.f='1';body.innerHTML=`<div class="row"><div class="k">判定</div><div class="v"><span class="st ${d.state}">${({GO:'GO',REDUCE:'減額',COND_HOLD:'条件付きHOLD',WAIT:'待ち'})[d.state]}</span> ／ 上限 ${capLabel(d)}</div></div>`+
+      `<div class="row"><div class="k">計算根拠</div><ul class="basis">${d.basis.map(b=>`<li>${b}</li>`).join('')}</ul></div>`+
+      `<div class="row"><div class="k">入力した数字${anyApprox()?'（概算を含む）':''}</div><div class="v">貯蓄 ${YEN(d.inp.savings)}円 / 生活費 月${YEN(d.inp.living)}円 / 希望 ${YEN(d.inp.desired)}円 / 半年内 ${YEN(d.inp.upcoming)}円 / 毎月余剰 ${YEN(d.inp.surplus)}円 / 固定費増 月${YEN(d.inp.added)}円</div></div>`;}};
+  const g=el('<button class="cta ghost gap">最初からやり直す</button>');g.onclick=intro;
+  w.appendChild(g);stage.appendChild(w);
 }
 
 intro();
