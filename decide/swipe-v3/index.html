@@ -263,6 +263,16 @@ const EXP = (params.get('exp') || (()=>{ try{ return sessionStorage.getItem('mio
 try{ if(EXP) sessionStorage.setItem('mio_exp', EXP); }catch(e){}
 const expQS = () => EXP ? ('?exp='+encodeURIComponent(EXP)) : '';
 
+// ★ココナラ遷移(有料CTAクリック)をCF Web Analyticsで計測する。旧/decide/(app.js)と同一パス
+// /decide/go-coconala へ pushState することで「CTAクリック数」を旧funnelと合算集計できる。
+// replaceState(track)ではCFの仮想pageviewが発火しないため必ずpushStateを使う。UTMは流入時の値を保持し
+// 流入元別(yt_card等)にココナラ遷移を判別できるようにする。CTAはtarget=_blankなので現ページは残る。
+const UTM_QS = (()=>{ try{ const u=new URLSearchParams(); ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{ const v=params.get(k); if(v) u.set(k,v); }); return u.toString(); }catch(e){ return ''; } })();
+function ctaBeacon(theme){
+  try{ logEv('cta_click',{theme:theme||'',code:(typeof arguments[1]==='string'?arguments[1]:'')}); }catch(e){}
+  try{ const q = UTM_QS ? ('?'+UTM_QS) : ''; history.pushState(null,'','/decide/go-coconala'+q); }catch(e){}
+}
+
 // 統一アイコン（Mioブランド・Mio blueの線画・絵文字を廃止）
 const ICON = {
   card:  '<svg class="ic" viewBox="0 0 48 48" fill="none" stroke="#5eb3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="38" height="26" rx="5"/><path d="M5 19h38"/><path d="M11 29h9"/><circle cx="35" cy="29" r="3" stroke="#b28bff"/></svg>',
@@ -629,7 +639,7 @@ function showPurchase(){
   const url=pr.url+(pr.url.indexOf('?')<0?'?':'&')+'utm_source=swipe-v3&utm_medium=paid_cta&utm_campaign=card';
   const cta=el('a','cta','Mioに<span style="color:#04210f;text-decoration:underline">言い切って</span>もらう（'+pr.price+'・買い切り）<small>ココナラで購入後、届く3〜5問に選ぶだけ（長文もプロンプトも不要）。ここで選んだ方は最初のメッセージに判定コード「'+lean.code+'」を貼れば同じ質問を省略できます。GO／見送り／今は決めない＋決め手・盲点・今日の一手をお届け（通常は数時間以内・対応時間内は最短数分・夜間は最大24時間）。</small>');
   cta.href=url; cta.target='_blank'; cta.rel='noopener';
-  cta.onclick=()=>{ logEv('cta_click',{theme:'card',code:lean.code}); track('cta'); }; res.appendChild(cta);
+  cta.onclick=()=>{ ctaBeacon('card',lean.code); }; res.appendChild(cta);
   res.appendChild(el('div','scrollcue','↓ ¥1,000で届く「言い切り判定」の見本'));
   res.appendChild(el('div','samp','<div class="sht">📄 ¥1,000で届く判定の見本</div><div class="sto">例：年会費11,000円のゴールドカードに切替える？</div><div class="sv">判定：GO（条件つき）</div><div class="sl">決め手</div><div class="svv">年200万円を集約するなら還元＋ラウンジ＋保険で年会費を回収できる。</div><div class="sl">「無料カード継続」を捨てる理由</div><div class="svv">無料カードは還元0.5%止まり。集約額が大きいほど取り逃す額が年会費を超える。</div><div class="sl">今日の一手</div><div class="svv">直近12ヶ月の利用額を出す→回収ラインを1分で計算→超えれば締め日前に申込。</div><div class="snt">※形式を示す見本（架空例）。実際はあなたの数字と回答で、テーマごとに1つの結論をお届け。</div>'));
   res.appendChild(el('div','meta','ご購入後、同じ回答から結論・理由・実現手順をお届けします。最新の年会費・特典は各社公式でご確認ください。'));
@@ -715,7 +725,7 @@ function showFreeResultGeneric(){
   res.appendChild(resultChips());
   const p2=el('div','phase2'); p2.appendChild(el('div','paidhead','結論まで進めると、ここが分かります'));
   const tiles=el('div','tiles'); [['🔒','最終判定'],['🔒','決め手'],['🔒','見落とし'],['🔒','今日やること']].forEach(([lk,t])=>{ const ti=el('div','tile'); ti.appendChild(el('div','lk',lk)); ti.appendChild(el('div','t',t)); tiles.appendChild(ti); }); p2.appendChild(tiles);
-  const pr=prod(state.theme); const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url; cta.target='_blank'; cta.rel='noopener'; cta.onclick=()=>{ logEv('cta_click',{theme:state.theme}); track('cta'); }; p2.appendChild(cta);
+  const pr=prod(state.theme); const cta=el('a','cta','Mioに結論を出してもらう<small>'+pr.price+'・'+pr.note+'</small>'); cta.href=pr.url+(pr.url.indexOf('?')<0?'?':'&')+'utm_source=swipe-v3&utm_medium=paid_cta&utm_campaign='+encodeURIComponent(state.theme||'nitaku'); cta.target='_blank'; cta.rel='noopener'; cta.onclick=()=>{ ctaBeacon(state.theme); }; p2.appendChild(cta);
   p2.appendChild(el('div','meta','判定コード <span class="code">'+lean.code+'</span>　この傾きは無料の目安です。'));
   const redo=el('button','redo','別のテーマを試す'); redo.onclick=()=>goHome(); p2.appendChild(redo);
   res.appendChild(p2); stage.appendChild(res);
