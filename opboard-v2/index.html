@@ -191,6 +191,7 @@ function renderToday(m){
 }
 const FILT={owner:'',status:'',workstream:'',revenue_impact:''};
 function renderTasks(m){
+  m.innerHTML='';
   const f=el('div','filters');
   const mk=(id,opts)=>{ const s=el('select'); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.value=FILT[id]; s.onchange=()=>{ FILT[id]=s.value; renderTasks(m); }; return s; };
   f.appendChild(mk('owner',['KENTARO','CLAUDE','SYSTEM']));
@@ -209,6 +210,7 @@ function renderTasks(m){
 }
 const KFILT={q:'',type:'',status:''};
 function renderKnowledge(m){
+  m.innerHTML='';
   const bar=el('div','filters'); const inp=el('input'); inp.placeholder='全文検索(title/summary)'; inp.value=KFILT.q; inp.oninput=()=>{ KFILT.q=inp.value; const q=KFILT.q.toLowerCase(); document.querySelectorAll('#klist .card').forEach(c=>{ c.style.display = (!q||c.dataset.txt.includes(q))?'':'none'; }); };
   bar.appendChild(inp);
   const mk=(id,opts)=>{ const s=el('select'); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.value=KFILT[id]; s.onchange=()=>{ KFILT[id]=s.value; renderKnowledge(m); }; return s; };
