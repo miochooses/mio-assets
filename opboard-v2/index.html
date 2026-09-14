@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>OpBoard v2 (レビュー・匿名fixture)</title>
+<style>
+  :root{--bg:#070b12;--panel:#0e1726;--panel2:#132234;--line:#ffffff14;--tx:#eaf1f8;--dim:#93a4bb;--faint:#6b7d96;
+    --blue:#5eb3ff;--green:#39d353;--amber:#ffce56;--red:#ff6f6f;--violet:#b28bff;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{background:var(--bg);color:var(--tx);font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;line-height:1.6;}
+  body{max-width:1100px;margin:0 auto;padding-bottom:70px;overflow-x:hidden;}
+  a{color:var(--blue);}
+  header{position:sticky;top:0;z-index:20;background:rgba(7,11,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px;}
+  .htop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .brand{font-size:18px;font-weight:900;}
+  .brand small{font-size:11px;color:var(--faint);font-weight:700;margin-left:6px;}
+  .modes{margin-left:auto;display:flex;gap:6px;}
+  .mode{font-size:12px;font-weight:800;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--dim);cursor:pointer;}
+  .mode.on{background:var(--blue);color:#04203a;border-color:var(--blue);}
+  .fresh{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11px;}
+  .chip{padding:3px 9px;border-radius:999px;background:var(--panel2);color:var(--dim);border:1px solid var(--line);}
+  .chip b{color:var(--tx);}
+  .chip.ok{color:#8fe0a3;} .chip.stale{color:var(--amber);border-color:#6a5a1f;}
+  nav{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);}
+  nav::-webkit-scrollbar{display:none;}
+  nav button{flex:0 0 auto;font-size:13px;font-weight:800;padding:8px 13px;border-radius:10px;border:none;background:none;color:var(--dim);cursor:pointer;white-space:nowrap;}
+  nav button.on{background:var(--panel2);color:var(--tx);}
+  main{padding:14px 16px;}
+  h2{font-size:15px;font-weight:900;margin:18px 0 8px;color:#eaf1f9;display:flex;align-items:center;gap:8px;}
+  h2 .cnt{font-size:12px;color:var(--faint);font-weight:700;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;}
+  .k-hero{background:linear-gradient(160deg,#16283e,#0e1a2b);}
+  .row{display:flex;gap:10px;align-items:flex-start;}
+  .badge{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;}
+  .b-K{background:rgba(255,206,86,.16);color:var(--amber);} .b-C{background:rgba(94,179,255,.16);color:var(--blue);} .b-S{background:rgba(178,139,255,.16);color:var(--violet);}
+  .st{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--panel2);color:var(--dim);}
+  .st.HUMAN_GATE{background:rgba(255,206,86,.16);color:var(--amber);} .st.IN_PROGRESS{background:rgba(94,179,255,.16);color:var(--blue);}
+  .st.READY{background:rgba(57,211,83,.14);color:var(--green);} .st.WAITING_EXTERNAL{background:rgba(255,111,111,.12);color:var(--red);}
+  .st.VERIFIED_DONE{background:rgba(57,211,83,.16);color:var(--green);} .st.NEEDS_REVIEW{background:rgba(178,139,255,.16);color:var(--violet);}
+  .st.BACKLOG,.st.DRAFT,.st.CANCELLED{opacity:.7;}
+  .ttl{font-size:15px;font-weight:800;}
+  .meta{font-size:12px;color:var(--dim);margin-top:5px;}
+  .na{margin-top:8px;font-size:13.5px;color:#dbe6f1;} .na b{color:var(--blue);}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--panel2);color:var(--dim);margin:3px 4px 0 0;}
+  .rev-hi{color:var(--green);} .rev-me{color:var(--amber);}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+  .filters select,.filters input{background:var(--panel2);color:var(--tx);border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:13px;font-family:inherit;}
+  .link{color:var(--blue);text-decoration:none;font-size:12.5px;font-weight:700;}
+  .empty{color:var(--faint);font-size:13px;padding:12px;text-align:center;}
+  .kv{font-size:12px;color:var(--dim);margin-top:4px;} .kv b{color:var(--tx);font-family:ui-monospace,Menlo,monospace;}
+  .detail{position:fixed;inset:0;background:rgba(4,7,12,.6);z-index:40;display:none;align-items:flex-end;justify-content:center;}
+  .detail.on{display:flex;}
+  .sheet{background:var(--panel);border:1px solid var(--line);border-radius:18px 18px 0 0;width:100%;max-width:720px;max-height:88vh;overflow:auto;padding:18px 18px 40px;}
+  @media(min-width:720px){.detail{align-items:center;} .sheet{border-radius:18px;}}
+  .sheet .x{float:right;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer;}
+  .warn{font-size:12px;color:var(--amber);background:rgba(255,206,86,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px;}
+  .pubnote{font-size:12px;color:var(--faint);text-align:center;margin:20px 0;}
+</style>
+</head>
+<body>
+<header>
+  <div class="htop">
+    <div class="brand">OpBoard <small>v2 レビュー・匿名fixture</small></div>
+    <div class="modes">
+      <button class="mode on" data-m="private" onclick="setMode('private')">🔒 内部</button>
+      <button class="mode" data-m="public" onclick="setMode('public')">🌐 公開</button>
+    </div>
+  </div>
+  <div class="fresh" id="fresh"></div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<div class="detail" id="detail" onclick="if(event.target===this)closeDetail()"><div class="sheet" id="sheet"></div></div>
+<script>
+let DATA=null, MODE='private', TAB='today';
+const $=id=>document.getElementById(id);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const esc=s=>String(s==null?'':s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+const OWNER_B={KENTARO:'b-K',CLAUDE:'b-C',SYSTEM:'b-S'};
+const KENTARO_OPEN=['READY','HUMAN_GATE','NEEDS_REVIEW'];
+const PRIV_TABS=[['today','Today'],['tasks','Tasks'],['knowledge','Knowledge'],['decisions','Decisions'],['runs','Runs'],['artifacts','Artifacts'],['funnel','Funnel']];
+const PUB_TABS=[['public','公開']];
+
+function stale(measured_at, thMin){ if(!measured_at) return false; const t=new Date(measured_at).getTime(); return (Date.now()-t)/60000 > (thMin||120); }
+function fmt(d){ if(!d) return '—'; try{ return new Date(d).toLocaleString('ja-JP',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}catch(e){return d;} }
+
+function setMode(m){ MODE=m; document.querySelectorAll('.mode').forEach(b=>b.classList.toggle('on',b.dataset.m===m)); TAB = m==='public'?'public':'today'; renderNav(); render(); }
+function renderNav(){ const tabs = MODE==='public'?PUB_TABS:PRIV_TABS; $('nav').innerHTML=''; tabs.forEach(([id,label])=>{ const b=el('button',TAB===id?'on':'',label); b.onclick=()=>{TAB=id;renderNav();render();}; $('nav').appendChild(b); }); }
+
+function renderFresh(){
+  const f=DATA.freshness; const box=$('fresh'); box.innerHTML='';
+  const add=(cls,html)=>box.appendChild(el('span','chip '+cls,html));
+  add(f.api_connected?'ok':'', 'API '+(f.api_connected?'接続OK':'切断'));
+  add(f.db_fetched?'ok':'', 'DB取得 '+(f.db_fetched?'OK':'失敗'));
+  const dstale=stale(f.data_last_fetched_at,f.stale_threshold_min);
+  add(dstale?'stale':'', 'データ最終取得 <b>'+fmt(f.data_last_fetched_at)+'</b>'+(dstale?' STALE':''));
+  add('', 'runner最終成功 <b>'+fmt(f.runner_last_success_at)+'</b>');
+  if(MODE==='private') add('', 'revenue <b>¥'+DATA.revenue.verified_jpy+'</b>');
+}
+
+// ---- 単一Task Storeからの派生カウント ----
+const T=()=>DATA.tasks;
+const kentaroOpen=()=>T().filter(t=>t.owner==='KENTARO'&&KENTARO_OPEN.includes(t.status));
+const aiInProg=()=>T().filter(t=>t.owner==='CLAUDE'&&t.status==='IN_PROGRESS');
+const blocked=()=>T().filter(t=>['HUMAN_GATE','WAITING_EXTERNAL'].includes(t.status));
+const revScore=t=>({high:3,medium:2,low:1,none:0}[t.revenue_impact]||0)*10 + ({high:3,normal:2,low:1}[t.priority]||0);
+
+function taskCard(t,compact){
+  const c=el('div','card');
+  const head=el('div','row');
+  head.appendChild(el('span','badge '+(OWNER_B[t.owner]||''),t.owner));
+  head.appendChild(el('span','st '+t.status,t.status));
+  if(t.revenue_impact&&t.revenue_impact!=='none') head.appendChild(el('span','pill '+(t.revenue_impact==='high'?'rev-hi':t.revenue_impact==='medium'?'rev-me':''),'💰'+t.revenue_impact));
+  c.appendChild(head);
+  c.appendChild(el('div','ttl',esc(t.title)));
+  if(t.why_now) c.appendChild(el('div','meta','なぜ今: '+esc(t.why_now)));
+  if(t.next_action) c.appendChild(el('div','na','▶ 次の一手: <b>'+esc(t.next_action)+'</b>'));
+  if(t.owner==='KENTARO'){
+    const g=el('div','meta'); g.innerHTML=(t.expected_minutes!=null?'⏱ '+t.expected_minutes+'分　':'')+(t.where&&t.where!=='—'?'📍 '+esc(t.where)+'　':'')+(t.done_condition?'✅ 完了: '+esc(t.done_condition):'');
+    c.appendChild(g);
+    if(t.options&&t.options.length) c.appendChild(el('div','meta','選択肢: '+t.options.map(o=>'<span class="pill">'+esc(o)+'</span>').join('')));
+    if(t.unblocks&&t.unblocks.length) c.appendChild(el('div','meta','→ 完了で再開: '+t.unblocks.join(', ')));
+  }
+  if(!compact){ const more=el('button','link','詳細 / 関連 →'); more.style.cssText='background:none;border:none;margin-top:8px;cursor:pointer'; more.onclick=()=>openTask(t); c.appendChild(more); }
+  return c;
+}
+
+function openTask(t){
+  const s=$('sheet'); s.innerHTML='';
+  s.appendChild(el('button','x','×')).onclick=closeDetail;
+  s.appendChild(el('div','ttl',esc(t.title)));
+  s.appendChild(el('div','meta',t.owner+' ・ '+t.status+' ・ '+(t.workstream||'')+' ・ id '+t.task_id));
+  if(t.next_action) s.appendChild(el('div','na','▶ '+esc(t.next_action)));
+  const kv=(k,v)=>{ if(v==null||v===''||(Array.isArray(v)&&!v.length))return; s.appendChild(el('div','kv',k+': <b>'+esc(Array.isArray(v)?v.join(', '):v)+'</b>')); };
+  kv('why_now',t.why_now); kv('expected_minutes',t.expected_minutes); kv('revenue_impact',t.revenue_impact);
+  kv('blocked_by',t.blocked_by); kv('unblocks',t.unblocks); kv('proof_required',t.proof_required); kv('evidence',t.evidence); kv('done_condition',t.done_condition);
+  // 関連 Knowledge / Decision / Run
+  const rel=el('div'); rel.style.marginTop='12px';
+  (t.related_knowledge||[]).forEach(kid=>{ const k=DATA.knowledge.find(x=>x.knowledge_id===kid); if(k){ const a=el('div','kv','📚 <a class="link" href="#" onclick="return openK(\''+kid+'\')">'+esc(k.title)+'</a> <span class="pill">'+k.type+'</span> <span class="pill">'+k.status+'</span>'); rel.appendChild(a);} });
+  (t.related_decisions||[]).forEach(did=>{ const dd=DATA.decisions.find(x=>x.decision_id===did); if(dd){ rel.appendChild(el('div','kv','⚖ <a class="link" href="#" onclick="return openD(\''+did+'\')">'+esc(dd.decision)+'</a>')); } });
+  (t.related_run||[]).forEach(rid=>{ const r=DATA.runs.find(x=>x.run_id===rid); if(r){ rel.appendChild(el('div','kv','▶ RUN '+esc(rid)+' — '+(r.external_changes||[]).join('; ').slice(0,80))); } });
+  s.appendChild(rel);
+  if(t.status==='VERIFIED_DONE'&&!(t.evidence&&t.evidence.length)) s.appendChild(el('div','warn','⚠ VERIFIED_DONEだが証拠なし=不整合'));
+  $('detail').classList.add('on');
+}
+function openK(kid){ const k=DATA.knowledge.find(x=>x.knowledge_id===kid); if(!k)return false; const s=$('sheet'); s.innerHTML=''; s.appendChild(el('button','x','×')).onclick=closeDetail;
+  s.appendChild(el('div','ttl',esc(k.title))); s.appendChild(el('div','meta',k.type+' ・ '+k.status+' ・ v'+k.version));
+  s.appendChild(el('div','na',esc(k.summary)));
+  s.appendChild(el('div','kv','正本(canonical): <b>'+esc(k.canonical_path)+'</b>'));
+  s.appendChild(el('div','kv','commit <b>'+esc(k.commit)+'</b> ・ sha <b>'+esc(k.sha)+'</b> ・ 更新 '+esc(k.updated_at)));
+  if(k.status==='SUPERSEDED'||k.status==='DEPRECATED') s.appendChild(el('div','warn','この正本は '+k.status+' です。'));
+  s.appendChild(el('div','kv','関連Task: '+(k.related_tasks||[]).join(', ')||'—'));
+  $('detail').classList.add('on'); return false; }
+function openD(did){ const d=DATA.decisions.find(x=>x.decision_id===did); if(!d)return false; const s=$('sheet'); s.innerHTML=''; s.appendChild(el('button','x','×')).onclick=closeDetail;
+  s.appendChild(el('div','ttl','⚖ '+esc(d.question))); s.appendChild(el('div','na','結論: <b>'+esc(d.decision)+'</b>'));
+  s.appendChild(el('div','kv','理由: '+esc(d.rationale))); s.appendChild(el('div','kv','代替案: '+esc((d.alternatives||[]).join(' / '))));
+  s.appendChild(el('div','kv','証拠: '+esc((d.evidence||[]).join('; ')))); s.appendChild(el('div','kv','有効化: '+esc(d.effective_at)+(d.supersedes?' ・ supersedes '+d.supersedes:'')));
+  $('detail').classList.add('on'); return false; }
+function closeDetail(){ $('detail').classList.remove('on'); }
+
+// ---- 画面 ----
+function render(){
+  renderFresh(); const m=$('main'); m.innerHTML='';
+  if(MODE==='public') return renderPublic(m);
+  if(TAB==='today') return renderToday(m);
+  if(TAB==='tasks') return renderTasks(m);
+  if(TAB==='knowledge') return renderKnowledge(m);
+  if(TAB==='decisions') return renderDecisions(m);
+  if(TAB==='runs') return renderRuns(m);
+  if(TAB==='artifacts') return renderArtifacts(m);
+  if(TAB==='funnel') return renderFunnel(m);
+}
+function renderToday(m){
+  const ko=kentaroOpen().sort((a,b)=>revScore(b)-revScore(a));
+  m.appendChild(el('h2','','🧑 健太郎が今やること <span class="cnt">上位'+Math.min(3,ko.length)+' / 全'+ko.length+'件</span>'));
+  if(!ko.length) m.appendChild(el('div','empty','なし'));
+  ko.slice(0,3).forEach(t=>m.appendChild(taskCard(t,true)));
+  m.appendChild(el('h2','','🤖 AIが実行中 <span class="cnt">'+aiInProg().length+'件</span>'));
+  const ai=aiInProg(); if(!ai.length) m.appendChild(el('div','empty','なし')); ai.forEach(t=>m.appendChild(taskCard(t,true)));
+  m.appendChild(el('h2','','⛔ Blocked / Human Gate <span class="cnt">'+blocked().length+'件</span>'));
+  blocked().forEach(t=>m.appendChild(taskCard(t,true)));
+  // 売上に最も近い次の一手
+  const rev=T().filter(t=>['READY','IN_PROGRESS','WAITING_EXTERNAL','HUMAN_GATE'].includes(t.status)&&t.revenue_impact==='high').sort((a,b)=>revScore(b)-revScore(a))[0];
+  m.appendChild(el('h2','','💰 売上に最も近い次の一手'));
+  const rc=el('div','card k-hero'); rc.innerHTML = rev? ('<div class="ttl">'+esc(rev.title)+'</div><div class="na">▶ <b>'+esc(rev.next_action)+'</b></div><div class="meta">owner '+rev.owner+' ・ '+rev.status+'</div>') : '<div class="empty">該当なし</div>';
+  m.appendChild(rc);
+  m.appendChild(el('h2','','📊 実測(最新)'));
+  DATA.metrics.filter(x=>x.verified||x.product!=='card').slice(0,3).forEach(x=>{ const c=el('div','card'); const st=x.stale||stale(x.measured_at,120); c.innerHTML='<div class="ttl">'+esc(x.metric_name)+' = '+esc(x.value)+(st?' <span class="badge" style="background:rgba(255,206,86,.16);color:var(--amber)">STALE</span>':'')+'</div><div class="meta">'+esc(x.product)+' ・ '+esc(x.window)+' ・ 取得 '+fmt(x.measured_at)+' ・ '+esc(x.data_source)+' ・ '+(x.self_test_excluded?'自己テスト除外':'自己テスト含む')+' ・ verified '+(x.verified?'✅':'—')+'</div>'; m.appendChild(c); });
+}
+function renderTasks(m){
+  const f=el('div','filters');
+  const mk=(id,opts)=>{ const s=el('select'); s.id='f-'+id; s.appendChild(el('option','', '<option value="">'+id+':全</option>').firstChild||new Option(id+':全','')); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.onchange=()=>renderTasks(m); return s; };
+  f.appendChild(mk('owner',['KENTARO','CLAUDE','SYSTEM']));
+  f.appendChild(mk('status',['BACKLOG','READY','IN_PROGRESS','NEEDS_REVIEW','HUMAN_GATE','WAITING_EXTERNAL','VERIFIED_DONE','CANCELLED']));
+  f.appendChild(mk('workstream',[...new Set(T().map(t=>t.workstream).filter(Boolean))]));
+  f.appendChild(mk('revenue_impact',['high','medium','low','none']));
+  m.appendChild(f);
+  const gv=id=>{ const e=$('f-'+id); return e?e.value:''; };
+  let list=T().slice().sort((a,b)=>revScore(b)-revScore(a));
+  const fo=gv('owner'),fs=gv('status'),fw=gv('workstream'),fr=gv('revenue_impact');
+  if(fo)list=list.filter(t=>t.owner===fo); if(fs)list=list.filter(t=>t.status===fs); if(fw)list=list.filter(t=>t.workstream===fw); if(fr)list=list.filter(t=>t.revenue_impact===fr);
+  m.appendChild(el('h2','','Tasks <span class="cnt">'+list.length+'件 / 単一Task Store</span>'));
+  if(!list.length) m.appendChild(el('div','empty','該当なし'));
+  list.forEach(t=>m.appendChild(taskCard(t)));
+}
+function renderKnowledge(m){
+  const bar=el('div','filters'); const inp=el('input'); inp.placeholder='全文検索(title/summary)'; inp.oninput=()=>renderKnowledge(m); inp.id='k-q'; inp.value=(window.__kq||'');
+  bar.appendChild(inp);
+  const ts=el('select'); ts.id='k-t'; ts.innerHTML='<option value="">type：全</option>'+[...new Set(DATA.knowledge.map(k=>k.type))].map(t=>'<option>'+t+'</option>').join(''); ts.onchange=()=>renderKnowledge(m);
+  const ss=el('select'); ss.id='k-s'; ss.innerHTML='<option value="">status：全</option>'+['DRAFT','ACTIVE','SUPERSEDED','DEPRECATED'].map(t=>'<option>'+t+'</option>').join(''); ss.onchange=()=>renderKnowledge(m);
+  bar.appendChild(ts); bar.appendChild(ss); m.appendChild(bar);
+  window.__kq=inp.value; const q=(inp.value||'').toLowerCase(), ft=$('k-t')?.value||'', fs=$('k-s')?.value||'';
+  let ks=DATA.knowledge.filter(k=>(!q||(k.title+k.summary).toLowerCase().includes(q))&&(!ft||k.type===ft)&&(!fs||k.status===fs));
+  m.appendChild(el('h2','','Knowledge 索引 <span class="cnt">'+ks.length+'件 ・ 正本=hbq-ai-ops(git)</span>'));
+  ks.forEach(k=>{ const c=el('div','card'); c.innerHTML='<div class="row"><span class="pill">'+k.type+'</span><span class="st '+(k.status==='ACTIVE'?'READY':k.status)+'">'+k.status+'</span></div><div class="ttl">'+esc(k.title)+'</div><div class="meta">'+esc(k.summary)+'</div><div class="kv">正本 <b>'+esc(k.canonical_path)+'</b></div><div class="kv">commit <b>'+esc(k.commit)+'</b> sha <b>'+esc(k.sha)+'</b> v'+esc(k.version)+'</div>'; const a=el('button','link','開く / 関連 →'); a.style.cssText='background:none;border:none;margin-top:6px;cursor:pointer'; a.onclick=()=>openK(k.knowledge_id); c.appendChild(a); m.appendChild(c); });
+}
+function renderDecisions(m){ m.appendChild(el('h2','','Decisions <span class="cnt">'+DATA.decisions.length+'件</span>'));
+  DATA.decisions.forEach(d=>{ const c=el('div','card'); c.innerHTML='<div class="ttl">⚖ '+esc(d.question)+'</div><div class="na">結論: <b>'+esc(d.decision)+'</b></div><div class="meta">理由: '+esc(d.rationale)+'</div><div class="kv">代替: '+esc((d.alternatives||[]).join(' / '))+' ・ 有効化 '+esc(d.effective_at)+'</div>'; m.appendChild(c); }); }
+function renderRuns(m){ m.appendChild(el('h2','','Runs / Evidence <span class="cnt">'+DATA.runs.length+'件 ・ Taskとは別</span>'));
+  m.appendChild(el('div','warn','1 run ≠ 1 Task。run数/処理数/成果数を混ぜた指標(旧「AI完了130」)は廃止。'));
+  DATA.runs.forEach(r=>{ const c=el('div','card'); c.innerHTML='<div class="ttl">▶ '+esc(r.run_id)+' <span class="st '+(r.status==='done'?'VERIFIED_DONE':'BACKLOG')+'">'+r.status+'</span></div><div class="meta">'+fmt(r.started_at)+' → '+fmt(r.ended_at)+' ・ tasks '+(r.task_ids||[]).join(',')+'</div><div class="kv">外部変更: '+esc((r.external_changes||[]).join('; '))+'</div>'+((r.errors&&r.errors.length)?'<div class="kv" style="color:var(--red)">errors: '+esc(r.errors.join('; '))+'</div>':''); m.appendChild(c); }); }
+function renderArtifacts(m){ m.appendChild(el('h2','','Artifacts <span class="cnt">'+DATA.artifacts.length+'件</span>'));
+  DATA.artifacts.forEach(a=>{ const c=el('div','card'); const stcls=a.state==='public_live'?'READY':a.state==='verified'?'VERIFIED_DONE':a.state==='deprecated'?'CANCELLED':'NEEDS_REVIEW';
+    c.innerHTML='<div class="row"><span class="st '+stcls+'">'+a.state+'</span><span class="pill">'+esc(a.product)+'</span>'+(a.current?'':' <span class="pill">旧</span>')+'</div><div class="ttl">'+esc(a.title)+'</div>'+(a.public_url?'<div class="kv"><a class="link" href="'+esc(a.public_url)+'" target="_blank" rel="noopener">'+esc(a.public_url)+'</a></div>':'<div class="kv">URLなし</div>')+'<div class="meta">'+esc(a.note)+'</div><div class="kv">検証 '+esc(a.verified_at)+(a.related_task?' ・ 関連 '+a.related_task:'')+'</div>'; m.appendChild(c); }); }
+function renderFunnel(m){ m.appendChild(el('h2','','Funnel (card・source別) <span class="cnt">STALE表示</span>'));
+  m.appendChild(el('div','warn','landing→start→quick_complete→deep_select→deep_complete→paid_cta→purchase→revenue。自己テスト分離・期間/取得時刻/STALE必須。実顧客値は9/15 CF計測待ち。'));
+  DATA.metrics.filter(x=>x.product==='card'||x.product==='all').forEach(x=>{ const st=x.stale||stale(x.measured_at,120); const c=el('div','card'); c.innerHTML='<div class="ttl">'+esc(x.metric_name)+' = '+esc(x.value)+(st?' <span class="badge" style="background:rgba(255,206,86,.16);color:var(--amber)">STALE</span>':'')+'</div><div class="meta">'+esc(x.window)+' ・ 取得 '+fmt(x.measured_at)+' ・ '+esc(x.data_source)+' ・ '+(x.self_test_excluded?'自己テスト除外':'含む')+'</div>'; m.appendChild(c); }); }
+
+function renderPublic(m){
+  m.appendChild(el('div','warn','公開ビュー：健太郎TODO・AI Task・Human Gate・売上/予算・内部ナレッジ・ローカルパス・runner/障害・API情報は非表示。'));
+  m.appendChild(el('h2','','公開中の商品・サービス'));
+  DATA.artifacts.filter(a=>a.state==='public_live'&&a.current).forEach(a=>{ const c=el('div','card'); c.innerHTML='<div class="ttl">'+esc(a.title)+'</div><div class="kv"><a class="link" href="'+esc(a.public_url)+'" target="_blank" rel="noopener">'+esc(a.public_url)+'</a></div>'; m.appendChild(c); });
+  m.appendChild(el('h2','','稼働状況'));
+  m.appendChild(el('div','card','<div class="meta">Mioは1時間ごとに新しい制作・送客サイクルを実行しています（詳細は非公開）。</div>'));
+  m.appendChild(el('div','pubnote','※ 内部の運用情報・タスク・実測値は認証後の内部ビューでのみ表示します。'));
+}
+
+fetch('./data.json').then(r=>r.json()).then(d=>{ DATA=d; renderNav(); render(); }).catch(e=>{ $('main').innerHTML='<div class="empty">data.json 読込失敗: '+esc(e.message)+'</div>'; });
+</script>
+</body>
+</html>
