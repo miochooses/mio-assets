@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Mio分岐予報｜今、大きな買い物をしてよい？（プロトタイプ）</title>
+<!-- ★fixtureプロト: 非本番・導線非接続・noindex。実エンジン/Luna/決済は未接続。DISCOVERY反応計測用の静的サンプル。 -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#060a12">
+<link rel="icon" href="/favicon-32.png">
+<style>
+  :root{
+    --bg:#060a12; --bg2:#0a1120;
+    --card:#1b2c46; --card2:#213655; --cardtop:#26406a;
+    --tx:#eef4fb; --dim:#93a4bb; --faint:#6b7d96;
+    --mio:#5eb3ff; --violet:#b28bff; --gray:#8b98ab;
+    --attack:#39d353; --tune:#ffcf4a; --wait:#ff9f6f;
+    --yes:#39d353; --no:#ff6f6f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;}
+  html,body{height:100%;background:var(--bg);overscroll-behavior:none;}
+  body{font-family:-apple-system,"Yu Gothic UI","Hiragino Sans","Segoe UI",Roboto,sans-serif;color:var(--tx);
+    display:flex;align-items:center;justify-content:center;line-height:1.5;}
+  #app{position:relative;width:100%;max-width:460px;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;
+    background:
+      radial-gradient(90% 55% at 50% 18%, rgba(60,120,200,.24) 0%, rgba(20,40,80,.05) 45%, transparent 70%),
+      radial-gradient(120% 90% at 50% 120%, #0d1830 0%, var(--bg2) 40%, var(--bg) 100%);}
+  @media(min-width:480px){#app{height:min(880px,96vh);border-radius:28px;box-shadow:0 30px 90px rgba(0,0,0,.65);}}
+  /* proto banner */
+  #proto{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-align:center;color:#ffd9a8;
+    background:rgba(255,159,111,.12);border-bottom:1px solid rgba(255,159,111,.24);padding:4px 8px;}
+  /* header */
+  #hdr{display:flex;align-items:center;gap:10px;padding:12px 18px 2px;flex:0 0 auto;z-index:30;}
+  #back{width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.06);color:#cdd9e6;font-size:19px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;}
+  #back.on{opacity:.8;pointer-events:auto;}
+  #dots{display:flex;gap:7px;margin:0 auto;}
+  #dots i{width:22px;height:4px;border-radius:99px;background:rgba(255,255,255,.14);transition:background .3s,width .3s;}
+  #dots i.fill{background:var(--mio);}
+  #dots i.now{background:linear-gradient(90deg,var(--mio),#9ad3ff);width:30px;}
+  #dots.hide{visibility:hidden;}
+  /* stage */
+  #stage{position:relative;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;}
+  #stage.scroll{overflow-y:auto;overflow-x:hidden;}
+  /* Mio */
+  .mioWrap{position:relative;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10px;}
+  .mioWrap .glow{position:absolute;top:-6px;width:160px;height:160px;border-radius:50%;
+    background:radial-gradient(circle, rgba(94,179,255,.34) 0%, rgba(94,179,255,.10) 45%, transparent 70%);filter:blur(2px);}
+  .mioAv{position:relative;z-index:2;width:88px;height:88px;border-radius:50%;background:linear-gradient(160deg,#2a4570,#16233c);
+    display:flex;align-items:center;justify-content:center;font-size:40px;
+    box-shadow:0 8px 30px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06) inset;}
+  .bubble{position:relative;z-index:3;margin-top:10px;min-height:20px;font-size:14px;font-weight:800;color:#cfe6ff;padding:0 24px;text-align:center;}
+  /* ---- intro ---- */
+  .intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px 26px 26px;}
+  .intro .kicker{font-size:13px;font-weight:800;color:var(--mio);letter-spacing:.06em;}
+  .intro h1{margin-top:10px;font-size:29px;font-weight:900;line-height:1.35;}
+  .intro .lead{margin-top:14px;font-size:15px;color:var(--dim);font-weight:600;}
+  .intro .note{margin-top:12px;font-size:12px;color:var(--faint);}
+  .cta{margin-top:auto;border:none;border-radius:16px;padding:17px;font-size:17px;font-weight:900;color:#04121f;cursor:pointer;
+    background:linear-gradient(135deg,#7cc4ff,#5eb3ff);box-shadow:0 12px 30px rgba(94,179,255,.35);}
+  .cta:active{transform:scale(.985);}
+  .cta.ghost{background:rgba(255,255,255,.06);color:#dbe7f4;box-shadow:none;border:1px solid rgba(255,255,255,.12);margin-top:12px;}
+  /* ---- swipe card ---- */
+  #qwrap{flex:1;position:relative;display:flex;flex-direction:column;}
+  .qhead{padding:14px 24px 0;text-align:center;}
+  .qhead .qn{font-size:12px;font-weight:800;color:var(--mio);letter-spacing:.05em;}
+  .qhead .qt{margin-top:6px;font-size:20px;font-weight:900;line-height:1.4;}
+  .deck{flex:1;position:relative;margin:14px 22px 6px;}
+  .swipe{position:absolute;inset:0;border-radius:24px;padding:26px 24px;display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 20px 50px rgba(0,0,0,.5);
+    touch-action:none;will-change:transform;}
+  .swipe .opt{font-size:23px;font-weight:900;line-height:1.5;}
+  .swipe .hint{margin-top:auto;display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--faint);}
+  .swipe .hint b{color:#cfe6ff;}
+  .badge{position:absolute;top:22px;font-size:26px;font-weight:900;padding:6px 14px;border-radius:12px;border:3px solid;opacity:0;transform:rotate(-8deg);}
+  .badge.L{left:20px;color:var(--no);border-color:var(--no);}
+  .badge.R{right:20px;color:var(--yes);border-color:var(--yes);}
+  .thumbs{display:flex;gap:14px;justify-content:center;padding:6px 22px 18px;}
+  .tb{flex:1;max-width:180px;border:none;border-radius:14px;padding:13px;font-size:15px;font-weight:800;cursor:pointer;}
+  .tb.no{background:rgba(255,111,111,.13);color:#ffb0b0;border:1px solid rgba(255,111,111,.3);}
+  .tb.yes{background:rgba(57,211,83,.13);color:#9be9ad;border:1px solid rgba(57,211,83,.3);}
+  /* ---- result (free QUICK) ---- */
+  .res{padding:6px 22px 26px;display:flex;flex-direction:column;gap:14px;}
+  .modeCard{border-radius:22px;padding:22px;text-align:center;background:linear-gradient(165deg,var(--cardtop),var(--card));box-shadow:0 18px 44px rgba(0,0,0,.5);}
+  .modeCard .lab{font-size:12px;font-weight:800;color:var(--dim);letter-spacing:.05em;}
+  .modeCard .mode{margin-top:8px;font-size:34px;font-weight:900;}
+  .modeCard .mode.attack{color:var(--attack);}
+  .modeCard .mode.tune{color:var(--tune);}
+  .modeCard .mode.wait{color:var(--wait);}
+  .modeCard .tend{margin-top:10px;font-size:14.5px;color:#dbe7f4;font-weight:600;}
+  .row{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:15px 17px;}
+  .row .k{font-size:11.5px;font-weight:800;color:var(--mio);letter-spacing:.04em;}
+  .row .v{margin-top:6px;font-size:15px;font-weight:600;color:#e7eefb;}
+  .lock{background:rgba(178,139,255,.08);border:1px dashed rgba(178,139,255,.34);}
+  .lock .k{color:var(--violet);}
+  .lock .v{color:#d9cdfb;}
+  /* ---- DEEP extra Q ---- */
+  .deep{padding:8px 22px 24px;display:flex;flex-direction:column;gap:14px;flex:1;}
+  .deep h2{font-size:19px;font-weight:900;}
+  .deep .sub{font-size:13px;color:var(--dim);font-weight:600;margin-top:-6px;}
+  .field{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:15px 16px;}
+  .field .lab{font-size:14px;font-weight:800;color:#e7eefb;}
+  .field .num{margin-top:10px;display:flex;align-items:baseline;gap:8px;}
+  .field .num .amt{font-size:26px;font-weight:900;color:var(--mio);min-width:40px;}
+  .field .num .yen{font-size:14px;color:var(--dim);font-weight:700;}
+  .field .seg{margin-top:10px;display:flex;gap:8px;}
+  .field .seg button{flex:1;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:#cfd9e6;border-radius:11px;padding:11px;font-size:14px;font-weight:800;cursor:pointer;}
+  .field .seg button.on{background:rgba(94,179,255,.2);border-color:var(--mio);color:#eaf6ff;}
+  /* keypad */
+  .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+  .pad button{border:none;border-radius:12px;padding:14px;font-size:19px;font-weight:800;background:rgba(255,255,255,.06);color:#eaf2fb;cursor:pointer;}
+  .pad button:active{background:rgba(94,179,255,.24);}
+  .pad button.wide{grid-column:span 1;}
+  /* ---- DEEP result (paid sample) ---- */
+  .verdict{border-radius:22px;padding:22px;background:linear-gradient(165deg,#2a2140,#1c1830);box-shadow:0 18px 44px rgba(0,0,0,.5);border:1px solid rgba(178,139,255,.28);}
+  .verdict .tag{font-size:12px;font-weight:800;color:var(--violet);letter-spacing:.05em;}
+  .verdict .concl{margin-top:8px;font-size:24px;font-weight:900;line-height:1.4;}
+  .branch{display:flex;gap:12px;}
+  .branch .b{flex:1;border-radius:16px;padding:15px;font-size:13px;font-weight:600;line-height:1.55;}
+  .branch .go{background:rgba(57,211,83,.09);border:1px solid rgba(57,211,83,.28);color:#cdefd4;}
+  .branch .skip{background:rgba(94,179,255,.08);border:1px solid rgba(94,179,255,.26);color:#cfe6ff;}
+  .branch .bt{display:block;font-weight:900;font-size:13px;margin-bottom:6px;}
+  .branch .go .bt{color:var(--yes);}
+  .branch .skip .bt{color:var(--mio);}
+  .steps{counter-reset:st;list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .steps li{position:relative;padding-left:34px;font-size:14px;font-weight:600;color:#e7eefb;}
+  .steps li:before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;
+    background:rgba(94,179,255,.18);color:var(--mio);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .disc{font-size:11px;color:var(--faint);line-height:1.6;}
+  .sampleTag{display:inline-block;font-size:10px;font-weight:800;color:#ffd9a8;background:rgba(255,159,111,.14);border:1px solid rgba(255,159,111,.3);border-radius:999px;padding:2px 9px;margin-bottom:6px;}
+  /* analyze overlay */
+  #analyze{position:absolute;inset:0;z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    background:radial-gradient(60% 40% at 50% 40%, rgba(94,179,255,.16), transparent 70%), rgba(6,10,18,.94);}
+  #analyze.on{display:flex;}
+  #analyze .ring{width:74px;height:74px;border-radius:50%;border:3px solid rgba(94,179,255,.2);border-top-color:var(--mio);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  #analyze .msg{font-size:15px;font-weight:800;color:#cfe6ff;}
+  .fade{animation:fade .34s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="proto">プロトタイプ（サンプル表示・課金なし・実データ未接続）</div>
+  <div id="hdr">
+    <button id="back" aria-label="戻る">‹</button>
+    <div id="dots" class="hide"></div>
+    <div style="width:32px"></div>
+  </div>
+  <div id="stage"></div>
+  <div id="analyze"><div class="ring"></div><div class="msg">Mioが分岐を計算中…</div></div>
+</div>
+<script>
+(function(){
+  // ---- 計測イベント(自己テスト分離) ----
+  // 実訪問(utm_source有り・非localhost)のみ collector へ送信。自己テスト/プロト確認は selftest=true で分離。
+  var P = new URLSearchParams(location.search);
+  var host = location.hostname || '';
+  var SELFTEST = !P.get('utm_source') || P.get('utm_source')==='selftest' || P.get('selftest')==='1'
+              || location.protocol==='file:' || host==='localhost' || host==='127.0.0.1' || host.indexOf('192.168.')===0;
+  var SRC = P.get('utm_source') || (SELFTEST?'selftest':'unknown');
+  function track(ev, extra){
+    try{
+      var e = Object.assign({ ev:ev, exp:'proto-bunki', src:SRC, selftest:SELFTEST, t:new Date().toISOString() }, extra||{});
+      var key='mio_proto_events'; var arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push(e);
+      localStorage.setItem(key, JSON.stringify(arr.slice(-200)));
+      if(!SELFTEST && navigator.sendBeacon){ try{ navigator.sendBeacon('/api/proto-metrics', new Blob([JSON.stringify(e)],{type:'application/json'})); }catch(_){}}
+    }catch(_){}
+  }
+  track('landing');
+
+  var stage = document.getElementById('stage');
+  var back  = document.getElementById('back');
+  var dots  = document.getElementById('dots');
+  var analyze = document.getElementById('analyze');
+
+  // QUICK 3問（二択スワイプ）: 左=No/守り側, 右=Yes/攻め側。scoreは攻め寄り度。
+  var QUICK = [
+    {n:'Q1 / 3', t:'手元の生活防衛資金は？', left:'心もとない', right:'生活費6か月分ある', leftLab:'薄い', rightLab:'十分', yes:1},
+    {n:'Q2 / 3', t:'毎月の家計は？',         left:'赤字ぎみ',   right:'黒字',              leftLab:'赤字',  rightLab:'黒字', yes:1},
+    {n:'Q3 / 3', t:'借入・分割の残高は？',   left:'ある',       right:'ない',              leftLab:'あり',  rightLab:'なし', yes:1},
+  ];
+  var quickAns = [];   // 各問 true=攻め側 / false=守り側
+  var deepAns = { amount:null, fixed:null, soon:null }; // 購入額 / 固定費増 / 半年内支出
+
+  function reset(){ stage.className=''; stage.innerHTML=''; }
+  function setDots(total, idx){
+    dots.classList.remove('hide'); dots.innerHTML='';
+    for(var i=0;i<total;i++){ var s=document.createElement('i'); if(i<idx)s.className='fill'; if(i===idx)s.className='now'; dots.appendChild(s); }
+  }
+  function hideDots(){ dots.classList.add('hide'); }
+  function showBack(on){ back.classList.toggle('on', !!on); }
+
+  // ---------- INTRO ----------
+  function intro(){
+    reset(); hideDots(); showBack(false);
+    var d=document.createElement('div'); d.className='mioWrap fade';
+    d.innerHTML='<div class="glow"></div><div class="mioAv">🔮</div><div class="bubble">未来は当てない。あなたの選択で、未来がどう分岐するかを見る。</div>';
+    var i=document.createElement('div'); i.className='intro';
+    i.innerHTML=''+
+      '<div class="kicker">Mio分岐予報</div>'+
+      '<h1>今、大きな買い物を<br>してよい状態？</h1>'+
+      '<div class="lead">3回スワイプするだけ。今のあなたが「攻めどき／整えどき／待ちどき」のどれかが分かります。</div>'+
+      '<div class="note">占いは入口です。判断の根拠は、あなたが入れた数字で計算します。</div>';
+    var b=document.createElement('button'); b.className='cta'; b.textContent='3スワイプで診断する →';
+    b.onclick=function(){ track('start'); quickAns=[]; quiz(0); };
+    i.appendChild(b);
+    stage.appendChild(d); stage.appendChild(i);
+  }
+
+  // ---------- QUICK swipe ----------
+  function quiz(idx){
+    if(idx>=QUICK.length){ return analyzeThen(quickResult); }
+    reset(); setDots(3, idx); showBack(idx>0);
+    back.onclick=function(){ quickAns.pop(); quiz(idx-1); };
+    var q=QUICK[idx];
+    var wrap=document.createElement('div'); wrap.id='qwrap'; wrap.className='fade';
+    wrap.innerHTML=''+
+      '<div class="qhead"><div class="qn">'+q.n+'</div><div class="qt">'+q.t+'</div></div>'+
+      '<div class="deck"><div class="swipe">'+
+        '<div class="badge L">'+q.leftLab+'</div><div class="badge R">'+q.rightLab+'</div>'+
+        '<div class="opt">👉 右: '+q.right+'<br>👈 左: '+q.left+'</div>'+
+        '<div class="hint"><span>← <b>'+q.left+'</b></span><span><b>'+q.right+'</b> →</span></div>'+
+      '</div></div>'+
+      '<div class="thumbs"><button class="tb no">'+q.left+'</button><button class="tb yes">'+q.right+'</button></div>';
+    stage.appendChild(wrap);
+    var card=wrap.querySelector('.swipe');
+    var bl=card.querySelector('.badge.L'), br=card.querySelector('.badge.R');
+    function choose(yes){ quickAns[idx]=yes; quiz(idx+1); }
+    wrap.querySelector('.tb.no').onclick=function(){ fly(card,-1,function(){choose(false);}); };
+    wrap.querySelector('.tb.yes').onclick=function(){ fly(card,1,function(){choose(true);}); };
+    dragify(card, bl, br, function(dir){ choose(dir>0); });
+  }
+
+  // pointer-follow swipe physics
+  function dragify(card, bl, br, done){
+    var sx=0, dx=0, drag=false;
+    card.addEventListener('pointerdown', function(e){ drag=true; sx=e.clientX; card.setPointerCapture(e.pointerId); card.style.transition='none'; });
+    card.addEventListener('pointermove', function(e){ if(!drag)return; dx=e.clientX-sx;
+      card.style.transform='translateX('+dx+'px) rotate('+(dx/18)+'deg)';
+      var r=Math.min(Math.abs(dx)/120,1);
+      if(dx>0){ br.style.opacity=r; bl.style.opacity=0; } else { bl.style.opacity=r; br.style.opacity=0; }
+    });
+    card.addEventListener('pointerup', function(e){ if(!drag)return; drag=false; card.style.transition='transform .28s ease';
+      if(Math.abs(dx)>105){ fly(card, dx>0?1:-1, function(){ done(dx>0?1:-1); }); }
+      else { card.style.transform=''; bl.style.opacity=0; br.style.opacity=0; }
+      dx=0;
+    });
+  }
+  function fly(card, dir, cb){ card.style.transition='transform .3s ease, opacity .3s ease';
+    card.style.transform='translateX('+(dir*520)+'px) rotate('+(dir*24)+'deg)'; card.style.opacity='0';
+    setTimeout(cb, 260);
+  }
+
+  // analyze overlay then callback
+  function analyzeThen(cb){ analyze.classList.add('on'); setTimeout(function(){ analyze.classList.remove('on'); cb(); }, 1100); }
+
+  // ---------- local mode logic (fixture rules) ----------
+  function computeMode(){
+    // 攻め寄りスコア: 各Yes=+1。借入なし(Q3 yes)は守り解除。hard rule: 資金薄(Q1 no) → 上限は"整え"まで。
+    var score = quickAns.filter(Boolean).length; // 0..3
+    var fundThin = quickAns[0]===false;
+    if(score>=3) return {key:'attack', label:'攻めどき', cls:'attack', tend:'資金・家計・借入すべて健全。動いてよい局面。'};
+    if(fundThin || score<=1) return {key:'wait', label:'待ちどき', cls:'wait', tend:'手元資金が薄い、または赤字/借入が重なる。まず守りを固める局面。'};
+    return {key:'tune', label:'整えどき', cls:'tune', tend:'黒字だが手元資金が薄め、または借入あり。土台を整えれば動ける局面。'};
+  }
+
+  // ---------- QUICK result (free) ----------
+  function quickResult(){
+    reset(); stage.className='scroll'; hideDots(); showBack(false);
+    var m=computeMode();
+    track('quick_complete', { mode:m.key });
+    var wrap=document.createElement('div'); wrap.className='res fade';
+    wrap.innerHTML=''+
+      '<div class="modeCard"><div class="lab">今のあなたの経済モード</div>'+
+        '<div class="mode '+m.cls+'">'+ (m.key==='attack'?'⚔ ':m.key==='tune'?'🛡 ':'⏳ ') + m.label +'</div>'+
+        '<div class="tend">'+m.tend+'</div></div>'+
+      '<div class="row"><div class="k">気づき</div><div class="v">大きな買い物より、先に「生活防衛資金3〜6か月」の状態を確かめると、判断がぶれません。</div></div>'+
+      '<div class="row lock"><div class="k">🔒 あと少しで分かること</div><div class="v">購入額・増える固定費・半年内の支出を入れると、<b>買ってよい上限額</b>と<b>このまま進んだ未来／見送った未来の分岐</b>が出せます。</div></div>';
+    var b=document.createElement('button'); b.className='cta'; b.textContent='あと2〜3問で、分岐まで見る →';
+    b.onclick=function(){ track('paid_cta'); deepQ(); };
+    var g=document.createElement('button'); g.className='cta ghost'; g.textContent='もう一度スワイプする';
+    g.onclick=intro;
+    wrap.appendChild(b); wrap.appendChild(g);
+    stage.appendChild(wrap);
+  }
+
+  // ---------- DEEP extra questions ----------
+  function deepQ(){
+    reset(); stage.className='scroll'; hideDots(); showBack(true);
+    back.onclick=quickResult;
+    track('deep_select');
+    var wrap=document.createElement('div'); wrap.className='deep fade';
+    wrap.innerHTML=''+
+      '<h2>あと少しだけ、数字を。</h2>'+
+      '<div class="sub">この3つで「上限額」と「分岐」が決まります。</div>'+
+      '<div class="field" id="fAmt"><div class="lab">① 今回の購入額</div>'+
+        '<div class="num"><span class="amt">0</span><span class="yen">円</span></div>'+
+        '<div class="pad"></div></div>'+
+      '<div class="field" id="fFixed"><div class="lab">② 買った後に毎月増える固定費</div>'+
+        '<div class="seg">'+
+          '<button data-v="0">増えない</button>'+
+          '<button data-v="3000">〜3,000円</button>'+
+          '<button data-v="8000">3,000〜1万円</button>'+
+          '<button data-v="15000">1万円超</button>'+
+        '</div></div>'+
+      '<div class="field" id="fSoon"><div class="lab">③ 半年以内に大きな支出予定は？</div>'+
+        '<div class="seg">'+
+          '<button data-v="yes">ある</button>'+
+          '<button data-v="no">ない</button>'+
+        '</div></div>';
+    var cta=document.createElement('button'); cta.className='cta'; cta.textContent='分岐を見る →'; cta.disabled=true; cta.style.opacity=.5;
+    wrap.appendChild(cta);
+    stage.appendChild(wrap);
+
+    // keypad for amount
+    var amtEl=wrap.querySelector('#fAmt .amt'); var padEl=wrap.querySelector('#fAmt .pad');
+    var digits='';
+    var keys=['1','2','3','4','5','6','7','8','9','000','0','⌫'];
+    keys.forEach(function(k){ var bt=document.createElement('button'); bt.textContent=k;
+      bt.onclick=function(){
+        if(k==='⌫'){ digits=digits.slice(0,-1); }
+        else { if(digits.length<9) digits+=k; }
+        deepAns.amount = digits? parseInt(digits,10) : null;
+        amtEl.textContent = deepAns.amount!=null? deepAns.amount.toLocaleString('ja-JP') : '0';
+        refresh();
+      };
+      padEl.appendChild(bt);
+    });
+    // segments
+    function segGroup(sel, field, cast){
+      var g=wrap.querySelectorAll(sel+' .seg button');
+      g.forEach(function(bt){ bt.onclick=function(){
+        g.forEach(function(x){x.classList.remove('on');}); bt.classList.add('on');
+        deepAns[field]=cast(bt.getAttribute('data-v')); refresh();
+      };});
+    }
+    segGroup('#fFixed','fixed',function(v){return parseInt(v,10);});
+    segGroup('#fSoon','soon',function(v){return v;});
+    function refresh(){ var ok=(deepAns.amount!=null && deepAns.amount>0 && deepAns.fixed!=null && deepAns.soon!=null);
+      cta.disabled=!ok; cta.style.opacity=ok?1:.5; }
+    cta.onclick=function(){ if(cta.disabled)return; analyzeThen(deepResult); };
+  }
+
+  // ---------- DEEP result (paid sample) ----------
+  function deepResult(){
+    reset(); stage.className='scroll'; hideDots(); showBack(true);
+    back.onclick=deepQ;
+    var m=computeMode();
+    // fixture計算: 上限額 = モード別係数 × 購入額の許容。分岐は資金薄+固定費増+半年内支出で見送り寄り。
+    var fundThin = quickAns[0]===false;
+    track('deep_complete', { mode:m.key, amount:deepAns.amount, fixed:deepAns.fixed, soon:deepAns.soon });
+    var riskHits = (fundThin?1:0) + (deepAns.fixed>=8000?1:0) + (deepAns.soon==='yes'?1:0);
+    var lean = riskHits>=2 ? 'skip' : (m.key==='attack' ? 'go' : 'cond');
+    var conclText = lean==='go' ? '今回は「GO寄り」。上限内なら進めてよい。'
+                  : lean==='skip' ? '今回は「見送り寄り」。今は守りを固める局面。'
+                  : '今回は「条件付きGO」。下の逆転条件を満たせば進めてよい。';
+    var cap = Math.max(0, Math.round((deepAns.amount * (m.key==='attack'?0.9:m.key==='tune'?0.5:0.25))/1000)*1000);
+
+    var wrap=document.createElement('div'); wrap.className='res fade';
+    wrap.innerHTML=''+
+      '<div class="verdict"><div class="tag">Mioの結論（サンプル）</div>'+
+        '<span class="sampleTag">プロト固定サンプル</span>'+
+        '<div class="concl">'+conclText+'</div></div>'+
+      '<div class="row"><div class="k">買ってよい上限の目安</div><div class="v"><b style="font-size:22px;color:var(--mio)">'+cap.toLocaleString('ja-JP')+'円</b> ＜ 今回の希望額 '+deepAns.amount.toLocaleString('ja-JP')+'円 '+ (deepAns.amount>cap?'（超過）':'（範囲内）') +'</div></div>'+
+      '<div class="row"><div class="k">どの回答が効いたか</div><div class="v">手元資金「'+(fundThin?'薄い':'十分')+'」／固定費増「月+'+deepAns.fixed.toLocaleString('ja-JP')+'円」／半年内支出「'+(deepAns.soon==='yes'?'あり':'なし')+'」</div></div>'+
+      '<div class="branch">'+
+        '<div class="b go"><span class="bt">▶ このまま進んだ未来</span>短期の満足度は上がるが、想定外出費と重なると貯蓄を取り崩し、守りが必要な局面で選択肢が減る。</div>'+
+        '<div class="b skip"><span class="bt">▷ 見送った未来</span>3〜6か月は資金確保に専念。次の機会で「攻めどき」側に回れる余力が残る。</div>'+
+      '</div>'+
+      '<div class="row"><div class="k">判断が逆転する条件</div><div class="v">・手元資金が生活費6か月分に達する<br>・購入後の固定費増が月3,000円未満<br>・半年内の大型支出予定が消える<br>→ このうち複数が成立でGO側へ。</div></div>'+
+      '<div class="row"><div class="k">今日からの実行手順</div>'+
+        '<ol class="steps" style="margin-top:8px">'+
+          '<li>今日：購入ページを閉じ、生活費6か月分の金額を実際に計算する</li>'+
+          '<li>今週：増える固定費の実額と、半年内の支出予定（車検・保険等）を書き出す</li>'+
+          '<li>条件成立後：上限額（'+cap.toLocaleString('ja-JP')+'円）以内で、もう一度この診断で再判定する</li>'+
+        '</ol></div>'+
+      '<div class="disc">※これはプロトタイプの固定サンプルです。実際の判定エンジン・個別説明（Mio/Luna）・決済は未接続。上限額と分岐は入力値からの試算（確認済）で、満足度など主観要素は本人申告に依存（推定）。生活防衛資金の一般則は「判断材料」であり将来の断定ではありません。情報確認日 2026-09-14。</div>';
+    var g=document.createElement('button'); g.className='cta ghost'; g.textContent='最初からやり直す';
+    g.onclick=intro;
+    wrap.appendChild(g);
+    stage.appendChild(wrap);
+  }
+
+  intro();
+})();
+</script>
+</body>
+</html>
