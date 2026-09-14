@@ -80,7 +80,8 @@ const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=nu
 const esc=s=>String(s==null?'':s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
 const OWNER_B={KENTARO:'b-K',CLAUDE:'b-C',SYSTEM:'b-S'};
 const KENTARO_OPEN=['READY','HUMAN_GATE','NEEDS_REVIEW'];
-const PRIV_TABS=[['today','Today'],['tasks','Tasks'],['knowledge','Knowledge'],['decisions','Decisions'],['runs','Runs'],['artifacts','Artifacts'],['funnel','Funnel']];
+const PRIV_TABS=[['today','Today'],['tasks','Tasks'],['ideas','Ideas'],['knowledge','Knowledge'],['decisions','Decisions'],['runs','Runs'],['artifacts','Artifacts'],['funnel','Funnel']];
+const PIPE=['IDEA_INBOX','HYPOTHESIS','DISCOVERY','PROTOTYPE','MARKET_TEST','PROMOTE'];
 const PUB_TABS=[['public','公開']];
 
 function stale(measured_at, thMin){ if(!measured_at) return false; const t=new Date(measured_at).getTime(); return (Date.now()-t)/60000 > (thMin||120); }
@@ -166,6 +167,7 @@ function render(){
   if(MODE==='public') return renderPublic(m);
   if(TAB==='today') return renderToday(m);
   if(TAB==='tasks') return renderTasks(m);
+  if(TAB==='ideas') return renderIdeas(m);
   if(TAB==='knowledge') return renderKnowledge(m);
   if(TAB==='decisions') return renderDecisions(m);
   if(TAB==='runs') return renderRuns(m);
@@ -222,6 +224,35 @@ function renderKnowledge(m){
   m.appendChild(el('h2','','Knowledge 索引 <span class="cnt">'+ks.length+'件 ・ 正本=hbq-ai-ops(git)</span>'));
   const klist=el('div'); klist.id='klist'; m.appendChild(klist);
   ks.forEach(k=>{ const c=el('div','card'); c.dataset.txt=(k.title+k.summary).toLowerCase(); c.innerHTML='<div class="row"><span class="pill">'+k.type+'</span><span class="st '+(k.status==='ACTIVE'?'READY':k.status)+'">'+k.status+'</span></div><div class="ttl">'+esc(k.title)+'</div><div class="meta">'+esc(k.summary)+'</div><div class="kv">正本 <b>'+esc(k.canonical_path)+'</b></div><div class="kv">commit <b>'+esc(k.commit)+'</b> sha <b>'+esc(k.sha)+'</b> v'+esc(k.version)+'</div>'; const a=el('button','link','開く / 関連 →'); a.style.cssText='background:none;border:none;margin-top:6px;cursor:pointer'; a.onclick=()=>openK(k.knowledge_id); c.appendChild(a); klist.appendChild(c); });
+}
+function renderIdeas(m){
+  const ideas=DATA.ideas||[];
+  m.appendChild(el('div','warn','Idea Pipeline: IDEA_INBOX→HYPOTHESIS→DISCOVERY→PROTOTYPE→MARKET_TEST→PROMOTE/HOLD/DROP。無期限BACKLOG禁止・各Ideaに next_review_at。運用データはローカル data/ideas.json(Git非管理)。'));
+  m.appendChild(el('h2','','Ideas <span class="cnt">'+ideas.length+'件</span>'));
+  if(!ideas.length) m.appendChild(el('div','empty','なし'));
+  ideas.forEach(x=>{
+    const c=el('div','card');
+    // pipeline進捗
+    const st=el('div'); st.style.cssText='display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px';
+    const cur=PIPE.indexOf(x.status);
+    PIPE.forEach((p,i)=>{ const b=el('span','pill'); b.textContent=p.replace('IDEA_INBOX','INBOX'); if(i<=cur&&cur>=0){ b.style.background='rgba(94,179,255,.2)'; b.style.color='#9fd0ff'; } if(i===cur){ b.style.fontWeight='900'; } st.appendChild(b); });
+    c.appendChild(st);
+    c.appendChild(el('div','row','<span class="badge b-C">'+x.owner+'</span><span class="st '+(x.status==='DISCOVERY'?'IN_PROGRESS':'READY')+'">'+x.status+'</span><span class="pill rev-me">💰'+x.revenue_impact+'</span>'));
+    c.appendChild(el('div','ttl',esc(x.working_name)+' ｜ '+esc(x.title)));
+    c.appendChild(el('div','na','▶ 次の一手: <b>'+esc(x.next_action)+'</b>'));
+    c.appendChild(el('div','meta','⏰ next_review_at: <b style="color:#9fd0ff">'+esc(x.next_review_at)+'</b> ・ owner '+x.owner+' ・ origin '+esc(x.origin)));
+    c.appendChild(el('div','kv','対象: '+esc(x.target_user)));
+    c.appendChild(el('div','kv','課題: '+esc(x.user_problem)));
+    c.appendChild(el('div','kv','Mio適合: '+esc(x.mio_fit)));
+    c.appendChild(el('div','kv','最小実験: '+esc(x.cheapest_next_experiment)));
+    c.appendChild(el('div','kv','成功条件: '+esc(x.success_condition)));
+    c.appendChild(el('div','kv','失敗条件: '+esc(x.failure_condition)));
+    c.appendChild(el('div','kv','production_blocked_by: <b>'+esc(x.production_blocked_by||'—')+'</b> ／ discovery_blocked_by: <b>'+esc(x.discovery_blocked_by||'—')+'</b>'));
+    c.appendChild(el('div','kv','blocker: '+esc(x.blocker||'なし')+' ／ 判定(PROMOTE/HOLD/DROP): '+esc(x.decision||'—')));
+    if(x.experiment_result) c.appendChild(el('div','kv','実験結果: '+esc(x.experiment_result)));
+    (x.evidence||[]).forEach(e=>c.appendChild(el('div','kv','📎 '+esc(e))));
+    m.appendChild(c);
+  });
 }
 function renderDecisions(m){ m.appendChild(el('h2','','Decisions <span class="cnt">'+DATA.decisions.length+'件</span>'));
   DATA.decisions.forEach(d=>{ const c=el('div','card'); c.innerHTML='<div class="ttl">⚖ '+esc(d.question)+'</div><div class="na">結論: <b>'+esc(d.decision)+'</b></div><div class="meta">理由: '+esc(d.rationale)+'</div><div class="kv">代替: '+esc((d.alternatives||[]).join(' / '))+' ・ 有効化 '+esc(d.effective_at)+'</div>'; m.appendChild(c); }); }
