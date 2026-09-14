@@ -21,8 +21,33 @@ export const FIELD_LABEL = {
   surplus:'毎月の実質余剰額', upcoming:'半年以内の大型支出予定額', added:'購入後に増える月額費用'
 };
 
+export const has = (inp, k) => inp[k] != null && !isNaN(inp[k]) && inp[k] >= 0;
+
 export function decide(inp){
-  const missing = DEEP_FIELDS.filter(k => inp[k]==null || isNaN(inp[k]) || inp[k] < 0);
+  // ★ハードストップ: 貯蓄 < 生活防衛資金 は、残りを入力しても結論は「待ち」で変わらない。
+  // 全項目を待たず早期に確定WAITを返す（架空の上限は出さない＝上限0）。
+  if (has(inp,'savings') && has(inp,'living') && inp.savings < inp.living * 6){
+    const bufferNeeded = inp.living * 6;
+    const monthlyKnown = has(inp,'surplus') && has(inp,'added');
+    const monthlyAfter = monthlyKnown ? (inp.surplus - inp.added) : null;
+    const postSavings = has(inp,'desired') ? (inp.savings - inp.desired) : null;
+    const postBufferGap = postSavings != null ? Math.max(0, bufferNeeded - postSavings) : Math.max(0, bufferNeeded - inp.savings);
+    return {
+      state:'WAIT', concl:'今は見送り（生活防衛資金が不足＝守りが最優先）', earlyHardStop:true,
+      cashCap:0, bufferNeeded, bufferMet:false, withinCash:false, fixedOK: monthlyKnown ? (inp.added <= inp.surplus) : true,
+      postSavings, postBufferGap,
+      monthlyAfter, shortfall:0, monthlySave: has(inp,'surplus') ? inp.surplus : null, waitMonths:null,
+      unmet:[{key:'buffer',met:false}],
+      reversalConditions:[`生活防衛資金6か月分（${YEN(bufferNeeded)}円）まで貯蓄を ${YEN(bufferNeeded - inp.savings)}円 増やす`],
+      basis:[
+        `生活防衛資金の目安 = 生活費月額 ${YEN(inp.living)}円 × 6 = ${YEN(bufferNeeded)}円`,
+        `現在の貯蓄 ${YEN(inp.savings)}円 ＜ 防衛資金 ${YEN(bufferNeeded)}円 → 不足 ${YEN(bufferNeeded - inp.savings)}円`,
+        `貯蓄が防衛資金を下回るため、他の入力に関わらず結論は「待ち」`,
+      ],
+      inp
+    };
+  }
+  const missing = DEEP_FIELDS.filter(k => !has(inp,k));
   if (missing.length) return { state:'NEEDS_INPUT', missing, need:'算出には追加情報が必要（架空の上限は出しません）' };
   const { desired, savings, living, surplus, upcoming, added } = inp;
 
@@ -89,11 +114,15 @@ export function branchesFor(d){
     ] },
     skip:{ t:'見送った場合', lines:['必要な買い物を先送りする分、値・在庫・時期の機会を逃す可能性。'] } };
   const lines = [];
-  lines.push(`月次収支は購入後も約 ${YEN(d.monthlyAfter)}円 の${d.monthlyAfter>=0?'黒字':'赤字'}`);
-  if (d.postBufferGap > 0)
+  if (d.monthlyAfter != null)
+    lines.push(`月次収支は購入後も約 ${YEN(d.monthlyAfter)}円 の${d.monthlyAfter>=0?'黒字':'赤字'}`);
+  if (d.postBufferGap > 0 && d.postSavings != null)
     lines.push(`購入直後の貯蓄が ${YEN(d.postSavings)}円 となり、生活防衛資金 ${YEN(d.bufferNeeded)}円 を ${YEN(d.postBufferGap)}円 下回る`);
-  if (!d.withinCash)
+  else if (d.earlyHardStop)
+    lines.push(`現在の貯蓄が生活防衛資金を ${YEN(d.postBufferGap)}円 下回っており、購入で守りがさらに薄くなる`);
+  if (!d.withinCash && d.shortfall > 0)
     lines.push(`希望額が上限を ${YEN(d.shortfall)}円 超える`);
+  if (!lines.length) lines.push('今の状態では、購入より守りを固める方が有利。');
   return {
     go:{ t:'このまま進む', lines },
     skip:{ t:'整えてから進む', lines:[
@@ -102,27 +131,60 @@ export function branchesFor(d){
     ] } };
 }
 
-export function stepsFor(d){
+// 実行手順は最大3ステップ。追加観点(axis)は既存プランへ「意味で統合」し、単純追加・重複・時期矛盾を作らない。
+export function stepsFor(d, axisKey, axisVal){
+  const cap = d.cashCap, save = d.monthlySave, wm = d.waitMonths, sf = d.shortfall;
+  const targetSavings = (d.inp && d.inp.savings != null && sf != null) ? d.inp.savings + sf : null;
+  let s;
   switch(d.state){
-    case 'GO': return [
-      '今日：上限内であることを最終確認し、維持費・更新費も月額に足して再確認',
-      '今週：発注（上限を超える上位グレードには広げない）',
-      '継続：購入後の固定費が余剰内に収まっているか毎月モニタ' ];
-    case 'REDUCE': return [
-      `今日：希望額 ${YEN(d.inp.desired)}円 を上限 ${YEN(d.cashCap)}円 以内へ見直す（差額 ${YEN(d.shortfall)}円）`,
-      d.waitMonths
-        ? `今週：毎月 ${YEN(d.monthlySave)}円 の貯蓄なら約 ${d.waitMonths}か月で不足 ${YEN(d.shortfall)}円 を解消。上限（${YEN(d.cashCap)}円）以下への値下がりも待機候補`
-        : `今週：上限（${YEN(d.cashCap)}円）以内の候補で相見積り`,
-      `解消後：上限 ${YEN(d.cashCap)}円 以内でこの診断を再実行して確定` ];
-    case 'WAIT': return [
-      `今日：購入ページを閉じ、生活費6か月分（${YEN(d.bufferNeeded)}円）と現在貯蓄 ${YEN(d.inp.savings)}円 の差を確認`,
-      '今週：貯蓄の積み増し計画（毎月いくら・いつ防衛資金に届くか）を作る',
-      '防衛資金到達後：もう一度この診断で上限と分岐を出し直す' ];
-    default: /* COND_HOLD */ return [
-      `今日：購入後に増える固定費（月 ${YEN(d.inp.added)}円）の実額と内訳（保険/通信/維持）を洗い出す`,
-      `今週：固定費増を毎月余剰（${YEN(d.inp.surplus)}円）以内に収める代替案（グレード/プラン変更）を検討`,
-      '固定費が余剰内に収まったら、上限内でこの診断を再実行して確定' ];
+    case 'GO':
+      s = [
+        '今日：上限内であることを最終確認し、維持費・更新費も月額に足して再確認',
+        '今週：発注（上限を超える上位グレードには広げない）',
+        (axisKey==='upkeep' && axisVal==='no')
+          ? '継続：維持費・保険・更新費を月額換算し、毎月余剰に収まるか確認'
+          : '継続：購入後の固定費が余剰内に収まっているか毎月モニタ',
+      ];
+      break;
+    case 'REDUCE':
+      if (axisKey==='postpone' && axisVal==='urgent'){
+        s = [
+          `今日：上限 ${YEN(cap)}円 以内の構成に絞って候補を選ぶ（希望額を ${YEN(sf)}円 削る）`,
+          '今週：上限内の候補で相見積り・発注',
+          '継続：購入後の固定費が毎月余剰内に収まるか確認',
+        ];
+      } else {
+        // 既定/「急がない」共通: 待って解消する統合プラン（時期ラベルを整合）
+        s = [
+          `今日：希望額を ${YEN(cap)}円 以下へ見直し、候補を比較する`,
+          wm ? `${wm}か月：毎月 ${YEN(save)}円 を貯めるか、${YEN(cap)}円 以下への値下がりを待つ`
+             : `直近：上限 ${YEN(cap)}円 以内の候補で相見積り`,
+          wm ? `${wm}か月後：貯蓄 ${YEN(targetSavings)}円 以上、または希望額 ${YEN(cap)}円 以下で再判定する`
+             : `解消後：上限 ${YEN(cap)}円 以内で再判定する`,
+        ];
+      }
+      break;
+    case 'WAIT': {
+      const gap = Math.max(0, d.bufferNeeded - (d.inp ? d.inp.savings : 0));
+      s = [
+        `今日：購入ページを閉じ、生活費6か月分（${YEN(d.bufferNeeded)}円）と現在貯蓄 ${YEN(d.inp && d.inp.savings)}円 の差を確認`,
+        (axisKey==='reversible' && axisVal==='low')
+          ? `毎月：不足 ${YEN(gap)}円 に向け積み増し（可逆性が低いので到達までは購入を保留）`
+          : `毎月：不足 ${YEN(gap)}円 に向けた積み増し計画を作る`,
+        '防衛資金到達後：もう一度この診断で上限と分岐を出し直す',
+      ];
+      break;
+    }
+    default: /* COND_HOLD */
+      s = [
+        `今日：購入後に増える固定費（月 ${YEN(d.inp && d.inp.added)}円）の実額と内訳（保険/通信/維持）を洗い出す`,
+        (axisKey==='postpone' && axisVal==='flex')
+          ? `当面：急がないので、固定費を毎月余剰（${YEN(d.inp && d.inp.surplus)}円）以内へ下げてから購入を検討`
+          : `今週：固定費増を毎月余剰（${YEN(d.inp && d.inp.surplus)}円）以内に収める代替案を検討`,
+        '収まったら：上限内でこの診断を再実行して確定',
+      ];
   }
+  return s.slice(0, 3);
 }
 
 // 観点（本人が気づかない）: borderlineのときだけ1軸。fixtureはコード選択（本番はLunaが候補軸→選択肢化）。
@@ -143,24 +205,67 @@ export function selectExtraAxis(inp, d){
   return null;
 }
 
-// 観点の回答を反映。★何を変えたかを affects で明示（verdict/cap/change_condition/action_plan/none）。
-// fixtureでは verdict/cap は数値計算が正のため変えない（＝action_planのみ具体化）。
+// 観点の回答が「何を変えたか」を affects で明示（verdict/cap/change_condition/action_plan/none）。
+// ★手順への反映は stepsFor 側で意味統合する（ここでは追加ステップを返さない＝重複を作らない）。
+// fixtureでは verdict/cap/change_condition は数値計算が正のため変えず、action_plan のみ具体化する。
 export function foldExtraAxis(d, axisKey, ansVal){
-  if (axisKey === 'postpone' && ansVal === 'flex' && d.state !== 'GO'){
-    const steps = [];
-    if (d.waitMonths) steps.push(`急がないなら、毎月 ${YEN(d.monthlySave)}円 の貯蓄で約 ${d.waitMonths}か月待てば不足 ${YEN(d.shortfall)}円 を埋められる`);
-    steps.push(`${d.waitMonths?`${d.waitMonths}か月待つ`:'条件成立を待つ'}か、上限 ${YEN(d.cashCap)}円 以下へ値下がりするまで待つ`);
-    steps.push(`${d.waitMonths?`${d.waitMonths}か月後`:'条件成立後'}に同条件で再判定する`);
-    return { affects:'action_plan', text:`「急がない」→ 手順に待機期間を具体化（判定・上限・逆転条件は不変）。`, extraSteps: steps };
-  }
+  if (axisKey === 'postpone' && ansVal === 'flex' && d.state !== 'GO')
+    return { affects:'action_plan', text:'「急がない」→ 手順の待機期間・再判定条件に反映（判定・上限・逆転条件は不変）。' };
   if (axisKey === 'postpone' && ansVal === 'urgent' && d.state === 'REDUCE')
-    return { affects:'action_plan', text:'「すぐ必要」→ 手順を「上限内へ減額して今回はミニマム構成」に具体化（判定・上限は不変）。',
-      extraSteps:[`すぐ必要なら、今回は上限 ${YEN(d.cashCap)}円 以内の構成に絞って購入する`] };
+    return { affects:'action_plan', text:'「すぐ必要」→ 手順を「上限内へ減額して今回はミニマム構成」に切替（判定・上限は不変）。' };
   if (axisKey === 'upkeep' && ansVal === 'no')
-    return { affects:'action_plan', text:'「維持費未計上」→ 手順に維持費・更新費の月額計上を追加（判定・上限は不変）。',
-      extraSteps:['購入前に維持費・保険・更新費を月額換算し、毎月余剰に収まるか再確認する'] };
+    return { affects:'action_plan', text:'「維持費未計上」→ 継続の手順に維持費・更新費の月額計上を反映（判定・上限は不変）。' };
   if (axisKey === 'reversible' && ansVal === 'low')
-    return { affects:'action_plan', text:'「可逆性が低い」→ 待ちどきの購入は特に慎重に（判定は不変）。',
-      extraSteps:['売却/返品で戻りにくいため、防衛資金到達までは購入を保留する'] };
-  return { affects:'none', text:null, extraSteps:[] };
+    return { affects:'action_plan', text:'「可逆性が低い」→ 待ちの手順に「到達まで購入保留」を反映（判定は不変）。' };
+  return { affects:'none', text:null };
+}
+
+// ---- 段階的評価（暫定判定）: 部分入力から「今分かること」を返す。最終結論ではない。----
+// 情報充足度は質問数でなく「判定に必要な軸が揃ったか」で計算する。
+export function assess(inp){
+  const h = k => has(inp, k);
+  const axes = [
+    { key:'buffer',    label:'生活防衛資金の判定', ok: h('savings') && h('living') },
+    { key:'direction', label:'上限に対する方向',   ok: h('savings') && h('living') && h('desired') },
+    { key:'cap',       label:'正確な上限額',        ok: h('savings') && h('living') && h('upcoming') },
+    { key:'monthly',   label:'購入後の月次維持',    ok: h('surplus') && h('added') },
+  ];
+  const sufficiency = Math.round(100 * axes.filter(a => a.ok).length / axes.length);
+  const canFinalize = h('desired') && h('savings') && h('living') && h('upcoming') && h('surplus') && h('added');
+
+  // ハードストップ（早期確定）: 貯蓄 < 防衛資金 → 残りに関わらず「待ち」
+  let hardStop = null;
+  if (h('savings') && h('living') && inp.savings < inp.living * 6){
+    hardStop = { state:'WAIT',
+      reason:`貯蓄 ${YEN(inp.savings)}円 が生活防衛資金 ${YEN(inp.living*6)}円 を下回るため、残りを入力しても結論は「待ち」で変わりません。` };
+  }
+
+  const known = [], unknown = [], couldChange = [], nextReveals = [];
+  let direction = null;
+  if (h('savings') && h('living')){
+    const buf = inp.living * 6, prelimCap = Math.max(0, inp.savings - buf); // 上限の上振れ値(半年内支出を引く前)
+    known.push(`生活防衛資金の目安は ${YEN(buf)}円`);
+    if (inp.savings >= buf) known.push(`生活防衛資金は確保できている（貯蓄 ${YEN(inp.savings)}円）`);
+    else known.push(`生活防衛資金を ${YEN(buf - inp.savings)}円 下回っている`);
+    if (h('desired')){
+      if (inp.savings < buf) direction = '待ち寄り';
+      else if (inp.desired > prelimCap){ direction = '減額寄り';
+        known.push(`希望額 ${YEN(inp.desired)}円 は上限（最大でも ${YEN(prelimCap)}円）を超える`); }
+      else { direction = '上限内の可能性';
+        known.push(`希望額 ${YEN(inp.desired)}円 は暫定上限 ${YEN(prelimCap)}円 の範囲内（半年内支出でさらに下がり得る）`); }
+    }
+  }
+  if (!h('upcoming')){
+    unknown.push('半年以内の大型支出（未入力）');
+    couldChange.push('半年内支出が大きいほど上限が下がり、「上限内」→「減額」に変わり得る');
+    nextReveals.push('正確な買える上限額');
+  }
+  if (!h('surplus') || !h('added')){
+    unknown.push('毎月の余剰／購入後の固定費増（未入力）');
+    couldChange.push('固定費増が毎月余剰を超えると「条件付きHOLD」になり得る');
+    nextReveals.push('購入後の月次維持可否（黒字か赤字か）');
+  }
+  if (canFinalize) nextReveals.push('確定結論・計算根拠・逆転条件・実行手順');
+
+  return { sufficiency, canFinalize, hardStop, direction, known, unknown, couldChange, nextReveals, axes };
 }

@@ -133,7 +133,7 @@
   <div id="analyze"><div class="ring"></div><div class="msg">Mioが上限と分岐を計算中…</div></div>
 </div>
 <script type="module">
-import { quickMode, decide, isGo, DEEP_FIELDS, FIELD_LABEL, branchesFor, stepsFor, selectExtraAxis, foldExtraAxis, YEN }
+import { quickMode, decide, assess, isGo, DEEP_FIELDS, FIELD_LABEL, branchesFor, stepsFor, selectExtraAxis, foldExtraAxis, YEN }
   from './bunki.rules.mjs';
 
 // ---- 計測(自己テスト分離) ----
@@ -215,73 +215,145 @@ function quickResult(){
     `<div class="row"><div class="k">気づき</div><div class="v">大きな買い物の前に、「生活防衛資金3〜6か月」の状態を数字で確かめると判断がぶれません。</div></div>`+
     `<div class="row lock"><div class="k">🔒 数字を入れると分かること</div><div class="v">貯蓄・生活費・毎月余剰・半年内支出・購入後の固定費を入れると、<b>買ってよい上限額（計算式つき）</b>と、GO/減額/HOLD/待ちの<b>判定と逆転条件</b>が出せます。</div></div>`+
     `</div>`);
-  const b=el('<button class="cta gap">数字を入れて、上限と分岐を見る →</button>');
+  const b=el('<button class="cta gap">数字を入れて、暫定判定へ →</button>');
   b.onclick=()=>{ track('paid_cta'); deepStart(); };
   const g=el('<button class="cta ghost gap">もう一度スワイプする</button>'); g.onclick=intro;
   wrap.appendChild(b); wrap.appendChild(g); stage.appendChild(wrap);
 }
 
-// ---------- DEEP numeric (sequential keypad) ----------
-const ORDER = ['desired','savings','living','surplus','upcoming','added'];
+// ---------- DEEP numeric (段階的: 3問→暫定判定の区切り→残り3問→詳細判定) ----------
+// GROUP1で方向とハードストップ、GROUP2で正確な上限・月次維持が揃う。
+const GROUPS = [['savings','living','desired'], ['upcoming','surplus','added']];
+const ORDER = GROUPS.flat();
 const HINT = {
   desired:'この買い物にかけたい金額', savings:'すぐ使える預貯金（投資・固定分は除く）',
   living:'家賃・食費など毎月の生活費', surplus:'収入から生活費・固定費を引いた毎月の残り',
   upcoming:'車検・税・学費など半年以内に出る大きな支出（無ければ0）', added:'保険・通信・維持など、買った後に毎月増える額（無ければ0）'
 };
 const ZERO_OK = { upcoming:true, added:true };
-function deepStart(){ track('deep_select'); deepField(0); }
-function deepField(i){
-  reset(); stage.className=''; setDots(ORDER.length, i);
-  showBack(true, ()=> i>0 ? deepField(i-1) : quickResult());
-  const key=ORDER[i]; let digits = (deepAns[key]!=null)? String(deepAns[key]) : '';
-  const wrap=el(`<div class="numwrap fade"><div class="nq">${i+1}. ${FIELD_LABEL[key]}</div><div class="nh">${HINT[key]}</div>`+
+function deepStart(){ track('deep_select'); deepField(0,0); }
+function fieldIndex(g,i){ let n=0; for(let x=0;x<g;x++) n+=GROUPS[x].length; return n+i; }
+function deepField(g,i){
+  reset(); stage.className=''; const abs=fieldIndex(g,i); setDots(ORDER.length, abs);
+  showBack(true, ()=> abs>0 ? (i>0?deepField(g,i-1):breakBack(g)) : quickResult());
+  const key=GROUPS[g][i]; let digits = (deepAns[key]!=null)? String(deepAns[key]) : '';
+  const wrap=el(`<div class="numwrap fade"><div class="nq">${abs+1}. ${FIELD_LABEL[key]}</div><div class="nh">${HINT[key]}</div>`+
     `<div class="numbox"><span class="amt">0</span><span class="yen">円</span></div>`+
     (ZERO_OK[key]?'<div class="zerohint">無ければ 0 のまま「次へ」</div>':'')+
     `<div class="pad"></div></div>`);
   stage.appendChild(wrap);
   const amt=wrap.querySelector('.amt'), pad=wrap.querySelector('.pad');
+  const touched=()=> digits.length>0 || ZERO_OK[key];
   const paint=()=>{ deepAns[key]= digits? parseInt(digits,10) : (ZERO_OK[key]?0:null);
     amt.textContent = digits? parseInt(digits,10).toLocaleString('ja-JP') : '0'; nextBtn.disabled = !touched(); };
-  const touched=()=> digits.length>0 || ZERO_OK[key];
   ['1','2','3','4','5','6','7','8','9','000','0','⌫'].forEach(k=>{ const bt=el(`<button>${k}</button>`);
     bt.onclick=()=>{ if(k==='⌫'){digits=digits.slice(0,-1);} else if(digits.length<10){ digits+=k; } paint(); }; pad.appendChild(bt); });
-  const nextBtn=el(`<button class="cta gap">${i<ORDER.length-1?'次へ →':'上限と分岐を計算する →'}</button>`);
+  const last = (i===GROUPS[g].length-1);
+  const nextBtn=el(`<button class="cta gap">${last?'ここまでで一度みる →':'次へ →'}</button>`);
   nextBtn.onclick=()=>{ if(nextBtn.disabled)return; deepAns[key]= digits? parseInt(digits,10) : (ZERO_OK[key]?0:null);
-    if(i<ORDER.length-1) deepField(i+1); else afterNumbers(); };
+    // ハードストップに該当したら不要な質問を続けず早期に区切りへ
+    if(assess(deepAns).hardStop) return breakScreen(g);
+    if(!last) deepField(g,i+1); else breakScreen(g); };
   wrap.appendChild(nextBtn); paint();
+}
+function breakBack(g){ // 区切りから前グループ末尾へ戻る
+  if(g<=0) return deepField(0,GROUPS[0].length-1);
+  return deepField(g-1, GROUPS[g-1].length-1);
+}
+// 区切り: 主「あとN問で詳細まで」/ 副「ここまでで暫定判定」。ハードストップ時は早期判定を主に。
+function breakScreen(g){
+  const a = assess(deepAns);
+  // 全項目そろった or 最終グループ → 詳細判定へ
+  if (a.canFinalize) return analyzeThen(()=>afterNumbers());
+  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(g,GROUPS[g].length-1));
+  const remain = ORDER.length - fieldIndex(g, GROUPS[g].length-1) - 1;
+  const wrap=el(`<div class="res fade"></div>`);
+  if (a.hardStop){
+    wrap.appendChild(el(`<div class="verdict"><div class="tag" style="color:var(--waitc)">早期判定できます</div>`+
+      `<div><span class="st WAIT">待ち</span></div>`+
+      `<div class="concl" style="font-size:17px">${a.hardStop.reason}</div></div>`));
+    const b1=el('<button class="cta gap">早期判定（待ち）の詳細を見る →</button>');
+    b1.onclick=()=>analyzeThen(()=>afterNumbers()); // decideがearlyHardStopで確定WAIT
+    const b2=el('<button class="cta ghost gap">それでも残りも入力する</button>');
+    b2.onclick=()=>deepField(g+1,0);
+    wrap.appendChild(b1); wrap.appendChild(b2); stage.appendChild(wrap); return;
+  }
+  // 暫定判定パネル（最終結論ではない）
+  wrap.appendChild(provisionalPanel(a));
+  const b1=el(`<button class="cta gap">あと${remain}問で、詳細判定（上限・分岐・手順）まで出す →</button>`);
+  b1.onclick=()=>deepField(g+1,0);
+  const b2=el('<button class="cta ghost gap">ここまでの情報で見る（暫定）</button>');
+  b2.onclick=()=>{ track('provisional_view',{sufficiency:a.sufficiency}); showProvisional(a); };
+  wrap.appendChild(b1); wrap.appendChild(b2); stage.appendChild(wrap);
+}
+function provisionalPanel(a){
+  return el(`<div class="verdict" style="border-color:rgba(94,179,255,.3);background:linear-gradient(165deg,#16233c,#101a2e)">`+
+    `<div class="tag" style="color:var(--mio)">暫定（最終結論ではありません）</div>`+
+    (a.direction?`<div class="concl" style="font-size:19px">現時点では「${a.direction}」</div>`:`<div class="concl" style="font-size:17px">もう少し数字が必要です</div>`)+
+    `<div style="margin-top:10px;font-size:12px;color:var(--dim);font-weight:700">情報充足度 ${a.sufficiency}%（判定に必要な軸ベース）</div>`+
+    `<div style="height:6px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden"><div style="height:100%;width:${a.sufficiency}%;background:linear-gradient(90deg,var(--mio),#9ad3ff)"></div></div>`+
+    `</div>`);
+}
+// 「ここまでで見る」= 暫定判定の全文（分かったこと/まだ分からないこと/変わり得る結論/続けると分かること）
+function showProvisional(a){
+  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>breakScreenFromState());
+  const list = arr => arr.length? arr.map(x=>`<li>${x}</li>`).join('') : '<li>—</li>';
+  const w=el(`<div class="res fade">`+
+    `<div class="verdict" style="border-color:rgba(94,179,255,.3);background:linear-gradient(165deg,#16233c,#101a2e)">`+
+      `<div class="tag" style="color:var(--mio)">暫定判定<span class="sampleTag">最終結論ではありません</span></div>`+
+      (a.direction?`<div class="concl" style="font-size:20px">現時点では「${a.direction}」</div>`:'')+
+      `<div style="margin-top:8px;font-size:12px;color:var(--dim);font-weight:700">情報充足度 ${a.sufficiency}%</div>`+
+      `<div style="height:6px;border-radius:99px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden"><div style="height:100%;width:${a.sufficiency}%;background:linear-gradient(90deg,var(--mio),#9ad3ff)"></div></div></div>`+
+    `<div class="row"><div class="k">✅ 現時点で分かったこと</div><ul class="basis">${list(a.known)}</ul></div>`+
+    `<div class="row"><div class="k">❔ まだ分からないこと</div><ul class="basis">${list(a.unknown)}</ul></div>`+
+    `<div class="row"><div class="k">⚠ 未入力で変わり得る結論</div><ul class="basis">${list(a.couldChange)}</ul></div>`+
+    `<div class="row lock"><div class="k">▶ 続けると具体的に分かること</div><ul class="basis">${list(a.nextReveals)}</ul></div>`+
+    `<div class="disc">※これは暫定です。必要な軸が揃うまで確定結論・上限額は出しません。情報充足度は質問数でなく判定軸で計算しています。</div>`+
+    `</div>`);
+  const b=el('<button class="cta gap">続けて詳細判定まで出す →</button>');
+  b.onclick=()=>{ // 次の未入力グループへ
+    const g = deepAns.upcoming==null || deepAns.surplus==null || deepAns.added==null ? 1 : 0;
+    deepField(g,0);
+  };
+  const g2=el('<button class="cta ghost gap">最初からやり直す</button>'); g2.onclick=intro;
+  w.appendChild(b); w.appendChild(g2); stage.appendChild(w);
+}
+function breakScreenFromState(){ // 暫定から戻る先: 直近に埋まったグループの区切り
+  const g = (deepAns.upcoming!=null && deepAns.surplus!=null && deepAns.added!=null) ? 1 : 0;
+  breakScreen(g);
 }
 function afterNumbers(){
   const d=decide(deepAns);
   if(d.state==='NEEDS_INPUT'){ return showResult(d,null,null); }
   const axis=selectExtraAxis(deepAns,d);
-  if(!axis){ return analyzeThen(()=>showResult(d,null,null)); }
+  if(!axis){ return showResult(d,null,null); }
   askAxis(d,axis);
 }
 function askAxis(d,axis){
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(ORDER.length-1));
+  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(1, GROUPS[1].length-1));
   const wrap=el(`<div class="axis fade"><div class="aq">${axis.q}</div><div class="an">${axis.note}</div><div class="opts"></div></div>`);
   const opts=wrap.querySelector('.opts');
   axis.opts.forEach(o=>{ const b=el(`<button>${o.t}</button>`);
-    b.onclick=()=>{ const fold=foldExtraAxis(d,axis.key,o.v); analyzeThen(()=>showResult(d,axis,fold)); }; opts.appendChild(b); });
+    b.onclick=()=>{ analyzeThen(()=>showResult(d,axis,o.v)); }; opts.appendChild(b); });
   stage.appendChild(wrap);
 }
 
 // ---------- Result ----------
-function showResult(d,axis,fold){
-  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(ORDER.length-1));
+function showResult(d,axis,axisVal){
+  reset(); stage.className='scroll'; hideDots(); showBack(true, ()=>deepField(1, GROUPS[1].length-1));
   if(d.state==='NEEDS_INPUT'){
     const w=el(`<div class="res fade"><div class="verdict"><div class="tag" style="color:#b7c4d6">判定できません</div>`+
       `<span class="st NEEDS_INPUT">追加情報が必要</span><div class="concl">${d.need}</div></div>`+
       `<div class="row"><div class="k">不足している数値</div><div class="v">${d.missing.map(k=>FIELD_LABEL[k]).join(' / ')}</div></div>`+
       `<div class="disc">※必要な数値が揃わない間は、架空の上限額を出しません。</div></div>`);
-    const g=el('<button class="cta ghost gap">入力に戻る</button>'); g.onclick=()=>deepField(0); w.appendChild(g); stage.appendChild(w); return;
+    const g=el('<button class="cta ghost gap">入力に戻る</button>'); g.onclick=()=>deepField(0,0); w.appendChild(g); stage.appendChild(w); return;
   }
   track('deep_complete',{ state:d.state, cap:d.cashCap, amount:d.inp.desired });
   const br=branchesFor(d);
-  let steps=stepsFor(d).slice();
-  // 観点(fold)が action_plan を変える場合のみ手順へ具体ステップを追加。何を変えたかを明示。
-  const affects = fold ? fold.affects : 'none';
-  if(fold && Array.isArray(fold.extraSteps)) steps = steps.concat(fold.extraSteps);
+  const axisKey = axis ? axis.key : null;
+  const fold = axis ? foldExtraAxis(d, axisKey, axisVal) : null;
+  // ★手順は stepsFor 側で観点を意味統合済み（最大3・追加/重複なし）。ここでは連結しない。
+  const steps = stepsFor(d, axisKey, axisVal);
   const revItems = d.reversalConditions.length
     ? d.reversalConditions.map(t=>`<li>${t}</li>`).join('')
     : '<li>現状で3条件（防衛資金・上限内・固定費）を満たしています</li>';
