@@ -189,32 +189,37 @@ function renderToday(m){
   m.appendChild(el('h2','','📊 実測(最新)'));
   DATA.metrics.filter(x=>x.verified||x.product!=='card').slice(0,3).forEach(x=>{ const c=el('div','card'); const st=x.stale||stale(x.measured_at,120); c.innerHTML='<div class="ttl">'+esc(x.metric_name)+' = '+esc(x.value)+(st?' <span class="badge" style="background:rgba(255,206,86,.16);color:var(--amber)">STALE</span>':'')+'</div><div class="meta">'+esc(x.product)+' ・ '+esc(x.window)+' ・ 取得 '+fmt(x.measured_at)+' ・ '+esc(x.data_source)+' ・ '+(x.self_test_excluded?'自己テスト除外':'自己テスト含む')+' ・ verified '+(x.verified?'✅':'—')+'</div>'; m.appendChild(c); });
 }
+const FILT={owner:'',status:'',workstream:'',revenue_impact:''};
 function renderTasks(m){
   const f=el('div','filters');
-  const mk=(id,opts)=>{ const s=el('select'); s.id='f-'+id; s.appendChild(el('option','', '<option value="">'+id+':全</option>').firstChild||new Option(id+':全','')); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.onchange=()=>renderTasks(m); return s; };
+  const mk=(id,opts)=>{ const s=el('select'); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.value=FILT[id]; s.onchange=()=>{ FILT[id]=s.value; renderTasks(m); }; return s; };
   f.appendChild(mk('owner',['KENTARO','CLAUDE','SYSTEM']));
   f.appendChild(mk('status',['BACKLOG','READY','IN_PROGRESS','NEEDS_REVIEW','HUMAN_GATE','WAITING_EXTERNAL','VERIFIED_DONE','CANCELLED']));
   f.appendChild(mk('workstream',[...new Set(T().map(t=>t.workstream).filter(Boolean))]));
   f.appendChild(mk('revenue_impact',['high','medium','low','none']));
   m.appendChild(f);
-  const gv=id=>{ const e=$('f-'+id); return e?e.value:''; };
   let list=T().slice().sort((a,b)=>revScore(b)-revScore(a));
-  const fo=gv('owner'),fs=gv('status'),fw=gv('workstream'),fr=gv('revenue_impact');
-  if(fo)list=list.filter(t=>t.owner===fo); if(fs)list=list.filter(t=>t.status===fs); if(fw)list=list.filter(t=>t.workstream===fw); if(fr)list=list.filter(t=>t.revenue_impact===fr);
+  if(FILT.owner)list=list.filter(t=>t.owner===FILT.owner);
+  if(FILT.status)list=list.filter(t=>t.status===FILT.status);
+  if(FILT.workstream)list=list.filter(t=>t.workstream===FILT.workstream);
+  if(FILT.revenue_impact)list=list.filter(t=>t.revenue_impact===FILT.revenue_impact);
   m.appendChild(el('h2','','Tasks <span class="cnt">'+list.length+'件 / 単一Task Store</span>'));
   if(!list.length) m.appendChild(el('div','empty','該当なし'));
   list.forEach(t=>m.appendChild(taskCard(t)));
 }
+const KFILT={q:'',type:'',status:''};
 function renderKnowledge(m){
-  const bar=el('div','filters'); const inp=el('input'); inp.placeholder='全文検索(title/summary)'; inp.oninput=()=>renderKnowledge(m); inp.id='k-q'; inp.value=(window.__kq||'');
+  const bar=el('div','filters'); const inp=el('input'); inp.placeholder='全文検索(title/summary)'; inp.value=KFILT.q; inp.oninput=()=>{ KFILT.q=inp.value; const q=KFILT.q.toLowerCase(); document.querySelectorAll('#klist .card').forEach(c=>{ c.style.display = (!q||c.dataset.txt.includes(q))?'':'none'; }); };
   bar.appendChild(inp);
-  const ts=el('select'); ts.id='k-t'; ts.innerHTML='<option value="">type：全</option>'+[...new Set(DATA.knowledge.map(k=>k.type))].map(t=>'<option>'+t+'</option>').join(''); ts.onchange=()=>renderKnowledge(m);
-  const ss=el('select'); ss.id='k-s'; ss.innerHTML='<option value="">status：全</option>'+['DRAFT','ACTIVE','SUPERSEDED','DEPRECATED'].map(t=>'<option>'+t+'</option>').join(''); ss.onchange=()=>renderKnowledge(m);
-  bar.appendChild(ts); bar.appendChild(ss); m.appendChild(bar);
-  window.__kq=inp.value; const q=(inp.value||'').toLowerCase(), ft=$('k-t')?.value||'', fs=$('k-s')?.value||'';
+  const mk=(id,opts)=>{ const s=el('select'); s.innerHTML='<option value="">'+id+'：全</option>'+opts.map(o=>'<option>'+o+'</option>').join(''); s.value=KFILT[id]; s.onchange=()=>{ KFILT[id]=s.value; renderKnowledge(m); }; return s; };
+  bar.appendChild(mk('type',[...new Set(DATA.knowledge.map(k=>k.type))]));
+  bar.appendChild(mk('status',['DRAFT','ACTIVE','SUPERSEDED','DEPRECATED']));
+  m.appendChild(bar);
+  const q=KFILT.q.toLowerCase(), ft=KFILT.type, fs=KFILT.status;
   let ks=DATA.knowledge.filter(k=>(!q||(k.title+k.summary).toLowerCase().includes(q))&&(!ft||k.type===ft)&&(!fs||k.status===fs));
   m.appendChild(el('h2','','Knowledge 索引 <span class="cnt">'+ks.length+'件 ・ 正本=hbq-ai-ops(git)</span>'));
-  ks.forEach(k=>{ const c=el('div','card'); c.innerHTML='<div class="row"><span class="pill">'+k.type+'</span><span class="st '+(k.status==='ACTIVE'?'READY':k.status)+'">'+k.status+'</span></div><div class="ttl">'+esc(k.title)+'</div><div class="meta">'+esc(k.summary)+'</div><div class="kv">正本 <b>'+esc(k.canonical_path)+'</b></div><div class="kv">commit <b>'+esc(k.commit)+'</b> sha <b>'+esc(k.sha)+'</b> v'+esc(k.version)+'</div>'; const a=el('button','link','開く / 関連 →'); a.style.cssText='background:none;border:none;margin-top:6px;cursor:pointer'; a.onclick=()=>openK(k.knowledge_id); c.appendChild(a); m.appendChild(c); });
+  const klist=el('div'); klist.id='klist'; m.appendChild(klist);
+  ks.forEach(k=>{ const c=el('div','card'); c.dataset.txt=(k.title+k.summary).toLowerCase(); c.innerHTML='<div class="row"><span class="pill">'+k.type+'</span><span class="st '+(k.status==='ACTIVE'?'READY':k.status)+'">'+k.status+'</span></div><div class="ttl">'+esc(k.title)+'</div><div class="meta">'+esc(k.summary)+'</div><div class="kv">正本 <b>'+esc(k.canonical_path)+'</b></div><div class="kv">commit <b>'+esc(k.commit)+'</b> sha <b>'+esc(k.sha)+'</b> v'+esc(k.version)+'</div>'; const a=el('button','link','開く / 関連 →'); a.style.cssText='background:none;border:none;margin-top:6px;cursor:pointer'; a.onclick=()=>openK(k.knowledge_id); c.appendChild(a); klist.appendChild(c); });
 }
 function renderDecisions(m){ m.appendChild(el('h2','','Decisions <span class="cnt">'+DATA.decisions.length+'件</span>'));
   DATA.decisions.forEach(d=>{ const c=el('div','card'); c.innerHTML='<div class="ttl">⚖ '+esc(d.question)+'</div><div class="na">結論: <b>'+esc(d.decision)+'</b></div><div class="meta">理由: '+esc(d.rationale)+'</div><div class="kv">代替: '+esc((d.alternatives||[]).join(' / '))+' ・ 有効化 '+esc(d.effective_at)+'</div>'; m.appendChild(c); }); }
