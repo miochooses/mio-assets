@@ -277,10 +277,18 @@ function showResult(d,axis,fold){
     const g=el('<button class="cta ghost gap">入力に戻る</button>'); g.onclick=()=>deepField(0); w.appendChild(g); stage.appendChild(w); return;
   }
   track('deep_complete',{ state:d.state, cap:d.cashCap, amount:d.inp.desired });
-  const br=branchesFor(d), steps=stepsFor(d);
-  const revItems = d.unmet.length ? d.unmet.map(u=>`<li>${u.unmet}</li>`).join('')
-                                  : '<li>現状で3条件（防衛資金・上限内・固定費）を満たしています</li>';
-  const insight = (fold||axis) ? `<div class="insight"><div class="k">💡 見落としがちな観点</div><div class="v">${[axis?axis.note:'',fold||''].filter(Boolean).join(' ')}</div></div>` : '';
+  const br=branchesFor(d);
+  let steps=stepsFor(d).slice();
+  // 観点(fold)が action_plan を変える場合のみ手順へ具体ステップを追加。何を変えたかを明示。
+  const affects = fold ? fold.affects : 'none';
+  if(fold && Array.isArray(fold.extraSteps)) steps = steps.concat(fold.extraSteps);
+  const revItems = d.reversalConditions.length
+    ? d.reversalConditions.map(t=>`<li>${t}</li>`).join('')
+    : '<li>現状で3条件（防衛資金・上限内・固定費）を満たしています</li>';
+  const hasRev = d.reversalConditions.length>0;
+  const insight = (fold && fold.affects!=='none')
+    ? `<div class="insight"><div class="k">💡 追加観点が変えたもの: 手順（action_plan）</div><div class="v">${fold.text}</div></div>`
+    : '';
   const w=el(`<div class="res fade">`+
     `<div class="verdict"><div class="tag" style="color:var(--violet)">Mioの結論<span class="sampleTag">プロト・コード計算</span></div>`+
       `<div><span class="st ${d.state}">${({GO:'GO',REDUCE:'減額',COND_HOLD:'条件付きHOLD',WAIT:'待ち'})[d.state]}</span></div>`+
@@ -288,11 +296,12 @@ function showResult(d,axis,fold){
     `<div class="row"><div class="k">買ってよい上限（計算根拠）</div><div class="v"><b style="font-size:22px;color:${d.withinCash?'var(--go)':'var(--reduce)'}">${YEN(d.cashCap)}円</b> ${d.withinCash?'≥':'＜'} 希望額 ${YEN(d.inp.desired)}円`+
       `<ul class="basis">${d.basis.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>`+
     `<div class="row"><div class="k">どの回答が効いたか</div><div class="v">貯蓄 ${YEN(d.inp.savings)}円 / 生活費 月${YEN(d.inp.living)}円 / 毎月余剰 ${YEN(d.inp.surplus)}円 / 半年内支出 ${YEN(d.inp.upcoming)}円 / 固定費増 月${YEN(d.inp.added)}円</div></div>`+
-    `<div class="branch"><div class="b go"><span class="bt">▶ ${br.go.t}</span>${br.go.body}</div><div class="b skip"><span class="bt">▷ ${br.skip.t}</span>${br.skip.body}</div></div>`+
-    `<div class="row"><div class="k">判断が逆転する条件${d.unmet.length?'（未達のみ）':''}</div><ul class="rev ${d.unmet.length?'':'none'}">${revItems}</ul></div>`+
+    `<div class="branch"><div class="b go"><span class="bt">▶ ${br.go.t}</span>${br.go.lines.map(l=>`<div>・${l}</div>`).join('')}</div>`+
+      `<div class="b skip"><span class="bt">▷ ${br.skip.t}</span>${br.skip.lines.map(l=>`<div>・${l}</div>`).join('')}</div></div>`+
+    `<div class="row"><div class="k">判断が逆転する条件${hasRev?'（未達かつ実行可能なもののみ）':''}</div><ul class="rev ${hasRev?'':'none'}">${revItems}</ul></div>`+
     insight+
     `<div class="row"><div class="k">今日からの手順</div><ol class="steps gap">${steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>`+
-    `<div class="disc">※これはプロトの固定サンプルです。上限・判定・逆転条件・手順はすべて上の入力値からコードで計算（Luna非依存・実決済未接続）。生活防衛資金6か月は判断材料で将来の断定ではありません。情報確認日 2026-09-14。</div>`+
+    `<div class="disc">※これはプロトの固定サンプルです。結論・上限・未来・逆転条件・手順はすべて上の入力値から同一計算で生成（固定の危機文を使わない・Luna非依存・実決済未接続）。生活防衛資金6か月は判断材料で将来の断定ではありません。情報確認日 2026-09-14。</div>`+
     `</div>`);
   const g=el('<button class="cta ghost gap">最初からやり直す</button>'); g.onclick=intro; w.appendChild(g); stage.appendChild(w);
 }
